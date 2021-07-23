@@ -19,7 +19,7 @@
 
 .btn--outline {
   background-color: transparent;
-  color: #276678;
+  color: #fff;
   padding: 8px 20px;
   border: 1px solid var(--primary);
   transition: all 0.3s ease-out;
@@ -78,8 +78,8 @@
 }
 
 .blue {
-  background-color: #276afb;
-  color: #fff;
+  background-color: #fff;
+  color: #1687a7;
   border: none;
 }
 
