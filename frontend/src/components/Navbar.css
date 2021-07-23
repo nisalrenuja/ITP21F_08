@@ -1,5 +1,5 @@
 .navbar {
-  background: #D3E0EA;
+  background: #1687a7;
   height: 80px;
   display: flex;
   justify-content: center;
@@ -27,11 +27,11 @@
 }
 
 .navbar-logo {
-  color: #276678;
+  color: #fff;
   justify-self: start;
   cursor: pointer;
   text-decoration: none;
-  font-size: 2rem;
+  font-size: 24px;
   display: flex;
   align-items: center;
 }
@@ -59,7 +59,7 @@
 }
 
 .nav-links {
-  color: #276678;
+  color: #fff;
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -68,8 +68,7 @@
 }
 
 .fa-bars {
-  color:#276678;
-
+  color: #fff;
 }
 
 .menu-icon {
@@ -140,7 +139,7 @@
   }
 
   .fa-times {
-    color: #D3E0EA;
+    color: #d3e0ea;
     font-size: 2rem;
   }
 
