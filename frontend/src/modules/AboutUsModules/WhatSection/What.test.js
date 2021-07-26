@@ -2,17 +2,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { render, screen } from "@testing-library/react";
-import HomeHeroSection from "./HomeHeroSection";
+import What from "./What";
 
-describe("HomeModule - HomeHeroSection.jsx", () => {
+describe("AboutUsModule - What.jsx", () => {
   test("renders without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<HomeHeroSection />, div);
+    ReactDOM.render(<What />, div);
   });
 
   test("render with correct title", () => {
-    const titleText = "Jay Bros";
-    render(<HomeHeroSection />);
+    const titleText = "What is MS Club of SLIIT ?";
+    render(<What />);
     expect(screen.queryByText(titleText)).toBeInTheDocument();
   });
 });
