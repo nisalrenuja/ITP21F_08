@@ -37,7 +37,7 @@ const responsive = {
 
 const BlogsComponent = () => (
   <div className="past-event-container pt-5">
-    <h1 className="event-header">Top Performers</h1>
+    <h1 className="event-header">Our Clients</h1>
 
     {blogs.data.map((blog) => (
       <BlogCard

@@ -49,17 +49,17 @@ function Navbar() {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link navLink" href="/">
+                <a className="nav-link navLink" href="/events">
                   Notices
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link navLink" href="/">
+                <a className="nav-link navLink" href="/blogs">
                   Clients
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link navLink" href="/">
+                <a className="nav-link navLink" href="/contact">
                   Contact Us
                 </a>
               </li>
