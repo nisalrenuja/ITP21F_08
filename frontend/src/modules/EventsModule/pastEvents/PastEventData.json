@@ -2,42 +2,42 @@
   "data": [
     {
       "id": 1,
-      "image": "https://blog.bizzabo.com/hs-fs/hubfs/Microsoft%20Event%20Marketing/microsoft-event-marketing-blue-min.png?width=500&name=microsoft-event-marketing-blue-min.png",
+      "image": "https://cbizz.lk/images/company_logos/1492198667mas.jpg",
       "datetime": "2015-03-25T12:00:00Z",
       "title": "Kubernetes Up & Running",
-      "tags": ["kubernetes", "docker"]
+      "tags": ["", ""]
     },
     {
       "id": 2,
-      "image": "https://blog.bizzabo.com/hs-fs/hubfs/Microsoft%20Event%20Marketing/microsoft-event-marketing-blue-min.png?width=500&name=microsoft-event-marketing-blue-min.png",
+      "image": "https://cbizz.lk/images/company_logos/1492198667mas.jpg",
       "time": "6.00 PM",
       "datetime": "2015-03-25T12:00:00Z",
       "title": "Imagine Cup Awareness Session",
-      "tags": ["kubernetes", "docker"]
+      "tags": ["", ""]
     },
     {
       "id": 3,
-      "image": "https://blog.bizzabo.com/hs-fs/hubfs/Microsoft%20Event%20Marketing/microsoft-event-marketing-blue-min.png?width=500&name=microsoft-event-marketing-blue-min.png",
+      "image": "https://cbizz.lk/images/company_logos/1492198667mas.jpg",
       "time": "7.30 PM",
       "datetime": "2015-03-25T12:00:00Z",
       "title": "First Step into Azure IoT",
-      "tags": ["kubernetes", "docker"]
+      "tags": ["", ""]
     },
     {
       "id": 4,
-      "image": "https://blog.bizzabo.com/hs-fs/hubfs/Microsoft%20Event%20Marketing/microsoft-event-marketing-blue-min.png?width=500&name=microsoft-event-marketing-blue-min.png",
+      "image": "https://cbizz.lk/images/company_logos/1492198667mas.jpg",
       "time": "7.00 PM",
       "datetime": "2015-03-25T12:00:00Z",
       "title": "Cloud Skills Challange - Lauching Event",
-      "tags": ["kubernetes", "docker"]
+      "tags": ["", ""]
     },
     {
       "id": 5,
-      "image": "https://blog.bizzabo.com/hs-fs/hubfs/Microsoft%20Event%20Marketing/microsoft-event-marketing-blue-min.png?width=500&name=microsoft-event-marketing-blue-min.png",
+      "image": "https://cbizz.lk/images/company_logos/1492198667mas.jpg",
       "time": "6.30 PM",
       "datetime": "2015-03-25T12:00:00Z",
       "title": "Serveless Computing with Azure Functions",
-      "tags": ["kubernetes", "docker"]
+      "tags": ["", ""]
     }
   ]
 }
