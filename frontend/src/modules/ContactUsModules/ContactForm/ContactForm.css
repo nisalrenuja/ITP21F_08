@@ -5,7 +5,7 @@
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  font-family: "Product Sans";
+  font-family: "Inters";
   font-weight: bolder;
 }
 
@@ -31,7 +31,7 @@
 .contact-btn {
   width: 130px;
   height: 40px;
-  background: #2cb93b;
+  background: #1687a7;
   border-radius: 10px;
   color: #fff;
   font-weight: bolder;
