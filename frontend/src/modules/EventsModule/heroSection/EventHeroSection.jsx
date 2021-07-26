@@ -1,6 +1,6 @@
 import React from "react";
 import "./EventHeroSection.css";
-import EventHeroHeaderImage from "../../../assets/flat-illustrations/undraw_events_2p66 1.png";
+import EventHeroHeaderImage from "../../../assets/flat-illustrations/performance.svg";
 
 const EventHeroSection = () => (
   <div className="container-fluid header">
