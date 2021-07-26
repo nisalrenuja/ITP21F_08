@@ -1,0 +1,12 @@
+.blogListPolygonDiv {
+  padding-top: 6%;
+  padding-bottom: 3%;
+  margin-bottom: 0;
+  background: var(--light-home-background-color);
+}
+
+@media (min-width: 1300px) {
+  .blogListPolygonDiv {
+    clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
+  }
+}
