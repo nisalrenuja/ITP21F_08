@@ -1,0 +1,26 @@
+:root {
+  --light-navbar-background-color: #1687a7;
+}
+
+.bg {
+  background: var(--light-navbar-background-color);
+}
+
+.img-logo {
+  width: 200px;
+}
+
+.navLink {
+  font-size: large;
+  font-weight: bold;
+  color: #fff;
+}
+
+.wrap {
+  padding-left: 4%;
+  padding-right: 4%;
+}
+
+.navbar-container {
+  margin-bottom: 100px;
+}

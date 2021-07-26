@@ -1,0 +1,529 @@
+:root {
+  --card-info-color: #ffffff;
+  --badge-info-color: #94f39d;
+}
+
+.bg-event {
+  background: var(--badge-info-color);
+}
+
+@media (min-width: 0px) {
+  .past-event-img {
+    position: relative;
+    border-radius: 20px 20px 0px 0px;
+  }
+
+  .event-card {
+    width: 250px;
+    height: 400px;
+    min-height: 380px;
+    border-radius: 20px;
+    flex-wrap: wrap;
+    flex: initial;
+  }
+
+  .event-card:hover {
+    box-shadow: 0px 10px 10px rgba(7, 7, 7, 0.2);
+  }
+
+  .card-title {
+    margin-top: 10px;
+    font-size: 17px;
+    font-family: "inter";
+    text-align: left;
+  }
+
+  .day-container {
+    color: aliceblue;
+    transform: translate(30%, -100px);
+    border-radius: 100px;
+    background-color: red;
+    width: 70px;
+    height: 70px;
+  }
+
+  .card-body {
+    position: absolute;
+    margin-top: 55%;
+  }
+
+  .description {
+    text-align: left;
+    font-size: 14px;
+    font-family: "inter";
+  }
+
+  .event-tags {
+    margin-right: 5px;
+    margin-left: 0px;
+    margin-bottom: 5px;
+    font-size: 10px;
+  }
+
+  .event-date {
+    font-size: 16px;
+  }
+
+  .event-btn {
+    font-family: "inter";
+    border-radius: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+@media (min-width: 250px) {
+  .past-event-img {
+    position: relative;
+    border-radius: 20px 20px 0px 0px;
+  }
+
+  .event-card {
+    width: 280px;
+    height: 430px;
+    min-height: 380px;
+    margin-left: 15px;
+    border-radius: 20px;
+    flex-wrap: wrap;
+    flex: initial;
+  }
+
+  .event-card:hover {
+    box-shadow: 0px 10px 10px rgba(7, 7, 7, 0.2);
+  }
+
+  .card-title {
+    margin-top: 10px;
+    font-size: 17px;
+    font-family: "inter";
+    text-align: left;
+  }
+
+  .day-container {
+    color: aliceblue;
+    transform: translate(30%, -100px);
+    border-radius: 100px;
+    background-color: red;
+    width: 70px;
+    height: 70px;
+  }
+
+  .card-body {
+    position: absolute;
+    margin-top: 55%;
+  }
+
+  .description {
+    text-align: left;
+    font-size: 14px;
+    font-family: "inter";
+  }
+
+  .event-tags {
+    margin-right: 5px;
+    margin-left: 0px;
+    margin-bottom: 5px;
+    font-size: 10px;
+  }
+
+  .event-date {
+    font-size: 16px;
+  }
+
+  .event-btn {
+    font-family: "inter";
+    border-radius: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+@media (min-width: 390px) {
+  .past-event-img {
+    position: relative;
+    border-radius: 20px 20px 0px 0px;
+  }
+
+  .event-card {
+    width: 300px;
+    height: 420px;
+    min-height: 380px;
+    margin-left: 0px;
+    border-radius: 20px;
+    flex-wrap: wrap;
+    flex: initial;
+  }
+
+  .event-card:hover {
+    box-shadow: 0px 10px 10px rgba(7, 7, 7, 0.2);
+  }
+
+  .card-title {
+    margin-top: 10px;
+    font-size: 17px;
+    font-family: "inter";
+    text-align: left;
+  }
+
+  .day-container {
+    color: aliceblue;
+    transform: translate(30%, -100px);
+    border-radius: 100px;
+    background-color: red;
+    width: 70px;
+    height: 70px;
+  }
+
+  .card-body {
+    position: absolute;
+    margin-top: 55%;
+  }
+
+  .description {
+    text-align: left;
+    font-size: 14px;
+    font-family: "inter";
+  }
+
+  .event-tags {
+    margin-right: 5px;
+    margin-left: 0px;
+    margin-bottom: 5px;
+    font-size: 10px;
+  }
+
+  .event-date {
+    font-size: 16px;
+  }
+
+  .event-btn {
+    font-family: "inter";
+    border-radius: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+@media (min-width: 576px) {
+  .past-event-img {
+    position: relative;
+    border-radius: 20px 20px 0px 0px;
+  }
+
+  .event-card {
+    width: 300px;
+    height: 420px;
+    min-height: 380px;
+    border-radius: 20px;
+    flex-wrap: wrap;
+    flex: initial;
+  }
+
+  .event-card:hover {
+    box-shadow: 0px 10px 10px rgba(7, 7, 7, 0.2);
+  }
+
+  .card-title {
+    margin-top: 10px;
+    font-size: 17px;
+    font-family: "inter";
+    text-align: left;
+  }
+
+  .day-container {
+    color: aliceblue;
+    transform: translate(30%, -100px);
+    border-radius: 100px;
+    background-color: red;
+    width: 70px;
+    height: 70px;
+  }
+
+  .card-body {
+    position: absolute;
+    margin-top: 55%;
+  }
+
+  .description {
+    text-align: left;
+    font-size: 14px;
+    font-family: "inter";
+  }
+
+  .event-tags {
+    margin-right: 5px;
+    margin-left: 0px;
+    margin-bottom: 5px;
+    font-size: 10px;
+  }
+
+  .event-date {
+    font-size: 16px;
+  }
+
+  .event-btn {
+    font-family: "inter";
+    border-radius: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+@media (min-width: 768px) {
+  .past-event-img {
+    position: relative;
+    border-radius: 20px 20px 0px 0px;
+  }
+
+  .event-card {
+    width: 300px;
+    height: 420px;
+    min-height: 380px;
+    border-radius: 20px;
+    flex-wrap: wrap;
+    flex: initial;
+  }
+
+  .event-card:hover {
+    box-shadow: 0px 10px 10px rgba(7, 7, 7, 0.2);
+  }
+
+  .card-title {
+    margin-top: 10px;
+    font-size: 17px;
+    font-family: "inter";
+    text-align: left;
+  }
+
+  .day-container {
+    color: aliceblue;
+    transform: translate(30%, -100px);
+    border-radius: 100px;
+    background-color: red;
+    width: 70px;
+    height: 70px;
+  }
+
+  .card-body {
+    position: absolute;
+    margin-top: 55%;
+  }
+
+  .description {
+    text-align: left;
+    font-size: 14px;
+    font-family: "inter";
+  }
+
+  .event-tags {
+    margin-right: 5px;
+    margin-left: 0px;
+    margin-bottom: 5px;
+    font-size: 10px;
+  }
+
+  .event-date {
+    font-size: 16px;
+  }
+
+  .event-btn {
+    font-family: "inter";
+    border-radius: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+@media (min-width: 992px) {
+  .past-event-img {
+    position: relative;
+    border-radius: 20px 20px 0px 0px;
+  }
+
+  .event-card {
+    width: 300px;
+    height: 420px;
+    min-height: 380px;
+    border-radius: 20px;
+    flex-wrap: wrap;
+    flex: initial;
+  }
+
+  .event-card:hover {
+    box-shadow: 0px 10px 10px rgba(7, 7, 7, 0.2);
+  }
+
+  .card-title {
+    margin-top: 10px;
+    font-size: 17px;
+    font-family: "inter";
+    text-align: left;
+  }
+
+  .day-container {
+    color: aliceblue;
+    transform: translate(30%, -100px);
+    border-radius: 100px;
+    background-color: red;
+    width: 70px;
+    height: 70px;
+  }
+
+  .card-body {
+    position: absolute;
+    margin-top: 55%;
+  }
+
+  .description {
+    text-align: left;
+    font-size: 14px;
+    font-family: "inter";
+  }
+
+  .event-tags {
+    margin-right: 5px;
+    margin-left: 0px;
+    margin-bottom: 5px;
+    font-size: 10px;
+  }
+
+  .event-date {
+    font-size: 16px;
+  }
+
+  .event-btn {
+    font-family: "inter";
+    border-radius: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .past-event-img {
+    position: relative;
+    border-radius: 20px 20px 0px 0px;
+  }
+
+  .event-card {
+    width: 350px;
+    height: 460px;
+    min-height: 380px;
+    border-radius: 10px 10px;
+    border-radius: 20px;
+  }
+
+  .event-card:hover {
+    box-shadow: 0px 10px 10px rgba(7, 7, 7, 0.2);
+  }
+
+  .card-title {
+    margin-top: 10px;
+    font-size: 18px;
+    font-family: "inter";
+    text-align: left;
+  }
+
+  .day-container {
+    color: aliceblue;
+    transform: translate(30%, -100px);
+    border-radius: 100px;
+    background-color: red;
+    width: 70px;
+    height: 70px;
+  }
+
+  .card-body {
+    position: absolute;
+    margin-top: 55%;
+  }
+
+  .description {
+    text-align: left;
+    font-size: 16px;
+    font-family: "inter";
+  }
+
+  .event-tags {
+    margin-right: 5px;
+    margin-left: 0px;
+    margin-bottom: 5px;
+  }
+
+  .event-date {
+    font-size: 16px;
+  }
+
+  .event-btn {
+    font-family: "inter";
+    border-radius: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .past-event-img {
+    position: relative;
+    border-radius: 20px 20px 0px 0px;
+    background: var(--card-info-color);
+  }
+
+  .event-card {
+    width: 380px;
+    height: 460px;
+    min-height: 380px;
+    border-radius: 10px 10px;
+    background: var(--light);
+    transition: 0.2s;
+    border-radius: 20px;
+  }
+
+  .event-card:hover {
+    box-shadow: 0px 10px 10px rgba(7, 7, 7, 0.2);
+  }
+
+  .card-title {
+    margin-top: 10px;
+    font-size: 18px;
+    font-family: "inter";
+    text-align: left;
+  }
+
+  .day-container {
+    color: aliceblue;
+    transform: translate(30%, -100px);
+    border-radius: 100px;
+    background-color: red;
+    width: 70px;
+    height: 70px;
+  }
+
+  .card-body {
+    position: absolute;
+    margin-top: 55%;
+  }
+
+  .description {
+    text-align: left;
+    font-size: 16px;
+    font-family: "inter";
+  }
+
+  .event-tags {
+    margin-right: 5px;
+    margin-left: 0px;
+    margin-bottom: 5px;
+  }
+
+  .event-date {
+    font-size: 16px;
+  }
+
+  .event-btn {
+    font-family: "inter";
+    border-radius: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}

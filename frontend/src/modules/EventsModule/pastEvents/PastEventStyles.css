@@ -1,0 +1,56 @@
+.past-event-container {
+  width: 90%;
+
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.past-event-container > h2 {
+  font-family: Product Sans;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 46px;
+  line-height: 56px;
+  margin-bottom: 50px;
+}
+
+.past-event-container .owl-button-prev,
+.owl-button-next {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+
+.past-event-container .view-more {
+  display: inline-block;
+  font-size: 32px;
+  line-height: 40px;
+  margin-right: 20px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.past-event-container .owl-button-prev {
+  display: inline-block;
+  vertical-align: middle;
+}
+.past-event-container .owl-button-next {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.nav-button-wrapper {
+  margin-top: 50px;
+  margin-bottom: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.owl-button-prev > i {
+  font-size: 50px;
+}
+.owl-button-next > i {
+  font-size: 50px;
+}

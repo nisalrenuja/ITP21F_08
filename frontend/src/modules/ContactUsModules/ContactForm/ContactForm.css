@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=inter:wght@500&display=swap");
+
+.contactform-container {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  font-family: "Product Sans";
+  font-weight: bolder;
+}
+
+.contactform-title {
+  font-weight: bolder;
+  font-size: 70px;
+}
+
+.contact-btn {
+  transition: all 0.2s ease;
+}
+
+.contact-btn:active {
+  box-shadow: 0 0 0 white;
+  transform: scale(0.97);
+}
+
+.contact-btn:hover {
+  border: 1px solid rgba(0.1, 0.1, 0.1, 0.1);
+  box-shadow: 0px 0px 5px 5px rgba(0.15, 0.15, 0.15, 0.15);
+}
+
+.contact-btn {
+  width: 130px;
+  height: 40px;
+  background: #2cb93b;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: bolder;
+  font-size: 18px;
+  border: none;
+  box-shadow: 0px 5px 8px rgba(0.15, 0.15, 0.15, 0.15);
+  transition: all 0.05s ease;
+}
+
+.contact-btn:active {
+  box-shadow: 0 0 0 white;
+  transform: scale(0.97);
+}
+
+.contact-btn:hover {
+  border: 1px solid rgba(0.1, 0.1, 0.1, 0.1);
+  box-shadow: 0px 0px 5px 5px rgba(0.15, 0.15, 0.15, 0.15);
+}

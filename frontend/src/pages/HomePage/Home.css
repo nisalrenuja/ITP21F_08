@@ -1,0 +1,11 @@
+.homePolygonDiv {
+  padding-top: 6%;
+  padding-bottom: 3%;
+  background: var(--light-home-background-color);
+}
+
+@media (min-width: 1300px) {
+  .homePolygonDiv {
+    clip-path: polygon(0 0, 100% 15%, 100% 100%, 0 100%);
+  }
+}

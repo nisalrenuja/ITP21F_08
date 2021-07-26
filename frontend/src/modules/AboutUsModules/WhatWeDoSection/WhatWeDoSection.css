@@ -1,0 +1,72 @@
+:root {
+  --light: #ffffff;
+  --light-icon-color: #16a525;
+  --light-shadow-color: #16a525;
+}
+
+.fas {
+  color: var(--light-icon-color);
+}
+
+.title {
+  font-weight: 700;
+  font-size: 46px;
+  line-height: 55.8px;
+}
+
+.content {
+  font-weight: 500;
+}
+
+.about-us-card {
+  border-radius: 10px;
+  text-align: center;
+  background: var(--light);
+  box-shadow: 0px 0px 0px var(--light-shadow-color);
+  -webkit-transition: box-shadow 0.3s ease-out;
+}
+
+.about-us-card:hover {
+  box-shadow: 8px 10px var(--light-shadow-color);
+  -webkit-transition: box-shadow 0.2s ease-in;
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 880px;
+  }
+
+  .about-us-card {
+    height: 320px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 940px;
+  }
+
+  .about-us-card {
+    height: 250px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1300px;
+  }
+
+  .about-us-card {
+    height: 230px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1800px;
+  }
+
+  .about-us-card {
+    height: 220px;
+  }
+}
