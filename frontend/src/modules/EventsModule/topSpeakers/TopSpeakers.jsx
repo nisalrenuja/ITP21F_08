@@ -58,7 +58,7 @@ const slideNextKeyBoard = (e) => {
 
 const TopSpeakers = () => (
   <div className="past-speaker-container">
-    <h1 className="event-header">Top Speakers</h1>
+    <h1 className="event-header">Top Performers</h1>
     <div className="nav-button-wrapper">
       <div className="view-more">View More</div>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

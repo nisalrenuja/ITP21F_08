@@ -1,5 +1,5 @@
 import React from "react";
-import FlatVector from "../../../assets/flat-illustrations/boardpeople.png";
+import FlatVector from "../../../assets/flat-illustrations/notices.svg";
 import "./WhatWeDoSection.css";
 
 const WhatWeDoSection = () => (
