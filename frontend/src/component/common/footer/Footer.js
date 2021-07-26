@@ -1,7 +1,7 @@
 import React from "react";
 import "./Footer.css";
 import Logo from "../../../assets/images/logo/logo.svg";
-
+//testing
 const footer = () => (
   <footer className="footer-section">
     <div className="container">
