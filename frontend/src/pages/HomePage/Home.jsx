@@ -12,6 +12,7 @@ const Home = () => (
     <HomeHeroSection />
     <WhatWeDoSection />
     <UpcomingEventComponent />
+    <BlogsComponent />
   </div>
 );
 
