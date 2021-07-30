@@ -2,8 +2,8 @@ import React from "react";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import BlogCard from "../../../component/BlogCard/BlogCard";
-import blogs from "../../BlogModules/BlogList/BlogListData.json";
+import clientCard from "../../../component/ClientCard/ClientCard";
+import Clients from "../../ClientModules/ClientList/ClientListData.json";
 
 const responsive = {
   0: {
@@ -38,7 +38,7 @@ const responsive = {
   },
 };
 
-const BlogsComponent = () => (
+const ClientsComponent = () => (
   <div className="past-event-container pt-5">
     <h1 className="event-header">Our Clients</h1>
 
@@ -50,16 +50,16 @@ const BlogsComponent = () => (
         margin={70}
         responsive={responsive}
       >
-        {blogs.data.map((blog) => (
-          <BlogCard
-            key={blog.id}
-            image={blog.image}
-            title={blog.title}
-            datetime={blog.datetime}
-            description={blog.description}
-            link={blog.link}
-            tags={blog.tags}
-            mediumProfileImg={blog.mediumProfileImg}
+        {Clients.data.map((client) => (
+          <clientCard
+            key={client.id}
+            image={client.image}
+            title={client.title}
+            datetime={client.datetime}
+            description={client.description}
+            link={client.link}
+            tags={client.tags}
+            mediumProfileImg={client.mediumProfileImg}
           />
         ))}
       </OwlCarousel>
@@ -67,4 +67,4 @@ const BlogsComponent = () => (
   </div>
 );
 
-export default BlogsComponent;
+export default ClientsComponent;

@@ -1,23 +1,22 @@
-.blog-card-img {
+.client-card-img {
   border-radius: 10px 10px 0px 0px;
 }
 
-.mediumProfileImg{
+.mediumProfileImg {
   max-width: 30px;
   max-height: 30px;
 }
 
-.blog-card-header-col1{
+.client-card-header-col1 {
   padding-right: 5px;
 }
 
-.blog-card-header-col2{
+.client-card-header-col2 {
   padding-left: 15px;
 }
 
 @media (min-width: 0px) {
-
-  .blog-card {
+  .client-card {
     width: 250px;
     height: 400px;
     min-height: 380px;
@@ -26,14 +25,13 @@
     flex: initial;
   }
 
-  .blog-card:hover {
+  .client-card:hover {
     box-shadow: 0px 10px 10px rgba(7, 7, 7, 0.2);
   }
 }
 
 @media (min-width: 250px) {
-
-  .blog-card {
+  .client-card {
     width: 280px;
     height: 450px;
     min-height: 380px;
@@ -43,7 +41,7 @@
     flex: initial;
   }
 
-  .blog-card:hover {
+  .client-card:hover {
     box-shadow: 0px 10px 10px rgba(7, 7, 7, 0.2);
   }
 
@@ -54,8 +52,7 @@
 }
 
 @media (min-width: 390px) {
-
-  .blog-card {
+  .client-card {
     width: 300px;
     height: 420px;
     min-height: 380px;
@@ -65,14 +62,13 @@
     flex: initial;
   }
 
-  .blog-card:hover {
+  .client-card:hover {
     box-shadow: 0px 10px 10px rgba(7, 7, 7, 0.2);
   }
 }
 
 @media (min-width: 576px) {
-
-  .blog-card {
+  .client-card {
     width: 300px;
     height: 420px;
     min-height: 380px;
@@ -81,15 +77,13 @@
     flex: initial;
   }
 
-  .blog-card:hover {
+  .client-card:hover {
     box-shadow: 0px 10px 10px rgba(7, 7, 7, 0.2);
   }
-
 }
 
 @media (min-width: 768px) {
-
-  .blog-card {
+  .client-card {
     width: 300px;
     height: 420px;
     min-height: 380px;
@@ -98,14 +92,13 @@
     flex: initial;
   }
 
-  .blog-card:hover {
+  .client-card:hover {
     box-shadow: 0px 10px 10px rgba(7, 7, 7, 0.2);
   }
-
 }
 
 @media (min-width: 992px) {
-  .blog-card {
+  .client-card {
     width: 300px;
     height: 420px;
     min-height: 380px;
@@ -114,14 +107,13 @@
     flex: initial;
   }
 
-  .blog-card:hover {
+  .client-card:hover {
     box-shadow: 0px 10px 10px rgba(7, 7, 7, 0.2);
   }
-
 }
 
 @media (min-width: 1200px) {
-  .blog-card {
+  .client-card {
     width: 350px;
     height: 460px;
     min-height: 380px;
@@ -129,19 +121,18 @@
     border-radius: 20px;
   }
 
-  .blog-card:hover {
+  .client-card:hover {
     box-shadow: 0px 10px 10px rgba(7, 7, 7, 0.2);
   }
 }
 
 @media (min-width: 1400px) {
-
-  .blog-card-header-col1{
+  .client-card-header-col1 {
     padding-top: 5px;
     padding-right: 0px;
   }
 
-  .blog-card {
+  .client-card {
     width: 380px;
     height: 490px;
     min-height: 380px;
@@ -151,7 +142,7 @@
     border-radius: 20px;
   }
 
-  .blog-card:hover {
+  .client-card:hover {
     box-shadow: 0px 10px 10px rgba(7, 7, 7, 0.2);
   }
 }

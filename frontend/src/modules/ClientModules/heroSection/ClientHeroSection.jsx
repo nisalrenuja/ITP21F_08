@@ -1,16 +1,14 @@
 import React from "react";
-import "./BlogHeroSection.css";
-import BlogHeroHeaderImage from "../../../assets/blogs/blogsHeroVector.svg";
+import "./ClientHeroSection.css";
+import clientHeroHeaderImage from "../../../assets/Clients/ClientsHeroVector.svg";
 
-const BLogHeroSection = () => (
+const clientHeroSection = () => (
   <div className="container-fluid header">
     <div className="eventSectionGb" />
     <div className="row">
       <div className="col-sm-12 col-md-6 col-lg-6 text-div">
         <div className="col-12">
-          <p className="exploreText">
-            Our <br /> Clients
-          </p>
+          <p className="exploreText">Our Clients</p>
         </div>
         <div className="col-12 event-search">
           <input type="text" className="form-control searchBox" />
@@ -21,7 +19,7 @@ const BLogHeroSection = () => (
       </div>
       <div className="col-sm-12 col-md-6 col-lg-6 d-flex justify-content-center align-item-center">
         <img
-          src={BlogHeroHeaderImage}
+          src={clientHeroHeaderImage}
           alt="Event header img"
           className="event-header-img"
         />
@@ -30,4 +28,4 @@ const BLogHeroSection = () => (
   </div>
 );
 
-export default BLogHeroSection;
+export default clientHeroSection;
