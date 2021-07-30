@@ -2,7 +2,7 @@ import React from "react";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import clientCard from "../../../component/ClientCard/ClientCard";
+import ClientCard from "../../../component/ClientCard/ClientCard";
 import Clients from "../../ClientModules/ClientList/ClientListData.json";
 
 const responsive = {
@@ -51,7 +51,7 @@ const ClientsComponent = () => (
         responsive={responsive}
       >
         {Clients.data.map((client) => (
-          <clientCard
+          <ClientCard
             key={client.id}
             image={client.image}
             title={client.title}
