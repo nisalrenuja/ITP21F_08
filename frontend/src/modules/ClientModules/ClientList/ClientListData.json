@@ -2,9 +2,9 @@
   "data": [
     {
       "id": 1,
-      "image": "https://avatars.githubusercontent.com/u/42801983?v=4",
+      "image": "https://promolkwebsite.blob.core.windows.net/profiles/promo.lk-579d8454e68e42ea84d24b6b45ed5b18.png",
       "datetime": "2015-03-25T12:00:00Z",
-      "title": "Nisal Renuja",
+      "title": "Nawaloka Hospitals PLC",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit Morbi elementum at egestas rutrum commodo",
       "link": "",
       "tags": ["Top 1", ""],
@@ -12,9 +12,9 @@
     },
     {
       "id": 2,
-      "image": "https://avatars.githubusercontent.com/u/42801983?v=4",
+      "image": "https://s3-ap-southeast-1.amazonaws.com/dfcc.lk/wp-content/uploads/2019/04/02070924/760-x-600-Damro.jpg",
       "datetime": "2015-03-25T12:00:00Z",
-      "title": "Nisal Renuja",
+      "title": "Damro",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit Morbi elementum at egestas rutrum commodo",
       "link": "",
       "tags": ["Top 2", ""],
@@ -22,9 +22,9 @@
     },
     {
       "id": 3,
-      "image": "https://avatars.githubusercontent.com/u/42801983?v=4",
+      "image": "https://www.businessnews.lk/wp-content/uploads/2020/10/MAS-Holdings.jpg",
       "datetime": "2015-03-25T12:00:00Z",
-      "title": "Nisal Renuja",
+      "title": "MAS",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit Morbi elementum at egestas rutrum commodo",
       "link": "",
       "tags": ["Top 3", ""],
