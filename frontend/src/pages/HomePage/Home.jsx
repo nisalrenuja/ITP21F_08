@@ -4,7 +4,7 @@ import HomeHeroSection from "../../modules/HomeModules/HeroSectionModules/HomeHe
 import UpcomingEventComponent from "../../modules/EventsModule/UpcomingEventComponent/UpcomingEventComponent";
 import PastEvents from "../../modules/EventsModule/pastEvents/PastEvents";
 import UpcomingWebinarsComponent from "../../modules/HomeModules/UpcomingWebinarsComponent/UpcomingWebinarsComponent";
-import BlogsComponent from "../../modules/HomeModules/BlogsComponent/BlogsComponent";
+import ClientsComponent from "../../modules/HomeModules/ClientComponent/ClientComponent";
 import "./Home.css";
 
 const Home = () => (
@@ -13,7 +13,7 @@ const Home = () => (
     <WhatWeDoSection />
     <UpcomingEventComponent />
     <PastEvents />
-    <BlogsComponent />
+    <ClientsComponent />
   </div>
 );
 
