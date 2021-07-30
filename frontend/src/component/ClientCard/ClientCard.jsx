@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./ClientCardStyle.css";
 import moment from "moment";
 
-const clientCard = ({
+const ClientCard = ({
   image,
   title,
   tags,
@@ -60,4 +60,4 @@ const clientCard = ({
   </div>
 );
 
-export default clientCard;
+export default ClientCard;
