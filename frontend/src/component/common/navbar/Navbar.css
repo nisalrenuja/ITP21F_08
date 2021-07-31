@@ -12,8 +12,12 @@
 
 .navLink {
   font-size: large;
-  font-weight: bold;
-  color: #fff;
+  font-weight: 500;
+  color: #fff !important;
+}
+
+a:hover { 
+  color: #022731 !important; 
 }
 
 .wrap {
