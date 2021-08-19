@@ -12,8 +12,10 @@ const HomeHeroSection = () => (
         </p>
         <div>
           <p className="home-header-content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed
-            vulputate nisl. Nullam vel nunc eget dui ornare dapibus.
+            "Everyone can rise above their circumstances and achieve success if
+            they are dedicated to and passionate about what they do"
+            <br></br>
+            -Nelson Mandela-
           </p>
         </div>
         <button
