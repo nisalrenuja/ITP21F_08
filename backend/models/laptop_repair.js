@@ -10,6 +10,7 @@ const laptop_repair_Schema = new mongoose.Schema({
     required: true,
   },
   
+  
 
 });
 module.exports = mongoose.model("laptops_repair", laptop_repair_Schema);
