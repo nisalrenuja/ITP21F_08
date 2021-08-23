@@ -20,12 +20,7 @@ const footer = () => (
                 </a>
               </div>
               <div className="footer-text">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Deleniti magni maiores molestias suscipit tempore? Asperiores
-                  aut beatae doloremque, enim fugit, illum itaque mollitia nobis
-                  optio quo ratione, repudiandae voluptas voluptates.
-                </p>
+                <p></p>
               </div>
             </div>
           </div>
@@ -57,10 +52,8 @@ const footer = () => (
               </div>
               <div className="footer-text mb-25">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
-                  aliquid asperiores dolores harum laboriosam, maiores nobis
-                  quae repudiandae tempora voluptatem? Autem esse facilis neque
-                  nihil nobis perspiciatis soluta sunt vero!
+                  Don’t forget to subscribe to our newsletters, enter your
+                  e-mail here.
                 </p>
               </div>
               <div className="subscribe-form">

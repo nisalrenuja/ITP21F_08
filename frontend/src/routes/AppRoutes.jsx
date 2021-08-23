@@ -7,6 +7,9 @@ import Footer from "../component/common/footer/Footer";
 import ContactUs from "../pages/ContactUsPage/ContactUs";
 import Navbar from "../component/common/navbar/Navbar";
 import Clients from "../pages/ClientPage/ClientPage";
+import LoginScreen from "../pages/LoginPage/LoginScreen";
+import ForgotPasswordScreen from "../pages/LoginPage/ForgotPasswordScreen";
+import RegisterScreen from "../pages/LoginPage/RegisterScreen";
 
 const AppRoutes = () => (
   <div>
@@ -14,10 +17,13 @@ const AppRoutes = () => (
       <Navbar />
       <Switch>
         <Route path="/" component={Home} exact />
-        <Route path="/about" component={AboutUs} exact />
+        <Route path="/aboutus" component={AboutUs} exact />
         <Route path="/events" component={Events} exact />
         <Route path="/Clients" component={Clients} exact />
         <Route path="/contact" component={ContactUs} exact />
+        <Route path="/login" component={LoginScreen} exact />
+        <Route path="/forgotpassword" component={ForgotPasswordScreen} exact />
+        <Route path="/register" component={RegisterScreen} exact />
       </Switch>
       <Footer />
     </Router>

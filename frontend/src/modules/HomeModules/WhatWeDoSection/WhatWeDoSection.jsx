@@ -11,14 +11,11 @@ const WhatWeDoSection = () => (
       <div className="container">
         <div className="row mt-5 mb-5">
           <div className="col-md-6 col-sm-12">
-            <h3>
-              <strong>Lorem ipsum</strong>
-            </h3>
+            <h3></h3>
             <p className="lead">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-              elementum at egestas rutrum commodo ultrices vitae vel. Velit a
-              scelerisque et pharetra, tincidunt pulvinar amet. Tristique morbi
-              enim urna viverra massa vehicula quam.
+              "None of us, including me, ever do great things. But we can all do
+              small things, with great love, and together we can do something
+              wonderful." -Mother Theresa-
             </p>
           </div>
           <div className="col-md-6 col-sm-12 d-flex justify-content-center">
