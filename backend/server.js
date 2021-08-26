@@ -7,8 +7,6 @@ const cors = require("cors");
 
 connectDB();
 
-const postRoutes = require("./routes/Reviews");
-
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
 app.get("/", (req, res, next) => {
@@ -18,7 +16,6 @@ app.get("/", (req, res, next) => {
 // Connecting Routes
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/private", require("./routes/private"));
-app.use(postRoutes);
 
 // Error Handler Middleware
 app.use(errorHandler);
