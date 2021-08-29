@@ -30,7 +30,7 @@ const RegisterScreen = ({ history }) => {
 
     try {
       const { data } = await axios.post(
-        "/api/auth/register",
+        "http://localhost:5000/api/auth/register",
         {
           username,
           email,
@@ -40,8 +40,10 @@ const RegisterScreen = ({ history }) => {
       );
 
       localStorage.setItem("authToken", data.token);
-
-      history.push("/");
+      localStorage.setItem("loggedIn", "true");
+      localStorage.setItem("MenuOptionCache", "Report Review");
+      history.push("/admin");
+      window.location.reload();
     } catch (error) {
       setError(error.response.data.error);
       setTimeout(() => {

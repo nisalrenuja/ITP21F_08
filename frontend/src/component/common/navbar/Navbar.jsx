@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { CgProfile } from "react-icons/cg";
 import "./Navbar.css";
 import Logo from "../../../assets/images/logo/logo.svg";
 
@@ -15,13 +16,23 @@ function Navbar() {
 
   window.addEventListener("scroll", changeBackground);
 
+  let loginStatus = false;
+  if (process.browser) {
+    loginStatus = window.localStorage.getItem("loggedIn") === "true";
+  }
+
+  const logout = () => {
+    localStorage.setItem("loggedIn", "false");
+    window.location.reload();
+  };
+
   return (
-    <div className="navbar-container">
+    <div className={`${loginStatus ? "" : "navbar-container"}`}>
       <nav
         className={
           navbar
-            ? "navbar fixed-top active navbar-expand-lg navbar-light bg"
-            : "navbar fixed-top navbar-expand-lg navbar-light bg"
+            ? "navbar sticky-top active navbar-expand-lg navbar-light bg"
+            : "navbar sticky-top navbar-expand-lg navbar-light bg"
         }
       >
         <div className="container-fluid">
@@ -63,11 +74,35 @@ function Navbar() {
                   Contact Us
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link navLink" href="/login">
-                  Login
-                </a>
-              </li>
+              {loginStatus ? (
+                <>
+                  <li className="nav-item">
+                    <a className="nav-link navLink" href="/admin">
+                      Admin Panel
+                    </a>
+                  </li>
+                  <li className="profile-icon">
+                    <div class="dropdown">
+                      <CgProfile
+                        size={40}
+                        color="#FFFFFF"
+                        class="drpdownIcon"
+                      />
+                      <div className="dropdown-content">
+                        <a onClick={logout} href="/">
+                          Logout
+                        </a>
+                      </div>
+                    </div>
+                  </li>
+                </>
+              ) : (
+                <li className="nav-item">
+                  <a className="nav-link navLink" href="/login">
+                    Login
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
         </div>

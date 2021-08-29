@@ -6,6 +6,13 @@ ul {
   padding-left: 5%;
   padding-right: 5%;
 }
+
+@media only screen and (max-width: 640px) {
+  .container {
+    padding-top:5%;
+  }
+}
+
 .footer-section {
   background: #1687a7;
   position: relative;
