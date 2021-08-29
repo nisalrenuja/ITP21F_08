@@ -1,0 +1,29 @@
+.adminContainer {
+  height: 90%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+@media only screen and (max-width: 640px) {
+  .adminContainer {
+    height: 90vh;
+    width: 100%;
+    position: sticky;
+  }
+}
+@media only screen and (min-width: 640px) {
+  .adminContainer {
+    width: 60%;
+  }
+}
+@media only screen and (min-width: 820px) {
+  .adminContainer {
+    width: 70%;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .adminContainer {
+    width: 80%;
+  }
+}
