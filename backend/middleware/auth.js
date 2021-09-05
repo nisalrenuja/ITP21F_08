@@ -1,28 +1,33 @@
 const jwt = require("jsonwebtoken");
-const config = require("config");
+const ErrorResponse = require("../utils/errorResponse");
+const User = require("../models/User");
 
-module.exports = function (req, res, next) {
-  //Get the token from the header
-  const token = req.header("x-auth-token");
+exports.protect = async (req, res, next) => {
+  let token;
 
-  //Check if no token
-  if (!token) {
-    return res.status(401).json({ msg: "No token, authorization denied" });
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Bearer")
+  ) {
+    token = req.headers.authorization.split(" ")[1];
   }
 
-  //Verify token
+  if (!token) {
+    return next(new ErrorResponse("Not authorized to access this route", 401));
+  }
 
   try {
-    //valid token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.id);
 
-    //decoding token through jwt verify method
-    const decoded = jwt.verify(token, config.get("jwtSecret"));
+    if (!user) {
+      return next(new ErrorResponse("No user found with this id", 404));
+    }
 
-    req.user = decoded.user;
+    req.user = user;
 
     next();
   } catch (err) {
-    //There is a token, but its not valid
-    res.status(400).json({ msg: "Token is not valid" });
+    return next(new ErrorResponse("Not authorized to access this router", 401));
   }
 };
