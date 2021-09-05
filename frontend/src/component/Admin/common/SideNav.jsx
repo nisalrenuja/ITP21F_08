@@ -8,8 +8,8 @@ const SideNav = ({ selectedMenuOption, onMenuItemSelect }) => {
     "MenuItem 4",
     "MenuItem 5",
     "MenuItem 6",
-    "MenuItem 7",
-    "MenuItem 8",
+    "Inventory Management",
+    "MenuItem 8"
   ];
   return (
     <div className="sideNavbar">
