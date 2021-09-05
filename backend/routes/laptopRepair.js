@@ -1,29 +1,29 @@
 const express = require('express');
-const Laptop = require('../models/laptop');
+const LaptopRepair = require('../models/laptop_repair');
 
 const router = express.Router();
 
-//save laptop detail
+//save laptop repair details
 
-router.post("/laptop/save", (req, res) => {
-  let newLaptop = new Laptop(req.body);
+router.post("/laptop_repair/save", (req, res) => {
+  let newLaptopRepair = new LaptopRepair(req.body);
 
-  newLaptop.save((err) => {
+  newLaptopRepair.save((err) => {
     if (err) {
       return res.status(400).json({
         error: err,
       });
     }
     return res.status(200).json({
-      success: "Inventory Laptops Details saved successfully",
+      success: "Inventory Laptops Repair Details saved successfully",
     });
   });
 });
 
-//get laptop details
+//get laptop repair details
 
-router.get("/laptops", (req, res) => {
-    Laptop.find().exec((err, laptops) => {
+router.get("/laptops_repair", (req, res) => {
+    LaptopRepair.find().exec((err, laptopsRepair) => {
     if (err) {
       return res.status(400).json({
         error: err,
@@ -31,34 +31,34 @@ router.get("/laptops", (req, res) => {
     }
     return res.status(200).json({
       success: true,
-      existingLaptops: laptops,
+      existingLaptopsRepair: laptopsRepair,
     });
   });
 });
 
 //get a specific post
-router.get("/laptop/:id", (req, res) => {
+router.get("/laptop_repair/:id", (req, res) => {
   let id = req.params.id;
 
-  Laptop.findById(id, (err, laptop) => {
+  LaptopRepair.findById(id, (err, laptopRepair) => {
     if (err) {
       return res.status(400).json({ success: false, err });
     }
     return res.status(200).json({
       success: true,
-      laptop,
+      laptopRepair,
     });
   });
 });
 
-//update posts
-router.put("/laptop/update/:id", (req, res) => {
-  Laptop.findByIdAndUpdate(
+//update repair details posts
+router.put("/laptop_repair/update/:id", (req, res) => {
+  LaptopRepair.findByIdAndUpdate(
     req.params.id,
     {
       $set: req.body,
     },
-    (err, laptop) => {
+    (err, laptopRepair) => {
       if (err) {
         return res.status(400).json({ error: err });
       }
@@ -70,8 +70,8 @@ router.put("/laptop/update/:id", (req, res) => {
 });
 
 //delete post
-router.delete("/laptop/delete/:id", (req, res) => {
-  Laptop.findByIdAndRemove(req.params.id).exec((err, deletedLaptop) => {
+router.delete("/laptop_repair/delete/:id", (req, res) => {
+  LaptopRepair.findByIdAndRemove(req.params.id).exec((err, deletedLaptopRepair) => {
     if (err)
       return res.status(400).json({
         message: "Delete unsuccessful",
@@ -79,7 +79,7 @@ router.delete("/laptop/delete/:id", (req, res) => {
       });
     return res.json({
       message: "Delete Successful",
-      deletedLaptop,
+      deletedLaptopRepair,
     });
   });
 });

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+//laptop.js
 const laptop_Schema = new mongoose.Schema({
   id: {
     type: String,

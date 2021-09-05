@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+//laptop_repair.js
 const laptop_repair_Schema = new mongoose.Schema({
   id: {
     type: String,
@@ -9,6 +9,15 @@ const laptop_repair_Schema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  repair_date: {
+    type: Date,
+    required: true,
+  },
+  repair_cost: {
+    type: String,
+    required: true,
+  },
+
   
   
 

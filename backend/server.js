@@ -4,6 +4,8 @@ const app = express();
 const connectDB = require("./config/db");
 const errorHandler = require("./middleware/error");
 const cors = require("cors");
+const laptop_routes = require("./routes/laptop");
+const laptop_repair_routes = require("./routes/laptopRepair");
 //connect db
 connectDB();
 
@@ -16,7 +18,8 @@ app.get("/", (req, res, next) => {
 // Connecting Routes
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/private", require("./routes/private"));
-app.use("/api/laptop", require("./routes/laptop"));
+app.use(laptop_routes);
+app.use(laptop_repair_routes);
 
 // Error Handler Middleware
 app.use(errorHandler);
