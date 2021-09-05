@@ -10,8 +10,10 @@ import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import LapAllo from "../../modules/AdminModules/LapAllo";
+import CreateAssignment from "../../modules/AdminModules/CreateAssignment";
+import CreateLapAllo from "../../modules/AdminModules/NewLapAllo";
 
-const Admin = () => {
+const Laps = () => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -51,7 +53,7 @@ const Admin = () => {
           ) : selectedMenuOption === "MenuItem 3" ? (
             <AdminTab3 />
           ) : selectedMenuOption === "Work Allocation" ? (
-            <AdminTab4 />
+            <CreateLapAllo />
           ) : selectedMenuOption === "MenuItem 5" ? (
             <AdminTab5 />
           ) : selectedMenuOption === "MenuItem 6" ? (
@@ -73,4 +75,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default Laps;
