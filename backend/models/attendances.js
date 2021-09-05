@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { ObjectId } = mongoose.SchemaTypes;
 
-
+//changed
 const attendancesSchema = new mongoose.Schema({
     //declare variables/properties
     /*

@@ -17,9 +17,13 @@ app.get("/", (req, res, next) => {
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/private", require("./routes/private"));
 
-app.use("/api/attendences", require("./routes/attendances"));
-app.use("/api/leaves", require("./routes/leaves"));
+//import routes
+const attendancesRoutes = require("./routes/attendances");
+const leavesRoutes = require("./routes/leaves");
 
+//add routes here
+app.use(attendancesRoutes);
+app.use(leavesRoutes);
 
 
 

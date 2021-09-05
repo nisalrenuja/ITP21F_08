@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-
+//changed
 const leavesSchema = new mongoose.Schema({
     //declare variables/properties
     leave_id: {
