@@ -32,7 +32,7 @@ const Admin = () => {
     }
   }, [selectedMenuOptionCache]);
 
-  const updateSelectedMenuOption = (option) => {
+  const updateSelectedMenuOption = option => {
     setSelectedMenuOption(option);
     if (process.browser) {
       window.localStorage.setItem("MenuOptionCache", option);
@@ -53,7 +53,7 @@ const Admin = () => {
             <AdminTab4 />
           ) : selectedMenuOption === "MenuItem 5" ? (
             <AdminTab5 />
-          ) : selectedMenuOption === "MenuItem 6" ? (
+          ) : selectedMenuOption === "Attendance & Payroll" ? (
             <AdminTab6 />
           ) : selectedMenuOption === "MenuItem 7" ? (
             <AdminTab7 />

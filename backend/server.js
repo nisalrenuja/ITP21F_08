@@ -17,6 +17,13 @@ app.get("/", (req, res, next) => {
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/private", require("./routes/private"));
 
+app.use("/api/attendences", require("./routes/attendances"));
+app.use("/api/leaves", require("./routes/leaves"));
+
+
+
+
+
 // Error Handler Middleware
 app.use(errorHandler);
 
