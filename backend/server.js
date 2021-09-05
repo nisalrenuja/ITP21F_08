@@ -17,6 +17,17 @@ app.get("/", (req, res, next) => {
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/private", require("./routes/private"));
 
+//import routes
+const attendancesRoutes = require("./routes/attendances");
+const leavesRoutes = require("./routes/leaves");
+
+//add routes here
+app.use(attendancesRoutes);
+app.use(leavesRoutes);
+
+
+
+
 // Error Handler Middleware
 app.use(errorHandler);
 
