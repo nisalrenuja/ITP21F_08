@@ -10,6 +10,8 @@ import Clients from "../pages/ClientPage/ClientPage";
 import LoginScreen from "../pages/LoginPage/LoginScreen";
 import ForgotPasswordScreen from "../pages/LoginPage/ForgotPasswordScreen";
 import RegisterScreen from "../pages/LoginPage/RegisterScreen";
+import ResetPasswordScreen from "../pages/LoginPage/ResetPasswordScreen";
+import Admin from "../pages/AdminPage/AdminPage";
 
 const AppRoutes = () => (
   <div>
@@ -23,7 +25,13 @@ const AppRoutes = () => (
         <Route path="/contact" component={ContactUs} exact />
         <Route path="/login" component={LoginScreen} exact />
         <Route path="/forgotpassword" component={ForgotPasswordScreen} exact />
+        <Route
+          exact
+          path="/passwordreset/:resetToken"
+          component={ResetPasswordScreen}
+        />
         <Route path="/register" component={RegisterScreen} exact />
+        <Route path="/admin" component={Admin} exact />
       </Switch>
       <Footer />
     </Router>

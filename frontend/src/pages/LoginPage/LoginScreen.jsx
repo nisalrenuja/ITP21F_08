@@ -8,12 +8,6 @@ const LoginScreen = ({ history }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    if (localStorage.getItem("authToken")) {
-      history.push("/");
-    }
-  }, [history]);
-
   const loginHandler = async (e) => {
     e.preventDefault();
 
@@ -25,14 +19,15 @@ const LoginScreen = ({ history }) => {
 
     try {
       const { data } = await axios.post(
-        "/api/auth/login",
+        "http://localhost:5000/api/auth/login",
         { email, password },
         config
       );
-
       localStorage.setItem("authToken", data.token);
-
-      history.push("/");
+      localStorage.setItem("loggedIn", "true");
+      localStorage.setItem("MenuOptionCache", "Report Review");
+      history.push("/admin");
+      window.location.reload();
     } catch (error) {
       setError(error.response.data.error);
       setTimeout(() => {
