@@ -5,6 +5,10 @@ const app = express();
 const connectDB = require("./config/db");
 const errorHandler = require("./middleware/error");
 const cors = require("cors");
+
+//import routes
+const attendancesRoutes = require("./routes/attendances");
+const leavesRoutes = require("./routes/leaves");
 const assignment_assignedtostaffRoutes = require("./routes/assignment_assignedtostaff");
 
 //connect db
@@ -20,16 +24,11 @@ app.use(bodyParser.json()); //app middleware
 // Connecting Routes
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/private", require("./routes/private"));
-app.use(assignment_assignedtostaffRoutes);
-
-//import routes
-const attendancesRoutes = require("./routes/attendances");
-const leavesRoutes = require("./routes/leaves");
 
 //add routes here
 app.use(attendancesRoutes);
 app.use(leavesRoutes);
-
+app.use(assignment_assignedtostaffRoutes);
 
 
 
