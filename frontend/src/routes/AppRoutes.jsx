@@ -16,6 +16,8 @@ import LapAllo from "../pages/AdminPage/Laps";
 import AllAssignmnets from "../pages/AdminPage/AllAssignments";
 import CreateAssignment from "../pages/AdminPage/CreateAssignmentt";
 import CreateLapAllo from "../pages/AdminPage/CreateLapAllo";
+import EmployeePoints from "../pages/AdminPage/EmployeePoints";
+import AllEmployees from "../pages/AdminPage/AllEmployees";
 
 const AppRoutes = () => (
   <div>
@@ -40,6 +42,8 @@ const AppRoutes = () => (
         <Route path="/allassignments" component={AllAssignmnets} exact />
         <Route path="/createassignment" component={CreateAssignment} exact />
         <Route path="/createlapallocation" component={CreateLapAllo} exact />
+        <Route path="/AllEmployees" component={AllEmployees} exact />
+        <Route path="/EmployeePoints" component={EmployeePoints} exact />
       </Switch>
       <Footer />
     </Router>

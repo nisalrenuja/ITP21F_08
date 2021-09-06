@@ -6,7 +6,7 @@ const connectDB = require("./config/db");
 const errorHandler = require("./middleware/error");
 const cors = require("cors");
 const assignment_assignedtostaffRoutes = require("./routes/assignment_assignedtostaff");
-
+const employees = require("./routes/employees");
 //connect db
 connectDB();
 
@@ -21,6 +21,7 @@ app.use(bodyParser.json()); //app middleware
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/private", require("./routes/private"));
 app.use(assignment_assignedtostaffRoutes);
+app.use(employees);
 
 //import routes
 const attendancesRoutes = require("./routes/attendances");
