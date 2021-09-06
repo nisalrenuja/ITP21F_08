@@ -54,7 +54,7 @@ const Admin = () => {
           ) : selectedMenuOption === "MenuItem 5" ? (
             <AdminTab5 />
           ) : selectedMenuOption === "Attendance & Payroll" ? (
-            <AdminTab6 />
+            <AdminTab6 /> //changed
           ) : selectedMenuOption === "MenuItem 7" ? (
             <AdminTab7 />
           ) : (
