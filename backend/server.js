@@ -44,7 +44,7 @@ app.use(attendancesRoutes);
 app.use(leavesRoutes);
 
 
-// Error Handler Middleware
+// Error Handler Middleware ..
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
