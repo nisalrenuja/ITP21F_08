@@ -5,10 +5,10 @@ const SideNav = ({ selectedMenuOption, onMenuItemSelect }) => {
     "Report Review",
     "MenuItem 2",
     "MenuItem 3",
-    "MenuItem 4",
+    "Work Allocation",
     "MenuItem 5",
-    "MenuItem 6",
-    "Inventory Management",
+    "Attendance & Payroll",
+    "Inventory Managemnet",
     "MenuItem 8"
   ];
   return (
