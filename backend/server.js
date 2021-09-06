@@ -11,7 +11,7 @@ const assignment_assignedtostaffRoutes = require("./routes/assignment_assignedto
 const employees = require("./routes/employees");
 //connect db
 connectDB();
-
+const postRoutes = require("./routes/Reviews");
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
 app.get("/", (req, res, next) => {
@@ -27,7 +27,7 @@ app.use(laptop_routes);
 app.use(laptop_repair_routes);
 app.use(assignment_assignedtostaffRoutes);
 app.use(employees);
-
+app.use(postRoutes);
 //import routes
 const attendancesRoutes = require("./routes/attendances");
 const leavesRoutes = require("./routes/leaves");
