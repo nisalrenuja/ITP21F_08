@@ -1,32 +1,32 @@
 const express = require("express");
-const Staffs = require("../models/staffs");
+const employees = require("../models/employees");
 const router = express.Router();
 
-router.post("/staffs/save", (req, res) => {
-  let newstaff = new Staffs(req.body);
-  newstaff.save((err) => {
+router.post("/employees/save", (req, res) => {
+  let newemployees = new employees(req.body);
+  newemployees.save((err) => {
     if (err) {
       return res.status(400).json({
         error: err,
       });
     }
     return res.status(200).json({
-      success: "Staffs saved succesfully",
+      success: "employees saved succesfully",
     });
   });
 });
 //get post
-router.get("/staffs", (req, res) => {
+router.get("/employees", (req, res) => {
   
-  Staffs.find().exec((err, Staffs) => {
-    var count = Staffs.length;
+  employees.find().exec((err, employees) => {
+    var count = employees.length;
     if (err) {
       return res.status(400).json({ success: false, err });
     }
       return res.status(200).json({
         success: true,
-        existingStaffs: Staffs,
-        staffCount:count,
+        existingemployees: employees,
+        employeeCount:count,
         
      })     
     });
@@ -34,9 +34,9 @@ router.get("/staffs", (req, res) => {
 
 
 //get specific
-router.get("/staffs/:id", (req, res) => {
+router.get("/employees/:id", (req, res) => {
   let postid = req.params.id;
-  Staffs.findById(postid, (err, staff) => {
+  employees.findById(postid, (err, employee) => {
     if (err) {
       return res.status(400).json({ success: false, err });
     }
@@ -46,14 +46,14 @@ router.get("/staffs/:id", (req, res) => {
     });
   });
 });
-//update Staffs
-router.put("/staffs/update/:id", (req, res) => {
-  Staffs.findByIdAndUpdate(
+//update employees
+router.put("/employees/update/:id", (req, res) => {
+  employees.findByIdAndUpdate(
     req.params.id,
     {
       $set: req.body,
     },
-    (err, staff) => {
+    (err, employee) => {
       if (err) {
         return res.status(400).json({ error: err });
       }
@@ -64,8 +64,8 @@ router.put("/staffs/update/:id", (req, res) => {
   );
 });
 //delete post
-router.delete("/staffs/delete/:id", (req, res) => {
-  Staffs.findByIdAndRemove(req.params.id).exec((err, deletedPost) => {
+router.delete("/employees/delete/:id", (req, res) => {
+  employees.findByIdAndRemove(req.params.id).exec((err, deletedPost) => {
     if (err)
       return res.status(400).json({
         message: "Delete Unsuccess",

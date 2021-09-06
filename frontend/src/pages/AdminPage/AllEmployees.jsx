@@ -9,6 +9,7 @@ import AdminTab5 from "../../modules/AdminModules/AdminTab5";
 import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
+import LapAllo from "../../modules/AdminModules/LapAllo";
 
 const Admin = () => {
   let userRole = "";
@@ -49,7 +50,7 @@ const Admin = () => {
             <AdminTab2 />
           ) : selectedMenuOption === "Employees" ? (
             <AdminTab3 />
-          ) : selectedMenuOption === "MenuItem 4" ? (
+          ) : selectedMenuOption === "Work Allocation" ? (
             <AdminTab4 />
           ) : selectedMenuOption === "MenuItem 5" ? (
             <AdminTab5 />

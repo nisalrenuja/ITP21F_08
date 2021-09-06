@@ -6,44 +6,44 @@ export default class AdminTab3 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      staff: []
+      employee: []
     };
   }
   componentDidMount() {
-    this.retrieveStaff();
+    this.retrieveemployee();
   }
-  retrieveStaff() {
-    axios.get("http://localhost:5000/staffs").then(res => {
+  retrieveemployee() {
+    axios.get("http://localhost:5000/employees").then(res => {
       if (res.data.success) {
         this.setState({
-          staff: res.data.existingStaffs,
-          staffcount: res.data.staffCount
+          employee: res.data.existingemployees,
+          employeecount: res.data.employeeCount
         });
-        console.log(this.state.staff);
-        console.log(this.state.staffcount);
+        console.log(this.state.employee);
+        console.log(this.state.employeecount);
       }
     });
   }
   onDelete = id => {
-    axios.delete(`http://localhost:5000/staffs/delete/${id}`).then(res => {
+    axios.delete(`http://localhost:5000/employees/delete/${id}`).then(res => {
       alert("Deleted Succeefully");
-      this.retrieveStaff();
+      this.retrieveemployee();
     });
   };
 
-  filterData(staffs, searchKey) {
-    const result = staffs.filter(
-      staffs =>
-        staffs.name.toLowerCase().includes(searchKey) ||
-        staffs.empno.includes(searchKey)
+  filterData(employees, searchKey) {
+    const result = employees.filter(
+      employees =>
+        employees.name.toLowerCase().includes(searchKey) ||
+        employees.empno.includes(searchKey)
     );
-    this.setState({ staff: result });
+    this.setState({ employee: result });
   }
   handleSearchArea = e => {
     const searchKey = e.currentTarget.value;
-    axios.get("http://localhost:5000/staffs").then(res => {
+    axios.get("http://localhost:5000/employees").then(res => {
       if (res.data.success) {
-        this.filterData(res.data.existingStaffs, searchKey);
+        this.filterData(res.data.existingemployees, searchKey);
       }
     });
   };
@@ -97,7 +97,7 @@ export default class AdminTab3 extends Component {
               onChange={this.handleSearchArea}
             />
           </div>
-          <h2 class="tah1">Total Employees ( {this.state.staffcount} )</h2>
+          <h2 class="tah1">Total Employees ( {this.state.employeecount} )</h2>
           <table className="table table-hover table11">
             <thead class="thead">
               <tr>
@@ -117,16 +117,16 @@ export default class AdminTab3 extends Component {
               </tr>
             </thead>
             <tbody class="tbody1">
-              {this.state.staff.map((staffs, index) => (
+              {this.state.employee.map((employees, index) => (
                 <tr key={index}>
                   <td>
                     <a href={``} style={{ textDecoration: "none" }}>
-                      {staffs.empno}
+                      {employees.empno}
                     </a>
                   </td>
-                  <td>{staffs.name}</td>
-                  <td>{staffs.email}</td>
-                  <td>{staffs.commencement_date}</td>
+                  <td>{employees.name}</td>
+                  <td>{employees.email}</td>
+                  <td>{employees.commencement_date}</td>
                   <td>1</td>
                   <td>1</td>
 
@@ -139,7 +139,7 @@ export default class AdminTab3 extends Component {
                       <i class="far fa-edit"></i>
                     </a>
                     &nbsp; &nbsp;
-                    <a href="#" onClick={() => this.onDelete(staffs._id)}>
+                    <a href="#" onClick={() => this.onDelete(employees._id)}>
                       <i class="far fa-trash-alt"></i>
                     </a>
                   </td>

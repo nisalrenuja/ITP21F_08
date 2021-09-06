@@ -6,7 +6,7 @@ const connectDB = require("./config/db");
 const errorHandler = require("./middleware/error");
 const cors = require("cors");
 const assignment_assignedtostaffRoutes = require("./routes/assignment_assignedtostaff");
-const employees = require("./routes/staffs");
+const employees = require("./routes/employees");
 //connect db
 connectDB();
 

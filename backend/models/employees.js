@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const staff_Schema = new mongoose.Schema({
+const employees_Schema = new mongoose.Schema({
   empno: {
     type: String,
     required: true,
@@ -111,4 +111,4 @@ const staff_Schema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("staffs", staff_Schema);
+module.exports = mongoose.model("employees", employees_Schema);
