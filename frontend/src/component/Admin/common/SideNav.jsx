@@ -4,12 +4,12 @@ const SideNav = ({ selectedMenuOption, onMenuItemSelect }) => {
   const menuItems = [
     "Report Review",
     "MenuItem 2",
-    "MenuItem 3",
-    "MenuItem 4",
+    "Employees",
+    "Work Allocation",
     "MenuItem 5",
-    "MenuItem 6",
-    "MenuItem 7",
-    "Clients"
+    "Attendance & Payroll",
+    "Inventory Managemnet",
+    "Client"
   ];
   return (
     <div className="sideNavbar">
