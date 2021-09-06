@@ -1,10 +1,12 @@
 require("dotenv").config({ path: "./config.env" });
+const bodyParser = require("body-parser");
 const express = require("express");
 const app = express();
 const connectDB = require("./config/db");
 const errorHandler = require("./middleware/error");
-const bodyParser = require("body-parser");
 const cors = require("cors");
+const assignment_assignedtostaffRoutes = require("./routes/assignment_assignedtostaff");
+const employees = require("./routes/staffs");
 //connect db
 connectDB();
 
@@ -13,18 +15,23 @@ app.use(cors({ origin: true, credentials: true }));
 app.get("/", (req, res, next) => {
   res.send("Api running");
 });
-
-//import routes
-const postRoutes = require("./routes/staffs");
-
-//app middleware
-app.use(bodyParser.json());
-app.use(cors());
-
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json()); //app middleware
 // Connecting Routes
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/private", require("./routes/private"));
-app.use(postRoutes);
+app.use(assignment_assignedtostaffRoutes);
+app.use(employees);
+
+//import routes
+const attendancesRoutes = require("./routes/attendances");
+const leavesRoutes = require("./routes/leaves");
+
+//add routes here
+app.use(attendancesRoutes);
+app.use(leavesRoutes);
+
+
 
 
 // Error Handler Middleware

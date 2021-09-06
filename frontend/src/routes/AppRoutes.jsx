@@ -12,6 +12,10 @@ import ForgotPasswordScreen from "../pages/LoginPage/ForgotPasswordScreen";
 import RegisterScreen from "../pages/LoginPage/RegisterScreen";
 import ResetPasswordScreen from "../pages/LoginPage/ResetPasswordScreen";
 import Admin from "../pages/AdminPage/AdminPage";
+import LapAllo from "../pages/AdminPage/Laps";
+import AllAssignmnets from "../pages/AdminPage/AllAssignments";
+import CreateAssignment from "../pages/AdminPage/CreateAssignmentt";
+import CreateLapAllo from "../pages/AdminPage/CreateLapAllo";
 import EmployeePoints from "../pages/AdminPage/EmployeePoints";
 import AllEmployees from "../pages/AdminPage/AllEmployees";
 
@@ -34,6 +38,10 @@ const AppRoutes = () => (
         />
         <Route path="/register" component={RegisterScreen} exact />
         <Route path="/admin" component={Admin} exact />
+        <Route path="/laptopallocation" component={LapAllo} exact />
+        <Route path="/allassignments" component={AllAssignmnets} exact />
+        <Route path="/createassignment" component={CreateAssignment} exact />
+        <Route path="/createlapallocation" component={CreateLapAllo} exact />
         <Route path="/AllEmployees" component={AllEmployees} exact />
         <Route path="/EmployeePoints" component={EmployeePoints} exact />
       </Switch>
