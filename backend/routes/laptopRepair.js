@@ -3,7 +3,7 @@ const LaptopRepair = require('../models/laptop_repair');
 
 const router = express.Router();
 
-//save laptop repair details
+//save laptop repair details routes
 
 router.post("/laptop_repair/save", (req, res) => {
   let newLaptopRepair = new LaptopRepair(req.body);
