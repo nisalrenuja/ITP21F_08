@@ -20,7 +20,7 @@ app.use("/api/private", require("./routes/private"));
 const client_fees= require("./routes/client_fees");
 const client = require("./routes/client");
 
-//add routes here
+//add routes here ...
 app.use(client_fees);
 app.use(client);
 
