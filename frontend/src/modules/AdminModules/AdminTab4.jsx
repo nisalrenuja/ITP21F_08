@@ -31,10 +31,28 @@ export default class AdminTab4 extends Component {
       }
     });
   }
+  filterData(assignmentsassigned, searchKey) {
+    console.log(searchKey);
+    const result = assignmentsassigned.filter(
+      assignmentsassigned =>
+        assignmentsassigned.assignment_name.toLowerCase().includes(searchKey) ||
+        assignmentsassigned.client_no.toLowerCase().includes(searchKey)
+    );
+    this.setState({ assignments: result });
+  }
+  handleSearchArea = e => {
+    const searchKey = e.currentTarget.value;
+    axios.get("http://localhost:5000/assignments/dis").then(res => {
+      if (res.data.success) {
+        console.log(res.data.assignmentsassigned);
+        this.filterData(res.data.assignmentsassigned, searchKey);
+      }
+    });
+  };
   render() {
     return (
       <div className="container">
-        <div class="main">
+        <div class="main222">
           <h2 class="head1">Work Allocation</h2>
           <hr class="line1"></hr>
           <a href="/allassignments">
@@ -49,14 +67,20 @@ export default class AdminTab4 extends Component {
           </a>
           <div class="div3">
             <p class="txt3">Filter by</p>
-            <input class="select1" type="text" />
-            <a className="btn btn-info search">
+            <input
+              class="select11"
+              type="search"
+              placeholder="Search..."
+              name="searchQuery"
+              onChange={this.handleSearchArea}
+            />
+            <a className="btn btn-info search22">
               <i className="fas fa-search"></i>&nbsp;Search
             </a>
           </div>
-          <h2 class="tah">Total Assignments</h2>
-          <table className="table table-hover table1">
-            <thead class="thead">
+          <h2 class="tah101">Total Assignments</h2>
+          <table className="table table-hover table101">
+            <thead class="thead101">
               <tr>
                 <th scope="col">Assignment</th>
                 <th scope="col">Client No</th>
@@ -66,7 +90,7 @@ export default class AdminTab4 extends Component {
                 <th scope="col">Actions</th>
               </tr>
             </thead>
-            <tbody class="tbody1">
+            <tbody class="tbody101">
               {this.state.assignments.map((assignments, index) => (
                 <tr key={index}>
                   <td>
@@ -81,7 +105,7 @@ export default class AdminTab4 extends Component {
                   <td>{assignments.progress}</td>
 
                   <td>
-                    <a href={`/edit/${assignments._id}`}>
+                    <a href={`/editassignment/${assignments.assignment_name}`}>
                       <i className="fas fa-edit"></i>&nbsp;
                     </a>
                     &nbsp;
@@ -95,7 +119,7 @@ export default class AdminTab4 extends Component {
                 </tr>
               ))}
             </tbody>
-            <tfoot class="tfoot">
+            <tfoot class="tfoot101">
               <a href="/createassignment">
                 <i class="fas fa-plus"></i>&nbsp;New Assignment
               </a>

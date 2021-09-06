@@ -18,24 +18,19 @@ export default class CreateAssignment extends Component {
       staff: []
     };
   }
-  /*componentDidMount() {
+  componentDidMount() {
     this.retrievePosts();
   }
   retrievePosts() {
-    axios.get("http://localhost:5000/staff/ass").then((res) => {
+    axios.get("http://localhost:5000/staff/ass").then(res => {
       if (res.data.success) {
-        
         this.setState({
-          staff: res.data.staff,
-          
+          staff: res.data.staff
         });
         console.log(this.state.staff);
-        
-       
-        
       }
     });
-  } */
+  }
   handleInputChange = e => {
     const { name, value } = e.target;
     this.setState({
@@ -43,7 +38,14 @@ export default class CreateAssignment extends Component {
       [name]: value
     });
   };
-
+  onCheck = name => {
+    console.log(name);
+    axios.get(`http://localhost:5000/checkassigned/${name}`).then(res => {
+      if (res.data.success) {
+        alert("Assigned to " + res.data.l + " assignment/s!");
+      }
+    });
+  };
   onSubmit = e => {
     e.preventDefault();
 
@@ -164,16 +166,37 @@ export default class CreateAssignment extends Component {
                 <center>
                   <h4>Click on staff to check status</h4>
                   {"\n"}
-                  {this.state.staff.map((staff, index) => (
-                    <p>
-                      {staff.empno}
-                      {"\t"}
-                      {staff.name}
-                    </p>
-                  ))}
+                  <ul>
+                    {this.state.staff.map((staff, index) => (
+                      <li style={{ backgroundColor: "#c4c4c4" }}>
+                        {" "}
+                        <strong>Emp No-</strong>
+                        {staff.empno}
+                        {"\t"} <strong>Name-</strong>
+                        {staff.name}
+                        {"\t"}
+                        <a
+                          href="#"
+                          onClick={() => this.onCheck(staff.empno)}
+                          style={{
+                            backgroundColor: "#1687a7",
+                            paddingRight: "5px",
+                            color: "white"
+                          }}
+                        >
+                          Check
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </center>
               </div>
               <p class="viiic">Employee No(Staff): </p>
+              <p class="ix">
+                (Enter Employee numbers and save employees one by one, click
+                Done after assigning all)
+              </p>
+
               <input
                 type="text"
                 class="viiicc"
@@ -186,11 +209,20 @@ export default class CreateAssignment extends Component {
                 <button
                   className="btn btn-success"
                   type="submit"
-                  style={{ marginTop: "795px" }}
+                  style={{ marginTop: "795px", width: "20%" }}
                   onClick={this.onSubmit}
                 >
                   <i className="fas fa-save"></i>&nbsp;Save
                 </button>
+                <a href="/admin">
+                  <button
+                    className="btn btn-secondary"
+                    type="submit"
+                    style={{ marginTop: "795px", width: "20%" }}
+                  >
+                    Done
+                  </button>
+                </a>
               </center>
             </form>
           </div>
