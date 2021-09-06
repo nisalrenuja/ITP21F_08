@@ -9,7 +9,7 @@ import AdminTab5 from "../../modules/AdminModules/AdminTab5";
 import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
-import Employeepoints from "../../modules/AdminModules/EmployeePoints";
+import EmployeePoints from "../../modules/AdminModules/EmployeePoints";
 
 const Admin = () => {
   let userRole = "";
@@ -49,7 +49,7 @@ const Admin = () => {
           ) : selectedMenuOption === "MenuItem 2" ? (
             <AdminTab2 />
           ) : selectedMenuOption === "Employees" ? (
-            <AdminTab3 />
+            <EmployeePoints />
           ) : selectedMenuOption === "MenuItem 4" ? (
             <AdminTab4 />
           ) : selectedMenuOption === "MenuItem 5" ? (
