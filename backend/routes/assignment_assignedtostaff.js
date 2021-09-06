@@ -1,5 +1,6 @@
 const express = require("express");
 const assignment_assignedtostaff = require("../models/assignment_assignedtostaff");
+const employees = require("../models/employees");
 const router = express.Router();
 
 router.post("/assignments/save/", (req, res) => {
@@ -17,12 +18,25 @@ router.post("/assignments/save/", (req, res) => {
 });
 //get post
 router.get("/staff/ass", (req, res) => {
-  staff_ass.find().exec((err, staff) => {
+  employees.find().exec((err, staff) => {
     return res.status(200).json({
       success: true,
       staff: staff,
     });
   });
+});
+router.get("/checkassigned/:name", (req, res) => {
+  let empno = req.params.name;
+  assignment_assignedtostaff
+    .find({ $and: [{ emp_no: empno }, { progress: { $ne: "Completed" } }] })
+    .exec((err, check) => {
+      var l = check.length;
+      return res.status(200).json({
+        success: true,
+        check: check,
+        l: l,
+      });
+    });
 });
 
 router.get("/assignments/dis", (req, res) => {
@@ -52,15 +66,12 @@ router.get("/assignments/dis", (req, res) => {
 });
 
 //get specific
-router.get("/assignments/:id", (req, res) => {
+router.get("/assignment/:id", (req, res) => {
   let assid = req.params.id;
-  assignment_assignedtostaff.findById(assid, (err, assignmentsassigned) => {
-    if (err) {
-      return res.status(400).json({ success: false, err });
-    }
+  employees.find({ assignment_name: assid }).exec((err, staff) => {
     return res.status(200).json({
       success: true,
-      assignmentsassigned,
+      staff: staff,
     });
   });
 });
