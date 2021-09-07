@@ -9,10 +9,10 @@ const review_Schema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  //imgPath: {
-  //  type: String,
-  //  required: true,
-  // },
+  reportPDF: {
+    type: String,
+    required: true,
+  },
   points: {
     type: String,
     required: true,
