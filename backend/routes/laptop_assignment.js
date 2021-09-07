@@ -66,6 +66,7 @@ router.get("/lapassignments/dis", (req, res) => {
 });
 
 //get specific
+/*
 router.get("/assignment/:id", (req, res) => {
   let assid = req.params.id;
   assignment_assignedtostaff
@@ -122,7 +123,7 @@ router.put("/assignments/updateallo/:name", (req, res) => {
         success: "Uploaded Succesfully",
       });
     });
-});
+}); */
 //delete post
 router.delete("/lapassignments/delete/:name", (req, res) => {
   let postid = req.params.name;
