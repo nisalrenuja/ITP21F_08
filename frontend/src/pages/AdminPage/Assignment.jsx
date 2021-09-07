@@ -10,9 +10,9 @@ import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import LapAllo from "../../modules/AdminModules/LapAllo";
-import EditAssignments from "../../modules/AdminModules/EditAssignments";
+import Assignments from "../../modules/AdminModules/Assignment";
 
-const EditAssignment = ({ history, match }) => {
+const Assignment = ({ history, match }) => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -52,7 +52,7 @@ const EditAssignment = ({ history, match }) => {
           ) : selectedMenuOption === "Employees" ? (
             <AdminTab3 />
           ) : selectedMenuOption === "Work Allocation" ? (
-            <EditAssignments dataFromParent={match.params.assignment} />
+            <Assignments dataFromParent={match.params.assignment} />
           ) : selectedMenuOption === "MenuItem 5" ? (
             <AdminTab5 />
           ) : selectedMenuOption === "MenuItem 6" ? (
@@ -74,4 +74,4 @@ const EditAssignment = ({ history, match }) => {
   );
 };
 
-export default EditAssignment;
+export default Assignment;
