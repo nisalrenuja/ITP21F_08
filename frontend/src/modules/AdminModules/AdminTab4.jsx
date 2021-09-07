@@ -94,7 +94,10 @@ export default class AdminTab4 extends Component {
               {this.state.assignments.map((assignments, index) => (
                 <tr key={index}>
                   <td>
-                    <a href={``} style={{ textDecoration: "none" }}>
+                    <a
+                      href={`/assignment/${assignments.assignment_name}`}
+                      style={{ textDecoration: "none" }}
+                    >
                       {assignments.assignment_name}
                     </a>
                   </td>

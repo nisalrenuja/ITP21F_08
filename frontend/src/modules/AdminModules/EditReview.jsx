@@ -8,19 +8,19 @@ export default class EditReview extends Component {
       report: "",
       points: "",
       feedback: "",
-      status: "",
+      status: ""
     };
   }
 
-  handleInputChange = (e) => {
+  handleInputChange = e => {
     const { name, value } = e.target;
     this.setState({
       ...this.state,
-      [name]: value,
+      [name]: value
     });
   };
 
-  onSubmit = (e) => {
+  onSubmit = e => {
     e.preventDefault();
     const id = this.props.match.params.id;
     const { execid_review, report, points, feedback, status } = this.state;
@@ -29,10 +29,10 @@ export default class EditReview extends Component {
       report: report,
       points: points,
       feedback: feedback,
-      status: status,
+      status: status
     };
     console.log(data);
-    axios.put(`http://localhost:5000/review/update/${id}`, data).then((res) => {
+    axios.put(`http://localhost:5000/review/update/${id}`, data).then(res => {
       if (res.data.success) {
         alert("Post Updated Successfully");
         this.setState({
@@ -40,7 +40,7 @@ export default class EditReview extends Component {
           report: "",
           points: "",
           feedback: "",
-          status: "",
+          status: ""
         });
       }
     });
@@ -48,14 +48,14 @@ export default class EditReview extends Component {
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    axios.get(`http://localhost:5000/review/${id}`).then((res) => {
+    axios.get(`http://localhost:5000/review/${id}`).then(res => {
       if (res.data.success) {
         this.setState({
           execid_review: res.data.post.execid_review,
           report: res.data.post.report,
           points: res.data.post.points,
           feedback: res.data.post.feedback,
-          status: res.data.post.status,
+          status: res.data.post.status
         });
 
         console.log(this.state.post);

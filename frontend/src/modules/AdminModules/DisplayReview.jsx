@@ -7,15 +7,15 @@ export default class DisplayReview extends Component {
     super(props);
 
     this.state = {
-      post: {},
+      post: {}
     };
   }
   componentDidMount() {
     const id = this.props.match.params.id;
-    axios.get(`http://localhost:5000/review/${id}`).then((res) => {
+    axios.get(`http://localhost:5000/review/${id}`).then(res => {
       if (res.data.success) {
         this.setState({
-          post: res.data.post,
+          post: res.data.post
         });
 
         console.log(this.state.post);
@@ -28,7 +28,7 @@ export default class DisplayReview extends Component {
     doc.html(document.querySelector("#reportContent"), {
       callback: function(doc) {
         doc.save("report.pdf");
-      },
+      }
     });
   };
 

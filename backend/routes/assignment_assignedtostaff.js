@@ -68,29 +68,60 @@ router.get("/assignments/dis", (req, res) => {
 //get specific
 router.get("/assignment/:id", (req, res) => {
   let assid = req.params.id;
-  employees.find({ assignment_name: assid }).exec((err, staff) => {
-    return res.status(200).json({
-      success: true,
-      staff: staff,
+  assignment_assignedtostaff
+    .find({ assignment_name: assid })
+    .limit(1)
+    .sort({ $natural: -1 })
+    .exec((err, ass) => {
+      assignment_assignedtostaff
+        .find({ assignment_name: assid })
+        .exec((err, ass2) => {
+          return res.status(200).json({
+            success: true,
+            ass: ass,
+            ass2: ass2,
+          });
+        });
     });
-  });
 });
-//update posts
-router.put("/assignments/update/:id", (req, res) => {
-  assignment_assignedtostaff.findByIdAndUpdate(
-    req.params.id,
-    {
-      $set: req.body,
-    },
-    (err, post) => {
+router.put("/assignments/update/:name", (req, res) => {
+  let name = req.params.name;
+  assignment_assignedtostaff
+    .updateMany(
+      { assignment_name: name },
+      {
+        deadline: req.body.deadline,
+        progress: req.body.progress,
+      }
+    )
+    .exec((err, Post1) => {
       if (err) {
         return res.status(400).json({ error: err });
       }
       return res.status(200).json({
         success: "Uploaded Succesfully",
       });
-    }
-  );
+    });
+});
+//update posts
+router.put("/assignments/updateallo/:name", (req, res) => {
+  let name = req.params.name;
+  let empno = req.body.empno;
+  assignment_assignedtostaff
+    .update(
+      { $and: [{ emp_no: empno }, { assignment_name: name }] },
+      {
+        travel_allowance: req.body.travel_allowance,
+      }
+    )
+    .exec((err, post) => {
+      if (err) {
+        return res.status(400).json({ error: err });
+      }
+      return res.status(200).json({
+        success: "Uploaded Succesfully",
+      });
+    });
 });
 //delete post
 router.delete("/assignments/delete/:name", (req, res) => {

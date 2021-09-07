@@ -12,7 +12,7 @@ import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import LapAllo from "../../modules/AdminModules/LapAllo";
 import CreateAssignment from "../../modules/AdminModules/CreateAssignment";
 
-const Laps = () => {
+const CreateAssignments = () => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -74,4 +74,4 @@ const Laps = () => {
   );
 };
 
-export default Laps;
+export default CreateAssignments;

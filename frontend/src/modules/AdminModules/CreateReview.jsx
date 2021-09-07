@@ -10,24 +10,24 @@ export default class CreateReview extends Component {
       reportPDF: "",
       points: "",
       feedback: "",
-      status: "",
+      status: ""
     };
   }
 
-  handleInputChange = (e) => {
+  handleInputChange = e => {
     const { name, value } = e.target;
     this.setState({
       ...this.state,
-      [name]: value,
+      [name]: value
     });
   };
 
-  handleInputFileChange = (e) => {
+  handleInputFileChange = e => {
     var file = e.target.file[0].name;
     console.log(file);
   };
 
-  onSubmit = (e) => {
+  onSubmit = e => {
     e.preventDefault();
 
     const {
@@ -36,7 +36,7 @@ export default class CreateReview extends Component {
       reportPDF,
       points,
       feedback,
-      status,
+      status
     } = this.state;
     const data = {
       execid_review: execid_review,
@@ -44,10 +44,10 @@ export default class CreateReview extends Component {
       reportPDF: reportPDF,
       points: points,
       feedback: feedback,
-      status: status,
+      status: status
     };
     console.log(data);
-    axios.post("http://localhost:5000/review/save", data).then((res) => {
+    axios.post("http://localhost:5000/review/save", data).then(res => {
       if (res.data.success) {
         this.setState({
           execid_review: "",
@@ -55,7 +55,7 @@ export default class CreateReview extends Component {
           reportPDF: "",
           points: "",
           feedback: "",
-          status: "",
+          status: ""
         });
       }
     });
