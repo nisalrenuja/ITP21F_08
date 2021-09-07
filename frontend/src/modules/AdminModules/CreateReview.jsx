@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 import axios from "axios";
-
+import { storage } from "../../firebase";
+import Progress from "../../component/common/ProgressBar/progress";
 export default class CreateReview extends Component {
   constructor(props) {
     super(props);
+    this.uploadPDF = this.uploadPDF.bind(this);
     this.state = {
       execid_review: "",
       report: "",
-      reportPDF: "",
+      reportPDF: null,
       points: "",
       feedback: "",
-      status: ""
+      status: "",
+      uploadPercentage: 0
     };
   }
 
@@ -23,7 +26,7 @@ export default class CreateReview extends Component {
   };
 
   handleInputFileChange = e => {
-    var file = e.target.file[0].name;
+    var file = e.target.files[0];
     console.log(file);
   };
 
@@ -61,6 +64,40 @@ export default class CreateReview extends Component {
     });
   };
 
+  uploadPDF(e) {
+    if (e.target.files[0] !== null) {
+      const uploadTask = storage
+        .ref(`users/${e.target.files[0].name}`)
+        .put(e.target.files[0]);
+      uploadTask.on(
+        "state_changed",
+        snapshot => {
+          //progress function
+          const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          this.setState({ uploadPercentage: progress });
+        },
+        error => {
+          //error function
+          console.log(error);
+        },
+        () => {
+          //complete function
+          storage
+            .ref("users")
+            .child(e.target.files[0].name)
+            .getDownloadURL()
+            .then(url => {
+              this.setState({ reportPDF: url });
+              console.log("Hello" + url);
+            });
+        }
+      );
+    } else {
+    }
+  }
+
   render() {
     return (
       <div className="col-md-8 mt-4 mx-auto">
@@ -91,15 +128,23 @@ export default class CreateReview extends Component {
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Upload Your Repor PDF</label>
+            <label style={{ marginBottom: "5px" }}>
+              Upload Your Report PDF
+            </label>
             <input
               type="file"
               className="form-control"
               name="reportPDF"
-              value={this.state.reportPDF}
-              onChange={this.handleInputFileChange}
+              //value={this.state.reportPDF}
+              onChange={e => {
+                this.uploadPDF(e);
+              }}
               multiple=""
             />
+          </div>
+
+          <div className="mt-3">
+            <Progress percentage={this.state.uploadPercentage} />
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
