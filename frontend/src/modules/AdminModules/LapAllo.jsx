@@ -20,14 +20,14 @@ const LapAllo = () => {
         </a>
         <div class="div3">
           <p class="txt3">Filter by</p>
-          <input class="select1" type="text" />
-          <a className="btn btn-info search">
+          <input class="select121" type="text" />
+          <a className="btn btn-info search121">
             <i className="fas fa-search"></i>&nbsp;Search
           </a>
         </div>
-        <h2 class="tah">Total Laptop Allocations</h2>
-        <table className="table table-hover table1">
-          <thead class="thead">
+        <h2 class="tah121">Total Laptop Allocations</h2>
+        <table className="table table-hover table121">
+          <thead class="thead121">
             <tr>
               <th scope="col">Assignment Name</th>
               <th scope="col">Staff ID</th>
@@ -50,7 +50,7 @@ const LapAllo = () => {
               <td>abds</td>
             </tr>
           </tbody>
-          <tfoot class="tfoot">
+          <tfoot class="tfoot121">
             <a href="/createlapallocation">
               <i class="fas fa-plus"></i>&nbsp;New Allocation
             </a>

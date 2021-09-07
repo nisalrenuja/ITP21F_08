@@ -94,7 +94,7 @@
 
   color: #c4c4c4;
 }
-.select1 {
+.select11 {
   position: absolute;
   width: 272px;
   height: 60px;
@@ -104,21 +104,21 @@
   background: #ffffff;
   border-radius: 5px;
 }
-.search {
+.search22 {
   position: absolute;
   width: 110px;
   height: 40px;
   left: 495px;
   top: 60px;
 }
-.table1 {
+.table101 {
   position: absolute;
   width: 100%;
 
   left: 40px;
   top: 650px;
 }
-.thead {
+.thead101 {
   background: #276678;
   font-family: Inter;
   font-style: normal;
@@ -130,7 +130,7 @@
   color: #ffffff;
   background: #276678;
 }
-.tfoot {
+.tfoot101 {
   background: #276678;
   font-family: Inter;
   font-style: normal;
@@ -142,14 +142,14 @@
   color: #ffffff;
   background: #276678;
 }
-.tfoot a {
+.tfoot101 a {
   text-decoration: none;
   color: #ffffff;
 }
-.tfoot:hover {
+.tfoot101:hover {
   background: #47daba;
 }
-.tah {
+.tah101 {
   position: absolute;
   width: 523px;
   height: 66px;
@@ -158,7 +158,7 @@
 
   color: #000000;
 }
-.main {
+.main222 {
   width: 100%;
   height: 850px;
   white-space: nowrap;
@@ -166,6 +166,6 @@
   overflow-x: scroll;
   overflow-y: scroll;
 }
-.tbody1 {
+.tbody101 {
   text-align: center;
 }
