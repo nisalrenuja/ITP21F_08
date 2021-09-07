@@ -28,7 +28,7 @@ router.get("/laps/ass", (req, res) => {
 router.get("/checklapassigned/:id", (req, res) => {
   let lapid = req.params.id;
   laptop_assignment
-    .find({ $and: [{ emp_no: lapid }, { status: { $ne: "Completed" } }] })
+    .find({ $and: [{ lapid: lapid }, { status: { $ne: "Completed" } }] })
     .exec((err, check) => {
       var l = check.length;
       return res.status(200).json({

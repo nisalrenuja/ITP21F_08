@@ -159,6 +159,9 @@
   height: 850px;
   white-space: nowrap;
   position: relative;
-  overflow-x: hidden;
+  overflow-x: scroll;
   overflow-y: scroll;
+}
+.tbody121 {
+  text-align: center;
 }

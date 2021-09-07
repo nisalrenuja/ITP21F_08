@@ -34,6 +34,9 @@ export default class Assignment extends Component {
       if (res.data.success) {
         var sum = 0;
         for (var i = 0; i < res.data.ass2.length; i++) {
+          if (res.data.ass2[i].travel_allowance == null) {
+            res.data.ass2[i].travel_allowance = 0;
+          }
           sum = sum + res.data.ass2[i].travel_allowance;
         }
         this.setState({
@@ -180,7 +183,8 @@ export default class Assignment extends Component {
                 <strong>
                   <center>
                     <p style={{ color: "#1687a7", fontSize: "20px" }}>
-                      {assignment2.emp_no} :- {assignment2.travel_allowance}
+                      Emp No:- {assignment2.emp_no} - Allowances:-{" "}
+                      {assignment2.travel_allowance}
                     </p>
                   </center>
                 </strong>

@@ -154,7 +154,11 @@ export default class EditAssignments extends Component {
                     </p>
 
                     <br />
-                    <p class="viic">Change Progress: </p>
+                    <p class="viic">
+                      Change Progress
+                      <br />
+                      (Type Completed if done):{" "}
+                    </p>
                     <input
                       type="text"
                       class="viicc"
@@ -188,7 +192,8 @@ export default class EditAssignments extends Component {
                 <strong>
                   <center>
                     <p style={{ color: "#1687a7", fontSize: "20px" }}>
-                      {assignment2.emp_no} :- {assignment2.travel_allowance}
+                      Emp No:-{assignment2.emp_no} - Allowances:-
+                      {assignment2.travel_allowance}
                     </p>
                   </center>
                 </strong>

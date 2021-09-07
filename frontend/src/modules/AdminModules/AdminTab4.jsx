@@ -25,7 +25,8 @@ export default class AdminTab4 extends Component {
     axios.get("http://localhost:5000/assignments/dis").then(res => {
       if (res.data.success) {
         this.setState({
-          assignments: res.data.assignmentsassigned
+          assignments: res.data.assignmentsassigned,
+          l: res.data.assignmentsassigned.length
         });
         console.log(this.state.assignments);
       }
@@ -78,7 +79,7 @@ export default class AdminTab4 extends Component {
               <i className="fas fa-search"></i>&nbsp;Search
             </a>
           </div>
-          <h2 class="tah101">Total Assignments</h2>
+          <h2 class="tah101">Total Assignments({this.state.l})</h2>
           <table className="table table-hover table101">
             <thead class="thead101">
               <tr>
