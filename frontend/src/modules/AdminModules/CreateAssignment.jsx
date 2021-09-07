@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./CreateAssignment.css";
+import { Redirect } from "react-router";
 
 export default class CreateAssignment extends Component {
   constructor(props) {
@@ -15,7 +16,8 @@ export default class CreateAssignment extends Component {
       date_of_allocation: "",
       deadline: "",
       emp_no: "",
-      staff: []
+      staff: [],
+      redirectToReferrer: false
     };
   }
   componentDidMount() {
@@ -83,7 +85,8 @@ export default class CreateAssignment extends Component {
           distance: distance,
           date_of_allocation: date_of_allocation,
           deadline: deadline,
-          emp_no: ""
+          emp_no: "",
+          redirectToReferrer: true
         });
         alert(
           "Employee added to assignment, Enter employee numbers to add more employees!"
@@ -92,6 +95,10 @@ export default class CreateAssignment extends Component {
     });
   };
   render() {
+    const redirectToReferrer = this.state.redirectToReferrer;
+    if (redirectToReferrer == true) {
+      return <Redirect to="/allassignments" />;
+    }
     return (
       <div className="container">
         <div class="main3">
