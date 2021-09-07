@@ -5,40 +5,36 @@ const app = express();
 const connectDB = require("./config/db");
 const errorHandler = require("./middleware/error");
 const cors = require("cors");
-
+const laptop_routes = require("./routes/laptop");
+const laptop_repair_routes = require("./routes/laptopRepair");
+const assignment_assignedtostaffRoutes = require("./routes/assignment_assignedtostaff");
+const employees = require("./routes/employees");
 //connect db
 connectDB();
-
+const postRoutes = require("./routes/Reviews");
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
 app.get("/", (req, res, next) => {
   res.send("Api running");
 });
-
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); //app middleware
-
 // Connecting Routes
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/private", require("./routes/private"));
 
-//import routes
-const attendancesRoutes = require("./routes/attendances");
-const leavesRoutes = require("./routes/leaves");
-const laptop_routes = require("./routes/laptop");
-const laptop_repair_routes = require("./routes/laptopRepair");
-const assignment_assignedtostaffRoutes = require("./routes/assignment_assignedtostaff");
-const employees = require("./routes/employees");
-
-//add routes here
-app.use(attendancesRoutes);
-app.use(leavesRoutes);
 app.use(laptop_routes);
 app.use(laptop_repair_routes);
 app.use(assignment_assignedtostaffRoutes);
 app.use(employees);
+app.use(postRoutes);
+//import routes
+const attendancesRoutes = require("./routes/attendances");
+const leavesRoutes = require("./routes/leaves");
 
+//add routes here
+app.use(attendancesRoutes);
+app.use(leavesRoutes);
 // Error Handler Middleware
 app.use(errorHandler);
 
