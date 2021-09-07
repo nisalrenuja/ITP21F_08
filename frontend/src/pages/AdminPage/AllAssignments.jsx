@@ -12,7 +12,7 @@ import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import LapAllo from "../../modules/AdminModules/LapAllo";
 import Employeepoints from "../../modules/AdminModules/EmployeePoints";
 
-const Admin = () => {
+const AllAssignments = () => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -74,4 +74,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default AllAssignments;
