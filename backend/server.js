@@ -8,6 +8,7 @@ const cors = require("cors");
 const laptop_routes = require("./routes/laptop");
 const laptop_repair_routes = require("./routes/laptopRepair");
 const assignment_assignedtostaffRoutes = require("./routes/assignment_assignedtostaff");
+const laptop_assignment_Routes = require("./routes/laptop_assignment");
 const employees = require("./routes/employees");
 //connect db
 connectDB();
@@ -26,6 +27,7 @@ app.use("/api/private", require("./routes/private"));
 app.use(laptop_routes);
 app.use(laptop_repair_routes);
 app.use(assignment_assignedtostaffRoutes);
+app.use(laptop_assignment_Routes);
 app.use(employees);
 app.use(postRoutes);
 //import routes
