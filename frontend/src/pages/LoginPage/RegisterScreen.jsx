@@ -10,13 +10,13 @@ const RegisterScreen = ({ history }) => {
   const [confirmpassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
-  const registerHandler = async (e) => {
+  const registerHandler = async e => {
     e.preventDefault();
 
     const config = {
       header: {
-        "Content-Type": "application/json",
-      },
+        "Content-Type": "application/json"
+      }
     };
 
     if (password !== confirmpassword) {
@@ -34,14 +34,14 @@ const RegisterScreen = ({ history }) => {
         {
           username,
           email,
-          password,
+          password
         },
         config
       );
 
       localStorage.setItem("authToken", data.token);
       localStorage.setItem("loggedIn", "true");
-      localStorage.setItem("MenuOptionCache", "Report Review");
+      localStorage.setItem("MenuOptionCache", "User Executive Management");
       history.push("/admin");
       window.location.reload();
     } catch (error) {
@@ -65,7 +65,7 @@ const RegisterScreen = ({ history }) => {
             id="name"
             placeholder="Enter username"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={e => setUsername(e.target.value)}
           />
         </div>
         <div className="form-group">
@@ -76,7 +76,7 @@ const RegisterScreen = ({ history }) => {
             id="email"
             placeholder="Email address"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={e => setEmail(e.target.value)}
           />
         </div>
         <div className="form-group">
@@ -88,7 +88,7 @@ const RegisterScreen = ({ history }) => {
             autoComplete="true"
             placeholder="Enter password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={e => setPassword(e.target.value)}
           />
         </div>
         <div className="form-group">
@@ -100,7 +100,7 @@ const RegisterScreen = ({ history }) => {
             autoComplete="true"
             placeholder="Confirm password"
             value={confirmpassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={e => setConfirmPassword(e.target.value)}
           />
         </div>
         <button type="submit" className="btn btn-primary">
