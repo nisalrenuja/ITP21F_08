@@ -1,0 +1,30 @@
+.need-validation {
+    background-color:"#F6F5F5" ;
+    border:"5px solid eastern blue";
+    padding :"30px";
+    border-radius:"15px"
+}
+
+.form-group {
+    margin-bottom: "14px";
+}
+
+label{
+    margin-bottom: "5px";
+}
+
+h1{
+    color: #276678;
+}
+h2 {
+    color: #1687A7;
+}
+
+hr{
+    color: #1687A7;
+}
+
+button{
+    margin-top: "14px";
+    width: "100px";
+}
