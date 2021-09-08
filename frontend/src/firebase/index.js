@@ -3,12 +3,12 @@ import "firebase/storage";
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
-  apiKey: "AIzaSyCTfcI41rfLYDXFd_mMkgKHmU6Vp9EzrRs",
-  authDomain: "icafsl.firebaseapp.com",
-  projectId: "icafsl",
-  storageBucket: "icafsl.appspot.com",
-  messagingSenderId: "65440105589",
-  appId: "1:65440105589:web:e0c6de6b8457e1cfc4643c"
+  apiKey: "AIzaSyDSf2hLIztSSmBWNiFBoGId1Qj_hENUNbE",
+  authDomain: "fir-review-pdf.firebaseapp.com",
+  projectId: "fir-review-pdf",
+  storageBucket: "fir-review-pdf.appspot.com",
+  messagingSenderId: "70833646732",
+  appId: "1:70833646732:web:7fb3c9265f77ae1ce5dfa9"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
