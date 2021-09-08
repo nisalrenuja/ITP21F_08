@@ -176,7 +176,7 @@ export default class Assignment extends Component {
             <br />
             <br />
             <center>
-              <h3>Employees and Allowances(Rs)</h3>
+              <h3>Employees Working and Allowances(Rs)</h3>
             </center>
             {this.state.assignment2.map((assignment2, index) => (
               <div>
