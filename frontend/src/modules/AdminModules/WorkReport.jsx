@@ -62,6 +62,8 @@ export default class WorkReport extends Component {
     return (
       <div className="container container222">
         <center>
+          <br />
+          <h1>Reports on Assignments and Staff</h1>
           <div>
             <Chart
               width={"950px"}
