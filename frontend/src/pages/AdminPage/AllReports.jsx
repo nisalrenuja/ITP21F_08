@@ -10,6 +10,7 @@ import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import LapAllo from "../../modules/AdminModules/LapAllo";
+import CompanyPerfomance from "../../modules/AdminModules/CompanyPerformance";
 
 const Admin = () => {
   let userRole = "";

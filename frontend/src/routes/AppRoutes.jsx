@@ -28,6 +28,7 @@ import DisplayReview from "../modules/AdminModules/DisplayReview";
 import EditLapAllo from "../pages/AdminPage/EditLapAllo";
 import WorkReport from "../pages/AdminPage/WorkReport";
 import CompanyPerfomance from "../pages/AdminPage/CompanyPerformance";
+import AllReports from "../pages/AdminPage/AllReports";
 
 const AppRoutes = () => (
   <div>
@@ -69,6 +70,7 @@ const AppRoutes = () => (
         <Route path="/InsertEmployee" component={InsertEmployee} exact />
         /*Anujitha Routes*/
         <Route path="/companyperformance" component={CompanyPerfomance} exact />
+        <Route path="/allreports" component={AllReports} exact />
       </Switch>
       <Footer />
     </Router>
