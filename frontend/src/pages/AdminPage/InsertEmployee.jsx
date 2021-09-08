@@ -9,8 +9,8 @@ import AdminTab5 from "../../modules/AdminModules/AdminTab5";
 import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
-import LapAllo from "../../modules/AdminModules/LapAllo";
-import Employeepoints from "../../modules/AdminModules/EmployeePoints";
+import EmployeePoints from "../../modules/AdminModules/EmployeePoints";
+import InsertEmployee from "../../modules/AdminModules/InsertEmployee";
 
 const Admin = () => {
   let userRole = "";
@@ -50,21 +50,21 @@ const Admin = () => {
           ) : selectedMenuOption === "MenuItem 2" ? (
             <AdminTab2 />
           ) : selectedMenuOption === "Employees" ? (
-            <AdminTab3 />
+            <InsertEmployee />
           ) : selectedMenuOption === "Work Allocation" ? (
             <AdminTab4 />
           ) : selectedMenuOption === "MenuItem 5" ? (
             <AdminTab5 />
-          ) : selectedMenuOption === "Attendance & Payroll" ? (
+          ) : selectedMenuOption === "MenuItem 6" ? (
             <AdminTab6 />
-          ) : selectedMenuOption === "Inventory Management" ? (
+          ) : selectedMenuOption === "MenuItem 7" ? (
             <AdminTab7 />
           ) : (
             <AdminTab8 />
           )}
         </Container>
       ) : (
-        <div> </div>
+        <div></div>
       )}
       <SideNav
         onMenuItemSelect={updateSelectedMenuOption}

@@ -1,10 +1,10 @@
 const express = require("express");
-const assignment_assignedtostaff = require("../models/assignment_assignedtostaff");
-const employees = require("../models/employees");
+const laptop_assignment = require("../models/laptop_assignment");
+const laptop = require("../models/laptop");
 const router = express.Router();
 
-router.post("/assignments/save/", (req, res) => {
-  let newPost = new assignment_assignedtostaff(req.body);
+router.post("/lapassignments/save/", (req, res) => {
+  let newPost = new laptop_assignment(req.body);
   newPost.save((err) => {
     if (err) {
       return res.status(400).json({
@@ -17,18 +17,18 @@ router.post("/assignments/save/", (req, res) => {
   });
 });
 //get post
-router.get("/staff/ass", (req, res) => {
-  employees.find().exec((err, staff) => {
+router.get("/laps/ass", (req, res) => {
+  laptop.find().exec((err, laps) => {
     return res.status(200).json({
       success: true,
-      staff: staff,
+      laps: laps,
     });
   });
 });
-router.get("/checkassigned/:name", (req, res) => {
-  let empno = req.params.name;
-  assignment_assignedtostaff
-    .find({ $and: [{ emp_no: empno }, { progress: { $ne: "Completed" } }] })
+router.get("/checklapassigned/:id", (req, res) => {
+  let lapid = req.params.id;
+  laptop_assignment
+    .find({ $and: [{ lapid: lapid }, { status: { $ne: "Completed" } }] })
     .exec((err, check) => {
       var l = check.length;
       return res.status(200).json({
@@ -39,8 +39,8 @@ router.get("/checkassigned/:name", (req, res) => {
     });
 });
 
-router.get("/assignments/dis", (req, res) => {
-  assignment_assignedtostaff
+router.get("/lapassignments/dis", (req, res) => {
+  laptop_assignment
     .aggregate([
       {
         $group: {
@@ -54,18 +54,19 @@ router.get("/assignments/dis", (req, res) => {
         },
       },
     ])
-    .exec((err, assignmentsassigned) => {
-      var count = assignmentsassigned.length;
+    .exec((err, lapassignments) => {
+      var count = lapassignments.length;
 
       return res.status(200).json({
         success: true,
-        assignmentsassigned: assignmentsassigned,
+        lapassignments: lapassignments,
         count: count,
       });
     });
 });
 
 //get specific
+/*
 router.get("/assignment/:id", (req, res) => {
   let assid = req.params.id;
   assignment_assignedtostaff
@@ -122,11 +123,11 @@ router.put("/assignments/updateallo/:name", (req, res) => {
         success: "Uploaded Succesfully",
       });
     });
-});
+}); */
 //delete post
-router.delete("/assignments/delete/:name", (req, res) => {
+router.delete("/lapassignments/delete/:name", (req, res) => {
   let postid = req.params.name;
-  assignment_assignedtostaff
+  laptop_assignment
     .remove({ assignment_name: postid })
     .exec((err, deletedPost) => {
       if (err)

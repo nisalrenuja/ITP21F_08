@@ -48,7 +48,7 @@ const Laps = () => {
             <AdminTab1 />
           ) : selectedMenuOption === "MenuItem 2" ? (
             <AdminTab2 />
-          ) : selectedMenuOption === "MenuItem 3" ? (
+          ) : selectedMenuOption === "Employees" ? (
             <AdminTab3 />
           ) : selectedMenuOption === "Work Allocation" ? (
             <LapAllo />
