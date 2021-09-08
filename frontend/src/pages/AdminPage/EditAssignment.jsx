@@ -20,7 +20,9 @@ const EditAssignment = ({ history, match }) => {
     selectedMenuOptionCache =
       window.localStorage.getItem("MenuOptionCache") || "";
   }
-  const [selectedMenuOption, setSelectedMenuOption] = useState("Report Review");
+  const [selectedMenuOption, setSelectedMenuOption] = useState(
+    "User Executive Management"
+  );
 
   useEffect(() => {
     if (userRole !== "Admin") {
@@ -45,7 +47,7 @@ const EditAssignment = ({ history, match }) => {
     <div>
       {selectedMenuOption !== "" ? (
         <Container>
-          {selectedMenuOption === "Report Review" ? (
+          {selectedMenuOption === "User Executive Management" ? (
             <AdminTab1 />
           ) : selectedMenuOption === "MenuItem 2" ? (
             <AdminTab2 />
