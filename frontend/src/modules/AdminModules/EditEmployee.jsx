@@ -3,17 +3,9 @@ import axios from "axios";
 import "./InsertEmployee.css";
 import { Redirect } from "react-router";
 
-export default class InsertEmployee extends Component {
+export default class EditEmployee extends Component {
   constructor(props) {
     super(props);
-    var today = new Date(),
-      date =
-        today.getFullYear() +
-        "-" +
-        (today.getMonth() + 1) +
-        "-" +
-        today.getDate();
-    console.log(date);
 
     this.state = {
       empno: "",
@@ -30,7 +22,7 @@ export default class InsertEmployee extends Component {
       organization: "",
       sector: "",
       duration: "",
-      commencement_date: today,
+      commencement_date: "",
       ending_date: "",
       professional_education: "",
       completed_stage: "",
@@ -67,7 +59,6 @@ export default class InsertEmployee extends Component {
     let nameError = "";
     let emailError = "";
     let statusError = "";
-    let typeError = "";
 
     if (!this.state.empno) {
       empnoError = "**EmpNo Cannot Be Blank";
@@ -84,22 +75,11 @@ export default class InsertEmployee extends Component {
     if (!this.state.status) {
       statusError = "**Status Cannot Be Blank";
     }
-    if (!this.state.type) {
-      typeError = "**Type Cannot Be Blank";
-    }
 
-    if (emailError || nameError || empnoError || statusError || typeError) {
+    if (emailError || nameError || empnoError || statusError) {
       //emaiError also equal to emailError:emailError in Js.
-      this.setState({
-        emailError,
-        nameError,
-        empnoError,
-        statusError,
-        typeError
-      });
-      alert(
-        "Invalid Form Data. Please Check Emp No, Name, Email, Status & Type!!!"
-      );
+      this.setState({ emailError, nameError, empnoError, statusError });
+      alert("Invalid Form Data. Please Check Emp No, Name, Email & Status!!!");
       return false;
     }
     return true;
@@ -107,6 +87,7 @@ export default class InsertEmployee extends Component {
 
   onSubmit = e => {
     e.preventDefault();
+    const id = this.props.dataFromParent;
 
     const {
       empno,
@@ -140,7 +121,7 @@ export default class InsertEmployee extends Component {
       type,
       status
     } = this.state;
-
+    console.log(commencement_date);
     const data = {
       empno: empno,
       name: name,
@@ -177,46 +158,95 @@ export default class InsertEmployee extends Component {
     if (isValid) {
       console.log(this.state);
 
-      axios.post("http://localhost:5000/employees/save", data).then(res => {
-        if (res.data.success) {
-          this.setState({
-            empno: empno,
-            name: name,
-            email: email,
-            contact: contact,
-            dob: dob,
-            gender: gender,
-            nic_no: nic_no,
-            permernant_address: permernant_address,
-            district: district,
-            province: province,
-            place_of_stay: place_of_stay,
-            organization: organization,
-            sector: sector,
-            duration: duration,
-            commencement_date: commencement_date,
-            ending_date: ending_date,
-            professional_education: professional_education,
-            completed_stage: completed_stage,
-            current_stage: current_stage,
-            attempt: attempt,
-            subjects: subjects,
-            al_year: al_year,
-            university: university,
-            graduated_yr: graduated_yr,
-            department: department,
-            old_password: old_password,
-            new_password: new_password,
-            confirm_password: confirm_password,
-            type: type,
-            status: status,
-            redirectToReferrer: true
-          });
-          alert("Employee Details Saved!");
-        }
-      });
+      axios
+        .put(`http://localhost:5000/employees/update/${id}`, data)
+        .then(res => {
+          if (res.data.success) {
+            this.setState({
+              empno: empno,
+              name: name,
+              email: email,
+              contact: contact,
+              dob: dob,
+              gender: gender,
+              nic_no: nic_no,
+              permernant_address: permernant_address,
+              district: district,
+              province: province,
+              place_of_stay: place_of_stay,
+              organization: organization,
+              sector: sector,
+              duration: duration,
+              commencement_date: commencement_date,
+              ending_date: ending_date,
+              professional_education: professional_education,
+              completed_stage: completed_stage,
+              current_stage: current_stage,
+              attempt: attempt,
+              subjects: subjects,
+              al_year: al_year,
+              university: university,
+              graduated_yr: graduated_yr,
+              department: department,
+              old_password: old_password,
+              new_password: new_password,
+              confirm_password: confirm_password,
+              type: type,
+              status: status,
+              redirectToReferrer: true
+            });
+            alert("Employee Details Saved!");
+          }
+        });
     }
   };
+
+  componentDidMount() {
+    this.retrievePosts();
+  }
+
+  retrievePosts() {
+    const p = this.props.dataFromParent;
+    console.log(p);
+    axios.get(`http://localhost:5000/employees/${p}`).then(res => {
+      if (res.data.success) {
+        this.setState({
+          empno: res.data.employee.empno,
+          name: res.data.employee.name,
+          email: res.data.employee.email,
+          contact: res.data.employee.contact,
+          dob: res.data.employee.dob,
+          gender: res.data.employee.gender,
+          nic_no: res.data.employee.nic_no,
+          permernant_address: res.data.employee.permernant_address,
+          district: res.data.employee.district,
+          province: res.data.employee.province,
+          place_of_stay: res.data.employee.place_of_stay,
+          organization: res.data.employee.organization,
+          sector: res.data.employee.sector,
+          duration: res.data.employee.duration,
+          commencement_date: res.data.employee.commencement_date,
+          ending_date: res.data.employee.ending_date,
+          professional_education: res.data.employee.professional_education,
+          completed_stage: res.data.employee.completed_stage,
+          current_stage: res.data.employee.current_stage,
+          attempt: res.data.employee.attempt,
+          subjects: res.data.employee.subjects,
+          al_year: res.data.employee.al_year,
+          university: res.data.employee.university,
+          graduated_yr: res.data.employee.graduated_yr,
+          department: res.data.employee.department,
+          old_password: res.data.employee.old_password,
+          new_password: res.data.employee.new_password,
+          confirm_password: res.data.employee.confirm_password,
+          type: res.data.employee.type,
+          status: res.data.employee.status
+        });
+
+        console.log(this.state.empno);
+      }
+    });
+  }
   render() {
     const redirectToReferrer = this.state.redirectToReferrer;
     if (redirectToReferrer == true) {
@@ -233,7 +263,7 @@ export default class InsertEmployee extends Component {
             <hr class="line1"></hr>
             <p class="label1">Employee Number: </p>
             <input
-              type="number"
+              type="text"
               class="box1"
               id="empno"
               name="empno"
