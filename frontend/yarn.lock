@@ -9796,7 +9796,8 @@
   "resolved" "https://registry.npmjs.org/regenerator-transform/-/regenerator-transform-0.14.5.tgz"
   "version" "0.14.5"
   dependencies:
-    "@babel/runtime" "^7.8.4"
+    "hash-base" "^3.0.0"
+    "inherits" "^2.0.1"
 
 "regex-not@^1.0.0", "regex-not@^1.0.2":
   "integrity" "sha512-J6SDjUgDxQj5NusnOtdFxDwN/+HWykR8GELwctJ7mdqhcyy1xEc4SRFHUXvxTp661YaVKAjfRLZ9cCqS6tn32A=="
