@@ -34,6 +34,7 @@ app.use(postRoutes);
 //import routes
 const attendancesRoutes = require("./routes/attendances");
 const leavesRoutes = require("./routes/leaves");
+const final_report = require("./models/final_report");
 
 //add routes here
 app.use(attendancesRoutes);
@@ -51,3 +52,5 @@ process.on("unhandledRejection", (err, promise) => {
   console.log(`Logged Error: ${err.message}`);
   server.close(() => process.exit(1));
 });
+
+

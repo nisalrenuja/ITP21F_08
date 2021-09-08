@@ -106,9 +106,7 @@ export default class LapAllo extends Component {
                   <td>{lapassignments.status}</td>
 
                   <td>
-                    <a
-                      href={`/editlapassignment/${lapassignments.assignment_name}`}
-                    >
+                    <a href={`/editlapallo/${lapassignments.assignment_name}`}>
                       <i className="fas fa-edit"></i>&nbsp;
                     </a>
                     &nbsp;

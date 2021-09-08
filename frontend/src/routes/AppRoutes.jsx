@@ -33,6 +33,8 @@ import LaptopInventory from "../pages/AdminPage/LaptopInventory";
 import CreateLaptops from "../pages/AdminPage/CreateLaptop";
 import LaptopsRepair from "../pages/AdminPage/LaptopRepair";
 import CreateLaptopsRepair from "../pages/AdminPage/CreateLaptopRepair";
+import EditLapAllo from "../pages/AdminPage/EditLapAllo";
+import WorkReport from "../pages/AdminPage/WorkReport";
 
 const AppRoutes = () => (
   <div>
@@ -77,6 +79,10 @@ const AppRoutes = () => (
         <Route path="/add" exact component={CreateReview}></Route>
         <Route path="/edit/:id" exact component={EditReview}></Route>
         <Route path="/post/:id" exact component={DisplayReview}></Route>
+
+        <Route exact path="/editlapallo/:assignment" component={EditLapAllo} />
+        <Route path="/reportwork" component={WorkReport} exact />
+
         <Route path="/InsertEmployee" component={InsertEmployee} exact />
       </Switch>
       <Footer />

@@ -13,6 +13,7 @@ export default class InsertEmployee extends Component {
         (today.getMonth() + 1) +
         "-" +
         today.getDate();
+    console.log(date);
 
     this.state = {
       empno: "",
@@ -29,7 +30,7 @@ export default class InsertEmployee extends Component {
       organization: "",
       sector: "",
       duration: "",
-      commencement_date: date,
+      commencement_date: today,
       ending_date: "",
       professional_education: "",
       completed_stage: "",
@@ -375,7 +376,7 @@ export default class InsertEmployee extends Component {
               id="commmencement_date"
               name="commmencement_date"
               value={this.state.commencement_date}
-              onChange={this.handleInputChange}
+              disabled
             />
             <p class="label16">Ending Date: </p>
             <input
