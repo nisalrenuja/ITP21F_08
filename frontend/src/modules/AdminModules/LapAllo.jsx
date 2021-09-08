@@ -56,8 +56,8 @@ export default class LapAllo extends Component {
     return (
       <div className="container">
         <div class="main2">
-          <h2 class="head1">Laptop Allocation</h2>
-          <hr class="line1"></hr>
+          <h2 class="head1l">Laptop Allocation</h2>
+          <hr class="line1l"></hr>
           <a href="/allassignments">
             <button class="div11">
               <p class="txt11">Assignments</p>
