@@ -1,4 +1,4 @@
-const mongoose = require('module');
+const mongoose = require('mongoose');
 
 const noticeBoard_Schema = new mongoose.Schema({
 
