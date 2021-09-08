@@ -40,7 +40,7 @@ const CreateLaptops = () => {
       window.localStorage.setItem("MenuOptionCache", option);
     }
   };
-
+  //lap
   return (
     <div>
       {selectedMenuOption !== "" ? (

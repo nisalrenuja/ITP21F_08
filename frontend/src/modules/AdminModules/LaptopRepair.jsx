@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./LaptopInventory.css";
 
+//lap
 export default class LaptopRepair extends Component {
   constructor(props) {
     super(props);

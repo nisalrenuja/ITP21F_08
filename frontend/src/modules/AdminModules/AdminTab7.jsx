@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./LaptopInventory.css";
 
+//admin07
 export default class AdminTab7 extends Component {
   constructor(props) {
     super(props);

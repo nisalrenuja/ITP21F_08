@@ -61,6 +61,7 @@ const AppRoutes = () => (
         <Route path="/createlapallocation" component={CreateLapAllo} exact />
         <Route path="/AllEmployees" component={AllEmployees} exact />
         <Route path="/EmployeePoints" component={EmployeePoints} exact />
+
         <Route path="/createlaptop" component={CreateLaptops} exact />
         <Route path="/repairinglaptop" component={LaptopsRepair} exact />
         <Route

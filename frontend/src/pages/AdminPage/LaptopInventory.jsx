@@ -74,3 +74,4 @@ const LaptopInventory = () => {
 };
 
 export default LaptopInventory;
+//lap

@@ -74,3 +74,4 @@ const Laptops = () => {
 };
 
 export default Laptops;
+//lap
