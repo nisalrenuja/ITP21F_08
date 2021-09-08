@@ -319,3 +319,16 @@
 
   border-radius: 15px;
 }
+.main3322 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 50px;
+  top: 200px;
+
+  background: #f6f5f5;
+  backdrop-filter: blur(4px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 15px;
+}
