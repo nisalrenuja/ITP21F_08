@@ -90,7 +90,7 @@ export default class CreateReview extends Component {
             .getDownloadURL()
             .then(url => {
               this.setState({ reportPDF: url });
-              console.log("Hello" + url);
+              console.log("Hello " + url);
             });
         }
       );
