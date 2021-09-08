@@ -36,6 +36,7 @@ import CreateLaptopsRepair from "../pages/AdminPage/CreateLaptopRepair";
 import EditLapAllo from "../pages/AdminPage/EditLapAllo";
 import WorkReport from "../pages/AdminPage/WorkReport";
 import CompanyPerfomance from "../pages/AdminPage/CompanyPerformance";
+import EditEmployee from "../pages/AdminPage/EditEmployee";
 
 const AppRoutes = () => (
   <div>
@@ -84,6 +85,7 @@ const AppRoutes = () => (
         <Route path="/InsertEmployee" component={InsertEmployee} exact />
         /*Anujitha Routes*/
         <Route path="/companyperformance" component={CompanyPerfomance} exact />
+        <Route path="/EditEmployee/:id" component={EditEmployee} exact />
       </Switch>
       <Footer />
     </Router>
