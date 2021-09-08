@@ -35,6 +35,7 @@ import LaptopsRepair from "../pages/AdminPage/LaptopRepair";
 import CreateLaptopsRepair from "../pages/AdminPage/CreateLaptopRepair";
 import EditLapAllo from "../pages/AdminPage/EditLapAllo";
 import WorkReport from "../pages/AdminPage/WorkReport";
+import CompanyPerfomance from "../pages/AdminPage/CompanyPerformance";
 
 const AppRoutes = () => (
   <div>
@@ -61,7 +62,6 @@ const AppRoutes = () => (
         <Route path="/createlapallocation" component={CreateLapAllo} exact />
         <Route path="/AllEmployees" component={AllEmployees} exact />
         <Route path="/EmployeePoints" component={EmployeePoints} exact />
-
         <Route path="/createlaptop" component={CreateLaptops} exact />
         <Route path="/repairinglaptop" component={LaptopsRepair} exact />
         <Route
@@ -69,7 +69,6 @@ const AppRoutes = () => (
           component={CreateLaptopsRepair}
           exact
         />
-
         <Route
           exact
           path="/editassignment/:assignment"
@@ -80,11 +79,11 @@ const AppRoutes = () => (
         <Route path="/add" exact component={CreateReview}></Route>
         <Route path="/edit/:id" exact component={EditReview}></Route>
         <Route path="/post/:id" exact component={DisplayReview}></Route>
-
         <Route exact path="/editlapallo/:assignment" component={EditLapAllo} />
         <Route path="/reportwork" component={WorkReport} exact />
-
         <Route path="/InsertEmployee" component={InsertEmployee} exact />
+        /*Anujitha Routes*/
+        <Route path="/companyperformance" component={CompanyPerfomance} exact />
       </Switch>
       <Footer />
     </Router>
