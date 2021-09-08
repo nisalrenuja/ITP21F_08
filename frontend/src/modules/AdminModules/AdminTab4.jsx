@@ -55,6 +55,9 @@ export default class AdminTab4 extends Component {
       <div className="container">
         <div class="main222">
           <h2 class="head1">Work Allocation</h2>
+          <a href="/reportwork" class="btn btn-info reportdiv">
+            <i class="fa fa-file fa-2x" aria-hidden="true"></i>&nbsp;
+          </a>
           <hr class="line1"></hr>
           <a href="/allassignments">
             <button class="div1">
@@ -66,6 +69,7 @@ export default class AdminTab4 extends Component {
               <p class="txt2">Allocate Laptops</p>
             </button>
           </a>
+
           <div class="div3">
             <p class="txt3">Filter by</p>
             <input

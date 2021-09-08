@@ -66,33 +66,31 @@ router.get("/lapassignments/dis", (req, res) => {
 });
 
 //get specific
-/*
-router.get("/assignment/:id", (req, res) => {
+
+router.get("/lapassignment/:id", (req, res) => {
   let assid = req.params.id;
-  assignment_assignedtostaff
+  laptop_assignment
     .find({ assignment_name: assid })
     .limit(1)
     .sort({ $natural: -1 })
-    .exec((err, ass) => {
-      assignment_assignedtostaff
-        .find({ assignment_name: assid })
-        .exec((err, ass2) => {
+    .exec((err, lapass) => {
           return res.status(200).json({
             success: true,
-            ass: ass,
-            ass2: ass2,
+            lapass: lapass,
+           
           });
         });
     });
-});
-router.put("/assignments/update/:name", (req, res) => {
+
+
+router.put("/lapassignments/update/:name", (req, res) => {
   let name = req.params.name;
-  assignment_assignedtostaff
-    .updateMany(
+  laptop_assignment
+    .update(
       { assignment_name: name },
       {
-        deadline: req.body.deadline,
-        progress: req.body.progress,
+        date_received: req.body.date_received,
+        status: req.body.status,
       }
     )
     .exec((err, Post1) => {
@@ -104,6 +102,7 @@ router.put("/assignments/update/:name", (req, res) => {
       });
     });
 });
+/*
 //update posts
 router.put("/assignments/updateallo/:name", (req, res) => {
   let name = req.params.name;
