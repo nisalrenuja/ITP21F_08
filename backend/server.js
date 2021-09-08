@@ -5,11 +5,14 @@ const app = express();
 const connectDB = require("./config/db");
 const errorHandler = require("./middleware/error");
 const cors = require("cors");
+const laptop_routes = require("./routes/laptop");
+const laptop_repair_routes = require("./routes/laptopRepair");
 const assignment_assignedtostaffRoutes = require("./routes/assignment_assignedtostaff");
-
+const laptop_assignment_Routes = require("./routes/laptop_assignment");
+const employees = require("./routes/employees");
 //connect db
 connectDB();
-
+const postRoutes = require("./routes/Reviews");
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
 app.get("/", (req, res, next) => {
@@ -20,20 +23,21 @@ app.use(bodyParser.json()); //app middleware
 // Connecting Routes
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/private", require("./routes/private"));
-app.use(assignment_assignedtostaffRoutes);
 
+app.use(laptop_routes);
+app.use(laptop_repair_routes);
+app.use(assignment_assignedtostaffRoutes);
+app.use(laptop_assignment_Routes);
+app.use(employees);
+app.use(postRoutes);
 //import routes
 const attendancesRoutes = require("./routes/attendances");
 const leavesRoutes = require("./routes/leaves");
-const comp_noticesRoutes = require('./routes/Company_Notices')
+const final_report = require("./models/final_report");
 
 //add routes here
 app.use(attendancesRoutes);
 app.use(leavesRoutes);
-app.use(comp_noticesRoutes);
-
-
-
 // Error Handler Middleware
 app.use(errorHandler);
 
@@ -47,3 +51,5 @@ process.on("unhandledRejection", (err, promise) => {
   console.log(`Logged Error: ${err.message}`);
   server.close(() => process.exit(1));
 });
+
+

@@ -10,6 +10,7 @@ import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import LapAllo from "../../modules/AdminModules/LapAllo";
+import Employeepoints from "../../modules/AdminModules/EmployeePoints";
 
 const Admin = () => {
   let userRole = "";
@@ -46,9 +47,9 @@ const Admin = () => {
         <Container>
           {selectedMenuOption === "Report Review" ? (
             <AdminTab1 />
-          ) : selectedMenuOption === "MenuItem 2" ? (
+          ) : selectedMenuOption === "Reports Management" ? (
             <AdminTab2 />
-          ) : selectedMenuOption === "MenuItem 3" ? (
+          ) : selectedMenuOption === "Employees" ? (
             <AdminTab3 />
           ) : selectedMenuOption === "Work Allocation" ? (
             <AdminTab4 />
@@ -56,7 +57,7 @@ const Admin = () => {
             <AdminTab5 />
           ) : selectedMenuOption === "Attendance & Payroll" ? (
             <AdminTab6 />
-          ) : selectedMenuOption === "MenuItem 7" ? (
+          ) : selectedMenuOption === "Inventory Management" ? (
             <AdminTab7 />
           ) : (
             <AdminTab8 />

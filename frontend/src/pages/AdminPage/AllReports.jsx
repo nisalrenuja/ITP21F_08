@@ -10,9 +10,8 @@ import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import LapAllo from "../../modules/AdminModules/LapAllo";
-import CreateAssignment from "../../modules/AdminModules/CreateAssignment";
 
-const CreateAssignments = () => {
+const Admin = () => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -47,15 +46,15 @@ const CreateAssignments = () => {
         <Container>
           {selectedMenuOption === "Report Review" ? (
             <AdminTab1 />
-          ) : selectedMenuOption === "MenuItem 2" ? (
+          ) : selectedMenuOption === "Reports Management" ? (
             <AdminTab2 />
-          ) : selectedMenuOption === "Employees" ? (
+          ) : selectedMenuOption === "MenuItem 3" ? (
             <AdminTab3 />
           ) : selectedMenuOption === "Work Allocation" ? (
-            <CreateAssignment />
+            <AdminTab4 />
           ) : selectedMenuOption === "MenuItem 5" ? (
             <AdminTab5 />
-          ) : selectedMenuOption === "MenuItem 6" ? (
+          ) : selectedMenuOption === "Attendance & Payroll" ? (
             <AdminTab6 />
           ) : selectedMenuOption === "MenuItem 7" ? (
             <AdminTab7 />
@@ -74,4 +73,4 @@ const CreateAssignments = () => {
   );
 };
 
-export default CreateAssignments;
+export default Admin;

@@ -90,7 +90,7 @@
 
   color: #c4c4c4;
 }
-.select1 {
+.select121 {
   position: absolute;
   width: 272px;
   height: 60px;
@@ -100,21 +100,21 @@
   background: #ffffff;
   border-radius: 5px;
 }
-.search {
+.search121 {
   position: absolute;
   width: 110px;
   height: 40px;
   left: 495px;
   top: 60px;
 }
-.table1 {
+.table121 {
   position: absolute;
   width: 1000px;
 
   left: 50px;
   top: 650px;
 }
-.thead {
+.thead121 {
   background: #276678;
   font-family: Inter;
   font-style: normal;
@@ -126,7 +126,7 @@
   color: #ffffff;
   background: #276678;
 }
-.tfoot {
+.tfoot121 {
   background: #276678;
   font-family: Inter;
   font-style: normal;
@@ -138,14 +138,14 @@
   color: #ffffff;
   background: #276678;
 }
-.tfoot a {
+.tfoot121 a {
   text-decoration: none;
   color: #ffffff;
 }
-.tfoot:hover {
+.tfoot121:hover {
   background: #47daba;
 }
-.tah {
+.tah121 {
   position: absolute;
   width: 523px;
   height: 66px;
@@ -159,6 +159,9 @@
   height: 850px;
   white-space: nowrap;
   position: relative;
-  overflow-x: hidden;
+  overflow-x: scroll;
   overflow-y: scroll;
+}
+.tbody121 {
+  text-align: center;
 }
