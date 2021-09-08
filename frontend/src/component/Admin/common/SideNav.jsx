@@ -8,7 +8,7 @@ const SideNav = ({ selectedMenuOption, onMenuItemSelect }) => {
     "Work Allocation",
     "Notice Management",
     "Attendance & Payroll",
-    "Inventory Managemnet",
+    "Inventory Management",
     "MenuItem 8"
   ];
   return (
