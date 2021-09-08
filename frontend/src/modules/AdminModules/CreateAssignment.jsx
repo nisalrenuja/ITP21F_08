@@ -94,6 +94,21 @@ export default class CreateAssignment extends Component {
       }
     });
   };
+  filterData(staff, searchKey) {
+    console.log(searchKey);
+    const result = staff.filter(staff =>
+      staff.name.toLowerCase().includes(searchKey)
+    );
+    this.setState({ staff: result });
+  }
+  handleSearchArea = e => {
+    const searchKey = e.currentTarget.value;
+    axios.get("http://localhost:5000/staff/ass").then(res => {
+      if (res.data.success) {
+        this.filterData(res.data.staff, searchKey);
+      }
+    });
+  };
   render() {
     const redirectToReferrer = this.state.redirectToReferrer;
     if (redirectToReferrer == true) {
@@ -172,6 +187,12 @@ export default class CreateAssignment extends Component {
               <div class="staff">
                 <center>
                   <h4>Click on staff to check status</h4>
+                  <input
+                    type="text"
+                    placeholder="Search Name"
+                    name="searchQuery"
+                    onChange={this.handleSearchArea}
+                  />
                   {"\n"}
                   <ul>
                     {this.state.staff.map((staff, index) => (
