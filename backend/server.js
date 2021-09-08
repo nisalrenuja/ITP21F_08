@@ -25,6 +25,7 @@ app.use("/api/private", require("./routes/private"));
 
 app.use(laptop_routes);
 app.use(laptop_repair_routes);
+
 app.use(assignment_assignedtostaffRoutes);
 
 //import routes
