@@ -18,7 +18,7 @@ router.post("/employees/save", (req, res) => {
 //get post
 router.get("/employees", (req, res) => {
   
-  employees.find().exec((err, employees) => {
+  employees.find().sort({ "empno": -1 }).exec((err, employees) => {
     var count = employees.length;
     if (err) {
       return res.status(400).json({ success: false, err });
