@@ -32,7 +32,7 @@ const LaptopsRepair = () => {
       setSelectedMenuOption(selectedMenuOptionCache);
     }
   }, [selectedMenuOptionCache]);
-
+  //laptop
   const updateSelectedMenuOption = option => {
     setSelectedMenuOption(option);
     if (process.browser) {

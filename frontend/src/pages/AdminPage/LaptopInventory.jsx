@@ -10,7 +10,7 @@ import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import LaptopRepair from "../../modules/AdminModules/LaptopRepair";
-
+//laptop
 const LaptopInventory = () => {
   let userRole = "";
   let selectedMenuOptionCache = "";

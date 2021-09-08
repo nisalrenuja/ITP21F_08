@@ -12,7 +12,7 @@ import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import CreateLaptop from "../../modules/AdminModules/CreateLaptop";
 import CreateLaptopRepair from "../../modules/AdminModules/CreateLaptopRepair";
 import LaptopRepair from "../../modules/AdminModules/LaptopRepair";
-
+//laptop
 const CreateLaptopsRepair = () => {
   let userRole = "";
   let selectedMenuOptionCache = "";

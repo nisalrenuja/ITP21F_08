@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./CreateLaptop.css";
 import axios from "axios";
-
+//laptop
 export default class EditLaptop extends Component {
   constructor(props) {
     super(props);
