@@ -157,16 +157,21 @@ export default class EditAssignments extends Component {
                     <p class="viic">
                       Change Progress
                       <br />
-                      (Type Completed if done):{" "}
+                      (Completed if done):
                     </p>
-                    <input
+
+                    <select
                       type="text"
                       class="viicc"
                       id="progress"
                       name="progress"
                       value={this.state.progress}
                       onChange={this.handleInputChange}
-                    />
+                    >
+                      <option value="Assigned">Assigned</option>
+                      <option value="Working">Working</option>
+                      <option value="Completed">Completed</option>
+                    </select>
                   </center>
                 </strong>
               </div>
@@ -200,6 +205,7 @@ export default class EditAssignments extends Component {
               </div>
             ))}
             <br />
+            <br />
             <h4>Edit Allowances to Employees(Rs)(Enter one by one)</h4>
             <input
               type="text"
@@ -225,6 +231,21 @@ export default class EditAssignments extends Component {
             >
               Set
             </button>
+            <br />
+            <br />
+            <br />
+            <br />
+            <center>
+              <a href="/admin">
+                <button
+                  className="btn btn-secondary"
+                  type="submit"
+                  style={{ width: "20%" }}
+                >
+                  Done
+                </button>
+              </a>
+            </center>
           </div>
         </div>
       </div>

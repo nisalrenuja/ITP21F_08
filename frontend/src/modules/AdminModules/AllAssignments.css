@@ -169,3 +169,14 @@
 .tbody101 {
   text-align: center;
 }
+.reportdiv{
+  position: absolute;
+width: 175px;
+height: 50px;
+left: 700px;
+top: 60px;
+
+background: #1687A7;
+box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+border-radius: 32px;
+}

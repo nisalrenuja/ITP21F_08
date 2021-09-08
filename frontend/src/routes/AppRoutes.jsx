@@ -25,6 +25,8 @@ import ReviewPage from "../pages/ReviewPage/ReviewPage";
 import CreateReview from "../modules/AdminModules/CreateReview";
 import EditReview from "../modules/AdminModules/EditReview";
 import DisplayReview from "../modules/AdminModules/DisplayReview";
+import EditLapAllo from "../pages/AdminPage/EditLapAllo";
+import WorkReport from "../pages/AdminPage/WorkReport";
 
 const AppRoutes = () => (
   <div>
@@ -62,6 +64,8 @@ const AppRoutes = () => (
         <Route path="/add" exact component={CreateReview}></Route>
         <Route path="/edit/:id" exact component={EditReview}></Route>
         <Route path="/post/:id" exact component={DisplayReview}></Route>
+        <Route exact path="/editlapallo/:assignment" component={EditLapAllo} />
+        <Route path="/reportwork" component={WorkReport} exact />
       </Switch>
       <Footer />
     </Router>
