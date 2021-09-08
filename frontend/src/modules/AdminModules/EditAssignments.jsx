@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./CreateAssignment.css";
+import { Redirect } from "react-router";
 
 export default class EditAssignments extends Component {
   constructor(props) {
@@ -19,7 +20,8 @@ export default class EditAssignments extends Component {
       assignment: [],
       assignment2: [],
       travel_allowance: "",
-      empno: ""
+      empno: "",
+      redirectToReferrer: false
     };
   }
   componentDidMount() {
@@ -77,7 +79,8 @@ export default class EditAssignments extends Component {
         if (res.data.success) {
           this.setState({
             deadline: deadline,
-            progress: progress
+            progress: progress,
+            redirectToReferrer: true
           });
           alert("Updated");
         }
@@ -104,7 +107,8 @@ export default class EditAssignments extends Component {
         if (res.data.success) {
           this.setState({
             empno: "",
-            travel_allowance: ""
+            travel_allowance: "",
+            redirectToReferrer: true
           });
           alert("Updated Allowance");
           this.retrievePosts();
@@ -112,6 +116,10 @@ export default class EditAssignments extends Component {
       });
   };
   render() {
+    const redirectToReferrer = this.state.redirectToReferrer;
+    if (redirectToReferrer == true) {
+      return <Redirect to="/allassignments" />;
+    }
     return (
       <div className="container">
         <div class="main3">
@@ -154,15 +162,24 @@ export default class EditAssignments extends Component {
                     </p>
 
                     <br />
-                    <p class="viic">Change Progress: </p>
-                    <input
+                    <p class="viic">
+                      Change Progress
+                      <br />
+                      (Completed if done):
+                    </p>
+
+                    <select
                       type="text"
                       class="viicc"
                       id="progress"
                       name="progress"
                       value={this.state.progress}
                       onChange={this.handleInputChange}
-                    />
+                    >
+                      <option value="Assigned">Assigned</option>
+                      <option value="Working">Working</option>
+                      <option value="Completed">Completed</option>
+                    </select>
                   </center>
                 </strong>
               </div>
@@ -188,12 +205,14 @@ export default class EditAssignments extends Component {
                 <strong>
                   <center>
                     <p style={{ color: "#1687a7", fontSize: "20px" }}>
-                      {assignment2.emp_no} :- {assignment2.travel_allowance}
+                      Emp No:-{assignment2.emp_no} - Allowances:-
+                      {assignment2.travel_allowance}
                     </p>
                   </center>
                 </strong>
               </div>
             ))}
+            <br />
             <br />
             <h4>Edit Allowances to Employees(Rs)(Enter one by one)</h4>
             <input
@@ -220,6 +239,21 @@ export default class EditAssignments extends Component {
             >
               Set
             </button>
+            <br />
+            <br />
+            <br />
+            <br />
+            <center>
+              <a href="/admin">
+                <button
+                  className="btn btn-secondary"
+                  type="submit"
+                  style={{ width: "20%" }}
+                >
+                  Done
+                </button>
+              </a>
+            </center>
           </div>
         </div>
       </div>

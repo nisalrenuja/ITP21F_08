@@ -3,10 +3,10 @@ import "./SideNav.css";
 const SideNav = ({ selectedMenuOption, onMenuItemSelect }) => {
   const menuItems = [
     "Report Review",
-    "MenuItem 2",
+    "Reports Management",
     "Employees",
     "Work Allocation",
-    "MenuItem 5",
+    "Notice Management",
     "Attendance & Payroll",
     "Inventory Managemnet",
     "MenuItem 8"

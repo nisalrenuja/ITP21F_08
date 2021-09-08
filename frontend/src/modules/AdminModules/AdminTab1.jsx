@@ -35,6 +35,7 @@ export default class AdminTab1 extends Component {
   filterData(posts, searchKey) {
     const result = posts.filter(
       post =>
+        post.execid_review.toLowerCase().includes(searchKey) ||
         post.report.toLowerCase().includes(searchKey) ||
         post.points.toLowerCase().includes(searchKey) ||
         post.feedback.toLowerCase().includes(searchKey) ||
@@ -75,7 +76,8 @@ export default class AdminTab1 extends Component {
             <tr>
               <th scope="col">#</th>
               <th scope="col">Review Id</th>
-              <th scope="col">Report</th>
+              <th scope="col">Report Name</th>
+              <th scope="col">Report PDF</th>
               <th scope="col">Points</th>
               <th scope="col">Feedback</th>
               <th scope="col">Status</th>
@@ -95,6 +97,11 @@ export default class AdminTab1 extends Component {
                   </a>
                 </td>
                 <td>{posts.report}</td>
+                <td>
+                  <a href={posts.reportPDF} className="btn btn-primary me-2">
+                    View Report
+                  </a>
+                </td>
                 <td>{posts.points}</td>
                 <td>{posts.feedback}</td>
                 <td>{posts.status}</td>

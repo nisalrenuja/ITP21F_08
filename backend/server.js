@@ -8,6 +8,7 @@ const cors = require("cors");
 const laptop_routes = require("./routes/laptop");
 const laptop_repair_routes = require("./routes/laptopRepair");
 const assignment_assignedtostaffRoutes = require("./routes/assignment_assignedtostaff");
+const laptop_assignment_Routes = require("./routes/laptop_assignment");
 const employees = require("./routes/employees");
 //connect db
 connectDB();
@@ -26,11 +27,13 @@ app.use("/api/private", require("./routes/private"));
 app.use(laptop_routes);
 app.use(laptop_repair_routes);
 app.use(assignment_assignedtostaffRoutes);
+app.use(laptop_assignment_Routes);
 app.use(employees);
 app.use(postRoutes);
 //import routes
 const attendancesRoutes = require("./routes/attendances");
 const leavesRoutes = require("./routes/leaves");
+const final_report = require("./models/final_report");
 
 //add routes here
 app.use(attendancesRoutes);
@@ -47,4 +50,10 @@ const server = app.listen(PORT, () =>
 process.on("unhandledRejection", (err, promise) => {
   console.log(`Logged Error: ${err.message}`);
   server.close(() => process.exit(1));
+<<<<<<< HEAD
 });
+=======
+});
+
+
+>>>>>>> 2654f9699cd69a0149029f037a61d96372b5c898

@@ -18,13 +18,15 @@ import CreateAssignment from "../pages/AdminPage/CreateAssignmentt";
 import CreateLapAllo from "../pages/AdminPage/CreateLapAllo";
 import EmployeePoints from "../pages/AdminPage/EmployeePoints";
 import AllEmployees from "../pages/AdminPage/AllEmployees";
-
+import InsertEmployee from "../pages/AdminPage/InsertEmployee";
 import EditAssignment from "../pages/AdminPage/EditAssignment";
 import Assignment from "../pages/AdminPage/Assignment";
 import ReviewPage from "../pages/ReviewPage/ReviewPage";
 import CreateReview from "../modules/AdminModules/CreateReview";
 import EditReview from "../modules/AdminModules/EditReview";
 import DisplayReview from "../modules/AdminModules/DisplayReview";
+import EditLapAllo from "../pages/AdminPage/EditLapAllo";
+import WorkReport from "../pages/AdminPage/WorkReport";
 
 const AppRoutes = () => (
   <div>
@@ -62,6 +64,11 @@ const AppRoutes = () => (
         <Route path="/add" exact component={CreateReview}></Route>
         <Route path="/edit/:id" exact component={EditReview}></Route>
         <Route path="/post/:id" exact component={DisplayReview}></Route>
+
+        <Route exact path="/editlapallo/:assignment" component={EditLapAllo} />
+        <Route path="/reportwork" component={WorkReport} exact />
+
+        <Route path="/InsertEmployee" component={InsertEmployee} exact />
       </Switch>
       <Footer />
     </Router>
