@@ -2,7 +2,7 @@ import "./SideNav.css";
 
 const SideNav = ({ selectedMenuOption, onMenuItemSelect }) => {
   const menuItems = [
-    "User Executive Management",
+    "User Executive",
     "Reports Management",
     "Employees",
     "Work Allocation",

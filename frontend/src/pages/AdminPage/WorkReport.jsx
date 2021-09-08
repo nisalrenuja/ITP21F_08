@@ -23,7 +23,7 @@ const WorkReport = ({ history, match }) => {
       window.localStorage.getItem("MenuOptionCache") || "";
   }
   const [selectedMenuOption, setSelectedMenuOption] = useState(
-    "User Executive Management"
+    "User Executive"
   );
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const WorkReport = ({ history, match }) => {
     <div>
       {selectedMenuOption !== "" ? (
         <Container>
-          {selectedMenuOption === "User Executive Management" ? (
+          {selectedMenuOption === "User Executive" ? (
             <AdminTab1 />
           ) : selectedMenuOption === "MenuItem 2" ? (
             <AdminTab2 />

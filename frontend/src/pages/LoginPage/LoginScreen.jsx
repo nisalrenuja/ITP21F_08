@@ -25,7 +25,7 @@ const LoginScreen = ({ history }) => {
       );
       localStorage.setItem("authToken", data.token);
       localStorage.setItem("loggedIn", "true");
-      localStorage.setItem("MenuOptionCache", "User Executive Management");
+      localStorage.setItem("MenuOptionCache", "User Executive");
       history.push("/admin");
       window.location.reload();
     } catch (error) {
