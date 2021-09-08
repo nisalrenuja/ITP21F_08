@@ -116,7 +116,7 @@ export default class AdminTab3 extends Component {
             </tbody>
             &nbsp;
             <tfoot class="tfoot">
-              <a href="/createassignment">
+              <a href="/InsertEmployee">
                 <i class="fas fa-plus"></i>&nbsp;New Employee
               </a>
             </tfoot>

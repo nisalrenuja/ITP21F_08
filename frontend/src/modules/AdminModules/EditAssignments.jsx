@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./CreateAssignment.css";
+import { Redirect } from "react-router";
 
 export default class EditAssignments extends Component {
   constructor(props) {
@@ -19,7 +20,8 @@ export default class EditAssignments extends Component {
       assignment: [],
       assignment2: [],
       travel_allowance: "",
-      empno: ""
+      empno: "",
+      redirectToReferrer: false
     };
   }
   componentDidMount() {
@@ -77,7 +79,8 @@ export default class EditAssignments extends Component {
         if (res.data.success) {
           this.setState({
             deadline: deadline,
-            progress: progress
+            progress: progress,
+            redirectToReferrer: true
           });
           alert("Updated");
         }
@@ -104,7 +107,8 @@ export default class EditAssignments extends Component {
         if (res.data.success) {
           this.setState({
             empno: "",
-            travel_allowance: ""
+            travel_allowance: "",
+            redirectToReferrer: true
           });
           alert("Updated Allowance");
           this.retrievePosts();
@@ -112,6 +116,10 @@ export default class EditAssignments extends Component {
       });
   };
   render() {
+    const redirectToReferrer = this.state.redirectToReferrer;
+    if (redirectToReferrer == true) {
+      return <Redirect to="/allassignments" />;
+    }
     return (
       <div className="container">
         <div class="main3">
