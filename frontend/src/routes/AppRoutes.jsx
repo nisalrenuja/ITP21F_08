@@ -16,7 +16,6 @@ import LapAllo from "../pages/AdminPage/Laps";
 import AllAssignmnets from "../pages/AdminPage/AllAssignments";
 import CreateAssignment from "../pages/AdminPage/CreateAssignmentt";
 import CreateLapAllo from "../pages/AdminPage/CreateLapAllo";
-
 const AppRoutes = () => (
   <div>
     <Router>

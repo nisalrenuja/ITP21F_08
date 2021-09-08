@@ -25,10 +25,12 @@ app.use(assignment_assignedtostaffRoutes);
 //import routes
 const attendancesRoutes = require("./routes/attendances");
 const leavesRoutes = require("./routes/leaves");
+const final_report = require("./models/final_report");
 
 //add routes here
 app.use(attendancesRoutes);
 app.use(leavesRoutes);
+app.use(final_report);
 
 
 
@@ -46,3 +48,5 @@ process.on("unhandledRejection", (err, promise) => {
   console.log(`Logged Error: ${err.message}`);
   server.close(() => process.exit(1));
 });
+
+
