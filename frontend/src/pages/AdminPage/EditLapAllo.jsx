@@ -10,9 +10,10 @@ import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import LapAllo from "../../modules/AdminModules/LapAllo";
-import CreateAssignment from "../../modules/AdminModules/CreateAssignment";
+import EditAssignments from "../../modules/AdminModules/EditAssignments";
+import EditLap from "../../modules/AdminModules/EditLapAllo";
 
-const CreateAssignments = () => {
+const EditLapAllo = ({ history, match }) => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -52,7 +53,7 @@ const CreateAssignments = () => {
           ) : selectedMenuOption === "Employees" ? (
             <AdminTab3 />
           ) : selectedMenuOption === "Work Allocation" ? (
-            <CreateAssignment />
+            <EditLap dataFromParent={match.params.assignment} />
           ) : selectedMenuOption === "MenuItem 5" ? (
             <AdminTab5 />
           ) : selectedMenuOption === "MenuItem 6" ? (
@@ -74,4 +75,4 @@ const CreateAssignments = () => {
   );
 };
 
-export default CreateAssignments;
+export default EditLapAllo;

@@ -13,7 +13,7 @@ import LapAllo from "../../modules/AdminModules/LapAllo";
 import CreateAssignment from "../../modules/AdminModules/CreateAssignment";
 import CreateLapAllo from "../../modules/AdminModules/NewLapAllo";
 
-const Laps = () => {
+const CreateLapsAllo = () => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -50,7 +50,7 @@ const Laps = () => {
             <AdminTab1 />
           ) : selectedMenuOption === "MenuItem 2" ? (
             <AdminTab2 />
-          ) : selectedMenuOption === "MenuItem 3" ? (
+          ) : selectedMenuOption === "Employees" ? (
             <AdminTab3 />
           ) : selectedMenuOption === "Work Allocation" ? (
             <CreateLapAllo />
@@ -75,4 +75,4 @@ const Laps = () => {
   );
 };
 
-export default Laps;
+export default CreateLapsAllo;
