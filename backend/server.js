@@ -25,11 +25,12 @@ app.use(assignment_assignedtostaffRoutes);
 //import routes
 const attendancesRoutes = require("./routes/attendances");
 const leavesRoutes = require("./routes/leaves");
+const comp_noticesRoutes = require('./routes/Company_Notices')
 
 //add routes here
 app.use(attendancesRoutes);
 app.use(leavesRoutes);
-
+app.use(comp_noticesRoutes);
 
 
 

@@ -1,4 +1,4 @@
-const mongoose = require('module');
+const mongoose = require('mongoose');
 
 const company_Performers_Schema = new mongoose.Schema({
   
