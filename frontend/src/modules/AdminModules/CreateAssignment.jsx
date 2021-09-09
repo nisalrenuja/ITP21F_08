@@ -110,10 +110,6 @@ export default class CreateAssignment extends Component {
     });
   };
   render() {
-    const redirectToReferrer = this.state.redirectToReferrer;
-    if (redirectToReferrer == true) {
-      return <Redirect to="/allassignments" />;
-    }
     return (
       <div className="container">
         <div class="main3">

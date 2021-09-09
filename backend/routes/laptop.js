@@ -3,7 +3,7 @@ const Laptop = require('../models/laptop');
 
 const router = express.Router();
 
-//save laptop detail routes
+//save laptop detail route
 
 router.post("/laptop/save", (req, res) => {
   let newLaptop = new Laptop(req.body);

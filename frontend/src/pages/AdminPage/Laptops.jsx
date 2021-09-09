@@ -9,10 +9,9 @@ import AdminTab5 from "../../modules/AdminModules/AdminTab5";
 import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
-import LapAllo from "../../modules/AdminModules/LapAllo";
-import CompanyPerformance from "../../modules/AdminModules/CompanyPerformance";
-
-const Company = () => {
+import LaptopRepair from "../../modules/AdminModules/LaptopRepair";
+//laptop
+const Laptops = () => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -49,18 +48,18 @@ const Company = () => {
         <Container>
           {selectedMenuOption === "User Executive" ? (
             <AdminTab1 />
-          ) : selectedMenuOption === "Reports Management" ? (
-            <CompanyPerformance />
+          ) : selectedMenuOption === "MenuItem 2" ? (
+            <AdminTab2 />
           ) : selectedMenuOption === "MenuItem 3" ? (
             <AdminTab3 />
           ) : selectedMenuOption === "Work Allocation" ? (
             <AdminTab4 />
           ) : selectedMenuOption === "MenuItem 5" ? (
             <AdminTab5 />
-          ) : selectedMenuOption === "Attendance & Payroll" ? (
+          ) : selectedMenuOption === "MenuItem 6" ? (
             <AdminTab6 />
-          ) : selectedMenuOption === "MenuItem 7" ? (
-            <AdminTab7 />
+          ) : selectedMenuOption === "Inventory Management" ? (
+            <Laptops />
           ) : (
             <AdminTab8 />
           )}
@@ -76,4 +75,5 @@ const Company = () => {
   );
 };
 
-export default Company;
+export default Laptops;
+//lap

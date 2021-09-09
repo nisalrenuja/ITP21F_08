@@ -9,10 +9,11 @@ import AdminTab5 from "../../modules/AdminModules/AdminTab5";
 import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
-import LapAllo from "../../modules/AdminModules/LapAllo";
-import CompanyPerformance from "../../modules/AdminModules/CompanyPerformance";
+import EmployeePoints from "../../modules/AdminModules/EmployeePoints";
+import InsertEmployee from "../../modules/AdminModules/InsertEmployee";
+import EditEmployee from "../../modules/AdminModules/EditEmployee";
 
-const Company = () => {
+const EditEmploye = ({ history, match }) => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -20,9 +21,7 @@ const Company = () => {
     selectedMenuOptionCache =
       window.localStorage.getItem("MenuOptionCache") || "";
   }
-  const [selectedMenuOption, setSelectedMenuOption] = useState(
-    "User Executive"
-  );
+  const [selectedMenuOption, setSelectedMenuOption] = useState("Report Review");
 
   useEffect(() => {
     if (userRole !== "Admin") {
@@ -47,17 +46,17 @@ const Company = () => {
     <div>
       {selectedMenuOption !== "" ? (
         <Container>
-          {selectedMenuOption === "User Executive" ? (
+          {selectedMenuOption === "Report Review" ? (
             <AdminTab1 />
-          ) : selectedMenuOption === "Reports Management" ? (
-            <CompanyPerformance />
-          ) : selectedMenuOption === "MenuItem 3" ? (
-            <AdminTab3 />
+          ) : selectedMenuOption === "MenuItem 2" ? (
+            <AdminTab2 />
+          ) : selectedMenuOption === "Employees" ? (
+            <EditEmployee dataFromParent={match.params.id} />
           ) : selectedMenuOption === "Work Allocation" ? (
             <AdminTab4 />
           ) : selectedMenuOption === "MenuItem 5" ? (
             <AdminTab5 />
-          ) : selectedMenuOption === "Attendance & Payroll" ? (
+          ) : selectedMenuOption === "MenuItem 6" ? (
             <AdminTab6 />
           ) : selectedMenuOption === "MenuItem 7" ? (
             <AdminTab7 />
@@ -66,7 +65,7 @@ const Company = () => {
           )}
         </Container>
       ) : (
-        <div> </div>
+        <div></div>
       )}
       <SideNav
         onMenuItemSelect={updateSelectedMenuOption}
@@ -76,4 +75,4 @@ const Company = () => {
   );
 };
 
-export default Company;
+export default EditEmploye;

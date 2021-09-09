@@ -25,22 +25,6 @@ const employees_Schema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  nic_no: {
-    type: String,
-    required: false,
-  },
-  permernant_address: {
-    type: String,
-    required: false,
-  },
-  district: {
-    type: String,
-    required: false,
-  },
-  province: {
-    type: String,
-    required: false,
-  },
 });
 
 module.exports = mongoose.model("executives", employees_Schema);

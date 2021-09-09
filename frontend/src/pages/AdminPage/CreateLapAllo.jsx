@@ -21,7 +21,9 @@ const CreateLapsAllo = () => {
     selectedMenuOptionCache =
       window.localStorage.getItem("MenuOptionCache") || "";
   }
-  const [selectedMenuOption, setSelectedMenuOption] = useState("Report Review");
+  const [selectedMenuOption, setSelectedMenuOption] = useState(
+    "User Executive"
+  );
 
   useEffect(() => {
     if (userRole !== "Admin") {
@@ -46,7 +48,7 @@ const CreateLapsAllo = () => {
     <div>
       {selectedMenuOption !== "" ? (
         <Container>
-          {selectedMenuOption === "Report Review" ? (
+          {selectedMenuOption === "User Executive" ? (
             <AdminTab1 />
           ) : selectedMenuOption === "MenuItem 2" ? (
             <AdminTab2 />
