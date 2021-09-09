@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-
-export default class EditExecutive extends Component {
+export default class CreateReview extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       exeno: "",
       name: "",
@@ -23,9 +21,14 @@ export default class EditExecutive extends Component {
     });
   };
 
+  handleInputFileChange = e => {
+    var file = e.target.files[0];
+    console.log(file);
+  };
+
   onSubmit = e => {
     e.preventDefault();
-    const id = this.props.match.params.id;
+
     const { exeno, name, email, contact, dob, gender } = this.state;
     const data = {
       exeno: exeno,
@@ -36,51 +39,32 @@ export default class EditExecutive extends Component {
       gender: gender
     };
     console.log(data);
-    axios
-      .put(`http://localhost:5000/executives/update/${id}`, data)
-      .then(res => {
-        if (res.data.success) {
-          alert("Post Updated Successfully");
-          this.setState({
-            exeno: "",
-            name: "",
-            email: "",
-            contact: "",
-            dob: "",
-            gender: ""
-          });
-        }
-      });
-  };
-
-  componentDidMount() {
-    const id = this.props.match.params.id;
-    axios.get(`http://localhost:5000/executives/${id}`).then(res => {
+    axios.post("http://localhost:5000/executives/save", data).then(res => {
       if (res.data.success) {
         this.setState({
-          exeno: res.data.executives.exeno,
-          name: res.data.executives.name,
-          email: res.data.executives.email,
-          contact: res.data.executives.contact,
-          dob: res.data.executives.dob,
-          gender: res.data.executives.gender
+          exeno: "",
+          name: "",
+          email: "",
+          contact: "",
+          dob: "",
+          gender: ""
         });
       }
     });
-  }
+  };
 
   render() {
     return (
       <div className="col-md-8 mt-4 mx-auto">
-        <h1 className="h3 mb-3 font-weight-normal">Edit Review</h1>
+        <h1 className="h3 mb-3 font-weight-normal">Create New Review</h1>
         <form className="need-validation" noValidate>
           <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Review Id</label>
+            <label style={{ marginBottom: "5px" }}>Topic</label>
             <input
               type="text"
               className="form-control"
               name="exeno"
-              placeholder="Edit Review Id"
+              placeholder="Enter Executive Id"
               value={this.state.exeno}
               onChange={this.handleInputChange}
             />
@@ -92,7 +76,7 @@ export default class EditExecutive extends Component {
               type="text"
               className="form-control"
               name="name"
-              placeholder="Edit Report Name"
+              placeholder="Enter Report Name"
               value={this.state.name}
               onChange={this.handleInputChange}
             />
@@ -104,23 +88,23 @@ export default class EditExecutive extends Component {
               type="text"
               className="form-control"
               name="email"
-              placeholder="Edit Report Name"
+              placeholder="Enter Report Name"
               value={this.state.email}
               onChange={this.handleInputChange}
             />
           </div>
-
           <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Feedback</label>
+            <label style={{ marginBottom: "5px" }}>Report Name</label>
             <input
               type="text"
               className="form-control"
               name="contact"
-              placeholder="Edit Feedback"
+              placeholder="Enter Report Name"
               value={this.state.contact}
               onChange={this.handleInputChange}
             />
           </div>
+
           <div className="form-group" style={{ marginBottom: "14px" }}>
             <label style={{ marginBottom: "5px" }}>Repairing Date</label>
             <input
@@ -133,26 +117,25 @@ export default class EditExecutive extends Component {
               onChange={this.handleInputChange}
             />
           </div>
-
           <div className="form-group" style={{ marginBottom: "15px" }}>
             <label style={{ marginBottom: "5px" }}>Feedback</label>
             <input
               type="text"
               className="form-control"
               name="gender"
-              placeholder="Edit Feedback"
+              placeholder="Enter Feedback"
               value={this.state.gender}
               onChange={this.handleInputChange}
             />
           </div>
 
           <button
-            className="btn btn-success mb-2"
+            className="btn btn-success"
             type="submit"
             style={{ marginTop: "15px" }}
             onClick={this.onSubmit}
           >
-            <i className="fa fa-check-square"></i>&nbsp;Update
+            <i className="fa fa-check-square"></i>&nbsp;Save
           </button>
         </form>
       </div>

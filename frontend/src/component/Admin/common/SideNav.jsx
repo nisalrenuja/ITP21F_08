@@ -1,3 +1,4 @@
+//...
 import "./SideNav.css";
 
 const SideNav = ({ selectedMenuOption, onMenuItemSelect }) => {
@@ -9,7 +10,7 @@ const SideNav = ({ selectedMenuOption, onMenuItemSelect }) => {
     "Notice Management",
     "Attendance & Payroll",
     "Inventory Management",
-    "MenuItem 8"
+    "Clients"
   ];
   return (
     <div className="sideNavbar">
