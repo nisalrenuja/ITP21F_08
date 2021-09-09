@@ -33,7 +33,7 @@ router.get("/executives", (req, res) => {
 //get specific
 router.get("/executives/:id", (req, res) => {
   let postid = req.params.id;
-  executives.findById(postid, (err, employee) => {
+  executives.findById(postid, (err, executives) => {
     if (err) {
       return res.status(400).json({ success: false, err });
     }
@@ -50,7 +50,7 @@ router.put("/executives/update/:id", (req, res) => {
     {
       $set: req.body,
     },
-    (err, employee) => {
+    (err, executives) => {
       if (err) {
         return res.status(400).json({ error: err });
       }
