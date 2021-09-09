@@ -10,7 +10,7 @@ const assignment_assignedtostaff_Schema = new mongoose.Schema({
     required: true,
   },
   emp_no: {
-    type: String,
+    type: Number,
     required: false,
   },
   execid: {
