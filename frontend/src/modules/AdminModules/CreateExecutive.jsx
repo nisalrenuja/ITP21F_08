@@ -8,21 +8,21 @@ export default class CreateExecutive extends Component {
     super(props);
 
     this.state = {
-      executive: []
+      executives: []
     };
   }
-
   componentDidMount() {
-    this.retrievePosts();
+    this.retrieveexecutives();
+    console.log("hello");
   }
 
-  retrievePosts() {
+  retrieveexecutives() {
     axios.get("http://localhost:5000/executives").then(res => {
       if (res.data.success) {
         this.setState({
-          executive: res.data.existingPosts
+          executives: res.data.existingexecutives
         });
-        console.log(this.state.executive);
+        console.log(this.state.executives);
       }
     });
   }
@@ -30,20 +30,20 @@ export default class CreateExecutive extends Component {
   onDelete = id => {
     axios.delete(`http://localhost:5000/executives/delete/${id}`).then(res => {
       alert("Deleted Successfully");
-      this.retrievePosts();
+      this.retrieveexecutives();
     });
   };
 
-  filterData(executive, searchKey) {
-    const result = executive.filter(
-      executive =>
-        executive.exeno.toLowerCase().includes(searchKey) ||
-        executive.name.toLowerCase().includes(searchKey) ||
-        executive.email.toLowerCase().includes(searchKey) ||
-        executive.contact.toLowerCase().includes(searchKey) ||
-        executive.dob.toLowerCase().includes(searchKey)
+  filterData(executives, searchKey) {
+    const result = executives.filter(
+      post =>
+        post.execid_review.toLowerCase().includes(searchKey) ||
+        post.report.toLowerCase().includes(searchKey) ||
+        post.points.toLowerCase().includes(searchKey) ||
+        post.feedback.toLowerCase().includes(searchKey) ||
+        post.status.toLowerCase().includes(searchKey)
     );
-    this.setState({ executive: result });
+    this.setState({ executives: result });
   }
 
   handleSearchArea = e => {
@@ -51,7 +51,7 @@ export default class CreateExecutive extends Component {
 
     axios.get("http://localhost:5000/executives").then(res => {
       if (res.data.success) {
-        this.filterData(res.data.existingPosts, searchKey);
+        this.filterData(res.data.existingexecutives, searchKey);
       }
     });
   };
@@ -66,19 +66,13 @@ export default class CreateExecutive extends Component {
             </div>
             <div className="col-lg-9 mt-2 mb-2">
               <Clock />
+              <br />
               <button className="btn btn-primary btn-lg">
                 <a
                   href="/admin"
                   style={{ textDecoration: "none", color: "white" }}
                 >
-                  Reviews
-                </a>
-              </button>
-              <br />
-              <br />
-              <button class="btn btn-primary btn-lg">
-                <a href="/" style={{ textDecoration: "none", color: "white" }}>
-                  Executive Profiles
+                  Back to Main Dashboard
                 </a>
               </button>
             </div>
@@ -111,38 +105,38 @@ export default class CreateExecutive extends Component {
           </div>
           <table className="table table-hover" style={{ marginTop: "30px" }}>
             <thead>
-              <tr>
+              <tr class="bg-info">
                 <th scope="col"></th>
-                <th scope="col">exeno</th>
-                <th scope="col">name</th>
-                <th scope="col">email</th>
-                <th scope="col">contact</th>
-                <th scope="col">dob</th>
-                <th scope="col">gender</th>
+                <th scope="col">Executive Id</th>
+                <th scope="col">Executive Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Date of Birth</th>
+                <th scope="col">Gender</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
-              {this.state.executive.map((executive, index) => (
+              {this.state.executives.map((executives, index) => (
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
                   <td>
                     <a
-                      href={`/executives/${executive._id}`}
+                      href={`/displayexecutive/${executives._id}`}
                       style={{ textDecoration: "none" }}
                     >
-                      {executive.exeno}
+                      {executives.exeno}
                     </a>
                   </td>
-                  <td>{executive.name}</td>
-                  <td>{executive.email}</td>
-                  <td>{executive.contact}</td>
-                  <td>{executive.dob}</td>
-                  <td>{executive.gender}</td>
+                  <td>{executives.name}</td>
+                  <td>{executives.email}</td>
+                  <td>{executives.contact}</td>
+                  <td>{executives.dob}</td>
+                  <td>{executives.gender}</td>
                   <td>
                     <a
                       className="btn btn-warning"
-                      href={`/edit/${executive._id}`}
+                      href={`/editexecutive/${executives._id}`}
                     >
                       <i className="fas fa-edit"></i>&nbsp;Edit
                     </a>
@@ -150,7 +144,7 @@ export default class CreateExecutive extends Component {
                     <a
                       className="btn btn-danger"
                       href="#"
-                      onClick={() => this.onDelete(executive._id)}
+                      onClick={() => this.onDelete(executives._id)}
                     >
                       <i className="fas fa-trash-alt"></i>&nbsp;Delete
                     </a>
@@ -160,7 +154,10 @@ export default class CreateExecutive extends Component {
             </tbody>
           </table>
           <button className="btn btn-success">
-            <a href="/add" style={{ textDecoration: "none", color: "white" }}>
+            <a
+              href="/newexecutive"
+              style={{ textDecoration: "none", color: "white" }}
+            >
               Create New Review
             </a>
           </button>
