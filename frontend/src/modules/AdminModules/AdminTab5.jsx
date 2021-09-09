@@ -35,7 +35,7 @@ export default class AdminTab5 extends Component {
     return (
       <div className="container">
         <div class="senmain">
-          <h2 class="senhead1">Notices</h2>
+          <h2 class="senhead1">Notice Management</h2>
           <hr class="senline1"></hr>
           <a href="/CreateNotice">
             <button class="sendiv4">

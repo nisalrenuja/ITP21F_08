@@ -101,117 +101,85 @@ export default class CreateNotice extends Component {
     }
     return (
       <div className="container">
-        <div class="main3">
-          <h1 class="head1c">Notice Management | Create Notice</h1>
-          <hr class="line1c"></hr>
-          <div class="main33">
+        <div class="senamain3">
+          <h1 class="senahead1c">Notice Management | Create Notice</h1>
+          <hr class="senaline1c"></hr>
+          <div class="senamain33">
             <form>
-              <p class="ic">Assignment Name: </p>
+              <p class="senaic">Notice ID:</p>
               <input
                 type="text"
-                class="icc"
+                class="senaicc"
                 id="assignment_name"
                 name="assignment_name"
                 value={this.state.assignment_name}
                 onChange={this.handleInputChange}
               />
-              <p class="iic">Client No: </p>
+              <p class="senaiic">Emp ID:</p>
               <input
                 type="text"
-                class="iicc"
+                class="senaiicc"
                 id="client_no"
                 name="client_no"
                 value={this.state.client_no}
                 onChange={this.handleInputChange}
               />
-              <p class="iiic">Executive ID: </p>
+
+              <p class="senaiiic">Emp Name:</p>
               <input
                 type="text"
-                class="iiicc"
+                class="senaiiicc"
                 id="execid"
                 name="execid"
                 value={this.state.execid}
                 onChange={this.handleInputChange}
               />
-              <p class="ivc">Location: </p>
+              <p class="senaivc">Notice Topic:</p>
               <input
                 type="text"
-                class="ivcc"
+                class="senaivcc"
                 id="place_of_engagement"
                 name="place_of_engagement"
                 value={this.state.place_of_engagement}
                 onChange={this.handleInputChange}
               />
-              <p class="vc">Distance(km): </p>
+              <p class="senavc">Content:</p>
               <input
                 type="number"
-                class="vcc"
+                class="senavcc"
                 id="distance"
                 name="distance"
                 value={this.state.distance}
                 onChange={this.handleInputChange}
               />
-              <p class="vic">Date Allocating: </p>
+              <p class="senavcattach">Attachments:</p>
+              <input
+                type="number"
+                class="senavccattach"
+                id="distance"
+                name="distance"
+                value={this.state.distance}
+                onChange={this.handleInputChange}
+              />
+              <p class="senavic">Publishing Date: </p>
               <input
                 type="date"
-                class="vicc"
+                class="senavicc"
                 id="date_of_allocation"
                 name="date_of_allocation"
                 value={this.state.date_of_allocation}
                 onChange={this.handleInputChange}
               />
-              <p class="viic">Deadline: </p>
+              <p class="senaviic">Delete Notice on: </p>
               <input
                 type="date"
-                class="viicc"
+                class="senaviicc"
                 id="deadline"
                 name="deadline"
                 value={this.state.deadline}
                 onChange={this.handleInputChange}
               />
-              <div class="staff">
-                <center>
-                  <h4>Click on staff to check status</h4>
-                  {"\n"}
-                  <ul>
-                    {this.state.staff.map((staff, index) => (
-                      <li style={{ backgroundColor: "#c4c4c4" }}>
-                        {" "}
-                        <strong>Emp No-</strong>
-                        {staff.empno}
-                        {"\t"} <strong>Name-</strong>
-                        {staff.name}
-                        {"\t"}
-                        <a
-                          href="#"
-                          onClick={() => this.onCheck(staff.empno)}
-                          style={{
-                            backgroundColor: "#1687a7",
-                            paddingRight: "5px",
-                            color: "white"
-                          }}
-                        >
-                          Check
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </center>
-              </div>
-              <p class="viiic">Employee No(Staff): </p>
-              <p class="ix">
-                (Enter Employee numbers and save employees one by one, click
-                Done after assigning all)
-              </p>
 
-              <input
-                type="text"
-                class="viiicc"
-                id="emp_no"
-                name="emp_no"
-                value={this.state.emp_no}
-                onChange={this.handleInputChange}
-              />
               <center>
                 <button
                   className="btn btn-success"
@@ -227,7 +195,7 @@ export default class CreateNotice extends Component {
                     type="submit"
                     style={{ marginTop: "795px", width: "20%" }}
                   >
-                    Done
+                    Cancel
                   </button>
                 </a>
               </center>

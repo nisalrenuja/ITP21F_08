@@ -12,6 +12,7 @@ import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import LapAllo from "../../modules/AdminModules/LapAllo";
 import Employeepoints from "../../modules/AdminModules/EmployeePoints";
 import LaptopRepair from "../../modules/AdminModules/LaptopRepair";
+import CreateNotice from "../../modules/AdminModules/CreateNotice";
 
 const Admin = () => {
   let userRole = "";
