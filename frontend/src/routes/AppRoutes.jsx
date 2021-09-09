@@ -41,6 +41,7 @@ import CreateExecutive from "../modules/AdminModules/CreateExecutive";
 import NewExecutive from "../modules/AdminModules/NewExecutive";
 import EditExecutive from "../modules/AdminModules/EditExecutive";
 import DisplayExecutive from "../modules/AdminModules/DisplayExecutive";
+import CreateNotice from "../modules/AdminModules/CreateNotice";
 
 const AppRoutes = () => (
   <div>
@@ -98,6 +99,8 @@ const AppRoutes = () => (
           component={DisplayExecutive}
           exact
         />
+        /*Senara Routes*/
+        <Route path="/CreateNotice" component={CreateNotice} exact></Route>
       </Switch>
       <Footer />
     </Router>
