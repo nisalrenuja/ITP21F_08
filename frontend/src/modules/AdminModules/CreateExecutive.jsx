@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Clock from "../../component/common/clock/Clock";
-//import "./Review.css";
+import "./Review.css";
 
 export default class CreateExecutive extends Component {
   constructor(props) {
