@@ -3,14 +3,14 @@ import "./SideNav.css";
 
 const SideNav = ({ selectedMenuOption, onMenuItemSelect }) => {
   const menuItems = [
-    "Report Review",
-    "MenuItem 2",
+    "User Executive",
+    "Reports Management",
     "Employees",
     "Work Allocation",
-    "MenuItem 5",
+    "Notice Management",
     "Attendance & Payroll",
-    "Inventory Managemnet",
-    "Client"
+    "Inventory Management",
+    "MenuItem 8"
   ];
   return (
     <div className="sideNavbar">

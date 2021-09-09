@@ -7,9 +7,9 @@ const router = express.Router();
 
 router.post('/post/save',(req,res)=>{
 
-    let newReport = newReports(req.body);
+    let newPost = new Posts(req.body);
 
-    newReport.save((err) =>{
+    newPost.save((err) =>{
         if(err){
             return res.status(400).json({
                 error:err
@@ -21,4 +21,55 @@ router.post('/post/save',(req,res)=>{
     });
 });
 
-module.exports = router
+//Get Reports
+
+router.get('/post',(req,res) =>{
+    Posts.find().exec((err,post) =>{
+        if(err){
+            return res.status(400).json({
+                error:err
+            });
+        }
+        return res.status(200).json({
+            success:true,
+            existingPosts:post
+        });
+    });
+});
+
+//Update Reports
+
+router.put('/post/update/:id', (req,res)=>{
+
+    Posts.findByIdAndUpdate(
+        req.params.id,
+        {
+            $set:req.body
+        },
+        (err,post)=>{
+            if(err){
+                return res.status(400).json({error:err});
+            }
+            return res.status(200).json({
+                success:"Updated Successfully"
+            });
+        }
+    );
+});
+
+//Delete Reports
+
+router.delete('/post/delete/:id',(req,res) =>{
+
+    Posts.findByIdAndRemove(req.params.id).exec((err,deletedPost) =>{
+
+        if(err) return res.status(400).json({
+            message:"Delete Unsuccessful",err
+        });
+        return res.json({
+            message:"Delete Successful",deletedPost
+        });
+    });
+});
+
+module.exports = router;

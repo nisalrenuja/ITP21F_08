@@ -103,7 +103,7 @@ export default class AdminTab3 extends Component {
                       <i class="far fa-eye"></i>
                     </a>
                     &nbsp; &nbsp;
-                    <a href={``}>
+                    <a href={`/EditEmployee/${employees._id}`}>
                       <i class="far fa-edit"></i>
                     </a>
                     &nbsp; &nbsp;
@@ -116,7 +116,7 @@ export default class AdminTab3 extends Component {
             </tbody>
             &nbsp;
             <tfoot class="tfoot">
-              <a href="/createassignment">
+              <a href="/InsertEmployee">
                 <i class="fas fa-plus"></i>&nbsp;New Employee
               </a>
             </tfoot>

@@ -18,6 +18,29 @@ import CreateAssignment from "../pages/AdminPage/CreateAssignmentt";
 import CreateLapAllo from "../pages/AdminPage/CreateLapAllo";
 import EmployeePoints from "../pages/AdminPage/EmployeePoints";
 import AllEmployees from "../pages/AdminPage/AllEmployees";
+import InsertEmployee from "../pages/AdminPage/InsertEmployee";
+import EditAssignment from "../pages/AdminPage/EditAssignment";
+import Assignment from "../pages/AdminPage/Assignment";
+import ReviewPage from "../pages/ReviewPage/ReviewPage";
+import CreateReview from "../modules/AdminModules/CreateReview";
+import EditReview from "../modules/AdminModules/EditReview";
+import DisplayReview from "../modules/AdminModules/DisplayReview";
+import CreateLaptop from "../modules/AdminModules/CreateLaptop";
+import LaptopRepair from "../modules/AdminModules/LaptopRepair";
+import CreateLaptopRepair from "../modules/AdminModules/CreateLaptopRepair";
+import Laptops from "../pages/AdminPage/CreateLaptop";
+import LaptopInventory from "../pages/AdminPage/LaptopInventory";
+import CreateLaptops from "../pages/AdminPage/CreateLaptop";
+import LaptopsRepair from "../pages/AdminPage/LaptopRepair";
+import CreateLaptopsRepair from "../pages/AdminPage/CreateLaptopRepair";
+import EditLapAllo from "../pages/AdminPage/EditLapAllo";
+import WorkReport from "../pages/AdminPage/WorkReport";
+import CompanyPerfomance from "../pages/AdminPage/CompanyPerformance";
+import EditEmployee from "../pages/AdminPage/EditEmployee";
+import CreateExecutive from "../modules/AdminModules/CreateExecutive";
+import NewExecutive from "../modules/AdminModules/NewExecutive";
+import EditExecutive from "../modules/AdminModules/EditExecutive";
+import DisplayExecutive from "../modules/AdminModules/DisplayExecutive";
 
 const AppRoutes = () => (
   <div>
@@ -44,6 +67,37 @@ const AppRoutes = () => (
         <Route path="/createlapallocation" component={CreateLapAllo} exact />
         <Route path="/AllEmployees" component={AllEmployees} exact />
         <Route path="/EmployeePoints" component={EmployeePoints} exact />
+        <Route path="/createlaptop" component={CreateLaptops} exact />
+        <Route path="/repairinglaptop" component={LaptopsRepair} exact />
+        <Route
+          path="/createlaptoprepair"
+          component={CreateLaptopsRepair}
+          exact
+        />
+        <Route
+          exact
+          path="/editassignment/:assignment"
+          component={EditAssignment}
+        />
+        <Route exact path="/assignment/:assignment" component={Assignment} />
+        <Route path="/review" component={ReviewPage} exact />
+        <Route path="/add" exact component={CreateReview}></Route>
+        <Route path="/edit/:id" exact component={EditReview}></Route>
+        <Route path="/post/:id" exact component={DisplayReview}></Route>
+        <Route exact path="/editlapallo/:assignment" component={EditLapAllo} />
+        <Route path="/reportwork" component={WorkReport} exact />
+        <Route path="/InsertEmployee" component={InsertEmployee} exact />
+        /*Anujitha Routes*/
+        <Route path="/companyperformance" component={CompanyPerfomance} exact />
+        <Route path="/EditEmployee/:id" component={EditEmployee} exact />
+        <Route path="/createexecutive" component={CreateExecutive} exact />
+        <Route path="/newexecutive" component={NewExecutive} exact />
+        <Route path="/editexecutive/:id" component={EditExecutive} exact />
+        <Route
+          path="/displayexecutive/:id"
+          component={DisplayExecutive}
+          exact
+        />
       </Switch>
       <Footer />
     </Router>

@@ -1,9 +1,22 @@
 import React from "react";
+import Wave from "react-wavify";
 import "./Footer.css";
 import Logo from "../../../assets/images/logo/logo.svg";
 //testing
 const footer = () => (
   <footer className="footer-section">
+    <div className="footerwave">
+      <Wave
+        fill="#2cafd4"
+        paused={false}
+        options={{
+          height: 40,
+          amplitude: 30,
+          speed: 0.2,
+          points: 3
+        }}
+      />
+    </div>
     <div className="container">
       <div className="footer-content pt-5 pb-5">
         <div className="row">

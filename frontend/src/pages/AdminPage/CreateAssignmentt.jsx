@@ -12,7 +12,7 @@ import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import LapAllo from "../../modules/AdminModules/LapAllo";
 import CreateAssignment from "../../modules/AdminModules/CreateAssignment";
 
-const Laps = () => {
+const CreateAssignments = () => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -20,7 +20,9 @@ const Laps = () => {
     selectedMenuOptionCache =
       window.localStorage.getItem("MenuOptionCache") || "";
   }
-  const [selectedMenuOption, setSelectedMenuOption] = useState("Report Review");
+  const [selectedMenuOption, setSelectedMenuOption] = useState(
+    "User Executive"
+  );
 
   useEffect(() => {
     if (userRole !== "Admin") {
@@ -45,7 +47,7 @@ const Laps = () => {
     <div>
       {selectedMenuOption !== "" ? (
         <Container>
-          {selectedMenuOption === "Report Review" ? (
+          {selectedMenuOption === "User Executive" ? (
             <AdminTab1 />
           ) : selectedMenuOption === "MenuItem 2" ? (
             <AdminTab2 />
@@ -74,4 +76,4 @@ const Laps = () => {
   );
 };
 
-export default Laps;
+export default CreateAssignments;

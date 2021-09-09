@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const employees_Schema = new mongoose.Schema({
   empno: {
-    type: String,
+    type: Number,
     required: true,
   },
   name: {
@@ -15,100 +15,113 @@ const employees_Schema = new mongoose.Schema({
   },
   contact: {
     type: Number,
-    required: true,
+    required: false,
   },
   dob:{
     type: Date,
-    required: true,
+    required: false,
   },
   gender: {
     type: String,
-    required: true,
+    required: false,
   },
   nic_no: {
     type: String,
-    required: true,
+    required: false,
   },
   permernant_address:{
     type: String,
-    required: true,
+    required: false,
   },
   district:{
     type: String,
-    required: true,
+    required: false,
   },
   province:{
     type: String,
-    required: true,
+    required: false,
   },
   place_of_stay:{
     type: String,
-    required: true,
+    required: false,
   },
   organization:{
     type: String,
-    required: true,
+    required: false,
   },
   sector: {
     type: String,
-    required: true,
+    required: false,
   },
   duration:{
     type: String,
-    required: true,
+    required: false,
   },
   commencement_date: {
     type: Date,
-    required: true,
+    required: false,
   },
   ending_date: {
     type: Date,
-    required: true,
+    required: false,
   },  
   professional_education:{
     type: String,
-    required: true,
+    required: false,
   },
   completed_stage:{
     type: String,
-    required: true,
+    required: false,
   },
   current_stage:{
     type: String,
-    required: true,
+    required: false,
   },
   attempt:{
     type: String,
-    required: true,
+    required: false,
   },
   subjects:{
     type: String,
-    required: true,
+    required: false,
   },
   al_year :{
     type: Number,
-    required: true,
+    required: false,
   },
   university:{
     type: String,
-    required: true,
+    required: false,
   },
   graduated_yr:{
     type: Number,
-    required: true,
+    required: false,
   },
   department:{
     type: String,
-    required: true,
+    required: false,
   }, 
   type:{
     type: String,
-    required: true,
+    required: false,
   },
   status:{
     type: String,
     required: true,
+  },
+  old_password:{
+    type: String,
+    required: false,
+  },
+  new_password:{
+    type: String,
+    required: false,
+  },
+  confirm_password:{
+    type: String,
+    required: false,
   }
+
 });
 
 module.exports = mongoose.model("employees", employees_Schema);
