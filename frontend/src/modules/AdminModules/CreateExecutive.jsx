@@ -65,7 +65,6 @@ export default class CreateExecutive extends Component {
               User Executive Management Dashboard
             </div>
             <div className="col-lg-9 mt-2 mb-2">
-              <Clock />
               <button className="btn btn-primary btn-lg">
                 <a
                   href="/admin"
