@@ -42,6 +42,8 @@ import NewExecutive from "../modules/AdminModules/NewExecutive";
 import EditExecutive from "../modules/AdminModules/EditExecutive";
 import DisplayExecutive from "../modules/AdminModules/DisplayExecutive";
 import CreateNotice from "../modules/AdminModules/CreateNotice";
+import TopPerformers from "../modules/AdminModules/TopPerformers";
+import NoticeComPerf from "../modules/AdminModules/NoticeComPerf";
 
 const AppRoutes = () => (
   <div>
@@ -101,6 +103,8 @@ const AppRoutes = () => (
         />
         /*Senara Routes*/
         <Route path="/CreateNotice" component={CreateNotice} exact></Route>
+        <Route path="/TopPerformers" component={TopPerformers} exact></Route>
+        <Route path="/NoticeComPerf" compoenet={NoticeComPerf} exact></Route>
       </Switch>
       <Footer />
     </Router>

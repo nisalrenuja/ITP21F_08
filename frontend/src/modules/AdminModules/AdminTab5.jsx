@@ -43,6 +43,17 @@ export default class AdminTab5 extends Component {
             </button>
           </a>
 
+          <a href="/TopPerformers">
+            <button class="senadiv1">
+              <p class="senatxt1">Top Performers</p>
+            </button>
+          </a>
+          <a href="/NoticeComPerf">
+            <button class="senadiv2">
+              <p class="senatxt2">Company Performance</p>
+            </button>
+          </a>
+
           <div class="sendiv3">
             <p class="sentxt3">Filter by</p>
             <input class="senselect1" type="text" />
