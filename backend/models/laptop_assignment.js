@@ -14,7 +14,7 @@ const laptop_assignment_Schema = new mongoose.Schema({
     required: true,
   },
   empno: {
-    type: String,
+    type: Number,
     required: true,
   },
   execid: {
