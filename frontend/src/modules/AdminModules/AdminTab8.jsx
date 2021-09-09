@@ -1,5 +1,5 @@
 const AdminTab8 = () => {
-  return <div>Tab8 content goes here</div>;
+  return <div>Clients details content goes here</div>;
 };
 
 export default AdminTab8;

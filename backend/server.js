@@ -22,6 +22,7 @@ app.get("/", (req, res, next) => {
 });
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); //app middleware
+
 // Connecting Routes
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/private", require("./routes/private"));
@@ -39,10 +40,20 @@ const attendancesRoutes = require("./routes/attendances");
 const leavesRoutes = require("./routes/leaves");
 const final_report = require("./models/final_report");
 
-//add routes here
+
+//add routes here ..
+
+app.use(laptop_routes);
+app.use(laptop_repair_routes);
+app.use(assignment_assignedtostaffRoutes);
+app.use(employees);
+app.use(client_fees);
+app.use(client);
 app.use(attendancesRoutes);
 app.use(leavesRoutes);
-// Error Handler Middleware
+
+
+// Error Handler Middleware ..
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
@@ -55,3 +66,4 @@ process.on("unhandledRejection", (err, promise) => {
   console.log(`Logged Error: ${err.message}`);
   server.close(() => process.exit(1));
 });
+//...
