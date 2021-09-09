@@ -37,6 +37,9 @@ import EditLapAllo from "../pages/AdminPage/EditLapAllo";
 import WorkReport from "../pages/AdminPage/WorkReport";
 import CompanyPerfomance from "../pages/AdminPage/CompanyPerformance";
 import EditEmployee from "../pages/AdminPage/EditEmployee";
+import CreateExecutive from "../modules/AdminModules/CreateExecutive";
+import EditExecutive from "../modules/AdminModules/EditExecutive";
+import DisplayExecutive from "../modules/AdminModules/DisplayExecutive";
 
 const AppRoutes = () => (
   <div>
@@ -86,6 +89,7 @@ const AppRoutes = () => (
         /*Anujitha Routes*/
         <Route path="/companyperformance" component={CompanyPerfomance} exact />
         <Route path="/EditEmployee/:id" component={EditEmployee} exact />
+        <Route path="/createexecutive" component={CreateExecutive} exact />
       </Switch>
       <Footer />
     </Router>
