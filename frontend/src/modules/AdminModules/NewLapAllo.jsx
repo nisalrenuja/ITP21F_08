@@ -64,7 +64,7 @@ export default class NewLapAllo extends Component {
       client_no: client_no,
       execid: execid,
       empno: empno,
-      status: status,
+      status: "Assigned",
       date_allocated: date_allocated,
       date_received: date_received,
       lapid: lapid
@@ -84,6 +84,23 @@ export default class NewLapAllo extends Component {
           lapid: ""
         });
         alert("Done!");
+      }
+    });
+  };
+  filterData(laps, searchKey) {
+    console.log(searchKey);
+    const result = laps.filter(
+      laps =>
+        laps.model.toLowerCase().includes(searchKey) ||
+        laps.brand.toLowerCase().includes(searchKey)
+    );
+    this.setState({ laps: result });
+  }
+  handleSearchArea = e => {
+    const searchKey = e.currentTarget.value;
+    axios.get("http://localhost:5000/laps/ass").then(res => {
+      if (res.data.success) {
+        this.filterData(res.data.laps, searchKey);
       }
     });
   };
@@ -131,15 +148,8 @@ export default class NewLapAllo extends Component {
                 value={this.state.empno}
                 onChange={this.handleInputChange}
               />
-              <p class="vc">Status: </p>
-              <input
-                type="text"
-                class="vcc"
-                id="status"
-                name="status"
-                value={this.state.status}
-                onChange={this.handleInputChange}
-              />
+              <p class="vc">Special Notes(not compulsory): </p>
+              <input type="text" class="vcc" id="spec" name="spec" />
               <p class="vic">Date Allocating: </p>
               <input
                 type="date"
@@ -161,6 +171,12 @@ export default class NewLapAllo extends Component {
               <div class="staff">
                 <center>
                   <h4>Click on Lap to check status</h4>
+                  <input
+                    type="text"
+                    placeholder="Search Model"
+                    name="searchQuery"
+                    onChange={this.handleSearchArea}
+                  />
                   {"\n"}
                   <ul>
                     {this.state.laps.map((laps, index) => (
@@ -170,6 +186,9 @@ export default class NewLapAllo extends Component {
                         {laps.id}
                         {"\t"} <strong>Model-</strong>
                         {laps.model}
+                        {"\t"}
+                        {"\t"} <strong>Brand-</strong>
+                        {laps.brand}
                         {"\t"}
                         <a
                           href="#"

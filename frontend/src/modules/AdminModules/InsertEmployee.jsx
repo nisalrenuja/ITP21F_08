@@ -41,6 +41,9 @@ export default class InsertEmployee extends Component {
       university: "",
       graduated_yr: "",
       department: "",
+      old_password: "",
+      new_password: "",
+      confirm_password: "",
       type: "",
       status: "",
       empnoError: "",
@@ -64,6 +67,7 @@ export default class InsertEmployee extends Component {
     let nameError = "";
     let emailError = "";
     let statusError = "";
+    let typeError = "";
 
     if (!this.state.empno) {
       empnoError = "**EmpNo Cannot Be Blank";
@@ -80,11 +84,22 @@ export default class InsertEmployee extends Component {
     if (!this.state.status) {
       statusError = "**Status Cannot Be Blank";
     }
+    if (!this.state.type) {
+      typeError = "**Type Cannot Be Blank";
+    }
 
-    if (emailError || nameError || empnoError || statusError) {
+    if (emailError || nameError || empnoError || statusError || typeError) {
       //emaiError also equal to emailError:emailError in Js.
-      this.setState({ emailError, nameError, empnoError, statusError });
-      alert("Invalid Form Data. Please Check Emp No, Name, Email & Status!!!");
+      this.setState({
+        emailError,
+        nameError,
+        empnoError,
+        statusError,
+        typeError
+      });
+      alert(
+        "Invalid Form Data. Please Check Emp No, Name, Email, Status & Type!!!"
+      );
       return false;
     }
     return true;
@@ -119,6 +134,9 @@ export default class InsertEmployee extends Component {
       university,
       graduated_yr,
       department,
+      old_password,
+      new_password,
+      confirm_password,
       type,
       status
     } = this.state;
@@ -149,6 +167,9 @@ export default class InsertEmployee extends Component {
       university: university,
       graduated_yr: graduated_yr,
       department: department,
+      old_password: old_password,
+      new_password: new_password,
+      confirm_password: confirm_password,
       type: type,
       status: status
     };
@@ -184,6 +205,9 @@ export default class InsertEmployee extends Component {
             university: university,
             graduated_yr: graduated_yr,
             department: department,
+            old_password: old_password,
+            new_password: new_password,
+            confirm_password: confirm_password,
             type: type,
             status: status,
             redirectToReferrer: true
@@ -203,26 +227,27 @@ export default class InsertEmployee extends Component {
       <div className="container">
         <h1 class="headie">Add New Employee </h1>
         <hr class="lineie"></hr>
-
-        <div class="mainie">
-          <form>
+        <form>
+          <div class="mainie">
+            <h1 class="head1">Basic Info </h1>
+            <hr class="line1"></hr>
             <p class="label1">Employee Number: </p>
             <input
-              type="text"
+              type="number"
               class="box1"
               id="empno"
               name="empno"
               value={this.state.empno}
               onChange={this.handleInputChange}
-              placeholder="Enter Employee Number"
+              placeholder="Enter Employee Number (Required)"
               required
             />
             <div
               style={{
                 color: "red",
                 position: "absolute",
-                left: "300px",
-                top: "30px"
+                left: "50px",
+                top: "155px"
               }}
             >
               {this.state.empnoError}
@@ -235,15 +260,15 @@ export default class InsertEmployee extends Component {
               name="name"
               value={this.state.name}
               onChange={this.handleInputChange}
-              placeholder="Enter Employee Name"
+              placeholder="Enter Employee Name (Required)"
               required
             />
             <div
               style={{
                 color: "red",
                 position: "absolute",
-                left: "300px",
-                top: "100px"
+                left: "500px",
+                top: "155px"
               }}
             >
               {this.state.nameError}
@@ -256,15 +281,15 @@ export default class InsertEmployee extends Component {
               name="email"
               value={this.state.email}
               onChange={this.handleInputChange}
-              placeholder="Enter Email"
+              placeholder="Enter Email (Required)"
               required
             />
             <div
               style={{
                 color: "red",
                 position: "absolute",
-                left: "300px",
-                top: "170px"
+                left: "50px",
+                top: "245px"
               }}
             >
               {this.state.emailError}
@@ -342,6 +367,9 @@ export default class InsertEmployee extends Component {
               value={this.state.place_of_stay}
               onChange={this.handleInputChange}
             />
+
+            <h1 class="head2">Previous Experience </h1>
+            <hr class="line2"></hr>
             <p class="label12">Organization: </p>
             <input
               type="text"
@@ -369,6 +397,8 @@ export default class InsertEmployee extends Component {
               value={this.state.duration}
               onChange={this.handleInputChange}
             />
+            <h1 class="head5">Training </h1>
+            <hr class="line5"></hr>
             <p class="label15">Commencement Date: </p>
             <input
               type="text"
@@ -378,7 +408,7 @@ export default class InsertEmployee extends Component {
               value={this.state.commencement_date}
               disabled
             />
-            <p class="label16">Ending Date: </p>
+            <p class="label16">Expected Ending Date: </p>
             <input
               type="date"
               class="box16"
@@ -387,6 +417,8 @@ export default class InsertEmployee extends Component {
               value={this.state.ending_date}
               onChange={this.handleInputChange}
             />
+            <h1 class="head3">Examination </h1>
+            <hr class="line3"></hr>
             <p class="label17">Professional Education: </p>
             <input
               type="text"
@@ -432,6 +464,8 @@ export default class InsertEmployee extends Component {
               value={this.state.subjects}
               onChange={this.handleInputChange}
             />
+            <h1 class="head4">Academic Info </h1>
+            <hr class="line4"></hr>
             <p class="label22">A/L Year: </p>
             <input
               type="text"
@@ -468,48 +502,106 @@ export default class InsertEmployee extends Component {
               value={this.state.department}
               onChange={this.handleInputChange}
             />
-            <p class="label26">Type: </p>
+            <h1 class="head6">Security Info </h1>
+            <hr class="line6"></hr>
+            <p class="label26">Old Password: </p>
             <input
               type="text"
               class="box26"
-              id="type"
-              name="type"
-              value={this.state.type}
+              id="old_password"
+              name="old_password"
+              value={this.state.old_password}
               onChange={this.handleInputChange}
             />
-            <p class="label27">Status: </p>
+            <p class="label27">New Password: </p>
             <input
               type="text"
               class="box27"
-              id="status"
-              name="status"
-              value={this.state.status}
+              id="new_password"
+              name="new_password"
+              value={this.state.new_password}
               onChange={this.handleInputChange}
-              placeholder="Enter 'Trainee' / 'Senior'"
-              required
             />
-            <div
+            <p class="label28">Confirm Password: </p>
+            <input
+              type="text"
+              class="box28"
+              id="confirm_password"
+              name="confirm_password"
+              value={this.state.confirm_password}
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <p class="label29">Type: </p>
+          <input
+            type="text"
+            class="box29"
+            id="type"
+            name="type"
+            value={this.state.type}
+            onChange={this.handleInputChange}
+            placeholder="Enter 'Audit' / 'Tax' (Required)"
+          />
+          <p class="label30">Status: </p>
+          <input
+            type="text"
+            class="box30"
+            id="status"
+            name="status"
+            value={this.state.status}
+            onChange={this.handleInputChange}
+            placeholder="Enter 'Trainee' / 'Senior' (Required)"
+            required
+          />
+          <div
+            style={{
+              color: "red",
+              position: "absolute",
+              left: "110px",
+              top: "780px"
+            }}
+          >
+            {this.state.typeError}
+          </div>
+          <div
+            style={{
+              color: "red",
+              position: "absolute",
+              left: "610px",
+              top: "780px"
+            }}
+          >
+            {this.state.statusError}
+          </div>
+          <center>
+            <button
+              className="btn btn-light"
+              type="cancel"
               style={{
-                color: "red",
-                position: "absolute",
-                left: "300px",
-                top: "1780px"
+                marginTop: "300px",
+                marginLeft: "900px",
+                marginRight: "50px",
+                borderRadius: "60px",
+                filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))"
               }}
+              onClick={() => {}}
             >
-              {this.state.statusError}
-            </div>
-            <center>
-              <button
-                className="btn btn-success"
-                type="submit"
-                style={{ marginTop: "1900px" }}
-                onClick={this.onSubmit}
-              >
-                <i></i>&nbsp;Save
-              </button>
-            </center>
-          </form>
-        </div>
+              <i></i>&nbsp;Cancel
+            </button>
+            <button
+              className="btn btn-success"
+              type="submit"
+              style={{
+                marginTop: "300px",
+                borderRadius: "60px",
+                filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))"
+              }}
+              onClick={this.onSubmit}
+            >
+              <i></i>&nbsp; Save
+            </button>
+          </center>
+        </form>
       </div>
     );
   }

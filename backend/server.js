@@ -10,6 +10,8 @@ const laptop_repair_routes = require("./routes/laptopRepair");
 const assignment_assignedtostaffRoutes = require("./routes/assignment_assignedtostaff");
 const laptop_assignment_Routes = require("./routes/laptop_assignment");
 const employees = require("./routes/employees");
+const executives = require("./routes/executives");
+
 //connect db
 connectDB();
 const postRoutes = require("./routes/Reviews");
@@ -26,10 +28,12 @@ app.use("/api/private", require("./routes/private"));
 
 app.use(laptop_routes);
 app.use(laptop_repair_routes);
+
 app.use(assignment_assignedtostaffRoutes);
 app.use(laptop_assignment_Routes);
 app.use(employees);
 app.use(postRoutes);
+app.use(executives);
 //import routes
 const attendancesRoutes = require("./routes/attendances");
 const leavesRoutes = require("./routes/leaves");
@@ -51,5 +55,3 @@ process.on("unhandledRejection", (err, promise) => {
   console.log(`Logged Error: ${err.message}`);
   server.close(() => process.exit(1));
 });
-
-

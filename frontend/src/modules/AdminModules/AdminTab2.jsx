@@ -102,7 +102,60 @@ export default class AdminTab2 extends Component {
             </tbody>
           </table>
 
+          <h2 class="anutah1">Reviewed Report Assignments</h2>
+          <table className="table table-hover anutable2">
+            <thead class="anuthead">
+              <tr>
+                <th scope="col">Report Name</th>
+                <th scope="col">Manager Name</th>
+                <th scope="col">Partner Name</th>
+                <th scope="col">Due Date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody class="anutbody1">
+              {this.state.assignments.map((assignments, index) => (
+                <tr key={index}>
+                  <td>
+                    <a href={``} style={{ textDecoration: "none" }}>
+                      {assignments.assignment_name}
+                    </a>
+                  </td>
+                  <td>{assignments.client_no}</td>
+                  <td>{assignments.deadline}</td>
+                  <td>{assignments.date_of_allocation}</td>
+                  <td>{assignments.progress}</td>
+                  <td>
+                    <a href={`/edit/${assignments._id}`}>
+                      <i className="fas fa-edit"></i>&nbsp;
+                    </a>
+                    &nbsp;
+                    <a
+                      href="#"
+                      onClick={() => this.onDelete(assignments.assignment_name)}
+                    >
+                      <i className="far fa-trash-alt"></i>&nbsp;
+                    </a>
+                  </td>
+                </tr>
+              ))}
+              <tfoot class="tfoot">
+                <a href="/createassignment">
+                  <i class="fas fa-plus"></i>&nbsp;New Report
+                </a>
+              </tfoot>
+            </tbody>
+          </table>
+
           <div class="anudiv3">
+            <input class="anuselect1" type="text" />
+            <a className="btn btn-info anusearch">
+              <i className="fas fa-search"></i>&nbsp;
+            </a>
+          </div>
+
+          <div class="anudiv31">
             <input class="anuselect1" type="text" />
             <a className="btn btn-info anusearch">
               <i className="fas fa-search"></i>&nbsp;

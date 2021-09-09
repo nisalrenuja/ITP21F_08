@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const employees_Schema = new mongoose.Schema({
   empno: {
-    type: String,
+    type: Number,
     required: true,
   },
   name: {
@@ -108,7 +108,20 @@ const employees_Schema = new mongoose.Schema({
   status:{
     type: String,
     required: true,
+  },
+  old_password:{
+    type: String,
+    required: false,
+  },
+  new_password:{
+    type: String,
+    required: false,
+  },
+  confirm_password:{
+    type: String,
+    required: false,
   }
+
 });
 
 module.exports = mongoose.model("employees", employees_Schema);
