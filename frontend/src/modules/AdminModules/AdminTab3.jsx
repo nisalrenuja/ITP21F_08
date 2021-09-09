@@ -103,7 +103,7 @@ export default class AdminTab3 extends Component {
                       <i class="far fa-eye"></i>
                     </a>
                     &nbsp; &nbsp;
-                    <a href={``}>
+                    <a href={`/EditEmployee/${employees._id}`}>
                       <i class="far fa-edit"></i>
                     </a>
                     &nbsp; &nbsp;

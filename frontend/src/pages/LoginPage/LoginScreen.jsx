@@ -8,13 +8,13 @@ const LoginScreen = ({ history }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const loginHandler = async (e) => {
+  const loginHandler = async e => {
     e.preventDefault();
 
     const config = {
       header: {
-        "Content-Type": "application/json",
-      },
+        "Content-Type": "application/json"
+      }
     };
 
     try {
@@ -25,7 +25,7 @@ const LoginScreen = ({ history }) => {
       );
       localStorage.setItem("authToken", data.token);
       localStorage.setItem("loggedIn", "true");
-      localStorage.setItem("MenuOptionCache", "Report Review");
+      localStorage.setItem("MenuOptionCache", "User Executive");
       history.push("/admin");
       window.location.reload();
     } catch (error) {
@@ -48,7 +48,7 @@ const LoginScreen = ({ history }) => {
             required
             id="email"
             placeholder="Email address"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={e => setEmail(e.target.value)}
             value={email}
             tabIndex={1}
           />
@@ -66,7 +66,7 @@ const LoginScreen = ({ history }) => {
             id="password"
             autoComplete="true"
             placeholder="Enter password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={e => setPassword(e.target.value)}
             value={password}
             tabIndex={2}
           />

@@ -10,6 +10,9 @@ const laptop_repair_routes = require("./routes/laptopRepair");
 const assignment_assignedtostaffRoutes = require("./routes/assignment_assignedtostaff");
 const laptop_assignment_Routes = require("./routes/laptop_assignment");
 const employees = require("./routes/employees");
+const executives = require("./routes/executives");
+const client_fees = require("./routes/client_fees");
+const client = require("./routes/client"); 
 //connect db
 connectDB();
 const postRoutes = require("./routes/Reviews");
@@ -20,25 +23,38 @@ app.get("/", (req, res, nenpmxt) => {
 });
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); //app middleware
+
 // Connecting Routes
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/private", require("./routes/private"));
 
 app.use(laptop_routes);
 app.use(laptop_repair_routes);
+
 app.use(assignment_assignedtostaffRoutes);
 app.use(laptop_assignment_Routes);
 app.use(employees);
 app.use(postRoutes);
+app.use(executives);
 //import routes
 const attendancesRoutes = require("./routes/attendances");
 const leavesRoutes = require("./routes/leaves");
 const final_report = require("./models/final_report");
 
-//add routes here
+
+//add routes here ..
+
+app.use(laptop_routes);
+app.use(laptop_repair_routes);
+app.use(assignment_assignedtostaffRoutes);
+app.use(employees);
+app.use(client_fees);
+app.use(client);
 app.use(attendancesRoutes);
 app.use(leavesRoutes);
-// Error Handler Middleware
+
+
+// Error Handler Middleware ..
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
@@ -51,3 +67,7 @@ process.on("unhandledRejection", (err, promise) => {
   console.log(`Logged Error: ${err.message}`);
   server.close(() => process.exit(1));
 });
+<<<<<<< HEAD
+=======
+//...
+>>>>>>> 6c8cf77cd3a7b520a18e36913abff331e82187d0

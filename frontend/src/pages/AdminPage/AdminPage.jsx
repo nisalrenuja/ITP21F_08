@@ -11,6 +11,8 @@ import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import LapAllo from "../../modules/AdminModules/LapAllo";
 import Employeepoints from "../../modules/AdminModules/EmployeePoints";
+import LaptopRepair from "../../modules/AdminModules/LaptopRepair";
+import CreateNotice from "../../modules/AdminModules/CreateNotice";
 
 const Admin = () => {
   let userRole = "";
@@ -20,7 +22,9 @@ const Admin = () => {
     selectedMenuOptionCache =
       window.localStorage.getItem("MenuOptionCache") || "";
   }
-  const [selectedMenuOption, setSelectedMenuOption] = useState("Report Review");
+  const [selectedMenuOption, setSelectedMenuOption] = useState(
+    "User Executive"
+  );
 
   useEffect(() => {
     if (userRole !== "Admin") {
@@ -45,7 +49,7 @@ const Admin = () => {
     <div>
       {selectedMenuOption !== "" ? (
         <Container>
-          {selectedMenuOption === "Report Review" ? (
+          {selectedMenuOption === "User Executive" ? (
             <AdminTab1 />
           ) : selectedMenuOption === "Reports Management" ? (
             <AdminTab2 />

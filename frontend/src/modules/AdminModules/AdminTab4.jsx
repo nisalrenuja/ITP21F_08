@@ -54,11 +54,11 @@ export default class AdminTab4 extends Component {
     return (
       <div className="container">
         <div class="main222">
-          <h2 class="head1">Work Allocation</h2>
+          <h2 class="head1w">Work Allocation</h2>
           <a href="/reportwork" class="btn btn-info reportdiv">
             <i class="fa fa-file fa-2x" aria-hidden="true"></i>&nbsp;
           </a>
-          <hr class="line1"></hr>
+          <hr class="line1w"></hr>
           <a href="/allassignments">
             <button class="div1">
               <p class="txt1">Assignments</p>

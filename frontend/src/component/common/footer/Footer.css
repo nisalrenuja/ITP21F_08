@@ -9,7 +9,7 @@ ul {
 
 @media only screen and (max-width: 640px) {
   .container {
-    padding-top:5%;
+    padding-top: 5%;
   }
 }
 
@@ -140,4 +140,10 @@ ul {
 .footer-menu li a {
   font-size: 14px;
   color: #fff;
+}
+.footerwave {
+  position: absolute;
+  opacity: 40%;
+  bottom: 0px;
+  width: 100%;
 }

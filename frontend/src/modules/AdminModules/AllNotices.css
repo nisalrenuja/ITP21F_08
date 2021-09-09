@@ -111,6 +111,21 @@
   
     border-radius: 5px;
   }
+
+  .sendiv31 {
+    position: absolute;
+    width: 413px;
+    height: 55px;
+    left: 550px;
+    top: 525px;
+  
+    background: #1687a7;
+    backdrop-filter: blur(4px);
+    /* Note: backdrop-filter has minimal browser support */
+  
+    border-radius: 5px;
+  }
+
   .sentxt3 {
     position: absolute;
     width: 40px;
@@ -175,6 +190,15 @@
     left: 0px;
     top: 300px;
   }
+
+  .sentable2 {
+    position: absolute;
+    width: 100%;
+  
+    left: 0px;
+    top: 600px;
+  }
+
   .senthead {
     background: #276678;;
     font-family: Inter;
@@ -212,7 +236,8 @@
     width: 523px;
     height: 66px;
     left: 0px;
-    top: 220px;
+    top: 200px;
+  
   
     color: #000000;
   }
@@ -222,7 +247,7 @@
     width: 523px;
     height: 66px;
     left: 0px;
-    top: 220px;
+    top: 525px;
   
     color: #000000;
   }

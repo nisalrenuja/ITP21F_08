@@ -141,64 +141,183 @@ router.delete("/assignments/delete/:name", (req, res) => {
     });
 });
 router.get("/assignments/count", (req, res) => {
-  assignment_assignedtostaff.distinct("assignment_name",{ progress: { $ne: "Completed" } })
+  assignment_assignedtostaff
+    .distinct("assignment_name", { progress: { $ne: "Completed" } })
     .exec((err, assignmentsassigned) => {
       var count = assignmentsassigned.length;
-      assignment_assignedtostaff.distinct("assignment_name",{ progress:  "Completed"  }).exec((err, assignmentsassigned2) => {
-        var count2 = assignmentsassigned2.length;
-      return res.status(200).json({
-        success: true,
-        assignmentsassigned: assignmentsassigned,
-        count: count,
-        assignmentsassigned2: assignmentsassigned2,
-        count2: count2,
-      });
+      assignment_assignedtostaff
+        .distinct("assignment_name", { progress: "Completed" })
+        .exec((err, assignmentsassigned2) => {
+          var count2 = assignmentsassigned2.length;
+          return res.status(200).json({
+            success: true,
+            assignmentsassigned: assignmentsassigned,
+            count: count,
+            assignmentsassigned2: assignmentsassigned2,
+            count2: count2,
+          });
+        });
     });
-});
 });
 router.get("/assignments/staffcount", (req, res) => {
-  employees.find()
-    .exec((err, staff) => {
-      
-      assignment_assignedtostaff.distinct("emp_no",{ progress: { $ne: "Completed" } }).exec((err, staffw) => {
-        
-      return res.status(200).json({
+  employees.find().exec((err, staff) => {
+    assignment_assignedtostaff
+      .distinct("emp_no", { progress: { $ne: "Completed" } })
+      .exec((err, staffw) => {
+        return res.status(200).json({
+          success: true,
+          staff: staff,
+
+          staffw: staffw,
+        });
+      });
+  });
+});
+router.get("/assignments/allowances1", (req, res) => {
+  var d = new Date();
+  var n = d.getMonth() + 1;
+  var n2 = d.getFullYear();
+  assignment_assignedtostaff
+    .find({
+      $expr: {
+        $and: [
+          {
+            $eq: [
+              {
+                $month: "$date_of_allocation",
+              },
+              n,
+            ],
+          },
+          {
+            $eq: [
+              {
+                $year: "$date_of_allocation",
+              },
+              n2,
+            ],
+          },
+        ],
+      },
+    })
+    .exec((err, posts) => {
+      if (err)
+        return res.status(400).json({
+          message: "Unsuccess",
+          err,
+        });
+      return res.json({
         success: true,
-        staff: staff,
-       
-        staffw: staffw,
+        posts: posts,
       });
     });
 });
-});
-router.get("/assignments/allowances", (req, res) => {
+router.get("/assignments/allowances2", (req, res) => {
   var d = new Date();
-  var n = d.getMonth()+1;
+  var n = d.getMonth();
   var n2 = d.getFullYear();
   assignment_assignedtostaff
-  .find({
-    $expr: {
-            $and: [
-                {
-                  "$eq": [
-                    {
-                     "$month": "$date_of_allocation"
-                   },
-                    n
-               ]
-             },
-             {
-               "$eq": [
-                   {
-                 "$year": "$date_of_allocation"
-                  },
-                  n2
-                 ]
-               }
-            ]
-           }
-          })
-  .exec((err, posts) => {
+    .find({
+      $expr: {
+        $and: [
+          {
+            $eq: [
+              {
+                $month: "$date_of_allocation",
+              },
+              n,
+            ],
+          },
+          {
+            $eq: [
+              {
+                $year: "$date_of_allocation",
+              },
+              n2,
+            ],
+          },
+        ],
+      },
+    })
+    .exec((err, posts) => {
+      if (err)
+        return res.status(400).json({
+          message: "Unsuccess",
+          err,
+        });
+      return res.json({
+        success: true,
+        posts: posts,
+      });
+    });
+});
+router.get("/assignments/allowances3", (req, res) => {
+  var d = new Date();
+  var n = d.getMonth() - 1;
+  var n2 = d.getFullYear();
+  assignment_assignedtostaff
+    .find({
+      $expr: {
+        $and: [
+          {
+            $eq: [
+              {
+                $month: "$date_of_allocation",
+              },
+              n,
+            ],
+          },
+          {
+            $eq: [
+              {
+                $year: "$date_of_allocation",
+              },
+              n2,
+            ],
+          },
+        ],
+      },
+    })
+    .exec((err, posts) => {
+      if (err)
+        return res.status(400).json({
+          message: "Unsuccess",
+          err,
+        });
+      return res.json({
+        success: true,
+        posts: posts,
+      });
+    });
+});
+router.get("/assignments/allowances4", (req, res) => {
+  var d = new Date();
+  var n = d.getMonth() - 2;
+  var n2 = d.getFullYear();
+  assignment_assignedtostaff
+    .find({
+      $expr: {
+        $and: [
+          {
+            $eq: [
+              {
+                $month: "$date_of_allocation",
+              },
+              n,
+            ],
+          },
+          {
+            $eq: [
+              {
+                $year: "$date_of_allocation",
+              },
+              n2,
+            ],
+          },
+        ],
+      },
+    })
+    .exec((err, posts) => {
       if (err)
         return res.status(400).json({
           message: "Unsuccess",
