@@ -27,6 +27,7 @@ import EditReview from "../modules/AdminModules/EditReview";
 import DisplayReview from "../modules/AdminModules/DisplayReview";
 import EditLapAllo from "../pages/AdminPage/EditLapAllo";
 import WorkReport from "../pages/AdminPage/WorkReport";
+import CreateNotice from "../pages/AdminPage/CreateNotice";
 
 const AppRoutes = () => (
   <div>
@@ -53,7 +54,6 @@ const AppRoutes = () => (
         <Route path="/createlapallocation" component={CreateLapAllo} exact />
         <Route path="/AllEmployees" component={AllEmployees} exact />
         <Route path="/EmployeePoints" component={EmployeePoints} exact />
-
         <Route
           exact
           path="/editassignment/:assignment"
@@ -64,11 +64,11 @@ const AppRoutes = () => (
         <Route path="/add" exact component={CreateReview}></Route>
         <Route path="/edit/:id" exact component={EditReview}></Route>
         <Route path="/post/:id" exact component={DisplayReview}></Route>
-
         <Route exact path="/editlapallo/:assignment" component={EditLapAllo} />
         <Route path="/reportwork" component={WorkReport} exact />
-
         <Route path="/InsertEmployee" component={InsertEmployee} exact />
+        /* Senara Routes */
+        <Route path="/CreateNotice" component={CreateNotice}></Route>
       </Switch>
       <Footer />
     </Router>
