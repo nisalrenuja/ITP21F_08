@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "./AllReports.css";
+import "./CompanyPerformance.css";
 
 export default class CompanyPerfomance extends Component {
   constructor(props) {
@@ -34,30 +34,33 @@ export default class CompanyPerfomance extends Component {
   render() {
     return (
       <div className="container">
-        <div class="anumain">
-          <h2 class="anuhead1">Reports Management</h2>
-          <hr class="anuline1"></hr>
+        <div class="anumain3">
+          <h2 class="anuhead41">Reports Management</h2>
+          <hr class="anuline41"></hr>
 
-          <a href="/newreport">
-            <button class="anudiv4">
-              <p class="anutxt4">NEW REPORT +</p>
-            </button>
-          </a>
+          <h3 class="anuhead42">Total Approved Reports - Quaterly</h3>
 
           <a href="/allreports">
-            <button class="anudiv1">
-              <p class="anutxt1">All Reports</p>
+            <button class="anudiv41">
+              <p class="anutxt41">All Reports</p>
             </button>
           </a>
 
           <a href="/companyperformance">
-            <button class="anudiv2">
-              <p class="anutxt2">Company Performance</p>
+            <button class="anudiv42">
+              <p class="anutxt42">Company Performance</p>
             </button>
           </a>
 
-          <h2 class="anutah">Reports</h2>
-          <table className="table table-hover anutable1">
+          <div class="anudiv44">
+            <input class="anuselect41" type="text" />
+            <a className="btn btn-info anusearch">
+              <i className="fas fa-search"></i>&nbsp;
+            </a>
+          </div>
+
+          <h2 class="anutah43">Reports</h2>
+          <table className="table table-hover anutable41">
             <thead class="anuthead">
               <tr>
                 <th scope="col">Quarter</th>
@@ -99,13 +102,6 @@ export default class CompanyPerfomance extends Component {
               </tfoot>
             </tbody>
           </table>
-
-          <div class="anudiv3">
-            <input class="anuselect1" type="text" />
-            <a className="btn btn-info anusearch">
-              <i className="fas fa-search"></i>&nbsp;
-            </a>
-          </div>
         </div>
       </div>
     );
