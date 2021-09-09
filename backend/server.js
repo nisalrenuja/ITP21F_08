@@ -15,7 +15,7 @@ connectDB();
 const postRoutes = require("./routes/Reviews");
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
-app.get("/", (req, res, next) => {
+app.get("/", (req, res, nenpmxt) => {
   res.send("Api running");
 });
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -50,10 +50,4 @@ const server = app.listen(PORT, () =>
 process.on("unhandledRejection", (err, promise) => {
   console.log(`Logged Error: ${err.message}`);
   server.close(() => process.exit(1));
-<<<<<<< HEAD
 });
-=======
-});
-
-
->>>>>>> 2654f9699cd69a0149029f037a61d96372b5c898

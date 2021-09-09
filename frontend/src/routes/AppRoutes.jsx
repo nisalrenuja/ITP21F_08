@@ -28,6 +28,11 @@ import DisplayReview from "../modules/AdminModules/DisplayReview";
 import EditLapAllo from "../pages/AdminPage/EditLapAllo";
 import WorkReport from "../pages/AdminPage/WorkReport";
 
+import LeavePage from "../pages/LeavesPage/LeavesPage";
+import Createleave from "../modules/AdminModules/CreateLeave";
+import EditLeave from "../modules/AdminModules/EditLeave";
+import DisplayLeave from "../modules/AdminModules/DisplayLeave";
+
 const AppRoutes = () => (
   <div>
     <Router>

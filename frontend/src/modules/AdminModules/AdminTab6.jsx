@@ -8,42 +8,64 @@ export default AdminTab6;
 
 import React, { Component } from "react";
 import axios from "axios";
-import "./AllAssignments.css";
+import "./AllLeaves.css";
 
-export default class AdminTab4 extends Component {
+export default class AdminTab6 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      assignments: []
+      leaves: []
     };
   }
-  onDelete = name => {
-    console.log(name);
+  onDelete = leave_id => {
+    console.log(leave_id);
     axios
-      .delete(`http://localhost:5000/assignments/delete/${name}`)
+      .delete(`http://localhost:5000/leaves/deleteleave/${leave_id}`)
       .then(res => {
         alert("Deleted Succesfully");
-        this.retrievePosts();
+        this.retrieveLeaves();
       });
   };
   componentDidMount() {
-    this.retrievePosts();
+    this.retrieveLeaves();
   }
-  retrievePosts() {
-    axios.get("http://localhost:5000/assignments/dis").then(res => {
+  retrieveLeaves() {
+    axios.get("http://localhost:5000/leaves/dis").then(res => {
       if (res.data.success) {
         this.setState({
-          assignments: res.data.assignmentsassigned
+          assignments: res.data.assignmentsassigned,
+          l: res.data.assignmentsassigned.length
         });
         console.log(this.state.assignments);
       }
     });
   }
+  filterData(assignmentsassigned, searchKey) {
+    console.log(searchKey);
+    const result = assignmentsassigned.filter(
+      assignmentsassigned =>
+        assignmentsassigned.assignment_name.toLowerCase().includes(searchKey) ||
+        assignmentsassigned.client_no.toLowerCase().includes(searchKey)
+    );
+    this.setState({ assignments: result });
+  }
+  handleSearchArea = e => {
+    const searchKey = e.currentTarget.value;
+    axios.get("http://localhost:5000/assignments/dis").then(res => {
+      if (res.data.success) {
+        console.log(res.data.assignmentsassigned);
+        this.filterData(res.data.assignmentsassigned, searchKey);
+      }
+    });
+  };
   render() {
     return (
       <div className="container">
-        <div class="main">
+        <div class="main222">
           <h2 class="head1">Work Allocation</h2>
+          <a href="/reportwork" class="btn btn-info reportdiv">
+            <i class="fa fa-file fa-2x" aria-hidden="true"></i>&nbsp;
+          </a>
           <hr class="line1"></hr>
           <a href="/allassignments">
             <button class="div1">
@@ -55,16 +77,23 @@ export default class AdminTab4 extends Component {
               <p class="txt2">Allocate Laptops</p>
             </button>
           </a>
+
           <div class="div3">
             <p class="txt3">Filter by</p>
-            <input class="select1" type="text" />
-            <a className="btn btn-info search">
+            <input
+              class="select11"
+              type="search"
+              placeholder="Search..."
+              name="searchQuery"
+              onChange={this.handleSearchArea}
+            />
+            <a className="btn btn-info search22">
               <i className="fas fa-search"></i>&nbsp;Search
             </a>
           </div>
-          <h2 class="tah">Total Assignments</h2>
-          <table className="table table-hover table1">
-            <thead class="thead">
+          <h2 class="tah101">Total Assignments({this.state.l})</h2>
+          <table className="table table-hover table101">
+            <thead class="thead101">
               <tr>
                 <th scope="col">Assignment</th>
                 <th scope="col">Client No</th>
@@ -74,11 +103,14 @@ export default class AdminTab4 extends Component {
                 <th scope="col">Actions</th>
               </tr>
             </thead>
-            <tbody class="tbody1">
+            <tbody class="tbody101">
               {this.state.assignments.map((assignments, index) => (
                 <tr key={index}>
                   <td>
-                    <a href={``} style={{ textDecoration: "none" }}>
+                    <a
+                      href={`/assignment/${assignments.assignment_name}`}
+                      style={{ textDecoration: "none" }}
+                    >
                       {assignments.assignment_name}
                     </a>
                   </td>
@@ -89,7 +121,7 @@ export default class AdminTab4 extends Component {
                   <td>{assignments.progress}</td>
 
                   <td>
-                    <a href={`/edit/${assignments._id}`}>
+                    <a href={`/editassignment/${assignments.assignment_name}`}>
                       <i className="fas fa-edit"></i>&nbsp;
                     </a>
                     &nbsp;
@@ -103,8 +135,8 @@ export default class AdminTab4 extends Component {
                 </tr>
               ))}
             </tbody>
-            <tfoot class="tfoot">
-              <a href="/createassignment">
+            <tfoot class="tfoot101">
+              <a href="/addleave">
                 <i class="fas fa-plus"></i>&nbsp;New Assignment
               </a>
             </tfoot>

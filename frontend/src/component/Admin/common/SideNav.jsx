@@ -9,7 +9,7 @@ const SideNav = ({ selectedMenuOption, onMenuItemSelect }) => {
     "Notice Management",
     "Attendance & Payroll",
     "Inventory Managemnet",
-    "MenuItem 8"
+    "Clients"
   ];
   return (
     <div className="sideNavbar">
