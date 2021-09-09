@@ -38,7 +38,7 @@ import WorkReport from "../pages/AdminPage/WorkReport";
 import CompanyPerfomance from "../pages/AdminPage/CompanyPerformance";
 import EditEmployee from "../pages/AdminPage/EditEmployee";
 import CreateExecutive from "../modules/AdminModules/CreateExecutive";
-//import NewExecutive from "../modules/AdminModules/NewExecutive";
+import NewExecutive from "../modules/AdminModules/NewExecutive";
 import EditExecutive from "../modules/AdminModules/EditExecutive";
 import DisplayExecutive from "../modules/AdminModules/DisplayExecutive";
 import CreateNotice from "../modules/AdminModules/CreateNotice";
@@ -92,6 +92,7 @@ const AppRoutes = () => (
         <Route path="/companyperformance" component={CompanyPerfomance} exact />
         <Route path="/EditEmployee/:id" component={EditEmployee} exact />
         <Route path="/createexecutive" component={CreateExecutive} exact />
+        <Route path="/newexecutive" component={NewExecutive} exact />
         <Route path="/editexecutive/:id" component={EditExecutive} exact />
         <Route
           path="/displayexecutive/:id"
