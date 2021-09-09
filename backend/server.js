@@ -11,7 +11,8 @@ const assignment_assignedtostaffRoutes = require("./routes/assignment_assignedto
 const laptop_assignment_Routes = require("./routes/laptop_assignment");
 const employees = require("./routes/employees");
 const executives = require("./routes/executives");
-
+const client_fees = require("./routes/client_fees");
+const client = require("./routes/client"); 
 //connect db
 connectDB();
 const postRoutes = require("./routes/Reviews");
