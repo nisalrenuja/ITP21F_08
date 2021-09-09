@@ -39,7 +39,7 @@ export default class EditAssignments extends Component {
           progress: res.data.ass[0].progress,
           assignment2: res.data.ass2
         });
-        console.log(res.data.ass2);
+        console.log(res.data.ass2[0].employees[0].name);
       }
     });
   }
@@ -201,7 +201,8 @@ export default class EditAssignments extends Component {
                 <strong>
                   <center>
                     <p style={{ color: "#1687a7", fontSize: "20px" }}>
-                      Emp No:-{assignment2.emp_no} - Allowances:-
+                      Emp No:-{assignment2.employees[0].empno} - Name:-{" "}
+                      {assignment2.employees[0].name} - Allowances:-
                       {assignment2.travel_allowance}
                     </p>
                   </center>
