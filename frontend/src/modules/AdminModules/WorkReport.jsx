@@ -40,7 +40,7 @@ export default class WorkReport extends Component {
         console.log(this.state.sll);
       }
     });
-    axios.get("http://localhost:5000/assignments/allowances").then(res => {
+    axios.get("http://localhost:5000/assignments/allowances1").then(res => {
       if (res.data.success) {
         var total = 0;
         for (var i = 0; i < res.data.posts.length; i++) {
@@ -54,6 +54,54 @@ export default class WorkReport extends Component {
           total: total
         });
         console.log(this.state.total);
+      }
+    });
+    axios.get("http://localhost:5000/assignments/allowances2").then(res => {
+      if (res.data.success) {
+        var total2 = 0;
+        for (var i = 0; i < res.data.posts.length; i++) {
+          if (res.data.posts[i].travel_allowance == null) {
+            res.data.posts[i].travel_allowance = 0;
+          }
+          total2 = total2 + res.data.posts[i].travel_allowance;
+        }
+        this.setState({
+          allowances: res.data.posts,
+          total2: total2
+        });
+        console.log(this.state.total2);
+      }
+    });
+    axios.get("http://localhost:5000/assignments/allowances3").then(res => {
+      if (res.data.success) {
+        var total3 = 0;
+        for (var i = 0; i < res.data.posts.length; i++) {
+          if (res.data.posts[i].travel_allowance == null) {
+            res.data.posts[i].travel_allowance = 0;
+          }
+          total3 = total3 + res.data.posts[i].travel_allowance;
+        }
+        this.setState({
+          allowances: res.data.posts,
+          total3: total3
+        });
+        console.log(this.state.total3);
+      }
+    });
+    axios.get("http://localhost:5000/assignments/allowances4").then(res => {
+      if (res.data.success) {
+        var total4 = 0;
+        for (var i = 0; i < res.data.posts.length; i++) {
+          if (res.data.posts[i].travel_allowance == null) {
+            res.data.posts[i].travel_allowance = 0;
+          }
+          total4 = total4 + res.data.posts[i].travel_allowance;
+        }
+        this.setState({
+          allowances: res.data.posts,
+          total4: total4
+        });
+        console.log(this.state.total4);
       }
     });
   }
@@ -106,26 +154,27 @@ export default class WorkReport extends Component {
             />
           </div>
           <div>
-            <h4>Total Allowances of the Month on Assignments</h4>
             <Chart
-              width={550}
-              height={400}
-              marginLeft={20}
-              chartType="Gauge"
+              width={"850px"}
+              height={"700px"}
+              chartType="Bar"
               loader={<div>Loading Chart</div>}
               data={[
-                ["Label", "Value"],
-                ["Rs", this.state.total]
+                ["Month", "Allowances(Rs)"],
+                [new Date().getMonth() - 2, this.state.total4],
+                [new Date().getMonth() - 1, this.state.total3],
+                [new Date().getMonth(), this.state.total2],
+                [new Date().getMonth() + 1, this.state.total]
               ]}
               options={{
-                redFrom: 200000,
-                redTo: 300000,
-                yellowFrom: 10000,
-                yellowTo: 200000,
-                max: 300000,
-                minorTicks: 5
+                // Material design options
+                chart: {
+                  title: "Total Allowances",
+                  subtitle: "Total Allowances for Last Four Months"
+                }
               }}
-              rootProps={{ "data-testid": "1" }}
+              // For tests
+              rootProps={{ "data-testid": "2" }}
             />
           </div>
         </center>
