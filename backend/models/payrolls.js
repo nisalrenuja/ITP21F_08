@@ -1,6 +1,6 @@
 //total_estimated_salary, date_collected
 const mongoose = require("mongoose");
-const { timeStamp } = require("node:console");
+
 
 const payrollsSchema = new mongoose.Schema({
     //declare variables/properties
