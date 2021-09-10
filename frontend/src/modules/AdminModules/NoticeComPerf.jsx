@@ -3,7 +3,7 @@ import axios from "axios";
 import "./NoticeComPerf.css";
 import { Redirect } from "react-router";
 
-export default class CreateNotice extends Component {
+export default class NoticeComPerf extends Component {
   constructor(props) {
     super(props);
 

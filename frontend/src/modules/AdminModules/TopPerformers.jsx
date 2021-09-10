@@ -3,7 +3,7 @@ import axios from "axios";
 import "./TopPerformers.css";
 import { Redirect } from "react-router";
 
-export default class CreateNotice extends Component {
+export default class TopPerformers extends Component {
   constructor(props) {
     super(props);
 
