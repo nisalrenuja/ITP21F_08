@@ -18,7 +18,7 @@ connectDB();
 const postRoutes = require("./routes/Reviews");
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
-app.get("/", (req, res, next) => {
+app.get("/", (req, res, nenpmxt) => {
   res.send("Api running");
 });
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -40,6 +40,7 @@ app.use(executives);
 const attendancesRoutes = require("./routes/attendances");
 const leavesRoutes = require("./routes/leaves");
 const final_report = require("./models/final_report");
+const payrollRoutes = require("./routes/payrolls");
 
 
 //add routes here ..
@@ -52,6 +53,7 @@ app.use(client_fees);
 app.use(client);
 app.use(attendancesRoutes);
 app.use(leavesRoutes);
+app.use(payrollRoutes);
 
 
 // Error Handler Middleware ..
