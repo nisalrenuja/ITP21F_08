@@ -43,10 +43,8 @@ import EditExecutive from "../modules/AdminModules/EditExecutive";
 import DisplayExecutive from "../modules/AdminModules/DisplayExecutive";
 import CreateNotice from "../modules/AdminModules/CreateNotice";
 
-import LeavePage from "../pages/LeavesPage/LeavesPage";
-import Createleave from "../modules/AdminModules/CreateLeave";
-import EditLeave from "../modules/AdminModules/EditLeave";
-import DisplayLeave from "../modules/AdminModules/DisplayLeave";
+import PayrollPage from "../pages/PayrollPage/PayrollPage";
+import CreatePayroll from "../modules/AdminModules/CreatePayroll";
 
 const AppRoutes = () => (
   <div>
@@ -106,6 +104,9 @@ const AppRoutes = () => (
         />
         /*Senara Routes*/
         <Route path="/CreateNotice" component={CreateNotice} exact></Route>
+        /*Dimashi Routes*/
+        <Route path="/payroll" component={PayrollPage} exact />
+        <Route path="/addpayroll" exact component={CreatePayroll}></Route>
       </Switch>
       <Footer />
     </Router>

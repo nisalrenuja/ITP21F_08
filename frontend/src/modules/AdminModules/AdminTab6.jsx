@@ -1,146 +1,177 @@
-/*
-const AdminTab6 = () => {
-  return <div>Attendance & Payroll content goes here</div>;
-};
-
-export default AdminTab6;
-*/
-
 import React, { Component } from "react";
 import axios from "axios";
-import "./AllLeaves.css";
+import Clock from "../../component/common/clock/Clock";
+import "./AllPayrolls.css";
 
-export default class AdminTab6 extends Component {
+export default class AdminTab1 extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      leaves: []
+      //posts will be stated as an array
+      payrolls: []
     };
   }
-  onDelete = leave_id => {
-    console.log(leave_id);
-    axios
-      .delete(`http://localhost:5000/leaves/deleteleave/${leave_id}`)
-      .then(res => {
-        alert("Deleted Succesfully");
-        this.retrieveLeaves();
-      });
-  };
+
+  //A method in react life cycle
   componentDidMount() {
-    this.retrieveLeaves();
+    this.retrievePayrolls();
   }
-  retrieveLeaves() {
-    axios.get("http://localhost:5000/leaves/dis").then(res => {
+
+  retrievePayrolls() {
+    //end point
+    axios.get("http://localhost:5000/payrolls").then(res => {
       if (res.data.success) {
         this.setState({
-          assignments: res.data.assignmentsassigned,
-          l: res.data.assignmentsassigned.length
+          payrolls: res.data.existingPayrolls
         });
-        console.log(this.state.assignments);
+
+        console.log(this.state.payrolls);
       }
     });
   }
-  filterData(assignmentsassigned, searchKey) {
-    console.log(searchKey);
-    const result = assignmentsassigned.filter(
-      assignmentsassigned =>
-        assignmentsassigned.assignment_name.toLowerCase().includes(searchKey) ||
-        assignmentsassigned.client_no.toLowerCase().includes(searchKey)
+
+  onDelete = id => {
+    axios.delete(`http://localhost:5000/payroll/delete/${id}`).then(res => {
+      alert("Deleted Successfully!!");
+      this.retrievePayrolls();
+    });
+  };
+
+  filterData(payrolls, searchKey) {
+    const result = payrolls.filter(
+      payroll =>
+        payroll.empno.toLowerCase().includes(searchKey) ||
+        payroll.name.toLowerCase().includes(searchKey) ||
+        payroll.position.toLowerCase().includes(searchKey) ||
+        payroll.bank.toLowerCase().includes(searchKey) ||
+        payroll.bank_branch.toLowerCase().includes(searchKey) ||
+        payroll.account_no.includes(searchKey) ||
+        payroll.basic_salary.includes(searchKey) ||
+        payroll.salary_date.includes(searchKey)
     );
-    this.setState({ assignments: result });
+
+    this.setState({ payrolls: result });
   }
+
   handleSearchArea = e => {
+    //to check whether this method invokes
+    //console.log(e.currentTarget.value);
+
     const searchKey = e.currentTarget.value;
-    axios.get("http://localhost:5000/assignments/dis").then(res => {
+
+    axios.get("http://localhost:5000/payrolls").then(res => {
       if (res.data.success) {
-        console.log(res.data.assignmentsassigned);
-        this.filterData(res.data.assignmentsassigned, searchKey);
+        this.filterData(res.data.existingPayrolls, searchKey);
       }
     });
   };
+
   render() {
     return (
       <div className="container">
-        <div class="main222">
-          <h2 class="head1">Work Allocation</h2>
-          <a href="/reportwork" class="btn btn-info reportdiv">
-            <i class="fa fa-file fa-2x" aria-hidden="true"></i>&nbsp;
-          </a>
-          <hr class="line1"></hr>
-          <a href="/allassignments">
-            <button class="div1">
-              <p class="txt1">Assignments</p>
-            </button>
-          </a>
-          <a href="/laptopallocation">
-            <button class="div2">
-              <p class="txt2">Allocate Laptops</p>
-            </button>
-          </a>
+        <br></br>
 
-          <div class="div3">
-            <p class="txt3">Filter by</p>
-            <input
-              class="select11"
-              type="search"
-              placeholder="Search..."
-              name="searchQuery"
-              onChange={this.handleSearchArea}
-            />
-            <a className="btn btn-info search22">
-              <i className="fas fa-search"></i>&nbsp;Search
-            </a>
+        <div className="adminpayroll">
+          <div className="row">
+            <div className="col-lg-9 mt-2 mb-2 font-weight-bold">
+              <h2>Payroll Management </h2>
+              <br></br>
+            </div>
+
+            <div className="col-lg-9 mt-2 mb-2">
+              <Clock />
+              <br />
+              <button class="btn btn-primary btn-lg">
+                <a href="#" style={{ textDecoration: "none", color: "white" }}>
+                  Attendance
+                </a>
+              </button>
+
+              <button class="btn btn-primary btn-lg">
+                <a
+                  href="/allleaves"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  Leaves
+                </a>
+              </button>
+            </div>
+
+            <div className="col-lg-9 mt-2 mb-2">
+              <h2>&nbsp; &nbsp; &nbsp; Payroll Management </h2>
+              <br></br>
+            </div>
+
+            <div className="col-lg-3 mt-2 mb-2">
+              <input
+                className="form-control"
+                type="search"
+                placeholder="Search..."
+                name="searchQuery"
+                onChange={this.handleSearchArea}
+              ></input>
+            </div>
           </div>
-          <h2 class="tah101">Total Assignments({this.state.l})</h2>
-          <table className="table table-hover table101">
-            <thead class="thead101">
-              <tr>
-                <th scope="col">Assignment</th>
-                <th scope="col">Client No</th>
-                <th scope="col">Deadline</th>
-                <th scope="col">Allocated</th>
-                <th scope="col">Progress</th>
-                <th scope="col">Actions</th>
+
+          <table className="table table-hover" style={{ marginTop: "40px" }}>
+            <thead>
+              <tr class="bg-info">
+                <th scope="col"> #Salary id</th>
+                <th scope="col"> Employee ID</th>
+                <th scope="col"> Name</th>
+                <th scope="col"> Position</th>
+                <th scope="col"> Basic Salary</th>
+                <th scope="col"> Action</th>
               </tr>
             </thead>
-            <tbody class="tbody101">
-              {this.state.assignments.map((assignments, index) => (
+
+            <tbody>
+              {this.state.payrolls.map((payrolls, index) => (
                 <tr key={index}>
+                  <th scope="row">{index + 1}</th>
+
                   <td>
                     <a
-                      href={`/assignment/${assignments.assignment_name}`}
+                      href={`/payroll/${payrolls._id}`}
                       style={{ textDecoration: "none" }}
                     >
-                      {assignments.assignment_name}
+                      {payrolls.empno}
                     </a>
                   </td>
-                  <td>{assignments.client_no}</td>
-                  <td>{assignments.deadline}</td>
-                  <td>{assignments.date_of_allocation}</td>
-
-                  <td>{assignments.progress}</td>
+                  <td>{payrolls.name}</td>
+                  <td>{payrolls.position}</td>
+                  <td>{payrolls.basic_salary}</td>
 
                   <td>
-                    <a href={`/editassignment/${assignments.assignment_name}`}>
-                      <i className="fas fa-edit"></i>&nbsp;
+                    <a
+                      className="btn btn-warning"
+                      href={`/editpayroll/${payrolls._id}`}
+                    >
+                      <i className="fas fa-edit"></i> &nbsp;Edit
                     </a>
                     &nbsp;
                     <a
+                      className="btn btn-danger"
                       href="#"
-                      onClick={() => this.onDelete(assignments.assignment_name)}
+                      onClick={() => this.onDelete(payrolls._id)}
                     >
-                      <i className="far fa-trash-alt"></i>&nbsp;
+                      <i className="fas fa-trash-alt"></i> &nbsp;Delete
                     </a>
                   </td>
                 </tr>
               ))}
             </tbody>
-            <tfoot class="tfoot101">
-              <a href="/addleave">
-                <i class="fas fa-plus"></i>&nbsp;New Assignment
-              </a>
-            </tfoot>
           </table>
+
+          <button className="btn btn-success">
+            <a
+              href="/addpayroll"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              Add New
+            </a>
+          </button>
         </div>
       </div>
     );
