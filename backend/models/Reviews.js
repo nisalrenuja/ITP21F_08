@@ -21,14 +21,18 @@ const review_Schema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  /*next_reviewer: {
+  employee_name: {
     type: String,
     required: true,
   },
-  title_of_review: {
-    type: String,
+  sub_date: {
+    type: Date,
     required: true,
-   },*/
+  },
+  due_date: {
+    type: Date,
+    required: true,
+  },
   status: {
     type: String,
     required: true,
