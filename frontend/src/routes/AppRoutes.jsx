@@ -41,6 +41,7 @@ import CreateExecutive from "../modules/AdminModules/CreateExecutive";
 import NewExecutive from "../modules/AdminModules/NewExecutive";
 import EditExecutive from "../modules/AdminModules/EditExecutive";
 import DisplayExecutive from "../modules/AdminModules/DisplayExecutive";
+import CreateClient from "../modules/AdminModules/CreateClient";
 
 const AppRoutes = () => (
   <div>
