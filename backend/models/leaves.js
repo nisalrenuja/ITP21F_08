@@ -3,16 +3,11 @@ const mongoose = require("mongoose");
 //changed
 const leavesSchema = new mongoose.Schema({
     //declare variables/properties
-    leave_id: {
-        type:String,
-        required:true,//since must have
-        unique:true
-    },
-    emp_id: {
+    empno: {
         type:String,
         required:true,//since must have
     },
-    emp_name: {
+    name: {
         type: String,
         required: false,
     },
@@ -22,12 +17,14 @@ const leavesSchema = new mongoose.Schema({
     },
     
     //leave dates
-    leave_date: [
-        {
-            type: Date,
-            required: false,
-        }
-    ],
+    leave_start_date: {
+        type: Date,
+        required: false,
+    },
+    leave_end_date: {
+        type: Date,
+        required: false,
+    },
 
     no_of_leaves: {
         type: Number,

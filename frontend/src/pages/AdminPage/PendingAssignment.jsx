@@ -10,11 +10,9 @@ import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import LapAllo from "../../modules/AdminModules/LapAllo";
-import Employeepoints from "../../modules/AdminModules/EmployeePoints";
-import LaptopRepair from "../../modules/AdminModules/LaptopRepair";
-import CreateNotice from "../../modules/AdminModules/CreateNotice";
+import PendingAssignments from "../../modules/AdminModules/PendingAssignment";
 
-const Admin = () => {
+const PendingAssignment = ({ history, match }) => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -51,24 +49,24 @@ const Admin = () => {
         <Container>
           {selectedMenuOption === "User Executive" ? (
             <AdminTab1 />
-          ) : selectedMenuOption === "Reports Management" ? (
+          ) : selectedMenuOption === "MenuItem 2" ? (
             <AdminTab2 />
           ) : selectedMenuOption === "Employees" ? (
-            <AdminTab3 />
+            <PendingAssignments dataFromParent={match.params.id} />
           ) : selectedMenuOption === "Work Allocation" ? (
             <AdminTab4 />
           ) : selectedMenuOption === "Notice Management" ? (
             <AdminTab5 />
           ) : selectedMenuOption === "Attendance & Payroll" ? (
             <AdminTab6 />
-          ) : selectedMenuOption === "Inventory Management" ? (
+          ) : selectedMenuOption === "MenuItem 7" ? (
             <AdminTab7 />
           ) : (
             <AdminTab8 />
           )}
         </Container>
       ) : (
-        <div> </div>
+        <div></div>
       )}
       <SideNav
         onMenuItemSelect={updateSelectedMenuOption}
@@ -78,4 +76,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default PendingAssignment;

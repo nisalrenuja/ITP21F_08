@@ -6,31 +6,53 @@ export default class AdminTab2 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      assignments: []
+      posts: []
     };
   }
-  onDelete = name => {
-    console.log(name);
-    axios
-      .delete(`http://localhost:5000/assignments/delete/${name}`)
-      .then(res => {
-        alert("Deleted Succesfully");
-        this.retrievePosts();
-      });
-  };
+
   componentDidMount() {
     this.retrievePosts();
   }
   retrievePosts() {
-    axios.get("http://localhost:5000/assignments/dis").then(res => {
+    axios.get("http://localhost:5000/review").then(res => {
       if (res.data.success) {
         this.setState({
-          assignments: res.data.assignmentsassigned
+          posts: res.data.existingPosts
         });
-        console.log(this.state.assignments);
+        console.log(this.state.posts);
       }
     });
   }
+
+  onDelete = id => {
+    axios.delete(`http://localhost:5000/review/delete/${id}`).then(res => {
+      alert("Deleted Successfully");
+      this.retrievePosts();
+    });
+  };
+
+  filterData(posts, searchKey) {
+    const result = posts.filter(
+      post =>
+        post.execid_review.toLowerCase().includes(searchKey) ||
+        post.report.toLowerCase().includes(searchKey) ||
+        post.points.toLowerCase().includes(searchKey) ||
+        post.feedback.toLowerCase().includes(searchKey) ||
+        post.status.toLowerCase().includes(searchKey)
+    );
+    this.setState({ posts: result });
+  }
+
+  handleSearchArea = e => {
+    const searchKey = e.currentTarget.value;
+
+    axios.get("http://localhost:5000/review").then(res => {
+      if (res.data.success) {
+        this.filterData(res.data.existingPosts, searchKey);
+      }
+    });
+  };
+
   render() {
     return (
       <div className="container">
@@ -61,80 +83,29 @@ export default class AdminTab2 extends Component {
             <thead class="anuthead">
               <tr>
                 <th scope="col">Report Name</th>
-                <th scope="col">Manager Name</th>
-                <th scope="col">Partner Name</th>
-                <th scope="col">Due Date</th>
+                <th scope="col">Points</th>
+                <th scope="col">Feedback</th>
                 <th scope="col">Status</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody class="anutbody1">
-              {this.state.assignments.map((assignments, index) => (
+              {this.state.posts.map((posts, index) => (
                 <tr key={index}>
                   <td>
-                    <a href={``} style={{ textDecoration: "none" }}>
-                      {assignments.assignment_name}
+                    <a href={`/reports/`} style={{ textDecoration: "none" }}>
+                      {posts.report}
                     </a>
                   </td>
-                  <td>{assignments.client_no}</td>
-                  <td>{assignments.deadline}</td>
-                  <td>{assignments.date_of_allocation}</td>
-                  <td>{assignments.progress}</td>
+                  <td>{posts.points}</td>
+                  <td>{posts.feedback}</td>
+                  <td>{posts.status}</td>
                   <td>
-                    <a href={`/edit/${assignments._id}`}>
+                    <a href={`/edit/${posts.report}`}>
                       <i className="fas fa-edit"></i>&nbsp;
                     </a>
                     &nbsp;
-                    <a
-                      href="#"
-                      onClick={() => this.onDelete(assignments.assignment_name)}
-                    >
-                      <i className="far fa-trash-alt"></i>&nbsp;
-                    </a>
-                  </td>
-                </tr>
-              ))}
-              <tfoot class="tfoot">
-                <a href="/createassignment">
-                  <i class="fas fa-plus"></i>&nbsp;New Report
-                </a>
-              </tfoot>
-            </tbody>
-          </table>
-
-          <h2 class="anutah1">Reviewed Report Assignments</h2>
-          <table className="table table-hover anutable2">
-            <thead class="anuthead">
-              <tr>
-                <th scope="col">Report Name</th>
-                <th scope="col">Manager Name</th>
-                <th scope="col">Partner Name</th>
-                <th scope="col">Due Date</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody class="anutbody1">
-              {this.state.assignments.map((assignments, index) => (
-                <tr key={index}>
-                  <td>
-                    <a href={``} style={{ textDecoration: "none" }}>
-                      {assignments.assignment_name}
-                    </a>
-                  </td>
-                  <td>{assignments.client_no}</td>
-                  <td>{assignments.deadline}</td>
-                  <td>{assignments.date_of_allocation}</td>
-                  <td>{assignments.progress}</td>
-                  <td>
-                    <a href={`/edit/${assignments._id}`}>
-                      <i className="fas fa-edit"></i>&nbsp;
-                    </a>
-                    &nbsp;
-                    <a
-                      href="#"
-                      onClick={() => this.onDelete(assignments.assignment_name)}
-                    >
+                    <a href="#" onClick={() => this.onDelete(posts.report)}>
                       <i className="far fa-trash-alt"></i>&nbsp;
                     </a>
                   </td>

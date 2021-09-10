@@ -74,7 +74,17 @@ router.get("/assignment/:id", (req, res) => {
     .sort({ $natural: -1 })
     .exec((err, ass) => {
       assignment_assignedtostaff
-        .find({ assignment_name: assid })
+        .aggregate([
+          { $match: { assignment_name: assid } },
+          {
+            $lookup: {
+              from: "employees",
+              localField: "emp_no",
+              foreignField: "empno",
+              as: "employees",
+            },
+          },
+        ])
         .exec((err, ass2) => {
           return res.status(200).json({
             success: true,
@@ -84,6 +94,7 @@ router.get("/assignment/:id", (req, res) => {
         });
     });
 });
+
 router.put("/assignments/update/:name", (req, res) => {
   let name = req.params.name;
   assignment_assignedtostaff

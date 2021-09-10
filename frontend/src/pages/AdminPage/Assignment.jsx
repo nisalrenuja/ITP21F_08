@@ -11,6 +11,7 @@ import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import LapAllo from "../../modules/AdminModules/LapAllo";
 import Assignments from "../../modules/AdminModules/Assignment";
+import PendingAssignments from "../../modules/AdminModules/PendingAssignment";
 
 const Assignment = ({ history, match }) => {
   let userRole = "";
@@ -52,7 +53,7 @@ const Assignment = ({ history, match }) => {
           ) : selectedMenuOption === "MenuItem 2" ? (
             <AdminTab2 />
           ) : selectedMenuOption === "Employees" ? (
-            <AdminTab3 />
+            <Assignments dataFromParent={match.params.assignment} />
           ) : selectedMenuOption === "Work Allocation" ? (
             <Assignments dataFromParent={match.params.assignment} />
           ) : selectedMenuOption === "MenuItem 5" ? (

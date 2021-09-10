@@ -10,11 +10,10 @@ import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import LapAllo from "../../modules/AdminModules/LapAllo";
-import Employeepoints from "../../modules/AdminModules/EmployeePoints";
-import LaptopRepair from "../../modules/AdminModules/LaptopRepair";
 import CreateNotice from "../../modules/AdminModules/CreateNotice";
+import TopPerformers from "../../modules/AdminModules/TopPerformers";
 
-const Admin = () => {
+const Topperformers = ({ history, match }) => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -22,9 +21,7 @@ const Admin = () => {
     selectedMenuOptionCache =
       window.localStorage.getItem("MenuOptionCache") || "";
   }
-  const [selectedMenuOption, setSelectedMenuOption] = useState(
-    "User Executive"
-  );
+  const [selectedMenuOption, setSelectedMenuOption] = useState("Report Review");
 
   useEffect(() => {
     if (userRole !== "Admin") {
@@ -49,19 +46,19 @@ const Admin = () => {
     <div>
       {selectedMenuOption !== "" ? (
         <Container>
-          {selectedMenuOption === "User Executive" ? (
+          {selectedMenuOption === "Report Review" ? (
             <AdminTab1 />
-          ) : selectedMenuOption === "Reports Management" ? (
+          ) : selectedMenuOption === "MenuItem 2" ? (
             <AdminTab2 />
           ) : selectedMenuOption === "Employees" ? (
             <AdminTab3 />
           ) : selectedMenuOption === "Work Allocation" ? (
             <AdminTab4 />
           ) : selectedMenuOption === "Notice Management" ? (
-            <AdminTab5 />
-          ) : selectedMenuOption === "Attendance & Payroll" ? (
+            <TopPerformers />
+          ) : selectedMenuOption === "MenuItem 6" ? (
             <AdminTab6 />
-          ) : selectedMenuOption === "Inventory Management" ? (
+          ) : selectedMenuOption === "MenuItem 7" ? (
             <AdminTab7 />
           ) : (
             <AdminTab8 />
@@ -78,4 +75,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default Topperformers;

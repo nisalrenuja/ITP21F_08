@@ -10,11 +10,11 @@ import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import LapAllo from "../../modules/AdminModules/LapAllo";
-import Employeepoints from "../../modules/AdminModules/EmployeePoints";
-import LaptopRepair from "../../modules/AdminModules/LaptopRepair";
-import CreateNotice from "../../modules/AdminModules/CreateNotice";
+import CreateAssignment from "../../modules/AdminModules/CreateAssignment";
 
-const Admin = () => {
+import CreateReport from "../../modules/AdminModules/CreateReport";
+
+const Report = () => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -52,16 +52,16 @@ const Admin = () => {
           {selectedMenuOption === "User Executive" ? (
             <AdminTab1 />
           ) : selectedMenuOption === "Reports Management" ? (
-            <AdminTab2 />
+            <CreateReport />
           ) : selectedMenuOption === "Employees" ? (
             <AdminTab3 />
           ) : selectedMenuOption === "Work Allocation" ? (
-            <AdminTab4 />
-          ) : selectedMenuOption === "Notice Management" ? (
+            <CreateAssignment />
+          ) : selectedMenuOption === "MenuItem 5" ? (
             <AdminTab5 />
-          ) : selectedMenuOption === "Attendance & Payroll" ? (
+          ) : selectedMenuOption === "MenuItem 6" ? (
             <AdminTab6 />
-          ) : selectedMenuOption === "Inventory Management" ? (
+          ) : selectedMenuOption === "MenuItem 7" ? (
             <AdminTab7 />
           ) : (
             <AdminTab8 />
@@ -78,4 +78,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default Report;

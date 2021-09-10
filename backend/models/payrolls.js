@@ -1,19 +1,14 @@
 //total_estimated_salary, date_collected
 const mongoose = require("mongoose");
-const { timeStamp } = require("node:console");
+
 
 const payrollsSchema = new mongoose.Schema({
     //declare variables/properties
-    pay_id: {
-        type:String,
-        required:true,//since must have
-        unique:true
-    },
-    emp_id: {
+    empno: {
         type:String,
         required:true//since must have
     },
-    emp_name: {
+    name: {
         type: String,
         required: false,
     },
@@ -21,29 +16,26 @@ const payrollsSchema = new mongoose.Schema({
         type: String,
         required: false,
     },
+    bank: {
+        type: String,
+        required: false,
+    },
+    bank_branch: {
+        type: String,
+        required: false,
+    },
     account_no: {
         type: String,
         required: false,
     },
-    net_salary: {
-        type: String,
+    basic_salary: {
+        type: Number,
         required: false,
     },
     salary_date: {
         type: Date,
         required: false,
     },
-    salary_recieve: {
-        type: Boolean,
-        required: false,
-    },
-    date_collected: {
-        type: Date,
-        required: false,
-    },
-
-
- 
 
 });
 

@@ -35,11 +35,22 @@ export default class AdminTab5 extends Component {
     return (
       <div className="container">
         <div class="senmain">
-          <h2 class="senhead1">Notices</h2>
+          <h2 class="senhead1">Notice Management</h2>
           <hr class="senline1"></hr>
           <a href="/CreateNotice">
             <button class="sendiv4">
               <p class="sentxt4">NEW NOTICE +</p>
+            </button>
+          </a>
+
+          <a href="/TopPerformers">
+            <button class="senadiv1">
+              <p class="senatxt1">Top Performers</p>
+            </button>
+          </a>
+          <a href="/NoticeComPerf">
+            <button class="senadiv2">
+              <p class="senatxt2">Company Performance</p>
             </button>
           </a>
 
@@ -89,58 +100,57 @@ export default class AdminTab5 extends Component {
                 </tr>
               ))}
             </tbody>
-
-            <h2 class="sentah1">Previous Notices</h2>
-
-            <div class="sendiv3">
-              <p class="sentxt3"></p>
-              <input class="senselect1" type="text" />
-              <a className="btn btn-info sensearch1">
-                <i className="fas fa-search"></i>&nbsp;Search
-              </a>
-            </div>
-
-            <table className="table table-hover sentable1">
-              <thead class="senthead">
-                <tr>
-                  <th scope="col">Notice ID</th>
-                  <th scope="col">Employee ID</th>
-                  <th scope="col">Notice Topic</th>
-                  <th scope="col">Published Date</th>
-                  <th scope="col">Actions</th>
-                </tr>
-              </thead>
-              <tbody class="sentbody1">
-                {this.state.assignments.map((notices, index) => (
-                  <tr key={index}>
-                    <td>
-                      <a href={``} style={{ textDecoration: "none" }}>
-                        {notices.assignment_name}
-                      </a>
-                    </td>
-                    <td>{notices.notice_id}</td>
-
-                    <td>{notices.progress}</td>
-                    <td>{notices.deadline}</td>
-
-                    <td>
-                      <a href={`/edit/${notices._id}`}>
-                        <i className="fas fa-edit"></i>&nbsp;
-                      </a>
-                      &nbsp;
-                      <a
-                        href="#"
-                        onClick={() => this.onDelete(notices.assignment_name)}
-                      >
-                        <i className="far fa-trash-alt"></i>&nbsp;
-                      </a>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-
             <tfoot class="tfoot"></tfoot>
+          </table>
+
+          <h2 class="sentah1">Previous Notices</h2>
+
+          <div class="sendiv31">
+            <p class="sentxt3"></p>
+            <input class="senselect1" type="text" />
+            <a className="btn btn-info sensearch1">
+              <i className="fas fa-search"></i>&nbsp;Search
+            </a>
+          </div>
+
+          <table className="table table-hover sentable2">
+            <thead class="senthead">
+              <tr>
+                <th scope="col">Notice ID</th>
+                <th scope="col">Employee ID</th>
+                <th scope="col">Notice Topic</th>
+                <th scope="col">Published Date</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="sentbody1">
+              {this.state.assignments.map((notices, index) => (
+                <tr key={index}>
+                  <td>
+                    <a href={``} style={{ textDecoration: "none" }}>
+                      {notices.assignment_name}
+                    </a>
+                  </td>
+                  <td>{notices.notice_id}</td>
+
+                  <td>{notices.progress}</td>
+                  <td>{notices.deadline}</td>
+
+                  <td>
+                    <a href={`/edit/${notices._id}`}>
+                      <i className="fas fa-edit"></i>&nbsp;
+                    </a>
+                    &nbsp;
+                    <a
+                      href="#"
+                      onClick={() => this.onDelete(notices.assignment_name)}
+                    >
+                      <i className="far fa-trash-alt"></i>&nbsp;
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
       </div>
