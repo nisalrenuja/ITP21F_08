@@ -44,6 +44,7 @@ import DisplayExecutive from "../modules/AdminModules/DisplayExecutive";
 import CreateNotice from "../modules/AdminModules/CreateNotice";
 import TopPerformers from "../modules/AdminModules/TopPerformers";
 import NoticeComPerf from "../modules/AdminModules/NoticeComPerf";
+import PendingAssignment from "../pages/AdminPage/PendingAssignment";
 
 import PayrollPage from "../pages/PayrollPage/PayrollPage";
 import CreatePayroll from "../modules/AdminModules/CreatePayroll";
@@ -101,6 +102,11 @@ const AppRoutes = () => (
         <Route path="/createexecutive" component={CreateExecutive} exact />
         <Route path="/newexecutive" component={NewExecutive} exact />
         <Route path="/editexecutive/:id" component={EditExecutive} exact />
+        <Route
+          exact
+          path="/PendingAssignments/:id"
+          component={PendingAssignment}
+        />
         <Route
           path="/displayexecutive/:id"
           component={DisplayExecutive}
