@@ -41,7 +41,7 @@ letter-spacing: -0.00022em;
 
 color: #FFFFFF;
 }
-.header{
+.head1{
     position: absolute;
 width: 623px;
 height: 80px;
@@ -56,7 +56,7 @@ line-height: 58px;
 
 color: #1687A7;
 }
-.liner{
+.line1{
     position: absolute;
 width: 1000.03px;
 height: 0px;
@@ -90,7 +90,7 @@ background: #F6F5F5;
 backdrop-filter: blur(4px);
 }
 
-.txt-4{
+.txt4{
     position: absolute;
 width: 261px;
 height: 45px;
@@ -110,7 +110,7 @@ color: #000000;
 
 }
 
-.select-3{
+.select3{
     position: absolute;
 width: 300px;
 height: 40px;
@@ -122,7 +122,7 @@ border: 2px solid #C4C4C4;
 box-sizing: border-box;
 }
 
-.txt-5{
+.txt5{
     position: absolute;
 width: 261px;
 height: 45px;
@@ -141,12 +141,12 @@ letter-spacing: -0.00022em;
 color: #000000;
 }
 
-.txt-6{
+.txt6{
     position: absolute;
 width: 261px;
 height: 45px;
 left: 50px;
-top: 150px;
+top: 210px;
 
 font-family: Inter;
 font-style: normal;
@@ -160,7 +160,7 @@ letter-spacing: -0.00022em;
 color: #000000;
 }
 
-.txt-7{
+.txt7{
     position: absolute;
 width: 261px;
 height: 45px;
@@ -179,7 +179,7 @@ letter-spacing: -0.00022em;
 color: #000000;
 }
 
-.txt-8{
+.txt8{
     position: absolute;
 width: 261px;
 height: 45px;
@@ -198,7 +198,7 @@ letter-spacing: -0.00022em;
 color: #000000;
 }
 
-.txt-9{
+.txt9{
     position: absolute;
 width: 261px;
 height: 45px;
@@ -217,7 +217,7 @@ letter-spacing: -0.00022em;
 color: #000000;
 }
 
-.box-1{position: absolute;
+.box1{position: absolute;
     width: 600px;
     height: 40px;
     left: 300px;
@@ -228,18 +228,18 @@ color: #000000;
     box-sizing: border-box;
 }
 
-.box-2{position: absolute;
+.box2{position: absolute;
     width: 300px;
     height: 40px;
     left: 300px;
-    top: 150px;
+    top: 210px;
     
     background: #D3E0EA;
     border: 2px solid #C4C4C4;
     box-sizing: border-box;
 }
 
-.box-3{position: absolute;
+.box3{position: absolute;
     width: 300px;
     height: 40px;
     left: 300px;
@@ -250,7 +250,7 @@ color: #000000;
     box-sizing: border-box;
 }
 
-.box-4{position: absolute;
+.box4{position: absolute;
     width: 100px;
     height: 40px;
     left: 300px;
@@ -261,7 +261,7 @@ color: #000000;
     box-sizing: border-box;
 }
 
-.box-5{position: absolute;
+.box5{position: absolute;
     width: 100px;
     height: 40px;
     left: 300px;
@@ -315,7 +315,7 @@ border-radius: 5px;
 width: 250px;
 height: 40px;
 left: 50px;
-top: 200px;
+top: 150px;
 background: #1687A7;
 border: 1px solid #F6F5F5;
 box-sizing: border-box;

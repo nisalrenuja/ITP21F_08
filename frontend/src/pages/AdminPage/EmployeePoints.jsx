@@ -10,7 +10,6 @@ import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import EmployeePoints from "../../modules/AdminModules/EmployeePoints";
-import PendingAssignments from "../../modules/AdminModules/PendingAssignment";
 
 const Admin = () => {
   let userRole = "";
