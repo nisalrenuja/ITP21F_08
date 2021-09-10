@@ -183,7 +183,8 @@ export default class Assignment extends Component {
                 <strong>
                   <center>
                     <p style={{ color: "#1687a7", fontSize: "20px" }}>
-                      Emp No:- {assignment2.emp_no} - Allowances:-{" "}
+                      Emp No:-{assignment2.employees[0].empno} - Name:-{" "}
+                      {assignment2.employees[0].name} - Allowances:-
                       {assignment2.travel_allowance}
                     </p>
                   </center>
