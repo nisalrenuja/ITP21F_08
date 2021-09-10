@@ -40,6 +40,7 @@ app.use(executives);
 const attendancesRoutes = require("./routes/attendances");
 const leavesRoutes = require("./routes/leaves");
 const final_report = require("./models/final_report");
+const payrollRoutes = require("./models/payrolls");
 
 
 //add routes here ..
@@ -52,6 +53,7 @@ app.use(client_fees);
 app.use(client);
 app.use(attendancesRoutes);
 app.use(leavesRoutes);
+app.use(payrollRoutes);
 
 
 // Error Handler Middleware ..
@@ -67,7 +69,4 @@ process.on("unhandledRejection", (err, promise) => {
   console.log(`Logged Error: ${err.message}`);
   server.close(() => process.exit(1));
 });
-<<<<<<< HEAD
-=======
 //...
->>>>>>> 6c8cf77cd3a7b520a18e36913abff331e82187d0
