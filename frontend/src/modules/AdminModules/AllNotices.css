@@ -23,7 +23,7 @@
     width: 251px;
     height: 48px;
     left: 700px;
-    top: 65px;
+    top: 165px;
 
     background: #276678;
     background: #1687A7;
@@ -34,6 +34,65 @@
   }
 
   .sentxt4{
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 40px;
+
+    /* identical to box height */
+    text-align: center;
+    letter-spacing: -0.00022em;
+
+    color: #F6F5F5;
+  }
+
+  /*Navigation Buttons*/
+  .senadiv1{
+    position: absolute;
+    width: 251px;
+    height: 48px;
+    left: 450px;
+    top: 65px;
+
+    background: #276678;
+    background: #276678;
+    ;
+    
+
+    border-radius: 5px;
+
+  }
+  .senatxt1{
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 40px;
+
+    /* identical to box height */
+    text-align: center;
+    letter-spacing: -0.00022em;
+
+    color: #F6F5F5;
+  }
+
+  .senadiv2{
+    position: absolute;
+    width: 251px;
+    height: 48px;
+    left: 725px;
+    top: 65px;
+
+    background: #276678;
+    background: #276678;
+    ;
+    
+
+    border-radius: 5px;
+  }
+
+  .senatxt2{
     font-family: Inter;
     font-style: normal;
     font-weight: 600;
@@ -103,7 +162,7 @@
     width: 413px;
     height: 55px;
     left: 550px;
-    top: 210px;
+    top: 235px;
   
     background: #1687a7;
     backdrop-filter: blur(4px);
@@ -236,7 +295,7 @@
     width: 523px;
     height: 66px;
     left: 0px;
-    top: 200px;
+    top: 235px;
   
   
     color: #000000;
