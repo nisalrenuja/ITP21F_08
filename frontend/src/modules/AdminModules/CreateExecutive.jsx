@@ -61,7 +61,7 @@ export default class CreateExecutive extends Component {
       <div className="container">
         <div class="adminreview">
           <div className="row">
-            <div className="h1 mb-3 mt-5 font-weight-bold">
+            <div className="exploreText">
               User Executive Management Dashboard
             </div>
             <div className="col-lg-9 mt-2 mb-2">

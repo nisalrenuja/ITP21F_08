@@ -51,8 +51,8 @@ export default class AdminTab3 extends Component {
     return (
       <div className="container">
         <div class="main">
-          <h2 class="header">Employees</h2>
-          <hr class="lineer"></hr>
+          <h2 class="head1">Employees</h2>
+          <hr class="line1"></hr>
           <a href="/AllEmployees">
             <button class="div1">
               <p class="txt1">Employee List</p>

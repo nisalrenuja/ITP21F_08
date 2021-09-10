@@ -42,9 +42,8 @@ import NewExecutive from "../modules/AdminModules/NewExecutive";
 import EditExecutive from "../modules/AdminModules/EditExecutive";
 import DisplayExecutive from "../modules/AdminModules/DisplayExecutive";
 import CreateNotice from "../modules/AdminModules/CreateNotice";
-import PendingAssignment from "../pages/AdminPage/PendingAssigment";
-import TopPerformers from "../pages/AdminPage/TopPerformers";
-import NoticeComPerf from "../pages/AdminPage/TopPerformers";
+import TopPerformers from "../modules/AdminModules/TopPerformers";
+import NoticeComPerf from "../modules/AdminModules/NoticeComPerf";
 
 const AppRoutes = () => (
   <div>
@@ -91,11 +90,6 @@ const AppRoutes = () => (
         <Route exact path="/editlapallo/:assignment" component={EditLapAllo} />
         <Route path="/reportwork" component={WorkReport} exact />
         <Route path="/InsertEmployee" component={InsertEmployee} exact />
-        <Route
-          exact
-          path="/PendingAssignments/:id"
-          component={PendingAssignment}
-        />
         /*Anujitha Routes*/
         <Route path="/companyperformance" component={CompanyPerfomance} exact />
         <Route path="/EditEmployee/:id" component={EditEmployee} exact />

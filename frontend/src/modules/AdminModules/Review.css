@@ -18,3 +18,9 @@
 
   background: #276678;
 }
+
+.exploreText {
+  font-size: 50px;
+  font-family: var(--font-style);
+  font-weight: bolder;
+}
