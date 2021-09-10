@@ -44,13 +44,8 @@ export default class AdminTab1 extends Component {
         payroll.empno.toLowerCase().includes(searchKey) ||
         payroll.name.toLowerCase().includes(searchKey) ||
         payroll.position.toLowerCase().includes(searchKey) ||
-        payroll.bank.toLowerCase().includes(searchKey) ||
-        payroll.bank_branch.toLowerCase().includes(searchKey) ||
-        payroll.account_no.includes(searchKey) ||
-        payroll.basic_salary.includes(searchKey) ||
-        payroll.salary_date.includes(searchKey)
+        payroll.basic_salary.includes(searchKey)
     );
-
     this.setState({ payrolls: result });
   }
 
@@ -75,7 +70,7 @@ export default class AdminTab1 extends Component {
         <div className="adminpayroll">
           <div className="row">
             <div className="col-lg-9 mt-2 mb-2 font-weight-bold">
-              <h2>Payroll Management </h2>
+              <h1>Payroll Management </h1>
               <br></br>
             </div>
 
@@ -87,7 +82,7 @@ export default class AdminTab1 extends Component {
                   Attendance
                 </a>
               </button>
-
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <button class="btn btn-primary btn-lg">
                 <a
                   href="/allleaves"
@@ -96,11 +91,11 @@ export default class AdminTab1 extends Component {
                   Leaves
                 </a>
               </button>
+              <br></br> <br></br>
             </div>
 
             <div className="col-lg-9 mt-2 mb-2">
-              <h2>&nbsp; &nbsp; &nbsp; Payroll Management </h2>
-              <br></br>
+              <h1 className="h3 mb-3 font-weight-normal">All Salary Details</h1>
             </div>
 
             <div className="col-lg-3 mt-2 mb-2">
@@ -117,7 +112,7 @@ export default class AdminTab1 extends Component {
           <table className="table table-hover" style={{ marginTop: "40px" }}>
             <thead>
               <tr class="bg-info">
-                <th scope="col"> #Salary id</th>
+                <th scope="col"> #</th>
                 <th scope="col"> Employee ID</th>
                 <th scope="col"> Name</th>
                 <th scope="col"> Position</th>
@@ -133,7 +128,7 @@ export default class AdminTab1 extends Component {
 
                   <td>
                     <a
-                      href={`/payroll/${payrolls._id}`}
+                      href={`/displaypayroll/${payrolls._id}`}
                       style={{ textDecoration: "none" }}
                     >
                       {payrolls.empno}

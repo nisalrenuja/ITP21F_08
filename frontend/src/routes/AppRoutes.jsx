@@ -45,6 +45,8 @@ import CreateNotice from "../modules/AdminModules/CreateNotice";
 
 import PayrollPage from "../pages/PayrollPage/PayrollPage";
 import CreatePayroll from "../modules/AdminModules/CreatePayroll";
+import DisplayPayroll from "../modules/AdminModules/DisplayPayroll";
+import EditPayroll from "../modules/AdminModules/EditPayroll";
 
 const AppRoutes = () => (
   <div>
@@ -107,6 +109,8 @@ const AppRoutes = () => (
         /*Dimashi Routes*/
         <Route path="/payroll" component={PayrollPage} exact />
         <Route path="/addpayroll" exact component={CreatePayroll}></Route>
+        <Route path="/displaypayroll/:id" component={DisplayPayroll} exact />
+        <Route path="/editpayroll/:id" component={EditPayroll} exact />
       </Switch>
       <Footer />
     </Router>

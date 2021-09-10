@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
+//import { storage } from "../../firebase";
+//import Progress from "../../component/common/ProgressBar/progress";
 
-export default class CreatePayroll extends Component {
+export default class EditPayroll extends Component {
   constructor(props) {
     super(props);
 
@@ -24,15 +26,10 @@ export default class CreatePayroll extends Component {
       [name]: value
     });
   };
-  /*
-    handleInputFileChange = e => {
-        var file = e.target.files[0];
-        console.log(file);
-    };
-    */
 
   onSubmit = e => {
     e.preventDefault();
+    const id = this.props.match.params.id;
 
     const {
       empno,
@@ -57,9 +54,10 @@ export default class CreatePayroll extends Component {
     };
 
     console.log(data);
-
-    axios.post("http://localhost:5000/payroll/save", data).then(res => {
+    axios.put(`http://localhost:5000/payroll/update/${id}`, data).then(res => {
       if (res.data.success) {
+        alert("Salary Details Updated Successfully");
+
         this.setState({
           empno: "",
           name: "",
@@ -74,6 +72,60 @@ export default class CreatePayroll extends Component {
     });
   };
 
+  componentDidMount() {
+    const id = this.props.match.params.id;
+
+    axios.get(`http://localhost:5000/payroll/${id}`).then(res => {
+      if (res.data.success) {
+        this.setState({
+          empno: res.data.payroll.empno,
+          name: res.data.payroll.name,
+          position: res.data.payroll.position,
+          bank: res.data.payroll.bank,
+          bank_branch: res.data.payroll.bank_branch,
+          account_no: res.data.payroll.account_no,
+          basic_salary: res.data.payroll.basic_salary,
+          salary_date: res.data.payroll.salary_date
+        });
+        console.log(this.state.payroll);
+      }
+    });
+  }
+  /*
+  uploadPDF(e) {
+    if (e.target.files[0] !== null) {
+      const uploadTask = storage
+        .ref(`users/${e.target.files[0].name}`)
+        .put(e.target.files[0]);
+      uploadTask.on(
+        "state_changed",
+        snapshot => {
+          //progress function
+          const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          this.setState({ uploadPercentage: progress });
+        },
+        error => {
+          //error function
+          console.log(error);
+        },
+        () => {
+          //complete function
+          storage
+            .ref("users")
+            .child(e.target.files[0].name)
+            .getDownloadURL()
+            .then(url => {
+              this.setState({ reportPDF: url });
+              console.log("Hello " + url);
+            });
+        }
+      );
+    } else {
+    }
+  }
+  */
   render() {
     return (
       <div className="col-md-8 mt-4 mx-auto">
@@ -115,12 +167,12 @@ export default class CreatePayroll extends Component {
               name="position"
             >
               <option value="DEFAULT" disabled>
-                Select Position
+                Select option
               </option>
 
               <option name="manager">Manager</option>
               <option name="senior">Senior Staff</option>
-              <option name="trainee">Trainee</option>
+              <option vname="trainee">Trainee</option>
               <option name="other">Other</option>
             </select>
           </div>
@@ -201,12 +253,12 @@ export default class CreatePayroll extends Component {
           </div>
 
           <button
-            className="btn btn-outline-success"
+            className="btn btn-outline-warning"
             type="submit"
             style={{ marginTop: "15px" }}
             onClick={this.onSubmit}
           >
-            <i className="fas fa-save"></i>&nbsp;Save
+            <i className="fa fa-refresh"></i>&nbsp;Update
           </button>
         </form>
       </div>

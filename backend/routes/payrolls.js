@@ -1,6 +1,6 @@
 //write http requests
 const express = require("express");
-const Leaves = require("../models/payrolls");
+const Payrolls = require("../models/payrolls");
 
 const router = express.Router();
 
@@ -11,7 +11,7 @@ router.post("/payroll/save", (req, res) => {
     newPayroll.save((err) => {
       if (err) {
         return res.status(400).json({
-          error: err || "Some error occurred while creating a create operation",
+          error: err,
         });
       }
       return res.status(200).json({

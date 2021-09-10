@@ -40,7 +40,7 @@ app.use(executives);
 const attendancesRoutes = require("./routes/attendances");
 const leavesRoutes = require("./routes/leaves");
 const final_report = require("./models/final_report");
-const payrollRoutes = require("./models/payrolls");
+const payrollRoutes = require("./routes/payrolls");
 
 
 //add routes here ..
