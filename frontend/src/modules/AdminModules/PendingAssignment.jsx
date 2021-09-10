@@ -2,56 +2,36 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./Employees.css";
 
-export default class AdminTab3 extends Component {
+export default class PendingAssignment extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      employee: []
+      assignment: []
     };
   }
   componentDidMount() {
-    this.retrieveemployee();
+    this.retrieveAssignments();
   }
-  retrieveemployee() {
-    axios.get("http://localhost:5000/employees").then(res => {
+  retrieveAssignments() {
+    const p = this.props.dataFromParent;
+    console.log(p);
+
+    axios.get(`http://localhost:5000/checkassigned/${p}`).then(res => {
       if (res.data.success) {
         this.setState({
-          employee: res.data.existingemployees,
-          employeecount: res.data.employeeCount
+          assignment: res.data.check
         });
-        console.log(this.state.employee);
-        console.log(this.state.employeecount);
+        console.log(this.state.assignment);
       }
     });
   }
-  onDelete = id => {
-    axios.delete(`http://localhost:5000/employees/delete/${id}`).then(res => {
-      alert("Deleted Succeefully");
-      this.retrieveemployee();
-    });
-  };
-
-  filterData(employees, searchKey) {
-    const result = employees.filter(employees =>
-      employees.name.toLowerCase().includes(searchKey)
-    );
-    this.setState({ employee: result });
-  }
-
-  handleSearchArea = e => {
-    const searchKey = e.currentTarget.value;
-    axios.get("http://localhost:5000/employees").then(res => {
-      if (res.data.success) {
-        this.filterData(res.data.existingemployees, searchKey);
-      }
-    });
-  };
 
   render() {
     return (
       <div className="container">
         <div class="main">
-          <h2 class="heademp">Employees</h2>
+          <h2 class="heademp">Pending Assignments</h2>
           <hr class="lineemp"></hr>
           <a href="/AllEmployees">
             <button class="div1">
@@ -74,30 +54,34 @@ export default class AdminTab3 extends Component {
               <i className="fas fa-search2"></i>&nbsp;Search
             </a>
           </div>
-          <h2 class="tah">Total Employees ( {this.state.employeecount} )</h2>
           <table className="table table-hover table1">
             <thead class="thead">
               <tr>
-                <th scope="col">Employee ID</th>
-                <th scope="col">Employee Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Joined Date</th>
-                <th scope="col">Status</th>
+                <th scope="col">Assignment Name</th>
+                <th scope="col">Client Number</th>
+                <th scope="col">Executive Number</th>
+                <th scope="col">Place of Engagement</th>
+                <th scope="col">Commencement Date</th>
+                <th scope="col">Deadline</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody class="tbody1">
-              {this.state.employee.map((employees, index) => (
+              {this.state.assignment.map((employees, index) => (
                 <tr key={index}>
                   <td>
-                    <a href={``} style={{ textDecoration: "none" }}>
-                      {employees.empno}
+                    <a
+                      href={`/assignment/${employees.assignment_name}`}
+                      style={{ textDecoration: "none" }}
+                    >
+                      {employees.assignment_name}
                     </a>
                   </td>
-                  <td>{employees.name}</td>
-                  <td>{employees.email}</td>
-                  <td>{employees.commencement_date}</td>
-                  <td>{employees.status}</td>
+                  <td>{employees.client_no}</td>
+                  <td>{employees.execid}</td>
+                  <td>{employees.place_of_engagement}</td>
+                  <td>{employees.date_of_allocation}</td>
+                  <td>{employees.deadline}</td>
                   <td>
                     <a href={``}>
                       <i class="far fa-eye"></i>
