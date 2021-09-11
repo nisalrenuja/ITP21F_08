@@ -13,6 +13,7 @@ const employees = require("./routes/employees");
 const executives = require("./routes/executives");
 const client_fees = require("./routes/client_fees");
 const client = require("./routes/client"); 
+const Notices = require("./routes/Company_Notices");
 //connect db
 connectDB();
 const postRoutes = require("./routes/Reviews");
@@ -35,6 +36,7 @@ app.use(laptop_assignment_Routes);
 app.use(employees);
 app.use(postRoutes);
 app.use(executives);
+app.use(Notices);
 //import routes
 const attendancesRoutes = require("./routes/attendances");
 const leavesRoutes = require("./routes/leaves");

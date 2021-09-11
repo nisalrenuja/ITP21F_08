@@ -24,3 +24,7 @@
   font-family: var(--font-style);
   font-weight: bolder;
 }
+
+.grad {
+  background-image: linear-gradient(#dbf6fd, #93e6fd);
+}

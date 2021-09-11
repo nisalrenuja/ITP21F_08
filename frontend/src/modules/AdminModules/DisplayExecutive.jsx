@@ -33,14 +33,14 @@ export default class DisplayReview extends Component {
   };
 
   render() {
-    const { exeno, name, email, contact, dob, gender } = this.state.executives;
+    const { exeno, name, email } = this.state.executives;
     return (
       <div
         id="reportContent"
         style={{ marginTop: "20px", padding: "25px", paddingRight: "25px" }}
       >
         <div className="row">
-          <h4 className="col-10">{exeno}</h4>
+          <h4 className="col-10">Details of {name}</h4>
           <button
             type="primary"
             className="btn btn-warning text-light col-2 float-right"
@@ -51,20 +51,11 @@ export default class DisplayReview extends Component {
         </div>
         <hr />
         <dl className="row">
-          <dt className="col-sm-3">Report Name</dt>
+          <dt className="col-sm-3">Executive</dt>
           <dd className="col-sm-9">{name}</dd>
 
-          <dt className="col-sm-3">Points</dt>
+          <dt className="col-sm-3">Email Address</dt>
           <dd className="col-sm-9">{email}</dd>
-
-          <dt className="col-sm-3">Feedback</dt>
-          <dd className="col-sm-9">{contact}</dd>
-
-          <dt className="col-sm-3">Status</dt>
-          <dd className="col-sm-9">{dob}</dd>
-
-          <dt className="col-sm-3">Status</dt>
-          <dd className="col-sm-9">{gender}</dd>
         </dl>
       </div>
     );

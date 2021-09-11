@@ -78,7 +78,7 @@ export default class EditReview extends Component {
       });
     axios.put(`http://localhost:5000/review/update/${id}`, data).then(res => {
       if (res.data.success) {
-        alert("Post Updated Successfully");
+        alert("Review Updated Successfully");
         this.setState({
           execid_review: "",
           report: "",
@@ -248,12 +248,12 @@ export default class EditReview extends Component {
           </div>
 
           <button
-            className="btn btn-success mb-2"
+            className="btn btn-info mb-2"
             type="submit"
             style={{ marginTop: "15px" }}
             onClick={this.onSubmit}
           >
-            <i className="fa fa-check-square"></i>&nbsp;Update
+            <i className="fas fa-sync"></i>&nbsp;Update
           </button>
         </form>
       </div>
