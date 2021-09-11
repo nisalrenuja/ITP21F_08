@@ -42,6 +42,7 @@ import NewExecutive from "../modules/AdminModules/NewExecutive";
 import EditExecutive from "../modules/AdminModules/EditExecutive";
 import DisplayExecutive from "../modules/AdminModules/DisplayExecutive";
 import CreateNotice from "../modules/AdminModules/CreateNotice";
+import AllReports from "../pages/AdminPage/AllReports";
 
 const AppRoutes = () => (
   <div>
@@ -89,6 +90,7 @@ const AppRoutes = () => (
         <Route path="/reportwork" component={WorkReport} exact />
         <Route path="/InsertEmployee" component={InsertEmployee} exact />
         /*Anujitha Routes*/
+        <Route path="/allreports" component={AllReports} exact />
         <Route path="/companyperformance" component={CompanyPerfomance} exact />
         <Route path="/EditEmployee/:id" component={EditEmployee} exact />
         <Route path="/createexecutive" component={CreateExecutive} exact />
