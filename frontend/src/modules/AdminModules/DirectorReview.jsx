@@ -69,19 +69,19 @@ export default class AdminTab1 extends Component {
               <br />
               <button class="btn btn-primary btn-lg">
                 <a
-                  href="managerreview"
+                  href="/partnerreview"
                   style={{ textDecoration: "none", color: "white" }}
                 >
-                  Manager Review
+                  Partner Review
                 </a>
               </button>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <button class="btn btn-primary btn-lg">
+              <button className="btn btn-primary btn-lg">
                 <a
-                  href="/createexecutive"
+                  href="/admin"
                   style={{ textDecoration: "none", color: "white" }}
                 >
-                  Current Users
+                  Back to Main Dashboard
                 </a>
               </button>
             </div>
@@ -100,7 +100,7 @@ export default class AdminTab1 extends Component {
           </div>
           <div className="row">
             <div className="col-lg-9 mt-2 mb-2">
-              <h1 className="h3 mb-3 font-weight-normal">Initial Reviews</h1>
+              <h1 className="h3 mb-3 font-weight-normal">Director Reviews</h1>
             </div>
             <div className="col-lg-3 mt-2 mb-2">
               <input
