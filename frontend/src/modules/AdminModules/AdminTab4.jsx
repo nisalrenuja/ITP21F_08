@@ -110,7 +110,9 @@ export default class AdminTab4 extends Component {
                   <td>{assignments.deadline}</td>
                   <td>{assignments.date_of_allocation}</td>
 
-                  <td>{assignments.progress}</td>
+                  <td>
+                    <b>{assignments.progress}</b>
+                  </td>
 
                   <td>
                     <a href={`/editassignment/${assignments.assignment_name}`}>

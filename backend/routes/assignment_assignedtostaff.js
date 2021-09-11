@@ -25,6 +25,15 @@ router.get("/staff/ass", (req, res) => {
     });
   });
 });
+router.get("/staff/check/:no", (req, res) => {
+  let empno = req.params.no;
+  employees.find({ empno: empno }).exec((err, staffs) => {
+    return res.status(200).json({
+      success: true,
+      staffs: staffs,
+    });
+  });
+});
 router.get("/checkassigned/:name", (req, res) => {
   let empno = req.params.name;
   assignment_assignedtostaff
