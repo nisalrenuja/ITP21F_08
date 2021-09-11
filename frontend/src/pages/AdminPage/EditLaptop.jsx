@@ -9,9 +9,9 @@ import AdminTab5 from "../../modules/AdminModules/AdminTab5";
 import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
-import CreateLaptop from "../../modules/AdminModules/CreateLaptop";
-//laptop
-const CreateLaptops = () => {
+import EditLaptopInventory from "../../modules/AdminModules/EditLaptopInventory";
+
+const EditLaptop = ({ history, match }) => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -19,9 +19,7 @@ const CreateLaptops = () => {
     selectedMenuOptionCache =
       window.localStorage.getItem("MenuOptionCache") || "";
   }
-  const [selectedMenuOption, setSelectedMenuOption] = useState(
-    "User Executive"
-  );
+  const [selectedMenuOption, setSelectedMenuOption] = useState("Report Review");
 
   useEffect(() => {
     if (userRole !== "Admin") {
@@ -41,16 +39,16 @@ const CreateLaptops = () => {
       window.localStorage.setItem("MenuOptionCache", option);
     }
   };
-  //lap
+
   return (
     <div>
       {selectedMenuOption !== "" ? (
         <Container>
-          {selectedMenuOption === "User Executive" ? (
+          {selectedMenuOption === "Report Review" ? (
             <AdminTab1 />
           ) : selectedMenuOption === "MenuItem 2" ? (
             <AdminTab2 />
-          ) : selectedMenuOption === "MenuItem 3" ? (
+          ) : selectedMenuOption === "Employees" ? (
             <AdminTab3 />
           ) : selectedMenuOption === "Work Allocation" ? (
             <AdminTab4 />
@@ -59,7 +57,7 @@ const CreateLaptops = () => {
           ) : selectedMenuOption === "MenuItem 6" ? (
             <AdminTab6 />
           ) : selectedMenuOption === "Inventory Management" ? (
-            <CreateLaptop />
+            <EditLaptopInventory />
           ) : (
             <AdminTab8 />
           )}
@@ -75,4 +73,4 @@ const CreateLaptops = () => {
   );
 };
 
-export default CreateLaptops;
+export default EditLaptop;

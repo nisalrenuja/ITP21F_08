@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./CreateLaptop.css";
-//createLaptopRepai
 
-export default class CreateLaptopRepair extends Component {
+//createLaptopRepair
+export default class EditLaptopRepair extends Component {
   constructor(props) {
     super(props);
     this.state = {
       id: "",
       repair_reason: "",
-      repair_date: "",
-      repair_cost: ""
+      repair_cost: "",
+      repair_date: ""
     };
   }
 
-  handleInputchange = e => {
+  handleInputChange = e => {
     const { name, value } = e.target;
     this.setState({
       ...this.state,
@@ -23,28 +23,52 @@ export default class CreateLaptopRepair extends Component {
   };
 
   onSubmit = e => {
-    e.preventDefault();
+    e.preventdefault();
+    if (this.props.match && this.props.match.params._id) {
+      const _id = this.props.match.params._id;
 
-    const { id, repair_reason, repair_date, repair_cost } = this.state;
-    const data = {
-      id: id,
-      repair_reason: repair_reason,
-      repair_date: repair_date,
-      repair_cost: repair_cost
-    };
-    console.log(data);
-    axios.post("http://localhost:5000/laptop_repair/save", data).then(res => {
-      if (res.data.success) {
-        this.setState({
-          id: id,
-          repair_reason: repair_reason,
-          repair_date: repair_cost,
-          repair_cost: repair_cost
+      const { id, repair_reason, repair_cost, repair_date } = this.state;
+
+      const data = {
+        id: id,
+        repair_reason: repair_reason,
+        repair_date: repair_date,
+        repair_cost: repair_cost
+      };
+
+      console.log(data);
+      axios
+        .put(`http://localhost:5000/laptop_repair/update/${_id}`, data)
+        .then(res => {
+          if (res.data.success) {
+            alert("Details update successfully!");
+            this.setState({
+              id: "",
+              repair_reason: "",
+              repair_cost: "",
+              repair_date: ""
+            });
+          }
+          alert("Update successfully!");
         });
-        alert("Save Successful!");
-      }
-    });
+    }
   };
+
+  componentDidMount() {
+    if (this.props.match && this.props.match.params._id) {
+      const _id = this.props.match.params._id;
+      axios.get(`http://localhost:5000/laptop_repair/${_id}`).then(res => {
+        if (res.data.success) {
+          this.setState({
+            id: res.data.laptopRepair.id,
+            repair_reason: res.data.laptopRepair.repair_reason,
+            repair_date: res.data.laptopRepair.repair_date,
+            repair_cost: res.data.laptopRepair.repair_cost
+          });
+        }
+      });
+    }
+  }
 
   render() {
     return (
@@ -73,30 +97,18 @@ export default class CreateLaptopRepair extends Component {
               name="id"
               placeholder="Enter Laptop ID"
               value={this.state.id}
-              onChange={this.handleInputchange}
+              onChange={this.handleInputChange}
             />
           </div>
           <div className="form-group" style={{ marginBottom: "14px" }}>
-            <label style={{ marginBottom: "5px" }}>Repair</label>
+            <label style={{ marginBottom: "5px" }}>Repair Reason</label>
             <input
               type="text"
               className="form-control"
               name="repair_reason"
-              placeholder="Enter Rpair Reason"
+              placeholder="Enter Repair Reason"
               value={this.state.repair_reason}
-              onChange={this.handleInputchange}
-            />
-          </div>
-          <div className="form-group" style={{ marginBottom: "14px" }}>
-            <label style={{ marginBottom: "5px" }}>Repair Date</label>
-            <input
-              type="date"
-              id="date"
-              className="form-control"
-              name="repair_date"
-              placeholder="DD/MM/YY"
-              value={this.state.repair_date}
-              onChange={this.handleInputchange}
+              onChange={this.handleInputChange}
             />
           </div>
           <div className="form-group" style={{ marginBottom: "14px" }}>
@@ -107,7 +119,19 @@ export default class CreateLaptopRepair extends Component {
               name="repair_cost"
               placeholder="Enter Laptop Repair Price"
               value={this.state.repair_cost}
-              onChange={this.handleInputchange}
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <div className="form-group" style={{ marginBottom: "14px" }}>
+            <label style={{ marginBottom: "5px" }}>Repairing Date</label>
+            <input
+              type="date"
+              id="date"
+              className="form-control"
+              name="repair_date"
+              placeholder="DD/MM/YY"
+              value={this.state.repair_date}
+              onChange={this.handleInputChange}
             />
           </div>
           <button

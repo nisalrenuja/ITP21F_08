@@ -17,7 +17,7 @@ export default class LaptopRepair extends Component {
   }
 
   retrievePosts() {
-    axios.get("http://localhost:5000/laptop_repair").then(res => {
+    axios.get("http://localhost:5000/laptops_repair").then(res => {
       if (res.data.success) {
         this.setState({
           laptopsRepair: res.data.existingLaptopsRepair
@@ -27,10 +27,10 @@ export default class LaptopRepair extends Component {
     });
   }
 
-  onDelete = id => {
-    console.log(id);
+  onDelete = _id => {
+    console.log(_id);
     axios
-      .delete(`http://localhost:5000/laptop_repair/delete/${id}`)
+      .delete(`http://localhost:5000/laptop_repair/delete/${_id}`)
       .then(res => {
         alert("Deleted Laptop Reapir Details successfully");
         this.retrievePosts();
@@ -86,8 +86,8 @@ export default class LaptopRepair extends Component {
             <tr>
               <th scope="col">Laptop ID</th>
               <th scope="col">Repair Reason </th>
-              <th scope="col">Repair Price</th>
               <th scope="col">Repair Date</th>
+              <th scope="col">Repair Price</th>
               <th scope="col">Actions</th>
             </tr>
           </thead>
@@ -101,13 +101,13 @@ export default class LaptopRepair extends Component {
                   </a>
                 </td>
                 <td>{laptopsRepair.repair_reason}</td>
-                <td>{laptopsRepair.repair_cost}</td>
                 <td>{laptopsRepair.repair_date}</td>
+                <td>{laptopsRepair.repair_cost}</td>
 
                 <td>
                   <a
                     className="btn btn-warning"
-                    href={`/edit/${laptopsRepair.id}`}
+                    href={`/editrepair/${laptopsRepair._id}`}
                   >
                     <i className="fas fa-edit"></i>&nbsp;Edit
                   </a>
@@ -115,7 +115,7 @@ export default class LaptopRepair extends Component {
                   <a
                     className="btn btn-danger"
                     href="#"
-                    onClick={() => this.onDelete(laptopsRepair.id)}
+                    onClick={() => this.onDelete(laptopsRepair._id)}
                   >
                     <i className="fas fa-trash-alt"></i>&nbsp;delete
                   </a>

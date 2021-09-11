@@ -58,7 +58,7 @@ hr{
     position: absolute;
     width: 110px;
     height: 40px;
-    left: 495px;
+    left:300px;
     top: 60px;
     
   }
@@ -72,7 +72,7 @@ hr{
     top: 650px;
   }
   .table1.thead {
-    background-color: #276678;
+    background: #276678;
     font-family: Inter;
     font-style: normal;
     font-weight: 600;

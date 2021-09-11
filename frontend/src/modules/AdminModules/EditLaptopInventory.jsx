@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import "./CreateLaptop.css";
 import axios from "axios";
 //laptop
-export default class EditLaptop extends Component {
+export default class EditLaptopInventory extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       id: "",
       brand: "",
@@ -12,10 +13,7 @@ export default class EditLaptop extends Component {
       storage_type: "",
       purchaase_date: "",
       purchase_price: "",
-      status: "",
-      discarded_reason: "",
-      discarded_date: "",
-      update_partner_id: ""
+      status: ""
     };
   }
 
@@ -28,72 +26,60 @@ export default class EditLaptop extends Component {
   };
 
   onSubmit = e => {
-    //(e) --> method invoke
     e.preventDefault();
-
-    const id = this.props.match.params.id;
-
+    const _id = this.props.match.params._id;
     const {
+      id,
       brand,
       model,
       storage_type,
       purchaase_date,
       purchase_price,
-      status,
-      discarded_reason,
-      discarded_date,
-      update_partner_id
+      status
     } = this.state;
     const data = {
+      id: id,
       brand: brand,
       model: model,
       storage_type: storage_type,
       purchaase_date: purchaase_date,
       purchase_price: purchase_price,
-      status: status,
-      discarded_reason: discarded_reason,
-      discarded_date: discarded_date,
-      update_partner_id: update_partner_id
+      status: status
     };
     console.log(data);
-
-    axios.post(`/laptop/update/${id}`, data).then(res => {
+    axios.put(`http://localhost:5000/laptop/update/${_id}`, data).then(res => {
       if (res.data.success) {
-        alert("Laptop Details Update Successfully");
+        alert("Laptop Update Successfully!");
         this.setState({
+          id: "",
           brand: "",
           model: "",
           storage_type: "",
           purchaase_date: "",
           purchase_price: "",
-          status: "",
-          discarded_reason: "",
-          discarded_date: "",
-          update_partner_id: ""
+          status: ""
         });
       }
     });
   };
 
   componentDidMount() {
-    const id = this.props.match.params.id;
-    axios.get(`/laptop/${id}`).then(res => {
-      if (res.data.success) {
-        this.setState({
-          brand: res.data.post.brand,
-          model: res.data.post.match,
-          storage_type: res.data.post.storage_type,
-          purchaase_date: res.data.post.purchaase_date,
-          purchase_price: res.data.post.purchase_price,
-          status: res.data.post.status,
-          discarded_reason: res.data.post.discarded_reason,
-          discarded_date: res.data.post.discarded_date,
-          update_partner_id: res.data.post.update_partner_id
-        });
-
-        console.log(this.state.post);
-      }
-    });
+    if (this.props.match && this.props.match._id) {
+      const _id = this.props.match.params._id;
+      axios.get(`http://localhost:5000/laptop/${_id}`).then(res => {
+        if (res.data.success) {
+          this.setState({
+            id: res.data.laptop.id,
+            brand: res.data.laptop.brand,
+            model: res.data.laptop.model,
+            storage_type: res.data.laptop.storage_type,
+            purchaase_date: res.data.laptop.purchaase_date,
+            purchase_price: res.data.laptop.purchase_price,
+            status: res.data.laptop.status
+          });
+        }
+      });
+    }
   }
 
   render() {
@@ -146,23 +132,21 @@ export default class EditLaptop extends Component {
               onChange={this.handleInputChange}
             />
           </div>
-          <div className="form-group" style={{ marginBottom: "14px" }}>
-            <label
-              for="selectFormControl"
-              style={{ marginBottom: "5px" }}
-              data-toggle="dropdown"
-            >
-              Storage Size &nbsp;{" "}
-            </label>
+          <div className="form-group" style={{ marginBottom: "15px" }}>
+            <label style={{ marginBottom: "5px" }}>Storage Size</label>
             <select
-              class="form-control"
-              id="selections"
-              value={this.state.storage_type}
+              defaultValue={"DEFAULT"}
+              className="form-select"
+              aria-label="Default select example"
               onChange={this.handleInputChange}
+              name="storage_type"
             >
-              <option value="16gb"> 16GB</option>
-              <option value="32gb"> 32GB</option>
-              <option value="64gb"> 64GB</option>
+              <option value="DEFAULT" disabled>
+                Storage Type : {this.state.storage_type}
+              </option>
+              <option value="16GB">16GB</option>
+              <option value="32GB">32GB</option>
+              <option value="64GB">64GB</option>
             </select>
           </div>
           <div className="form-group" style={{ marginBottom: "14px" }}>
@@ -190,22 +174,20 @@ export default class EditLaptop extends Component {
           </div>
           <h2>Laptop Assign Details</h2>
           <hr></hr>
-          <div className="form-group" style={{ marginBottom: "14px" }}>
-            <label
-              for="selectFormControl"
-              style={{ marginBottom: "5px" }}
-              data-toggle="dropdown"
-            >
-              Status &nbsp;{" "}
-            </label>
+          <div className="form-group" style={{ marginBottom: "15px" }}>
+            <label style={{ marginBottom: "5px" }}>Status</label>
             <select
-              class="form-control"
-              id="selections"
-              value={this.state.status}
+              defaultValue={"DEFAULT"}
+              className="form-select"
+              aria-label="Default select example"
               onChange={this.handleInputChange}
+              name="status"
             >
-              <option value="Assign"> Assign</option>
-              <option value="Not Assign"> Not Assign</option>
+              <option value="DEFAULT" disabled>
+                Status : {this.state.status}
+              </option>
+              <option value="assign">Assign</option>
+              <option value="notAssign">Not Assign</option>
             </select>
           </div>
           <button

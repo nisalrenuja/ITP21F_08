@@ -27,9 +27,9 @@ export default class AdminTab7 extends Component {
     });
   }
 
-  onDelete = id => {
-    console.log(id);
-    axios.delete(`http://localhost:5000/laptops/delete/${id}`).then(res => {
+  onDelete = _id => {
+    console.log(_id);
+    axios.delete(`http://localhost:5000/laptop/delete/${_id}`).then(res => {
       alert("Deleted Laptop Details successfully");
       this.retrievePosts();
     });
@@ -104,14 +104,17 @@ export default class AdminTab7 extends Component {
                   <td>{laptops.storage_type}</td>
                   <td>{laptops.status}</td>
                   <td>
-                    <a className="btn btn-warning" href={`/edit/${laptops.id}`}>
+                    <a
+                      className="btn btn-warning"
+                      href={`/editlaptop/${laptops._id}`}
+                    >
                       <i className="fas fa-edit"></i>&nbsp;Edit
                     </a>
                     &nbsp;
                     <a
                       className="btn btn-danger"
                       href="#"
-                      onClick={() => this.onDelete(laptops.id)}
+                      onClick={() => this.onDelete(laptops._id)}
                     >
                       <i className="fas fa-trash-alt"></i>&nbsp;delete
                     </a>

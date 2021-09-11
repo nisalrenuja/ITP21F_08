@@ -25,11 +25,6 @@ import ReviewPage from "../pages/ReviewPage/ReviewPage";
 import CreateReview from "../modules/AdminModules/CreateReview";
 import EditReview from "../modules/AdminModules/EditReview";
 import DisplayReview from "../modules/AdminModules/DisplayReview";
-import CreateLaptop from "../modules/AdminModules/CreateLaptop";
-import LaptopRepair from "../modules/AdminModules/LaptopRepair";
-import CreateLaptopRepair from "../modules/AdminModules/CreateLaptopRepair";
-import Laptops from "../pages/AdminPage/CreateLaptop";
-import LaptopInventory from "../pages/AdminPage/LaptopInventory";
 import CreateLaptops from "../pages/AdminPage/CreateLaptop";
 import LaptopsRepair from "../pages/AdminPage/LaptopRepair";
 import CreateLaptopsRepair from "../pages/AdminPage/CreateLaptopRepair";
@@ -44,6 +39,8 @@ import DisplayExecutive from "../modules/AdminModules/DisplayExecutive";
 import CreateNotice from "../modules/AdminModules/CreateNotice";
 import TopPerformers from "../modules/AdminModules/TopPerformers";
 import NoticeComPerf from "../modules/AdminModules/NoticeComPerf";
+import EditLaptopsRepair from "../pages/AdminPage/EditLaptopRepair";
+import EditLaptops from "../pages/AdminPage/EditLaptop";
 
 const AppRoutes = () => (
   <div>
@@ -72,6 +69,12 @@ const AppRoutes = () => (
         <Route path="/EmployeePoints" component={EmployeePoints} exact />
         <Route path="/createlaptop" component={CreateLaptops} exact />
         <Route path="/repairinglaptop" component={LaptopsRepair} exact />
+        <Route exact path="/editlaptop/:id" component={EditLaptops}></Route>
+        <Route
+          exact
+          path="/editrepair/:id"
+          component={EditLaptopsRepair}
+        ></Route>
         <Route
           path="/createlaptoprepair"
           component={CreateLaptopsRepair}
