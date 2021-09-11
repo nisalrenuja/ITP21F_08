@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Chart from "react-google-charts";
-import jsPDF from "jspdf";
 import "./WorkReport.css";
 
 export default class WorkReport extends Component {
