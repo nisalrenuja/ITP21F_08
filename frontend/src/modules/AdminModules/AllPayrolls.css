@@ -75,5 +75,20 @@
 
   color: #1687A7;
 }
+.need-validation {
+  background-color:"#F6F5F5" ;
+  border:"5px solid eastern blue";
+  padding :"30px";
+  border-radius:"15px"
+}
+
+.ap-displaypg{
+  margin: auto;
+  width: 50%;
+  border: 3px solid #D3E0EA;;
+  padding: 10px;
+}
+
+
 
 
