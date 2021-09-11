@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const payrollsSchema = new mongoose.Schema({
     //declare variables/properties
     empno: {
-        type:String,
+        type:Number,
         required:true//since must have
         
     },
