@@ -8,15 +8,12 @@ export default class CreateNotice extends Component {
     super(props);
 
     this.state = {
-      assignment_name: "",
-      client_no: "",
-      execid: "",
-      place_of_engagement: "",
-      distance: "",
-      date_of_allocation: "",
-      deadline: "",
-      emp_no: "",
-      staff: [],
+      notice_id: "",
+      emp_id: "",
+      notice_topic: "",
+      notice_content: "",
+      notice_attachments: "",
+      published_date: "",
       redirectToReferrer: false
     };
   }
@@ -52,52 +49,44 @@ export default class CreateNotice extends Component {
     e.preventDefault();
 
     const {
-      assignment_name,
-      client_no,
-      execid,
-      place_of_engagement,
-      distance,
-      date_of_allocation,
-      deadline,
-      emp_no
+      notice_id,
+      emp_id,
+      notice_topic,
+      notice_content,
+      notice_attachments,
+      published_date
     } = this.state;
 
     const data = {
-      assignment_name: assignment_name,
-      client_no: client_no,
-      execid: execid,
-      place_of_engagement: place_of_engagement,
-      distance: distance,
-      date_of_allocation: date_of_allocation,
-      deadline: deadline,
-      emp_no: emp_no,
-      progress: "Assigned"
+      notice_id: notice_id,
+      emp_id: emp_id,
+      notice_topic: notice_topic,
+      notice_content: notice_content,
+      notice_attachments: notice_attachments,
+      published_date: published_date
+      //progress: "Assigned"
     };
 
     console.log(data);
     axios.post("http://localhost:5000/assignments/save/", data).then(res => {
       if (res.data.success) {
         this.setState({
-          assignment_name: assignment_name,
-          client_no: client_no,
-          execid: execid,
-          place_of_engagement: place_of_engagement,
-          distance: distance,
-          date_of_allocation: date_of_allocation,
-          deadline: deadline,
-          emp_no: "",
+          notice_id: notice_id,
+          emp_id: emp_id,
+          notice_topic: notice_topic,
+          notice_content: notice_content,
+          notice_attachments: notice_attachments,
+          published_date: published_date,
           redirectToReferrer: true
         });
-        alert(
-          "Employee added to assignment, Enter employee numbers to add more employees!"
-        );
+        alert("Employee added to assignment, Enter employee number");
       }
     });
   };
   render() {
     const redirectToReferrer = this.state.redirectToReferrer;
     if (redirectToReferrer == true) {
-      return <Redirect to="/allassignments" />;
+      return <Redirect to="/Notices" />;
     }
     return (
       <div className="container">
@@ -110,18 +99,18 @@ export default class CreateNotice extends Component {
               <input
                 type="text"
                 class="senaicc"
-                id="assignment_name"
-                name="assignment_name"
-                value={this.state.assignment_name}
+                id="notice_id"
+                name="notice_id"
+                value={this.state.notice_id}
                 onChange={this.handleInputChange}
               />
               <p class="senaiic">Emp ID:</p>
               <input
                 type="text"
                 class="senaiicc"
-                id="client_no"
-                name="client_no"
-                value={this.state.client_no}
+                id="emp_id"
+                name="emp_id"
+                value={this.state.emp_id}
                 onChange={this.handleInputChange}
               />
 
@@ -129,27 +118,27 @@ export default class CreateNotice extends Component {
               <input
                 type="text"
                 class="senaiiicc"
-                id="execid"
-                name="execid"
-                value={this.state.execid}
+                id="emp_name"
+                name="emp_name"
+                value={this.state.exp_name}
                 onChange={this.handleInputChange}
               />
               <p class="senaivc">Notice Topic:</p>
               <input
                 type="text"
                 class="senaivcc"
-                id="place_of_engagement"
-                name="place_of_engagement"
-                value={this.state.place_of_engagement}
+                id="notice_topic"
+                name="notice_topic"
+                value={this.state.notice_topic}
                 onChange={this.handleInputChange}
               />
               <p class="senavc">Content:</p>
               <input
                 type="number"
                 class="senavcc"
-                id="distance"
-                name="distance"
-                value={this.state.distance}
+                id="notice_content"
+                name="notice_content"
+                value={this.state.notice_content}
                 onChange={this.handleInputChange}
               />
               <p class="senavcattach">Attachments:</p>
@@ -158,25 +147,16 @@ export default class CreateNotice extends Component {
                 class="senavccattach"
                 id="distance"
                 name="distance"
-                value={this.state.distance}
+                value={this.state.notice_attachments}
                 onChange={this.handleInputChange}
               />
               <p class="senavic">Publishing Date: </p>
               <input
                 type="date"
                 class="senavicc"
-                id="date_of_allocation"
-                name="date_of_allocation"
-                value={this.state.date_of_allocation}
-                onChange={this.handleInputChange}
-              />
-              <p class="senaviic">Delete Notice on: </p>
-              <input
-                type="date"
-                class="senaviicc"
-                id="deadline"
-                name="deadline"
-                value={this.state.deadline}
+                id="published_date"
+                name="pulished_date"
+                value={this.state.published_date}
                 onChange={this.handleInputChange}
               />
 
