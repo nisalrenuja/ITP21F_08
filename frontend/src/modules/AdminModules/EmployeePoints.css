@@ -90,7 +90,7 @@ background: #F6F5F5;
 backdrop-filter: blur(4px);
 }
 
-.txt4{
+.txt-4{
     position: absolute;
 width: 261px;
 height: 45px;
@@ -110,7 +110,7 @@ color: #000000;
 
 }
 
-.select3{
+.select-3{
     position: absolute;
 width: 300px;
 height: 40px;
@@ -122,7 +122,7 @@ border: 2px solid #C4C4C4;
 box-sizing: border-box;
 }
 
-.txt5{
+.txt-5{
     position: absolute;
 width: 261px;
 height: 45px;
@@ -141,12 +141,12 @@ letter-spacing: -0.00022em;
 color: #000000;
 }
 
-.txt6{
+.txt-6{
     position: absolute;
 width: 261px;
 height: 45px;
 left: 50px;
-top: 210px;
+top: 150px;
 
 font-family: Inter;
 font-style: normal;
@@ -160,7 +160,7 @@ letter-spacing: -0.00022em;
 color: #000000;
 }
 
-.txt7{
+.txt-7{
     position: absolute;
 width: 261px;
 height: 45px;
@@ -179,7 +179,7 @@ letter-spacing: -0.00022em;
 color: #000000;
 }
 
-.txt8{
+.txt-8{
     position: absolute;
 width: 261px;
 height: 45px;
@@ -198,7 +198,7 @@ letter-spacing: -0.00022em;
 color: #000000;
 }
 
-.txt9{
+.txt-9{
     position: absolute;
 width: 261px;
 height: 45px;
@@ -217,7 +217,7 @@ letter-spacing: -0.00022em;
 color: #000000;
 }
 
-.box1{position: absolute;
+.box-1{position: absolute;
     width: 600px;
     height: 40px;
     left: 300px;
@@ -228,18 +228,18 @@ color: #000000;
     box-sizing: border-box;
 }
 
-.box2{position: absolute;
+.box-2{position: absolute;
     width: 300px;
     height: 40px;
     left: 300px;
-    top: 210px;
+    top: 150px;
     
     background: #D3E0EA;
     border: 2px solid #C4C4C4;
     box-sizing: border-box;
 }
 
-.box3{position: absolute;
+.box-3{position: absolute;
     width: 300px;
     height: 40px;
     left: 300px;
@@ -250,7 +250,7 @@ color: #000000;
     box-sizing: border-box;
 }
 
-.box4{position: absolute;
+.box-4{position: absolute;
     width: 100px;
     height: 40px;
     left: 300px;
@@ -261,7 +261,7 @@ color: #000000;
     box-sizing: border-box;
 }
 
-.box5{position: absolute;
+.box-5{position: absolute;
     width: 100px;
     height: 40px;
     left: 300px;
@@ -315,7 +315,7 @@ border-radius: 5px;
 width: 250px;
 height: 40px;
 left: 50px;
-top: 150px;
+top: 200px;
 background: #1687A7;
 border: 1px solid #F6F5F5;
 box-sizing: border-box;
@@ -376,10 +376,10 @@ color: #000000;
 }
 .main{
     width:100%;
-    height:850px;
+    height:750px;
     white-space: nowrap;
     position: relative;
-    overflow-x:hidden;
+    overflow-x:scroll;
     overflow-y:scroll;
 }
 .tbody1{

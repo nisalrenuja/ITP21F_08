@@ -39,7 +39,7 @@ export default class EditAssignments extends Component {
           progress: res.data.ass[0].progress,
           assignment2: res.data.ass2
         });
-        console.log(res.data.ass2[0].employees[0].name);
+        console.log(res.data.ass);
       }
     });
   }
@@ -98,22 +98,30 @@ export default class EditAssignments extends Component {
     };
 
     console.log(data);
-    axios
-      .put(
-        `http://localhost:5000/assignments/updateallo/${this.props.dataFromParent}`,
-        data
-      )
-      .then(res => {
-        if (res.data.success) {
-          this.setState({
-            empno: "",
-            travel_allowance: "",
-            redirectToReferrer: true
-          });
-          alert("Updated Allowance");
-          this.retrievePosts();
+    axios.get(`http://localhost:5000/staff/check/${empno}`).then(res => {
+      if (res.data.success) {
+        if (res.data.staffs.length !== 0) {
+          axios
+            .put(
+              `http://localhost:5000/assignments/updateallo/${this.props.dataFromParent}`,
+              data
+            )
+            .then(res => {
+              if (res.data.success) {
+                this.setState({
+                  empno: "",
+                  travel_allowance: "",
+                  redirectToReferrer: true
+                });
+                alert("Updated Allowance");
+                this.retrievePosts();
+              }
+            });
+        } else {
+          alert("Invalid Employee Number, Please enter again!");
         }
-      });
+      }
+    });
   };
   render() {
     return (
