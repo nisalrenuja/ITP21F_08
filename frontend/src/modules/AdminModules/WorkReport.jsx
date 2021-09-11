@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Chart from "react-google-charts";
+import jsPDF from "jspdf";
 import "./WorkReport.css";
 
 export default class WorkReport extends Component {
@@ -105,6 +106,15 @@ export default class WorkReport extends Component {
       }
     });
   }
+  generatePDF = () => {
+    var content = document.getElementById("reportContent");
+    var pri = document.getElementById("ifmcontentstoprint").contentWindow;
+    pri.document.open();
+    pri.document.write(content.innerHTML);
+    pri.document.close();
+    pri.focus();
+    pri.print();
+  };
 
   render() {
     return (
@@ -112,73 +122,89 @@ export default class WorkReport extends Component {
         <center>
           <br />
           <h1>Statistical Reports on Assignments and Staff</h1>
-          <div>
-            <Chart
-              width={"950px"}
-              height={"800px"}
-              chartType="PieChart"
-              loader={<div>Loading Chart</div>}
-              data={[
-                ["Assignments", "Number"],
-                ["Assignments yet to complete", this.state.l],
-                ["Completed", this.state.l2]
-              ]}
-              options={{
-                title: "Assignments and Completed Assignments",
-                // Just add this option
-                pieHole: 0.6
-              }}
-              rootProps={{ "data-testid": "3" }}
-            />
-          </div>
-          <div>
-            <Chart
-              width={"950px"}
-              height={"800px"}
-              chartType="PieChart"
-              loader={<div>Loading Chart</div>}
-              data={[
-                ["Staff", "Number"],
-                [
-                  "Staff Free of Work Assignments",
-                  this.state.sll - this.state.sl
-                ],
-                ["Staff Working/Assigned on Assignments", this.state.sl]
-              ]}
-              options={{
-                title: "Staff and Staff Working",
-                // Just add this option
-                pieHole: 0.6
-              }}
-              rootProps={{ "data-testid": "3" }}
-            />
-          </div>
-          <div>
-            <Chart
-              width={"850px"}
-              height={"700px"}
-              chartType="Bar"
-              loader={<div>Loading Chart</div>}
-              data={[
-                ["Month", "Allowances(Rs)"],
-                [new Date().getMonth() - 2, this.state.total4],
-                [new Date().getMonth() - 1, this.state.total3],
-                [new Date().getMonth(), this.state.total2],
-                [new Date().getMonth() + 1, this.state.total]
-              ]}
-              options={{
-                // Material design options
-                chart: {
-                  title: "Total Allowances",
-                  subtitle: "Total Allowances for Last Four Months"
-                }
-              }}
-              // For tests
-              rootProps={{ "data-testid": "2" }}
-            />
+          <button
+            type="primary"
+            className="btn btn-warning text-light col-2 float-right"
+            onClick={this.generatePDF}
+          >
+            Print/PDF
+          </button>
+
+          <div
+            id="reportContent"
+            style={{ marginTop: "10px", padding: "5px", paddingRight: "5px" }}
+          >
+            <div>
+              <Chart
+                width={"950px"}
+                height={"800px"}
+                chartType="PieChart"
+                loader={<div>Loading Chart</div>}
+                data={[
+                  ["Assignments", "Number"],
+                  ["Assignments yet to complete", this.state.l],
+                  ["Completed", this.state.l2]
+                ]}
+                options={{
+                  title: "Assignments and Completed Assignments",
+                  // Just add this option
+                  pieHole: 0.6
+                }}
+                rootProps={{ "data-testid": "3" }}
+              />
+            </div>
+            <div>
+              <Chart
+                width={"950px"}
+                height={"800px"}
+                chartType="PieChart"
+                loader={<div>Loading Chart</div>}
+                data={[
+                  ["Staff", "Number"],
+                  [
+                    "Staff Free of Work Assignments",
+                    this.state.sll - this.state.sl
+                  ],
+                  ["Staff Working/Assigned on Assignments", this.state.sl]
+                ]}
+                options={{
+                  title: "Staff and Staff Working",
+                  // Just add this option
+                  pieHole: 0.6
+                }}
+                rootProps={{ "data-testid": "3" }}
+              />
+            </div>
+            <div>
+              <Chart
+                width={"850px"}
+                height={"700px"}
+                chartType="Bar"
+                loader={<div>Loading Chart</div>}
+                data={[
+                  ["Month", "Allowances(Rs)"],
+                  [new Date().getMonth() - 2, this.state.total4],
+                  [new Date().getMonth() - 1, this.state.total3],
+                  [new Date().getMonth(), this.state.total2],
+                  [new Date().getMonth() + 1, this.state.total]
+                ]}
+                options={{
+                  // Material design options
+                  chart: {
+                    title: "Total Allowances",
+                    subtitle: "Total Allowances for Last Four Months"
+                  }
+                }}
+                // For tests
+                rootProps={{ "data-testid": "2" }}
+              />
+            </div>
           </div>
         </center>
         <br />
+        <div>
+          <iframe id="ifmcontentstoprint"></iframe>
+        </div>
       </div>
     );
   }
