@@ -1,6 +1,8 @@
 const express = require("express");
 const employees = require("../models/employees");
 const assignment_assignedtostaff = require("../models/assignment_assignedtostaff");
+const Posts = require("../models/Reviews");
+
 const router = express.Router();
 
 router.post("/employees/save", (req, res) => {
@@ -50,6 +52,8 @@ router.get("/employeepoints", (req, res) => {
     });
   });
 });
+
+
 router.get("/checkassigned/:id", (req, res) => {
   let empno = req.params.id;
   assignment_assignedtostaff
@@ -61,6 +65,62 @@ router.get("/checkassigned/:id", (req, res) => {
       });
     });
 });
+
+router.get("/pendingassignments", (req, res) => {
+  assignment_assignedtostaff.find({ progress : "Assigned" } ).exec((err, posts2) =>{ 
+    var o = posts2.length;
+    if (err) {
+      return res.status(400).json({
+        error: err,
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      Pending: posts2,
+      o:o,
+    });
+  });
+});
+
+router.get("/assignments/empreportupload", (req, res) => {
+  assignment_assignedtostaff
+    .find( { progress: { $ne: "Completed" } } )
+    .exec((err, assignmentsassigned) => {
+      return res.status(200).json({
+        success: true,
+        assignmentsassigned: assignmentsassigned,
+      });
+    });
+});
+
+router.get("/review/pe", (req, res) => {
+  Posts.aggregate([{
+    $lookup: {
+      from: "assignment_assignedtostaffs",
+      localField: "report",
+      foreignField: "assignment_name",
+      as: "work",
+    },
+  },{ $match:{ $or: [   { status: "Pending" } , { status: "Rejected"}  ]} }]).exec((err, posts1) => { Posts.find({ status : "Accepted" }).exec((err, posts2) =>{ var l = posts2.length;
+    var o = posts1.length;
+    if (err) {
+      return res.status(400).json({
+        error: err,
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      Pending: posts1,
+      Completed: posts2,
+      l:l,
+      o:o,
+    });
+  });
+});
+});
+
+
+
 
 //get specific
 router.get("/employees/:id", (req, res) => {
