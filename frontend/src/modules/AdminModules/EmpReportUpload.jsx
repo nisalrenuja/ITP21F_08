@@ -2,68 +2,71 @@ import React, { Component } from "react";
 import axios from "axios";
 import { storage } from "../../firebase";
 import Progress from "../../component/common/ProgressBar/progress";
-export default class EditReview extends Component {
+export default class EmpReportUpload extends Component {
   constructor(props) {
     super(props);
+    var today = new Date(),
+      date =
+        today.getFullYear() +
+        "-" +
+        (today.getMonth() + 1) +
+        "-" +
+        today.getDate();
+    console.log(date);
+
+    this.uploadPDF = this.uploadPDF.bind(this);
 
     this.state = {
       execid_review: "",
       report: "",
       reportPDF: null,
-      points: "",
-      feedback: "",
       status: "",
       uploadPercentage: 0,
-      fileVal: "",
-      assignmentstatus: ""
+      empno: "",
+      sub_date: today,
+      due_date: "",
+      progress: ""
     };
   }
 
   handleInputChange = e => {
     const { name, value } = e.target;
-    console.log(name);
-    console.log(value);
-    if (name === "status") {
-      if (value === "Accepted") {
-        this.state.assignmentstatus = "Completed";
-        this.state.status = "Accepted";
-      } else if (value === "Pending") {
-        this.state.assignmentstatus = "Working";
-        this.state.status = "Pending";
-      } else this.state.status = "Rejected";
-    }
-
-    console.log(this.state.assignmentstatus);
-    console.log(this.state.status);
     this.setState({
       ...this.state,
       [name]: value
     });
   };
 
+  handleInputFileChange = e => {
+    var file = e.target.files[0];
+    console.log(file);
+  };
+
   onSubmit = e => {
     e.preventDefault();
-    const id = this.props.match.params.id;
+
     const {
       execid_review,
       report,
       reportPDF,
-      points,
-      feedback,
-      status
+      empno,
+      sub_date,
+      due_date
     } = this.state;
     const data = {
       execid_review: execid_review,
       report: report,
       reportPDF: reportPDF,
-      points: points,
-      feedback: feedback,
-      status: status
+      points: 0,
+      feedback: " - ",
+      status: "Pending",
+      empno: empno,
+      sub_date: sub_date,
+      due_date: due_date
     };
-    const { assignmentstatus } = this.state;
-    const data1 = { progress: assignmentstatus };
+    const { progress } = this.state;
+    const data1 = { progress: "Working" };
     console.log(data);
-    console.log(data1);
     axios
       .put(
         `http://localhost:5000/assignments/update/${this.state.report}`,
@@ -72,40 +75,27 @@ export default class EditReview extends Component {
       .then(res => {
         if (res.data.success) {
           this.setState({
-            assignmentstatus: ""
+            progress: ""
           });
         }
       });
-    axios.put(`http://localhost:5000/review/update/${id}`, data).then(res => {
+    axios.post("http://localhost:5000/review/save", data).then(res => {
       if (res.data.success) {
-        alert("Review Updated Successfully");
         this.setState({
           execid_review: "",
           report: "",
-          reportPDF: null,
+          reportPDF: "",
           points: "",
           feedback: "",
-          status: ""
+          status: "",
+          empno: "",
+          sub_date: "",
+          due_date: ""
         });
+        alert("Submitted Successfully");
       }
     });
   };
-
-  componentDidMount() {
-    const id = this.props.match.params.id;
-    axios.get(`http://localhost:5000/review/${id}`).then(res => {
-      if (res.data.success) {
-        this.setState({
-          execid_review: res.data.post.execid_review,
-          report: res.data.post.report,
-          reportPDF: res.data.post.reportPDF,
-          points: res.data.post.points,
-          feedback: res.data.post.feedback,
-          status: res.data.post.status
-        });
-      }
-    });
-  }
 
   uploadPDF(e) {
     if (e.target.files[0] !== null) {
@@ -140,18 +130,19 @@ export default class EditReview extends Component {
     } else {
     }
   }
+
   render() {
     return (
       <div className="col-md-8 mt-4 mx-auto">
-        <h1 className="h3 mb-3 font-weight-normal">Edit Review</h1>
+        <h1 className="h3 mb-3 font-weight-normal">Create New Review</h1>
         <form className="need-validation" noValidate>
           <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Review Id</label>
+            <label style={{ marginBottom: "5px" }}>To be Reviewed By</label>
             <input
               type="text"
               className="form-control"
               name="execid_review"
-              placeholder="Edit Review Id"
+              placeholder="Enter Executive Id"
               value={this.state.execid_review}
               onChange={this.handleInputChange}
             />
@@ -163,7 +154,7 @@ export default class EditReview extends Component {
               type="text"
               className="form-control"
               name="report"
-              placeholder="Edit Report Name"
+              placeholder="Enter Report Name"
               value={this.state.report}
               onChange={this.handleInputChange}
             />
@@ -173,26 +164,16 @@ export default class EditReview extends Component {
             <label style={{ marginBottom: "5px" }}>
               Upload Your Report PDF
             </label>
-
             <input
               type="file"
-              id="file"
               className="form-control"
               name="reportPDF"
-              // value={this.state.reportPDF}
+              //value={this.state.reportPDF}
               onChange={e => {
                 this.uploadPDF(e);
               }}
               multiple=""
             />
-            <div className="row d-flex justify-content-end mt-3">
-              <a
-                href={this.state.reportPDF}
-                className="btn btn-primary col-2 me-2"
-              >
-                View PDF
-              </a>
-            </div>
           </div>
 
           <div className="mt-3">
@@ -200,60 +181,36 @@ export default class EditReview extends Component {
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Report Points</label>
-            <select
-              defaultValue={"DEFAULT"}
-              className="form-select"
-              aria-label="Default select example"
-              onChange={this.handleInputChange}
-              name="points"
-            >
-              <option value="DEFAULT" disabled>
-                selected Point is : {this.state.points}
-              </option>
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
-            </select>
-          </div>
-
-          <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Feedback</label>
+            <label style={{ marginBottom: "5px" }}>Date of Submission</label>
             <input
-              type="text"
+              defaultValue={"DEFAULT"}
               className="form-control"
-              name="feedback"
-              placeholder="Edit Feedback"
-              value={this.state.feedback}
-              onChange={this.handleInputChange}
+              aria-label="Default select example"
+              name="sub_date"
+              value={this.state.sub_date}
+              disabled
             />
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Report Status</label>
-            <select
-              defaultValue={"DEFAULT"}
-              className="form-select"
-              aria-label="Default select example"
+            <label style={{ marginBottom: "5px" }}>Employee Number</label>
+            <input
+              type="number"
+              className="form-control"
+              name="empno"
+              placeholder="Enter Employee Number"
+              value={this.state.empno}
               onChange={this.handleInputChange}
-              name="status"
-            >
-              <option value="DEFAULT" disabled>
-                selected status is : {this.state.status}
-              </option>
-              <option value="Pending">Pending</option>
-              <option value="Rejected">Rejected</option>
-              <option value="Accepted">Accepted</option>
-            </select>
+            />
           </div>
 
           <button
-            className="btn btn-info mb-2"
+            className="btn btn-success"
             type="submit"
             style={{ marginTop: "15px" }}
             onClick={this.onSubmit}
           >
-            <i className="fas fa-sync"></i>&nbsp;Update
+            <i className="fa fa-check-square"></i>&nbsp;Save
           </button>
         </form>
       </div>

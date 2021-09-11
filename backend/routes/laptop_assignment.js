@@ -25,6 +25,15 @@ router.get("/laps/ass", (req, res) => {
     });
   });
 });
+router.get("/laps/check/:id", (req, res) => {
+  let lapid = req.params.id;
+  laptop.find({ id: lapid }).exec((err, laps) => {
+    return res.status(200).json({
+      success: true,
+      laps: laps,
+    });
+  });
+});
 router.get("/checklapassigned/:id", (req, res) => {
   let lapid = req.params.id;
   laptop_assignment

@@ -7,6 +7,7 @@ const payrollsSchema = new mongoose.Schema({
     empno: {
         type:String,
         required:true//since must have
+        
     },
     name: {
         type: String,

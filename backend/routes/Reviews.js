@@ -35,6 +35,25 @@ router.get("/review", (req, res) => {
   });
 });
 
+router.get("/review/pecom", (req, res) => {
+  Posts.find({ status : "Pending" }).exec((err, posts1) => { Posts.find({ status : "Accepted" }).exec((err, posts2) =>{ var l = posts2.length;
+    var o = posts1.length;
+    if (err) {
+      return res.status(400).json({
+        error: err,
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      Pending: posts1,
+      Completed: posts2,
+      l:l,
+      o:o,
+    });
+  });
+});
+});
+
 //get a specific post
 router.get("/review/:id", (req, res) => {
   let postId = req.params.id;

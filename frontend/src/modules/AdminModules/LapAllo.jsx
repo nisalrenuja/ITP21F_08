@@ -103,7 +103,9 @@ export default class LapAllo extends Component {
                   <td>{lapassignments.date_allocated}</td>
 
                   <td>{lapassignments.date_received}</td>
-                  <td>{lapassignments.status}</td>
+                  <td>
+                    <b>{lapassignments.status}</b>
+                  </td>
 
                   <td>
                     <a href={`/editlapallo/${lapassignments.assignment_name}`}>
