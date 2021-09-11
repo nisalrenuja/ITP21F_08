@@ -6,12 +6,8 @@ export default class EditExecutive extends Component {
     super(props);
 
     this.state = {
-      exeno: "",
-      name: "",
-      email: "",
-      contact: "",
-      dob: "",
-      gender: ""
+      username: "",
+      email: ""
     };
   }
 
@@ -26,28 +22,22 @@ export default class EditExecutive extends Component {
   onSubmit = e => {
     e.preventDefault();
     const id = this.props.match.params.id;
-    const { exeno, name, email, contact, dob, gender } = this.state;
+    const { username, email } = this.state;
     const data = {
-      exeno: exeno,
-      name: name,
-      email: email,
-      contact: contact,
-      dob: dob,
-      gender: gender
+      username: username,
+
+      email: email
     };
     console.log(data);
     axios
       .put(`http://localhost:5000/executives/update/${id}`, data)
       .then(res => {
         if (res.data.success) {
-          alert("Post Updated Successfully");
+          alert("User Updated Successfully");
           this.setState({
-            exeno: "",
-            name: "",
-            email: "",
-            contact: "",
-            dob: "",
-            gender: ""
+            username: "",
+
+            email: ""
           });
         }
       });
@@ -58,12 +48,9 @@ export default class EditExecutive extends Component {
     axios.get(`http://localhost:5000/executives/${id}`).then(res => {
       if (res.data.success) {
         this.setState({
-          exeno: res.data.executives.exeno,
-          name: res.data.executives.name,
-          email: res.data.executives.email,
-          contact: res.data.executives.contact,
-          dob: res.data.executives.dob,
-          gender: res.data.executives.gender
+          username: res.data.executives.username,
+
+          email: res.data.executives.email
         });
       }
     });
@@ -79,21 +66,9 @@ export default class EditExecutive extends Component {
             <input
               type="text"
               className="form-control"
-              name="exeno"
+              name="username"
               placeholder="Edit Review Id"
-              value={this.state.exeno}
-              onChange={this.handleInputChange}
-            />
-          </div>
-
-          <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Report Name</label>
-            <input
-              type="text"
-              className="form-control"
-              name="name"
-              placeholder="Edit Report Name"
-              value={this.state.name}
+              value={this.state.username}
               onChange={this.handleInputChange}
             />
           </div>
@@ -110,49 +85,13 @@ export default class EditExecutive extends Component {
             />
           </div>
 
-          <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Feedback</label>
-            <input
-              type="text"
-              className="form-control"
-              name="contact"
-              placeholder="Edit Feedback"
-              value={this.state.contact}
-              onChange={this.handleInputChange}
-            />
-          </div>
-          <div className="form-group" style={{ marginBottom: "14px" }}>
-            <label style={{ marginBottom: "5px" }}>Repairing Date</label>
-            <input
-              type="date"
-              id="date"
-              className="form-control"
-              name="dob"
-              placeholder="DD/MM/YY"
-              value={this.state.dob}
-              onChange={this.handleInputChange}
-            />
-          </div>
-
-          <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Feedback</label>
-            <input
-              type="text"
-              className="form-control"
-              name="gender"
-              placeholder="Edit Feedback"
-              value={this.state.gender}
-              onChange={this.handleInputChange}
-            />
-          </div>
-
           <button
-            className="btn btn-success mb-2"
+            className="btn btn-info mb-2"
             type="submit"
             style={{ marginTop: "15px" }}
             onClick={this.onSubmit}
           >
-            <i className="fa fa-check-square"></i>&nbsp;Update
+            <i className="fas fa-sync"></i>&nbsp;Update
           </button>
         </form>
       </div>

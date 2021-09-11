@@ -5,7 +5,7 @@ const router = express.Router();
 
 //Save Notices
 
-router.post('/post/save', (req,res)=>{
+router.post('/CreateNotice/save', (req,res)=>{
 
     let newNotice = new Notices(req.body);
 

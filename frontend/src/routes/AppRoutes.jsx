@@ -45,11 +45,20 @@ import CreateNotice from "../modules/AdminModules/CreateNotice";
 import TopPerformers from "../modules/AdminModules/TopPerformers";
 import NoticeComPerf from "../modules/AdminModules/NoticeComPerf";
 import PendingAssignment from "../pages/AdminPage/PendingAssignment";
+import EmployeeReport from "../modules/AdminModules/EmployeeReport";
+import EmpReportUpload from "../modules/AdminModules/EmpReportUpload";
 
 import PayrollPage from "../pages/PayrollPage/PayrollPage";
 import CreatePayroll from "../modules/AdminModules/CreatePayroll";
 import DisplayPayroll from "../modules/AdminModules/DisplayPayroll";
 import EditPayroll from "../modules/AdminModules/EditPayroll";
+import ManagerReview from "../modules/AdminModules/ManagerReview";
+import EditManagerReview from "../modules/AdminModules/ManagerReview";
+import DirectorReview from "../modules/AdminModules/DirectorReview";
+import EditDirectorReview from "../modules/AdminModules/DirectorReview";
+import PartnerReview from "../modules/AdminModules/PartnerReview";
+import EditPartnerReview from "../modules/AdminModules/PartnerReview";
+import AllReports from "../pages/AdminPage/AllReports";
 
 import CreateClient from "../modules/AdminModules/CreateClient";
 import DisplayClient from "../modules/AdminModules/DisplayClient";
@@ -93,6 +102,8 @@ const AppRoutes = () => (
           path="/editassignment/:assignment"
           component={EditAssignment}
         />
+        <Route exact path="/employeereport" component={EmployeeReport} />
+        <Route exact path="/empreportupload" component={EmpReportUpload} />
         <Route exact path="/assignment/:assignment" component={Assignment} />
         <Route path="/review" component={ReviewPage} exact />
         <Route path="/add" exact component={CreateReview}></Route>
@@ -102,6 +113,7 @@ const AppRoutes = () => (
         <Route path="/reportwork" component={WorkReport} exact />
         <Route path="/InsertEmployee" component={InsertEmployee} exact />
         /*Anujitha Routes*/
+        <Route path="/allreports" component={AllReports} exact />
         <Route path="/companyperformance" component={CompanyPerfomance} exact />
         <Route path="/EditEmployee/:id" component={EditEmployee} exact />
         <Route path="/createexecutive" component={CreateExecutive} exact />
@@ -131,6 +143,17 @@ const AppRoutes = () => (
         <Route path="/addclient" exact component={CreateClient}></Route>
         <Route path="/displayclient/:id" component={DisplayClient} exact />
         <Route path="/editclient/:id" component={EditClient} exact />
+        /*?? routes*/
+        <Route path="/managerreview" component={ManagerReview} exact />
+        <Route path="/directorreview" component={DirectorReview} exact />
+        <Route path="/partnerreview" component={PartnerReview} exact />
+        <Route path="/editmanagerreview" component={EditManagerReview} exact />
+        <Route
+          path="/editdirectorreview"
+          component={EditDirectorReview}
+          exact
+        />
+        <Route path="/editpartnerreview" component={EditPartnerReview} exact />
       </Switch>
       <Footer />
     </Router>

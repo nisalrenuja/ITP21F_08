@@ -21,17 +21,17 @@ const review_Schema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  employee_name: {
+  empno: {
     type: String,
-    required: true,
+    required: false,
   },
   sub_date: {
     type: Date,
-    required: true,
+    required: false,
   },
   due_date: {
     type: Date,
-    required: true,
+    required: false,
   },
   status: {
     type: String,

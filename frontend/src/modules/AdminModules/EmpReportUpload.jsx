@@ -2,18 +2,30 @@ import React, { Component } from "react";
 import axios from "axios";
 import { storage } from "../../firebase";
 import Progress from "../../component/common/ProgressBar/progress";
-export default class CreateReview extends Component {
+export default class EmpReportUpload extends Component {
   constructor(props) {
     super(props);
+    var today = new Date(),
+      date =
+        today.getFullYear() +
+        "-" +
+        (today.getMonth() + 1) +
+        "-" +
+        today.getDate();
+    console.log(date);
+
     this.uploadPDF = this.uploadPDF.bind(this);
+
     this.state = {
       execid_review: "",
       report: "",
       reportPDF: null,
-      points: "",
-      feedback: "",
       status: "",
-      uploadPercentage: 0
+      uploadPercentage: 0,
+      empno: "",
+      sub_date: today,
+      due_date: "",
+      progress: ""
     };
   }
 
@@ -37,19 +49,36 @@ export default class CreateReview extends Component {
       execid_review,
       report,
       reportPDF,
-      points,
-      feedback,
-      status
+      empno,
+      sub_date,
+      due_date
     } = this.state;
     const data = {
       execid_review: execid_review,
       report: report,
       reportPDF: reportPDF,
-      points: points,
-      feedback: feedback,
-      status: status
+      points: 0,
+      feedback: " - ",
+      status: "Pending",
+      empno: empno,
+      sub_date: sub_date,
+      due_date: due_date
     };
+    const { progress } = this.state;
+    const data1 = { progress: "Working" };
     console.log(data);
+    axios
+      .put(
+        `http://localhost:5000/assignments/update/${this.state.report}`,
+        data1
+      )
+      .then(res => {
+        if (res.data.success) {
+          this.setState({
+            progress: ""
+          });
+        }
+      });
     axios.post("http://localhost:5000/review/save", data).then(res => {
       if (res.data.success) {
         this.setState({
@@ -58,8 +87,12 @@ export default class CreateReview extends Component {
           reportPDF: "",
           points: "",
           feedback: "",
-          status: ""
+          status: "",
+          empno: "",
+          sub_date: "",
+          due_date: ""
         });
+        alert("Submitted Successfully");
       }
     });
   };
@@ -104,7 +137,7 @@ export default class CreateReview extends Component {
         <h1 className="h3 mb-3 font-weight-normal">Create New Review</h1>
         <form className="need-validation" noValidate>
           <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Topic</label>
+            <label style={{ marginBottom: "5px" }}>To be Reviewed By</label>
             <input
               type="text"
               className="form-control"
@@ -148,60 +181,36 @@ export default class CreateReview extends Component {
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Report Points</label>
-            <select
-              defaultValue={"DEFAULT"}
-              className="form-select"
-              aria-label="Default select example"
-              onChange={this.handleInputChange}
-              name="points"
-            >
-              <option value="DEFAULT" disabled>
-                Open this select Point
-              </option>
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
-            </select>
-          </div>
-
-          <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Feedback</label>
+            <label style={{ marginBottom: "5px" }}>Date of Submission</label>
             <input
-              type="text"
+              defaultValue={"DEFAULT"}
               className="form-control"
-              name="feedback"
-              placeholder="Enter Feedback"
-              value={this.state.feedback}
-              onChange={this.handleInputChange}
+              aria-label="Default select example"
+              name="sub_date"
+              value={this.state.sub_date}
+              disabled
             />
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Report Status</label>
-            <select
-              defaultValue={"DEFAULT"}
-              className="form-select"
-              aria-label="Default select example"
+            <label style={{ marginBottom: "5px" }}>Employee Number</label>
+            <input
+              type="number"
+              className="form-control"
+              name="empno"
+              placeholder="Enter Employee Number"
+              value={this.state.empno}
               onChange={this.handleInputChange}
-              name="status"
-            >
-              <option value="DEFAULT" disabled>
-                Open this select status
-              </option>
-              <option value="Pending">Pending</option>
-              <option value="Rejected">Rejected</option>
-              <option value="Accepted">Accepted</option>
-            </select>
+            />
           </div>
 
           <button
-            className="btn btn-success mb-2"
+            className="btn btn-success"
             type="submit"
             style={{ marginTop: "15px" }}
             onClick={this.onSubmit}
           >
-            <i className="far fa-save"></i>&nbsp;Save
+            <i className="fa fa-check-square"></i>&nbsp;Save
           </button>
         </form>
       </div>

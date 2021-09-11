@@ -1,15 +1,14 @@
 const jwt = require("jsonwebtoken");
 const ErrorResponse = require("../utils/errorResponse");
 const User = require("../models/User");
+const dotenv = require("dotenv");
+dotenv.config();
 
 exports.protect = async (req, res, next) => {
-  let token;
+  let token = req.headers.authorization.split(" ")[1];
 
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer")
-  ) {
-    token = req.headers.authorization.split(" ")[1];
+  if (req.headers.authorization) {
+    req.headers.authorization && req.headers.authorization.startsWith("Bearer");
   }
 
   if (!token) {
@@ -17,7 +16,7 @@ exports.protect = async (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, "nisal");
     const user = await User.findById(decoded.id);
 
     if (!user) {
@@ -28,6 +27,9 @@ exports.protect = async (req, res, next) => {
 
     next();
   } catch (err) {
-    return next(new ErrorResponse("Not authorized to access this router", 401));
+    console.log(err);
+    return next(
+      new ErrorResponse("Not authorized to access this router nisal", 401)
+    );
   }
 };
