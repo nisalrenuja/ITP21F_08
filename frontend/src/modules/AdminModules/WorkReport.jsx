@@ -203,7 +203,7 @@ export default class WorkReport extends Component {
         </center>
         <br />
         <div>
-          <iframe id="ifmcontentstoprint"></iframe>
+          <iframe id="ifmcontentstoprint" style={{ display: "none" }}></iframe>
         </div>
       </div>
     );
