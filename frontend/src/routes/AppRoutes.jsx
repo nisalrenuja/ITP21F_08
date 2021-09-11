@@ -50,6 +50,7 @@ import PayrollPage from "../pages/PayrollPage/PayrollPage";
 import CreatePayroll from "../modules/AdminModules/CreatePayroll";
 import DisplayPayroll from "../modules/AdminModules/DisplayPayroll";
 import EditPayroll from "../modules/AdminModules/EditPayroll";
+import AllReports from "../pages/AdminPage/AllReports";
 
 const AppRoutes = () => (
   <div>
@@ -97,6 +98,7 @@ const AppRoutes = () => (
         <Route path="/reportwork" component={WorkReport} exact />
         <Route path="/InsertEmployee" component={InsertEmployee} exact />
         /*Anujitha Routes*/
+        <Route path="/allreports" component={AllReports} exact />
         <Route path="/companyperformance" component={CompanyPerfomance} exact />
         <Route path="/EditEmployee/:id" component={EditEmployee} exact />
         <Route path="/createexecutive" component={CreateExecutive} exact />
