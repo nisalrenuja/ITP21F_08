@@ -11,8 +11,8 @@ const assignment_assignedtostaffRoutes = require("./routes/assignment_assignedto
 const laptop_assignment_Routes = require("./routes/laptop_assignment");
 const employees = require("./routes/employees");
 const executives = require("./routes/executives");
-const client_fees = require("./routes/client_fees");
-const client = require("./routes/client"); 
+const client_fees_routes = require("./routes/client_fees");
+const clients_routes = require("./routes/clients"); 
 const Notices = require("./routes/Company_Notices");
 //connect db
 connectDB();
@@ -51,8 +51,8 @@ app.use(laptop_routes);
 app.use(laptop_repair_routes);
 app.use(assignment_assignedtostaffRoutes);
 app.use(employees);
-app.use(client_fees);
-app.use(client);
+app.use(client_fees_routes);
+app.use(clients_routes);
 app.use(attendancesRoutes);
 app.use(leavesRoutes);
 app.use(payrollRoutes);

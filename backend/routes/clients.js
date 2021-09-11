@@ -1,18 +1,18 @@
 const express = require("express");
-const Clients = require("../models/client");
+const Clients = require("../models/clients");
 
 const router = express.Router();
 
 //save clients...
 
-router.post("/client/save",(req,res)=>{
+router.post("/client/save", (req,res ) => {
  let newClient = new Clients(req.body);
 
-    newClient.save((err) =>{
-        if(err){
+    newClient.save((err) => {
+        if(err) {
             return res.status(400).json({
-                error:err
-            });   
+                error:err,
+          });   
         }
         return  res.status(200).json({
           success:"New Client saved successfully...",  
@@ -23,54 +23,54 @@ router.post("/client/save",(req,res)=>{
 // get clients 
 
 router.get("/clients", (req,res) => {
-    Clients.find().exec((err,clients) => {
+    Clients.find().exec((err, clients) => {
         if(err) {
             return res.status(400).json({
-                error:err,
+                error: err,
             });
         }
         return res.status(200).json({
             success:true,
-            existingPosts:clients,
-        });
+            existingClients: clients,
     });
+  });
 });
 
-//get a specific client
+//get a specific client (GET)
 
-router.get("/client/:clientno",(req,res) =>{
-    let ClientId = req.params.clientno;
+router.get("/client/:id",(req,res) =>{
+    let ClientId = req.params.id;
 
-   Clients.findById(clientId,(err,client) =>{
+   Clients.findById(ClientId, (err,client) =>{
         if(err){
             return res.status(400).json({
                 success:false, 
                 err,
-            });
+         });
         }
 
         return res.status(200).json({
-            success:true,
+            success: true,
             client
         });
     });
 });   
 
-//update client
+//update client (PUT)
 
-router.put("/client/update/:clientno",(req,res)=> {
+router.put("/client/update/:id",(req,res)=> {
     Clients.findByIdAndUpdate(
-        req.params.clientno,
+        req.params.id,
         {
             $set:req.body,
         },
         (err,client)=>{
-            if(err){
+            if (err){
                 return res.status(400).json({error:err});
             }
 
             return res.status(200).json({
-                success:"Updated Succesfully",
+                success:"Updated Succesfully..!!",
             });
         }
     );
@@ -78,8 +78,8 @@ router.put("/client/update/:clientno",(req,res)=> {
 
 // delete client
 
-router.delete("/client/delete/:clientno",(req,res) => {
-    Clients.findByIdAndRemove(req.params.clientno).exec((err,deletedClient) =>{
+router.delete("/client/delete/:id",(req,res) => {
+    Clients.findByIdAndRemove(req.params.id).exec((err,deletedClient) =>{
 
         if(err)
          return res.status(400).json({
