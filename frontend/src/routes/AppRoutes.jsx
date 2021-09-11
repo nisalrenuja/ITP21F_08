@@ -53,8 +53,11 @@ import CreatePayroll from "../modules/AdminModules/CreatePayroll";
 import DisplayPayroll from "../modules/AdminModules/DisplayPayroll";
 import EditPayroll from "../modules/AdminModules/EditPayroll";
 import ManagerReview from "../modules/AdminModules/ManagerReview";
+import EditManagerReview from "../modules/AdminModules/ManagerReview";
 import DirectorReview from "../modules/AdminModules/DirectorReview";
+import EditDirectorReview from "../modules/AdminModules/DirectorReview";
 import PartnerReview from "../modules/AdminModules/PartnerReview";
+import EditPartnerReview from "../modules/AdminModules/PartnerReview";
 import AllReports from "../pages/AdminPage/AllReports";
 
 const AppRoutes = () => (
@@ -133,6 +136,13 @@ const AppRoutes = () => (
         <Route path="/managerreview" component={ManagerReview} exact />
         <Route path="/directorreview" component={DirectorReview} exact />
         <Route path="/partnerreview" component={PartnerReview} exact />
+        <Route path="/editmanagerreview" component={EditManagerReview} exact />
+        <Route
+          path="/editdirectorreview"
+          component={EditDirectorReview}
+          exact
+        />
+        <Route path="/editpartnerreview" component={EditPartnerReview} exact />
       </Switch>
       <Footer />
     </Router>
