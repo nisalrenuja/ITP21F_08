@@ -10,10 +10,9 @@ import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import LapAllo from "../../modules/AdminModules/LapAllo";
-import Assignments from "../../modules/AdminModules/Assignment";
-import PendingAssignments from "../../modules/AdminModules/PendingAssignment";
+import NoticeComPerf from "../../modules/AdminModules/NoticeComPerf";
 
-const Assignment = ({ history, match }) => {
+const Noticecomperf = () => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -52,13 +51,13 @@ const Assignment = ({ history, match }) => {
             <AdminTab1 />
           ) : selectedMenuOption === "MenuItem 2" ? (
             <AdminTab2 />
-          ) : selectedMenuOption === "Employees" ? (
-            <Assignments dataFromParent={match.params.assignment} />
+          ) : selectedMenuOption === "MenuItem 3" ? (
+            <AdminTab3 />
           ) : selectedMenuOption === "Work Allocation" ? (
-            <Assignments dataFromParent={match.params.assignment} />
-          ) : selectedMenuOption === "MenuItem 5" ? (
-            <AdminTab5 />
-          ) : selectedMenuOption === "MenuItem 6" ? (
+            <AdminTab4 />
+          ) : selectedMenuOption === "Notice Management" ? (
+            <NoticeComPerf />
+          ) : selectedMenuOption === "Attendance & Payroll" ? (
             <AdminTab6 />
           ) : selectedMenuOption === "MenuItem 7" ? (
             <AdminTab7 />
@@ -77,4 +76,4 @@ const Assignment = ({ history, match }) => {
   );
 };
 
-export default Assignment;
+export default Noticecomperf;

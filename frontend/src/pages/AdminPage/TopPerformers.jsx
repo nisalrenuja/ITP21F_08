@@ -10,10 +10,10 @@ import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import LapAllo from "../../modules/AdminModules/LapAllo";
-import Assignments from "../../modules/AdminModules/Assignment";
-import PendingAssignments from "../../modules/AdminModules/PendingAssignment";
+import CreateNotice from "../../modules/AdminModules/CreateNotice";
+import TopPerformers from "../../modules/AdminModules/TopPerformers";
 
-const Assignment = ({ history, match }) => {
+const Topperformers = ({ history, match }) => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -21,9 +21,7 @@ const Assignment = ({ history, match }) => {
     selectedMenuOptionCache =
       window.localStorage.getItem("MenuOptionCache") || "";
   }
-  const [selectedMenuOption, setSelectedMenuOption] = useState(
-    "User Executive"
-  );
+  const [selectedMenuOption, setSelectedMenuOption] = useState("Report Review");
 
   useEffect(() => {
     if (userRole !== "Admin") {
@@ -48,16 +46,16 @@ const Assignment = ({ history, match }) => {
     <div>
       {selectedMenuOption !== "" ? (
         <Container>
-          {selectedMenuOption === "User Executive" ? (
+          {selectedMenuOption === "Report Review" ? (
             <AdminTab1 />
           ) : selectedMenuOption === "MenuItem 2" ? (
             <AdminTab2 />
           ) : selectedMenuOption === "Employees" ? (
-            <Assignments dataFromParent={match.params.assignment} />
+            <AdminTab3 />
           ) : selectedMenuOption === "Work Allocation" ? (
-            <Assignments dataFromParent={match.params.assignment} />
-          ) : selectedMenuOption === "MenuItem 5" ? (
-            <AdminTab5 />
+            <AdminTab4 />
+          ) : selectedMenuOption === "Notice Management" ? (
+            <TopPerformers />
           ) : selectedMenuOption === "MenuItem 6" ? (
             <AdminTab6 />
           ) : selectedMenuOption === "MenuItem 7" ? (
@@ -77,4 +75,4 @@ const Assignment = ({ history, match }) => {
   );
 };
 
-export default Assignment;
+export default Topperformers;

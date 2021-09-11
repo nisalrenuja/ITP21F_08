@@ -10,10 +10,9 @@ import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import LapAllo from "../../modules/AdminModules/LapAllo";
-import Assignments from "../../modules/AdminModules/Assignment";
 import PendingAssignments from "../../modules/AdminModules/PendingAssignment";
 
-const Assignment = ({ history, match }) => {
+const PendingAssignment = ({ history, match }) => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -53,12 +52,12 @@ const Assignment = ({ history, match }) => {
           ) : selectedMenuOption === "MenuItem 2" ? (
             <AdminTab2 />
           ) : selectedMenuOption === "Employees" ? (
-            <Assignments dataFromParent={match.params.assignment} />
+            <PendingAssignments dataFromParent={match.params.id} />
           ) : selectedMenuOption === "Work Allocation" ? (
-            <Assignments dataFromParent={match.params.assignment} />
-          ) : selectedMenuOption === "MenuItem 5" ? (
+            <AdminTab4 />
+          ) : selectedMenuOption === "Notice Management" ? (
             <AdminTab5 />
-          ) : selectedMenuOption === "MenuItem 6" ? (
+          ) : selectedMenuOption === "Attendance & Payroll" ? (
             <AdminTab6 />
           ) : selectedMenuOption === "MenuItem 7" ? (
             <AdminTab7 />
@@ -67,7 +66,7 @@ const Assignment = ({ history, match }) => {
           )}
         </Container>
       ) : (
-        <div> </div>
+        <div></div>
       )}
       <SideNav
         onMenuItemSelect={updateSelectedMenuOption}
@@ -77,4 +76,4 @@ const Assignment = ({ history, match }) => {
   );
 };
 
-export default Assignment;
+export default PendingAssignment;

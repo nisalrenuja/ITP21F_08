@@ -1,30 +1,29 @@
 //write http requests
-
 const express = require("express");
-const Leaves = require("../models/leaves");
+const Payrolls = require("../models/payrolls");
 
 const router = express.Router();
 
-//save leaves (POST)
-router.post("/leave/save", (req, res) => {
-    let newLeave = new Leaves(req.body);
+//save payrolls (POST)
+router.post("/payroll/save", (req, res) => {
+    let newPayroll = new Payrolls(req.body);
   
-    newLeave.save((err) => {
+    newPayroll.save((err) => {
       if (err) {
         return res.status(400).json({
           error: err,
         });
       }
       return res.status(200).json({
-        success: "Your Leave request is successfully submitted!!",
+        success: "Payroll details added successfully!!",
       });
     });
   });
 
 
 //get leaves deatails table(GET)
-router.get("/leaves", (req, res) => {
-  Leaves.find().exec((err, leaves) => {
+router.get("/payrolls", (req, res) => {
+  Payrolls.find().exec((err, payrolls) => {
     if (err) {
       return res.status(400).json({
         error: err,
@@ -32,16 +31,16 @@ router.get("/leaves", (req, res) => {
     }
     return res.status(200).json({
       success: true,
-      existingLeaves: leaves,
+      existingPayrolls: payrolls,
     });
   });
 });
 
 //get a specific leave details (GET)
-router.get("/leave/:id", (req, res) =>{
-  let leaveId = req.params.id;
+router.get("/payroll/:id", (req, res) =>{
+  let payrollId = req.params.id;
 
-  Leaves.findById(leaveId, (err, leave) =>{
+  Payrolls.findById(payrollId, (err, payroll) =>{
     if(err){
       return res.status(400).json({
         success: false,
@@ -50,25 +49,25 @@ router.get("/leave/:id", (req, res) =>{
     } 
     return res.status(200).json({
       success: true,
-      leave
+      payroll
     }); 
   });
 });
 
 
 //update leave(PUT)
-router.put("/leave/update/:id", (req, res) => {
-  Leaves.findByIdAndUpdate(
+router.put("/payroll/update/:id", (req, res) => {
+  Payrolls.findByIdAndUpdate(
     req.params.id,
     {
       $set: req.body,
     },
-    (err, leave) => {
+    (err, payroll) => {
       if (err) {
         return res.status(400).json({error: err});
       }
       return res.status(200).json({
-        success: "Leave Request Successfully Updated!!",
+        success: "Paryroll details Successfully Updated!!",
       });
     }
   );
@@ -77,15 +76,21 @@ router.put("/leave/update/:id", (req, res) => {
 
 //delete post
 //since we are deleting a specific post ... need to have an id
-router.delete("/leave/delete/:id", (req, res) => {
-  Leaves.findByIdAndRemove(req.params.id).exec((err, deletedLeave) => {
+router.delete("/payroll/delete/:id", (req, res) => {
+  Payrolls.findByIdAndRemove(req.params.id).exec((err, deletedPayroll) => {
+    
+
+    
     if (err)
       return res.status(400).json({
         message: "Delete Unsuccessful!!", err
       });
     return res.json({
-      message: "Leave Delete Successful!!", deletedLeave
+      message: "Payroll details Delete Successful!!", deletedPayroll
     });
+
+
+
   });
 });
   

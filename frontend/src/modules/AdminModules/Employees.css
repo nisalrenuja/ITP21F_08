@@ -41,7 +41,7 @@ letter-spacing: -0.00022em;
 
 color: #1687A7;
 }
-.head1{
+.heademp{
     position: absolute;
 width: 623px;
 height: 80px;
@@ -56,7 +56,7 @@ line-height: 58px;
 
 color: #1687A7;
 }
-.line1{
+.lineemp{
     position: absolute;
 width: 1000.03px;
 height: 0px;
@@ -171,8 +171,8 @@ color: #000000;
     height:850px;
     white-space: nowrap;
     position: relative;
-    overflow-x:hidden;
-    overflow-y:scroll;
+    overflow-x: scroll;
+    overflow-y: scroll;
 }
 .tbody1{
     text-align: center;
