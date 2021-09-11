@@ -14,12 +14,27 @@ export default class EditReview extends Component {
       feedback: "",
       status: "",
       uploadPercentage: 0,
-      fileVal: ""
+      fileVal: "",
+      assignmentstatus: ""
     };
   }
 
   handleInputChange = e => {
     const { name, value } = e.target;
+    console.log(name);
+    console.log(value);
+    if (name === "status") {
+      if (value === "Accepted") {
+        this.state.assignmentstatus = "Completed";
+        this.state.status = "Accepted";
+      } else if (value === "Pending") {
+        this.state.assignmentstatus = "Working";
+        this.state.status = "Pending";
+      } else this.state.status = "Rejected";
+    }
+
+    console.log(this.state.assignmentstatus);
+    console.log(this.state.status);
     this.setState({
       ...this.state,
       [name]: value
@@ -45,7 +60,22 @@ export default class EditReview extends Component {
       feedback: feedback,
       status: status
     };
+    const { assignmentstatus } = this.state;
+    const data1 = { progress: assignmentstatus };
     console.log(data);
+    console.log(data1);
+    axios
+      .put(
+        `http://localhost:5000/assignments/update/${this.state.report}`,
+        data1
+      )
+      .then(res => {
+        if (res.data.success) {
+          this.setState({
+            assignmentstatus: ""
+          });
+        }
+      });
     axios.put(`http://localhost:5000/review/update/${id}`, data).then(res => {
       if (res.data.success) {
         alert("Post Updated Successfully");
