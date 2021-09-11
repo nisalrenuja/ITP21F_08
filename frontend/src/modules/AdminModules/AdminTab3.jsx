@@ -63,6 +63,11 @@ export default class AdminTab3 extends Component {
               <p class="txt2">Employee Points</p>
             </button>
           </a>
+          <a href="/EmployeeReport">
+            <button>
+              <p>Employee Report</p>
+            </button>
+          </a>
           <div class="div3">
             <p class="txt3">Filter by</p>
             <input
