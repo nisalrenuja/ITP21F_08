@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-export default class CreateClient extends Component {
+export default class EditClient extends Component {
   constructor(props) {
     super(props);
 
@@ -15,7 +15,7 @@ export default class CreateClient extends Component {
       dirname: "",
       dirtel: "",
       dirtemail: "",
-      positon: "",
+      position: "",
       added_date: ""
     };
   }
@@ -30,6 +30,7 @@ export default class CreateClient extends Component {
 
   onSubmit = e => {
     e.preventDefault();
+    const id = this.props.match.params.id;
 
     const {
       clientID,
@@ -60,9 +61,10 @@ export default class CreateClient extends Component {
     };
 
     console.log(data);
-
-    axios.post("http://localhost:5000/client/save", data).then(res => {
+    axios.put(`http://localhost:5000/client/update/${id}`, data).then(res => {
       if (res.data.success) {
+        alert("Client Updated Successfully");
+
         this.setState({
           clientID: "",
           company_name: "",
@@ -79,6 +81,29 @@ export default class CreateClient extends Component {
       }
     });
   };
+
+  componentDidMount() {
+    const id = this.props.match.params.id;
+
+    axios.get(`http://localhost:5000/client/${id}`).then(res => {
+      if (res.data.success) {
+        this.setState({
+          clientID: res.data.client.clientID,
+          company_name: res.data.client.company_name,
+          comp_address: res.data.client.comp_address,
+          email: res.data.client.email,
+          tel_no: res.data.client.tel_no,
+          audit_fee: res.data.client.audit_fee,
+          dirname: res.data.client.dirname,
+          dirtel: res.data.client.dirtel,
+          dirtemail: res.data.client.dirtemail,
+          position: res.data.client.position,
+          added_date: res.data.client.added_date
+        });
+        console.log(this.state.client);
+      }
+    });
+  }
 
   render() {
     return (
@@ -226,14 +251,13 @@ export default class CreateClient extends Component {
           </div>
 
           <button
-            className="btn btn-success"
+            className="btn btn-success mb-2"
             type="submit"
             style={{ marginTop: "15px" }}
             onClick={this.onSubmit}
           >
-            <i className="fa fa-check-square"></i>&nbsp;Save
+            <i className="fa fa-check-square"></i>&nbsp;Update
           </button>
-          <br></br>
         </form>
       </div>
     );

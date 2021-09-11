@@ -41,7 +41,6 @@ import CreateExecutive from "../modules/AdminModules/CreateExecutive";
 import NewExecutive from "../modules/AdminModules/NewExecutive";
 import EditExecutive from "../modules/AdminModules/EditExecutive";
 import DisplayExecutive from "../modules/AdminModules/DisplayExecutive";
-import CreateClient from "../modules/AdminModules/CreateClient";
 import CreateNotice from "../modules/AdminModules/CreateNotice";
 import TopPerformers from "../modules/AdminModules/TopPerformers";
 import NoticeComPerf from "../modules/AdminModules/NoticeComPerf";
@@ -51,6 +50,11 @@ import PayrollPage from "../pages/PayrollPage/PayrollPage";
 import CreatePayroll from "../modules/AdminModules/CreatePayroll";
 import DisplayPayroll from "../modules/AdminModules/DisplayPayroll";
 import EditPayroll from "../modules/AdminModules/EditPayroll";
+
+import CreateClient from "../modules/AdminModules/CreateClient";
+import DisplayClient from "../modules/AdminModules/DisplayClient";
+import EditClient from "../modules/AdminModules/EditClient";
+import ClientsRoutesPage from "../pages/ClientsRoutesPage/ClientsRoutesPage";
 
 const AppRoutes = () => (
   <div>
@@ -122,6 +126,11 @@ const AppRoutes = () => (
         <Route path="/addpayroll" exact component={CreatePayroll}></Route>
         <Route path="/displaypayroll/:id" component={DisplayPayroll} exact />
         <Route path="/editpayroll/:id" component={EditPayroll} exact />
+        /*Thisarani Routes*/
+        <Route path="/client" component={ClientsRoutesPage} exact />
+        <Route path="/addclient" exact component={CreateClient}></Route>
+        <Route path="/displayclient/:id" component={DisplayClient} exact />
+        <Route path="/editclient/:id" component={EditClient} exact />
       </Switch>
       <Footer />
     </Router>
