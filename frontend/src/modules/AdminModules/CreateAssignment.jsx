@@ -62,6 +62,7 @@ export default class CreateAssignment extends Component {
       emp_no
     } = this.state;
 
+    console.log(emp_no);
     const data = {
       assignment_name: assignment_name,
       client_no: client_no,
@@ -74,23 +75,32 @@ export default class CreateAssignment extends Component {
       progress: "Assigned"
     };
 
-    console.log(data);
-    axios.post("http://localhost:5000/assignments/save/", data).then(res => {
+    axios.get(`http://localhost:5000/staff/check/${emp_no}`).then(res => {
       if (res.data.success) {
-        this.setState({
-          assignment_name: assignment_name,
-          client_no: client_no,
-          execid: execid,
-          place_of_engagement: place_of_engagement,
-          distance: distance,
-          date_of_allocation: date_of_allocation,
-          deadline: deadline,
-          emp_no: "",
-          redirectToReferrer: true
-        });
-        alert(
-          "Employee added to assignment, Enter employee numbers to add more employees!"
-        );
+        if (res.data.staffs.length !== 0) {
+          axios
+            .post("http://localhost:5000/assignments/save/", data)
+            .then(res => {
+              if (res.data.success) {
+                this.setState({
+                  assignment_name: assignment_name,
+                  client_no: client_no,
+                  execid: execid,
+                  place_of_engagement: place_of_engagement,
+                  distance: distance,
+                  date_of_allocation: date_of_allocation,
+                  deadline: deadline,
+                  emp_no: "",
+                  redirectToReferrer: true
+                });
+                alert(
+                  "Employee added to assignment, Enter employee numbers to add more employees!"
+                );
+              }
+            });
+        } else {
+          alert("Invalid Employee Number, Please enter again!");
+        }
       }
     });
   };

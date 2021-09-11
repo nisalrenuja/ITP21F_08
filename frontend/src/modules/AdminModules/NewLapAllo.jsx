@@ -71,19 +71,29 @@ export default class NewLapAllo extends Component {
     };
 
     console.log(data);
-    axios.post("http://localhost:5000/lapassignments/save/", data).then(res => {
+    axios.get(`http://localhost:5000/laps/check/${lapid}`).then(res => {
       if (res.data.success) {
-        this.setState({
-          assignment_name: "",
-          client_no: "",
-          execid: "",
-          empno: "",
-          status: "",
-          date_allocated: "",
-          date_received: "",
-          lapid: ""
-        });
-        alert("Done!");
+        if (res.data.laps.length !== 0) {
+          axios
+            .post("http://localhost:5000/lapassignments/save/", data)
+            .then(res => {
+              if (res.data.success) {
+                this.setState({
+                  assignment_name: "",
+                  client_no: "",
+                  execid: "",
+                  empno: "",
+                  status: "",
+                  date_allocated: "",
+                  date_received: "",
+                  lapid: ""
+                });
+                alert("Done!");
+              }
+            });
+        } else {
+          alert("Invalid Laptop ID, Please enter again!");
+        }
       }
     });
   };
