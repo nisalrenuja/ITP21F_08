@@ -21,7 +21,6 @@ router.post("/review/save", (req, res) => {
 });
 
 //get posts
-
 router.get("/review", (req, res) => {
   Posts.find().exec((err, posts) => {
     if (err) {

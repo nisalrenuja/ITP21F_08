@@ -41,6 +41,12 @@ import TopPerformers from "../modules/AdminModules/TopPerformers";
 import NoticeComPerf from "../modules/AdminModules/NoticeComPerf";
 import EditLaptopsRepair from "../pages/AdminPage/EditLaptopRepair";
 import EditLaptops from "../pages/AdminPage/EditLaptop";
+import PendingAssignment from "../pages/AdminPage/PendingAssignment";
+
+import PayrollPage from "../pages/PayrollPage/PayrollPage";
+import CreatePayroll from "../modules/AdminModules/CreatePayroll";
+import DisplayPayroll from "../modules/AdminModules/DisplayPayroll";
+import EditPayroll from "../modules/AdminModules/EditPayroll";
 
 const AppRoutes = () => (
   <div>
@@ -100,6 +106,11 @@ const AppRoutes = () => (
         <Route path="/newexecutive" component={NewExecutive} exact />
         <Route path="/editexecutive/:id" component={EditExecutive} exact />
         <Route
+          exact
+          path="/PendingAssignments/:id"
+          component={PendingAssignment}
+        />
+        <Route
           path="/displayexecutive/:id"
           component={DisplayExecutive}
           exact
@@ -108,6 +119,11 @@ const AppRoutes = () => (
         <Route path="/CreateNotice" component={CreateNotice} exact></Route>
         <Route path="/TopPerformers" component={TopPerformers} exact></Route>
         <Route path="/NoticeComPerf" compoenet={NoticeComPerf} exact></Route>
+        /*Dimashi Routes*/
+        <Route path="/payroll" component={PayrollPage} exact />
+        <Route path="/addpayroll" exact component={CreatePayroll}></Route>
+        <Route path="/displaypayroll/:id" component={DisplayPayroll} exact />
+        <Route path="/editpayroll/:id" component={EditPayroll} exact />
       </Switch>
       <Footer />
     </Router>

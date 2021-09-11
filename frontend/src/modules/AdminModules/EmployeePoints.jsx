@@ -6,21 +6,52 @@ export default class AdminTab3 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      employee: []
+      employee: [],
+      TotalCompletedReports: "",
+      completions: [],
+      pending: []
     };
   }
   componentDidMount() {
     this.retrieveemployee();
   }
   retrieveemployee() {
-    axios.get("http://localhost:5000/employees").then(res => {
+    axios.get("http://localhost:5000/employeepoints").then(res => {
       if (res.data.success) {
+        var completions = [];
+        var pending = [];
+        var count1 = 0;
+        var count2 = 0;
+        for (var i = 0; i < res.data.employees.length; i++) {
+          count1 = 0;
+          count2 = 0;
+          for (var j = 0; j < res.data.check.length; j++) {
+            if (
+              res.data.employees[i].empno == res.data.check[j].emp_no &&
+              res.data.check[j].progress == "Completed"
+            ) {
+              completions[i] = ++count1;
+            } else if (
+              res.data.employees[i].empno == res.data.check[j].emp_no &&
+              res.data.check[j].progress == "Assigned"
+            ) {
+              pending[i] = ++count2;
+            } else {
+              completions[i] = count1;
+              pending[i] = count2;
+            }
+          }
+        }
         this.setState({
-          employee: res.data.existingemployees,
-          employeecount: res.data.employeeCount
+          employee: res.data.employees,
+          employeecount: res.data.l,
+          completions: completions,
+          pending: pending
         });
         console.log(this.state.employee);
         console.log(this.state.employeecount);
+        console.log(this.state.completions);
+        console.log(this.state.pending);
       }
     });
   }
@@ -32,12 +63,32 @@ export default class AdminTab3 extends Component {
   };
 
   filterData(employees, searchKey) {
-    const result = employees.filter(
-      employees =>
-        employees.name.toLowerCase().includes(searchKey) ||
-        employees.empno.includes(searchKey)
+    const result = employees.filter(employees =>
+      employees.name.toLowerCase().includes(searchKey)
     );
     this.setState({ employee: result });
+  }
+  filterData2(employees, searchKey) {
+    if (searchKey == null) {
+      const result1 = employees.filter(employees =>
+        employees.name.toLowerCase().includes(searchKey)
+      );
+      this.setState({ employee: result1 });
+    }
+    const result = employees.filter(employees => employees.empno == searchKey);
+    this.setState({ employee: result });
+    console.log(employees.findIndex(result));
+  }
+
+  filterData3(employees, searchKey) {
+    if (searchKey == null) {
+      const result1 = employees.filter(employees =>
+        employees.name.toLowerCase().includes(searchKey)
+      );
+      this.setState({ spemployee: result1 });
+    }
+    const result = employees.filter(employees => employees.empno == searchKey);
+    this.setState({ spemployee: result });
   }
   handleSearchArea = e => {
     const searchKey = e.currentTarget.value;
@@ -48,12 +99,30 @@ export default class AdminTab3 extends Component {
     });
   };
 
+  handleSearchArea2 = e => {
+    const searchKey = e.currentTarget.value;
+    axios.get("http://localhost:5000/employees").then(res => {
+      if (res.data.success) {
+        this.filterData2(res.data.existingemployees, searchKey);
+      }
+    });
+  };
+
+  handleSearchArea3 = e => {
+    const searchKey = e.currentTarget.value;
+    axios.get("http://localhost:5000/employees").then(res => {
+      if (res.data.success) {
+        this.filterData3(res.data.existingemployees, searchKey);
+      }
+    });
+  };
+
   render() {
     return (
       <div className="container">
         <div class="main">
-          <h2 class="head1">Employees Points</h2>
-          <hr class="line1"></hr>
+          <h2 class="heademp">Employees Points</h2>
+          <hr class="lineemp"></hr>
           <a href="/AllEmployees">
             <button class="div11">
               <p class="txt11">Employee List</p>
@@ -65,21 +134,27 @@ export default class AdminTab3 extends Component {
             </button>
           </a>
           <div class="div4">
-            <p class="txt4">Employee ID</p>
-            <input class="select3" />
-            <p class="txt5">Employee Name</p>
-            <span class="box1"></span>
-            <a className="btn btn-info search">
+            <p class="txt-4">Employee ID</p>
+            <input
+              class="select-3"
+              placeholder="Enter Employee ID"
+              onChange={this.handleSearchArea2}
+              hiddenvalue="null"
+            />
+            <p class="txt-5">Employee Name</p>
+            <span class="box-1"></span>
+            <p class="txt-6">Employee Joined Date</p>
+            <span class="box-2"></span>
+
+            <button className="btn btn-info search">
               <i></i>&nbsp;Calculate Current Points
-            </a>
-            <p class="txt6">Employee Joined Date</p>
-            <span class="box2"></span>
-            <p class="txt7">Current Date</p>
-            <span class="box3"></span>
-            <p class="txt8">Total Approved Reports</p>
-            <span class="box4"></span>
-            <p class="txt9">Current Total Points Recevied</p>
-            <span class="box5"></span>
+            </button>
+            <p class="txt-7">Current Date</p>
+            <span class="box-3"></span>
+            <p class="txt-8">Total Approved Reports</p>
+            <span class="box-4"></span>
+            <p class="txt-9">Current Total Points Recevied</p>
+            <span class="box-5"></span>
           </div>
 
           <div class="div33">
@@ -87,14 +162,15 @@ export default class AdminTab3 extends Component {
             <input
               placeholder="  Search by ID"
               class="select1"
-              type="integer"
-              onChange={this.handleSearchArea}
+              type="number"
+              onChange={this.handleSearchArea2}
+              hiddenvalue="null"
             />
             <input
               placeholder="  Search by Name"
               class="select2"
               type="text"
-              onChange={this.handleSearchArea}
+              onChange={this.handleSearchArea1}
             />
           </div>
           <h2 class="tah1">Total Employees ( {this.state.employeecount} )</h2>
@@ -104,11 +180,18 @@ export default class AdminTab3 extends Component {
                 <th scope="col">Employee ID</th>
                 <th scope="col">Employee Name</th>
                 <th scope="col">Email</th>
-                <th scope="col">Joined Date</th>
                 <th scope="col">
                   Total
                   <br />
-                  Approved
+                  Pending
+                  <br />
+                  Reports
+                </th>
+                <th scope="col">
+                  {" "}
+                  Total
+                  <br />
+                  Completed
                   <br />
                   Reports
                 </th>
@@ -126,8 +209,15 @@ export default class AdminTab3 extends Component {
                   </td>
                   <td>{employees.name}</td>
                   <td>{employees.email}</td>
-                  <td>{employees.commencement_date}</td>
-                  <td>1</td>
+                  <td>
+                    <a
+                      href={`/PendingAssignments/${employees.empno}`}
+                      style={{ textDecoration: "none" }}
+                    >
+                      {this.state.pending[index]}
+                    </a>
+                  </td>
+                  <td>{this.state.completions[index]}</td>
                   <td>1</td>
 
                   <td>
@@ -135,7 +225,7 @@ export default class AdminTab3 extends Component {
                       <i class="far fa-eye"></i>
                     </a>
                     &nbsp; &nbsp;
-                    <a href={``}>
+                    <a href={`/EditEmployee/${employees._id}`}>
                       <i class="far fa-edit"></i>
                     </a>
                     &nbsp; &nbsp;
