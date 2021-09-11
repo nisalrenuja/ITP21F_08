@@ -10,6 +10,7 @@ export default class CreateNotice extends Component {
     this.state = {
       notice_id: "",
       emp_id: "",
+      emp_name: "",
       notice_topic: "",
       notice_content: "",
       notice_attachments: "",
@@ -51,6 +52,7 @@ export default class CreateNotice extends Component {
     const {
       notice_id,
       emp_id,
+      emp_name,
       notice_topic,
       notice_content,
       notice_attachments,
@@ -60,6 +62,7 @@ export default class CreateNotice extends Component {
     const data = {
       notice_id: notice_id,
       emp_id: emp_id,
+      emp_name: emp_name,
       notice_topic: notice_topic,
       notice_content: notice_content,
       notice_attachments: notice_attachments,
@@ -73,6 +76,7 @@ export default class CreateNotice extends Component {
         this.setState({
           notice_id: notice_id,
           emp_id: emp_id,
+          emp_name: emp_name,
           notice_topic: notice_topic,
           notice_content: notice_content,
           notice_attachments: notice_attachments,
@@ -120,7 +124,7 @@ export default class CreateNotice extends Component {
                 class="senaiiicc"
                 id="emp_name"
                 name="emp_name"
-                value={this.state.exp_name}
+                value={this.state.emp_name}
                 onChange={this.handleInputChange}
               />
               <p class="senaivc">Notice Topic:</p>
