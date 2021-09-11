@@ -6,6 +6,7 @@ import "./CreateLaptop.css";
 export default class EditLaptopRepair extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       id: "",
       repair_reason: "",
@@ -23,47 +24,41 @@ export default class EditLaptopRepair extends Component {
   };
 
   onSubmit = e => {
-    e.preventdefault();
-    if (this.props.match && this.props.match.params._id) {
-      const _id = this.props.match.params._id;
-
-      const { id, repair_reason, repair_cost, repair_date } = this.state;
-
-      const data = {
-        id: id,
-        repair_reason: repair_reason,
-        repair_date: repair_date,
-        repair_cost: repair_cost
-      };
-
-      console.log(data);
-      axios
-        .put(`http://localhost:5000/laptop_repair/update/${_id}`, data)
-        .then(res => {
-          if (res.data.success) {
-            alert("Details update successfully!");
-            this.setState({
-              id: "",
-              repair_reason: "",
-              repair_cost: "",
-              repair_date: ""
-            });
-          }
+    e.preventDefault();
+    const _id = this.props.match.params._id;
+    const { id, repair_reason, repair_cost, repair_date } = this.state;
+    const data = {
+      id: id,
+      repair_reason: repair_reason,
+      repair_cost: repair_cost,
+      repair_date: repair_date
+    };
+    console.log(data);
+    axios
+      .put(`http://localhost:5000/laptop_repair/update/${_id}`, data)
+      .then(res => {
+        if (res.data.success) {
           alert("Update successfully!");
-        });
-    }
+          this.setState({
+            id: "",
+            repair_reason: "",
+            repair_cost: "",
+            repair_date: ""
+          });
+        }
+      });
   };
 
   componentDidMount() {
-    if (this.props.match && this.props.match.params._id) {
+    if (this.props.match && this.props.match._id) {
       const _id = this.props.match.params._id;
       axios.get(`http://localhost:5000/laptop_repair/${_id}`).then(res => {
         if (res.data.success) {
           this.setState({
             id: res.data.laptopRepair.id,
             repair_reason: res.data.laptopRepair.repair_reason,
-            repair_date: res.data.laptopRepair.repair_date,
-            repair_cost: res.data.laptopRepair.repair_cost
+            repair_cost: res.data.laptopRepair.repair_cost,
+            repair_date: res.data.laptopRepair.repair_date
           });
         }
       });

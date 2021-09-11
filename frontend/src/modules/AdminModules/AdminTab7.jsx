@@ -35,20 +35,31 @@ export default class AdminTab7 extends Component {
     });
   };
 
+  filterData(laptops, searchKey) {
+    const result = laptops.filter(
+      laptop =>
+        laptop.id.toLowerCase().includes(searchKey) ||
+        laptop.brand.toLowerCase().includes(searchKey) ||
+        laptop.model.toLowerCase().includes(searchKey) ||
+        laptop.status.toLowerCase().includes(searchKey)
+    );
+    this.setState({ laptops: result });
+  }
+
   handleSearchArea = e => {
     const searchKey = e.currentTarget.value;
-    axios.get("./laptop").then(res => {
+    axios.get("http://localhost:5000/laptops").then(res => {
       if (res.data.success) {
-        this.filterData(res.data.laptop, searchKey);
+        this.filterData(res.data.existingLaptops, searchKey);
       }
     });
   };
 
   render() {
     return (
-      <div className="col-md-8 mt-4 mx-auto">
+      <div class="inventory-managemnt">
         <div class="container">
-          <h1 className="h3 mb-3 font-weight-normal">Inventory Management</h1>
+          <h1>Inventory Management</h1>
           <hr></hr>
 
           <div class="choice">
@@ -73,11 +84,12 @@ export default class AdminTab7 extends Component {
               name="searchlaptop"
               onChange={this.handleSearchArea}
             />
-
-            <a className="btn btn-info search">
-              <i className="fas fa-search"></i>&nbsp;Search
-            </a>
           </div>
+          <a href="/createlaptop">
+            <button class="addbtn">
+              <i class="fas fa-plus"></i>&nbsp;New Laptop Inventory Details
+            </button>
+          </a>
 
           <table className="table table-hover table1">
             <thead className="thead">
@@ -93,40 +105,31 @@ export default class AdminTab7 extends Component {
             <tbody class="tbody-container">
               {this.state.laptops.map((laptops, index) => (
                 <tr key={index}>
-                  <td>
-                    {" "}
-                    <a href={``} style={{ textDecoration: "none" }}>
-                      {laptops.id}
-                    </a>
-                  </td>
+                  <td>{laptops.id}</td>
                   <td>{laptops.brand}</td>
                   <td>{laptops.model}</td>
                   <td>{laptops.storage_type}</td>
                   <td>{laptops.status}</td>
                   <td>
-                    <a
-                      className="btn btn-warning"
-                      href={`/editlaptop/${laptops._id}`}
-                    >
-                      <i className="fas fa-edit"></i>&nbsp;Edit
+                    <a className="view" href={`/viewlaptop/${laptops._id}`}>
+                      <i class="fas fa-eye"></i>&nbsp;&nbsp;
+                    </a>
+                    <a className="edit" href={`/editlaptop/${laptops._id}`}>
+                      <i class="fas fa-edit"></i>&nbsp;&nbsp;
                     </a>
                     &nbsp;
                     <a
-                      className="btn btn-danger"
+                      className="delete"
                       href="#"
                       onClick={() => this.onDelete(laptops._id)}
                     >
-                      <i className="fas fa-trash-alt"></i>&nbsp;delete
+                      <i className="fas fa-trash-alt"></i>&nbsp;
                     </a>
                   </td>
                 </tr>
               ))}
             </tbody>
-            <tfoot class="tfoot">
-              <a href="/createlaptop">
-                <i class="fas fa-plus"></i>&nbsp;New Laptop Inventory Details
-              </a>
-            </tfoot>
+            <tfoot class="tfoot"></tfoot>
           </table>
         </div>
       </div>

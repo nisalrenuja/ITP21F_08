@@ -150,17 +150,6 @@ export default class EditLaptopInventory extends Component {
             </select>
           </div>
           <div className="form-group" style={{ marginBottom: "14px" }}>
-            <label style={{ marginBottom: "5px" }}>Laptop Price</label>
-            <input
-              type="text"
-              className="form-control"
-              name="purchase_price"
-              placeholder="Enter Laptop Price"
-              value={this.state.purchase_price}
-              onChange={this.handleInputChange}
-            />
-          </div>
-          <div className="form-group" style={{ marginBottom: "14px" }}>
             <label style={{ marginBottom: "5px" }}>Purchase Date</label>
             <input
               type="date"
@@ -169,6 +158,17 @@ export default class EditLaptopInventory extends Component {
               name="purchaase_date"
               placeholder="DD/MM/YY"
               value={this.state.purchaase_date}
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <div className="form-group" style={{ marginBottom: "14px" }}>
+            <label style={{ marginBottom: "5px" }}>Laptop Price</label>
+            <input
+              type="text"
+              className="form-control"
+              name="purchase_price"
+              placeholder="Enter Laptop Price"
+              value={this.state.purchase_price}
               onChange={this.handleInputChange}
             />
           </div>

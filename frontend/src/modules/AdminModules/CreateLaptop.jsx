@@ -168,8 +168,8 @@ export default class CreateLaptop extends Component {
               <option value="DEFAULT" disabled>
                 Status : {this.state.status}
               </option>
-              <option value="assign">Assign</option>
-              <option value="notAssign">Not Assign</option>
+              <option value="Assign">Assign</option>
+              <option value="Not Assign">Not Assign</option>
             </select>
           </div>
           <button

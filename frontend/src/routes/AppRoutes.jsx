@@ -25,9 +25,6 @@ import ReviewPage from "../pages/ReviewPage/ReviewPage";
 import CreateReview from "../modules/AdminModules/CreateReview";
 import EditReview from "../modules/AdminModules/EditReview";
 import DisplayReview from "../modules/AdminModules/DisplayReview";
-import CreateLaptops from "../pages/AdminPage/CreateLaptop";
-import LaptopsRepair from "../pages/AdminPage/LaptopRepair";
-import CreateLaptopsRepair from "../pages/AdminPage/CreateLaptopRepair";
 import EditLapAllo from "../pages/AdminPage/EditLapAllo";
 import WorkReport from "../pages/AdminPage/WorkReport";
 import CompanyPerfomance from "../pages/AdminPage/CompanyPerformance";
@@ -39,17 +36,22 @@ import DisplayExecutive from "../modules/AdminModules/DisplayExecutive";
 import CreateNotice from "../modules/AdminModules/CreateNotice";
 import TopPerformers from "../modules/AdminModules/TopPerformers";
 import NoticeComPerf from "../modules/AdminModules/NoticeComPerf";
-import EditLaptopsRepair from "../pages/AdminPage/EditLaptopRepair";
-import EditLaptops from "../pages/AdminPage/EditLaptop";
 import PendingAssignment from "../pages/AdminPage/PendingAssignment";
 import EmployeeReport from "../modules/AdminModules/EmployeeReport";
 import EmpReportUpload from "../modules/AdminModules/EmpReportUpload";
-
 import PayrollPage from "../pages/PayrollPage/PayrollPage";
 import CreatePayroll from "../modules/AdminModules/CreatePayroll";
 import DisplayPayroll from "../modules/AdminModules/DisplayPayroll";
 import EditPayroll from "../modules/AdminModules/EditPayroll";
 import AllReports from "../pages/AdminPage/AllReports";
+import EditLaptopRepair from "../modules/AdminModules/EditLaptopRepair";
+import CreateLaptopRepair from "../modules/AdminModules/CreateLaptopRepair";
+import LaptopsRepair from "../pages/AdminPage/LaptopRepair";
+import PostLaptopRepair from "../modules/AdminModules/PostLaptopRepair";
+import LaptopPage from "../pages/LaptopPage/LaptopPage";
+import CreateLaptop from "../modules/AdminModules/CreateLaptop";
+import EditLaptopInventory from "../modules/AdminModules/EditLaptopInventory";
+import PostLaptop from "../modules/AdminModules/PostLaptop";
 
 const AppRoutes = () => (
   <div>
@@ -76,19 +78,6 @@ const AppRoutes = () => (
         <Route path="/createlapallocation" component={CreateLapAllo} exact />
         <Route path="/AllEmployees" component={AllEmployees} exact />
         <Route path="/EmployeePoints" component={EmployeePoints} exact />
-        <Route path="/createlaptop" component={CreateLaptops} exact />
-        <Route path="/repairinglaptop" component={LaptopsRepair} exact />
-        <Route exact path="/editlaptop/:id" component={EditLaptops}></Route>
-        <Route
-          exact
-          path="/editrepair/:id"
-          component={EditLaptopsRepair}
-        ></Route>
-        <Route
-          path="/createlaptoprepair"
-          component={CreateLaptopsRepair}
-          exact
-        />
         <Route
           exact
           path="/editassignment/:assignment"
@@ -130,6 +119,27 @@ const AppRoutes = () => (
         <Route path="/addpayroll" exact component={CreatePayroll}></Route>
         <Route path="/displaypayroll/:id" component={DisplayPayroll} exact />
         <Route path="/editpayroll/:id" component={EditPayroll} exact />
+        /*Sajini*/
+        <Route path="/laptop" exact component={LaptopPage}></Route>
+        <Route path="/createlaptop" component={CreateLaptop} exact />
+        <Route path="/editlaptop/:id" component={EditLaptopInventory} exact />
+        <Route path="/viewlaptop/:id" component={PostLaptop} exact />
+        <Route path="/repairinglaptop" exact component={LaptopsRepair}></Route>
+        <Route
+          path="/createlaptoprepair"
+          exact
+          component={CreateLaptopRepair}
+        ></Route>
+        <Route
+          path="/editrepair/:id"
+          exact
+          component={EditLaptopRepair}
+        ></Route>
+        <Route
+          path="/viewrepair/:id"
+          exact
+          component={PostLaptopRepair}
+        ></Route>
       </Switch>
       <Footer />
     </Router>
