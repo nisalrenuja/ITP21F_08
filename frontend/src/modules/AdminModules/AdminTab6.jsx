@@ -3,7 +3,7 @@ import axios from "axios";
 import Clock from "../../component/common/clock/Clock";
 import "./AllPayrolls.css";
 
-export default class AdminTab1 extends Component {
+export default class AdminTab6 extends Component {
   constructor(props) {
     super(props);
 
