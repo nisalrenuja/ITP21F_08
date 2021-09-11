@@ -38,7 +38,7 @@ app.use(executives);
 //import routes
 const attendancesRoutes = require("./routes/attendances");
 const leavesRoutes = require("./routes/leaves");
-const final_report = require("./models/final_report");
+const final_reportRoutes = require("./routes/final_report");
 const payrollRoutes = require("./routes/payrolls");
 
 
@@ -52,6 +52,7 @@ app.use(client);
 app.use(attendancesRoutes);
 app.use(leavesRoutes);
 app.use(payrollRoutes);
+app.use(final_reportRoutes);
 
 
 // Error Handler Middleware ..

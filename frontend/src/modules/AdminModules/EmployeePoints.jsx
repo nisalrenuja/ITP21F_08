@@ -27,13 +27,13 @@ export default class AdminTab3 extends Component {
           count2 = 0;
           for (var j = 0; j < res.data.check.length; j++) {
             if (
-              res.data.employees[i].empno == res.data.check[j].emp_no &&
-              res.data.check[j].progress == "Completed"
+              res.data.employees[i].empno === res.data.check[j].emp_no &&
+              res.data.check[j].progress === "Completed"
             ) {
               completions[i] = ++count1;
             } else if (
-              res.data.employees[i].empno == res.data.check[j].emp_no &&
-              res.data.check[j].progress == "Assigned"
+              res.data.employees[i].empno === res.data.check[j].emp_no &&
+              res.data.check[j].progress === "Assigned"
             ) {
               pending[i] = ++count2;
             } else {
