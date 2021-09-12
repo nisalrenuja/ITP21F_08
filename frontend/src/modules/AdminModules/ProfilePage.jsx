@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Clock from "../../component/common/clock/Clock";
 import "./Review.css";
-export default class AdminTab1 extends Component {
+export default class ProfilePage extends Component {
   constructor(props) {
     super(props);
 
@@ -33,17 +33,16 @@ export default class AdminTab1 extends Component {
     });
   };
 
-  // filterData(posts, searchKey) {
-  //   const result = posts.filter(
-  //      (post) =>
-  //       post.execid_review.toLowerCase().includes(searchKey) ||
-  //      post.report.toLowerCase().includes(searchKey) ||
-  //       post.points.toLowerCase().includes(searchKey) ||
-  //       post.feedback.toLowerCase().includes(searchKey) ||
-  //       post.status.toLowerCase().includes(searchKey)
-  //   );
-  //   this.setState({ posts: result });
-  // }
+  filterData(executives, searchKey) {
+    const result = executives.filter(
+      executives =>
+        executives.exeno.toLowerCase().includes(searchKey) ||
+        executives.name.toLowerCase().includes(searchKey) ||
+        executives.position.toLowerCase().includes(searchKey) ||
+        executives.email.toLowerCase().includes(searchKey)
+    );
+    this.setState({ executive: result });
+  }
 
   handleSearchArea = e => {
     const searchKey = e.currentTarget.value;
@@ -68,30 +67,13 @@ export default class AdminTab1 extends Component {
             <div className="col-lg-9 mt-2 mb-2">
               <Clock />
               <br />
+
               <button class="btn btn-lg aptab-btn">
                 <a
-                  href="/managerreview"
+                  href="/admin"
                   style={{ textDecoration: "none", color: "black" }}
                 >
-                  Manager Review
-                </a>
-              </button>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <button class="btn btn-lg aptab-btn">
-                <a
-                  href="/profilepage"
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  Executive Board Profiles
-                </a>
-              </button>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <button class="btn btn-lg aptab-btn">
-                <a
-                  href="/createexecutive"
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  Current Users
+                  Back To Main DashBoard
                 </a>
               </button>
             </div>
@@ -158,7 +140,7 @@ export default class AdminTab1 extends Component {
               href="/createprofile"
               style={{ textDecoration: "none", color: "white" }}
             >
-              Create New Review
+              Create New Executive Profile
             </a>
           </button>
         </div>

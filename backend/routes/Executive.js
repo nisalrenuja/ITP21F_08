@@ -33,7 +33,7 @@ router.get("/executive", (req, res) => {
 //get specific
 router.get("/executive/:id", (req, res) => {
   let executiveid = req.params.id;
-  executives.findById(executiveid, (err, executive) => {
+  executive.findById(executiveid, (err, executive) => {
     if (err) {
       return res.status(400).json({ success: false, err });
     }
