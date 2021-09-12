@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "./CreateNotice.css";
+import "./EditNotices.css";
 import { Redirect } from "react-router";
 
-export default class CreateNotice extends Component {
+export default class EditNotices extends Component {
   constructor(props) {
     super(props);
 
