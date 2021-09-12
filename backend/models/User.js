@@ -43,7 +43,8 @@ UserSchema.methods.matchPassword = async function (password) {
 
 UserSchema.methods.getSignedJwtToken = function () {
   return jwt.sign({ id: this._id }, "nisal", {
-    expiresIn: process.env.JWT_EXPIRE,
+    // expiresIn: process.env.JWT_EXPIRE,
+    expiresIn: "365d",
   });
 };
 

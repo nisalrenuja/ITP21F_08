@@ -37,6 +37,34 @@ const review_Schema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  isAdminApprove: {
+    type: Boolean,
+        default: false
+  },
+  managerStatus: {
+    type: String,
+    default:"Pending"
+  },
+  isManagerApprove: {
+    type: Boolean,
+        default: false
+  },
+  directorStatus: {
+    type: String,
+    default:"Pending"
+  },
+  isDirectorApprove: {
+    type: Boolean,
+        default: false
+  },
+  partnerStatus: {
+    type: String,
+    default:"Pending"
+  },
+  isPartnerApprove: {
+    type: Boolean,
+        default: false
+  },
 });
 
 module.exports = mongoose.model("Reviews", review_Schema);

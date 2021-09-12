@@ -24,6 +24,9 @@ import Assignment from "../pages/AdminPage/Assignment";
 import ReviewPage from "../pages/ReviewPage/ReviewPage";
 import CreateReview from "../modules/AdminModules/CreateReview";
 import EditReview from "../modules/AdminModules/EditReview";
+import ManagerEditReview from "../modules/AdminModules/ManagerEditReview";
+import DirectorEditReview from "../modules/AdminModules/DirectorEditReview";
+import PartnerEditReview from "../modules/AdminModules/PartnerEditReview";
 import DisplayReview from "../modules/AdminModules/DisplayReview";
 import CreateLaptop from "../modules/AdminModules/CreateLaptop";
 import LaptopRepair from "../modules/AdminModules/LaptopRepair";
@@ -64,6 +67,11 @@ import CreateClient from "../modules/AdminModules/CreateClient";
 import DisplayClient from "../modules/AdminModules/DisplayClient";
 import EditClient from "../modules/AdminModules/EditClient";
 import ClientsRoutesPage from "../pages/ClientsRoutesPage/ClientsRoutesPage";
+
+import ProfilePage from "../modules/AdminModules/ProfilePage";
+import CreateProfile from "../modules/AdminModules/CreateProfile";
+import EditProfile from "../modules/AdminModules/EditProfile";
+import DisplayProfile from "../modules/AdminModules/DisplayProfile";
 
 const AppRoutes = () => (
   <div>
@@ -108,6 +116,21 @@ const AppRoutes = () => (
         <Route path="/review" component={ReviewPage} exact />
         <Route path="/add" exact component={CreateReview}></Route>
         <Route path="/edit/:id" exact component={EditReview}></Route>
+        <Route
+          path="/editmanagerreview/:id"
+          exact
+          component={ManagerEditReview}
+        ></Route>
+        <Route
+          path="/editdirectorreview/:id"
+          exact
+          component={DirectorEditReview}
+        ></Route>
+        <Route
+          path="/editpartnerreview/:id"
+          exact
+          component={PartnerEditReview}
+        ></Route>
         <Route path="/post/:id" exact component={DisplayReview}></Route>
         <Route exact path="/editlapallo/:assignment" component={EditLapAllo} />
         <Route path="/reportwork" component={WorkReport} exact />
@@ -154,6 +177,10 @@ const AppRoutes = () => (
           exact
         />
         <Route path="/editpartnerreview" component={EditPartnerReview} exact />
+        <Route path="/profilepage" component={ProfilePage} exact />
+        <Route path="/createprofile" component={CreateProfile}></Route>
+        <Route path="/editprofile/:id" component={EditProfile}></Route>
+        <Route path="/postprofile/:id" component={DisplayProfile}></Route>
       </Switch>
       <Footer />
     </Router>

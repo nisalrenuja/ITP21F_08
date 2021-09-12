@@ -18,10 +18,13 @@ export default class AdminTab1 extends Component {
   retrievePosts() {
     axios.get("http://localhost:5000/review").then(res => {
       if (res.data.success) {
+        const acceptedData = res.data.existingPosts.filter(
+          x => x.status === "Accepted" && x.isAdminApprove === true
+        );
+
         this.setState({
-          posts: res.data.existingPosts
+          posts: acceptedData
         });
-        console.log(this.state.posts);
       }
     });
   }
@@ -57,43 +60,38 @@ export default class AdminTab1 extends Component {
 
   render() {
     return (
-      <div className="container grad">
-        <div class="adminreview">
+      <div className="container ">
+        <div class="adminpayroll react-bs-table-pagination">
           <div className="row">
-            <div className="exploreText">
-              User Executive Management Dashboard
+            <div className="d-flex justify-content-between">
+              <div className="col-lg-9 mt-2 mb-2 font-weight-bold ">
+                <br />
+                <h1 class="ap-topic">User Executive Management Dashboard</h1>
+              </div>
             </div>
             <hr />
             <div className="col-lg-9 mt-2 mb-2">
               <Clock />
               <br />
-              <button class="btn btn-primary btn-lg">
+              <button class="btn btn-lg aptab-btn">
                 <a
                   href="/directorreview"
-                  style={{ textDecoration: "none", color: "white" }}
+                  style={{ textDecoration: "none", color: "black" }}
                 >
                   Director Review
                 </a>
               </button>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <button className="btn btn-primary btn-lg">
+              <button className="btn btn-lg aptab-btn">
                 <a
                   href="/admin"
-                  style={{ textDecoration: "none", color: "white" }}
+                  style={{ textDecoration: "none", color: "black" }}
                 >
                   Back to Main Dashboard
                 </a>
               </button>
             </div>
             <div className="col-lg-3 mt-2 mb-2">
-              <button type="button" class="btn btn-outline-info">
-                <a
-                  href="/displaymyprofile"
-                  style={{ textDecoration: "none", color: "#276678" }}
-                >
-                  My Personal Profile
-                </a>
-              </button>
               <br />
               <br />
             </div>
@@ -112,9 +110,12 @@ export default class AdminTab1 extends Component {
               ></input>
             </div>
           </div>
-          <table className="table table-hover" style={{ marginTop: "30px" }}>
-            <thead>
-              <tr class="bg-info">
+          <table
+            className="table table-hover text-center"
+            style={{ marginTop: "40px" }}
+          >
+            <thead class="tblhead">
+              <tr>
                 <th scope="col"></th>
                 <th scope="col">Review Id</th>
                 <th scope="col">Report Name</th>
@@ -148,9 +149,12 @@ export default class AdminTab1 extends Component {
                   </td>
                   <td>{posts.points}</td>
                   <td>{posts.feedback}</td>
-                  <td>{posts.status}</td>
+                  <td>{posts.managerStatus}</td>
                   <td>
-                    <a className="btn btn-warning" href={`/edit/${posts._id}`}>
+                    <a
+                      className="btn btn-warning"
+                      href={`/editmanagerreview/${posts._id}`}
+                    >
                       <i className="fas fa-edit"></i>&nbsp;Edit
                     </a>
                     &nbsp;
