@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "./AllPayrolls.css";
+import "./Review.css";
 
 export default class CreateProfile extends Component {
   constructor(props) {

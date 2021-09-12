@@ -7,18 +7,18 @@ export default class DisplayReview extends Component {
     super(props);
 
     this.state = {
-      executives: {}
+      executive: {}
     };
   }
   componentDidMount() {
     const id = this.props.match.params.id;
-    axios.get(`http://localhost:5000/executives/${id}`).then(res => {
+    axios.get(`http://localhost:5000/executive/${id}`).then(res => {
       if (res.data.success) {
         this.setState({
-          executives: res.data.executives
+          executive: res.data.executive
         });
 
-        console.log(this.state.executives);
+        console.log(this.state.executive);
       }
     });
   }
@@ -33,7 +33,15 @@ export default class DisplayReview extends Component {
   };
 
   render() {
-    const { exeno, name, email } = this.state.executives;
+    const {
+      exeno,
+      name,
+      position,
+      email,
+      contact,
+      gender,
+      dob
+    } = this.state.executive;
     return (
       <div
         id="reportContent"
@@ -51,11 +59,17 @@ export default class DisplayReview extends Component {
         </div>
         <hr />
         <dl className="row">
-          <dt className="col-sm-3">Executive</dt>
-          <dd className="col-sm-9">{name}</dd>
+          <dt className="col-sm-3">Position</dt>
+          <dd className="col-sm-9">{position}</dd>
 
           <dt className="col-sm-3">Email Address</dt>
           <dd className="col-sm-9">{email}</dd>
+          <dt className="col-sm-3">Contact Number</dt>
+          <dd className="col-sm-9">{contact}</dd>
+          <dt className="col-sm-3">Gender</dt>
+          <dd className="col-sm-9">{gender}</dd>
+          <dt className="col-sm-3">Date of Birth</dt>
+          <dd className="col-sm-9">{dob}</dd>
         </dl>
       </div>
     );

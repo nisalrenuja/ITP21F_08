@@ -154,11 +154,6 @@ export default class AdminTab1 extends Component {
               ))}
             </tbody>
           </table>
-          <button className="btn btn-success">
-            <a href="/add" style={{ textDecoration: "none", color: "white" }}>
-              Create New Review
-            </a>
-          </button>
         </div>
       </div>
     );
