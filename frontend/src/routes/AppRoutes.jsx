@@ -55,6 +55,7 @@ import PayrollPage from "../pages/PayrollPage/PayrollPage";
 import CreatePayroll from "../modules/AdminModules/CreatePayroll";
 import DisplayPayroll from "../modules/AdminModules/DisplayPayroll";
 import EditPayroll from "../modules/AdminModules/EditPayroll";
+
 import ManagerReview from "../modules/AdminModules/ManagerReview";
 import EditManagerReview from "../modules/AdminModules/ManagerReview";
 import DirectorReview from "../modules/AdminModules/DirectorReview";
@@ -72,6 +73,9 @@ import ProfilePage from "../modules/AdminModules/ProfilePage";
 import CreateProfile from "../modules/AdminModules/CreateProfile";
 import EditProfile from "../modules/AdminModules/EditProfile";
 import DisplayProfile from "../modules/AdminModules/DisplayProfile";
+
+import AdminAttendance from "../modules/AdminModules/AdminAttendance";
+import CreateAttendance from "../modules/AdminModules/CreateAttendance";
 
 const AppRoutes = () => (
   <div>
@@ -161,6 +165,8 @@ const AppRoutes = () => (
         <Route path="/addpayroll" exact component={CreatePayroll}></Route>
         <Route path="/displaypayroll/:id" component={DisplayPayroll} exact />
         <Route path="/editpayroll/:id" component={EditPayroll} exact />
+        <Route path="/allattendance" component={AdminAttendance} exact />
+        <Route path="/addattendance" exact component={CreateAttendance}></Route>
         /*Thisarani Routes*/
         <Route path="/client" component={ClientsRoutesPage} exact />
         <Route path="/addclient" exact component={CreateClient}></Route>

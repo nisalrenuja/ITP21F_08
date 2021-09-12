@@ -8,11 +8,11 @@ const salariesSchema = new mongoose.Schema({
         required:true,//since must have
         unique:true
     },
-    emp_id: {
+    empno: {
         type:String,
         required:true//since must have
     },
-    emp_name: {
+    name: {
         type: String,
         required: false,
     },
@@ -21,7 +21,7 @@ const salariesSchema = new mongoose.Schema({
         year: Number,
         required:true//since must have
     },
-    rate_per_daye: {
+    rate_per_day: {
         type: Number,
         required: false,
     },
