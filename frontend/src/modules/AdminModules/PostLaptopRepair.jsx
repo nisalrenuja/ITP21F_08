@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "./PostLaptopDetails.css";
 
 export default class PostLaptopRepair extends Component {
   constructor(props) {
@@ -11,8 +12,8 @@ export default class PostLaptopRepair extends Component {
   }
 
   componentDidMount() {
-    const _id = this.props.match.params._id;
-    axios.get(`http://localhost:5000/laptop_repair/${_id}`).then(res => {
+    const id = this.props.match.params.id;
+    axios.get(`http://localhost:5000/laptop_repair/${id}`).then(res => {
       if (res.data.success) {
         this.setState({
           laptopRepair: res.data.laptopRepair
@@ -31,25 +32,45 @@ export default class PostLaptopRepair extends Component {
     } = this.state.laptopRepair;
 
     return (
-      <div class="container">
-        <h1 class="laptoprepairdetails">Laptop Inventory Details</h1>
-        <hr />
-        <dl className="row">
-          <dt className="col-sm-3">Laptop ID :</dt>
-          <dd className="col-sm-9">{id}</dd>
-        </dl>
-        <dl className="row">
-          <dt className="col-sm-3">Repair Reason :</dt>
-          <dd className="col-sm-9">{repair_reason}</dd>
-        </dl>
-        <dl className="row">
-          <dt className="col-sm-3">Repair Date :</dt>
-          <dd className="col-sm-9">{repair_date}</dd>
-        </dl>
-        <dl className="row">
-          <dt className="col-sm-3">Repair Cost :</dt>
-          <dd className="col-sm-9">{repair_cost}</dd>
-        </dl>
+      <div className="col-md-6 mt-4 mx-auto">
+        <form className="need-validation">
+          <div class="box">
+            <dl>
+              <p class="lap">Laptop ID : &nbsp;{id}</p>
+            </dl>
+            <dl>
+              <p class="laps">Repair Reason : &nbsp;{repair_reason}</p>
+            </dl>
+          </div>
+
+          <h2>Laptop Repair Details</h2>
+          <hr />
+
+          <dl>
+            <dt>Laptop ID :</dt>
+            <dd>{id}</dd>
+          </dl>
+          <dl>
+            <dt>Repair Reason :</dt>
+            <dd>{repair_reason}</dd>
+          </dl>
+          <dl>
+            <dt>Repair Date</dt>
+            <dd>{repair_date}</dd>
+          </dl>
+          <dl>
+            <dt>Repair Cost:</dt>
+            <dd>{repair_cost}</dd>
+          </dl>
+        </form>
+        &nbsp;
+        <div class="back">
+          <a href="/repairinglaptop">
+            <i class="fas fa-angle-double-left fa-3x">
+              &nbsp;&nbsp;Back To Laptop Repair Inventory
+            </i>
+          </a>
+        </div>
       </div>
     );
   }

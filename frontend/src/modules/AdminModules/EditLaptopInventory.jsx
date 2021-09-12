@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./CreateLaptop.css";
 import axios from "axios";
-//laptop
+//laptop inventory
 export default class EditLaptopInventory extends Component {
   constructor(props) {
     super(props);
@@ -47,7 +47,7 @@ export default class EditLaptopInventory extends Component {
       status: status
     };
     console.log(data);
-    axios.put(`http://localhost:5000/laptop/update/${_id}`, data).then(res => {
+    axios.put(`http://localhost:5000/laptop/update/${id}`, data).then(res => {
       if (res.data.success) {
         alert("Laptop Update Successfully!");
         this.setState({
@@ -64,9 +64,9 @@ export default class EditLaptopInventory extends Component {
   };
 
   componentDidMount() {
-    if (this.props.match && this.props.match._id) {
-      const _id = this.props.match.params._id;
-      axios.get(`http://localhost:5000/laptop/${_id}`).then(res => {
+    {
+      const id = this.props.match.params.id;
+      axios.get(`http://localhost:5000/laptop/${id}`).then(res => {
         if (res.data.success) {
           this.setState({
             id: res.data.laptop.id,
@@ -84,7 +84,7 @@ export default class EditLaptopInventory extends Component {
 
   render() {
     return (
-      <div className="col-md-8 mt-4 mx-auto">
+      <div className="col-md-6 mt-4 mx-auto">
         <h1 className="h3 mb-3 font-weight-normal">Inventory Management</h1>
         <hr></hr>
         <form
@@ -207,6 +207,13 @@ export default class EditLaptopInventory extends Component {
             Cancel
           </button>
         </form>
+        <div class="back">
+          <a href="/admin">
+            <i class="fas fa-angle-double-left fa-2x">
+              &nbsp;Back To The Laptop Inventory Details
+            </i>
+          </a>
+        </div>
       </div>
     );
   }

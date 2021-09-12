@@ -1,8 +1,11 @@
 .need-validation {
-    background-color:"#F6F5F5" ;
-    border:"5px solid eastern blue";
-    padding :"30px";
-    border-radius:"15px"
+    position: relative;
+    top:10px;
+    bottom:10px;
+    background-color:#F6F5F5 ;
+    border: 2px solid #276678;
+    padding :30px;
+    border-radius:15px;
 }
 
 .form-group {
@@ -14,6 +17,8 @@ label{
 }
 
 h1{
+    position: relative;
+    top:10px;
     color: #276678;
 }
 h5 {
@@ -28,4 +33,14 @@ button{
     margin-top: "14px";
     width: "100px";
 }
-/**/
+
+.back{
+    position: relative;
+    top:20px;
+    width: auto;
+    height: 70px;
+    bottom: 20px;
+    font-size: 10px;
+    font-family:Arial;
+}
+/*//laptop inventory*/

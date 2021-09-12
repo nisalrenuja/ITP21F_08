@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./CreateLaptop.css";
 
-//createLaptopRepair
+//createlaptop inventory
 export default class EditLaptopRepair extends Component {
   constructor(props) {
     super(props);
@@ -50,19 +50,17 @@ export default class EditLaptopRepair extends Component {
   };
 
   componentDidMount() {
-    if (this.props.match && this.props.match._id) {
-      const _id = this.props.match.params._id;
-      axios.get(`http://localhost:5000/laptop_repair/${_id}`).then(res => {
-        if (res.data.success) {
-          this.setState({
-            id: res.data.laptopRepair.id,
-            repair_reason: res.data.laptopRepair.repair_reason,
-            repair_cost: res.data.laptopRepair.repair_cost,
-            repair_date: res.data.laptopRepair.repair_date
-          });
-        }
-      });
-    }
+    const id = this.props.match.params.id;
+    axios.get(`http://localhost:5000/laptop_repair/${id}`).then(res => {
+      if (res.data.success) {
+        this.setState({
+          id: res.data.laptopRepair.id,
+          repair_reason: res.data.laptopRepair.repair_reason,
+          repair_cost: res.data.laptopRepair.repair_cost,
+          repair_date: res.data.laptopRepair.repair_date
+        });
+      }
+    });
   }
 
   render() {
@@ -146,6 +144,13 @@ export default class EditLaptopRepair extends Component {
             Cancel
           </button>
         </form>
+        <div class="back">
+          <a href="/repairinglaptop">
+            <i class="fas fa-angle-double-left fa-2x">
+              &nbsp;Back To The Laptop Repair Inventory Details
+            </i>
+          </a>
+        </div>
       </div>
     );
   }

@@ -12,15 +12,14 @@ export default class PostLaptop extends Component {
   }
 
   componentDidMount() {
-    const _id = this.props.match.params._id;
-    axios.get(`http://localhost:5000/laptop/${_id}`).then(res => {
+    const id = this.props.match.params.id;
+    axios.get(`http://localhost:5000/laptop/${id}`).then(res => {
       if (res.data.success) {
         this.setState({
           laptop: res.data.laptop
         });
         console.log(this.state.laptop);
       }
-      alert(console.error());
     });
   }
 
@@ -35,52 +34,61 @@ export default class PostLaptop extends Component {
       status
     } = this.state.laptop;
     return (
-      <div>
-        <form
-          class="post"
-          style={{
-            backgroundColor: "#F6F5F5",
-            border: "5px solid eastern blue",
-            padding: "30px",
-            borderRadius: "15px",
-            alignContent: "center",
-            left: "70px",
-            right: "70px"
-          }}
-        >
-          <h1 class="laptopdetails" style={{ left: "30px" }}>
-            Laptop Inventory Details
-          </h1>
+      <div className="col-md-6 mt-4 mx-auto">
+        <form class="need-validation">
+          <div class="box">
+            <dl>
+              <p class="lap">Laptop ID : &nbsp;{id}</p>
+            </dl>
+            <dl>
+              <p class="lapsbrand">Brand : &nbsp;{brand}</p>
+            </dl>
+          </div>
+          <h2>Laptop Inventory Details</h2>
           <hr />
-          <dl className="row">
-            <dt className="col-sm-3">Laptop ID</dt>
-            <dd className="col-sm-9">{id}</dd>
+          <dl>
+            <dt>Laptop ID :</dt>
+            <dd>{id}</dd>
           </dl>
-          <dl className="row">
-            <dt className="col-sm-3">Brand</dt>
-            <dd className="col-sm-9">{brand}</dd>
+          <dl>
+            <dt>Brand :</dt>
+            <dd>{brand}</dd>
           </dl>
-          <dl className="row">
-            <dt className="col-sm-3">Model</dt>
-            <dd className="col-sm-9">{model}</dd>
+          <dl>
+            <dt>Model :</dt>
+            <dd>{model}</dd>
           </dl>
-          <dl className="row">
-            <dt className="col-sm-3">Storage Type</dt>
-            <dd className="col-sm-9">{storage_type}</dd>
+          <dl>
+            <dt>Storage Type :</dt>
+            <dd>{storage_type}</dd>
           </dl>
-          <dl className="row">
-            <dt className="col-sm-3">Purchase Date</dt>
-            <dd className="col-sm-9">{purchaase_date}</dd>
+          <dl>
+            <dt>Purchase Date :</dt>
+            <dd>{purchaase_date}</dd>
           </dl>
-          <dl className="row">
-            <dt className="col-sm-3">Purchas Price</dt>
-            <dd className="col-sm-9">{purchase_price}</dd>
+          <dl>
+            <dt>Purchas Price :</dt>
+            <dd>{purchase_price}</dd>
           </dl>
-          <dl className="row">
-            <dt className="col-sm-3">Status</dt>
-            <dd className="col-sm-9">{status}</dd>
+          <dl>
+            <dt>Status :</dt>
+            <dd>{status}</dd>
           </dl>
+          <div class="box2">
+            <h3>Assign Status</h3>
+
+            <dl>
+              <p class="status">Status : &nbsp;{status}</p>
+            </dl>
+          </div>
         </form>
+        <div class="back">
+          <a href="/admin">
+            <i class="fas fa-angle-double-left fa-3x">
+              &nbsp;&nbsp;Back To Laptop Inventory
+            </i>
+          </a>
+        </div>
       </div>
     );
   }

@@ -4,6 +4,7 @@ import AdminTab1 from "../../modules/AdminModules/AdminTab1";
 import CreateReview from "../../modules/AdminModules/CreateReview";
 import EditReview from "../../modules/AdminModules/EditReview";
 import DisplayReview from "../../modules/AdminModules/DisplayReview";
+import CreateClient from "../../modules/AdminModules/CreateClient";
 
 export default class ReviewPage extends Component {
   render() {

@@ -33,7 +33,8 @@ export default class AdminTab3 extends Component {
               completions[i] = ++count1;
             } else if (
               res.data.employees[i].empno === res.data.check[j].emp_no &&
-              res.data.check[j].progress === "Assigned"
+              (res.data.check[j].progress === "Assigned" ||
+                res.data.check[j].progress === "Working")
             ) {
               pending[i] = ++count2;
             } else {

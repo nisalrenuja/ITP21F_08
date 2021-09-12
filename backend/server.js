@@ -11,9 +11,10 @@ const assignment_assignedtostaffRoutes = require("./routes/assignment_assignedto
 const laptop_assignment_Routes = require("./routes/laptop_assignment");
 const employees = require("./routes/employees");
 const executives = require("./routes/executives");
-const client_fees = require("./routes/client_fees");
-const client = require("./routes/client"); 
+const client_fees_routes = require("./routes/client_fees");
+const clients_routes = require("./routes/clients");
 const Notices = require("./routes/Company_Notices");
+const executive = require("./routes/Executive");
 //connect db
 connectDB();
 const postRoutes = require("./routes/Reviews");
@@ -36,6 +37,7 @@ app.use(laptop_assignment_Routes);
 app.use(employees);
 app.use(postRoutes);
 app.use(executives);
+app.use(executive);
 app.use(Notices);
 //import routes
 const attendancesRoutes = require("./routes/attendances");
@@ -43,19 +45,17 @@ const leavesRoutes = require("./routes/leaves");
 const final_reportRoutes = require("./routes/final_report");
 const payrollRoutes = require("./routes/payrolls");
 
-
 //add routes here ..
 
 
 app.use(assignment_assignedtostaffRoutes);
 app.use(employees);
-app.use(client_fees);
-app.use(client);
+app.use(client_fees_routes);
+app.use(clients_routes);
 app.use(attendancesRoutes);
 app.use(leavesRoutes);
 app.use(payrollRoutes);
 app.use(final_reportRoutes);
-
 
 // Error Handler Middleware ..
 app.use(errorHandler);

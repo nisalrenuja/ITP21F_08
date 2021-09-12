@@ -18,8 +18,11 @@ export default class AdminTab1 extends Component {
   retrievePosts() {
     axios.get("http://localhost:5000/review").then(res => {
       if (res.data.success) {
+        const acceptedData = res.data.existingPosts.filter(
+          x => x.directorStatus === "Accepted" && x.isDirectorApprove === true
+        );
         this.setState({
-          posts: res.data.existingPosts
+          posts: acceptedData
         });
         console.log(this.state.posts);
       }
@@ -140,9 +143,12 @@ export default class AdminTab1 extends Component {
                   </td>
                   <td>{posts.points}</td>
                   <td>{posts.feedback}</td>
-                  <td>{posts.status}</td>
+                  <td>{posts.partnerStatus}</td>
                   <td>
-                    <a className="btn btn-warning" href={`/edit/${posts._id}`}>
+                    <a
+                      className="btn btn-warning"
+                      href={`/editpartnerreview/${posts._id}`}
+                    >
                       <i className="fas fa-edit"></i>&nbsp;Edit
                     </a>
                     &nbsp;

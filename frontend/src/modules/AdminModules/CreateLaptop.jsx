@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./CreateLaptop.css";
-//createLapto
+//create laptop inventory
 export default class CreateLaptop extends Component {
   constructor(props) {
     super(props);
@@ -65,23 +65,14 @@ export default class CreateLaptop extends Component {
 
   render() {
     return (
-      <div className="col-md-8 mt-4 mx-auto">
-        <h1 className="h3 mb-3 font-weight-normal">Inventory Management</h1>
-        <hr></hr>
+      <div className="col-md-6 mt-4 mx-auto">
+        <h1>Inventory Management</h1>
 
-        <form
-          className="need-validation"
-          noValidate
-          style={{
-            backgroundColor: "#F6F5F5",
-            border: "5px solid eastern blue",
-            padding: "30px",
-            borderRadius: "15px"
-          }}
-        >
+        <form className="need-validation" noValidate>
           <div className="form-group" style={{ marginBottom: "14px" }}>
             <h5>Laptop Details</h5>
-            <hr></hr>
+            <hr />
+
             <label style={{ marginBottom: "5px" }}>Laptop ID</label>
             <input
               type="text"
@@ -189,6 +180,13 @@ export default class CreateLaptop extends Component {
             Cancel
           </button>
         </form>
+        <div class="back">
+          <a href="/admin">
+            <i class="fas fa-angle-double-left fa-2x">
+              &nbsp;Back To The Laptop Inventory Details
+            </i>
+          </a>
+        </div>
       </div>
     );
   }

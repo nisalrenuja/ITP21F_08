@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./CreateLaptop.css";
-//createLaptopRepai
+//createlaptop inventory
 
 export default class CreateLaptopRepair extends Component {
   constructor(props) {
@@ -48,23 +48,14 @@ export default class CreateLaptopRepair extends Component {
 
   render() {
     return (
-      <div className="col-md-8 mt-4 mx-auto">
+      <div className="col-md-6 mt-4 mx-auto">
         <h1 className="h3 mb-3 font-weight-normal">
           Inventory Management | Laptop Repairing
         </h1>
-        <hr></hr>
-        <form
-          className="need-validation"
-          noValidate
-          style={{
-            backgroundColor: "#F6F5F5",
-            border: "5px solid eastern blue",
-            padding: "30px",
-            borderRadius: "15px"
-          }}
-        >
+
+        <form className="need-validation" noValidate>
           <div className="form-group" style={{ marginBottom: "14px" }}>
-            <h2>Laptop Details</h2>
+            <h5>Laptop Details</h5>
             <hr></hr>
             <label style={{ marginBottom: "5px" }}>Laptop ID</label>
             <input
@@ -82,7 +73,7 @@ export default class CreateLaptopRepair extends Component {
               type="text"
               className="form-control"
               name="repair_reason"
-              placeholder="Enter Rpair Reason"
+              placeholder="Enter Repair Reason"
               value={this.state.repair_reason}
               onChange={this.handleInputchange}
             />
@@ -127,6 +118,13 @@ export default class CreateLaptopRepair extends Component {
             Cancel
           </button>
         </form>
+        <div class="back">
+          <a href="/repairinglaptop">
+            <i class="fas fa-angle-double-left fa-2x">
+              &nbsp;Back To The Laptop Repair Inventory Details
+            </i>
+          </a>
+        </div>
       </div>
     );
   }

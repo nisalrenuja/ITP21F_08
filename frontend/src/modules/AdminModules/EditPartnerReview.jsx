@@ -15,8 +15,7 @@ export default class EditReview extends Component {
       status: "",
       uploadPercentage: 0,
       fileVal: "",
-      assignmentstatus: "",
-      managerData: []
+      assignmentstatus: ""
     };
   }
 
@@ -53,31 +52,17 @@ export default class EditReview extends Component {
       feedback,
       status
     } = this.state;
-    let data = "";
-    if (status === "Accepted") {
-      data = {
-        execid_review: execid_review,
-        report: report,
-        reportPDF: reportPDF,
-        points: points,
-        feedback: feedback,
-        status: status,
-        isAdminApprove: true
-      };
-    } else {
-      data = {
-        execid_review: execid_review,
-        report: report,
-        reportPDF: reportPDF,
-        points: points,
-        feedback: feedback,
-        status: status,
-        isAdminApprove: false
-      };
-    }
-
+    const data = {
+      execid_review: execid_review,
+      report: report,
+      reportPDF: reportPDF,
+      points: points,
+      feedback: feedback,
+      status: status
+    };
     const { assignmentstatus } = this.state;
     const data1 = { progress: assignmentstatus };
+    console.log(data);
     console.log(data1);
     axios
       .put(
@@ -93,7 +78,6 @@ export default class EditReview extends Component {
       });
     axios.put(`http://localhost:5000/review/update/${id}`, data).then(res => {
       if (res.data.success) {
-        let managerReview = data;
         alert("Review Updated Successfully");
         this.setState({
           execid_review: "",

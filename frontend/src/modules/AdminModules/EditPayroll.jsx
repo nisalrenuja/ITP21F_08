@@ -70,6 +70,7 @@ export default class EditPayroll extends Component {
         });
       }
     });
+    this.props.history.push("/admin");
   };
 
   componentDidMount() {
@@ -129,94 +130,130 @@ export default class EditPayroll extends Component {
   render() {
     return (
       <div className="col-md-8 mt-4 mx-auto">
-        <h1 className="h3 mb-3 font-weight-normal">
-          Salary Details Of an Employee
-        </h1>
+        <br />
 
-        <form className="need-validation" noValidate>
-          <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Empoyee ID</label>
+        <h1>Payroll Management | Edit Payroll Details</h1>
+        <br />
+        <br />
+
+        <form
+          className="need-validation"
+          noValidate
+          style={{
+            backgroundColor: "#F6F5F5",
+            border: "5px solid eastern blue",
+            padding: "30px",
+            borderRadius: "15px"
+          }}
+        >
+          <h2>Employee Details</h2>
+          <hr></hr>
+
+          <div className="form-group col-sm-4" style={{ marginBottom: "15px" }}>
+            <label
+              for="valid1"
+              class="form-label"
+              style={{ marginBottom: "5px" }}
+            >
+              Empoyee ID
+            </label>
             <input
               type="text"
+              id="valid1"
               className="form-control"
               name="empno"
               value={this.state.empno}
               onChange={this.handleInputChange}
+              required
             />
           </div>
 
-          <div className="form-group" style={{ marginBottom: "15px" }}>
+          <div className="form-group " style={{ marginBottom: "15px" }}>
             <label style={{ marginBottom: "5px" }}>Name</label>
             <input
               type="text"
               className="form-control"
               name="name"
-              placeholder="Enter your full name"
+              placeholder="Enter full name"
               value={this.state.name}
               onChange={this.handleInputChange}
+              required
             />
           </div>
 
-          <div className="form-group" style={{ marginBottom: "15px" }}>
+          <div className="orm-group col-sm-6" style={{ marginBottom: "15px" }}>
             <label style={{ marginBottom: "5px" }}>Position</label>
             <select
               defaultValue={"DEFAULT"}
               className="form-select"
-              aria-label="Default select example"
               onChange={this.handleInputChange}
               name="position"
+              required
             >
               <option value="DEFAULT" disabled>
-                Select option
+                {this.state.position}
               </option>
-
-              <option name="manager">Manager</option>
-              <option name="senior">Senior Staff</option>
-              <option vname="trainee">Trainee</option>
-              <option name="other">Other</option>
+              <option value="Manager">Manager</option>
+              <option value="Senior">Senior Staff</option>
+              <option value="Trainee">Trainee</option>
+              <option value="Other">Other</option>
             </select>
           </div>
+          <br />
 
-          <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Bank</label>
-            <select
-              defaultValue={"DEFAULT"}
-              className="form-select"
-              aria-label="Default select example"
-              onChange={this.handleInputChange}
-              name="bank"
+          <h2>Bank Details</h2>
+          <hr></hr>
+
+          <div class="d-flex justify-content-between">
+            <div
+              className="form-group col-md-6"
+              style={{ marginBottom: "15px" }}
             >
-              <option value="DEFAULT" disabled>
-                Select Bank Name
-              </option>
-              <option name="boc">Bank of Ceylon</option>
-              <option name="commercial">Commercial Bank of Ceylon</option>
-              <option name="dfcc">DFCC Bank PLC</option>
-              <option name="hatton">Hatton National Bank</option>
-              <option name="hdfc">HDFC Bank</option>
-              <option name="nations">Nations Trust Bank</option>
-              <option name="ndb">NDB Bank</option>
-              <option name="panasia">PAN Asia Bank</option>
-              <option name="peoples">Peoples Bank</option>
-              <option name="sampath">Sampath Bank</option>
-              <option name="seylan">Seylan Bank</option>
-              <option name="union">Union Bank-Colombo</option>
-            </select>
+              <label style={{ marginBottom: "5px" }}>Bank</label>
+              <select
+                defaultValue={"DEFAULT"}
+                className="form-select"
+                aria-label="Default select example"
+                onChange={this.handleInputChange}
+                name="bank"
+                required
+              >
+                <option value="DEFAULT" disabled>
+                  {this.state.bank}
+                </option>
+                <option name="boc">Bank of Ceylon</option>
+                <option name="commercial">Commercial Bank of Ceylon</option>
+                <option name="dfcc">DFCC Bank PLC</option>
+                <option name="hatton">Hatton National Bank</option>
+                <option name="hdfc">HDFC Bank</option>
+                <option name="nations">Nations Trust Bank</option>
+                <option name="ndb">NDB Bank</option>
+                <option name="panasia">PAN Asia Bank</option>
+                <option name="peoples">Peoples Bank</option>
+                <option name="sampath">Sampath Bank</option>
+                <option name="seylan">Seylan Bank</option>
+                <option name="union">Union Bank-Colombo</option>
+              </select>
+            </div>
+
+            <div
+              className="form-group col-md-5"
+              style={{ marginBottom: "15px" }}
+            >
+              <label style={{ marginBottom: "5px" }}>Branch</label>
+              <input
+                type="text"
+                className="form-control"
+                name="bank_branch"
+                placeholder=""
+                value={this.state.bank_branch}
+                onChange={this.handleInputChange}
+                required
+              />
+            </div>
           </div>
 
-          <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Branch</label>
-            <input
-              type="text"
-              className="form-control"
-              name="bank_branch"
-              placeholder=""
-              value={this.state.bank_branch}
-              onChange={this.handleInputChange}
-            />
-          </div>
-
-          <div className="form-group" style={{ marginBottom: "15px" }}>
+          <div className="form-group col-md-6" style={{ marginBottom: "15px" }}>
             <label style={{ marginBottom: "5px" }}>Account No</label>
             <input
               type="text"
@@ -225,42 +262,73 @@ export default class EditPayroll extends Component {
               placeholder="Type the correct account number"
               value={this.state.account_no}
               onChange={this.handleInputChange}
+              required
             />
           </div>
+          <hr></hr>
 
-          <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Basic Salary</label>
-            <input
-              type="number"
-              className="form-control"
-              name="basic_salary"
-              placeholder=""
-              value={this.state.basic_salary}
-              onChange={this.handleInputChange}
-            />
+          <div class="d-flex justify-content-around">
+            <div
+              className="form-group col-md-6"
+              style={{ marginBottom: "15px" }}
+            >
+              <label style={{ marginBottom: "5px" }}>Basic Salary</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupPrepend">
+                    Rs
+                  </span>
+                </div>
+                <input
+                  type="number"
+                  className="form-control"
+                  name="basic_salary"
+                  placeholder=""
+                  value={this.state.basic_salary}
+                  onChange={this.handleInputChange}
+                  required
+                />
+              </div>
+            </div>{" "}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div
+              className="form-group col-md-5"
+              style={{ marginBottom: "15px" }}
+            >
+              <label style={{ marginBottom: "5px" }}>Pay Date</label>
+              <input
+                type="date"
+                className="form-control"
+                name="salary_date"
+                placeholder="Enter the pay day"
+                value={this.state.salary_date}
+                onChange={this.handleInputChange}
+                required
+              />
+            </div>
           </div>
+          <br />
 
-          <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Salary Date</label>
-            <input
-              type="date"
-              className="form-control"
-              name="salary_date"
-              placeholder="Enter the pay day"
-              value={this.state.salary_date}
-              onChange={this.handleInputChange}
-            />
+          <div class="d-flex justify-content-center">
+            <button
+              className="btn btn-warning"
+              type="submit"
+              style={{ marginTop: "15px" }}
+              onClick={this.onSubmit}
+            >
+              <i className="fa fa-refresh"></i>&nbsp;Update
+            </button>{" "}
+            &nbsp;&nbsp;
+            <button
+              className="btn btn-danger"
+              type="cancel"
+              style={{ marginTop: "15px" }}
+            >
+              Cancel
+            </button>
           </div>
-
-          <button
-            className="btn btn-outline-warning"
-            type="submit"
-            style={{ marginTop: "15px" }}
-            onClick={this.onSubmit}
-          >
-            <i className="fa fa-refresh"></i>&nbsp;Update
-          </button>
         </form>
+        <br />
       </div>
     );
   }

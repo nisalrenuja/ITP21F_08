@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-//laptop backend db
+//laptop ba
 const laptop_Schema = new mongoose.Schema({
   id: {
     type: String,
@@ -20,33 +20,29 @@ const laptop_Schema = new mongoose.Schema({
   purchaase_date: {
     type: String,
     required: false,
-    
+
   },
   purchase_price: {
     type: String,
     required:false,
-    
+
   },
-  status: {
-    type: String,
-    required: true,
-  },
+ 
   discarded_reason: {
     type: String,
     required:false,
-    
+
   },
   discarded_date: {
     type: String,
     required:false,
-    
+
   },
   update_partner_id: {
     type: String,
     required:false,
-    
+
   },
-  
 
 });
 module.exports = mongoose.model("laptop",laptop_Schema);

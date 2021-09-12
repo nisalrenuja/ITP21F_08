@@ -58,31 +58,32 @@ export default class LaptopRepair extends Component {
   };
   render() {
     return (
-      <div class="inventory">
-        <h1 className="laptop-repair">
+      <div class="containerbox">
+        <h1 className="h1 mb-4 font-weight-normal">
           Inventory Management | Laptop Repairing
         </h1>
-        <hr></hr>
+
+        <hr />
 
         <div class="choice">
-          <a href="/createlaptop">
-            <button class="div1">
-              <p class="txt1">Laptops</p>
+          <a href="/admin">
+            <button class="laptopbtn">
+              <p class="laptoptxt">Laptops</p>
             </button>
           </a>
           <a href="/repairinglaptop">
-            <button class="div2">
-              <p class="txt2">Repairing Laptops</p>
+            <button class="repairlaptopbtn">
+              <p class="repairlaptoptxt">Repairing Laptops</p>
             </button>
           </a>
         </div>
 
         <div class="searchFilter">
-          <p class="txt"> Filter by</p>
+          <p class="filter"> Filter by</p>
           <input
             class="select"
             type="search"
-            placeholder="Laptop ID"
+            placeholder="Search"
             name="searchlaptop"
             onChange={this.handleSearchArea}
           />
@@ -94,8 +95,8 @@ export default class LaptopRepair extends Component {
           </button>
         </a>
 
-        <table className="table table-hover table1">
-          <thead className="thead">
+        <table>
+          <thead>
             <tr>
               <th scope="col">Laptop ID</th>
               <th scope="col">Repair Reason </th>
@@ -104,7 +105,7 @@ export default class LaptopRepair extends Component {
               <th scope="col">Actions</th>
             </tr>
           </thead>
-          <tbody class="tbody-container">
+          <tbody>
             {this.state.laptopsRepair.map((laptopsRepair, index) => (
               <tr>
                 <td>{laptopsRepair.id}</td>
@@ -114,12 +115,12 @@ export default class LaptopRepair extends Component {
 
                 <td>
                   <a className="view" href={`/viewrepair/${laptopsRepair._id}`}>
-                    <i class="fas fa-eye"></i>&nbsp;&nbsp;
+                    <i class="fas fa-eye"></i>
                   </a>
                   <a className="edit" href={`/editrepair/${laptopsRepair._id}`}>
-                    <i class="fas fa-edit"></i>&nbsp;&nbsp;
+                    <i class="fas fa-edit"></i>
                   </a>
-                  &nbsp;
+
                   <a
                     className="delete"
                     href="#"
@@ -131,9 +132,10 @@ export default class LaptopRepair extends Component {
               </tr>
             ))}
           </tbody>
-          <tfoot class="tfoot"></tfoot>
+          <tfoot></tfoot>
         </table>
       </div>
     );
   }
 }
+//laptop inventory

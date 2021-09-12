@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Clock from "../../component/common/clock/Clock";
 import "./AllPayrolls.css";
+//import Payrolljs from "../../assets/payrollJS/index";
 
 export default class AdminTab6 extends Component {
   constructor(props) {
@@ -69,12 +70,16 @@ export default class AdminTab6 extends Component {
       <div className="container">
         <br></br>
 
-        <div className="adminpayroll">
+        <div className="adminpayroll react-bs-table-pagination">
           <div className="row">
-            <div className="col-lg-9 mt-2 mb-2 font-weight-bold ">
-              <br />
-              <h1 class="ap-topic">Payroll Management </h1>
-              <Clock />
+            <div class="d-flex justify-content-between">
+              <div className="col-lg-9 mt-2 mb-2 font-weight-bold ">
+                <br />
+                <h1 class="ap-topic">Payroll Management </h1>
+              </div>
+              <div>
+                <Clock />
+              </div>
             </div>
 
             <hr />
@@ -104,6 +109,7 @@ export default class AdminTab6 extends Component {
                 </a>
               </button>
               <br></br> <br></br>
+              <br></br>
             </div>
 
             <div class="d-flex">
@@ -126,7 +132,10 @@ export default class AdminTab6 extends Component {
             </div>
           </div>
 
-          <table className="table table-hover" style={{ marginTop: "40px" }}>
+          <table
+            className="table table-hover text-center"
+            style={{ marginTop: "40px" }}
+          >
             <thead class="tblhead">
               <tr class="">
                 <th scope="col"> #</th>
@@ -134,6 +143,7 @@ export default class AdminTab6 extends Component {
                 <th scope="col"> Name</th>
                 <th scope="col"> Position</th>
                 <th scope="col"> Basic Salary</th>
+                <th scope="col"> Bank</th>
                 <th scope="col"> Action</th>
               </tr>
             </thead>
@@ -154,6 +164,7 @@ export default class AdminTab6 extends Component {
                   <td>{payrolls.name}</td>
                   <td>{payrolls.position}</td>
                   <td>{payrolls.basic_salary}</td>
+                  <td>{payrolls.bank}</td>
 
                   <td>
                     <a href={`displaypayroll/${payrolls._id}`}>
