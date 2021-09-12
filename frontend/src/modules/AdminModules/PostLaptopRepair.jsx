@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./PostLaptopDetails.css";
-//laptops
+//laptopss
 export default class PostLaptopRepair extends Component {
   constructor(props) {
     super(props);

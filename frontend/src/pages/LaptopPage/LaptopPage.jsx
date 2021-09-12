@@ -4,7 +4,7 @@ import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import CreateLaptop from "../../modules/AdminModules/CreateLaptop";
 import EditLaptopInventory from "../../modules/AdminModules/EditLaptopInventory";
 import PostLaptop from "../../modules/AdminModules/PostLaptop";
-//laptops
+//laptopss
 export default class LaptopPage extends Component {
   render() {
     return (
