@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./AllPayrolls.css";
 
-export default class CreatePayroll extends Component {
+export default class CreateProfile extends Component {
   constructor(props) {
     super(props);
 
