@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-//laptop post
+//laptop posts
 export default class PostLaptop extends Component {
   constructor(props) {
     super(props);

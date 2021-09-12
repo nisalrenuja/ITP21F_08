@@ -42,6 +42,7 @@ import NoticeComPerf from "../modules/AdminModules/NoticeComPerf";
 import PendingAssignment from "../pages/AdminPage/PendingAssignment";
 import EmployeeReport from "../modules/AdminModules/EmployeeReport";
 import EmpReportUpload from "../modules/AdminModules/EmpReportUpload";
+import EditNotices from "../modules/AdminModules/EditNotices"; //edit notices
 import PayrollPage from "../pages/PayrollPage/PayrollPage";
 import CreatePayroll from "../modules/AdminModules/CreatePayroll";
 import DisplayPayroll from "../modules/AdminModules/DisplayPayroll";
@@ -147,7 +148,7 @@ const AppRoutes = () => (
         /*Senara Routes*/
         <Route path="/CreateNotice" component={CreateNotice} exact></Route>
         <Route path="/TopPerformers" component={TopPerformers} exact></Route>
-        <Route path="/NoticeComPerf" compoenet={NoticeComPerf} exact></Route>
+        <Route path="/NoticeComPerf" component={NoticeComPerf} exact></Route>
         /*Dimashi Routes*/
         <Route path="/payroll" component={PayrollPage} exact />
         <Route path="/addpayroll" exact component={CreatePayroll}></Route>
@@ -194,6 +195,8 @@ const AppRoutes = () => (
         <Route path="/createprofile" component={CreateProfile}></Route>
         <Route path="/editprofile/:id" component={EditProfile}></Route>
         <Route path="/postprofile/:id" component={DisplayProfile}></Route>
+        //Senara Routes
+        <Route path="/EditNotices" component={EditNotices} exact></Route>
       </Switch>
       <Footer />
     </Router>
