@@ -121,7 +121,7 @@ const AppRoutes = () => (
         /*Senara Routes*/
         <Route path="/CreateNotice" component={CreateNotice} exact></Route>
         <Route path="/TopPerformers" component={TopPerformers} exact></Route>
-        <Route path="/NoticeComPerf" compoenet={NoticeComPerf} exact></Route>
+        <Route path="/NoticeComPerf" component={NoticeComPerf} exact></Route>
         /*Dimashi Routes*/
         <Route path="/payroll" component={PayrollPage} exact />
         <Route path="/addpayroll" exact component={CreatePayroll}></Route>

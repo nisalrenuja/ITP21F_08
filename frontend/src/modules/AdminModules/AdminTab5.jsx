@@ -42,7 +42,6 @@ export default class AdminTab5 extends Component {
               <p class="sentxt4">NEW NOTICE +</p>
             </button>
           </a>
-
           <a href="/TopPerformers">
             <button class="senadiv1">
               <p class="senatxt1">Top Performers</p>
@@ -53,7 +52,6 @@ export default class AdminTab5 extends Component {
               <p class="senatxt2">Company Performance</p>
             </button>
           </a>
-
           <div class="sendiv3">
             <p class="sentxt3">Filter by</p>
             <input class="senselect1" type="text" />
@@ -104,7 +102,6 @@ export default class AdminTab5 extends Component {
               <tfoot class="tfoot"></tfoot>
             </table>
           </div>
-
           <div>
             <h2 class="sentah1">Previous Notices</h2>
 
@@ -156,6 +153,7 @@ export default class AdminTab5 extends Component {
               </tbody>
             </table>
           </div>
+          S
         </div>
       </div>
     );
