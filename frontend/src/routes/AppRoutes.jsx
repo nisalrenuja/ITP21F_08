@@ -65,6 +65,11 @@ import DisplayClient from "../modules/AdminModules/DisplayClient";
 import EditClient from "../modules/AdminModules/EditClient";
 import ClientsRoutesPage from "../pages/ClientsRoutesPage/ClientsRoutesPage";
 
+import ProfilePage from "../modules/AdminModules/ProfilePage";
+import CreateProfile from "../modules/AdminModules/CreateProfile";
+import EditProfile from "../modules/AdminModules/EditProfile";
+import DisplayProfile from "../modules/AdminModules/DisplayProfile";
+
 const AppRoutes = () => (
   <div>
     <Router>
@@ -154,6 +159,10 @@ const AppRoutes = () => (
           exact
         />
         <Route path="/editpartnerreview" component={EditPartnerReview} exact />
+        <Route path="/profilepage" component={ProfilePage} exact />
+        <Route path="/createprofile" component={CreateProfile}></Route>
+        <Route path="/editprofile/:id" component={EditProfile}></Route>
+        <Route path="/postprofile/:id" component={DisplayProfile}></Route>
       </Switch>
       <Footer />
     </Router>
