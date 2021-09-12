@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { storage } from "../../firebase";
 import Progress from "../../component/common/ProgressBar/progress";
-export default class EditReview extends Component {
+export default class ManagerEditReview extends Component {
   constructor(props) {
     super(props);
 
@@ -12,11 +12,10 @@ export default class EditReview extends Component {
       reportPDF: null,
       points: "",
       feedback: "",
-      status: "",
+      partnerStatus: "",
       uploadPercentage: 0,
       fileVal: "",
-      assignmentstatus: "",
-      managerData: []
+      assignmentstatus: ""
     };
   }
 
@@ -24,18 +23,18 @@ export default class EditReview extends Component {
     const { name, value } = e.target;
     console.log(name);
     console.log(value);
-    if (name === "status") {
+    if (name === "partnerStatus") {
       if (value === "Accepted") {
         this.state.assignmentstatus = "Completed";
-        this.state.status = "Accepted";
+        this.state.partnerStatus = "Accepted";
       } else if (value === "Pending") {
         this.state.assignmentstatus = "Working";
-        this.state.status = "Pending";
-      } else this.state.status = "Rejected";
+        this.state.partnerStatus = "Pending";
+      } else this.state.partnerStatus = "Rejected";
     }
 
     console.log(this.state.assignmentstatus);
-    console.log(this.state.status);
+    console.log(this.state.partnerStatus);
     this.setState({
       ...this.state,
       [name]: value
@@ -51,18 +50,18 @@ export default class EditReview extends Component {
       reportPDF,
       points,
       feedback,
-      status
+      partnerStatus
     } = this.state;
     let data = "";
-    if (status === "Accepted") {
+    if (partnerStatus === "Accepted") {
       data = {
         execid_review: execid_review,
         report: report,
         reportPDF: reportPDF,
         points: points,
         feedback: feedback,
-        status: status,
-        isAdminApprove: true
+        partnerStatus: partnerStatus,
+        isManagerApprove: true
       };
     } else {
       data = {
@@ -71,8 +70,8 @@ export default class EditReview extends Component {
         reportPDF: reportPDF,
         points: points,
         feedback: feedback,
-        status: status,
-        isAdminApprove: false
+        partnerStatus: partnerStatus,
+        isManagerApprove: false
       };
     }
 
@@ -94,6 +93,7 @@ export default class EditReview extends Component {
     axios.put(`http://localhost:5000/review/update/${id}`, data).then(res => {
       if (res.data.success) {
         let managerReview = data;
+
         alert("Review Updated Successfully");
         this.setState({
           execid_review: "",
@@ -101,7 +101,7 @@ export default class EditReview extends Component {
           reportPDF: null,
           points: "",
           feedback: "",
-          status: ""
+          partnerStatus: ""
         });
       }
     });
@@ -117,7 +117,7 @@ export default class EditReview extends Component {
           reportPDF: res.data.post.reportPDF,
           points: res.data.post.points,
           feedback: res.data.post.feedback,
-          status: res.data.post.status
+          partnerStatus: res.data.post.partnerStatus
         });
       }
     });
@@ -252,10 +252,10 @@ export default class EditReview extends Component {
               className="form-select"
               aria-label="Default select example"
               onChange={this.handleInputChange}
-              name="status"
+              name="partnerStatus"
             >
               <option value="DEFAULT" disabled>
-                selected status is : {this.state.status}
+                selected status is : {this.state.partnerStatus}
               </option>
               <option value="Pending">Pending</option>
               <option value="Rejected">Rejected</option>

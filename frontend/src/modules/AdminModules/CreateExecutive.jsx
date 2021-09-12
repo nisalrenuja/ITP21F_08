@@ -62,34 +62,29 @@ export default class CreateExecutive extends Component {
 
   render() {
     return (
-      <div className="container grad">
-        <div class="adminreview">
+      <div className="container ">
+        <div class="adminpayroll react-bs-table-pagination">
           <div className="row">
-            <div className="exploreText">
-              User Executive Management Dashboard
+            <div className="d-flex justify-content-between">
+              <div className="col-lg-9 mt-2 mb-2 font-weight-bold ">
+                <br />
+                <h1 class="ap-topic">User Executive Management Dashboard </h1>
+              </div>
             </div>
             <hr />
             <div className="col-lg-9 mt-2 mb-2">
               <Clock />
               <br />
-              <button className="btn btn-primary btn-lg">
+              <button className="btn btn-lg aptab-btn">
                 <a
                   href="/admin"
-                  style={{ textDecoration: "none", color: "white" }}
+                  style={{ textDecoration: "none", color: "black" }}
                 >
                   Back to Main Dashboard
                 </a>
               </button>
             </div>
             <div className="col-lg-3 mt-2 mb-2">
-              <button type="button" class="btn btn-outline-info">
-                <a
-                  href="/displaymyprofile"
-                  style={{ textDecoration: "none", color: "#276678" }}
-                >
-                  My Personal Profile
-                </a>
-              </button>
               <br />
               <br />
             </div>
@@ -99,9 +94,12 @@ export default class CreateExecutive extends Component {
               <h1 className="h3 mb-3 font-weight-normal">All Executives</h1>
             </div>
           </div>
-          <table className="table table-hover" style={{ marginTop: "30px" }}>
-            <thead>
-              <tr class="bg-info">
+          <table
+            className="table table-hover text-center"
+            style={{ marginTop: "40px" }}
+          >
+            <thead class="tblhead">
+              <tr>
                 <th scope="col"></th>
                 <th scope="col">Executive Id</th>
                 <th scope="col">Executive Name</th>
@@ -126,19 +124,12 @@ export default class CreateExecutive extends Component {
                   <td>{executives.email}</td>
 
                   <td>
-                    <a
-                      className="btn btn-warning"
-                      href={`/editexecutive/${executives._id}`}
-                    >
-                      <i className="fas fa-edit"></i>&nbsp;Edit
+                    <a href={`/editexecutive/${executives._id}`}>
+                      <i class="far fa-edit"></i>
                     </a>
-                    &nbsp;
-                    <a
-                      className="btn btn-danger"
-                      href="#"
-                      onClick={() => this.onDelete(executives._id)}
-                    >
-                      <i className="fas fa-trash-alt"></i>&nbsp;Delete
+                    &nbsp; &nbsp; &nbsp;
+                    <a href="#" onClick={() => this.onDelete(executives._id)}>
+                      <i class="far fa-trash-alt"></i>
                     </a>
                   </td>
                 </tr>
