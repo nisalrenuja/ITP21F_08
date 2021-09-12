@@ -1,11 +1,10 @@
 const express = require("express");
-const executives = require("../models/User");
+const executive = require("../models/executives");
 const router = express.Router();
-const { protect } = require("../middleware/auth");
 
-router.post("/executives/save", (req, res) => {
-  let newexecutives = new executives(req.body);
-  newexecutives.save((err) => {
+router.post("/executive/save", (req, res) => {
+  let newexecutive = new executive(req.body);
+  newexecutive.save((err) => {
     if (err) {
       return res.status(400).json({
         error: err,
@@ -17,41 +16,41 @@ router.post("/executives/save", (req, res) => {
   });
 });
 //get post
-router.get("/executives", protect, (req, res) => {
-  executives.find().exec((err, executives) => {
-    var count = executives.length;
+router.get("/executive", (req, res) => {
+  executive.find().exec((err, executive) => {
+    var count = executive.length;
     if (err) {
       return res.status(400).json({ success: false, err });
     }
     return res.status(200).json({
       success: true,
-      existingexecutives: executives,
+      existingexecutive: executive,
       employeeCount: count,
     });
   });
 });
 
 //get specific
-router.get("/executives/:id", (req, res) => {
-  let postid = req.params.id;
-  executives.findById(postid, (err, executives) => {
+router.get("/executive/:id", (req, res) => {
+  let executiveid = req.params.id;
+  executive.findById(executiveid, (err, executive) => {
     if (err) {
       return res.status(400).json({ success: false, err });
     }
     return res.status(200).json({
       success: true,
-      executives,
+      executive,
     });
   });
 });
 //update executives
-router.put("/executives/update/:id", (req, res) => {
-  executives.findByIdAndUpdate(
+router.put("/executive/update/:id", (req, res) => {
+  executive.findByIdAndUpdate(
     req.params.id,
     {
       $set: req.body,
     },
-    (err, executives) => {
+    (err, executive) => {
       if (err) {
         return res.status(400).json({ error: err });
       }
@@ -62,8 +61,8 @@ router.put("/executives/update/:id", (req, res) => {
   );
 });
 //delete post
-router.delete("/executives/delete/:id", (req, res) => {
-  executives.findByIdAndRemove(req.params.id).exec((err, deletedPost) => {
+router.delete("/executive/delete/:id", (req, res) => {
+  executive.findByIdAndRemove(req.params.id).exec((err, deletedPost) => {
     if (err)
       return res.status(400).json({
         message: "Delete Unsuccess",

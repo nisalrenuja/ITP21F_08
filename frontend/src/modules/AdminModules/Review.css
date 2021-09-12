@@ -24,3 +24,72 @@
   font-family: var(--font-style);
   font-weight: bolder;
 }
+
+.grad {
+  background-image: linear-gradient(#dbf6fd, #93e6fd);
+}
+
+.tblhead {
+  background-color: #276678;
+  color: white;
+}
+
+.aptab-btn {
+  background-color: #d3e0ea;
+}
+
+.aptab-btn:hover {
+  background-color: #1687a7;
+  color: white;
+}
+.hr {
+  position: absolute;
+  width: 1371.03px;
+  height: 0px;
+  left: 477px;
+  top: 303px;
+  size: 1px;
+
+  border: 3px solid #d3e0ea;
+  transform: rotate(0.21deg);
+}
+
+.aptab-disable {
+  background-color: #276678;
+  color: white;
+}
+.aptab-disable:hover {
+  background-color: #276678;
+  color: white;
+}
+.search-bar {
+  background: #1687a7;
+  border-radius: 5px;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.ap-topic {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 58px;
+  padding-top: 15px;
+
+  color: #1687a7;
+}
+.need-validation {
+  background-color: "#F6F5F5";
+  border: "5px solid eastern blue";
+  padding: "30px";
+  border-radius: "15px";
+}
+
+.ap-displaypg {
+  margin: auto;
+  width: 50%;
+  border: 3px solid #d3e0ea;
+  padding: 10px;
+}

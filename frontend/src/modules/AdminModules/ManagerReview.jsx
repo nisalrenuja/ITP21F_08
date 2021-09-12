@@ -57,51 +57,52 @@ export default class AdminTab1 extends Component {
 
   render() {
     return (
-      <div className="container ">
-        <div class="adminreview react-bs-table-pagination">
+      <div className="container grad">
+        <div class="adminreview">
           <div className="row">
-            <div className="ap-topic">User Executive Management Dashboard</div>
+            <div className="exploreText">
+              User Executive Management Dashboard
+            </div>
             <hr />
             <div className="col-lg-9 mt-2 mb-2">
               <Clock />
               <br />
-              <button class="btn btn-lg aptab-btn">
+              <button class="btn btn-primary btn-lg">
                 <a
-                  href="managerreview"
-                  style={{ textDecoration: "none", color: "black" }}
+                  href="/directorreview"
+                  style={{ textDecoration: "none", color: "white" }}
                 >
-                  Manager Review
+                  Director Review
                 </a>
               </button>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <button class="btn btn-lg aptab-btn">
+              <button className="btn btn-primary btn-lg">
                 <a
-                  href="/profilepage"
-                  style={{ textDecoration: "none", color: "black" }}
+                  href="/admin"
+                  style={{ textDecoration: "none", color: "white" }}
                 >
-                  Executive Board Profiles
-                </a>
-              </button>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <button class="btn btn-lg aptab-btn">
-                <a
-                  href="/createexecutive"
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  Current Users
+                  Back to Main Dashboard
                 </a>
               </button>
             </div>
             <div className="col-lg-3 mt-2 mb-2">
+              <button type="button" class="btn btn-outline-info">
+                <a
+                  href="/displaymyprofile"
+                  style={{ textDecoration: "none", color: "#276678" }}
+                >
+                  My Personal Profile
+                </a>
+              </button>
               <br />
               <br />
             </div>
           </div>
           <div className="row">
             <div className="col-lg-9 mt-2 mb-2">
-              <h1 className="h3 mb-3 font-weight-normal">Initial Reviews</h1>
+              <h1 className="h3 mb-3 font-weight-normal">Manager Reviews</h1>
             </div>
-            <div className="col-lg-2 mt-2 mb-2 search-bar">
+            <div className="col-lg-3 mt-2 mb-2">
               <input
                 className="form-control"
                 type="search"
@@ -112,13 +113,15 @@ export default class AdminTab1 extends Component {
             </div>
           </div>
           <table className="table table-hover" style={{ marginTop: "30px" }}>
-            <thead className="tblhead">
-              <tr class="">
+            <thead>
+              <tr class="bg-info">
                 <th scope="col"></th>
                 <th scope="col">Review Id</th>
                 <th scope="col">Report Name</th>
                 <th scope="col">Report</th>
-
+                <th scope="col">Points</th>
+                <th scope="col">Feedback</th>
+                <th scope="col">Status</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
@@ -126,7 +129,14 @@ export default class AdminTab1 extends Component {
               {this.state.posts.map((posts, index) => (
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
-                  <td>{posts.execid_review}</td>
+                  <td>
+                    <a
+                      href={`/post/${posts._id}`}
+                      style={{ textDecoration: "none" }}
+                    >
+                      {posts.execid_review}
+                    </a>
+                  </td>
                   <td>{posts.report}</td>
                   <td>
                     <a
@@ -136,18 +146,20 @@ export default class AdminTab1 extends Component {
                       View Report
                     </a>
                   </td>
-
+                  <td>{posts.points}</td>
+                  <td>{posts.feedback}</td>
+                  <td>{posts.status}</td>
                   <td>
-                    <a href={`/post/${posts._id}`}>
-                      <i class="far fa-eye"></i>
+                    <a className="btn btn-warning" href={`/edit/${posts._id}`}>
+                      <i className="fas fa-edit"></i>&nbsp;Edit
                     </a>
-                    &nbsp; &nbsp; &nbsp; &nbsp;
-                    <a href={`/edit/${posts._id}`}>
-                      <i class="far fa-edit"></i>
-                    </a>
-                    &nbsp; &nbsp; &nbsp;
-                    <a href="#" onClick={() => this.onDelete(posts._id)}>
-                      <i class="far fa-trash-alt"></i>
+                    &nbsp;
+                    <a
+                      className="btn btn-danger"
+                      href="#"
+                      onClick={() => this.onDelete(posts._id)}
+                    >
+                      <i className="fas fa-trash-alt"></i>&nbsp;Delete
                     </a>
                   </td>
                 </tr>

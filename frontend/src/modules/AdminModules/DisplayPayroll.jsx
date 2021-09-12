@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "./AllPayrolls.css";
 //import jsPDF from "jspdf";
 
 export default class DisplayPayroll extends Component {
@@ -46,33 +47,65 @@ export default class DisplayPayroll extends Component {
 
     return (
       <div
-        id="payslip"
+        id="ap-displaypg col text-center "
         style={{ marginTop: "20px", padding: "25px", paddingRight: "25px" }}
       >
         <div className="row">
-          <h3 className="col-10">Salary Details of {name} </h3>
+          <h1 className="col-10">Salary Details of Employee ID : {empno} </h1>
         </div>
 
         <hr />
-        <dl className="row">
-          <dt className="col-sm-3">Employee ID</dt>
-          <dd className="col-sm-9">{empno}</dd>
+        <br />
+        <div class="ap-displaypg">
+          <dl className="row">
+            <dt className="col-sm-3">Employee Name</dt>
+            <dd className="col-sm-9">{name}</dd>
 
-          <dt className="col-sm-3">Salary Depositing Bank</dt>
-          <dd className="col-sm-9">{bank}</dd>
+            <dt className="col-sm-3">Position</dt>
+            <dd className="col-sm-9">{position}</dd>
+          </dl>
+          <br />
+          <h6 className="" style={{ textDecoration: "none", color: "#276678" }}>
+            <strong>
+              Bank Details Related To Depositing The Monthly Salary
+            </strong>
+          </h6>
+          <br />
 
-          <dt className="col-sm-3">Branch</dt>
-          <dd className="col-sm-9">{bank_branch}</dd>
+          <dl className="row">
+            <dt className="col-sm-3">Bank Name</dt>
+            <dd className="col-sm-9">{bank}</dd>
 
-          <dt className="col-sm-3">Account No</dt>
-          <dd className="col-sm-9">{account_no}</dd>
+            <dt className="col-sm-3">Branch</dt>
+            <dd className="col-sm-9">{bank_branch}</dd>
 
-          <dt className="col-sm-3">Basic Salary</dt>
-          <dd className="col-sm-9">{basic_salary}</dd>
+            <dt className="col-sm-3">Account No</dt>
+            <dd className="col-sm-9">{account_no}</dd>
 
-          <dt className="col-sm-3">Salary Date</dt>
-          <dd className="col-sm-9">{salary_date}</dd>
-        </dl>
+            <br />
+            <br />
+            <br />
+
+            <dt className="col-sm-3">Basic Salary</dt>
+            <dd className="col-sm-9">Rs. {basic_salary}</dd>
+
+            <dt className="col-sm-3">Pay Date</dt>
+            <dd className="col-sm-9">{salary_date}</dd>
+          </dl>
+        </div>
+
+        <div className="text-center">
+          <br />
+          <button
+            className="btn btn-warning"
+            type="submit"
+            style={{ marginTop: "15px" }}
+            onClick="/editpayroll"
+          >
+            <i className="fa fa-edit"></i>&nbsp;Update
+          </button>{" "}
+          &nbsp;&nbsp;
+        </div>
       </div>
     );
   }

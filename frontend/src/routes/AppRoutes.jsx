@@ -52,7 +52,23 @@ import PayrollPage from "../pages/PayrollPage/PayrollPage";
 import CreatePayroll from "../modules/AdminModules/CreatePayroll";
 import DisplayPayroll from "../modules/AdminModules/DisplayPayroll";
 import EditPayroll from "../modules/AdminModules/EditPayroll";
+import ManagerReview from "../modules/AdminModules/ManagerReview";
+import EditManagerReview from "../modules/AdminModules/ManagerReview";
+import DirectorReview from "../modules/AdminModules/DirectorReview";
+import EditDirectorReview from "../modules/AdminModules/DirectorReview";
+import PartnerReview from "../modules/AdminModules/PartnerReview";
+import EditPartnerReview from "../modules/AdminModules/PartnerReview";
 import AllReports from "../pages/AdminPage/AllReports";
+
+import CreateClient from "../modules/AdminModules/CreateClient";
+import DisplayClient from "../modules/AdminModules/DisplayClient";
+import EditClient from "../modules/AdminModules/EditClient";
+import ClientsRoutesPage from "../pages/ClientsRoutesPage/ClientsRoutesPage";
+
+import ProfilePage from "../modules/AdminModules/ProfilePage";
+import CreateProfile from "../modules/AdminModules/CreateProfile";
+import EditProfile from "../modules/AdminModules/EditProfile";
+import DisplayProfile from "../modules/AdminModules/DisplayProfile";
 
 const AppRoutes = () => (
   <div>
@@ -127,6 +143,26 @@ const AppRoutes = () => (
         <Route path="/addpayroll" exact component={CreatePayroll}></Route>
         <Route path="/displaypayroll/:id" component={DisplayPayroll} exact />
         <Route path="/editpayroll/:id" component={EditPayroll} exact />
+        /*Thisarani Routes*/
+        <Route path="/client" component={ClientsRoutesPage} exact />
+        <Route path="/addclient" exact component={CreateClient}></Route>
+        <Route path="/displayclient/:id" component={DisplayClient} exact />
+        <Route path="/editclient/:id" component={EditClient} exact />
+        /*?? routes*/
+        <Route path="/managerreview" component={ManagerReview} exact />
+        <Route path="/directorreview" component={DirectorReview} exact />
+        <Route path="/partnerreview" component={PartnerReview} exact />
+        <Route path="/editmanagerreview" component={EditManagerReview} exact />
+        <Route
+          path="/editdirectorreview"
+          component={EditDirectorReview}
+          exact
+        />
+        <Route path="/editpartnerreview" component={EditPartnerReview} exact />
+        <Route path="/profilepage" component={ProfilePage} exact />
+        <Route path="/createprofile" component={CreateProfile}></Route>
+        <Route path="/editprofile/:id" component={EditProfile}></Route>
+        <Route path="/postprofile/:id" component={DisplayProfile}></Route>
       </Switch>
       <Footer />
     </Router>

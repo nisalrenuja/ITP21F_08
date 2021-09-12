@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { storage } from "../../firebase";
 import Progress from "../../component/common/ProgressBar/progress";
+import { Redirect } from "react-router";
 export default class EmpReportUpload extends Component {
   constructor(props) {
     super(props);
@@ -25,8 +26,25 @@ export default class EmpReportUpload extends Component {
       empno: "",
       sub_date: today,
       due_date: "",
-      progress: ""
+      progress: "",
+      assignments: [],
+      redirectToReferrer: false
     };
+  }
+
+  componentDidMount() {
+    this.retrievePosts();
+  }
+  retrievePosts() {
+    axios.get("http://localhost:5000/assignments/empreportupload").then(res => {
+      if (res.data.success) {
+        this.setState({
+          assignments: res.data.assignmentsassigned
+        });
+
+        console.log(this.state.assignments);
+      }
+    });
   }
 
   handleInputChange = e => {
@@ -62,7 +80,8 @@ export default class EmpReportUpload extends Component {
       status: "Pending",
       empno: empno,
       sub_date: sub_date,
-      due_date: due_date
+      due_date: due_date,
+      redirectToReferrer: true
     };
     const { progress } = this.state;
     const data1 = { progress: "Working" };
@@ -90,7 +109,8 @@ export default class EmpReportUpload extends Component {
           status: "",
           empno: "",
           sub_date: "",
-          due_date: ""
+          due_date: "",
+          redirectToReferrer: true
         });
         alert("Submitted Successfully");
       }
@@ -132,32 +152,51 @@ export default class EmpReportUpload extends Component {
   }
 
   render() {
+    const redirectToReferrer = this.state.redirectToReferrer;
+    console.log(redirectToReferrer);
+    if (redirectToReferrer == true) {
+      return <Redirect to="/employeereport" />;
+    }
     return (
       <div className="col-md-8 mt-4 mx-auto">
-        <h1 className="h3 mb-3 font-weight-normal">Create New Review</h1>
-        <form className="need-validation" noValidate>
+        <h1 className="h3 mb-4 font-weight-bold text-center">
+          Upload Report For Review
+        </h1>
+        <form>
           <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>To be Reviewed By</label>
-            <input
-              type="text"
-              className="form-control"
-              name="execid_review"
-              placeholder="Enter Executive Id"
-              value={this.state.execid_review}
-              onChange={this.handleInputChange}
-            />
+            <label for="validationCustom03" style={{ marginBottom: "5px" }}>
+              To be Reviewed By
+            </label>
+            <div class="input-group has-validation">
+              <input
+                type="text"
+                id="validationCustom03"
+                className="form-control"
+                name="execid_review"
+                placeholder="Enter Executive Id"
+                value={this.state.execid_review}
+                onChange={this.handleInputChange}
+                required
+              />
+              <div class="invalid-feedback">Please choose a username.</div>
+            </div>
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
             <label style={{ marginBottom: "5px" }}>Report Name</label>
-            <input
+            <select
+              defaultValue={"DEFAULT"}
               type="text"
-              className="form-control"
+              className="form-select"
               name="report"
               placeholder="Enter Report Name"
-              value={this.state.report}
               onChange={this.handleInputChange}
-            />
+            >
+              <option value="DEFAULT">Select Assignment Name</option>
+              {this.state.assignments.map((pending, index) => (
+                <option key={index}>{pending.assignment_name}</option>
+              ))}
+            </select>
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
@@ -194,23 +233,28 @@ export default class EmpReportUpload extends Component {
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
             <label style={{ marginBottom: "5px" }}>Employee Number</label>
-            <input
+            <select
+              defaultValue={"DEFAULT"}
               type="number"
               className="form-control"
               name="empno"
               placeholder="Enter Employee Number"
-              value={this.state.empno}
               onChange={this.handleInputChange}
-            />
+            >
+              <option value="DEFAULT">Select Employee Number</option>
+              {this.state.assignments.map((pending, index) => (
+                <option key={index}>{pending.emp_no}</option>
+              ))}
+            </select>
           </div>
 
           <button
-            className="btn btn-success"
+            className="btn btn-danger"
             type="submit"
-            style={{ marginTop: "15px" }}
+            style={{ marginTop: "15px", marginBottom: "15px" }}
             onClick={this.onSubmit}
           >
-            <i className="fa fa-check-square"></i>&nbsp;Save
+            <i className="fa"></i>&nbsp;Save
           </button>
         </form>
       </div>

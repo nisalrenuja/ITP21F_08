@@ -1,150 +1,267 @@
-.anudiv1 {
+.bumain {
+  width: 100%;
+  height: 850px;
+  left: 0px;
+  white-space: nowrap;
+  position: relative;
+  overflow-y: scroll;
+}
+.buhead1 {
+  position: absolute;
+  width: 623px;
+  height: 129px;
+  left: 0px;
+  top: 50px;
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 34px;
+  line-height: 58px;
+
+  color: #1687A7;
+}
+.buline1 {
+  position: absolute;
+  width: 97%;
+  height: 0px;
+  left: 0px;
+  top: 100px;
+
+  border: 3px solid #1687A7;
+  transform: rotate(0.21deg);
+}
+/*New Report Button*/
+.budiv4{
+  position: absolute;
+  width: 200px;
+  height: 48px;
+  left: 1110px;
+  top: 50px;
+
+  background: #276678;
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  border-radius: 30px;
+}
+.budiv4 span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.budiv4 span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.budiv4:hover span {
+  padding-right: 25px;
+}
+
+.budiv4:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.butxt4{
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 40px;
+
+  /* identical to box height */
+  text-align: center;
+  letter-spacing: -0.00022em;
+
+  color: #F6F5F5;
+}
+
+
+
+/*Table 1*/
+.butah1 {
+  position: absolute;
+  width: 523px;
+  height: 66px;
+  left: 0px;
+  top: 150px;
+
+  color: #000000;
+}
+.butable1 {
+  position: absolute;
+  width: 100%;
+
+  left: 0px;
+  top: 0px;
+}
+.buthead {
+  background: #1687A7;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: -0.00022em;
+  color: #ffffff;
+}
+.tfoot {
+  background: #276678;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: -0.00022em;
+  color: #ffffff;
+  background: #276678;
+}
+.tfoot a {
+  text-decoration: none;
+  color: #ffffff;
+}
+.tfoot:hover {
+  background: #47daba;
+}
+
+
+  .butmain {
     position: absolute;
-    width: 290px;
-    height: 67px;
-    left: 0px;
-    top: 200px;
+    width: 98%;
+    height: 200px;
+    top: 220px;
   
-    background: #276678;
-  }
-  .anudiv2 {
-    position: absolute;
-    width: 290px;
-    height: 67px;
-    left: 300px;
-    top: 200px;
+    background: #f6f5f5;
+    backdrop-filter: blur(4px);
+    /* Note: backdrop-filter has minimal browser support */
   
-    background: #d3e0ea;
+    border-radius: 15px;
+    white-space: nowrap;
+    position: relative;
+    overflow-y: auto;
   }
-
-  /*New Report Button*/
-  .anudiv4{
-    position: absolute;
-    width: 251px;
-    height: 48px;
-    left: 800px;
-    top: 65px;
-
-    background: #276678;
-    background: #1687A7;
-    
-
-    border-radius: 5px;
-
-  }
-
-  .anutxt4{
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 40px;
-
-    /* identical to box height */
-    text-align: center;
-    letter-spacing: -0.00022em;
-
-    color: #F6F5F5;
-  }
-
-  /*Two Tabs*/
-
-  .anutxt1 {
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 60px;
-    text-align: center;
-    letter-spacing: -0.00022em;
-  
-    color: #ffffff;
-  }
-  .anutxt2 {
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 60px;
-    text-align: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
-  .anuhead1 {
-    position: absolute;
-    width: 623px;
-    height: 129px;
-    left: 0px;
-    top: 60px;
-
-    font-family: Inter;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 48px;
-    line-height: 58px;
-
-    color: #1687A7;
-  }
-  .anuline1 {
-    position: absolute;
-    width: 1071.03px;
-    height: 0px;
-    left: 0px;
-    top: 130px;
-  
-    border: 3px solid #d3e0ea;
-    transform: rotate(0.21deg);
-  }
+.butbody1 {
+  text-align: center;
+}
 
   /*Search Tab*/
   .budiv3 {
     position: absolute;
     width: 413px;
     height: 55px;
-    left: 650px;
-    top: 200px;
+    left: 900px;
+    top: 150px;
   
-    background: #1687a7;
+    background: #276678;
     backdrop-filter: blur(4px);
     /* Note: backdrop-filter has minimal browser support */
   
     border-radius: 5px;
   }
-
+  
   .budiv31 {
     position: absolute;
     width: 413px;
     height: 55px;
-    left: 650px;
-    top: 600px;
+    left: 900px;
+    top: 450px;
   
-    background: #1687a7;
+    background: #276678;
     backdrop-filter: blur(4px);
     /* Note: backdrop-filter has minimal browser support */
-  
     border-radius: 5px;
   }
 
-  .anutxt3 {
+  .budiv331 {
     position: absolute;
-    width: 40px;
-    height: 40px;
-    left: 30px;
-    top: 20px;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 29px;
-    /* identical to box height */
+    width: 413px;
+    height: 55px;
+    left: 900px;
+    top: 750px;
   
-    text-align: center;
-    letter-spacing: -0.00022em;
-  
-    color: #c4c4c4;
+    background: #276678;
+    backdrop-filter: blur(4px);
+    /* Note: backdrop-filter has minimal browser support */
+    border-radius: 5px;
   }
-  .anuselect1 {
+  
+  .butmain2 {
+    position: absolute;
+    width: 98%;
+    height: 200px;
+    top: 320px;
+  
+    background: #f6f5f5;
+    backdrop-filter: blur(4px);
+    /* Note: backdrop-filter has minimal browser support */
+  
+    border-radius: 15px;
+    white-space: nowrap;
+    position: relative;
+    overflow-y: auto;
+  }
+
+/*Table 2*/
+.butah2 {
+  position: absolute;
+  width: 523px;
+  height: 66px;
+  left: 0px;
+  top: 450px;
+
+  color: #000000;
+}
+.butable2 {
+  position: absolute;
+  width: 100%;
+
+  left: 0px;
+  top: 0px;
+}
+.buthead2 {
+  background: #1687A7;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: -0.00022em;
+  color: #ffffff;
+
+}
+.tfoot {
+  background: #276678;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: -0.00022em;
+  color: #ffffff;
+  background: #276678;
+}
+.tfoot a {
+  text-decoration: none;
+  color: #ffffff;
+}
+.tfoot:hover {
+  background: #47daba;
+}
+.butbody1 {
+  text-align: center;
+}
+
+.buselect1 {
     position: absolute;
     width: 272px;
     height: 40px;
@@ -153,8 +270,8 @@
   
     background: #ffffff;
     border-radius: 5px;
-  }
-  .anusearch {
+}
+.busearch {
     position: absolute;
     width: 110px;
     height: 40px;
@@ -166,82 +283,19 @@
     box-sizing: border-box;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
-    }
+}
 
-/*Table 1*/
-  .butable1 {
-    position: absolute;
-    width: 100%;
-  
-    left: 0px;
-    top: 290px;
-  }
-  .anuthead {
-    background: #276678;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 24px;
-    text-align: center;
-    letter-spacing: -0.00022em;
-    color: #ffffff;
-    background: #276678;
-  }
-  .tfoot {
-    background: #276678;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 24px;
-    text-align: center;
-    letter-spacing: -0.00022em;
-    color: #ffffff;
-    background: #276678;
-  }
-  .tfoot a {
-    text-decoration: none;
-    color: #ffffff;
-  }
-  .tfoot:hover {
-    background: #47daba;
-  }
 
-  .butah1 {
-    position: absolute;
-    width: 523px;
-    height: 66px;
-    left: 0px;
-    top: 200px;
-  
-    color: #000000;
-  }
- 
-  .anutbody1 {
-    text-align: center;
-  }
 
   /*Table 2*/
-  .butable2 {
+  .butable3 {
     position: absolute;
     width: 100%;
   
     left: 0px;
     top: 690px;
   }
-  .anuthead {
-    background: #276678;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 24px;
-    text-align: center;
-    letter-spacing: -0.00022em;
-    color: #ffffff;
-    background: #276678;
-  }
+ 
   .tfoot {
     background: #276678;
     font-family: Inter;
@@ -262,7 +316,7 @@
     background: #47daba;
   }
 
-  .butah2 {
+  .butah3 {
     position: absolute;
     width: 523px;
     height: 66px;
@@ -271,7 +325,69 @@
   
     color: #000000;
   }
- 
-  .anutbody1 {
-    text-align: center;
+
+  .butmain3 {
+    position: absolute;
+    width: 98%;
+    height: 200px;
+    top: 420px;
+  
+    background: #f6f5f5;
+    backdrop-filter: blur(4px);
+    /* Note: backdrop-filter has minimal browser support */
+  
+    border-radius: 15px;
+    white-space: nowrap;
+    position: relative;
+    overflow-y: auto;
   }
+
+ /*Table 4*/
+.butah3 {
+  position: absolute;
+  width: 523px;
+  height: 66px;
+  left: 0px;
+  top: 750px;
+
+  color: #000000;
+}
+.butable4 {
+  position: absolute;
+  width: 100%;
+
+  left: 0px;
+  top: 0px;
+}
+.buthead4 {
+  background: #1687A7;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: -0.00022em;
+  color: #ffffff;
+
+}
+.tfoot {
+  background: #276678;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: -0.00022em;
+  color: #ffffff;
+  background: #276678;
+}
+.tfoot a {
+  text-decoration: none;
+  color: #ffffff;
+}
+.tfoot:hover {
+  background: #47daba;
+}
+ 
