@@ -58,6 +58,7 @@ app.use(attendancesRoutes);
 app.use(leavesRoutes);
 app.use(payrollRoutes);
 app.use(final_reportRoutes);
+app.use(Notices);
 
 // Error Handler Middleware ..
 app.use(errorHandler);
