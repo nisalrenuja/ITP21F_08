@@ -54,6 +54,7 @@ import EditDirectorReview from "../modules/AdminModules/DirectorReview";
 import PartnerReview from "../modules/AdminModules/PartnerReview";
 import EditPartnerReview from "../modules/AdminModules/PartnerReview";
 import AllReports from "../pages/AdminPage/AllReports";
+
 import EditLaptopRepair from "../modules/AdminModules/EditLaptopRepair";
 import CreateLaptopRepair from "../modules/AdminModules/CreateLaptopRepair";
 import LaptopsRepair from "../pages/AdminPage/LaptopRepair";
