@@ -10,12 +10,14 @@ const laptop_repair_Schema = new mongoose.Schema({
     required: true,
   },
   repair_date: {
-    type: Date,
+    type: String,
     required: true,
+    required: false,
   },
   repair_cost: {
     type: String,
     required: true,
+    required: false,
   },
 
   

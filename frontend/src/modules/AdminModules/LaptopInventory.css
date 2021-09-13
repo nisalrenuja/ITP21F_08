@@ -1,23 +1,71 @@
-h1{
-  color: #276678;
+.containerbox{
+  padding: 50px;
 }
-h2 {
-  color: #1687A7;
+h1{
+  position: relative;
+  top: 100px;
+  left: 30px;
+  color: #276678;
+   
+}
+.laptoptxt{
+   color: #d3e0ea;
+} 
+.repairlaptoptxt{
+    color: #276678;
 }
 
-hr{
-  color: #1687A7;
+.laptopbtn{
+  position: absolute;
+  width: 200px;
+  height: 50px;
+  left: 50px;
+  top: 150px;
+  padding: 12px 28px;
+  border-radius: 4px;
+
+  background-color: #276678;
 }
-.container{
+.repairlaptopbtn {
+  position: absolute;
+  width: 200px;
+  height: 50px;
+  left: 250px;
+  top: 150px;
+  padding: 12px 25px;
+  border-radius: 4px;
+  background-color: #d3e0ea;
+}
+
+
+
+.addbtn{
+  position: relative;
   width: auto;
+  height: 50px;
+  top: 50px;
+  float: right;
+  padding: 12px 28px;
+  border-radius: 4px;
+  color: #276678;
+  background: #d3e0ea;
+
+  
 }
+.addbtn:hover{
+  background-color:#ffffff;
+  color: #276678;
+}
+
+
+
 .searchFilter {
   position: absolute;
   width: 700px;
-  height: 150px;
+  height: 100px;
   left: 174px;
   right: auto;
-  top: 350px;
+  top: 250px;
   
   background: #1687a7;
   backdrop-filter: blur(4px);
@@ -25,53 +73,57 @@ hr{
   
   border-radius: 5px;
 }
-  .txt {
+  .filter {
     position: absolute;
-    width: 94px;
+    width: 90px;
     height: 29px;
-    left: 85px;
-    top: 60px;
+    left: 60px;
+    top: 30px;
     font-family: Inter;
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
-    line-height: 29px;
-    /* identical to box height */
-  
     text-align: center;
     letter-spacing: -0.00022em;
-  
     color: #c4c4c4;
   }
   .select {
     position: absolute;
     width: 272px;
     height: 60px;
-    left: 185px;
-    top: 50px;
-  
+    left: 200px;
+    top: 20px;
     background: #ffffff;
     border-radius: 5px;
     
   }
-  .search {
-    position: absolute;
-    width: 110px;
-    height: 40px;
-    left: 495px;
-    top: 60px;
+
+  table {
+    height: fit-content;
+    position: relative;
+    width:900px;
+    left: 20px;
+    top: 250px;
+  
+  }
+  thead {
+    position: relative;
+    background: #276678;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 32px;
+    text-align: center;
+    letter-spacing: -0.00022em;
+    color: #ffffff;
     
   }
- 
-  .table1 {
-    position: absolute;
-    width: fit-content;
-  
-    left: 50px;
-    right:50px;
-    top: 650px;
+  tbody{
+    text-align: center;
+    line-height: 28px;
   }
-  .table1.thead {
+  tfoot {
     background-color: #276678;
     font-family: Inter;
     font-style: normal;
@@ -83,40 +135,9 @@ hr{
     color: #ffffff;
     
   }
-  .tbody-container{
-    text-align: center;
+  i{
+    padding-left: 1em
   }
-  .tfoot {
-    background: #276678;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 24px;
-    text-align: center;
-    letter-spacing: -0.00022em;
-    color: #ffffff;
-    
-  }
-  .div1 {
-    position: absolute;
-    width: 290px;
-    height: 67px;
-    left: 50px;
-    top: 200px;
-  
-    background: #276678;
-  }
-  .div2 {
-    position: absolute;
-    width: 290px;
-    height: 67px;
-    left: 350px;
-    top: 200px;
-  
-    background: #d3e0ea;
-  }
-  
- 
- /*lapp*/
+
+ /**/
  

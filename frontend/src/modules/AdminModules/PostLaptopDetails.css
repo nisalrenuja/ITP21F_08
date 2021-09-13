@@ -1,0 +1,108 @@
+.need-validation{
+    background: #D3E0EA;
+    border-color: 2px #276678;
+
+
+}
+.box{
+    position: relative;
+    background: white;
+    color: #276678;
+    border-radius: 4px;
+    height : 100px;
+    width: 500px;
+    padding: auto;
+    left: 40px;
+    right: 40px;
+
+}
+.lap{
+    position: relative;
+    color : #276678;
+    font-size: 18px;
+    font-family: sans-serif;
+    left: 175px;
+    top:20px;
+}
+
+.laps{
+    position: relative;
+    color : #276678;
+    font-size: 24px;
+    font-family: sans-serif;
+    left:30px;
+    top:10px;
+    font-weight: bold;
+
+}
+
+.lapsbrand{
+    position: relative;
+    color : #276678;
+    font-size: 24px;
+    font-family: sans-serif;
+    left:160px;
+    top:10px;
+    font-weight: bold;
+
+}
+h2{
+    position: relative;
+    top: 20px;
+    left: 40px;
+    padding-bottom:8px;
+}
+hr{
+    color: black;
+}
+
+dt{
+    color: black;
+    position: relative;
+    left:140px;
+    top: 23px;
+}
+
+dd{
+    color:#276678;
+    position: relative;
+    left: 290px;
+    top: 0px;
+}
+
+.back{
+    position: relative;
+    top:20px;
+    width: auto;
+    height: 70px;
+    bottom: 20px;
+    font-size: 10px;
+    font-family:Arial;
+}
+.box2{
+    position: relative;
+    background: #1687A7;
+    border-radius: 6px;
+    height : 100px;
+    width: 500px;
+    padding: auto;
+    left: 40px;
+    right: 40px;
+    top: 20px;
+    color: white;
+}
+
+h3{
+    color: white;
+    position: relative;
+    padding-bottom: 4px;
+    left:165px;
+    top:10px;
+}
+.status{
+    position: relative;
+    left:180px;
+    top:10px;
+    color: white;
+}
+

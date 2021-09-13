@@ -28,14 +28,6 @@ import ManagerEditReview from "../modules/AdminModules/ManagerEditReview";
 import DirectorEditReview from "../modules/AdminModules/DirectorEditReview";
 import PartnerEditReview from "../modules/AdminModules/PartnerEditReview";
 import DisplayReview from "../modules/AdminModules/DisplayReview";
-import CreateLaptop from "../modules/AdminModules/CreateLaptop";
-import LaptopRepair from "../modules/AdminModules/LaptopRepair";
-import CreateLaptopRepair from "../modules/AdminModules/CreateLaptopRepair";
-import Laptops from "../pages/AdminPage/CreateLaptop";
-import LaptopInventory from "../pages/AdminPage/LaptopInventory";
-import CreateLaptops from "../pages/AdminPage/CreateLaptop";
-import LaptopsRepair from "../pages/AdminPage/LaptopRepair";
-import CreateLaptopsRepair from "../pages/AdminPage/CreateLaptopRepair";
 import EditLapAllo from "../pages/AdminPage/EditLapAllo";
 import WorkReport from "../pages/AdminPage/WorkReport";
 import CompanyPerfomance from "../pages/AdminPage/CompanyPerformance";
@@ -62,6 +54,15 @@ import EditDirectorReview from "../modules/AdminModules/DirectorReview";
 import PartnerReview from "../modules/AdminModules/PartnerReview";
 import EditPartnerReview from "../modules/AdminModules/PartnerReview";
 import AllReports from "../pages/AdminPage/AllReports";
+
+import EditLaptopRepair from "../modules/AdminModules/EditLaptopRepair";
+import CreateLaptopRepair from "../modules/AdminModules/CreateLaptopRepair";
+import LaptopsRepair from "../pages/AdminPage/LaptopRepair";
+import PostLaptopRepair from "../modules/AdminModules/PostLaptopRepair";
+import LaptopPage from "../pages/LaptopPage/LaptopPage";
+import CreateLaptop from "../modules/AdminModules/CreateLaptop";
+import EditLaptopInventory from "../modules/AdminModules/EditLaptopInventory";
+import PostLaptop from "../modules/AdminModules/PostLaptop";
 
 import CreateClient from "../modules/AdminModules/CreateClient";
 import DisplayClient from "../modules/AdminModules/DisplayClient";
@@ -98,13 +99,6 @@ const AppRoutes = () => (
         <Route path="/createlapallocation" component={CreateLapAllo} exact />
         <Route path="/AllEmployees" component={AllEmployees} exact />
         <Route path="/EmployeePoints" component={EmployeePoints} exact />
-        <Route path="/createlaptop" component={CreateLaptops} exact />
-        <Route path="/repairinglaptop" component={LaptopsRepair} exact />
-        <Route
-          path="/createlaptoprepair"
-          component={CreateLaptopsRepair}
-          exact
-        />
         <Route
           exact
           path="/editassignment/:assignment"
@@ -161,6 +155,27 @@ const AppRoutes = () => (
         <Route path="/addpayroll" exact component={CreatePayroll}></Route>
         <Route path="/displaypayroll/:id" component={DisplayPayroll} exact />
         <Route path="/editpayroll/:id" component={EditPayroll} exact />
+        /*Sajini*/
+        <Route path="/laptop" exact component={LaptopPage}></Route>
+        <Route path="/createlaptop" component={CreateLaptop} exact />
+        <Route path="/editlaptop/:id" component={EditLaptopInventory} exact />
+        <Route path="/viewlaptop/:id" component={PostLaptop} exact />
+        <Route path="/repairinglaptop" exact component={LaptopsRepair}></Route>
+        <Route
+          path="/createlaptoprepair"
+          exact
+          component={CreateLaptopRepair}
+        ></Route>
+        <Route
+          path="/editrepair/:id"
+          exact
+          component={EditLaptopRepair}
+        ></Route>
+        <Route
+          path="/viewrepair/:id"
+          exact
+          component={PostLaptopRepair}
+        ></Route>
         /*Thisarani Routes*/
         <Route path="/client" component={ClientsRoutesPage} exact />
         <Route path="/addclient" exact component={CreateClient}></Route>

@@ -32,7 +32,6 @@ app.use("/api/private", require("./routes/private"));
 
 app.use(laptop_routes);
 app.use(laptop_repair_routes);
-
 app.use(assignment_assignedtostaffRoutes);
 app.use(laptop_assignment_Routes);
 app.use(employees);
@@ -48,8 +47,7 @@ const payrollRoutes = require("./routes/payrolls");
 
 //add routes here ..
 
-app.use(laptop_routes);
-app.use(laptop_repair_routes);
+
 app.use(assignment_assignedtostaffRoutes);
 app.use(employees);
 app.use(client_fees_routes);
