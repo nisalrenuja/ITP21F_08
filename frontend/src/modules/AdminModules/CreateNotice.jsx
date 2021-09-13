@@ -173,7 +173,7 @@ export default class CreateNotice extends Component {
                 >
                   <i className="fas fa-save"></i>&nbsp;Save
                 </button>
-                <a href="/admin">
+                <a href="/AdminTab5">
                   <button
                     className="btn btn-secondary"
                     type="submit"

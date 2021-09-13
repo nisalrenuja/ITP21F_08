@@ -11,7 +11,7 @@ import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import EditNotices from "../../modules/AdminModules/EditNotices";
 
-const Editnotice = () => {
+const Editnotice = ({ history, match }) => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -55,7 +55,7 @@ const Editnotice = () => {
           ) : selectedMenuOption === "Work Allocation" ? (
             <AdminTab4 />
           ) : selectedMenuOption === "Notice Management" ? (
-            <EditNotices />
+            <EditNotices dataFromParent={match.params.existingNotices} />
           ) : selectedMenuOption === "Attendance & Payroll" ? (
             <AdminTab6 />
           ) : selectedMenuOption === "MenuItem 7" ? (

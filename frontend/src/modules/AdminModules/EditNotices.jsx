@@ -20,16 +20,16 @@ export default class EditNotices extends Component {
   }
 
   handleInputChange = e => {
-    const { id, value } = e.target;
+    const { name, value } = e.target;
     this.setstate({
       ...this.state,
-      [id]: value
+      [name]: value
     });
   };
 
   onSubmit = e => {
     e.preventDefault();
-    const id = this.props.matchparams.id;
+    const id = this.props.match.params.id;
 
     const {
       notice_id,
@@ -54,7 +54,10 @@ export default class EditNotices extends Component {
 
     console.log(data);
     axios
-      .put(`http://localhost:5000/CreateNotice/update/${id}`, data)
+      .put(
+        `http://localhost:5000/CreateNotice/update/${this.props.dataFromParent}`,
+        data
+      )
       .then(res => {
         if (res.data.success) {
           alert("Notice Updated Successfully");
@@ -170,23 +173,24 @@ export default class EditNotices extends Component {
               />
 
               <center>
-                <button
-                  className="btn btn-success"
-                  type="submit"
-                  style={{ marginTop: "795px", width: "20%" }}
-                  onClick={this.onSubmit}
-                >
-                  <i className="fas fa-save"></i>&nbsp;Save
-                </button>
-                <a href="/admin">
+                <div class="d-flex justify-content-center">
                   <button
-                    className="btn btn-secondary"
+                    className="btn btn-warning"
                     type="submit"
-                    style={{ marginTop: "795px", width: "20%" }}
+                    style={{ marginTop: "15px" }}
+                    onClick={this.onSubmit}
+                  >
+                    <i className="fa fa-refresh"></i>&nbsp;Update
+                  </button>{" "}
+                  &nbsp;&nbsp;
+                  <button
+                    className="btn btn-danger"
+                    type="cancel"
+                    style={{ marginTop: "15px" }}
                   >
                     Cancel
                   </button>
-                </a>
+                </div>
               </center>
             </form>
           </div>
