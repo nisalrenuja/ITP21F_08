@@ -5,7 +5,7 @@ const router = express.Router();
 
 //Save Notices
 
-router.post('/post/save', (req,res)=>{
+router.post('/CreateNotice/save', (req,res)=>{
 
     let newNotice = new Notices(req.body);
 
@@ -23,8 +23,8 @@ router.post('/post/save', (req,res)=>{
 
 //Get Notices
 
-router.get('/post',(req,res) =>{
-    Notices.find().exec((err,post) =>{
+router.get('/CreateNotices',(req,res) =>{
+    Notices.find().exec((err,existingNotices) =>{
         if(err){
             return res.status(400).json({
                 error:err
@@ -32,16 +32,34 @@ router.get('/post',(req,res) =>{
         }
         return res.status(200).json({
             success:true,
-            existingNotices:post
+            existingNotices:existingNotices
+        });
+    });
+});
+
+//get specific Notices
+router.get("/CreateNotice/:id", (req,res) =>{
+    let notice_id = req.params.id;
+
+    Notices.findById(notice_id, (err, existingNotices) =>{
+        if (err){
+            return res.status(400).json({
+                success: false,
+                err,
+            });
+        }
+        return res.status(200).json({
+            success: true,
+            payroll
         });
     });
 });
 
 //Update Notices
 
-router.put('/post/update/:notice_id', (req,res)=>{
+router.put('/CreateNotice/update/:id', (req,res)=>{
     Notices.findByIdAndUpdate(
-        req.params.notice_id,
+        req.params.id,
         {
             $set:req.body
         },
@@ -50,7 +68,7 @@ router.put('/post/update/:notice_id', (req,res)=>{
                 return res.status(400).json({error:err});
             }
             return res.status(200).json({
-                success:"Updated Successfully"
+                success:"Notice Updated Successfully"
             });
         }
     );
@@ -58,8 +76,8 @@ router.put('/post/update/:notice_id', (req,res)=>{
 
 //Delete Notices
 
-router.delete('/post/delete/:notice_id',(req,res) =>{
-    Notices.findByIdAndRemove(req.params.notice_id).exec((err,deletedNotice) =>{
+router.delete('/CreateNotice/delete/:id',(req,res) =>{
+    Notices.findByIdAndRemove(req.params.id).exec((err,deletedNotice) =>{
 
         if(err) return res.status(400).json({
             message:"Delete Unsuccessful",err

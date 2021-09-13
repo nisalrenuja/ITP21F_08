@@ -17,14 +17,21 @@ export default class CreateExecutive extends Component {
   }
 
   retrieveexecutives() {
-    axios.get("http://localhost:5000/executives").then(res => {
-      if (res.data.success) {
-        this.setState({
-          executives: res.data.existingexecutives
-        });
-        console.log(this.state.executives);
-      }
-    });
+    axios
+      .get("http://localhost:5000/executives", {
+        headers: {
+          authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxM2I5NDY4ZmQxMTI2NGMzMGNjZTMyNCIsImlhdCI6MTYzMTI5NTc2MywiZXhwIjoxNjkxMjk1NzYzfQ.Ramqp4NLgYF_XBVWdcre6Fm-spFLCNqO2ualeQzxBVw"
+        }
+      })
+      .then(res => {
+        if (res.data.success) {
+          this.setState({
+            executives: res.data.existingexecutives
+          });
+          console.log(this.state.executives);
+        }
+      });
   }
 
   onDelete = id => {
@@ -34,17 +41,14 @@ export default class CreateExecutive extends Component {
     });
   };
 
-  filterData(executives, searchKey) {
-    const result = executives.filter(
-      post =>
-        post.execid_review.toLowerCase().includes(searchKey) ||
-        post.report.toLowerCase().includes(searchKey) ||
-        post.points.toLowerCase().includes(searchKey) ||
-        post.feedback.toLowerCase().includes(searchKey) ||
-        post.status.toLowerCase().includes(searchKey)
-    );
-    this.setState({ executives: result });
-  }
+  // filterData(executives, searchKey) {
+  //  const result = executives.filter(
+  //      (executives) =>
+  //        executives.username.toLowerCase().includes(searchKey) ||
+  //        executives.email.toLowerCase().includes(searchKey)
+  //    );
+  //    this.setState({ executives: result });
+  // }
 
   handleSearchArea = e => {
     const searchKey = e.currentTarget.value;
@@ -58,33 +62,29 @@ export default class CreateExecutive extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div class="adminreview">
+      <div className="container ">
+        <div class="adminpayroll react-bs-table-pagination">
           <div className="row">
-            <div className="exploreText">
-              User Executive Management Dashboard
+            <div className="d-flex justify-content-between">
+              <div className="col-lg-9 mt-2 mb-2 font-weight-bold ">
+                <br />
+                <h1 class="ap-topic">User Executive Management Dashboard </h1>
+              </div>
             </div>
+            <hr />
             <div className="col-lg-9 mt-2 mb-2">
               <Clock />
               <br />
-              <button className="btn btn-primary btn-lg">
+              <button className="btn btn-lg aptab-btn">
                 <a
                   href="/admin"
-                  style={{ textDecoration: "none", color: "white" }}
+                  style={{ textDecoration: "none", color: "black" }}
                 >
                   Back to Main Dashboard
                 </a>
               </button>
             </div>
             <div className="col-lg-3 mt-2 mb-2">
-              <button type="button" class="btn btn-outline-info">
-                <a
-                  href="/displaymyprofile"
-                  style={{ textDecoration: "none", color: "#276678" }}
-                >
-                  My Personal Profile
-                </a>
-              </button>
               <br />
               <br />
             </div>
@@ -93,26 +93,18 @@ export default class CreateExecutive extends Component {
             <div className="col-lg-9 mt-2 mb-2">
               <h1 className="h3 mb-3 font-weight-normal">All Executives</h1>
             </div>
-            <div className="col-lg-3 mt-2 mb-2">
-              <input
-                className="form-control"
-                type="search"
-                placeholder="search"
-                name="searchQuery"
-                onChange={this.handleSearchArea}
-              ></input>
-            </div>
           </div>
-          <table className="table table-hover" style={{ marginTop: "30px" }}>
-            <thead>
-              <tr class="bg-info">
+          <table
+            className="table table-hover text-center"
+            style={{ marginTop: "40px" }}
+          >
+            <thead class="tblhead">
+              <tr>
                 <th scope="col"></th>
                 <th scope="col">Executive Id</th>
                 <th scope="col">Executive Name</th>
                 <th scope="col">Email</th>
-                <th scope="col">Contact</th>
-                <th scope="col">Date of Birth</th>
-                <th scope="col">Gender</th>
+
                 <th scope="col">Action</th>
               </tr>
             </thead>
@@ -128,39 +120,22 @@ export default class CreateExecutive extends Component {
                       {executives.exeno}
                     </a>
                   </td>
-                  <td>{executives.name}</td>
+                  <td>{executives.username}</td>
                   <td>{executives.email}</td>
-                  <td>{executives.contact}</td>
-                  <td>{executives.dob}</td>
-                  <td>{executives.gender}</td>
+
                   <td>
-                    <a
-                      className="btn btn-warning"
-                      href={`/editexecutive/${executives._id}`}
-                    >
-                      <i className="fas fa-edit"></i>&nbsp;Edit
+                    <a href={`/editexecutive/${executives._id}`}>
+                      <i class="far fa-edit"></i>
                     </a>
-                    &nbsp;
-                    <a
-                      className="btn btn-danger"
-                      href="#"
-                      onClick={() => this.onDelete(executives._id)}
-                    >
-                      <i className="fas fa-trash-alt"></i>&nbsp;Delete
+                    &nbsp; &nbsp; &nbsp;
+                    <a href="#" onClick={() => this.onDelete(executives._id)}>
+                      <i class="far fa-trash-alt"></i>
                     </a>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <button className="btn btn-success">
-            <a
-              href="/newexecutive"
-              style={{ textDecoration: "none", color: "white" }}
-            >
-              Create New Review
-            </a>
-          </button>
         </div>
       </div>
     );

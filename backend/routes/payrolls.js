@@ -74,25 +74,18 @@ router.put("/payroll/update/:id", (req, res) => {
 });
 
 
+  
 //delete post
 //since we are deleting a specific post ... need to have an id
 router.delete("/payroll/delete/:id", (req, res) => {
   Payrolls.findByIdAndRemove(req.params.id).exec((err, deletedPayroll) => {
-    
-
-    
     if (err)
       return res.status(400).json({
         message: "Delete Unsuccessful!!", err
       });
     return res.json({
-      message: "Payroll details Delete Successful!!", deletedPayroll
+      message: "Payroll Details Delete Successful!!", deletedPayroll
     });
-
-
-
   });
 });
-  
-
 module.exports = router;

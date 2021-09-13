@@ -10,6 +10,9 @@ const company_notices_Schema = new mongoose.Schema({
         type: String,
         required:true,
     },
+    emp_name:{
+      type: String
+    },
     notice_topic:{
       type: String,
       required: true,
@@ -20,11 +23,10 @@ const company_notices_Schema = new mongoose.Schema({
     },
     notice_attachments:{
         type: Object,
-        required: true,
     },
    published_date:{
       type: Date,
-      required: true,
+      
    },
   
 });

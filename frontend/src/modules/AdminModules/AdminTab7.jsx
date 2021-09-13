@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./LaptopInventory.css";
 
-//laptop
+//laptopss
 export default class AdminTab7 extends Component {
   constructor(props) {
     super(props);
@@ -27,105 +27,109 @@ export default class AdminTab7 extends Component {
     });
   }
 
-  onDelete = id => {
-    console.log(id);
-    axios.delete(`http://localhost:5000/laptops/delete/${id}`).then(res => {
+  onDelete = _id => {
+    console.log(_id);
+    axios.delete(`http://localhost:5000/laptop/delete/${_id}`).then(res => {
       alert("Deleted Laptop Details successfully");
       this.retrievePosts();
     });
   };
 
+  filterData(laptops, searchKey) {
+    const result = laptops.filter(
+      laptop =>
+        laptop.id.toLowerCase().includes(searchKey) ||
+        laptop.brand.toLowerCase().includes(searchKey) ||
+        laptop.model.toLowerCase().includes(searchKey) ||
+        laptop.status.toLowerCase().includes(searchKey)
+    );
+    this.setState({ laptops: result });
+  }
   handleSearchArea = e => {
     const searchKey = e.currentTarget.value;
-    axios.get("./laptop").then(res => {
+    axios.get("http://localhost:5000/laptops").then(res => {
       if (res.data.success) {
-        this.filterData(res.data.laptop, searchKey);
+        this.filterData(res.data.existingLaptops, searchKey);
       }
     });
   };
 
   render() {
     return (
-      <div className="col-md-8 mt-4 mx-auto">
-        <div class="container">
-          <h1 className="h3 mb-3 font-weight-normal">Inventory Management</h1>
-          <hr></hr>
+      <div class="containerbox">
+        <h1 className="h1 mb-4 font-weight-normal">Inventory Management</h1>
+        <hr />
 
-          <div class="choice">
-            <a href="/createlaptop">
-              <button class="div1">
-                <p class="txt1">Laptops</p>
-              </button>
-            </a>
-            <a href="/repairinglaptop">
-              <button class="div2">
-                <p class="txt2">Repairing Laptops</p>
-              </button>
-            </a>
-          </div>
+        <div class="choice">
+          <a href="/admin">
+            <button class="laptopbtn">
+              <p class="laptoptxt">Laptops</p>
+            </button>
+          </a>
 
-          <div class="searchFilter">
-            <p class="txt"> Filter by</p>
-            <input
-              class="select"
-              type="search"
-              placeholder="Laptop ID"
-              name="searchlaptop"
-              onChange={this.handleSearchArea}
-            />
-
-            <a className="btn btn-info search">
-              <i className="fas fa-search"></i>&nbsp;Search
-            </a>
-          </div>
-
-          <table className="table table-hover table1">
-            <thead className="thead">
-              <tr>
-                <th scope="col">Laptop ID</th>
-                <th scope="col">Laptop Brand</th>
-                <th scope="col">Laptop Model</th>
-                <th scope="col">Storage size</th>
-                <th scope="col">Assign status</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody class="tbody-container">
-              {this.state.laptops.map((laptops, index) => (
-                <tr key={index}>
-                  <td>
-                    {" "}
-                    <a href={``} style={{ textDecoration: "none" }}>
-                      {laptops.id}
-                    </a>
-                  </td>
-                  <td>{laptops.brand}</td>
-                  <td>{laptops.model}</td>
-                  <td>{laptops.storage_type}</td>
-                  <td>{laptops.status}</td>
-                  <td>
-                    <a className="btn btn-warning" href={`/edit/${laptops.id}`}>
-                      <i className="fas fa-edit"></i>&nbsp;Edit
-                    </a>
-                    &nbsp;
-                    <a
-                      className="btn btn-danger"
-                      href="#"
-                      onClick={() => this.onDelete(laptops.id)}
-                    >
-                      <i className="fas fa-trash-alt"></i>&nbsp;delete
-                    </a>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-            <tfoot class="tfoot">
-              <a href="/createlaptop">
-                <i class="fas fa-plus"></i>&nbsp;New Laptop Inventory Details
-              </a>
-            </tfoot>
-          </table>
+          <a href="/repairinglaptop">
+            <button class="repairlaptopbtn">
+              <p class="repairlaptoptxt">Repairing Laptops</p>
+            </button>
+          </a>
         </div>
+
+        <div class="searchFilter">
+          <p class="filter"> Filter by</p>
+          <input
+            class="select"
+            type="search"
+            placeholder="Search"
+            name="searchlaptop"
+            onChange={this.handleSearchArea}
+          />
+        </div>
+        <a href="/createlaptop">
+          <button class="addbtn">
+            <i class="fas fa-plus"></i>&nbsp;New Laptop Inventory Details
+          </button>
+        </a>
+
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Laptop ID</th>
+              <th scope="col">Laptop Brand</th>
+              <th scope="col">Laptop Model</th>
+              <th scope="col">Storage size</th>
+              <th scope="col">Assign status</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.laptops.map((laptops, index) => (
+              <tr>
+                <td>{laptops.id}</td>
+                <td>{laptops.brand}</td>
+                <td>{laptops.model}</td>
+                <td>{laptops.storage_type}</td>
+                <td>{laptops.status}</td>
+                <td>
+                  <a className="view" href={`/viewlaptop/${laptops._id}`}>
+                    <i class="fas fa-eye"></i>
+                  </a>
+                  <a className="edit" href={`/editlaptop/${laptops._id}`}>
+                    <i class="far fa-edit"></i>
+                  </a>
+
+                  <a
+                    className="delete"
+                    href="#"
+                    onClick={() => this.onDelete(laptops._id)}
+                  >
+                    <i className="fas fa-trash-alt"></i>
+                  </a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot></tfoot>
+        </table>
       </div>
     );
   }

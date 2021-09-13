@@ -1,6 +1,7 @@
 const express = require("express");
-const executives = require("../models/executives");
+const executives = require("../models/User");
 const router = express.Router();
+const { protect } = require("../middleware/auth");
 
 router.post("/executives/save", (req, res) => {
   let newexecutives = new executives(req.body);
@@ -16,7 +17,7 @@ router.post("/executives/save", (req, res) => {
   });
 });
 //get post
-router.get("/executives", (req, res) => {
+router.get("/executives", protect, (req, res) => {
   executives.find().exec((err, executives) => {
     var count = executives.length;
     if (err) {

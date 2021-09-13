@@ -102,7 +102,7 @@ export default class NoticeComPerf extends Component {
     return (
       <div className="container">
         <div class="senamain3">
-          <h1 class="senahead1c">Top Performers</h1>
+          <h1 class="senahead1c">Company Performance</h1>
           <hr class="senaline1c"></hr>
           <div class="senamain33">
             <form>

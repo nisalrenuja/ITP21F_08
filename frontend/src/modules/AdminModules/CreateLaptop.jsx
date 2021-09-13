@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./CreateLaptop.css";
-//createLapto
+//create laptop inventory
 export default class CreateLaptop extends Component {
   constructor(props) {
     super(props);
@@ -12,10 +12,7 @@ export default class CreateLaptop extends Component {
       storage_type: "",
       purchaase_date: "",
       purchase_price: "",
-      status: "",
-      discarded_reason: "",
-      discarded_date: "",
-      update_partner_id: ""
+      status: ""
     };
   }
 
@@ -38,10 +35,7 @@ export default class CreateLaptop extends Component {
       storage_type,
       purchaase_date,
       purchase_price,
-      status,
-      discarded_reason,
-      discarded_date,
-      update_partner_id
+      status
     } = this.state;
     const data = {
       id: id,
@@ -50,13 +44,10 @@ export default class CreateLaptop extends Component {
       storage_type: storage_type,
       purchaase_date: purchaase_date,
       purchase_price: purchase_price,
-      status: status,
-      discarded_reason: discarded_reason,
-      discarded_date: discarded_date,
-      update_partner_id: update_partner_id
+      status: status
     };
     console.log(data);
-    axios.post("http://localhost:5000/createlaptop/save", data).then(res => {
+    axios.post("http://localhost:5000/laptop/save", data).then(res => {
       if (res.data.success) {
         this.setState({
           id: id,
@@ -65,34 +56,23 @@ export default class CreateLaptop extends Component {
           storage_type: storage_type,
           purchaase_date: purchaase_date,
           purchase_price: purchase_price,
-          status: status,
-          discarded_reason: discarded_reason,
-          discarded_date: discarded_date,
-          update_partner_id: update_partner_id
+          status: status
         });
+        alert("Save Successful!");
       }
     });
   };
 
   render() {
     return (
-      <div className="col-md-8 mt-4 mx-auto">
-        <h1 className="h3 mb-3 font-weight-normal">Inventory Management</h1>
-        <hr></hr>
+      <div className="col-md-6 mt-4 mx-auto">
+        <h1>Inventory Management</h1>
 
-        <form
-          className="need-validation"
-          noValidate
-          style={{
-            backgroundColor: "#F6F5F5",
-            border: "5px solid eastern blue",
-            padding: "30px",
-            borderRadius: "15px"
-          }}
-        >
+        <form className="need-validation" noValidate>
           <div className="form-group" style={{ marginBottom: "14px" }}>
-            <h2>Laptop Details</h2>
-            <hr></hr>
+            <h5>Laptop Details</h5>
+            <hr />
+
             <label style={{ marginBottom: "5px" }}>Laptop ID</label>
             <input
               type="text"
@@ -125,23 +105,21 @@ export default class CreateLaptop extends Component {
               onChange={this.handleInputChange}
             />
           </div>
-          <div className="form-group" style={{ marginBottom: "14px" }}>
-            <label
-              for="selectFormControl"
-              style={{ marginBottom: "5px" }}
-              data-toggle="dropdown"
-            >
-              Storage Size &nbsp;{" "}
-            </label>
+          <div className="form-group" style={{ marginBottom: "15px" }}>
+            <label style={{ marginBottom: "5px" }}>Storage Size</label>
             <select
-              class="form-control"
-              id="selections"
-              defaultValue={this.state.storage_type}
-              onChange={this.handleInputChang}
+              defaultValue={"DEFAULT"}
+              className="form-select"
+              aria-label="Default select example"
+              onChange={this.handleInputChange}
+              name="storage_type"
             >
-              <option value="16gb"> 16GB</option>
-              <option value="32gb"> 32GB</option>
-              <option value="64gb"> 64GB</option>
+              <option value="DEFAULT" disabled>
+                Storage Type : {this.state.storage_type}
+              </option>
+              <option value="16GB">16GB</option>
+              <option value="32GB">32GB</option>
+              <option value="64GB">64GB</option>
             </select>
           </div>
           <div className="form-group" style={{ marginBottom: "14px" }}>
@@ -167,24 +145,22 @@ export default class CreateLaptop extends Component {
               onChange={this.handleInputChange}
             />
           </div>
-          <h2>Laptop Assign Details</h2>
+          <h5>Laptop Assign Details</h5>
           <hr></hr>
-          <div className="form-group" style={{ marginBottom: "14px" }}>
-            <label
-              for="selectFormControl"
-              style={{ marginBottom: "5px" }}
-              data-toggle="dropdown"
-            >
-              Status &nbsp;{" "}
-            </label>
+          <div className="form-group" style={{ marginBottom: "15px" }}>
+            <label style={{ marginBottom: "5px" }}>Status</label>
             <select
-              class="form-control"
-              id="selections"
-              defaultValue={this.state.status}
+              defaultValue={"DEFAULT"}
+              className="form-select"
+              aria-label="Default select example"
               onChange={this.handleInputChange}
+              name="status"
             >
-              <option value="Assign"> Assign</option>
-              <option value="Not Assign"> Not Assign</option>
+              <option value="DEFAULT" disabled>
+                Status : {this.state.status}
+              </option>
+              <option value="Assign">Assign</option>
+              <option value="Not Assign">Not Assign</option>
             </select>
           </div>
           <button
@@ -204,7 +180,15 @@ export default class CreateLaptop extends Component {
             Cancel
           </button>
         </form>
+        <div class="back">
+          <a href="/admin">
+            <i class="fas fa-angle-double-left fa-2x">
+              &nbsp;Back To The Laptop Inventory Details
+            </i>
+          </a>
+        </div>
       </div>
     );
   }
 }
+//laptopss

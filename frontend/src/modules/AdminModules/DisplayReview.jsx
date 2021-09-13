@@ -40,7 +40,7 @@ export default class DisplayReview extends Component {
         style={{ marginTop: "20px", padding: "25px", paddingRight: "25px" }}
       >
         <div className="row">
-          <h4 className="col-10">{execid_review}</h4>
+          <h4 className="col-10">Review of {execid_review}</h4>
           <button
             type="primary"
             className="btn btn-warning text-light col-2 float-right"

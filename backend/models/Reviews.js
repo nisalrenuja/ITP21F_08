@@ -21,21 +21,49 @@ const review_Schema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  employee_name: {
+  empno: {
     type: String,
-    required: true,
+    required: false,
   },
   sub_date: {
     type: Date,
-    required: true,
+    required: false,
   },
   due_date: {
     type: Date,
-    required: true,
+    required: false,
   },
   status: {
     type: String,
     required: true,
+  },
+  isAdminApprove: {
+    type: Boolean,
+        default: false
+  },
+  managerStatus: {
+    type: String,
+    default:"Pending"
+  },
+  isManagerApprove: {
+    type: Boolean,
+        default: false
+  },
+  directorStatus: {
+    type: String,
+    default:"Pending"
+  },
+  isDirectorApprove: {
+    type: Boolean,
+        default: false
+  },
+  partnerStatus: {
+    type: String,
+    default:"Pending"
+  },
+  isPartnerApprove: {
+    type: Boolean,
+        default: false
   },
 });
 

@@ -196,12 +196,12 @@ export default class CreateReview extends Component {
           </div>
 
           <button
-            className="btn btn-success"
+            className="btn btn-success mb-2"
             type="submit"
             style={{ marginTop: "15px" }}
             onClick={this.onSubmit}
           >
-            <i className="fa fa-check-square"></i>&nbsp;Save
+            <i className="far fa-save"></i>&nbsp;Save
           </button>
         </form>
       </div>

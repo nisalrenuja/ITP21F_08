@@ -24,15 +24,10 @@ import Assignment from "../pages/AdminPage/Assignment";
 import ReviewPage from "../pages/ReviewPage/ReviewPage";
 import CreateReview from "../modules/AdminModules/CreateReview";
 import EditReview from "../modules/AdminModules/EditReview";
+import ManagerEditReview from "../modules/AdminModules/ManagerEditReview";
+import DirectorEditReview from "../modules/AdminModules/DirectorEditReview";
+import PartnerEditReview from "../modules/AdminModules/PartnerEditReview";
 import DisplayReview from "../modules/AdminModules/DisplayReview";
-import CreateLaptop from "../modules/AdminModules/CreateLaptop";
-import LaptopRepair from "../modules/AdminModules/LaptopRepair";
-import CreateLaptopRepair from "../modules/AdminModules/CreateLaptopRepair";
-import Laptops from "../pages/AdminPage/CreateLaptop";
-import LaptopInventory from "../pages/AdminPage/LaptopInventory";
-import CreateLaptops from "../pages/AdminPage/CreateLaptop";
-import LaptopsRepair from "../pages/AdminPage/LaptopRepair";
-import CreateLaptopsRepair from "../pages/AdminPage/CreateLaptopRepair";
 import EditLapAllo from "../pages/AdminPage/EditLapAllo";
 import WorkReport from "../pages/AdminPage/WorkReport";
 import CompanyPerfomance from "../pages/AdminPage/CompanyPerformance";
@@ -45,14 +40,41 @@ import CreateNotice from "../modules/AdminModules/CreateNotice";
 import TopPerformers from "../modules/AdminModules/TopPerformers";
 import NoticeComPerf from "../modules/AdminModules/NoticeComPerf";
 import PendingAssignment from "../pages/AdminPage/PendingAssignment";
-
+import EmployeeReport from "../modules/AdminModules/EmployeeReport";
+import EmpReportUpload from "../modules/AdminModules/EmpReportUpload";
+import EditNotices from "../modules/AdminModules/EditNotices"; //edit notices
 import PayrollPage from "../pages/PayrollPage/PayrollPage";
 import CreatePayroll from "../modules/AdminModules/CreatePayroll";
 import DisplayPayroll from "../modules/AdminModules/DisplayPayroll";
 import EditPayroll from "../modules/AdminModules/EditPayroll";
+import ManagerReview from "../modules/AdminModules/ManagerReview";
+import EditManagerReview from "../modules/AdminModules/ManagerReview";
+import DirectorReview from "../modules/AdminModules/DirectorReview";
+import EditDirectorReview from "../modules/AdminModules/DirectorReview";
+import PartnerReview from "../modules/AdminModules/PartnerReview";
+import EditPartnerReview from "../modules/AdminModules/PartnerReview";
 import AllReports from "../pages/AdminPage/AllReports";
 import CreateReport from "../pages/AdminPage/CreateReport";
 import Quarter_Performance from "../pages/AdminPage/Quarter_Performance";
+
+import EditLaptopRepair from "../modules/AdminModules/EditLaptopRepair";
+import CreateLaptopRepair from "../modules/AdminModules/CreateLaptopRepair";
+import LaptopsRepair from "../pages/AdminPage/LaptopRepair";
+import PostLaptopRepair from "../modules/AdminModules/PostLaptopRepair";
+import LaptopPage from "../pages/LaptopPage/LaptopPage";
+import CreateLaptop from "../modules/AdminModules/CreateLaptop";
+import EditLaptopInventory from "../modules/AdminModules/EditLaptopInventory";
+import PostLaptop from "../modules/AdminModules/PostLaptop";
+
+import CreateClient from "../modules/AdminModules/CreateClient";
+import DisplayClient from "../modules/AdminModules/DisplayClient";
+import EditClient from "../modules/AdminModules/EditClient";
+import ClientsRoutesPage from "../pages/ClientsRoutesPage/ClientsRoutesPage";
+
+import ProfilePage from "../modules/AdminModules/ProfilePage";
+import CreateProfile from "../modules/AdminModules/CreateProfile";
+import EditProfile from "../modules/AdminModules/EditProfile";
+import DisplayProfile from "../modules/AdminModules/DisplayProfile";
 
 const AppRoutes = () => (
   <div>
@@ -79,22 +101,32 @@ const AppRoutes = () => (
         <Route path="/createlapallocation" component={CreateLapAllo} exact />
         <Route path="/AllEmployees" component={AllEmployees} exact />
         <Route path="/EmployeePoints" component={EmployeePoints} exact />
-        <Route path="/createlaptop" component={CreateLaptops} exact />
-        <Route path="/repairinglaptop" component={LaptopsRepair} exact />
-        <Route
-          path="/createlaptoprepair"
-          component={CreateLaptopsRepair}
-          exact
-        />
         <Route
           exact
           path="/editassignment/:assignment"
           component={EditAssignment}
         />
+        <Route exact path="/employeereport" component={EmployeeReport} />
+        <Route exact path="/empreportupload" component={EmpReportUpload} />
         <Route exact path="/assignment/:assignment" component={Assignment} />
         <Route path="/review" component={ReviewPage} exact />
         <Route path="/add" exact component={CreateReview}></Route>
         <Route path="/edit/:id" exact component={EditReview}></Route>
+        <Route
+          path="/editmanagerreview/:id"
+          exact
+          component={ManagerEditReview}
+        ></Route>
+        <Route
+          path="/editdirectorreview/:id"
+          exact
+          component={DirectorEditReview}
+        ></Route>
+        <Route
+          path="/editpartnerreview/:id"
+          exact
+          component={PartnerEditReview}
+        ></Route>
         <Route path="/post/:id" exact component={DisplayReview}></Route>
         <Route exact path="/editlapallo/:assignment" component={EditLapAllo} />
         <Route path="/reportwork" component={WorkReport} exact />
@@ -125,12 +157,55 @@ const AppRoutes = () => (
         /*Senara Routes*/
         <Route path="/CreateNotice" component={CreateNotice} exact></Route>
         <Route path="/TopPerformers" component={TopPerformers} exact></Route>
-        <Route path="/NoticeComPerf" compoenet={NoticeComPerf} exact></Route>
+        <Route path="/NoticeComPerf" component={NoticeComPerf} exact></Route>
         /*Dimashi Routes*/
         <Route path="/payroll" component={PayrollPage} exact />
         <Route path="/addpayroll" exact component={CreatePayroll}></Route>
         <Route path="/displaypayroll/:id" component={DisplayPayroll} exact />
         <Route path="/editpayroll/:id" component={EditPayroll} exact />
+        /*Sajini*/
+        <Route path="/laptop" exact component={LaptopPage}></Route>
+        <Route path="/createlaptop" component={CreateLaptop} exact />
+        <Route path="/editlaptop/:id" component={EditLaptopInventory} exact />
+        <Route path="/viewlaptop/:id" component={PostLaptop} exact />
+        <Route path="/repairinglaptop" exact component={LaptopsRepair}></Route>
+        <Route
+          path="/createlaptoprepair"
+          exact
+          component={CreateLaptopRepair}
+        ></Route>
+        <Route
+          path="/editrepair/:id"
+          exact
+          component={EditLaptopRepair}
+        ></Route>
+        <Route
+          path="/viewrepair/:id"
+          exact
+          component={PostLaptopRepair}
+        ></Route>
+        /*Thisarani Routes*/
+        <Route path="/client" component={ClientsRoutesPage} exact />
+        <Route path="/addclient" exact component={CreateClient}></Route>
+        <Route path="/displayclient/:id" component={DisplayClient} exact />
+        <Route path="/editclient/:id" component={EditClient} exact />
+        /*?? routes*/
+        <Route path="/managerreview" component={ManagerReview} exact />
+        <Route path="/directorreview" component={DirectorReview} exact />
+        <Route path="/partnerreview" component={PartnerReview} exact />
+        <Route path="/editmanagerreview" component={EditManagerReview} exact />
+        <Route
+          path="/editdirectorreview"
+          component={EditDirectorReview}
+          exact
+        />
+        <Route path="/editpartnerreview" component={EditPartnerReview} exact />
+        <Route path="/profilepage" component={ProfilePage} exact />
+        <Route path="/createprofile" component={CreateProfile}></Route>
+        <Route path="/editprofile/:id" component={EditProfile}></Route>
+        <Route path="/postprofile/:id" component={DisplayProfile}></Route>
+        //Senara Routes
+        <Route path="/EditNotices" component={EditNotices} exact></Route>
       </Switch>
       <Footer />
     </Router>

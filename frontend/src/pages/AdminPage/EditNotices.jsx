@@ -9,9 +9,9 @@ import AdminTab5 from "../../modules/AdminModules/AdminTab5";
 import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
-import LaptopRepair from "../../modules/AdminModules/LaptopRepair";
-//laptop
-const LaptopInventory = () => {
+import EditNotices from "../../modules/AdminModules/EditNotices";
+
+const Editnotice = () => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -54,11 +54,11 @@ const LaptopInventory = () => {
             <AdminTab3 />
           ) : selectedMenuOption === "Work Allocation" ? (
             <AdminTab4 />
-          ) : selectedMenuOption === "MenuItem 5" ? (
-            <AdminTab5 />
-          ) : selectedMenuOption === "MenuItem 6" ? (
+          ) : selectedMenuOption === "Notice Management" ? (
+            <EditNotices />
+          ) : selectedMenuOption === "Attendance & Payroll" ? (
             <AdminTab6 />
-          ) : selectedMenuOption === "Inventory Management" ? (
+          ) : selectedMenuOption === "MenuItem 7" ? (
             <AdminTab7 />
           ) : (
             <AdminTab8 />
@@ -75,5 +75,4 @@ const LaptopInventory = () => {
   );
 };
 
-export default LaptopInventory;
-//lap
+export default Editnotice;
