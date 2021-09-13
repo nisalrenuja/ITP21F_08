@@ -48,6 +48,7 @@ export default class Assignment extends Component {
           sum: sum
         });
         console.log(res.data.ass2.length);
+        console.log(res.data.deadline);
       }
     });
   }
