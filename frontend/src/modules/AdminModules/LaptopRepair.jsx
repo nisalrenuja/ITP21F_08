@@ -145,7 +145,7 @@ export default class LaptopRepair extends Component {
                       href="#"
                       onClick={() => this.onDelete(laptopsRepair._id)}
                     >
-                      <i className="fas fa-trash-alt"></i>&nbsp;&nbsp;
+                      <i className="fas fa-trash-alt"></i>
                     </a>
                   </td>
                 </tr>
