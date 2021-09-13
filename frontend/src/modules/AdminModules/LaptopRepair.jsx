@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./LaptopInventory.css";
+import Clock from "../../component/common/clock/Clock";
 
 //laptop
 export default class LaptopRepair extends Component {
@@ -58,84 +59,107 @@ export default class LaptopRepair extends Component {
   };
   render() {
     return (
-      <div class="containerbox">
-        <h1 className="h1 mb-4 font-weight-normal">
-          Inventory Management | Laptop Repairing
-        </h1>
+      <div className="container">
+        <br></br>
+        <div className="inventory react-bs-table-pagination">
+          <div className="row">
+            <div class="d-flex justify-content-between">
+              <div className="col-lg-9 mt-2 mb-2 font-weight-bold ">
+                <br />
+                <h1 className="ap-topic">
+                  Inventory Management | Laptop Repairing
+                </h1>
+              </div>
+              <div>
+                <Clock />
+              </div>
+            </div>
 
-        <hr />
+            <hr />
+            <div className="col-lg-9 mt-2 mb-2">
+              <a
+                href="/admin"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <button className="btn btn-lg aptab-disable">Laptops</button>
+              </a>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="/repairinglaptop">
+                <button className="btn btn-lg aptab-btn">
+                  Repairing Laptops
+                </button>
+              </a>
+            </div>
 
-        <div class="choice">
-          <a href="/admin">
-            <button class="laptopbtn">
-              <p class="laptoptxt">Laptops</p>
-            </button>
-          </a>
-          <a href="/repairinglaptop">
-            <button class="repairlaptopbtn">
-              <p class="repairlaptoptxt">Repairing Laptops</p>
-            </button>
-          </a>
-        </div>
+            <div class="d-flex">
+              <div className="col-lg-9 mt-2 mb-2 ">
+                <h2 className="h3 mb-3">
+                  Total Available Repair Laptops ( {this.state.LaptopRepair} )
+                </h2>
+              </div>
 
-        <div class="searchFilter">
-          <p class="filter"> Filter by</p>
-          <input
-            class="select"
-            type="search"
-            placeholder="Search"
-            name="searchlaptop"
-            onChange={this.handleSearchArea}
-          />
-        </div>
+              <div className="col-lg-3 mt-2 mb-2 search-bar">
+                <input
+                  className="form-control mr-sm-2"
+                  type="search"
+                  placeholder="Search"
+                  name="searchQuery"
+                  aria-label="Search"
+                  onChange={this.handleSearchArea}
+                />
+              </div>
+            </div>
+          </div>
 
-        <a href="/createlaptoprepair">
-          <button class="addbtn">
-            <i class="fas fa-plus"></i>&nbsp;New Laptop Repair Details
-          </button>
-        </a>
-
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">Laptop ID</th>
-              <th scope="col">Repair Reason </th>
-              <th scope="col">Repair Date</th>
-              <th scope="col">Repair Price</th>
-              <th scope="col">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.laptopsRepair.map((laptopsRepair, index) => (
+          <table
+            className="table table-hover text-center"
+            style={{ marginTop: "40px" }}
+          >
+            <thead class="tblhead">
               <tr>
-                <td>{laptopsRepair.id}</td>
-                <td>{laptopsRepair.repair_reason}</td>
-                <td>{laptopsRepair.repair_date}</td>
-                <td>{laptopsRepair.repair_cost}</td>
-
-                <td>
-                  <a className="view" href={`/viewrepair/${laptopsRepair._id}`}>
-                    <i class="fas fa-eye"></i>
-                  </a>
-                  <a className="edit" href={`/editrepair/${laptopsRepair._id}`}>
-                    <i class="fas fa-edit"></i>
-                  </a>
-
-                  <a
-                    className="delete"
-                    href="#"
-                    onClick={() => this.onDelete(laptopsRepair._id)}
-                  >
-                    <i className="fas fa-trash-alt"></i>&nbsp;&nbsp;
-                  </a>
-                </td>
+                <th scope="col">Laptop ID</th>
+                <th scope="col">Repair Reason </th>
+                <th scope="col">Repair Date</th>
+                <th scope="col">Repair Price</th>
+                <th scope="col">Actions</th>
               </tr>
-            ))}
-          </tbody>
-          <tfoot></tfoot>
-        </table>
+            </thead>
+            <tbody>
+              {this.state.laptopsRepair.map((laptopsRepair, index) => (
+                <tr>
+                  <td>{laptopsRepair.id}</td>
+                  <td>{laptopsRepair.repair_reason}</td>
+                  <td>{laptopsRepair.repair_date}</td>
+                  <td>{laptopsRepair.repair_cost}</td>
+
+                  <td>
+                    <a href={`/viewrepair/${laptopsRepair._id}`}>
+                      <i class="fas fa-eye"></i>
+                    </a>
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                    <a href={`/editrepair/${laptopsRepair._id}`}>
+                      <i class="fas fa-edit"></i>
+                    </a>
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                    <a
+                      href="#"
+                      onClick={() => this.onDelete(laptopsRepair._id)}
+                    >
+                      <i className="fas fa-trash-alt"></i>&nbsp;&nbsp;
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+            <tfoot></tfoot>
+          </table>
+          <a href="/createlaptoprepair">
+            <button class="addbtn">
+              <i class="fas fa-plus"></i>&nbsp;New Laptop Repair Details
+            </button>
+          </a>
+        </div>
       </div>
     );
   }
 }
-//laptop inventory

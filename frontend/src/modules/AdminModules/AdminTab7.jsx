@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./LaptopInventory.css";
+import Clock from "../../component/common/clock/Clock";
 
 //laptopss
 export default class AdminTab7 extends Component {
@@ -56,80 +57,104 @@ export default class AdminTab7 extends Component {
 
   render() {
     return (
-      <div class="containerbox">
-        <h1 className="h1 mb-4 font-weight-normal">Inventory Management</h1>
-        <hr />
+      <div className="container">
+        <br></br>
+        <div className="inventory react-bs-table-pagination">
+          <div className="row">
+            <div class="d-flex justify-content-between">
+              <div className="col-lg-9 mt-2 mb-2 font-weight-bold ">
+                <br />
+                <h1 className="ap-topic">Inventory Management</h1>
+              </div>
+              <div>
+                <Clock />
+              </div>
+            </div>
+            <hr />
 
-        <div class="choice">
-          <a href="/admin">
-            <button class="laptopbtn">
-              <p class="laptoptxt">Laptops</p>
-            </button>
-          </a>
+            <div className="col-lg-9 mt-2 mb-2">
+              <a
+                href="/admin"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <button className="btn btn-lg aptab-disable">Laptops</button>
+              </a>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a
+                href="/repairinglaptop"
+                style={{ textDecoration: "none", color: "#1687A7" }}
+              >
+                <button class="btn btn-lg aptab-btn">Repairing Laptops</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </a>
+            </div>
 
-          <a href="/repairinglaptop">
-            <button class="repairlaptopbtn">
-              <p class="repairlaptoptxt">Repairing Laptops</p>
-            </button>
-          </a>
-        </div>
+            <div class="d-flex">
+              <div className="col-lg-9 mt-2 mb-2 ">
+                <h2 className="h3 mb-3">
+                  Total Available Laptops ( {this.state.laptopcount} )
+                </h2>
+              </div>
 
-        <div class="searchFilter">
-          <p class="filter"> Filter by</p>
-          <input
-            class="select"
-            type="search"
-            placeholder="Search"
-            name="searchlaptop"
-            onChange={this.handleSearchArea}
-          />
-        </div>
-        <a href="/createlaptop">
-          <button class="addbtn">
-            <i class="fas fa-plus"></i>&nbsp;New Laptop Inventory Details
-          </button>
-        </a>
+              <div className="col-lg-3 mt-2 mb-2 search-bar">
+                <input
+                  className="form-control mr-sm-2"
+                  type="search"
+                  placeholder="Search     "
+                  name="searchQuery"
+                  aria-label="Search"
+                  onChange={this.handleSearchArea}
+                />
+              </div>
+            </div>
+          </div>
 
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">Laptop ID</th>
-              <th scope="col">Laptop Brand</th>
-              <th scope="col">Laptop Model</th>
-              <th scope="col">Storage size</th>
-              <th scope="col">Assign status</th>
-              <th scope="col">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.laptops.map((laptops, index) => (
+          <table
+            className="table table-hover text-center"
+            style={{ marginTop: "40px" }}
+          >
+            <thead class="tblhead">
               <tr>
-                <td>{laptops.id}</td>
-                <td>{laptops.brand}</td>
-                <td>{laptops.model}</td>
-                <td>{laptops.storage_type}</td>
-                <td>{laptops.status}</td>
-                <td>
-                  <a className="view" href={`/viewlaptop/${laptops._id}`}>
-                    <i class="fas fa-eye"></i>
-                  </a>
-                  <a className="edit" href={`/editlaptop/${laptops._id}`}>
-                    <i class="far fa-edit"></i>
-                  </a>
-
-                  <a
-                    className="delete"
-                    href="#"
-                    onClick={() => this.onDelete(laptops._id)}
-                  >
-                    <i className="fas fa-trash-alt"></i>
-                  </a>
-                </td>
+                <th scope="col">Laptop ID</th>
+                <th scope="col">Laptop Brand</th>
+                <th scope="col">Laptop Model</th>
+                <th scope="col">Storage size</th>
+                <th scope="col">Assign status</th>
+                <th scope="col">Actions</th>
               </tr>
-            ))}
-          </tbody>
-          <tfoot></tfoot>
-        </table>
+            </thead>
+            <tbody>
+              {this.state.laptops.map((laptops, index) => (
+                <tr>
+                  <td>{laptops.id}</td>
+                  <td>{laptops.brand}</td>
+                  <td>{laptops.model}</td>
+                  <td>{laptops.storage_type}</td>
+                  <td>{laptops.status}</td>
+                  <td>
+                    <a href={`/viewlaptop/${laptops._id}`}>
+                      <i class="fas fa-eye"></i>
+                    </a>
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                    <a href={`/editlaptop/${laptops._id}`}>
+                      <i class="far fa-edit"></i>
+                    </a>
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                    <a href="#" onClick={() => this.onDelete(laptops._id)}>
+                      <i className="fas fa-trash-alt"> </i>
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+            <tfoot></tfoot>
+          </table>
+          <a href="/createlaptop">
+            <button class="addbtn">
+              <i class="fas fa-plus"></i>&nbsp;New Laptop Repair Details
+            </button>
+          </a>
+        </div>
       </div>
     );
   }

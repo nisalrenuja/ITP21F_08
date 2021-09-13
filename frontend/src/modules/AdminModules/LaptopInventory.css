@@ -1,1 +1,102 @@
-/**chage*/
+.inventory {
+    width: 100%;
+    height: 850px;
+    white-space: nowrap;
+    position: relative;
+    overflow-y: scroll;
+  }
+  .inventory::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
+  
+
+/*table*/
+
+.tblhead {
+    background-color: #276678;
+    color: white;
+} 
+
+.aptab-btn{
+  background-color: #D3E0EA;
+
+}
+
+.aptab-btn:hover{
+  background-color: #1687A7;
+  color: white;
+}
+.hr{
+  position: absolute;
+  width: 1371.03px;
+  height: 0px;
+  left: 477px;
+  top: 303px;
+  size: 1px;
+  
+  border: 3px solid #D3E0EA;
+  transform: rotate(0.21deg);
+}
+
+.aptab-disable {
+  background-color: #276678;
+  color: white;
+}
+.aptab-disable:hover {
+  background-color: #276678;
+  color: white;
+}
+
+.search-bar {
+
+  background: #1687A7;
+  border-radius: 5px;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+
+
+}
+
+.ap-topic{
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 58px;
+  padding-top: 15px;
+
+  color: #1687A7;
+}
+
+
+.ap-displaypg{
+  margin: auto;
+  width: 50%;
+  border: 3px solid #D3E0EA;;
+  padding: 10px;
+}
+
+.addbtn{
+  position: relative;
+  width: auto;
+  height: 50px;
+  top: 50px;
+  float: right;
+  padding: 12px 28px;
+  border-radius: 4px;
+  color: #276678;
+  background: #d3e0ea;
+
+  
+}
+.addbtn:hover{
+  background-color:#ffffff;
+  color: #276678;
+}
+
+
+  
+   
+ 
