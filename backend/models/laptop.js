@@ -43,6 +43,11 @@ const laptop_Schema = new mongoose.Schema({
     required:false,
 
   },
+  
+  status:{
+    type: String,
+    requires: false,
+  }
 
 });
 module.exports = mongoose.model("laptop",laptop_Schema);
