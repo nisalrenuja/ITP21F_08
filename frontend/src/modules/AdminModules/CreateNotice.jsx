@@ -19,9 +19,9 @@ export default class CreateNotice extends Component {
     };
   }
   componentDidMount() {
-    this.retrievePosts();
+    this.retrieveexistingNotices();
   }
-  retrievePosts() {
+  retrieveexistingNotices() {
     axios.get("http://localhost:5000/CreateNotice").then(res => {
       if (res.data.success) {
         this.setState({

@@ -63,7 +63,7 @@ router.put('/CreateNotice/update/:id', (req,res)=>{
         {
             $set:req.body
         },
-        (err,post)=>{
+        (err, existingNotices)=>{
             if(err){
                 return res.status(400).json({error:err});
             }
