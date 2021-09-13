@@ -59,6 +59,7 @@ export default class CreateLaptop extends Component {
           status: status
         });
         alert("Save Successful!");
+        this.props.history.push("/admin"); //==admin
       }
     });
   };
