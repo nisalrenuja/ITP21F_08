@@ -67,41 +67,73 @@ router.get("/checkassigned/:id", (req, res) => {
 });
 
 router.get("/pendingassignments", (req, res) => {
-  assignment_assignedtostaff.find({ progress : "Assigned" } ).exec((err, posts2) =>{ 
-    var o = posts2.length;
-    if (err) {
-      return res.status(400).json({
-        error: err,
+  assignment_assignedtostaff.aggregate([
+    {$match:{progress:"Assigned"}},
+    {
+      $group: {
+        _id: "$assignment_name",
+        doc: { $first: "$$ROOT" },
+      },
+    },
+    {
+      $replaceRoot: {
+        newRoot: "$doc",
+      },
+    },
+  ]).exec((err, assignmentsassigned) => {
+      var count = assignmentsassigned.length;
+
+      return res.status(200).json({
+        success: true,
+        assignmentsassigned: assignmentsassigned,
+        count: count,
       });
-    }
-    return res.status(200).json({
-      success: true,
-      Pending: posts2,
-      o:o,
+    });
+})
+
+router.get("/assignments/empreportupload", (req, res) => {
+  assignment_assignedtostaff
+  .distinct("emp_no", { progress: { $ne: "Completed" } })
+    .exec((err, assignmentsassigned) => {assignment_assignedtostaff
+      .distinct("assignment_name", { progress: { $ne: "Completed" } })
+      .exec((err, assignments) => {
+      return res.status(200).json({
+        success: true,
+        empnumbers: assignmentsassigned,
+        assignmentnames: assignments,
+      });
     });
   });
 });
 
-router.get("/assignments/empreportupload", (req, res) => {
-  assignment_assignedtostaff
-    .find( { progress: { $ne: "Completed" } } )
-    .exec((err, assignmentsassigned) => {
-      return res.status(200).json({
-        success: true,
-        assignmentsassigned: assignmentsassigned,
-      });
-    });
-});
-
 router.get("/review/pe", (req, res) => {
-  Posts.aggregate([{
+  Posts.aggregate([{ $match:{ $or: [   { status: "Pending" } , { status: "Rejected"}]}},{
     $lookup: {
       from: "assignment_assignedtostaffs",
       localField: "report",
       foreignField: "assignment_name",
       as: "work",
+    }},{$unwind:'$work'},
+    {$project:{
+         deadline:'$work.deadline',
+         report: 1, 
+         reportPDF: 1,
+         sub_date: 1,
+         points: 1,
+         feedback: 1,
+         status: 1
+    }},{
+      $group: {
+        _id: "$report",
+        doc: { $first: "$$ROOT" },
+      },
     },
-  },{ $match:{ $or: [   { status: "Pending" } , { status: "Rejected"}  ]} }]).exec((err, posts1) => { Posts.find({ status : "Accepted" }).exec((err, posts2) =>{ var l = posts2.length;
+    {
+      $replaceRoot: {
+        newRoot: "$doc",
+      },
+    }
+ ]).exec((err, posts1) => { Posts.find({ status : "Accepted" }).exec((err, posts2) =>{ var l = posts2.length;
     var o = posts1.length;
     if (err) {
       return res.status(400).json({
@@ -151,6 +183,25 @@ router.put("/employees/update/:id", (req, res) => {
       });
     }
   );
+});
+
+router.put("/assignments/updte/:name", (req, res) => {
+  let name = req.params.name;
+  assignment_assignedtostaff
+    .updateMany(
+      { assignment_name: name },
+      {
+        progress: req.body.progress,
+      }
+    )
+    .exec((err, Post1) => {
+      if (err) {
+        return res.status(400).json({ error: err });
+      }
+      return res.status(200).json({
+        success: "Uploaded Succesfully",
+      });
+    });
 });
 //delete post
 router.delete("/employees/delete/:id", (req, res) => {
