@@ -19,9 +19,9 @@ export default class CreateNotice extends Component {
     };
   }
   componentDidMount() {
-    this.retrievePosts();
+    this.retrieveexistingNotices();
   }
-  retrievePosts() {
+  retrieveexistingNotices() {
     axios.get("http://localhost:5000/CreateNotice").then(res => {
       if (res.data.success) {
         this.setState({
@@ -173,7 +173,7 @@ export default class CreateNotice extends Component {
                 >
                   <i className="fas fa-save"></i>&nbsp;Save
                 </button>
-                <a href="/admin">
+                <a href="/AdminTab5">
                   <button
                     className="btn btn-secondary"
                     type="submit"

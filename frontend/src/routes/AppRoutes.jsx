@@ -205,7 +205,11 @@ const AppRoutes = () => (
         <Route path="/editprofile/:id" component={EditProfile}></Route>
         <Route path="/postprofile/:id" component={DisplayProfile}></Route>
         //Senara Routes
-        <Route path="/EditNotices" component={EditNotices} exact></Route>
+        <Route
+          path="/EditNotices/:existingNotices"
+          component={EditNotices}
+          exact
+        ></Route>
       </Switch>
       <Footer />
     </Router>
