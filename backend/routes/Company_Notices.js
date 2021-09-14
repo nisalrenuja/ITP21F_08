@@ -84,7 +84,7 @@ router.delete('/CreateNotice/delete/:id',(req,res) =>{
         });
 
         return res.json({
-            message:"Delete Successful",deletedNotice
+            message:"Delete Successfull",deletedNotice
         });
     });
 });

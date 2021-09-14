@@ -15,6 +15,8 @@ export default class EditNotices extends Component {
       notice_content: "",
       notice_attachments: "",
       published_date: "",
+      updateNotice: [],
+      updateNotice2: [],
       redirectToReferrer: false
     };
   }
@@ -29,7 +31,7 @@ export default class EditNotices extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const id = this.props.match.params.id;
+    //const id = this.props.match.params.id;
 
     const {
       notice_id,
@@ -60,37 +62,37 @@ export default class EditNotices extends Component {
       )
       .then(res => {
         if (res.data.success) {
-          alert("Notice Updated Successfully");
-
           this.setState({
-            notice_id: "",
-            emp_id: "",
-            emp_name: "",
             notice_topic: "",
             notice_content: "",
             notice_attachments: "",
             published_date: ""
           });
+          alert("Notice Updated Successfully");
         }
       });
     this.props.history.push("/admin");
   };
 
   componentDidMount() {
-    const id = this.props.match.params.id;
+    this.retrieveexsitingNotices();
+  }
+
+  retrieveexsitingNotices() {
+    const id = this.props.dataFromParent;
+    console.log(id);
 
     axios.get(`http://localhost:5000/CreateNotice/${id}`).then(res => {
       if (res.data.success) {
         this.setState({
-          notice_id: res.data.existingNotices.notice_id,
-          emp_id: res.data.existingNotices.emp_id,
-          emp_name: res.data.existingNotices.emp_name,
-          notice_topic: res.data.existingNotices.notice_topic,
-          notice_content: res.data.existingeNotices.notice_content,
-          notice_attachments: res.data.existingNotices.notice_attachments,
-          published_date: res.data.exsitingNotices.published_date
+          updateNotice: res.data.updnotice,
+          notice_topic: res.data.updnotice[0].notice_topic,
+          notice_content: res.data.updnotices[0].notice_content,
+          notice_attachments: res.data.updnotice[0].notice_attachments,
+          published_date: res.data.updnotice[0].published_date,
+          updateNotice2: res.data.updnotice2
         });
-        console.log(this.state.existingNotices);
+        console.log(this.state.updnotice);
       }
     });
   }
