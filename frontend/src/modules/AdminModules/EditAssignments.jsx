@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./CreateAssignment.css";
+import { storage } from "../../firebase";
 import { Redirect } from "react-router";
 
 export default class EditAssignments extends Component {
   constructor(props) {
     super(props);
-
+    this.uploadPDF = this.uploadPDF.bind(this);
     this.state = {
       assignment_name: "",
       client_no: "",
@@ -21,7 +22,8 @@ export default class EditAssignments extends Component {
       assignment2: [],
       travel_allowance: "",
       empno: "",
-      redirectToReferrer: false
+      redirectToReferrer: false,
+      scan_invoice_allowance: null
     };
   }
   componentDidMount() {
@@ -56,6 +58,10 @@ export default class EditAssignments extends Component {
       ...this.state,
       [name]: value
     });
+  };
+  handleInputFileChange = e => {
+    var file = e.target.files[0];
+    console.log(file);
   };
 
   onSubmit = e => {
@@ -123,6 +129,63 @@ export default class EditAssignments extends Component {
       }
     });
   };
+  onSubmit3 = e => {
+    e.preventDefault();
+
+    const { scan_invoice_allowance } = this.state;
+
+    const data = {
+      scan_invoice_allowance: scan_invoice_allowance
+    };
+
+    console.log(data);
+
+    axios
+      .put(
+        `http://localhost:5000/assignments/updatescanallo/${this.props.dataFromParent}`,
+        data
+      )
+      .then(res => {
+        if (res.data.success) {
+          this.setState({
+            scan_invoice_allowance: scan_invoice_allowance,
+            redirectToReferrer: true
+          });
+          alert("Document Submitted");
+          this.retrievePosts();
+        }
+      });
+  };
+
+  uploadPDF(e) {
+    if (e.target.files[0] !== null) {
+      const uploadTask = storage
+        .ref(`users/${e.target.files[0].name}`)
+        .put(e.target.files[0]);
+      uploadTask.on(
+        "state_changed",
+        snapshot => {
+          //progress function
+        },
+        error => {
+          //error function
+          console.log(error);
+        },
+        () => {
+          //complete function
+          storage
+            .ref("users")
+            .child(e.target.files[0].name)
+            .getDownloadURL()
+            .then(url => {
+              this.setState({ scan_invoice_allowance: url });
+              console.log("Hello " + url);
+            });
+        }
+      );
+    } else {
+    }
+  }
   render() {
     return (
       <div className="container">
@@ -202,7 +265,7 @@ export default class EditAssignments extends Component {
             <br />
             <br />
             <center>
-              <h3>Allowances to Employees(Rs)</h3>
+              <h4>Allowances to Employees(Rs)</h4>
             </center>
             {this.state.assignment2.map((assignment2, index) => (
               <div>
@@ -244,6 +307,28 @@ export default class EditAssignments extends Component {
             >
               Set
             </button>
+            <br />
+            <br />
+
+            <h4>Document of Bills(For Allowances) </h4>
+            <input
+              type="file"
+              id="scan_invoice_allowance"
+              name="scan_invoice_allowance"
+              onChange={e => {
+                this.uploadPDF(e);
+              }}
+              multiple=""
+            />
+            <button
+              className="btn btn-success"
+              type="submit"
+              onClick={this.onSubmit3}
+            >
+              Submit
+            </button>
+            <br />
+            <br />
             <br />
             <br />
             <br />
