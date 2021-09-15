@@ -85,7 +85,7 @@ export default class MonthlySalary extends Component {
               </div>
             </div>
 
-            <hr />
+            <hr class="hr-line" />
 
             <div className="col-lg-9 mt-2 mb-2">
               <button class="btn btn-lg aptab-btn">

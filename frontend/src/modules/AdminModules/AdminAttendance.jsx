@@ -89,7 +89,7 @@ export default class AdminAttendance extends Component {
               </div>
             </div>
 
-            <hr />
+            <hr class="hr-line" />
 
             <div className="col-lg-9 mt-2 mb-2">
               <button class="btn btn-lg aptab-btn">
@@ -101,8 +101,11 @@ export default class AdminAttendance extends Component {
                 </a>
               </button>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <button disabled class="btn btn-lg aptab-disable">
-                <a href="#" style={{ textDecoration: "none", color: "white" }}>
+              <button class="btn btn-lg aptab-disable">
+                <a
+                  href="/allattendance"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
                   Attendance
                 </a>
               </button>

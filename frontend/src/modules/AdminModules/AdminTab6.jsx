@@ -87,10 +87,10 @@ export default class AdminTab6 extends Component {
               </div>
             </div>
 
-            <hr />
+            <hr class="hr-line" />
 
             <div className="col-lg-9 mt-2 mb-2">
-              <button disabled class="btn btn-lg aptab-disable">
+              <button class="btn btn-lg aptab-disable">
                 <a href="" style={{ textDecoration: "none", color: "white" }}>
                   Payroll Details
                 </a>
@@ -173,15 +173,22 @@ export default class AdminTab6 extends Component {
                   <td>{payrolls.account_no}</td>
 
                   <td>
-                    <a href={`displaypayroll/${payrolls._id}`}>
+                    <a
+                      href={`displaypayroll/${payrolls._id}`}
+                      class="icon-btns"
+                    >
                       <i class="far fa-eye"></i>
                     </a>
                     &nbsp; &nbsp; &nbsp; &nbsp;
-                    <a href={`/editpayroll/${payrolls._id}`}>
+                    <a href={`/editpayroll/${payrolls._id}`} class="icon-btns">
                       <i class="far fa-edit"></i>
                     </a>
                     &nbsp; &nbsp; &nbsp;
-                    <a href="#" onClick={() => this.onDelete(payrolls._id)}>
+                    <a
+                      href="#"
+                      onClick={() => this.onDelete(payrolls._id)}
+                      class="icon-btns"
+                    >
                       <i class="far fa-trash-alt"></i>
                     </a>
                   </td>
