@@ -44,7 +44,10 @@ export default class AdminTab6 extends Component {
   filterData(payrolls, searchKey) {
     const result = payrolls.filter(
       payroll =>
-        payroll.empno.includes(searchKey) ||
+        payroll.empno
+          .toString()
+          .toLowerCase()
+          .includes(searchKey) ||
         payroll.name.toLowerCase().includes(searchKey) ||
         payroll.position.toLowerCase().includes(searchKey) ||
         payroll.bank.toLowerCase().includes(searchKey) ||
@@ -60,7 +63,7 @@ export default class AdminTab6 extends Component {
 
     const searchKey = e.currentTarget.value;
 
-    axios.get("/payrolls").then(res => {
+    axios.get("http://localhost:5000/payrolls").then(res => {
       if (res.data.success) {
         this.filterData(res.data.existingPayrolls, searchKey);
       }

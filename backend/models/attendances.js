@@ -7,21 +7,19 @@ const attendancesSchema = new mongoose.Schema({
    
     empno: {
         type: Number,
-        required: [true, "employee id is required"],
+        required:true,
     },
     att_date: {
         type: Date,
-        required: [true, "date is required"],
+        required:true,
     },
     att_type: {
         type: String,
-        required:[true, "Attendance type is required"],
+        required:true,
     },
-
-    
     location_type: {
         type: String,
-        required:[true, "location type  is required"],
+        required:false,
   
     },
     location: {
@@ -42,9 +40,6 @@ const attendancesSchema = new mongoose.Schema({
 
 },
 
-    {
-        timestamps: true,
-    }
 
 );
 

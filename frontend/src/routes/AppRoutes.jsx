@@ -77,6 +77,9 @@ import DisplayProfile from "../modules/AdminModules/DisplayProfile";
 import AdminAttendance from "../modules/AdminModules/AdminAttendance";
 import CreateAttendance from "../modules/AdminModules/CreateAttendance";
 
+import MonthlySalary from "../modules/AdminModules/MonthlySalary";
+import CreateMSalary from "../modules/AdminModules/CreateMSalary";
+
 const AppRoutes = () => (
   <div>
     <Router>
@@ -161,12 +164,14 @@ const AppRoutes = () => (
         <Route path="/TopPerformers" component={TopPerformers} exact></Route>
         <Route path="/NoticeComPerf" component={NoticeComPerf} exact></Route>
         /*Dimashi Routes*/
-        <Route path="/payroll" component={PayrollPage} exact />
+        <Route path="/allpayrolls" component={PayrollPage} exact />
         <Route path="/addpayroll" exact component={CreatePayroll}></Route>
         <Route path="/displaypayroll/:id" component={DisplayPayroll} exact />
         <Route path="/editpayroll/:id" component={EditPayroll} exact />
         <Route path="/allattendance" component={AdminAttendance} exact />
         <Route path="/addattendance" exact component={CreateAttendance}></Route>
+        <Route path="/allsalary" component={MonthlySalary} exact />
+        <Route path="/addsalary" component={CreateMSalary} exact />
         /*Thisarani Routes*/
         <Route path="/client" component={ClientsRoutesPage} exact />
         <Route path="/addclient" exact component={CreateClient}></Route>

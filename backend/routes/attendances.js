@@ -24,7 +24,8 @@ router.post("/attendance/save", (req, res) => {
 
 //get attendance table (GET)
 router.get("/attendances", (req, res) => {
-  Attendances.find().exec((err, attendances) => {
+  Attendances.find().sort({ "empno": -1 }).exec((err, attendances) => {
+    var acount = attendances.length;
     if (err) {
       return res.status(400).json({
         error: err,
@@ -33,6 +34,7 @@ router.get("/attendances", (req, res) => {
     return res.status(200).json({
       success: true,
       existingAttendances: attendances,
+      attendanceCount:acount
     });
   });
 });
@@ -84,7 +86,8 @@ router.delete("/attendance/delete/:id", (req, res) => {
         message: "Attendance Record Delete Unsuccessful!!", err
       });
     return res.status(200).json({
-      message: "Attendance Record Delete Successful!!", deletedAttendance
+      message: "Attendance Record Delete Successful!!", 
+      deletedAttendance
     });
   });
 });

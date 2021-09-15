@@ -7,13 +7,13 @@ export default class CreateAttendance extends Component {
     super(props);
 
     this.state = {
-      empno: "",
+      empno: 0,
       att_date: "",
+      att_type: "",
       location_type: "",
       location: "",
       time_in: "",
-      time_out: "",
-      att_type: ""
+      time_out: ""
     };
   }
 
@@ -37,21 +37,21 @@ export default class CreateAttendance extends Component {
     const {
       empno,
       att_date,
+      att_type,
       location_type,
       location,
       time_in,
-      time_out,
-      att_type
+      time_out
     } = this.state;
 
     const data = {
       empno: empno,
       att_date: att_date,
+      att_type: att_type,
       location_type: location_type,
       location: location,
       time_in: time_in,
-      time_out: time_out,
-      att_type: att_type
+      time_out: time_out
     };
 
     console.log(data);
@@ -59,13 +59,13 @@ export default class CreateAttendance extends Component {
     axios.post("http://localhost:5000/attendance/save", data).then(res => {
       if (res.data.success) {
         this.setState({
-          empno: "",
+          empno: 0,
           att_date: "",
+          att_type: "",
           location_type: "",
           location: "",
           time_in: "",
-          time_out: "",
-          att_type: ""
+          time_out: ""
         });
       }
     });
@@ -77,7 +77,7 @@ export default class CreateAttendance extends Component {
       <div className="col-md-8 mt-4 mx-auto">
         <br />
 
-        <h1>Attendance Management | Mark Attendance - Admin</h1>
+        <h1>Attendance Management | Mark Attendance : Admin</h1>
         <br />
         <br />
 
@@ -93,8 +93,7 @@ export default class CreateAttendance extends Component {
         >
           <h2>Attendance Record</h2>
           <hr></hr>
-
-          <div className="form-group col-sm-4" style={{ marginBottom: "15px" }}>
+          <div className="form-group col-sm-5" style={{ marginBottom: "15px" }}>
             <label
               for="valid1"
               class="form-label"
@@ -112,51 +111,53 @@ export default class CreateAttendance extends Component {
               required
             />
           </div>
-
-          <div className="form-group " style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Date</label>
-            <input
-              type="date"
-              className="form-control"
-              name="att_date"
-              value={this.state.att_date}
-              onChange={this.handleInputChange}
-              required
-            />
-          </div>
-
-          <div className="form-group col-md-6" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Mark Attendance</label>
-            <select
-              defaultValue={"DEFAULT"}
-              className="form-select"
-              aria-label="Default select example"
-              onChange={this.handleInputChange}
-              name="bank"
-              required
+          <div class="d-flex justify-content-between">
+            <div
+              className="form-group col-md-5"
+              style={{ marginBottom: "15px" }}
             >
-              <option value="DEFAULT" disabled>
-                Select attendance type to mark
-              </option>
-              <option name="present">Present</option>
-              <option name="absent">Absent</option>
-              <option name="paidleave">On Paid Leave</option>
-              <option name="unpaidleave">On Unpaid Leave</option>
-              <option name="holiday">Holiday</option>
-              <option name="other">Other</option>
-            </select>
+              <label style={{ marginBottom: "5px" }}>Date</label>
+              <input
+                type="date"
+                className="form-control"
+                name="att_date"
+                value={this.state.att_date}
+                onChange={this.handleInputChange}
+              />
+            </div>
+
+            <div
+              className="form-group col-md-5"
+              style={{ marginBottom: "15px" }}
+            >
+              <label style={{ marginBottom: "5px" }}>Mark Attendance</label>
+              <select
+                defaultValue={"DEFAULT"}
+                className="form-select"
+                aria-label="Default select example"
+                onChange={this.handleInputChange}
+                name="att_type"
+              >
+                <option value="DEFAULT" disabled>
+                  Select attendance type to mark
+                </option>
+                <option name="present">Present</option>
+                <option name="absent">Absent</option>
+                <option name="paidleave">On Paid Leave</option>
+                <option name="unpaidleave">On Unpaid Leave</option>
+                <option name="holiday">Holiday</option>
+                <option name="other">Other</option>
+              </select>
+            </div>
           </div>
-
           <hr></hr>
-
-          <div className="form-group col-sm-6" style={{ marginBottom: "15px" }}>
+          <div className="form-group col-sm-5" style={{ marginBottom: "15px" }}>
             <label style={{ marginBottom: "5px" }}>Location Type</label>
             <select
               defaultValue={"DEFAULT"}
               className="form-select"
               onChange={this.handleInputChange}
               name="location_type"
-              required
             >
               <option value="DEFAULT" disabled>
                 Select location type
@@ -168,34 +169,25 @@ export default class CreateAttendance extends Component {
               <option value="other">Other</option>
             </select>
           </div>
-
-          <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label
-              for="exampleFormControlTextarea1"
-              style={{ marginBottom: "5px" }}
-            >
-              If location is not "In Company"
-            </label>
-            <textarea
+          /*---8 8 9--*/
+          <div className="form-group col-md-5" style={{ marginBottom: "15px" }}>
+            <label style={{ marginBottom: "5px" }}>location</label>
+            <input
               type="text"
               className="form-control"
               name="location"
-              id="exampleFormControlTextarea1"
-              rows="4"
-              placeholder="Type Location Address"
               value={this.state.location}
               onChange={this.handleInputChange}
             />
           </div>
-
           <div class="d-flex justify-content-between">
             <div
-              className="form-group col-md-6"
+              className="form-group col-md-5"
               style={{ marginBottom: "15px" }}
             >
               <label style={{ marginBottom: "5px" }}>Time In</label>
               <input
-                type="time"
+                type="text"
                 className="form-control"
                 name="time_in"
                 value={this.state.time_in}
@@ -204,12 +196,12 @@ export default class CreateAttendance extends Component {
             </div>
 
             <div
-              className="form-group col-md-6"
+              className="form-group col-md-5"
               style={{ marginBottom: "15px" }}
             >
               <label style={{ marginBottom: "5px" }}>Time Out</label>
               <input
-                type="time"
+                type="text"
                 className="form-control"
                 name="time_out"
                 value={this.state.time_out}
@@ -217,9 +209,7 @@ export default class CreateAttendance extends Component {
               />
             </div>
           </div>
-
           <br />
-
           <div class="d-flex justify-content-center">
             <button
               className="btn btn-info"

@@ -57,7 +57,7 @@ router.get("/payroll/:id", (req, res) =>{
 });
 
 
-//update leave(PUT)
+//update (PUT)
 router.put("/payroll/update/:id", (req, res) => {
   Payrolls.findByIdAndUpdate(
     req.params.id,
