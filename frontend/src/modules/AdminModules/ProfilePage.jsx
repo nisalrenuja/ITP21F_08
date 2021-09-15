@@ -19,7 +19,8 @@ export default class ProfilePage extends Component {
     axios.get("http://localhost:5000/executive").then(res => {
       if (res.data.success) {
         this.setState({
-          executive: res.data.existingexecutive
+          executive: res.data.existingexecutive,
+          execoCount: res.data.execoCount
         });
         console.log(this.state.executive);
       }
@@ -84,7 +85,9 @@ export default class ProfilePage extends Component {
           </div>
           <div className="row">
             <div className="col-lg-9 mt-2 mb-2">
-              <h1 className="h3 mb-3 font-weight-normal">Profiles</h1>
+              <h1 className="h3 mb-3 font-weight-normal">
+                Profiles ( {this.state.execoCount} )
+              </h1>
             </div>
             <div className="col-lg-2 mt-2 mb-2 search-bar">
               <input
