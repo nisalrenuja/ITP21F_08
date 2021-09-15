@@ -107,7 +107,7 @@ export default class CreatePayroll extends Component {
               Empoyee ID
             </label>
             <input
-              type="text"
+              type="number"
               id="valid1"
               className="form-control"
               name="empno"
@@ -130,7 +130,7 @@ export default class CreatePayroll extends Component {
             />
           </div>
 
-          <div className="orm-group col-sm-6" style={{ marginBottom: "15px" }}>
+          <div className="form-group col-sm-6" style={{ marginBottom: "15px" }}>
             <label style={{ marginBottom: "5px" }}>Position</label>
             <select
               defaultValue={"DEFAULT"}

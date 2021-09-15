@@ -2,59 +2,57 @@ import React, { Component } from "react";
 import axios from "axios";
 import Clock from "../../component/common/clock/Clock";
 import "./AllPayrolls.css";
-//import Payrolljs from "../../assets/payrollJS/index";
 
-export default class AdminTab6 extends Component {
+export default class MonthlySalary extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       //posts will be stated as an array
-      payrolls: []
+      salaries: []
     };
   }
 
   //A method in react life cycle
   componentDidMount() {
-    this.retrievePayrolls();
+    this.retrieveSalaries();
   }
 
-  retrievePayrolls() {
+  retrieveSalaries() {
     //end point
-    axios.get("http://localhost:5000/payrolls").then(res => {
+    axios.get("http://localhost:5000/salaries").then(res => {
       if (res.data.success) {
         this.setState({
-          payrolls: res.data.existingPayrolls,
-          payrollcount: res.data.payrollCount
+          salaries: res.data.existingSalaries,
+          salarycount: res.data.salaryCount
         });
 
-        console.log(this.state.payrolls);
-        console.log(this.state.payrollcount);
+        console.log(this.state.salaries);
+        console.log(this.state.salarycount);
       }
     });
   }
 
   onDelete = id => {
-    axios.delete(`http://localhost:5000/payroll/delete/${id}`).then(res => {
-      alert("Deleted Payroll Data Successfully!!");
-      this.retrievePayrolls();
+    axios.delete(`http://localhost:5000/salary/delete/${id}`).then(res => {
+      alert("Deleted Monthly Salary Successfully!!");
+      this.retrieveSalaries();
     });
   };
 
-  filterData(payrolls, searchKey) {
-    const result = payrolls.filter(
-      payroll =>
-        payroll.empno
+  filterData(salaries, searchKey) {
+    const result = salaries.filter(
+      salary =>
+        salary.salaryno.toLowerCase().includes(searchKey) ||
+        salary.empno
           .toString()
           .toLowerCase()
           .includes(searchKey) ||
-        payroll.name.toLowerCase().includes(searchKey) ||
-        payroll.position.toLowerCase().includes(searchKey) ||
-        payroll.bank.toLowerCase().includes(searchKey) ||
-        payroll.account_no.toLowerCase().includes(searchKey)
+        salary.pay_month.toLowerCase().includes(searchKey) ||
+        salary.salary_status.toLowerCase().includes(searchKey)
     );
 
-    this.setState({ payrolls: result });
+    this.setState({ salaries: result });
   }
 
   handleSearchArea = e => {
@@ -63,9 +61,9 @@ export default class AdminTab6 extends Component {
 
     const searchKey = e.currentTarget.value;
 
-    axios.get("http://localhost:5000/payrolls").then(res => {
+    axios.get("http://localhost:5000/salaries").then(res => {
       if (res.data.success) {
-        this.filterData(res.data.existingPayrolls, searchKey);
+        this.filterData(res.data.existingSalaries, searchKey);
       }
     });
   };
@@ -80,7 +78,7 @@ export default class AdminTab6 extends Component {
             <div class="d-flex justify-content-between">
               <div className="col-lg-9 mt-2 mb-2 font-weight-bold ">
                 <br />
-                <h1 class="ap-topic">Payroll Management </h1>
+                <h1 class="ap-topic">Payroll Management | Monthly Salary</h1>
               </div>
               <div>
                 <Clock />
@@ -90,8 +88,11 @@ export default class AdminTab6 extends Component {
             <hr class="hr-line" />
 
             <div className="col-lg-9 mt-2 mb-2">
-              <button class="btn btn-lg aptab-disable">
-                <a href="" style={{ textDecoration: "none", color: "white" }}>
+              <button class="btn btn-lg aptab-btn">
+                <a
+                  href="/admin"
+                  style={{ textDecoration: "none", color: "#1687A7" }}
+                >
                   Payroll Details
                 </a>
               </button>
@@ -105,10 +106,10 @@ export default class AdminTab6 extends Component {
                 </a>
               </button>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <button class="btn btn-lg aptab-btn">
+              <button disabled class="btn btn-lg aptab-disable">
                 <a
                   href="/allsalary"
-                  style={{ textDecoration: "none", color: "#1687A7" }}
+                  style={{ textDecoration: "none", color: "white" }}
                 >
                   Monthly Salary
                 </a>
@@ -120,7 +121,7 @@ export default class AdminTab6 extends Component {
             <div class="d-flex">
               <div className="col-lg-9 mt-2 mb-2 ">
                 <h2 className="h3 mb-3">
-                  Total Payroll Records ( {this.state.payrollcount} )
+                  Total Salary Records ( {this.state.salarycount} )
                 </h2>
               </div>
 
@@ -143,52 +144,44 @@ export default class AdminTab6 extends Component {
             <thead class="tblhead">
               <tr class="">
                 <th scope="col"> #</th>
-                <th scope="col"> Payroll ID</th>
-                <th scope="col"> Name</th>
-                <th scope="col"> Position</th>
-                <th scope="col"> Basic Salary</th>
-                <th scope="col"> Bank</th>
-                <th scope="col"> Account No</th>
+                <th scope="col"> Payslip ID</th>
+                <th scope="col"> Employee ID</th>
+                <th scope="col"> Month-Year</th>
+                <th scope="col"> Net Salary</th>
+                <th scope="col"> Salary Status</th>
                 <th scope="col"> Action</th>
               </tr>
             </thead>
 
             <tbody>
-              {this.state.payrolls.map((payrolls, index) => (
+              {this.state.salaries.map((salaries, index) => (
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
 
-                  <td>
+                  <td scope="row">
                     <a
-                      href={`/displaypayroll/${payrolls._id}`}
+                      href={`/displaysalary/${salaries._id}`}
                       style={{ textDecoration: "none" }}
                     >
-                      {payrolls.empno}
+                      MS{index + 1000}
                     </a>
                   </td>
-                  <td>{payrolls.name}</td>
-                  <td>{payrolls.position}</td>
-                  <td>{payrolls.basic_salary}</td>
-                  <td>{payrolls.bank}</td>
-                  <td>{payrolls.account_no}</td>
+
+                  <td>{salaries.empno}</td>
+                  <td>{salaries.pay_month}</td>
+                  <td>{salaries.net_salary}</td>
+                  <td>{salaries.salary_status}</td>
 
                   <td>
-                    <a
-                      href={`displaypayroll/${payrolls._id}`}
-                      class="icon-btns"
-                    >
+                    <a href={`displaysalary/${salaries._id}`}>
                       <i class="far fa-eye"></i>
                     </a>
                     &nbsp; &nbsp; &nbsp; &nbsp;
-                    <a href={`/editpayroll/${payrolls._id}`} class="icon-btns">
+                    <a href={`/editsalary/${salaries._id}`}>
                       <i class="far fa-edit"></i>
                     </a>
                     &nbsp; &nbsp; &nbsp;
-                    <a
-                      href="#"
-                      onClick={() => this.onDelete(payrolls._id)}
-                      class="icon-btns"
-                    >
+                    <a href="#" onClick={() => this.onDelete(salaries._id)}>
                       <i class="far fa-trash-alt"></i>
                     </a>
                   </td>
@@ -199,10 +192,10 @@ export default class AdminTab6 extends Component {
 
           <button className="btn btn-success">
             <a
-              href="/addpayroll"
+              href="/addsalary"
               style={{ textDecoration: "none", color: "white" }}
             >
-              Add New
+              New Pay Slip
             </a>
           </button>
         </div>

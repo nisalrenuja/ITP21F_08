@@ -1,37 +1,23 @@
 const mongoose = require("mongoose");
-const { timeStamp } = require("node:console");
 
 const salariesSchema = new mongoose.Schema({
     //declare variables/properties
-    salary_id: {
+    salaryno: {
         type:String,
         required:true,//since must have
         unique:true
     },
-    emp_id: {
+    empno: {
         type:String,
         required:true//since must have
     },
-    emp_name: {
+    name: {
         type: String,
         required: false,
     },
     pay_month: {
-        month:String,
-        year: Number,
+        type: String,
         required:true//since must have
-    },
-    rate_per_daye: {
-        type: Number,
-        required: false,
-    },
-    days_present: {
-        type: Number,
-        required: false,
-    },
-    noOf_pay_leaves: {
-        type: Number,
-        required: false,
     },
     basic: {
         type: Number,
@@ -51,25 +37,28 @@ const salariesSchema = new mongoose.Schema({
     },
 
 //extra earnings
+/*
     earnings: [{
         
         earn_reason: {type: String, required: false,},
         earn_amount: {type: Number,required: false,},
 
     }],
-
+*/
     total_earnings: {//must auto calculated
         type: String,
         required: false,
     },
 
 //deductions
+/*
     deductions: [{
 
         deduct_reason: {type: String, required: false,},
         deduct_amount: {type: Number, required: false,},
     }],
-    total_deduction: {//must be auto calculted
+*/
+    total_deductions: {//must be auto calculted
         type: String,
         required: false,
     },
