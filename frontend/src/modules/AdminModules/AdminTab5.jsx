@@ -112,13 +112,13 @@ export default class AdminTab5 extends Component {
                     <td>{existingNotices.published_date}</td>
 
                     <td>
-                      <a href={`/EditNotices/${existingNotices.id}`}>
+                      <a href={`/EditNotices/${existingNotices.notice_id}`}>
                         <i className="fas fa-edit"></i>&nbsp;
                       </a>
                       &nbsp;
                       <a
                         href="#"
-                        onClick={() => this.onDelete(existingNotices.id)}
+                        onClick={() => this.onDelete(existingNotices._id)}
                       >
                         <i className="far fa-trash-alt"></i>&nbsp;
                       </a>

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./LaptopInventory.css";
+import Clock from "../../component/common/clock/Clock";
 
-//laptop
+//laptopss
 export default class AdminTab7 extends Component {
   constructor(props) {
     super(props);
@@ -27,60 +28,92 @@ export default class AdminTab7 extends Component {
     });
   }
 
-  onDelete = id => {
-    console.log(id);
-    axios.delete(`http://localhost:5000/laptops/delete/${id}`).then(res => {
+  onDelete = _id => {
+    console.log(_id);
+    axios.delete(`http://localhost:5000/laptop/delete/${_id}`).then(res => {
       alert("Deleted Laptop Details successfully");
       this.retrievePosts();
     });
   };
 
+  filterData(laptops, searchKey) {
+    const result = laptops.filter(
+      laptop =>
+        laptop.id.toLowerCase().includes(searchKey) ||
+        laptop.brand.toLowerCase().includes(searchKey) ||
+        laptop.model.toLowerCase().includes(searchKey) ||
+        laptop.status.toLowerCase().includes(searchKey)
+    );
+    this.setState({ laptops: result });
+  }
   handleSearchArea = e => {
     const searchKey = e.currentTarget.value;
-    axios.get("./laptop").then(res => {
+    axios.get("http://localhost:5000/laptops").then(res => {
       if (res.data.success) {
-        this.filterData(res.data.laptop, searchKey);
+        this.filterData(res.data.existingLaptops, searchKey);
       }
     });
   };
 
   render() {
     return (
-      <div className="col-md-8 mt-4 mx-auto">
-        <div class="container">
-          <h1 className="h3 mb-3 font-weight-normal">Inventory Management</h1>
-          <hr></hr>
+      <div className="container">
+        <br></br>
+        <div className="inventory react-bs-table-pagination">
+          <div className="row">
+            <div class="d-flex justify-content-between">
+              <div className="col-lg-9 mt-2 mb-2 font-weight-bold ">
+                <br />
+                <h1 className="ap-topic">Inventory Management</h1>
+              </div>
+              <div>
+                <Clock />
+              </div>
+            </div>
+            <hr />
 
-          <div class="choice">
-            <a href="/createlaptop">
-              <button class="div1">
-                <p class="txt1">Laptops</p>
-              </button>
-            </a>
-            <a href="/repairinglaptop">
-              <button class="div2">
-                <p class="txt2">Repairing Laptops</p>
-              </button>
-            </a>
+            <div className="col-lg-9 mt-2 mb-2">
+              <a
+                href="/admin"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <button className="btn btn-lg aptab-disable">Laptops</button>
+              </a>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a
+                href="/repairinglaptop"
+                style={{ textDecoration: "none", color: "#1687A7" }}
+              >
+                <button class="btn btn-lg aptab-btn">Repairing Laptops</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </a>
+            </div>
+
+            <div class="d-flex">
+              <div className="col-lg-9 mt-2 mb-2 ">
+                <h2 className="h3 mb-3">
+                  Total Available Laptops ( {this.state.laptopcount} )
+                </h2>
+              </div>
+
+              <div className="col-lg-3 mt-2 mb-2 search-bar">
+                <input
+                  className="form-control mr-sm-2"
+                  type="search"
+                  placeholder="Search     "
+                  name="searchQuery"
+                  aria-label="Search"
+                  onChange={this.handleSearchArea}
+                />
+              </div>
+            </div>
           </div>
 
-          <div class="searchFilter">
-            <p class="txt"> Filter by</p>
-            <input
-              class="select"
-              type="search"
-              placeholder="Laptop ID"
-              name="searchlaptop"
-              onChange={this.handleSearchArea}
-            />
-
-            <a className="btn btn-info search">
-              <i className="fas fa-search"></i>&nbsp;Search
-            </a>
-          </div>
-
-          <table className="table table-hover table1">
-            <thead className="thead">
+          <table
+            className="table table-hover text-center"
+            style={{ marginTop: "40px" }}
+          >
+            <thead class="tblhead">
               <tr>
                 <th scope="col">Laptop ID</th>
                 <th scope="col">Laptop Brand</th>
@@ -90,41 +123,37 @@ export default class AdminTab7 extends Component {
                 <th scope="col">Actions</th>
               </tr>
             </thead>
-            <tbody class="tbody-container">
+            <tbody>
               {this.state.laptops.map((laptops, index) => (
-                <tr key={index}>
-                  <td>
-                    {" "}
-                    <a href={``} style={{ textDecoration: "none" }}>
-                      {laptops.id}
-                    </a>
-                  </td>
+                <tr>
+                  <td>{laptops.id}</td>
                   <td>{laptops.brand}</td>
                   <td>{laptops.model}</td>
                   <td>{laptops.storage_type}</td>
                   <td>{laptops.status}</td>
                   <td>
-                    <a className="btn btn-warning" href={`/edit/${laptops.id}`}>
-                      <i className="fas fa-edit"></i>&nbsp;Edit
+                    <a href={`/viewlaptop/${laptops._id}`}>
+                      <i class="fas fa-eye"></i>
                     </a>
-                    &nbsp;
-                    <a
-                      className="btn btn-danger"
-                      href="#"
-                      onClick={() => this.onDelete(laptops.id)}
-                    >
-                      <i className="fas fa-trash-alt"></i>&nbsp;delete
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                    <a href={`/editlaptop/${laptops._id}`}>
+                      <i class="far fa-edit"></i>
+                    </a>
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                    <a href="#" onClick={() => this.onDelete(laptops._id)}>
+                      <i className="fas fa-trash-alt"> </i>
                     </a>
                   </td>
                 </tr>
               ))}
             </tbody>
-            <tfoot class="tfoot">
-              <a href="/createlaptop">
-                <i class="fas fa-plus"></i>&nbsp;New Laptop Inventory Details
-              </a>
-            </tfoot>
+            <tfoot></tfoot>
           </table>
+          <a href="/createlaptop">
+            <button class="addbtn">
+              <i class="fas fa-plus"></i>&nbsp;New Laptop Repair Details
+            </button>
+          </a>
         </div>
       </div>
     );

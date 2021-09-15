@@ -6,31 +6,25 @@ export default class CompanyPerfomance extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      assignments: []
+      posts: []
     };
   }
-  onDelete = name => {
-    console.log(name);
-    axios
-      .delete(`http://localhost:5000/assignments/delete/${name}`)
-      .then(res => {
-        alert("Deleted Succesfully");
-        this.retrievePosts();
-      });
-  };
+
   componentDidMount() {
     this.retrievePosts();
   }
+
   retrievePosts() {
-    axios.get("http://localhost:5000/assignments/dis").then(res => {
+    axios.get("http://localhost:5000/performance").then(res => {
       if (res.data.success) {
         this.setState({
-          assignments: res.data.assignmentsassigned
+          posts: res.data.existingPosts
         });
-        console.log(this.state.assignments);
+        console.log(this.state.posts);
       }
     });
   }
+
   render() {
     return (
       <div className="container">
@@ -63,7 +57,9 @@ export default class CompanyPerfomance extends Component {
           <table className="table table-hover anutable41">
             <thead class="anuthead">
               <tr>
+                <th scope="col">Quarter No.</th>
                 <th scope="col">Quarter</th>
+                <th scope="col">Year</th>
                 <th scope="col">From</th>
                 <th scope="col">To</th>
                 <th scope="col">No.of Approved Reports</th>
@@ -71,24 +67,22 @@ export default class CompanyPerfomance extends Component {
               </tr>
             </thead>
             <tbody class="anutbody1">
-              {this.state.assignments.map((assignments, index) => (
+              {this.state.posts.map((posts, index) => (
                 <tr key={index}>
+                  <td>{posts.quarter_no}</td>
+                  <td>{posts.quarter_name}</td>
+                  <td>{posts.year}</td>
+                  <td>{posts.from}</td>
+                  <td>{posts.to}</td>
+                  <td>{posts.approved_reports}</td>
                   <td>
-                    <a href={``} style={{ textDecoration: "none" }}>
-                      {assignments.assignment_name}
-                    </a>
-                  </td>
-                  <td>{assignments.client_no}</td>
-                  <td>{assignments.deadline}</td>
-                  <td>{assignments.deadline}</td>
-                  <td>
-                    <a href={`/edit/${assignments._id}`}>
+                    <a href={`/edit/${posts.quarter_name}`}>
                       <i className="fas fa-edit"></i>&nbsp;
                     </a>
                     &nbsp;
                     <a
                       href="#"
-                      onClick={() => this.onDelete(assignments.assignment_name)}
+                      onClick={() => this.onDelete(posts.quarter_name)}
                     >
                       <i className="far fa-trash-alt"></i>&nbsp;
                     </a>
@@ -96,8 +90,8 @@ export default class CompanyPerfomance extends Component {
                 </tr>
               ))}
               <tfoot class="tfoot">
-                <a href="/createassignment">
-                  <i class="fas fa-plus"></i>&nbsp;New Record Calculation
+                <a href="/quarterperformance">
+                  <i class="fas fa-plus"></i>&nbsp;New Quater Performance
                 </a>
               </tfoot>
             </tbody>

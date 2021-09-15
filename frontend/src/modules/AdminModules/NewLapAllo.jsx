@@ -41,7 +41,7 @@ export default class NewLapAllo extends Component {
     console.log(id);
     axios.get(`http://localhost:5000/checklapassigned/${id}`).then(res => {
       if (res.data.success) {
-        alert("Assigned to " + res.data.l + " assignment/s!");
+        alert("Laptop is Allocated to " + res.data.l + " Assignment/s!");
       }
     });
   };

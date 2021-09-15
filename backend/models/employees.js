@@ -101,6 +101,10 @@ const employees_Schema = new mongoose.Schema({
     type: String,
     required: false,
   }, 
+  points:{
+    type: String,
+    required: false,
+  },
   type:{
     type: String,
     required: false,

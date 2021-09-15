@@ -27,6 +27,7 @@ export default class EmpReportUpload extends Component {
       sub_date: today,
       due_date: "",
       progress: "",
+      empnumbers: [],
       assignments: [],
       redirectToReferrer: false
     };
@@ -39,7 +40,8 @@ export default class EmpReportUpload extends Component {
     axios.get("http://localhost:5000/assignments/empreportupload").then(res => {
       if (res.data.success) {
         this.setState({
-          assignments: res.data.assignmentsassigned
+          empnumbers: res.data.empnumbers,
+          assignments: res.data.assignmentnames
         });
 
         console.log(this.state.assignments);
@@ -88,7 +90,7 @@ export default class EmpReportUpload extends Component {
     console.log(data);
     axios
       .put(
-        `http://localhost:5000/assignments/update/${this.state.report}`,
+        `http://localhost:5000/assignments/updte/${this.state.report}`,
         data1
       )
       .then(res => {
@@ -194,7 +196,7 @@ export default class EmpReportUpload extends Component {
             >
               <option value="DEFAULT">Select Assignment Name</option>
               {this.state.assignments.map((pending, index) => (
-                <option key={index}>{pending.assignment_name}</option>
+                <option key={index}>{pending}</option>
               ))}
             </select>
           </div>
@@ -242,8 +244,8 @@ export default class EmpReportUpload extends Component {
               onChange={this.handleInputChange}
             >
               <option value="DEFAULT">Select Employee Number</option>
-              {this.state.assignments.map((pending, index) => (
-                <option key={index}>{pending.emp_no}</option>
+              {this.state.empnumbers.map((pending, index) => (
+                <option key={index}>{pending}</option>
               ))}
             </select>
           </div>
