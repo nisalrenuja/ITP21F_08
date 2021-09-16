@@ -11,7 +11,8 @@ const company_notices_Schema = new mongoose.Schema({
         required:true,
     },
     emp_name:{
-      type: String
+      type: String,
+      required:true,
     },
     notice_topic:{
       type: String,

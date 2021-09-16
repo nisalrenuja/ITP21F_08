@@ -112,7 +112,7 @@ export default class AdminTab5 extends Component {
                     <td>{existingNotices.published_date}</td>
 
                     <td>
-                      <a href={`/EditNotices/${existingNotices.notice_id}`}>
+                      <a href={`/EditNotices/${existingNotices._id}`}>
                         <i className="fas fa-edit"></i>&nbsp;
                       </a>
                       &nbsp;

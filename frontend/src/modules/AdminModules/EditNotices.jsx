@@ -85,14 +85,18 @@ export default class EditNotices extends Component {
     axios.get(`http://localhost:5000/CreateNotice/${id}`).then(res => {
       if (res.data.success) {
         this.setState({
-          updateNotice: res.data.updnotice,
-          notice_topic: res.data.updnotice[0].notice_topic,
-          notice_content: res.data.updnotices[0].notice_content,
-          notice_attachments: res.data.updnotice[0].notice_attachments,
-          published_date: res.data.updnotice[0].published_date,
-          updateNotice2: res.data.updnotice2
+          updateNotice: res.data.existingNotices,
+          notice_id: res.data.existingNotices.notice_id,
+          emp_id: res.data.existingNotices.emp_id,
+          emp_name: res.data.existingNotices.emp_name,
+          notice_topic: res.data.existingNotices.notice_topic,
+          notice_content: res.data.existingNotices.notice_content,
+          notice_attachments: res.data.existingNotices.notice_attachments,
+          published_date: res.data.existingNotices.published_date,
+
+          updateNotice2: res.data.existingNotices2
         });
-        console.log(this.state.updnotice);
+        console.log(this.state.updateNotice);
       }
     });
   }
@@ -169,7 +173,7 @@ export default class EditNotices extends Component {
                 type="date"
                 class="senavicc"
                 id="published_date"
-                name="pulished_date"
+                name="published_date"
                 value={this.state.published_date}
                 onChange={this.handleInputChange}
               />

@@ -42,7 +42,7 @@ import NoticeComPerf from "../modules/AdminModules/NoticeComPerf";
 import PendingAssignment from "../pages/AdminPage/PendingAssignment";
 import EmployeeReport from "../modules/AdminModules/EmployeeReport";
 import EmpReportUpload from "../modules/AdminModules/EmpReportUpload";
-import EditNotices from "../modules/AdminModules/EditNotices"; //edit notices
+import EditNotices from "../pages/AdminPage/EditNotices"; //edit notices
 import PayrollPage from "../pages/PayrollPage/PayrollPage";
 import CreatePayroll from "../modules/AdminModules/CreatePayroll";
 import DisplayPayroll from "../modules/AdminModules/DisplayPayroll";
