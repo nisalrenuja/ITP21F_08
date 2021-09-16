@@ -1,21 +1,21 @@
 const express = require('express');
-const QuarterPerformance = require('../models/Quarter_Performace');
+const Performance = require('../models/Quarter_Performance');
 
 const router = express.Router();
 
 //Save Performance
 
 router.post("/performance/save", (req, res) => {
-    let newPost = new Posts(req.body);
+    let newPerformance = new Performances(req.body);
   
-    newPost.save((err) => {
+    newPerformance.save((err) => {
       if (err) {
         return res.status(400).json({
           error: err,
         });
       }
       return res.status(200).json({
-        success: "Posts saved successfully",
+        success: "Performances saved successfully",
       });
     });
   });
@@ -23,7 +23,7 @@ router.post("/performance/save", (req, res) => {
 //Get Perfomance
 
 router.get("/performance", (req, res) => {
-    Posts.find().exec((err, posts) => {
+    Performances.find().exec((err, Performances) => {
       if (err) {
         return res.status(400).json({
           error: err,
@@ -31,10 +31,66 @@ router.get("/performance", (req, res) => {
       }
       return res.status(200).json({
         success: true,
-        existingPosts: posts,
+        Performances: Performances,
       });
     });
   });
+
+
+  //get specific Performance
+router.get("/performance/:id", (req,res) =>{
+  let quarter_name = req.params.id;
+
+  Performances.findById(quarter_name, (err, Performances) =>{
+      if (err){
+          return res.status(400).json({
+              success: false,
+              err,
+          });
+      }
+      return res.status(200).json({
+          success: true,
+          payroll
+      });
+  });
+});
+
+
+//Update Performances
+
+router.put('/performance/update/:id', (req,res)=>{
+  Performances.findByIdAndUpdate(
+      req.params.id,
+      {
+          $set:req.body
+      },
+      (err,post)=>{
+          if(err){
+              return res.status(400).json({error:err});
+          }
+          return res.status(200).json({
+              success:"Performance Updated Successfully"
+          });
+      }
+  );
+});
+
+//Delete Performances
+
+router.delete('/performance/delete/:id',(req,res) =>{
+  Performances.findByIdAndRemove(req.params.id).exec((err,deletedPerformance) =>{
+
+      if(err) return res.status(400).json({
+          message:"Delete Unsuccessful",err
+      });
+
+      return res.json({
+          message:"Delete Successful",deletedPerformance
+      });
+  });
+});
+
+
 
 
 module.exports = router;

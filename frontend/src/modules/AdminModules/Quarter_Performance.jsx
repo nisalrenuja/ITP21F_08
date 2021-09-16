@@ -8,13 +8,12 @@ export default class QuarterPerformance extends Component {
     super(props);
 
     this.state = {
-      notice_id: "",
-      emp_id: "",
-      emp_name: "",
-      notice_topic: "",
-      notice_content: "",
-      notice_attachments: "",
-      published_date: "",
+      quarter_name: "",
+      year: "",
+      quarter_no: "",
+      from: "",
+      to: "",
+      approved_reports: "",
       redirectToReferrer: false
     };
   }
@@ -25,9 +24,9 @@ export default class QuarterPerformance extends Component {
     axios.get("http://localhost:5000/performance").then(res => {
       if (res.data.success) {
         this.setState({
-          existingNotices: res.data.staff
+          Performances: res.data.staff
         });
-        console.log(this.state.notice_id);
+        console.log(this.state.quarter_name);
       }
     });
   }
@@ -38,14 +37,7 @@ export default class QuarterPerformance extends Component {
       [name]: value
     });
   };
-  onCheck = name => {
-    console.log(name);
-    axios.get(`http://localhost:5000/checkassigned/${name}`).then(res => {
-      if (res.data.success) {
-        alert("Assigned to " + res.data.l + " assignment/s!");
-      }
-    });
-  };
+
   onSubmit = e => {
     e.preventDefault();
 
@@ -87,7 +79,7 @@ export default class QuarterPerformance extends Component {
   render() {
     const redirectToReferrer = this.state.redirectToReferrer;
     if (redirectToReferrer == true) {
-      return <Redirect to="/QuarterPerformance" />;
+      return <Redirect to="/Performance" />;
     }
     return (
       <div className="container">
@@ -95,7 +87,7 @@ export default class QuarterPerformance extends Component {
           <h1 class="anuhead1c">Reports Management | Quarterly Performance </h1>
           <hr class="anuline1c"></hr>
           <div class="anumain33">
-            <form>
+            <form class="anuform">
               <p class="anuic">Quarter :</p>
               <input
                 type="text"
@@ -155,25 +147,33 @@ export default class QuarterPerformance extends Component {
                 onChange={this.handleInputChange}
               />
 
-              <center>
+              <button
+                className="btn btn-success"
+                type="submit"
+                style={{
+                  marginLeft: "350px",
+                  marginTop: "475px",
+                  width: "10%"
+                }}
+                onClick={this.onSubmit}
+              >
+                <i className="fas fa-save"></i>&nbsp;Save
+              </button>
+
+              <a href="/admin">
                 <button
-                  className="btn btn-success"
+                  className="btn btn-secondary"
                   type="submit"
-                  style={{ marginTop: "795px", width: "20%" }}
-                  onClick={this.onSubmit}
+                  style={{
+                    marginLeft: "10px",
+                    marginTop: "475px",
+                    width: "10%",
+                    background: "#D11A2A"
+                  }}
                 >
-                  <i className="fas fa-save"></i>&nbsp;Save
+                  Cancel
                 </button>
-                <a href="/companyperformance">
-                  <button
-                    className="btn btn-secondary"
-                    type="submit"
-                    style={{ marginTop: "795px", width: "20%" }}
-                  >
-                    Cancel
-                  </button>
-                </a>
-              </center>
+              </a>
             </form>
           </div>
         </div>

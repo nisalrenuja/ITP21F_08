@@ -14,7 +14,7 @@ import CreateAssignment from "../../modules/AdminModules/CreateAssignment";
 
 import CreateReport from "../../modules/AdminModules/CreateReport";
 
-const Report = () => {
+const Report = ({ history, match }) => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -52,7 +52,7 @@ const Report = () => {
           {selectedMenuOption === "User Executive" ? (
             <AdminTab1 />
           ) : selectedMenuOption === "Reports Management" ? (
-            <CreateReport />
+            <CreateReport dataFromParent={match.params.id} />
           ) : selectedMenuOption === "Employees" ? (
             <AdminTab3 />
           ) : selectedMenuOption === "Work Allocation" ? (

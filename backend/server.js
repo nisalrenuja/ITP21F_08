@@ -15,6 +15,7 @@ const client_fees_routes = require("./routes/client_fees");
 const clients_routes = require("./routes/clients");
 const Notices = require("./routes/Company_Notices");
 const executive = require("./routes/Executive");
+const Performance = require("./routes/Quarter_Performance");
 //connect db
 connectDB();
 const postRoutes = require("./routes/Reviews");
@@ -39,6 +40,7 @@ app.use(postRoutes);
 app.use(executives);
 app.use(executive);
 app.use(Notices);
+app.use(Performance);
 //import routes
 const attendancesRoutes = require("./routes/attendances");
 const leavesRoutes = require("./routes/leaves");
@@ -57,6 +59,7 @@ app.use(leavesRoutes);
 app.use(payrollRoutes);
 app.use(final_reportRoutes);
 app.use(Notices);
+app.use(Performance);
 
 // Error Handler Middleware ..
 app.use(errorHandler);
