@@ -46,6 +46,7 @@ const attendancesRoutes = require("./routes/attendances");
 const leavesRoutes = require("./routes/leaves");
 const final_reportRoutes = require("./routes/final_report");
 const payrollRoutes = require("./routes/payrolls");
+const m_salaryRoutes = require("./routes/salaries");
 
 //add routes here ..
 
@@ -59,7 +60,7 @@ app.use(leavesRoutes);
 app.use(payrollRoutes);
 app.use(final_reportRoutes);
 app.use(Notices);
-app.use(Performance);
+app.use(m_salaryRoutes);
 
 // Error Handler Middleware ..
 app.use(errorHandler);

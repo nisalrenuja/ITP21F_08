@@ -1,4 +1,5 @@
 const express = require("express");
+const Reviews = require("../models/Reviews");
 const Posts = require("../models/Reviews");
 
 const router = express.Router();
@@ -22,36 +23,42 @@ router.post("/review/save", (req, res) => {
 
 //get posts
 router.get("/review", (req, res) => {
-  Posts.find().exec((err, posts) => {
-    if (err) {
-      return res.status(400).json({
-        error: err,
+  Posts.find()
+    .sort({ execid_review: -1 })
+    .exec((err, posts) => {
+      var count = Reviews.length;
+      if (err) {
+        return res.status(400).json({
+          error: err,
+        });
+      }
+      return res.status(200).json({
+        success: true,
+        existingPosts: posts,
+        reviewCount: count,
       });
-    }
-    return res.status(200).json({
-      success: true,
-      existingPosts: posts,
     });
-  });
 });
 
 router.get("/review/pecom", (req, res) => {
-  Posts.find({ status : "Pending" }).exec((err, posts1) => { Posts.find({ status : "Accepted" }).exec((err, posts2) =>{ var l = posts2.length;
-    var o = posts1.length;
-    if (err) {
-      return res.status(400).json({
-        error: err,
+  Posts.find({ status: "Pending" }).exec((err, posts1) => {
+    Posts.find({ status: "Accepted" }).exec((err, posts2) => {
+      var l = posts2.length;
+      var o = posts1.length;
+      if (err) {
+        return res.status(400).json({
+          error: err,
+        });
+      }
+      return res.status(200).json({
+        success: true,
+        Pending: posts1,
+        Completed: posts2,
+        l: l,
+        o: o,
       });
-    }
-    return res.status(200).json({
-      success: true,
-      Pending: posts1,
-      Completed: posts2,
-      l:l,
-      o:o,
     });
   });
-});
 });
 
 //get a specific post

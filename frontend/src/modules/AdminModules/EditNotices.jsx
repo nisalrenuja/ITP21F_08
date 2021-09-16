@@ -15,39 +15,23 @@ export default class EditNotices extends Component {
       notice_content: "",
       notice_attachments: "",
       published_date: "",
+      updateNotice: [],
+      updateNotice2: [],
       redirectToReferrer: false
     };
   }
-  componentDidMount() {
-    this.retrievePosts();
-  }
-  retrievePosts() {
-    axios.get("http://localhost:5000/CreateNotice").then(res => {
-      if (res.data.success) {
-        this.setState({
-          existingNotices: res.data.staff
-        });
-        console.log(this.state.notice_id);
-      }
-    });
-  }
+
   handleInputChange = e => {
     const { name, value } = e.target;
-    this.setState({
+    this.setstate({
       ...this.state,
       [name]: value
     });
   };
-  onCheck = name => {
-    console.log(name);
-    axios.get(`http://localhost:5000/checkassigned/${name}`).then(res => {
-      if (res.data.success) {
-        alert("Assigned to " + res.data.l + " assignment/s!");
-      }
-    });
-  };
+
   onSubmit = e => {
     e.preventDefault();
+    //const id = this.props.match.params.id;
 
     const {
       notice_id,
@@ -71,22 +55,48 @@ export default class EditNotices extends Component {
     };
 
     console.log(data);
-    axios.post("http://localhost:5000/CreateNotice/save/", data).then(res => {
+    axios
+      .put(
+        `http://localhost:5000/CreateNotice/update/${this.props.dataFromParent}`,
+        data
+      )
+      .then(res => {
+        if (res.data.success) {
+          this.setState({
+            notice_topic: "",
+            notice_content: "",
+            notice_attachments: "",
+            published_date: ""
+          });
+          alert("Notice Updated Successfully");
+        }
+      });
+    this.props.history.push("/admin");
+  };
+
+  componentDidMount() {
+    this.retrieveexsitingNotices();
+  }
+
+  retrieveexsitingNotices() {
+    const id = this.props.dataFromParent;
+    console.log(id);
+
+    axios.get(`http://localhost:5000/CreateNotice/${id}`).then(res => {
       if (res.data.success) {
         this.setState({
-          notice_id: notice_id,
-          emp_id: emp_id,
-          emp_name: emp_name,
-          notice_topic: notice_topic,
-          notice_content: notice_content,
-          notice_attachments: notice_attachments,
-          published_date: published_date,
-          redirectToReferrer: true
+          updateNotice: res.data.updnotice,
+          notice_topic: res.data.updnotice[0].notice_topic,
+          notice_content: res.data.updnotices[0].notice_content,
+          notice_attachments: res.data.updnotice[0].notice_attachments,
+          published_date: res.data.updnotice[0].published_date,
+          updateNotice2: res.data.updnotice2
         });
-        //alert("Employee added to assignment, Enter employee number");
+        console.log(this.state.updnotice);
       }
     });
-  };
+  }
+
   render() {
     const redirectToReferrer = this.state.redirectToReferrer;
     if (redirectToReferrer == true) {
@@ -95,7 +105,7 @@ export default class EditNotices extends Component {
     return (
       <div className="container">
         <div class="senamain3">
-          <h1 class="senahead1c">Notice Management | Create Notice</h1>
+          <h1 class="senahead1c">Notice Management | Edit Notice</h1>
           <hr class="senaline1c"></hr>
           <div class="senamain33">
             <form>
@@ -165,23 +175,24 @@ export default class EditNotices extends Component {
               />
 
               <center>
-                <button
-                  className="btn btn-success"
-                  type="submit"
-                  style={{ marginTop: "795px", width: "20%" }}
-                  onClick={this.onSubmit}
-                >
-                  <i className="fas fa-save"></i>&nbsp;Save
-                </button>
-                <a href="/admin">
+                <div class="d-flex justify-content-center">
                   <button
-                    className="btn btn-secondary"
+                    className="btn btn-warning"
                     type="submit"
-                    style={{ marginTop: "795px", width: "20%" }}
+                    style={{ marginTop: "15px" }}
+                    onClick={this.onSubmit}
+                  >
+                    <i className="fa fa-refresh"></i>&nbsp;Update
+                  </button>{" "}
+                  &nbsp;&nbsp;
+                  <button
+                    className="btn btn-danger"
+                    type="cancel"
+                    style={{ marginTop: "15px" }}
                   >
                     Cancel
                   </button>
-                </a>
+                </div>
               </center>
             </form>
           </div>

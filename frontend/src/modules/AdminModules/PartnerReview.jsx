@@ -60,35 +60,49 @@ export default class AdminTab1 extends Component {
 
   render() {
     return (
-      <div className="container grad">
-        <div class="adminreview">
+      <div className="container ">
+        <div class="adminreview react-bs-table-pagination">
           <div className="row">
-            <div className="exploreText">
-              User Executive Management Dashboard
-            </div>
+            <div className="ap-topic">User Executive Management Dashboard</div>
             <hr />
             <div className="col-lg-9 mt-2 mb-2">
               <Clock />
               <br />
-
-              <button className="btn btn-primary btn-lg">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <div class="dropdown">
+                <button
+                  className="btn btn-secondary dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Review As a
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="/managerreview">
+                    Manager
+                  </a>
+                  <a class="dropdown-item" href="/directorreview">
+                    Director
+                  </a>
+                  <a class="dropdown-item" href="/partnerreview">
+                    Partner
+                  </a>
+                </div>
+              </div>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <button className="btn btn-lg aptab-btn">
                 <a
                   href="/admin"
-                  style={{ textDecoration: "none", color: "white" }}
+                  style={{ textDecoration: "none", color: "black" }}
                 >
                   Back to Main Dashboard
                 </a>
               </button>
             </div>
             <div className="col-lg-3 mt-2 mb-2">
-              <button type="button" class="btn btn-outline-info">
-                <a
-                  href="/displaymyprofile"
-                  style={{ textDecoration: "none", color: "#276678" }}
-                >
-                  My Personal Profile
-                </a>
-              </button>
               <br />
               <br />
             </div>
@@ -97,7 +111,7 @@ export default class AdminTab1 extends Component {
             <div className="col-lg-9 mt-2 mb-2">
               <h1 className="h3 mb-3 font-weight-normal">Partner Reviews</h1>
             </div>
-            <div className="col-lg-3 mt-2 mb-2">
+            <div className="col-lg-2 mt-2 mb-2 search-bar">
               <input
                 className="form-control"
                 type="search"
@@ -108,8 +122,8 @@ export default class AdminTab1 extends Component {
             </div>
           </div>
           <table className="table table-hover" style={{ marginTop: "30px" }}>
-            <thead>
-              <tr class="bg-info">
+            <thead className="tblhead">
+              <tr>
                 <th scope="col"></th>
                 <th scope="col">Review Id</th>
                 <th scope="col">Report Name</th>
@@ -145,19 +159,16 @@ export default class AdminTab1 extends Component {
                   <td>{posts.feedback}</td>
                   <td>{posts.partnerStatus}</td>
                   <td>
-                    <a
-                      className="btn btn-warning"
-                      href={`/editpartnerreview/${posts._id}`}
-                    >
-                      <i className="fas fa-edit"></i>&nbsp;Edit
+                    <a href={`/post/${posts._id}`}>
+                      <i class="far fa-eye"></i>
                     </a>
-                    &nbsp;
-                    <a
-                      className="btn btn-danger"
-                      href="#"
-                      onClick={() => this.onDelete(posts._id)}
-                    >
-                      <i className="fas fa-trash-alt"></i>&nbsp;Delete
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                    <a href={`/editpartnerreview/${posts._id}`}>
+                      <i class="far fa-edit"></i>
+                    </a>
+                    &nbsp; &nbsp; &nbsp;
+                    <a href="#" onClick={() => this.onDelete(posts._id)}>
+                      <i class="far fa-trash-alt"></i>
                     </a>
                   </td>
                 </tr>

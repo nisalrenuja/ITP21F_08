@@ -24,7 +24,8 @@ router.post("/attendance/save", (req, res) => {
 
 //get attendance table (GET)
 router.get("/attendances", (req, res) => {
-  Attendances.find().exec((err, attendances) => {
+  Attendances.find().sort({ "empno": -1 }).exec((err, attendances) => {
+    var acount = attendances.length;
     if (err) {
       return res.status(400).json({
         error: err,
@@ -33,15 +34,16 @@ router.get("/attendances", (req, res) => {
     return res.status(200).json({
       success: true,
       existingAttendances: attendances,
+      attendanceCount:acount
     });
   });
 });
 
 //get a specific attendance (GET)
-router.get("/attendance/:att_id", (req, res) =>{
-  let attendanceId = req.params.att_id;
+router.get("/attendance/:id", (req, res) =>{
+  let attendanceId = req.params.id;
 
-  Attendances.findById(postId, (err, attendance) =>{
+  Attendances.findById(attendanceId, (err, attendance) =>{
     if(err){
       return res.status(400).json({
         success: false,
@@ -57,9 +59,9 @@ router.get("/attendance/:att_id", (req, res) =>{
 
 
 //update post (PUT)
-router.put("/attendance/update/:att_id", (req, res) => {
+router.put("/attendance/update/:id", (req, res) => {
   Attendances.findByIdAndUpdate(
-    req.params.att_id,
+    req.params.id,
     {
       $set: req.body,
     },
@@ -77,14 +79,15 @@ router.put("/attendance/update/:att_id", (req, res) => {
 
 //delete post
 //since we are deleting a specific post ... need to have an id
-router.delete("/attendance/delete/:att_id", (req, res) => {
-  Attendances.findByIdAndRemove(req.params.att_id).exec((err, deletedAttendance) => {
+router.delete("/attendance/delete/:id", (req, res) => {
+  Attendances.findByIdAndRemove(req.params.id).exec((err, deletedAttendance) => {
     if (err)
       return res.status(400).json({
-        message: "Delete Unsuccessful!!", err
+        message: "Attendance Record Delete Unsuccessful!!", err
       });
     return res.status(200).json({
-      message: "Delete Successful!!", deletedAttendance
+      message: "Attendance Record Delete Successful!!", 
+      deletedAttendance
     });
   });
 });

@@ -20,6 +20,7 @@ export default class AdminTab1 extends Component {
       if (res.data.success) {
         this.setState({
           posts: res.data.existingPosts
+          // reviewCount: res.data.reviewCount,
         });
         console.log(this.state.posts);
       }
@@ -65,14 +66,30 @@ export default class AdminTab1 extends Component {
             <div className="col-lg-9 mt-2 mb-2">
               <Clock />
               <br />
-              <button class="btn btn-lg aptab-btn">
-                <a
-                  href="managerreview"
-                  style={{ textDecoration: "none", color: "black" }}
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <div class="dropdown">
+                <button
+                  className="btn btn-secondary dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
                 >
-                  Manager Review
-                </a>
-              </button>
+                  Review As a
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="/managerreview">
+                    Manager
+                  </a>
+                  <a class="dropdown-item" href="/directorreview">
+                    Director
+                  </a>
+                  <a class="dropdown-item" href="/partnerreview">
+                    Partner
+                  </a>
+                </div>
+              </div>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <button class="btn btn-lg aptab-btn">
                 <a
@@ -154,6 +171,11 @@ export default class AdminTab1 extends Component {
               ))}
             </tbody>
           </table>
+          <button className="btn btn-success">
+            <a href="/add" style={{ textDecoration: "none", color: "white" }}>
+              Create New Review
+            </a>
+          </button>
         </div>
       </div>
     );

@@ -50,7 +50,7 @@ router.get("/CreateNotice/:id", (req,res) =>{
         }
         return res.status(200).json({
             success: true,
-            payroll
+            existingNotices
         });
     });
 });
@@ -63,7 +63,7 @@ router.put('/CreateNotice/update/:id', (req,res)=>{
         {
             $set:req.body
         },
-        (err,post)=>{
+        (err, existingNotices)=>{
             if(err){
                 return res.status(400).json({error:err});
             }
@@ -84,7 +84,7 @@ router.delete('/CreateNotice/delete/:id',(req,res) =>{
         });
 
         return res.json({
-            message:"Delete Successful",deletedNotice
+            message:"Delete Successfull",deletedNotice
         });
     });
 });

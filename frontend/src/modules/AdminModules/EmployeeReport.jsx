@@ -36,8 +36,8 @@ export default class EmployeeReport extends Component {
     axios.get("http://localhost:5000/pendingassignments").then(res => {
       if (res.data.success) {
         this.setState({
-          pending2: res.data.Pending,
-          pendingtotal2: res.data.o
+          pending2: res.data.assignmentsassigned,
+          pendingtotal2: res.data.count
         });
         console.log(this.state.pending2);
       }
@@ -107,16 +107,16 @@ export default class EmployeeReport extends Component {
                   <tr key={index}>
                     <td>
                       <a
-                        href={`/assignment/${pending.assignment_name}`}
+                        href={`/assignment/${pending.report}`}
                         style={{ textDecoration: "none" }}
                       >
                         {pending.report}
                       </a>
                     </td>
                     <td>{pending.sub_date}</td>
-                    {pending.work.map(item => (
-                      <td>{item.deadline}</td>
-                    ))}
+
+                    <td>{pending.deadline}</td>
+
                     <td>{pending.points}</td>
                     <td>{pending.feedback}</td>
                     <td>{pending.status}</td>

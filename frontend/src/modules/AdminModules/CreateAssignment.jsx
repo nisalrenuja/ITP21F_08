@@ -44,7 +44,7 @@ export default class CreateAssignment extends Component {
     console.log(name);
     axios.get(`http://localhost:5000/checkassigned/${name}`).then(res => {
       if (res.data.success) {
-        alert("Assigned to " + res.data.l + " assignment/s!");
+        alert("Employee is Assigned to " + res.data.l + " Assignment/s!");
       }
     });
   };
