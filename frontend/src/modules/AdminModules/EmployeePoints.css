@@ -71,7 +71,7 @@ transform: rotate(0.21deg);
 width: 650px;
 height: 80px;
 left: 400px;
-top: 800px;
+top: 780px;
 
 background: #1687A7;
 backdrop-filter: blur(4px);
@@ -85,6 +85,7 @@ width: 1000px;
 height: 300px;
 left: 50px;
 top: 375px;
+overflow-y: auto;
 
 background: #F6F5F5;
 backdrop-filter: blur(4px);

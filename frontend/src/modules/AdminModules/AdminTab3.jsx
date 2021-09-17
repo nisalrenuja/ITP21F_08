@@ -17,10 +17,19 @@ export default class AdminTab3 extends Component {
       if (res.data.success) {
         this.setState({
           employee: res.data.existingemployees,
-          employeecount: res.data.employeeCount
+          employeecount: res.data.employeeCount,
+          auditcount: res.data.empAuditCount
         });
         console.log(this.state.employee);
         console.log(this.state.employeecount);
+      }
+    });
+    axios.get("http://localhost:5000/employees/counts").then(res => {
+      if (res.data.success) {
+        this.setState({
+          audit: res.data.auditcount,
+          tax: res.data.taxcount
+        });
       }
     });
   }
@@ -77,7 +86,10 @@ export default class AdminTab3 extends Component {
               placeholder="&nbsp;&nbsp;Enter Employee Name"
             />
           </div>
-          <h2 class="butah">Total Employees ( {this.state.employeecount} )</h2>
+          <h2 class="butah">
+            Total Employees ( {this.state.employeecount} ) : &nbsp; Audit (
+            {this.state.audit}) &nbsp; Tax({this.state.tax})
+          </h2>
           <table className="table table-hover table1">
             <thead class="thead">
               <tr>
@@ -86,6 +98,7 @@ export default class AdminTab3 extends Component {
                 <th scope="col">Email</th>
                 <th scope="col">Joined Date</th>
                 <th scope="col">Status</th>
+                <th scope="col">Type</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
@@ -101,6 +114,7 @@ export default class AdminTab3 extends Component {
                   <td>{employees.email}</td>
                   <td>{employees.commencement_date}</td>
                   <td>{employees.status}</td>
+                  <td>{employees.sector}</td>
                   <td>
                     <a href={``}>
                       <i class="far fa-eye"></i>
