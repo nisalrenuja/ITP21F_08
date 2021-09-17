@@ -18,7 +18,7 @@ router.post("/lapassignments/save/", (req, res) => {
 });
 //get post
 router.get("/laps/ass", (req, res) => {
-  laptop.find().exec((err, laps) => {
+  laptop.find({ $and: [{ status: { $ne: "Repairing" } }, { status: { $ne: "Discarded" } }] }).exec((err, laps) => {
     return res.status(200).json({
       success: true,
       laps: laps,
@@ -38,6 +38,32 @@ router.get("/checklapassigned/:id", (req, res) => {
   let lapid = req.params.id;
   laptop_assignment
     .find({ $and: [{ lapid: lapid }, { status: { $ne: "Completed" } }] })
+    .exec((err, check) => {
+      var l = check.length;
+      return res.status(200).json({
+        success: true,
+        check: check,
+        l: l,
+      });
+    });
+});
+router.get("/lapsassigned/", (req, res) => {
+  
+  laptop_assignment
+    .find( { status: { $ne: "Completed" } } )
+    .exec((err, check) => {
+      var l = check.length;
+      return res.status(200).json({
+        success: true,
+        check: check,
+        l: l,
+      });
+    });
+});
+router.get("/lapscomp/", (req, res) => {
+  
+  laptop_assignment
+    .find( { status: "Completed" } )
     .exec((err, check) => {
       var l = check.length;
       return res.status(200).json({

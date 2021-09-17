@@ -47,7 +47,7 @@ import PayrollPage from "../pages/PayrollPage/PayrollPage";
 import CreatePayroll from "../modules/AdminModules/CreatePayroll";
 import DisplayPayroll from "../modules/AdminModules/DisplayPayroll";
 import EditPayroll from "../modules/AdminModules/EditPayroll";
-
+import LapReport from "../pages/AdminPage/LapAlloReport";
 import ManagerReview from "../modules/AdminModules/ManagerReview";
 import EditManagerReview from "../modules/AdminModules/ManagerReview";
 import DirectorReview from "../modules/AdminModules/DirectorReview";
@@ -138,6 +138,7 @@ const AppRoutes = () => (
         <Route path="/post/:id" exact component={DisplayReview}></Route>
         <Route exact path="/editlapallo/:assignment" component={EditLapAllo} />
         <Route path="/reportwork" component={WorkReport} exact />
+        <Route path="/lapalloreport" component={LapReport} exact />
         <Route path="/InsertEmployee" component={InsertEmployee} exact />
         /*Anujitha Routes*/
         <Route
