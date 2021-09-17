@@ -16,7 +16,6 @@ const Quarter_Performance_Schema = new mongoose.Schema({
       required: true,
     },
 
-    
     from:{
       type:Date,
       required: true,
@@ -26,6 +25,7 @@ const Quarter_Performance_Schema = new mongoose.Schema({
       type:Date,
       required: true,
     },
+
     approved_reports:{
       type: Number,
       required: true, 

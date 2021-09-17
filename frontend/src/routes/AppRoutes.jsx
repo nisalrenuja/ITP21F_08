@@ -57,6 +57,7 @@ import EditPartnerReview from "../modules/AdminModules/PartnerReview";
 import AllReports from "../pages/AdminPage/AllReports";
 import CreateReport from "../pages/AdminPage/CreateReport";
 import Quarter_Performance from "../pages/AdminPage/Quarter_Performance";
+import Report from "../pages/AdminPage/CreateReport";
 
 import EditLaptopRepair from "../modules/AdminModules/EditLaptopRepair";
 import CreateLaptopRepair from "../modules/AdminModules/CreateLaptopRepair";
@@ -144,7 +145,7 @@ const AppRoutes = () => (
           component={Quarter_Performance}
           exact
         />
-        <Route path="/reports" component={CreateReport} exact />
+        <Route path="/reports/:id" component={CreateReport} exact />
         <Route path="/allreports" component={AllReports} exact />
         <Route path="/companyperformance" component={CompanyPerfomance} exact />
         <Route path="/EditEmployee/:id" component={EditEmployee} exact />

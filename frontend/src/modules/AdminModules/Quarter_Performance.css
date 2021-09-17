@@ -275,3 +275,17 @@
   
     color: #1687a7;
   }
+
+  .anuform{
+    position: absolute;
+    width: 900px;
+    height: 540px;
+    left: 100px;
+    top: 50px;
+
+  background: #FFFFFF;
+  border: 1px solid #2D93B0;
+  box-sizing: border-box;
+  border-radius: 9px;
+  }
+
