@@ -1,0 +1,289 @@
+.senamain3 {
+    width: 100%;
+    height: 850px;
+    white-space: nowrap;
+    position: relative;
+    overflow-x: scroll;
+    overflow-y: scroll;
+  }
+
+  .senahead1c {
+    position: absolute;
+    width: 800px;
+    height: 80px;
+    left: 50px;
+    top: 50px;
+  
+    font-family: Inter;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 58px;
+  
+    color: #1687a7;
+  }
+
+  .senaline1c {
+    position: absolute;
+    width: 1000.03px;
+    height: 0px;
+    left: 50px;
+    top: 130px;
+  
+    border: 3px solid #d3e0ea;
+    transform: rotate(0.21deg);
+  }
+  .senamain33 {
+    position: absolute;
+    width: 100%;
+    height: 1100px;
+    left: 50px;
+    top: 200px;
+  
+    background: #f6f5f5;
+    backdrop-filter: blur(4px);
+    /* Note: backdrop-filter has minimal browser support */
+  
+    border-radius: 15px;
+  }
+
+  .senaic {
+    position: absolute;
+    width: 192px;
+    height: 33px;
+    left: 100px;
+    top: 100px;
+  
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.00022em;
+  
+    color: #1687a7;
+  }
+  .senaicc {
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    left: 200px;
+    top: 100px;
+  
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
+  }
+
+  .senaiic {
+    position: absolute;
+    width: 192px;
+    height: 33px;
+    left: 100px;
+    top: 175px;
+  
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.00022em;
+  
+    color: #1687a7;
+  }
+  .senaiicc {
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    left: 200px;
+    top: 175px;
+  
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
+  }
+
+  .senaiiic {
+    position: absolute;
+    width: 192px;
+    height: 33px;
+    left: 375px;
+    top: 175px;
+  
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.00022em;
+  
+    color: #1687a7;
+  }
+  .senaiiicc {
+    position: absolute;
+    width: 350px;
+    height: 40px;
+    left: 500px;
+    top: 175px;
+  
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
+  }
+
+  .senaivc {
+    position: absolute;
+    width: 192px;
+    height: 33px;
+    left: 100px;
+    top: 275px;
+  
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.00022em;
+  
+    color: #1687a7;
+  }
+  .senaivcc {
+    position: absolute;
+    width: 450px;
+    height: 40px;
+    left: 250px;
+    top: 275px;
+  
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
+  }
+
+
+.senavc {
+    position: absolute;
+    width: 192px;
+    height: 33px;
+    left: 100px;
+    top: 350px;
+  
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.00022em;
+  
+    color: #1687a7;
+  }
+  .senavcc {
+    position: absolute;
+    width: 450px;
+    height: 125px;
+    left: 250px;
+    top: 350px;
+  
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
+  }
+
+  .senavic {
+    position: absolute;
+    width: 192px;
+    height: 33px;
+    left: 100px;
+    top: 655px;
+  
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.00022em;
+  
+    color: #1687a7;
+  }
+  .senavicc {
+    position: absolute;
+    width: 350px;
+    height: 40px;
+    left: 300px;
+    top: 655px;
+  
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
+  }
+
+  .senaviic {
+    position: absolute;
+    width: 192px;
+    height: 33px;
+    left: 100px;
+    top: 725px;
+  
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.00022em;
+  
+    color: #1687a7;
+  }
+  .senaviicc {
+    position: absolute;
+    width: 350px;
+    height: 40px;
+    left: 300px;
+    top: 725px;
+  
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
+  }
+
+  .senavcattach {
+    position: absolute;
+    width: 192px;
+    height: 33px;
+    left: 100px;
+    top: 500px;
+  
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.00022em;
+  
+    color: #1687a7;
+  }
+  .senavccattach {
+    position: absolute;
+    width: 450px;
+    height: 125px;
+    left: 250px;
+    top: 500px;
+  
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
+  }

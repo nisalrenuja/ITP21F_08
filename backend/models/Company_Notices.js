@@ -27,6 +27,7 @@ const company_notices_Schema = new mongoose.Schema({
     },
    published_date:{
       type: Date,
+      required: true
       
    },
   

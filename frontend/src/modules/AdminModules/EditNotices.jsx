@@ -23,7 +23,7 @@ export default class EditNotices extends Component {
 
   handleInputChange = e => {
     const { name, value } = e.target;
-    this.setstate({
+    this.setState({
       ...this.state,
       [name]: value
     });
@@ -71,7 +71,6 @@ export default class EditNotices extends Component {
           alert("Notice Updated Successfully");
         }
       });
-    this.props.history.push("/admin");
   };
 
   componentDidMount() {
