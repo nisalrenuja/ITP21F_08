@@ -17,7 +17,7 @@ export default class PendingAssignment extends Component {
     const p = this.props.dataFromParent;
     console.log(p);
 
-    axios.get(`http://localhost:5000/checkassigned/${p}`).then(res => {
+    axios.get(`http://localhost:5000/checkcompleted/${p}`).then(res => {
       if (res.data.success) {
         this.setState({
           assignment: res.data.check
@@ -31,7 +31,7 @@ export default class PendingAssignment extends Component {
     return (
       <div className="container">
         <div class="main">
-          <h2 class="heademp">Pending Assignments</h2>
+          <h2 class="heademp">Completed Assignments</h2>
           <hr class="lineemp"></hr>
           <a href="/AllEmployees">
             <button class="div1">
@@ -100,7 +100,9 @@ export default class PendingAssignment extends Component {
             </tbody>
             &nbsp;
             <tfoot class="tfoot">
-              <a href="/InsertEmployee">Add New Employee</a>
+              <a href="/InsertEmployee">
+                <i class="fas fa-plus"></i>&nbsp;New Employee
+              </a>
             </tfoot>
           </table>
         </div>

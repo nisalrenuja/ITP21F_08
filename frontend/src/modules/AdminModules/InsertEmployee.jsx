@@ -105,6 +105,10 @@ export default class InsertEmployee extends Component {
     return true;
   };
 
+  handleCancelClick = () => {
+    this.setState({ redirectToReferrer: true });
+  };
+
   onSubmit = e => {
     e.preventDefault();
 
@@ -255,7 +259,7 @@ export default class InsertEmployee extends Component {
             <p class="label2">Employee Name: </p>
             <input
               type="text"
-              class="box2"
+              class="bbox2"
               id="name"
               name="name"
               value={this.state.name}
@@ -578,27 +582,27 @@ export default class InsertEmployee extends Component {
               className="btn btn-light"
               type="cancel"
               style={{
-                marginTop: "300px",
-                marginLeft: "900px",
-                marginRight: "50px",
+                marginTop: "240px",
+                marginLeft: "920px",
+                marginRight: "20px",
                 borderRadius: "60px",
                 filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))"
               }}
-              onClick={() => {}}
+              onClick={this.handleCancelClick}
             >
-              <i></i>&nbsp;Cancel
+              Cancel
             </button>
             <button
               className="btn btn-success"
               type="submit"
               style={{
-                marginTop: "300px",
+                marginTop: "240px",
                 borderRadius: "60px",
                 filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))"
               }}
               onClick={this.onSubmit}
             >
-              <i></i>&nbsp; Save
+              <i></i> Save
             </button>
           </center>
         </form>

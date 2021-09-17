@@ -50,12 +50,12 @@ export default class AdminTab3 extends Component {
   render() {
     return (
       <div className="container">
-        <div class="main">
+        <div class="budmain">
           <h2 class="heademp">Employees</h2>
           <hr class="lineemp"></hr>
           <a href="/AllEmployees">
             <button class="div1">
-              <p class="txt1">Employee List</p>
+              <p class="emptxt1">Employee List</p>
             </button>
           </a>
           <a href="/EmployeePoints">
@@ -68,18 +68,16 @@ export default class AdminTab3 extends Component {
               <p>Employee Report</p>
             </button>
           </a>
-          <div class="div3">
-            <p class="txt3">Filter by</p>
+          <div class="buddiv3">
+            <p class="budtxt3">Search by</p>
             <input
-              class="select1"
+              class="budselect1"
               type="text"
               onChange={this.handleSearchArea}
+              placeholder="&nbsp;&nbsp;Enter Employee Name"
             />
-            <a className="btn btn-info search2">
-              <i className="fas fa-search2"></i>&nbsp;Search
-            </a>
           </div>
-          <h2 class="tah">Total Employees ( {this.state.employeecount} )</h2>
+          <h2 class="butah">Total Employees ( {this.state.employeecount} )</h2>
           <table className="table table-hover table1">
             <thead class="thead">
               <tr>
@@ -121,9 +119,7 @@ export default class AdminTab3 extends Component {
             </tbody>
             &nbsp;
             <tfoot class="tfoot">
-              <a href="/InsertEmployee">
-                <i class="fas fa-plus"></i>&nbsp;New Employee
-              </a>
+              <a href="/InsertEmployee">Add New Employee</a>
             </tfoot>
           </table>
         </div>
