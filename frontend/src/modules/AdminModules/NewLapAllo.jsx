@@ -130,6 +130,7 @@ export default class NewLapAllo extends Component {
                 name="assignment_name"
                 value={this.state.assignment_name}
                 onChange={this.handleInputChange}
+                required
               />
               <p class="iic">Client No: </p>
               <input
@@ -139,6 +140,7 @@ export default class NewLapAllo extends Component {
                 name="client_no"
                 value={this.state.client_no}
                 onChange={this.handleInputChange}
+                required
               />
               <p class="iiic">Executive ID: </p>
               <input
@@ -148,6 +150,7 @@ export default class NewLapAllo extends Component {
                 name="execid"
                 value={this.state.execid}
                 onChange={this.handleInputChange}
+                required
               />
               <p class="ivc">Employee Number: </p>
               <input
@@ -157,6 +160,7 @@ export default class NewLapAllo extends Component {
                 name="empno"
                 value={this.state.empno}
                 onChange={this.handleInputChange}
+                required
               />
               <p class="vc">Special Notes(not compulsory): </p>
               <input type="text" class="vcc" id="spec" name="spec" />
@@ -168,6 +172,7 @@ export default class NewLapAllo extends Component {
                 name="date_allocated"
                 value={this.state.date_allocated}
                 onChange={this.handleInputChange}
+                required
               />
               <p class="viic">Due Date: </p>
               <input
@@ -177,6 +182,7 @@ export default class NewLapAllo extends Component {
                 name="date_received"
                 value={this.state.date_received}
                 onChange={this.handleInputChange}
+                required
               />
               <div class="staff">
                 <center>
