@@ -16,9 +16,7 @@ import LapAllo from "../pages/AdminPage/Laps";
 import AllAssignmnets from "../pages/AdminPage/AllAssignments";
 import CreateAssignment from "../pages/AdminPage/CreateAssignmentt";
 import CreateLapAllo from "../pages/AdminPage/CreateLapAllo";
-import EmployeePoints from "../pages/AdminPage/EmployeePoints";
-import AllEmployees from "../pages/AdminPage/AllEmployees";
-import InsertEmployee from "../pages/AdminPage/InsertEmployee";
+
 import EditAssignment from "../pages/AdminPage/EditAssignment";
 import Assignment from "../pages/AdminPage/Assignment";
 import ReviewPage from "../pages/ReviewPage/ReviewPage";
@@ -31,7 +29,7 @@ import DisplayReview from "../modules/AdminModules/DisplayReview";
 import EditLapAllo from "../pages/AdminPage/EditLapAllo";
 import WorkReport from "../pages/AdminPage/WorkReport";
 import CompanyPerfomance from "../pages/AdminPage/CompanyPerformance";
-import EditEmployee from "../pages/AdminPage/EditEmployee";
+
 import CreateExecutive from "../modules/AdminModules/CreateExecutive";
 import NewExecutive from "../modules/AdminModules/NewExecutive";
 import EditExecutive from "../modules/AdminModules/EditExecutive";
@@ -39,9 +37,7 @@ import DisplayExecutive from "../modules/AdminModules/DisplayExecutive";
 import CreateNotice from "../modules/AdminModules/CreateNotice";
 import TopPerformers from "../modules/AdminModules/TopPerformers";
 import NoticeComPerf from "../modules/AdminModules/NoticeComPerf";
-import PendingAssignment from "../pages/AdminPage/PendingAssignment";
-import EmployeeReport from "../modules/AdminModules/EmployeeReport";
-import EmpReportUpload from "../modules/AdminModules/EmpReportUpload";
+
 import EditNotices from "../modules/AdminModules/EditNotices"; //edit notices
 import PayrollPage from "../pages/PayrollPage/PayrollPage";
 import CreatePayroll from "../modules/AdminModules/CreatePayroll";
@@ -82,6 +78,15 @@ import CreateAttendance from "../modules/AdminModules/CreateAttendance";
 
 import MonthlySalary from "../modules/AdminModules/MonthlySalary";
 import CreateMSalary from "../modules/AdminModules/CreateMSalary";
+
+import EmployeePoints from "../pages/AdminPage/EmployeePoints";
+import AllEmployees from "../pages/AdminPage/AllEmployees";
+import InsertEmployee from "../pages/AdminPage/InsertEmployee";
+import EditEmployee from "../pages/AdminPage/EditEmployee";
+import PendingAssignment from "../pages/AdminPage/PendingAssignment";
+import CompletedAssignment from "../pages/AdminPage/CompletedAssignment";
+import EmployeeReport from "../modules/AdminModules/EmployeeReport";
+import EmpReportUpload from "../modules/AdminModules/EmpReportUpload";
 
 const AppRoutes = () => (
   <div>
@@ -155,6 +160,11 @@ const AppRoutes = () => (
           exact
           path="/PendingAssignments/:id"
           component={PendingAssignment}
+        />
+        <Route
+          exact
+          path="/CompletedAssignments/:id"
+          component={CompletedAssignment}
         />
         <Route
           path="/displayexecutive/:id"
