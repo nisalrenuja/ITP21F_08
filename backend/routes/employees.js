@@ -2,9 +2,11 @@ const express = require("express");
 const employees = require("../models/employees");
 const assignment_assignedtostaff = require("../models/assignment_assignedtostaff");
 const Posts = require("../models/Reviews");
+const Points = require("../models/points");
 
 const router = express.Router();
 
+//save employee details
 router.post("/employees/save", (req, res) => {
   let newemployees = new employees(req.body);
   newemployees.save((err) => {
@@ -19,11 +21,23 @@ router.post("/employees/save", (req, res) => {
   });
 });
 
+router.post("/points/save", (req, res) => {
+  let newemployees = new employees(req.body);
+  newemployees.save((err) => {
+    if (err) {
+      return res.status(400).json({
+        error: err,
+      });
+    }
+    return res.status(200).json({
+      success: "points saved succesfully",
+    });
+  });
+});
 
-//get post
-router.get("/employees", (req, res) => {
-  
-  employees.find().sort({ "empno": -1 }).exec((err, employees) => {
+//get employees, assignments, reviews
+router.get("/employees", (req, res) => {  
+  employees.find().sort({ "empno": -1 }).exec((err, employees) => { 
     var count = employees.length;
     if (err) {
       return res.status(400).json({ success: false, err });
@@ -32,7 +46,34 @@ router.get("/employees", (req, res) => {
         success: true,
         existingemployees: employees,
         employeeCount:count,
-        
+     })     
+    });
+});
+
+router.get("/employees/counts", (req, res) => {  
+  employees.find({sector : { $eq: "Audit" }}).count().exec((err, audit) => { employees.find({sector : { $eq: "Tax" }}).count().exec((err, tax) => { 
+    if (err) {
+      return res.status(400).json({ success: false, err });
+    }
+      return res.status(200).json({
+        success: true,
+        auditcount: audit,
+        taxcount: tax,
+     })     
+    });
+    });
+});
+
+router.get("/employees/tax", (req, res) => {  
+  employees.find().sort({ "empno": -1 }).exec((err, employees) => { 
+    var count = employees.length;
+    if (err) {
+      return res.status(400).json({ success: false, err });
+    }
+      return res.status(200).json({
+        success: true,
+        existingemployees: employees,
+        employeeCount:count,
      })     
     });
 });
@@ -58,6 +99,7 @@ router.get("/employeepoints", (req, res) => {
 router.get("/employeepoints2", (req, res) => {
   let empno = req.params.name;
   employees.aggregate([
+    { $sort : {points:1}},
     {
       "$lookup": {
         "from": "assignment_assignedtostaffs",
