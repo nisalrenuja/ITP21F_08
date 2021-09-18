@@ -38,7 +38,7 @@ import CreateNotice from "../modules/AdminModules/CreateNotice";
 import TopPerformers from "../modules/AdminModules/TopPerformers";
 import NoticeComPerf from "../modules/AdminModules/NoticeComPerf";
 
-import EditNotices from "../modules/AdminModules/EditNotices"; //edit notices
+import EditNotices from "../pages/AdminPage/EditNotices"; //edit notices
 import PayrollPage from "../pages/PayrollPage/PayrollPage";
 import CreatePayroll from "../modules/AdminModules/CreatePayroll";
 import DisplayPayroll from "../modules/AdminModules/DisplayPayroll";
