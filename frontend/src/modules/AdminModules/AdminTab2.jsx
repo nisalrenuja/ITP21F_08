@@ -82,6 +82,7 @@ export default class AdminTab2 extends Component {
           <table className="table table-hover anutable1">
             <thead class="anuthead">
               <tr>
+                <th scope="col">Review ID</th>
                 <th scope="col">Report Name</th>
                 <th scope="col">Points</th>
                 <th scope="col">Feedback</th>
@@ -93,10 +94,14 @@ export default class AdminTab2 extends Component {
               {this.state.posts.map((posts, index) => (
                 <tr key={index}>
                   <td>
-                    <a href={`/reports/`} style={{ textDecoration: "none" }}>
-                      {posts.report}
+                    <a
+                      href={`/reports/${posts._id}`}
+                      style={{ textDecoration: "none" }}
+                    >
+                      {posts.execid_review}
                     </a>
                   </td>
+                  <td>{posts.report}</td>
                   <td>{posts.points}</td>
                   <td>{posts.feedback}</td>
                   <td>{posts.status}</td>

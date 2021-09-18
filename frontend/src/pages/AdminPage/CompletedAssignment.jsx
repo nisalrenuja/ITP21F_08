@@ -10,11 +10,10 @@ import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import LapAllo from "../../modules/AdminModules/LapAllo";
-import CreateAssignment from "../../modules/AdminModules/CreateAssignment";
+import PendingAssignments from "../../modules/AdminModules/PendingAssignment";
+import CompletedAssignments from "../../modules/AdminModules/CompletedAssignment";
 
-import CreateReport from "../../modules/AdminModules/CreateReport";
-
-const Report = ({ history, match }) => {
+const CompletedAssignment = ({ history, match }) => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -51,15 +50,15 @@ const Report = ({ history, match }) => {
         <Container>
           {selectedMenuOption === "User Executive" ? (
             <AdminTab1 />
-          ) : selectedMenuOption === "Reports Management" ? (
-            <CreateReport dataFromParent={match.params.id} />
+          ) : selectedMenuOption === "MenuItem 2" ? (
+            <AdminTab2 />
           ) : selectedMenuOption === "Employees" ? (
-            <AdminTab3 />
+            <CompletedAssignments dataFromParent={match.params.id} />
           ) : selectedMenuOption === "Work Allocation" ? (
-            <CreateAssignment />
-          ) : selectedMenuOption === "MenuItem 5" ? (
+            <AdminTab4 />
+          ) : selectedMenuOption === "Notice Management" ? (
             <AdminTab5 />
-          ) : selectedMenuOption === "MenuItem 6" ? (
+          ) : selectedMenuOption === "Attendance & Payroll" ? (
             <AdminTab6 />
           ) : selectedMenuOption === "MenuItem 7" ? (
             <AdminTab7 />
@@ -68,7 +67,7 @@ const Report = ({ history, match }) => {
           )}
         </Container>
       ) : (
-        <div> </div>
+        <div></div>
       )}
       <SideNav
         onMenuItemSelect={updateSelectedMenuOption}
@@ -78,4 +77,4 @@ const Report = ({ history, match }) => {
   );
 };
 
-export default Report;
+export default CompletedAssignment;

@@ -68,6 +68,7 @@ export default class InsertEmployee extends Component {
     let emailError = "";
     let statusError = "";
     let typeError = "";
+    let contactError = "";
 
     if (!this.state.empno) {
       empnoError = "**EmpNo Cannot Be Blank";
@@ -84,25 +85,40 @@ export default class InsertEmployee extends Component {
     if (!this.state.status) {
       statusError = "**Status Cannot Be Blank";
     }
-    if (!this.state.type) {
+    if (!this.state.sector) {
       typeError = "**Type Cannot Be Blank";
     }
+    if (!this.state.contact) {
+      contactError = "**Contact Number Cannot Be Blank";
+    }
 
-    if (emailError || nameError || empnoError || statusError || typeError) {
+    if (
+      emailError ||
+      nameError ||
+      empnoError ||
+      statusError ||
+      typeError ||
+      contactError
+    ) {
       //emaiError also equal to emailError:emailError in Js.
       this.setState({
         emailError,
         nameError,
         empnoError,
         statusError,
-        typeError
+        typeError,
+        contactError
       });
       alert(
-        "Invalid Form Data. Please Check Emp No, Name, Email, Status & Type!!!"
+        "Invalid Form Data. Please Check Emp No, Name, Email, Status, Type & Contact!!!"
       );
       return false;
     }
     return true;
+  };
+
+  handleCancelClick = () => {
+    this.setState({ redirectToReferrer: true });
   };
 
   onSubmit = e => {
@@ -255,7 +271,7 @@ export default class InsertEmployee extends Component {
             <p class="label2">Employee Name: </p>
             <input
               type="text"
-              class="box2"
+              class="bbox2"
               id="name"
               name="name"
               value={this.state.name}
@@ -302,7 +318,19 @@ export default class InsertEmployee extends Component {
               name="contact"
               value={this.state.contact}
               onChange={this.handleInputChange}
+              placeholder="Enter Contact Number (Required)"
+              required
             />
+            <div
+              style={{
+                color: "red",
+                position: "absolute",
+                left: "500px",
+                top: "245px"
+              }}
+            >
+              {this.state.contactError}
+            </div>
             <p class="label5">DOB: </p>
             <input
               type="date"
@@ -533,26 +561,38 @@ export default class InsertEmployee extends Component {
             />
           </div>
           <p class="label29">Type: </p>
-          <input
+          <select
+            defaultValue={"DEFAULT"}
             type="text"
             class="box29"
-            id="type"
-            name="type"
-            value={this.state.type}
+            id="sector"
+            name="sector"
             onChange={this.handleInputChange}
             placeholder="Enter 'Audit' / 'Tax' (Required)"
-          />
+          >
+            <option value="DEFAULT" disabled>
+              Select Type
+            </option>
+            <option value="Audit">Audit</option>
+            <option value="Tax">Tax</option>
+          </select>
           <p class="label30">Status: </p>
-          <input
+          <select
+            defaultValue={"DEFAULT"}
             type="text"
             class="box30"
             id="status"
             name="status"
-            value={this.state.status}
             onChange={this.handleInputChange}
             placeholder="Enter 'Trainee' / 'Senior' (Required)"
             required
-          />
+          >
+            <option value="DEFAULT" disabled>
+              Select Status
+            </option>
+            <option value="Trainee">Trainee</option>
+            <option value="Senior">Senior</option>
+          </select>
           <div
             style={{
               color: "red",
@@ -578,27 +618,27 @@ export default class InsertEmployee extends Component {
               className="btn btn-light"
               type="cancel"
               style={{
-                marginTop: "300px",
-                marginLeft: "900px",
-                marginRight: "50px",
+                marginTop: "240px",
+                marginLeft: "920px",
+                marginRight: "20px",
                 borderRadius: "60px",
                 filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))"
               }}
-              onClick={() => {}}
+              onClick={this.handleCancelClick}
             >
-              <i></i>&nbsp;Cancel
+              Cancel
             </button>
             <button
               className="btn btn-success"
               type="submit"
               style={{
-                marginTop: "300px",
+                marginTop: "240px",
                 borderRadius: "60px",
                 filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))"
               }}
               onClick={this.onSubmit}
             >
-              <i></i>&nbsp; Save
+              <i></i> Save
             </button>
           </center>
         </form>

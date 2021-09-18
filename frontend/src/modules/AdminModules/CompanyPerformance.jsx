@@ -6,24 +6,34 @@ export default class CompanyPerfomance extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: []
+      Performances: []
     };
   }
 
   componentDidMount() {
-    this.retrievePosts();
+    this.retrievePerformances();
   }
 
-  retrievePosts() {
+  retrievePerformances() {
     axios.get("http://localhost:5000/performance").then(res => {
       if (res.data.success) {
         this.setState({
-          posts: res.data.existingPosts
+          posts: res.data.Performances
         });
-        console.log(this.state.posts);
+        console.log(this.state.Performances);
       }
     });
   }
+
+  handleSearchArea = e => {
+    const searchKey = e.currentTarget.value;
+
+    axios.get("http://localhost:5000/performance").then(res => {
+      if (res.data.success) {
+        this.filterData(res.data.Performances, searchKey);
+      }
+    });
+  };
 
   render() {
     return (
@@ -67,22 +77,22 @@ export default class CompanyPerfomance extends Component {
               </tr>
             </thead>
             <tbody class="anutbody1">
-              {this.state.posts.map((posts, index) => (
+              {this.state.Performances.map((Performances, index) => (
                 <tr key={index}>
-                  <td>{posts.quarter_no}</td>
-                  <td>{posts.quarter_name}</td>
-                  <td>{posts.year}</td>
-                  <td>{posts.from}</td>
-                  <td>{posts.to}</td>
-                  <td>{posts.approved_reports}</td>
+                  <td>{Performances.quarter_no}</td>
+                  <td>{Performances.quarter_name}</td>
+                  <td>{Performances.year}</td>
+                  <td>{Performances.from}</td>
+                  <td>{Performances.to}</td>
+                  <td>{Performances.approved_reports}</td>
                   <td>
-                    <a href={`/edit/${posts.quarter_name}`}>
+                    <a href={`/edit/${Performances.quarter_name}`}>
                       <i className="fas fa-edit"></i>&nbsp;
                     </a>
                     &nbsp;
                     <a
                       href="#"
-                      onClick={() => this.onDelete(posts.quarter_name)}
+                      onClick={() => this.onDelete(Performances.quarter_name)}
                     >
                       <i className="far fa-trash-alt"></i>&nbsp;
                     </a>

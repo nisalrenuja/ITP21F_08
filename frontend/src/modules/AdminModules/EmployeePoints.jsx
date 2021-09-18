@@ -9,7 +9,8 @@ export default class AdminTab3 extends Component {
       employee: [],
       TotalCompletedReports: "",
       completions: [],
-      pending: []
+      pending: [],
+      points: []
     };
   }
   componentDidMount() {
@@ -53,6 +54,15 @@ export default class AdminTab3 extends Component {
         console.log(this.state.employeecount);
         console.log(this.state.completions);
         console.log(this.state.pending);
+      }
+    });
+    axios.get("http://localhost:5000/employeepoints2").then(res => {
+      if (res.data.success) {
+        this.setState({
+          points: res.data.points,
+          pointscount: res.data.l3
+        });
+        console.log(this.state.points);
       }
     });
   }
@@ -121,8 +131,8 @@ export default class AdminTab3 extends Component {
   render() {
     return (
       <div className="container">
-        <div class="main">
-          <h2 class="heademp">Employees Points</h2>
+        <div class="buddmain">
+          <h2 class="heademp">Employee Points</h2>
           <hr class="lineemp"></hr>
           <a href="/AllEmployees">
             <button class="div11">
@@ -134,53 +144,75 @@ export default class AdminTab3 extends Component {
               <p class="txt22">Employee Points</p>
             </button>
           </a>
+          <h2 class="btah1">Employee Points Today </h2>
           <div class="div4">
-            <p class="txt-4">Employee ID</p>
-            <input
-              class="select-3"
-              placeholder="Enter Employee ID"
-              onChange={this.handleSearchArea2}
-              hiddenvalue="null"
-            />
-            <p class="txt-5">Employee Name</p>
-            <span class="box-1"></span>
-            <p class="txt-6">Employee Joined Date</p>
-            <span class="box-2"></span>
-
-            <button className="btn btn-info search">
-              <i></i>&nbsp;Calculate Current Points
-            </button>
-            <p class="txt-7">Current Date</p>
-            <span class="box-3"></span>
-            <p class="txt-8">Total Approved Reports</p>
-            <span class="box-4"></span>
-            <p class="txt-9">Current Total Points Recevied</p>
-            <span class="box-5"></span>
+            <table className="table table-hover btable22">
+              <thead class="budthead2">
+                <tr>
+                  <th scope="col">Employee ID</th>
+                  <th scope="col">Total Points</th>
+                </tr>
+              </thead>
+              <tbody class="btbody2">
+                {this.state.points.map((points, index) => (
+                  <tr key={index}>
+                    <td>
+                      <a href={``} style={{ textDecoration: "none" }}>
+                        {points.empno}
+                      </a>
+                    </td>
+                    <td>
+                      <a
+                        href={`/PendingAssignments/${points.empno}`}
+                        style={{ textDecoration: "none" }}
+                      >
+                        {points.points}
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
+
+          <button
+            className="btn btn-success"
+            type="submit"
+            style={{
+              marginTop: "700px",
+              marginLeft: "950px",
+              borderRadius: "60px",
+              filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))"
+            }}
+            onClick={this.onSubmit}
+          >
+            <i></i> Save Table
+          </button>
 
           <div class="div33">
             <p class="txt33">Quick Search by</p>
             <input
               placeholder="  Search by ID"
-              class="select1"
+              class="bbuselect1"
               type="number"
               onChange={this.handleSearchArea2}
               hiddenvalue="null"
             />
             <input
               placeholder="  Search by Name"
-              class="select2"
+              class="bbuselect2"
               type="text"
-              onChange={this.handleSearchArea1}
+              onChange={this.handleSearchArea}
             />
           </div>
-          <h2 class="tah1">Total Employees ( {this.state.employeecount} )</h2>
+          <h2 class="tah1">Employee Assignments Status</h2>
           <table className="table table-hover table11">
             <thead class="thead">
               <tr>
                 <th scope="col">Employee ID</th>
                 <th scope="col">Employee Name</th>
                 <th scope="col">Email</th>
+                <th scope="col">Contact Number</th>
                 <th scope="col">
                   Total
                   <br />
@@ -196,8 +228,6 @@ export default class AdminTab3 extends Component {
                   <br />
                   Reports
                 </th>
-                <th scope="col">Total Points</th>
-                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody class="tbody1">
@@ -210,6 +240,7 @@ export default class AdminTab3 extends Component {
                   </td>
                   <td>{employees.name}</td>
                   <td>{employees.email}</td>
+                  <td>{employees.contact}</td>
                   <td>
                     <a
                       href={`/PendingAssignments/${employees.empno}`}
@@ -218,20 +249,12 @@ export default class AdminTab3 extends Component {
                       {this.state.pending[index]}
                     </a>
                   </td>
-                  <td>{this.state.completions[index]}</td>
-                  <td>1</td>
-
                   <td>
-                    <a href={``}>
-                      <i class="far fa-eye"></i>
-                    </a>
-                    &nbsp; &nbsp;
-                    <a href={`/EditEmployee/${employees._id}`}>
-                      <i class="far fa-edit"></i>
-                    </a>
-                    &nbsp; &nbsp;
-                    <a href="#" onClick={() => this.onDelete(employees._id)}>
-                      <i class="far fa-trash-alt"></i>
+                    <a
+                      href={`/CompletedAssignments/${employees.empno}`}
+                      style={{ textDecoration: "none" }}
+                    >
+                      {this.state.completions[index]}
                     </a>
                   </td>
                 </tr>
@@ -239,9 +262,7 @@ export default class AdminTab3 extends Component {
             </tbody>
             &nbsp;
             <tfoot class="tfoot">
-              <a href="/InsertEmployee">
-                <i class="fas fa-plus"></i>&nbsp;New Employee
-              </a>
+              <a href="/InsertEmployee">Add New Employee</a>
             </tfoot>
           </table>
         </div>

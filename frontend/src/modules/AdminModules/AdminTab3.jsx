@@ -17,10 +17,19 @@ export default class AdminTab3 extends Component {
       if (res.data.success) {
         this.setState({
           employee: res.data.existingemployees,
-          employeecount: res.data.employeeCount
+          employeecount: res.data.employeeCount,
+          auditcount: res.data.empAuditCount
         });
         console.log(this.state.employee);
         console.log(this.state.employeecount);
+      }
+    });
+    axios.get("http://localhost:5000/employees/counts").then(res => {
+      if (res.data.success) {
+        this.setState({
+          audit: res.data.auditcount,
+          tax: res.data.taxcount
+        });
       }
     });
   }
@@ -50,12 +59,12 @@ export default class AdminTab3 extends Component {
   render() {
     return (
       <div className="container">
-        <div class="main">
+        <div class="budmain">
           <h2 class="heademp">Employees</h2>
           <hr class="lineemp"></hr>
           <a href="/AllEmployees">
             <button class="div1">
-              <p class="txt1">Employee List</p>
+              <p class="emptxt1">Employee List</p>
             </button>
           </a>
           <a href="/EmployeePoints">
@@ -68,18 +77,19 @@ export default class AdminTab3 extends Component {
               <p>Employee Report</p>
             </button>
           </a>
-          <div class="div3">
-            <p class="txt3">Filter by</p>
+          <div class="buddiv3">
+            <p class="budtxt3">Search by</p>
             <input
-              class="select1"
+              class="budselect1"
               type="text"
               onChange={this.handleSearchArea}
+              placeholder="&nbsp;&nbsp;Enter Employee Name"
             />
-            <a className="btn btn-info search2">
-              <i className="fas fa-search2"></i>&nbsp;Search
-            </a>
           </div>
-          <h2 class="tah">Total Employees ( {this.state.employeecount} )</h2>
+          <h2 class="butah">
+            Total Employees ( {this.state.employeecount} ) : &nbsp; Audit (
+            {this.state.audit}) &nbsp; Tax({this.state.tax})
+          </h2>
           <table className="table table-hover table1">
             <thead class="thead">
               <tr>
@@ -88,6 +98,7 @@ export default class AdminTab3 extends Component {
                 <th scope="col">Email</th>
                 <th scope="col">Joined Date</th>
                 <th scope="col">Status</th>
+                <th scope="col">Type</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
@@ -103,6 +114,7 @@ export default class AdminTab3 extends Component {
                   <td>{employees.email}</td>
                   <td>{employees.commencement_date}</td>
                   <td>{employees.status}</td>
+                  <td>{employees.sector}</td>
                   <td>
                     <a href={``}>
                       <i class="far fa-eye"></i>
@@ -121,9 +133,7 @@ export default class AdminTab3 extends Component {
             </tbody>
             &nbsp;
             <tfoot class="tfoot">
-              <a href="/InsertEmployee">
-                <i class="fas fa-plus"></i>&nbsp;New Employee
-              </a>
+              <a href="/InsertEmployee">Add New Employee</a>
             </tfoot>
           </table>
         </div>

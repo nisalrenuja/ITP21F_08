@@ -10,11 +10,11 @@ import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import LapAllo from "../../modules/AdminModules/LapAllo";
-import CreateAssignment from "../../modules/AdminModules/CreateAssignment";
+import EditAssignments from "../../modules/AdminModules/EditAssignments";
+import EditLap from "../../modules/AdminModules/EditLapAllo";
+import LapAlloRep from "../../modules/AdminModules/LapAlloReport";
 
-import CreateReport from "../../modules/AdminModules/CreateReport";
-
-const Report = ({ history, match }) => {
+const LapAlloReport = ({ history, match }) => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -51,12 +51,12 @@ const Report = ({ history, match }) => {
         <Container>
           {selectedMenuOption === "User Executive" ? (
             <AdminTab1 />
-          ) : selectedMenuOption === "Reports Management" ? (
-            <CreateReport dataFromParent={match.params.id} />
+          ) : selectedMenuOption === "MenuItem 2" ? (
+            <AdminTab2 />
           ) : selectedMenuOption === "Employees" ? (
             <AdminTab3 />
           ) : selectedMenuOption === "Work Allocation" ? (
-            <CreateAssignment />
+            <LapAlloRep />
           ) : selectedMenuOption === "MenuItem 5" ? (
             <AdminTab5 />
           ) : selectedMenuOption === "MenuItem 6" ? (
@@ -78,4 +78,4 @@ const Report = ({ history, match }) => {
   );
 };
 
-export default Report;
+export default LapAlloReport;

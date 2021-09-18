@@ -5,11 +5,11 @@ const router = express.Router();
 
 //save reports
 
-router.post('/post/save',(req,res)=>{
+router.post('/final_report/save',(req,res)=>{
 
-    let newPost = new Posts(req.body);
+    let newReport = new Reports(req.body);
 
-    newPost.save((err) =>{
+    newReport.save((err) =>{
         if(err){
             return res.status(400).json({
                 error:err
@@ -39,7 +39,7 @@ router.get('/post',(req,res) =>{
 
 //Update Reports
 
-router.put('/post/update/:id', (req,res)=>{
+router.put('/finalreports/update/:id', (req,res)=>{
 
     Posts.findByIdAndUpdate(
         req.params.id,

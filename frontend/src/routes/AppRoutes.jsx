@@ -16,9 +16,7 @@ import LapAllo from "../pages/AdminPage/Laps";
 import AllAssignmnets from "../pages/AdminPage/AllAssignments";
 import CreateAssignment from "../pages/AdminPage/CreateAssignmentt";
 import CreateLapAllo from "../pages/AdminPage/CreateLapAllo";
-import EmployeePoints from "../pages/AdminPage/EmployeePoints";
-import AllEmployees from "../pages/AdminPage/AllEmployees";
-import InsertEmployee from "../pages/AdminPage/InsertEmployee";
+
 import EditAssignment from "../pages/AdminPage/EditAssignment";
 import Assignment from "../pages/AdminPage/Assignment";
 import ReviewPage from "../pages/ReviewPage/ReviewPage";
@@ -31,7 +29,7 @@ import DisplayReview from "../modules/AdminModules/DisplayReview";
 import EditLapAllo from "../pages/AdminPage/EditLapAllo";
 import WorkReport from "../pages/AdminPage/WorkReport";
 import CompanyPerfomance from "../pages/AdminPage/CompanyPerformance";
-import EditEmployee from "../pages/AdminPage/EditEmployee";
+
 import CreateExecutive from "../modules/AdminModules/CreateExecutive";
 import NewExecutive from "../modules/AdminModules/NewExecutive";
 import EditExecutive from "../modules/AdminModules/EditExecutive";
@@ -39,15 +37,13 @@ import DisplayExecutive from "../modules/AdminModules/DisplayExecutive";
 import CreateNotice from "../modules/AdminModules/CreateNotice";
 import TopPerformers from "../modules/AdminModules/TopPerformers";
 import NoticeComPerf from "../modules/AdminModules/NoticeComPerf";
-import PendingAssignment from "../pages/AdminPage/PendingAssignment";
-import EmployeeReport from "../modules/AdminModules/EmployeeReport";
-import EmpReportUpload from "../modules/AdminModules/EmpReportUpload";
-import EditNotices from "../pages/AdminPage/EditNotices"; //edit notices
+
+import EditNotices from "../modules/AdminModules/EditNotices"; //edit notices
 import PayrollPage from "../pages/PayrollPage/PayrollPage";
 import CreatePayroll from "../modules/AdminModules/CreatePayroll";
 import DisplayPayroll from "../modules/AdminModules/DisplayPayroll";
 import EditPayroll from "../modules/AdminModules/EditPayroll";
-
+import LapReport from "../pages/AdminPage/LapAlloReport";
 import ManagerReview from "../modules/AdminModules/ManagerReview";
 import EditManagerReview from "../modules/AdminModules/ManagerReview";
 import DirectorReview from "../modules/AdminModules/DirectorReview";
@@ -57,6 +53,7 @@ import EditPartnerReview from "../modules/AdminModules/PartnerReview";
 import AllReports from "../pages/AdminPage/AllReports";
 import CreateReport from "../pages/AdminPage/CreateReport";
 import Quarter_Performance from "../pages/AdminPage/Quarter_Performance";
+import Report from "../pages/AdminPage/CreateReport";
 
 import EditLaptopRepair from "../modules/AdminModules/EditLaptopRepair";
 import CreateLaptopRepair from "../modules/AdminModules/CreateLaptopRepair";
@@ -82,6 +79,15 @@ import CreateAttendance from "../modules/AdminModules/CreateAttendance";
 
 import MonthlySalary from "../modules/AdminModules/MonthlySalary";
 import CreateMSalary from "../modules/AdminModules/CreateMSalary";
+
+import EmployeePoints from "../pages/AdminPage/EmployeePoints";
+import AllEmployees from "../pages/AdminPage/AllEmployees";
+import InsertEmployee from "../pages/AdminPage/InsertEmployee";
+import EditEmployee from "../pages/AdminPage/EditEmployee";
+import PendingAssignment from "../pages/AdminPage/PendingAssignment";
+import CompletedAssignment from "../pages/AdminPage/CompletedAssignment";
+import EmployeeReport from "../modules/AdminModules/EmployeeReport";
+import EmpReportUpload from "../modules/AdminModules/EmpReportUpload";
 
 const AppRoutes = () => (
   <div>
@@ -137,6 +143,7 @@ const AppRoutes = () => (
         <Route path="/post/:id" exact component={DisplayReview}></Route>
         <Route exact path="/editlapallo/:assignment" component={EditLapAllo} />
         <Route path="/reportwork" component={WorkReport} exact />
+        <Route path="/lapalloreport" component={LapReport} exact />
         <Route path="/InsertEmployee" component={InsertEmployee} exact />
         /*Anujitha Routes*/
         <Route
@@ -144,7 +151,7 @@ const AppRoutes = () => (
           component={Quarter_Performance}
           exact
         />
-        <Route path="/reports" component={CreateReport} exact />
+        <Route path="/reports/:id" component={CreateReport} exact />
         <Route path="/allreports" component={AllReports} exact />
         <Route path="/companyperformance" component={CompanyPerfomance} exact />
         <Route path="/EditEmployee/:id" component={EditEmployee} exact />
@@ -155,6 +162,11 @@ const AppRoutes = () => (
           exact
           path="/PendingAssignments/:id"
           component={PendingAssignment}
+        />
+        <Route
+          exact
+          path="/CompletedAssignments/:id"
+          component={CompletedAssignment}
         />
         <Route
           path="/displayexecutive/:id"
