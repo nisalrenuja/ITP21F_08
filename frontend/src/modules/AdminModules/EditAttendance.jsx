@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "./AllPayrolls.css";
+//import { storage } from "../../firebase";
+//import Progress from "../../component/common/ProgressBar/progress";
 
-export default class CreateAttendance extends Component {
+export default class EditAttendance extends Component {
   constructor(props) {
     super(props);
 
@@ -24,15 +25,10 @@ export default class CreateAttendance extends Component {
       [name]: value
     });
   };
-  /*
-    handleInputFileChange = e => {
-        var file = e.target.files[0];
-        console.log(file);
-    };
-    */
 
   onSubmit = e => {
     e.preventDefault();
+    const id = this.props.match.params.id;
 
     const {
       empno,
@@ -55,31 +51,85 @@ export default class CreateAttendance extends Component {
     };
 
     console.log(data);
+    axios
+      .put(`http://localhost:5000/attendance/update/${id}`, data)
+      .then(res => {
+        if (res.data.success) {
+          alert("Attendance Updated Successfully");
 
-    axios.post("http://localhost:5000/attendance/save", data).then(res => {
-      if (res.data.success) {
-        this.setState({
-          empno: "",
-          att_date: "",
-          att_type: "",
-          location_type: "",
-          location: "",
-          time_in: "",
-          time_out: ""
-        });
-      }
-    });
-
-    //alert("Mark attendance Successfully!");
-    //this.props.history.push("/allattendance"); //==admin
+          this.setState({
+            empno: "",
+            att_date: "",
+            att_type: "",
+            location_type: "",
+            location: "",
+            time_in: "",
+            time_out: ""
+          });
+        }
+      });
+    this.props.history.push("/allattendance");
   };
 
+  componentDidMount() {
+    const id = this.props.match.params.id;
+
+    axios.get(`http://localhost:5000/attendance/${id}`).then(res => {
+      if (res.data.success) {
+        this.setState({
+          empno: res.data.attendance.empno,
+          att_date: res.data.attendance.att_date,
+          att_type: res.data.attendance.att_type,
+          location_type: res.data.attendance.location_type,
+          location: res.data.attendance.location,
+          time_in: res.data.attendance.time_in,
+          time_out: res.data.attendance.time_out
+        });
+        console.log(this.state.attendance);
+      }
+    });
+  }
+  /*
+  uploadPDF(e) {
+    if (e.target.files[0] !== null) {
+      const uploadTask = storage
+        .ref(`users/${e.target.files[0].name}`)
+        .put(e.target.files[0]);
+      uploadTask.on(
+        "state_changed",
+        snapshot => {
+          //progress function
+          const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          this.setState({ uploadPercentage: progress });
+        },
+        error => {
+          //error function
+          console.log(error);
+        },
+        () => {
+          //complete function
+          storage
+            .ref("users")
+            .child(e.target.files[0].name)
+            .getDownloadURL()
+            .then(url => {
+              this.setState({ reportPDF: url });
+              console.log("Hello " + url);
+            });
+        }
+      );
+    } else {
+    }
+  }
+  */
   render() {
     return (
-      <div className="col-md-6 mt-4 mx-auto">
+      <div className="col-md-8 mt-4 mx-auto">
         <br />
 
-        <h1>Attendance Management | Mark Attendance : Admin</h1>
+        <h1>Payroll Management | Edit Attendance Details</h1>
         <br />
         <br />
 
@@ -141,7 +191,7 @@ export default class CreateAttendance extends Component {
                 name="att_type"
               >
                 <option value="DEFAULT" disabled>
-                  Select attendance type to mark
+                  {this.state.att_type}
                 </option>
                 <option name="present">Present</option>
                 <option name="absent">Absent</option>
@@ -162,7 +212,7 @@ export default class CreateAttendance extends Component {
               name="location_type"
             >
               <option value="DEFAULT" disabled>
-                Select location type
+                {this.state.location_type}
               </option>
               <option value="in company">In Company</option>
               <option value="assignment location">
@@ -219,18 +269,23 @@ export default class CreateAttendance extends Component {
           <br />
           <div class="d-flex justify-content-center">
             <button
-              className="btn btn-info"
+              className="btn btn-warning"
               type="submit"
-              style={{ backgroundColor: "#1687A7" }}
+              style={{ marginTop: "15px" }}
               onClick={this.onSubmit}
             >
-              &nbsp;&nbsp;Save&nbsp;&nbsp;
-            </button>
+              <i className="fa fa-refresh"></i>&nbsp;Update
+            </button>{" "}
             &nbsp;&nbsp;
-            <button className="btn btn-danger" type="cancel">
+            <button
+              className="btn btn-danger"
+              type="cancel"
+              style={{ marginTop: "15px" }}
+            >
               Cancel
             </button>
           </div>
+
           <div />
         </form>
 

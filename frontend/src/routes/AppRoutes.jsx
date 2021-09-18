@@ -74,10 +74,11 @@ import CreateProfile from "../modules/AdminModules/CreateProfile";
 import EditProfile from "../modules/AdminModules/EditProfile";
 import DisplayProfile from "../modules/AdminModules/DisplayProfile";
 
-import AdminAttendance from "../modules/AdminModules/AdminAttendance";
+import AdminAttendance from "../pages/AdminPage/AdminAttendance";
 import CreateAttendance from "../modules/AdminModules/CreateAttendance";
+import EditAttendance from "../modules/AdminModules/EditAttendance";
 
-import MonthlySalary from "../modules/AdminModules/MonthlySalary";
+import MonthlySalary from "../pages/AdminPage/MonthlySalary";
 import CreateMSalary from "../modules/AdminModules/CreateMSalary";
 
 import EmployeePoints from "../pages/AdminPage/EmployeePoints";
@@ -184,6 +185,7 @@ const AppRoutes = () => (
         <Route path="/editpayroll/:id" component={EditPayroll} exact />
         <Route path="/allattendance" component={AdminAttendance} exact />
         <Route path="/addattendance" exact component={CreateAttendance}></Route>
+        <Route path="/editattendance/:id" component={EditAttendance} exact />
         <Route path="/allsalary" component={MonthlySalary} exact />
         <Route path="/addsalary" component={CreateMSalary} exact />
         /*Sajini*/

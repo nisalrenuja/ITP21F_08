@@ -34,10 +34,15 @@ export default class AdminAttendance extends Component {
   }
 
   onDelete = id => {
-    axios.delete(`http://localhost:5000/attendance/delete/${id}`).then(res => {
-      alert("Deleted Attendance Data Successfully!!");
-      this.retrievePayrolls();
-    });
+    const confirmBox = window.confirm("Do you really want to delete this?");
+    if (confirmBox === true) {
+      axios
+        .delete(`http://localhost:5000/attendance/delete/${id}`)
+        .then(res => {
+          alert("Deleted Data Successfully!!");
+          this.retrievePayrolls();
+        });
+    }
   };
 
   filterData(attendances, searchKey) {
@@ -82,7 +87,7 @@ export default class AdminAttendance extends Component {
             <div class="d-flex justify-content-between">
               <div className="col-lg-9 mt-2 mb-2 font-weight-bold ">
                 <br />
-                <h1 class="ap-topic">Payroll Management | Attendance </h1>
+                <h1 class="ap-topic">Payroll Management</h1>
               </div>
               <div>
                 <Clock />

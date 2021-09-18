@@ -181,7 +181,7 @@ export default class EditPayroll extends Component {
             />
           </div>
 
-          <div className="orm-group col-sm-6" style={{ marginBottom: "15px" }}>
+          <div className="form-group col-sm-6" style={{ marginBottom: "15px" }}>
             <label style={{ marginBottom: "5px" }}>Position</label>
             <select
               defaultValue={"DEFAULT"}

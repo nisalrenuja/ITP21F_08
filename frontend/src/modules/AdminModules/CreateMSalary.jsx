@@ -25,6 +25,7 @@ export default class CreateMSalary extends Component {
 
   handleInputChange = e => {
     const { name, value } = e.target;
+
     this.setState({
       ...this.state,
       [name]: value
@@ -64,7 +65,7 @@ export default class CreateMSalary extends Component {
       basic: basic,
       OT_rate: OT_rate,
       OT_hrs: OT_hrs,
-      total_OT: OT_rate + OT_hrs,
+      total_OT: total_OT,
       //earnings: [{ earn_reason: "", earn_amount : "" }],
       total_earnings: total_earnings,
       //deductions: [{ deduct_reason: "", deduct_amount : "" }],
@@ -94,12 +95,12 @@ export default class CreateMSalary extends Component {
         });
       }
     });
-    this.props.history.push("/allsalary");
+    //this.props.history.push("/allsalary");
   };
 
   render() {
     return (
-      <div className="col-md-8 mt-4 mx-auto">
+      <div className="col-md-6 mt-4 mx-auto">
         <br />
 
         <h1>Payroll Management | Calculate Monthly Salary</h1>

@@ -78,7 +78,7 @@ export default class MonthlySalary extends Component {
             <div class="d-flex justify-content-between">
               <div className="col-lg-9 mt-2 mb-2 font-weight-bold ">
                 <br />
-                <h1 class="ap-topic">Payroll Management | Monthly Salary</h1>
+                <h1 class="ap-topic">Payroll Management</h1>
               </div>
               <div>
                 <Clock />

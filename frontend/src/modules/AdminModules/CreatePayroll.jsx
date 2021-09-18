@@ -73,12 +73,13 @@ export default class CreatePayroll extends Component {
         });
       }
     });
+    alert("Save Details Successful!");
     this.props.history.push("/admin");
   };
 
   render() {
     return (
-      <div className="col-md-8 mt-4 mx-auto">
+      <div className="col-md-6 mt-4 mx-auto">
         <br />
 
         <h1>Payroll Management | Add Payroll Details</h1>

@@ -35,10 +35,13 @@ export default class AdminTab6 extends Component {
   }
 
   onDelete = id => {
-    axios.delete(`http://localhost:5000/payroll/delete/${id}`).then(res => {
-      alert("Deleted Payroll Data Successfully!!");
-      this.retrievePayrolls();
-    });
+    const confirmBox = window.confirm("Do you really want to delete this?");
+    if (confirmBox === true) {
+      axios.delete(`http://localhost:5000/payroll/delete/${id}`).then(res => {
+        alert("Deleted Payroll Data Successfully!!");
+        this.retrievePayrolls();
+      });
+    }
   };
 
   filterData(payrolls, searchKey) {
