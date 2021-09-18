@@ -132,7 +132,7 @@ export default class AdminTab3 extends Component {
     return (
       <div className="container">
         <div class="buddmain">
-          <h2 class="heademp">Employees Points</h2>
+          <h2 class="heademp">Employee Points</h2>
           <hr class="lineemp"></hr>
           <a href="/AllEmployees">
             <button class="div11">
@@ -144,7 +144,7 @@ export default class AdminTab3 extends Component {
               <p class="txt22">Employee Points</p>
             </button>
           </a>
-          <h2 class="btah1">Employees Points Today </h2>
+          <h2 class="btah1">Employee Points Today </h2>
           <div class="div4">
             <table className="table table-hover btable22">
               <thead class="budthead2">
@@ -174,6 +174,20 @@ export default class AdminTab3 extends Component {
               </tbody>
             </table>
           </div>
+
+          <button
+            className="btn btn-success"
+            type="submit"
+            style={{
+              marginTop: "700px",
+              marginLeft: "950px",
+              borderRadius: "60px",
+              filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))"
+            }}
+            onClick={this.onSubmit}
+          >
+            <i></i> Save Table
+          </button>
 
           <div class="div33">
             <p class="txt33">Quick Search by</p>
