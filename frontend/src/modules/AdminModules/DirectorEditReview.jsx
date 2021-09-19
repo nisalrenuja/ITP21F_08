@@ -13,9 +13,9 @@ export default class DirectorEditReview extends Component {
       points: "",
       feedback: "",
       directorStatus: "",
+      status: "Pending",
       uploadPercentage: 0,
-      fileVal: "",
-      assignmentstatus: ""
+      fileVal: ""
     };
   }
 
@@ -25,15 +25,16 @@ export default class DirectorEditReview extends Component {
     console.log(value);
     if (name === "directorStatus") {
       if (value === "Accepted") {
-        this.state.assignmentstatus = "Completed";
         this.state.directorStatus = "Accepted";
+        this.state.status = "Pending";
       } else if (value === "Pending") {
-        this.state.assignmentstatus = "Working";
         this.state.directorStatus = "Pending";
-      } else this.state.directorStatus = "Rejected";
+      } else {
+        this.state.directorStatus = "Rejected";
+        this.state.status = "Rejected";
+      }
     }
 
-    console.log(this.state.assignmentstatus);
     console.log(this.state.directorStatus);
     this.setState({
       ...this.state,
@@ -50,7 +51,8 @@ export default class DirectorEditReview extends Component {
       reportPDF,
       points,
       feedback,
-      directorStatus
+      directorStatus,
+      status
     } = this.state;
     let data = "";
     if (directorStatus === "Accepted") {
@@ -61,6 +63,7 @@ export default class DirectorEditReview extends Component {
         points: points,
         feedback: feedback,
         directorStatus: directorStatus,
+        status: status,
         isDirectorApprove: true
       };
     } else {
@@ -71,25 +74,12 @@ export default class DirectorEditReview extends Component {
         points: points,
         feedback: feedback,
         directorStatus: directorStatus,
+        status: status,
         isDirectorApprove: false
       };
     }
+    console.log(status);
 
-    const { assignmentstatus } = this.state;
-    const data1 = { progress: assignmentstatus };
-    console.log(data1);
-    axios
-      .put(
-        `http://localhost:5000/assignments/update/${this.state.report}`,
-        data1
-      )
-      .then(res => {
-        if (res.data.success) {
-          this.setState({
-            assignmentstatus: ""
-          });
-        }
-      });
     axios.put(`http://localhost:5000/review/update/${id}`, data).then(res => {
       if (res.data.success) {
         let managerReview = data;

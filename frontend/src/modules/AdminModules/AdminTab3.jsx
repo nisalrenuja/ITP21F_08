@@ -77,6 +77,10 @@ export default class AdminTab3 extends Component {
               <p>Employee Report</p>
             </button>
           </a>
+
+          <a href="/empexportreport" class="btn btn-info reportdiv">
+            <i class="fa fa-file fa-2x" aria-hidden="true"></i>&nbsp;
+          </a>
           <div class="buddiv3">
             <p class="budtxt3">Search by</p>
             <input
