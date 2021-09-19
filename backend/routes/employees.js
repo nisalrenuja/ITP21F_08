@@ -22,8 +22,8 @@ router.post("/employees/save", (req, res) => {
 });
 
 router.post("/points/save", (req, res) => {
-  let newemployees = new employees(req.body);
-  newemployees.save((err) => {
+ let newpoints = req.body;
+  Points.create(newpoints,(err) => {
     if (err) {
       return res.status(400).json({
         error: err,
@@ -126,7 +126,8 @@ router.get("/employeepoints2", (req, res) => {
             }
           }
         },
-        empno: 1
+        empno: 1,
+        date_saved: new Date(),       
       }
     }
   ]).exec((err, points) => { 
@@ -234,7 +235,7 @@ router.get("/review/pe", (req, res) => {
         newRoot: "$doc",
       },
     }
- ]).exec((err, posts1) => { Posts.find({ status : "Accepted" }).exec((err, posts2) =>{ var l = posts2.length;
+ ]).exec((err, posts1) => { Posts.find({ partnerStatus : "Accepted" }).exec((err, posts2) =>{ var l = posts2.length;
     var o = posts1.length;
     if (err) {
       return res.status(400).json({
