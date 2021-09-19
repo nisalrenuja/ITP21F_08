@@ -13,6 +13,7 @@ export default class ManagerEditReview extends Component {
       points: "",
       feedback: "",
       partnerStatus: "",
+      status: "Pending",
       uploadPercentage: 0,
       fileVal: "",
       assignmentstatus: ""
@@ -27,10 +28,15 @@ export default class ManagerEditReview extends Component {
       if (value === "Accepted") {
         this.state.assignmentstatus = "Completed";
         this.state.partnerStatus = "Accepted";
+        this.state.status = "Accepted";
       } else if (value === "Pending") {
         this.state.assignmentstatus = "Working";
         this.state.partnerStatus = "Pending";
-      } else this.state.partnerStatus = "Rejected";
+      } else {
+        this.state.partnerStatus = "Rejected";
+        this.state.assignmentstatus = "Working";
+        this.state.status = "Rejected";
+      }
     }
 
     console.log(this.state.assignmentstatus);
@@ -50,7 +56,8 @@ export default class ManagerEditReview extends Component {
       reportPDF,
       points,
       feedback,
-      partnerStatus
+      partnerStatus,
+      status
     } = this.state;
     let data = "";
     if (partnerStatus === "Accepted") {
@@ -61,6 +68,7 @@ export default class ManagerEditReview extends Component {
         points: points,
         feedback: feedback,
         partnerStatus: partnerStatus,
+        status: status,
         isManagerApprove: true
       };
     } else {
@@ -71,16 +79,17 @@ export default class ManagerEditReview extends Component {
         points: points,
         feedback: feedback,
         partnerStatus: partnerStatus,
+        status: status,
         isManagerApprove: false
       };
     }
-
+    console.log(status);
     const { assignmentstatus } = this.state;
     const data1 = { progress: assignmentstatus };
     console.log(data1);
     axios
       .put(
-        `http://localhost:5000/assignments/update/${this.state.report}`,
+        `http://localhost:5000/assignments/updte/${this.state.report}`,
         data1
       )
       .then(res => {
