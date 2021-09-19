@@ -1,0 +1,82 @@
+.container222{
+    width: 100%;
+  height: 800px;
+  white-space: nowrap;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+}
+
+/*table1*/
+.bbtable11{
+  position: absolute;
+width: 1500px;
+
+left: 50px;
+top: 940px;
+
+}
+.thead{
+  background: #276678;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: -0.00022em;
+  color: #1687A7;
+  background: #D3E0EA;
+  
+}
+.tfoot{
+  background: #276678;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: -0.00022em;
+  color: #FFFFFF;
+  background: #D3E0EA;
+  
+}
+.tfoot a{
+  text-decoration: none;
+  color: #1687A7;
+  
+}
+.tfoot:hover{
+  background: #47daba;
+}
+.tah1{
+position: absolute;
+width: 523px;
+height: 66px;
+left: 50px;
+top: 890px;
+
+
+color: #000000;
+}
+.buddmain{
+  width:100%;
+  height:750px;
+  white-space: nowrap;
+  position: relative;
+  overflow-y:scroll;
+}
+.tbody1{
+  text-align: center;
+}
+/*tabale 2*/
+.butable22{
+  position: absolute;
+width: 1000px;
+
+left: 50px;
+top: 50px;
+
+}

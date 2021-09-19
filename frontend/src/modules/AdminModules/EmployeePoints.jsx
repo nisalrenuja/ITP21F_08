@@ -5,6 +5,7 @@ import "./EmployeePoints.css";
 export default class AdminTab3 extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       employee: [],
       TotalCompletedReports: "",
@@ -70,6 +71,26 @@ export default class AdminTab3 extends Component {
     axios.delete(`http://localhost:5000/employees/delete/${id}`).then(res => {
       alert("Deleted Succeefully");
       this.retrieveemployee();
+    });
+  };
+
+  onSubmit = e => {
+    e.preventDefault();
+
+    const { points } = this.state;
+
+    const data = {
+      points: points
+    };
+    console.log(data);
+
+    axios.post("http://localhost:5000/points/save", points).then(res => {
+      if (res.data.success) {
+        this.setState({
+          points: points
+        });
+        alert("Points till Today are Saved!");
+      }
     });
   };
 
