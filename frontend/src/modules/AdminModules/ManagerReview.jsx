@@ -19,7 +19,7 @@ export default class AdminTab1 extends Component {
     axios.get("http://localhost:5000/review").then(res => {
       if (res.data.success) {
         const acceptedData = res.data.existingPosts.filter(
-          x => x.status === "Accepted" && x.isAdminApprove === true
+          x => x.init_status === "Accepted" && x.isAdminApprove === true
         );
 
         this.setState({
