@@ -57,6 +57,9 @@ export default class LapAllo extends Component {
       <div className="container">
         <div class="main2">
           <h2 class="head1l">Laptop Allocation</h2>
+          <a href="/lapalloreport" class="btn btn-info reportdiv">
+            <i class="fa fa-file fa-2x" aria-hidden="true"></i>&nbsp;
+          </a>
           <hr class="line1l"></hr>
           <a href="/allassignments">
             <button class="div11">

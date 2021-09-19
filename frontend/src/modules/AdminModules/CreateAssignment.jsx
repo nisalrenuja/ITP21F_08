@@ -135,6 +135,7 @@ export default class CreateAssignment extends Component {
                 name="assignment_name"
                 value={this.state.assignment_name}
                 onChange={this.handleInputChange}
+                required
               />
               <p class="iic">Client No: </p>
               <input
@@ -144,6 +145,7 @@ export default class CreateAssignment extends Component {
                 name="client_no"
                 value={this.state.client_no}
                 onChange={this.handleInputChange}
+                required
               />
               <p class="iiic">Executive ID: </p>
               <input
@@ -153,6 +155,7 @@ export default class CreateAssignment extends Component {
                 name="execid"
                 value={this.state.execid}
                 onChange={this.handleInputChange}
+                required
               />
               <p class="ivc">Location: </p>
               <input
@@ -162,6 +165,7 @@ export default class CreateAssignment extends Component {
                 name="place_of_engagement"
                 value={this.state.place_of_engagement}
                 onChange={this.handleInputChange}
+                required
               />
               <p class="vc">Distance(km): </p>
               <input
@@ -171,6 +175,7 @@ export default class CreateAssignment extends Component {
                 name="distance"
                 value={this.state.distance}
                 onChange={this.handleInputChange}
+                required
               />
               <p class="vic">Date Allocating: </p>
               <input
@@ -180,6 +185,7 @@ export default class CreateAssignment extends Component {
                 name="date_of_allocation"
                 value={this.state.date_of_allocation}
                 onChange={this.handleInputChange}
+                required
               />
               <p class="viic">Deadline: </p>
               <input
@@ -189,6 +195,7 @@ export default class CreateAssignment extends Component {
                 name="deadline"
                 value={this.state.deadline}
                 onChange={this.handleInputChange}
+                required
               />
               <div class="staff">
                 <center>
@@ -248,17 +255,16 @@ export default class CreateAssignment extends Component {
                 >
                   <i className="fas fa-save"></i>&nbsp;Save
                 </button>
-                <a href="/admin">
-                  <button
-                    className="btn btn-secondary"
-                    type="submit"
-                    style={{ marginTop: "795px", width: "20%" }}
-                  >
-                    Done
-                  </button>
-                </a>
               </center>
             </form>
+            <br />
+            <center>
+              <a href="/allassignments">
+                <button className="btn btn-secondary" style={{ width: "20%" }}>
+                  Done
+                </button>
+              </a>
+            </center>
           </div>
         </div>
       </div>

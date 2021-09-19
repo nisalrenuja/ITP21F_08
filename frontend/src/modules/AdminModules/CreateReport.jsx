@@ -104,7 +104,7 @@ export default class CreateReport extends Component {
     console.log(data1);
     axios
       .put(
-        `http://localhost:5000/assignments/update/${this.state.report}`,
+        `http://localhost:5000/assignments/updte/${this.state.report}`,
         data1
       )
       .then(res => {

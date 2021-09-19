@@ -114,7 +114,7 @@ color: #000000;
 
   color: #1687a7;
 }
-.box2 {
+.bbox2 {
   position: absolute;
   width: 350px;
   height: 40px;
@@ -179,7 +179,7 @@ color: #000000;
   left: 500px;
   top: 210px;
 
-  background: #ffffff;
+  background: #D3E0EA;
   border: 2px solid #c4c4c4;
   box-sizing: border-box;
 }

@@ -12,10 +12,10 @@ export default class EditReview extends Component {
       reportPDF: null,
       points: "",
       feedback: "",
-      status: "",
+      init_status: "",
+      status: "Pending",
       uploadPercentage: 0,
       fileVal: "",
-      assignmentstatus: "",
       managerData: []
     };
   }
@@ -24,18 +24,15 @@ export default class EditReview extends Component {
     const { name, value } = e.target;
     console.log(name);
     console.log(value);
-    if (name === "status") {
+    if (name === "init_status") {
       if (value === "Accepted") {
-        this.state.assignmentstatus = "Completed";
-        this.state.status = "Accepted";
+        this.state.init_status = "Accepted";
       } else if (value === "Pending") {
-        this.state.assignmentstatus = "Working";
-        this.state.status = "Pending";
-      } else this.state.status = "Rejected";
+        this.state.init_status = "Pending";
+      } else this.state.init_status = "Rejected";
     }
 
-    console.log(this.state.assignmentstatus);
-    console.log(this.state.status);
+    console.log(this.state.init_status);
     this.setState({
       ...this.state,
       [name]: value
@@ -51,16 +48,18 @@ export default class EditReview extends Component {
       reportPDF,
       points,
       feedback,
+      init_status,
       status
     } = this.state;
     let data = "";
-    if (status === "Accepted") {
+    if (init_status === "Accepted") {
       data = {
         execid_review: execid_review,
         report: report,
         reportPDF: reportPDF,
         points: points,
         feedback: feedback,
+        init_status: init_status,
         status: status,
         isAdminApprove: true
       };
@@ -76,21 +75,7 @@ export default class EditReview extends Component {
       };
     }
 
-    const { assignmentstatus } = this.state;
-    const data1 = { progress: assignmentstatus };
-    console.log(data1);
-    axios
-      .put(
-        `http://localhost:5000/assignments/update/${this.state.report}`,
-        data1
-      )
-      .then(res => {
-        if (res.data.success) {
-          this.setState({
-            assignmentstatus: ""
-          });
-        }
-      });
+    console.log(this.state.status);
     axios.put(`http://localhost:5000/review/update/${id}`, data).then(res => {
       if (res.data.success) {
         let managerReview = data;
@@ -101,7 +86,8 @@ export default class EditReview extends Component {
           reportPDF: null,
           points: "",
           feedback: "",
-          status: ""
+          init_status: "",
+          status: "Pending"
         });
       }
     });
@@ -252,10 +238,10 @@ export default class EditReview extends Component {
               className="form-select"
               aria-label="Default select example"
               onChange={this.handleInputChange}
-              name="status"
+              name="init_status"
             >
               <option value="DEFAULT" disabled>
-                selected status is : {this.state.status}
+                selected status is : {this.state.init_status}
               </option>
               <option value="Pending">Pending</option>
               <option value="Rejected">Rejected</option>

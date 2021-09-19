@@ -159,7 +159,7 @@ export default class CreateNotice extends Component {
                 type="date"
                 class="senavicc"
                 id="published_date"
-                name="pulished_date"
+                name="published_date"
                 value={this.state.published_date}
                 onChange={this.handleInputChange}
               />
@@ -171,17 +171,17 @@ export default class CreateNotice extends Component {
                   style={{ marginTop: "795px", width: "20%" }}
                   onClick={this.onSubmit}
                 >
+                  <a href="/AdminTab5"></a>
                   <i className="fas fa-save"></i>&nbsp;Save
                 </button>
-                <a href="/AdminTab5">
-                  <button
-                    className="btn btn-secondary"
-                    type="submit"
-                    style={{ marginTop: "795px", width: "20%" }}
-                  >
-                    Cancel
-                  </button>
-                </a>
+
+                <button
+                  className="btn btn-secondary"
+                  type="submit"
+                  style={{ marginTop: "795px", width: "20%" }}
+                >
+                  Cancel
+                </button>
               </center>
             </form>
           </div>

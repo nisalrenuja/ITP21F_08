@@ -13,9 +13,9 @@ export default class ManagerEditReview extends Component {
       points: "",
       feedback: "",
       managerStatus: "",
+      status: "Pending",
       uploadPercentage: 0,
-      fileVal: "",
-      assignmentstatus: ""
+      fileVal: ""
     };
   }
 
@@ -25,15 +25,15 @@ export default class ManagerEditReview extends Component {
     console.log(value);
     if (name === "managerStatus") {
       if (value === "Accepted") {
-        this.state.assignmentstatus = "Completed";
         this.state.managerStatus = "Accepted";
       } else if (value === "Pending") {
-        this.state.assignmentstatus = "Working";
         this.state.managerStatus = "Pending";
-      } else this.state.managerStatus = "Rejected";
+      } else {
+        this.state.managerStatus = "Rejected";
+        this.state.status = "Rejected";
+      }
     }
 
-    console.log(this.state.assignmentstatus);
     console.log(this.state.managerStatus);
     this.setState({
       ...this.state,
@@ -50,7 +50,8 @@ export default class ManagerEditReview extends Component {
       reportPDF,
       points,
       feedback,
-      managerStatus
+      managerStatus,
+      status
     } = this.state;
     let data = "";
     if (managerStatus === "Accepted") {
@@ -71,25 +72,13 @@ export default class ManagerEditReview extends Component {
         points: points,
         feedback: feedback,
         managerStatus: managerStatus,
+        status: status,
         isManagerApprove: false
       };
     }
+    console.log(data);
+    console.log(status);
 
-    const { assignmentstatus } = this.state;
-    const data1 = { progress: assignmentstatus };
-    console.log(data1);
-    axios
-      .put(
-        `http://localhost:5000/assignments/update/${this.state.report}`,
-        data1
-      )
-      .then(res => {
-        if (res.data.success) {
-          this.setState({
-            assignmentstatus: ""
-          });
-        }
-      });
     axios.put(`http://localhost:5000/review/update/${id}`, data).then(res => {
       if (res.data.success) {
         let managerReview = data;
