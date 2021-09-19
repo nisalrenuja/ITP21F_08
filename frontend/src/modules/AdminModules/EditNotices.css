@@ -287,3 +287,19 @@
     border: 2px solid #c4c4c4;
     box-sizing: border-box;
   }
+
+  .cookie{
+    left:300px;
+    top: 850px;
+  }
+
+  .btncookie{
+    position: absolute;
+width: 90px;
+height: 25px;
+left: 600px;
+top: 575px;
+
+background: #276678;
+border-radius: 20px;
+  }

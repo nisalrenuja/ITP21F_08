@@ -306,14 +306,16 @@ export default class TopPerformers extends Component {
               />
 
               <center>
-                <button
-                  className="btn btn-success"
-                  type="submit"
-                  style={{ marginTop: "795px", width: "20%" }}
-                  onClick={this.onSubmit}
-                >
-                  <i className="fas fa-save"></i>&nbsp;Save
-                </button>
+                <div class="senara1">
+                  <button
+                    className="btn btn-success"
+                    type="submit"
+                    style={{ marginTop: "795px", width: "20%" }}
+                    onClick={this.onSubmit}
+                  >
+                    <i class="senara2" className="fas fa-save"></i>&nbsp;Save
+                  </button>
+                </div>
                 <a href="/admin">
                   <button
                     className="btn btn-secondary"
