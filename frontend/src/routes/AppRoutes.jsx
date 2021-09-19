@@ -88,6 +88,8 @@ import PendingAssignment from "../pages/AdminPage/PendingAssignment";
 import CompletedAssignment from "../pages/AdminPage/CompletedAssignment";
 import EmployeeReport from "../modules/AdminModules/EmployeeReport";
 import EmpReportUpload from "../modules/AdminModules/EmpReportUpload";
+import EmpExportReport from "../modules/AdminModules/EmplExportReport";
+import EmpReportEdit from "../modules/AdminModules/EmpReportEdit";
 
 const AppRoutes = () => (
   <div>
@@ -121,6 +123,7 @@ const AppRoutes = () => (
         />
         <Route exact path="/employeereport" component={EmployeeReport} />
         <Route exact path="/empreportupload" component={EmpReportUpload} />
+        <Route exact path="/empreportedit/:id" component={EmpReportEdit} />
         <Route exact path="/assignment/:assignment" component={Assignment} />
         <Route path="/review" component={ReviewPage} exact />
         <Route path="/add" exact component={CreateReview}></Route>
@@ -168,6 +171,7 @@ const AppRoutes = () => (
           path="/CompletedAssignments/:id"
           component={CompletedAssignment}
         />
+        <Route exact path="/empexportreport" component={EmpExportReport} />
         <Route
           path="/displayexecutive/:id"
           component={DisplayExecutive}

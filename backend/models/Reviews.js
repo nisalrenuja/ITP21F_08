@@ -14,7 +14,7 @@ const review_Schema = new mongoose.Schema({
     required: true,
   },
   points: {
-    type: String,
+    type: Number,
     required: true,
   },
   feedback: {
@@ -36,6 +36,10 @@ const review_Schema = new mongoose.Schema({
   status: {
     type: String,
     required: true,
+  },
+  init_status: {
+    type: String,
+    required: false,
   },
   isAdminApprove: {
     type: Boolean,
