@@ -3,17 +3,12 @@ const mongoose = require("mongoose");
 const final_assignment_report_Schema = new mongoose.Schema({
   id: {
     type: String,
-    required: true,
-  },
-  
-  report: {
-    type: Object,
     required: false,
   },
-
+  
   date_and_time_upload: {
     type: Date,
-    required: true, 
+    required: false, 
   },
 
   approved_user: {
@@ -23,12 +18,37 @@ const final_assignment_report_Schema = new mongoose.Schema({
 
   company_name: {
     type: String,
-    required: true,
+    required: false,
   },
 
-  uploaded_partner: {
+  partner_name: {
     type: String,
     required: false,
+  },
+
+  execid_review: {
+    type: String,
+    required: true,
+  },
+  report: {
+    type: String,
+    required: true,
+  },
+  reportPDF: {
+    type: String,
+    required: true,
+  },
+  points: {
+    type: String,
+    required: true,
+  },
+  feedback: {
+    type: String,
+    required: true,
+  },
+  status: {
+    type: String,
+    required: true,
   },
 });
 
