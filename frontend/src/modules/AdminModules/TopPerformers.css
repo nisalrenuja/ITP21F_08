@@ -64,7 +64,7 @@
     width: 192px;
     height: 33px;
     left: 100px;
-    top: 200px;
+    top: 300px;
   
     font-family: Inter;
     font-style: normal;
@@ -103,7 +103,7 @@
     width: 192px;
     height: 33px;
     left: 100px;
-    top: 50px;
+    top: 75px;
   
     font-family: Inter;
     font-style: normal;
@@ -121,8 +121,8 @@
     position: absolute;
     width: 192px;
     height: 33px;
-    left: 500px;
-    top: 50px;
+    left: 400px;
+    top: 75px;
   
     font-family: Inter;
     font-style: normal;
@@ -152,8 +152,8 @@
     position: absolute;
     width: 150px;
     height: 40px;
-    left: 200px;
-    top: 50px;
+    left: 175px;
+    top: 75px;
   
     background: #ffffff;
     border: 2px solid #c4c4c4;
@@ -176,8 +176,8 @@
     position: absolute;
     width: 200px;
     height: 40px;
-    left: 600px;
-    top: 50px;
+    left: 500px;
+    top: 75px;
   
     background: #ffffff;
     border: 2px solid #c4c4c4;
@@ -400,7 +400,7 @@
     width: 251px;
     height: 48px;
     left: 800px;
-    top: 100px;
+    top: 25px;
 
     background: #276678;
     background: #1687A7;
@@ -410,4 +410,483 @@
 
   }
 
+
+
+.rank1{
+    position: absolute;
+    width: 192px;
+    height: 33px;
+    left: 100px;
+    top: 205px;
   
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.00022em;
+  
+    color: #1687a7;  
+}
+
+.rank1val{
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    left: 200px;
+    top: 205px;
+  
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
+}
+
+.rank1id {
+    position: absolute;
+    width: 192px;
+    height: 33px;
+    left: 100px;
+    top: 275px;
+  
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.00022em;
+  
+    color: #1687a7;
+  }
+
+  .rank1idval {
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    left: 200px;
+    top: 275px;
+  
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
+  }
+
+  .rank1points {
+    position: absolute;
+    width: 192px;
+    height: 33px;
+    left: 475px;
+    top: 275px;
+  
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.00022em;
+  
+    color: #1687a7;
+  }
+  .rank1pointsval {
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    left: 600px;
+    top: 275px;
+  
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
+  }
+
+  .rank1name {
+    position: absolute;
+    width: 192px;
+    height: 33px;
+    left: 100px;
+    top: 345px;
+  
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.00022em;
+  
+    color: #1687a7;
+  }
+  .rank1nameval {
+    position: absolute;
+    width: 350px;
+    height: 40px;
+    left: 225px;
+    top: 345px;
+  
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
+  }
+
+  .rank1des {
+    position: absolute;
+    width: 192px;
+    height: 33px;
+    left: 100px;
+    top: 415px;
+  
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.00022em;
+  
+    color: #1687a7;
+  }
+  .rank1desval {
+    position: absolute;
+    width: 350px;
+    height: 40px;
+    left: 225px;
+    top: 415px;
+  
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
+  }
+
+  .rank1divider {
+    position: absolute;
+    width: 1000.03px;
+    height: 0px;
+    left: 50px;
+    top: 500px;
+  
+    border: 3px solid #d3e0ea;
+    transform: rotate(0.21deg);
+  }
+
+  .rank2{
+    position: absolute;
+    width: 192px;
+    height: 33px;
+    left: 100px;
+    top: 555px;
+  
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.00022em;
+  
+    color: #1687a7;  
+}
+
+.rank2val{
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    left: 200px;
+    top: 555px;
+  
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
+}
+
+.rank2id {
+    position: absolute;
+    width: 192px;
+    height: 33px;
+    left: 100px;
+    top: 625px;
+  
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.00022em;
+  
+    color: #1687a7;
+  }
+
+  .rank2idval {
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    left: 200px;
+    top: 625px;
+  
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
+  }
+
+  .rank2points {
+    position: absolute;
+    width: 192px;
+    height: 33px;
+    left: 475px;
+    top: 625px;
+  
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.00022em;
+  
+    color: #1687a7;
+  }
+  .rank2pointsval {
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    left: 600px;
+    top: 625px;
+  
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
+  }
+
+  .rank2name {
+    position: absolute;
+    width: 192px;
+    height: 33px;
+    left: 100px;
+    top: 695px;
+  
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.00022em;
+  
+    color: #1687a7;
+  }
+  .rank2nameval {
+    position: absolute;
+    width: 350px;
+    height: 40px;
+    left: 225px;
+    top: 695px;
+  
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
+  }
+
+  .rank2des {
+    position: absolute;
+    width: 192px;
+    height: 33px;
+    left: 100px;
+    top: 765px;
+  
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.00022em;
+  
+    color: #1687a7;
+  }
+  .rank2desval {
+    position: absolute;
+    width: 350px;
+    height: 40px;
+    left: 225px;
+    top: 765px;
+  
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
+  }
+
+  .rank2divider {
+    position: absolute;
+    width: 1000.03px;
+    height: 0px;
+    left: 50px;
+    top: 850px;
+  
+    border: 3px solid #d3e0ea;
+    transform: rotate(0.21deg);
+  }
+
+  .rank3{
+    position: absolute;
+    width: 192px;
+    height: 33px;
+    left: 100px;
+    top: 905px;
+  
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.00022em;
+  
+    color: #1687a7;  
+}
+
+.rank3val{
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    left: 200px;
+    top: 905px;
+  
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
+}
+
+.rank3id {
+    position: absolute;
+    width: 192px;
+    height: 33px;
+    left: 100px;
+    top: 975px;
+  
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.00022em;
+  
+    color: #1687a7;
+  }
+
+  .rank3idval {
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    left: 200px;
+    top: 975px;
+  
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
+  }
+
+  .rank3points {
+    position: absolute;
+    width: 192px;
+    height: 33px;
+    left: 475px;
+    top: 975px;
+  
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.00022em;
+  
+    color: #1687a7;
+  }
+  .rank3pointsval {
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    left: 600px;
+    top: 975px;
+  
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
+  }
+
+  .rank3name {
+    position: absolute;
+    width: 192px;
+    height: 33px;
+    left: 100px;
+    top: 1045px;
+  
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.00022em;
+  
+    color: #1687a7;
+  }
+  .rank3nameval {
+    position: absolute;
+    width: 350px;
+    height: 40px;
+    left: 225px;
+    top: 1045px;
+  
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
+  }
+
+  .rank3des {
+    position: absolute;
+    width: 192px;
+    height: 33px;
+    left: 100px;
+    top: 1115px;
+  
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.00022em;
+  
+    color: #1687a7;
+  }
+  .rank3desval {
+    position: absolute;
+    width: 350px;
+    height: 40px;
+    left: 225px;
+    top: 1115px;
+  
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
+  }
+

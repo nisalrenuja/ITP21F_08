@@ -107,7 +107,7 @@ export default class TopPerformers extends Component {
             <form>
               <p class="tsenaic">Year:</p>
               <input
-                type="text"
+                type="number"
                 class="tsenaicc"
                 id="year"
                 name="year"
@@ -142,10 +142,10 @@ export default class TopPerformers extends Component {
             </form>
             <hr class="tsenaline1c"></hr>
             <form>
-              <p class="senaic">RANK:</p>
+              <p class="rank1">RANK:</p>
               <select
                 defaultValue={"DEFAULT"}
-                class="senaicc"
+                class="rank1val"
                 aria-label="Default select example"
                 name="rank"
                 onChange={this.handleInputChange}
@@ -154,23 +154,154 @@ export default class TopPerformers extends Component {
                 <option value="01">01</option>
               </select>
 
-              <p class="topsenaic">Emp ID:</p>
+              <p class="rank1id">Emp ID:</p>
               <input
                 type="text"
-                class="topsenaicc"
+                class="rank1idval"
                 id="top_empid"
                 name="top_empid"
                 value={this.state.top_empid}
                 onChange={this.handleInputChange}
               />
 
-              <p class="senaiiic">Emp Name:</p>
+              <p class="rank1points">Total Points:</p>
+              <input
+                type="number"
+                class="rank1pointsval"
+                id="total_points"
+                name="total_points"
+                value={this.state.total_points}
+                onChange={this.handleInputChange}
+              />
+
+              <p class="rank1name">Emp Name:</p>
               <input
                 type="text"
-                class="senaiiicc"
+                class="rank1nameval"
                 id="top_empname"
                 name="top_empname"
                 value={this.state.top_empname}
+                onChange={this.handleInputChange}
+              />
+
+              <p class="rank1des">Designation:</p>
+              <input
+                type="text"
+                class="rank1desval"
+                id="designation"
+                name="designation"
+                value={this.state.designation}
+                onChange={this.handleInputChange}
+              />
+
+              <hr class="rank1divider"></hr>
+
+              <p class="rank2">RANK:</p>
+              <select
+                defaultValue={"DEFAULT"}
+                class="rank2val"
+                aria-label="Default select example"
+                name="rank"
+                onChange={this.handleInputChange}
+              >
+                <option value="DEFAULT" disabled></option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+              </select>
+
+              <p class="rank2id">Emp ID:</p>
+              <input
+                type="text"
+                class="rank2idval"
+                id="top_empid"
+                name="top_empid"
+                value={this.state.top_empid}
+                onChange={this.handleInputChange}
+              />
+
+              <p class="rank2points">Total Points:</p>
+              <input
+                type="number"
+                class="rank2pointsval"
+                id="total_points"
+                name="total_points"
+                value={this.state.total_points}
+                onChange={this.handleInputChange}
+              />
+
+              <p class="rank2name">Emp Name:</p>
+              <input
+                type="text"
+                class="rank2nameval"
+                id="top_empname"
+                name="top_empname"
+                value={this.state.top_empname}
+                onChange={this.handleInputChange}
+              />
+
+              <p class="rank2des">Designation:</p>
+              <input
+                type="text"
+                class="rank2desval"
+                id="designation"
+                name="designation"
+                value={this.state.designation}
+                onChange={this.handleInputChange}
+              />
+
+              <hr class="rank2divider"></hr>
+
+              <p class="rank3">RANK:</p>
+              <select
+                defaultValue={"DEFAULT"}
+                class="rank3val"
+                aria-label="Default select example"
+                name="rank"
+                onChange={this.handleInputChange}
+              >
+                <option value="DEFAULT" disabled></option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+              </select>
+
+              <p class="rank3id">Emp ID:</p>
+              <input
+                type="text"
+                class="rank3idval"
+                id="top_empid"
+                name="top_empid"
+                value={this.state.top_empid}
+                onChange={this.handleInputChange}
+              />
+
+              <p class="rank3points">Total Points:</p>
+              <input
+                type="number"
+                class="rank3pointsval"
+                id="total_points"
+                name="total_points"
+                value={this.state.total_points}
+                onChange={this.handleInputChange}
+              />
+
+              <p class="rank3name">Emp Name:</p>
+              <input
+                type="text"
+                class="rank3nameval"
+                id="top_empname"
+                name="top_empname"
+                value={this.state.top_empname}
+                onChange={this.handleInputChange}
+              />
+
+              <p class="rank3des">Designation:</p>
+              <input
+                type="text"
+                class="rank3desval"
+                id="designation"
+                name="designation"
+                value={this.state.designation}
                 onChange={this.handleInputChange}
               />
 
