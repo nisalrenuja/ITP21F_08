@@ -43,7 +43,7 @@ export default class MonthlySalary extends Component {
   filterData(salaries, searchKey) {
     const result = salaries.filter(
       salary =>
-        salary.salaryno.toLowerCase().includes(searchKey) ||
+        //salary.salaryno.toLowerCase().includes(searchKey) ||
         salary.empno
           .toString()
           .toLowerCase()
@@ -144,7 +144,7 @@ export default class MonthlySalary extends Component {
             <thead class="tblhead">
               <tr class="">
                 <th scope="col"> #</th>
-                <th scope="col"> Payslip ID</th>
+                <th scope="col"> Pay Slip ID</th>
                 <th scope="col"> Employee ID</th>
                 <th scope="col"> Month-Year</th>
                 <th scope="col"> Net Salary</th>

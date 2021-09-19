@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "./AllPayrolls.css";
+//import { storage } from "../../firebase";
+//import Progress from "../../component/common/ProgressBar/progress";
 
-export default class CreateMSalary extends Component {
+export default class EditMSalary extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      //salaryno: "",
       empno: "",
       name: "",
       pay_month: "",
@@ -26,25 +26,17 @@ export default class CreateMSalary extends Component {
 
   handleInputChange = e => {
     const { name, value } = e.target;
-
     this.setState({
       ...this.state,
       [name]: value
     });
   };
 
-  /*
-    handleInputFileChange = e => {
-        var file = e.target.files[0];
-        console.log(file);
-    };
-    */
-
   onSubmit = e => {
     e.preventDefault();
+    const id = this.props.match.params.id;
 
     const {
-      //salaryno,
       empno,
       name,
       pay_month,
@@ -61,7 +53,6 @@ export default class CreateMSalary extends Component {
     } = this.state;
 
     const data = {
-      //salaryno: salaryno,
       empno: empno,
       name: name,
       pay_month: pay_month,
@@ -78,11 +69,11 @@ export default class CreateMSalary extends Component {
     };
 
     console.log(data);
-
-    axios.post("http://localhost:5000/salary/save", data).then(res => {
+    axios.put(`http://localhost:5000/salary/update/${id}`, data).then(res => {
       if (res.data.success) {
+        alert("Monthly Salary Updated Successfully");
+
         this.setState({
-          //salaryno: "",
           empno: "",
           name: "",
           pay_month: "",
@@ -102,12 +93,69 @@ export default class CreateMSalary extends Component {
     this.props.history.push("/allsalary");
   };
 
+  componentDidMount() {
+    const id = this.props.match.params.id;
+
+    axios.get(`http://localhost:5000/salary/${id}`).then(res => {
+      if (res.data.success) {
+        this.setState({
+          empno: res.data.salary.empno,
+          name: res.data.salary.name,
+          pay_month: res.data.salary.pay_month,
+          basic: res.data.salary.basic,
+          OT_rate: res.data.salary.OT_rate,
+          OT_hrs: res.data.salary.OT_hrs,
+          total_OT: res.data.salary.total_OT,
+          total_earnings: res.data.salary.total_earnings,
+          total_deductions: res.data.salary.total_deductions,
+          net_salary: res.data.salary.net_salary,
+          salary_status: res.data.salary.salary_status
+        });
+        console.log(this.state.salary);
+      }
+    });
+  }
+  /*
+  uploadPDF(e) {
+    if (e.target.files[0] !== null) {
+      const uploadTask = storage
+        .ref(`users/${e.target.files[0].name}`)
+        .put(e.target.files[0]);
+      uploadTask.on(
+        "state_changed",
+        snapshot => {
+          //progress function
+          const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          this.setState({ uploadPercentage: progress });
+        },
+        error => {
+          //error function
+          console.log(error);
+        },
+        () => {
+          //complete function
+          storage
+            .ref("users")
+            .child(e.target.files[0].name)
+            .getDownloadURL()
+            .then(url => {
+              this.setState({ reportPDF: url });
+              console.log("Hello " + url);
+            });
+        }
+      );
+    } else {
+    }
+  }
+  */
   render() {
     return (
       <div className="col-md-6 mt-4 mx-auto">
         <br />
 
-        <h1>Payroll Management | Calculate Monthly Salary</h1>
+        <h1>Payroll Management | Edit Attendance Details</h1>
         <br />
         <br />
 
@@ -350,7 +398,7 @@ export default class CreateMSalary extends Component {
               required
             >
               <option value="DEFAULT" disabled>
-                Select Salary Status
+                {this.state.salary_status}
               </option>
               <option value="Pending" class="alertyellow">
                 Pending
@@ -370,15 +418,19 @@ export default class CreateMSalary extends Component {
           <br />
           <div class="d-flex justify-content-center">
             <button
-              className="btn btn-info"
+              className="btn btn-warning"
               type="submit"
-              style={{ backgroundColor: "#1687A7" }}
+              style={{ marginTop: "15px" }}
               onClick={this.onSubmit}
             >
-              &nbsp;&nbsp;Save&nbsp;&nbsp;
+              <i className="fa fa-refresh"></i>&nbsp;Update
             </button>{" "}
             &nbsp;&nbsp;
-            <button className="btn btn-danger" type="cancel">
+            <button
+              className="btn btn-danger"
+              type="cancel"
+              style={{ marginTop: "15px" }}
+            >
               Cancel
             </button>
           </div>

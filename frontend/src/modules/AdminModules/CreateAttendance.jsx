@@ -194,7 +194,7 @@ export default class CreateAttendance extends Component {
             >
               <label style={{ marginBottom: "5px" }}>Time In</label>
               <input
-                type="time"
+                type="text"
                 className="form-control"
                 name="time_in"
                 value={this.state.time_in}
@@ -208,7 +208,7 @@ export default class CreateAttendance extends Component {
             >
               <label style={{ marginBottom: "5px" }}>Time Out</label>
               <input
-                type="time"
+                type="text"
                 className="form-control"
                 name="time_out"
                 value={this.state.time_out}
