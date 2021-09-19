@@ -23,26 +23,48 @@ export default class CreateReport extends Component {
 
   handleInputChange = e => {
     const { name, value } = e.target;
-    console.log(name);
-    console.log(value);
-    if (name === "status") {
-      if (value === "Accepted") {
-        this.state.assignmentstatus = "Completed";
-        this.state.status = "Accepted";
-      } else if (value === "Pending") {
-        this.state.assignmentstatus = "Working";
-        this.state.status = "Pending";
-      } else this.state.status = "Rejected";
-    }
-
-    console.log(this.state.assignmentstatus);
-    console.log(this.state.status);
     this.setState({
       ...this.state,
       [name]: value
     });
   };
 
+  onSubmitanu = e => {
+    e.preventDefault();
+
+    const {
+      execid_review,
+      report,
+      reportPDF,
+      points,
+      feedback,
+      status
+    } = this.state;
+
+    const data = {
+      execid_review: execid_review,
+      report: report,
+      reportPDF: reportPDF,
+      points: points,
+      feedback: feedback,
+      status: status
+    };
+
+    console.log(data);
+    axios.post("http://localhost:5000/final_report/save/", data).then(res => {
+      if (res.data.success) {
+        this.setState({
+          execid_review: execid_review,
+          report: report,
+          reportPDF: reportPDF,
+          points: points,
+          feedback: feedback,
+          status: status,
+          redirectToReferrer: true
+        });
+      }
+    });
+  };
   onSubmit = e => {
     e.preventDefault();
     const id = this.props.match.params.id;
@@ -173,6 +195,7 @@ export default class CreateReport extends Component {
               className="form-control"
               name="execid_review"
               placeholder="Edit Review Id"
+              value={this.state.execid_review}
             />
           </div>
 
@@ -199,6 +222,7 @@ export default class CreateReport extends Component {
               id="file"
               className="form-control"
               name="reportPDF"
+
               // value={this.state.reportPDF}
             />
             <div className="row d-flex justify-content-end mt-3">
@@ -215,6 +239,7 @@ export default class CreateReport extends Component {
               className="form-select"
               aria-label="Default select example"
               name="points"
+              onChange={this.handleInputChange}
             >
               <option value="DEFAULT" disabled></option>
               <option value="5">5</option>
@@ -230,6 +255,8 @@ export default class CreateReport extends Component {
               className="form-control"
               name="feedback"
               placeholder="Edit Feedback"
+              value={this.state.feedback}
+              onChange={this.handleInputChange}
             />
           </div>
 
@@ -240,6 +267,7 @@ export default class CreateReport extends Component {
               className="form-select"
               aria-label="Default select example"
               name="status"
+              onChange={this.handleInputChange}
             >
               <option value="DEFAULT" disabled></option>
               <option value="Pending">Pending</option>
@@ -252,6 +280,7 @@ export default class CreateReport extends Component {
             className="btn btn-info mb-2"
             type="submit"
             style={{ marginTop: "15px" }}
+            onClick={this.onSubmitanu}
           >
             <i className="fas fa-sync"></i>&nbsp;Save
           </button>
