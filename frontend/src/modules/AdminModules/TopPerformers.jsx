@@ -8,15 +8,14 @@ export default class TopPerformers extends Component {
     super(props);
 
     this.state = {
-      assignment_name: "",
-      client_no: "",
-      execid: "",
-      place_of_engagement: "",
-      distance: "",
-      date_of_allocation: "",
-      deadline: "",
-      emp_no: "",
-      staff: [],
+      month: "",
+      year: "",
+      rank: "",
+      top_empid: "",
+      top_empname: "",
+      designation: "",
+      total_points: "",
+      //TopPerformers[],
       redirectToReferrer: false
     };
   }
@@ -52,52 +51,46 @@ export default class TopPerformers extends Component {
     e.preventDefault();
 
     const {
-      assignment_name,
-      client_no,
-      execid,
-      place_of_engagement,
-      distance,
-      date_of_allocation,
-      deadline,
-      emp_no
+      month,
+      year,
+      rank,
+      top_empid,
+      top_empname,
+      designation,
+      total_points
     } = this.state;
 
     const data = {
-      assignment_name: assignment_name,
-      client_no: client_no,
-      execid: execid,
-      place_of_engagement: place_of_engagement,
-      distance: distance,
-      date_of_allocation: date_of_allocation,
-      deadline: deadline,
-      emp_no: emp_no,
-      progress: "Assigned"
+      month: month,
+      year: year,
+      rank: rank,
+      top_empid: top_empid,
+      top_empname: top_empname,
+      designation: designation,
+      total_points: total_points
     };
 
     console.log(data);
     axios.post("http://localhost:5000/assignments/save/", data).then(res => {
       if (res.data.success) {
         this.setState({
-          assignment_name: assignment_name,
-          client_no: client_no,
-          execid: execid,
-          place_of_engagement: place_of_engagement,
-          distance: distance,
-          date_of_allocation: date_of_allocation,
-          deadline: deadline,
-          emp_no: "",
+          month: month,
+          year: year,
+          rank: rank,
+          top_empid: top_empid,
+          top_empname: top_empname,
+          designation: designation,
+          total_points: total_points,
           redirectToReferrer: true
         });
-        alert(
-          "Employee added to assignment, Enter employee numbers to add more employees!"
-        );
+        // alert("Employee added to assignment, Enter employee numbers to add more employees!");
       }
     });
   };
   render() {
     const redirectToReferrer = this.state.redirectToReferrer;
     if (redirectToReferrer == true) {
-      return <Redirect to="/allassignments" />;
+      return <Redirect to="/Notices" />;
     }
     return (
       <div className="container">
@@ -105,23 +98,69 @@ export default class TopPerformers extends Component {
           <h1 class="senahead1c">Top Performers</h1>
           <hr class="senaline1c"></hr>
           <div class="senamain33">
+            <a href="">
+              <button class="tsendiv4">
+                <p class="sentxt4">Calculate Top Performers</p>
+              </button>
+            </a>
+
             <form>
-              <p class="senaic">Notice ID:</p>
+              <p class="tsenaic">Year:</p>
               <input
                 type="text"
-                class="senaicc"
-                id="assignment_name"
-                name="assignment_name"
-                value={this.state.assignment_name}
+                class="tsenaicc"
+                id="year"
+                name="year"
+                value={this.state.year}
                 onChange={this.handleInputChange}
               />
-              <p class="senaiic">Emp ID:</p>
+
+              <div className="form-group" style={{ marginBottom: "15px" }}>
+                <p class="ttsenaic">Month:</p>
+                <select
+                  defaultValue={"DEFAULT"}
+                  class="ttsenaicc"
+                  aria-label="Default select example"
+                  name="month"
+                  onChange={this.handleInputChange}
+                >
+                  <option value="DEFAULT" disabled></option>
+                  <option value="January">January</option>
+                  <option value="February">February</option>
+                  <option value="March">March</option>
+                  <option value="April">April</option>
+                  <option value="May">May</option>
+                  <option value="June">June</option>
+                  <option value="July">July</option>
+                  <option value="August">August</option>
+                  <option value="September">September</option>
+                  <option value="October">October</option>
+                  <option value="November">November</option>
+                  <option value="December">December</option>
+                </select>
+              </div>
+            </form>
+            <hr class="tsenaline1c"></hr>
+            <form>
+              <p class="senaic">RANK:</p>
+              <select
+                defaultValue={"DEFAULT"}
+                class="senaicc"
+                aria-label="Default select example"
+                name="rank"
+                onChange={this.handleInputChange}
+              >
+                <option value="DEFAULT" disabled></option>
+                <option value="01">01</option>
+              </select>
+
+              <p class="topsenaic">Emp ID:</p>
               <input
                 type="text"
-                class="senaiicc"
-                id="client_no"
-                name="client_no"
-                value={this.state.client_no}
+                class="topsenaicc"
+                id="top_empid"
+                name="top_empid"
+                value={this.state.top_empid}
                 onChange={this.handleInputChange}
               />
 
@@ -129,54 +168,9 @@ export default class TopPerformers extends Component {
               <input
                 type="text"
                 class="senaiiicc"
-                id="execid"
-                name="execid"
-                value={this.state.execid}
-                onChange={this.handleInputChange}
-              />
-              <p class="senaivc">Notice Topic:</p>
-              <input
-                type="text"
-                class="senaivcc"
-                id="place_of_engagement"
-                name="place_of_engagement"
-                value={this.state.place_of_engagement}
-                onChange={this.handleInputChange}
-              />
-              <p class="senavc">Content:</p>
-              <input
-                type="number"
-                class="senavcc"
-                id="distance"
-                name="distance"
-                value={this.state.distance}
-                onChange={this.handleInputChange}
-              />
-              <p class="senavcattach">Attachments:</p>
-              <input
-                type="number"
-                class="senavccattach"
-                id="distance"
-                name="distance"
-                value={this.state.distance}
-                onChange={this.handleInputChange}
-              />
-              <p class="senavic">Publishing Date: </p>
-              <input
-                type="date"
-                class="senavicc"
-                id="date_of_allocation"
-                name="date_of_allocation"
-                value={this.state.date_of_allocation}
-                onChange={this.handleInputChange}
-              />
-              <p class="senaviic">Delete Notice on: </p>
-              <input
-                type="date"
-                class="senaviicc"
-                id="deadline"
-                name="deadline"
-                value={this.state.deadline}
+                id="top_empname"
+                name="top_empname"
+                value={this.state.top_empname}
                 onChange={this.handleInputChange}
               />
 
