@@ -27,7 +27,7 @@ export default class EditLaptopInventory extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const _id = this.props.match.params._id;
+    const _id = this.props.match.params.id;
     const {
       id,
       brand,
@@ -47,7 +47,7 @@ export default class EditLaptopInventory extends Component {
       status: status
     };
     console.log(data);
-    axios.put(`http://localhost:5000/laptop/update/${id}`, data).then(res => {
+    axios.put(`http://localhost:5000/laptop/update/${_id}`, data).then(res => {
       if (res.data.success) {
         alert("Laptop Update Successfully!");
         this.setState({
@@ -59,6 +59,7 @@ export default class EditLaptopInventory extends Component {
           purchase_price: "",
           status: ""
         });
+        this.props.history.push("/admin");
       }
     });
   };

@@ -93,9 +93,7 @@ export default class LaptopRepair extends Component {
 
             <div class="d-flex">
               <div className="col-lg-9 mt-2 mb-2 ">
-                <h2 className="h3 mb-3">
-                  Total Available Repair Laptops ( {this.state.LaptopRepair} )
-                </h2>
+                <h2 className="h3 mb-3">Available Repair Laptops</h2>
               </div>
 
               <div className="col-lg-3 mt-2 mb-2 search-bar">

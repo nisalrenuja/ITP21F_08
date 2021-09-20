@@ -91,9 +91,7 @@ export default class AdminTab7 extends Component {
 
             <div class="d-flex">
               <div className="col-lg-9 mt-2 mb-2 ">
-                <h2 className="h3 mb-3">
-                  Total Available Laptops ( {this.state.laptopcount} )
-                </h2>
+                <h2 className="h3 mb-3">Available Laptops</h2>
               </div>
 
               <div className="col-lg-3 mt-2 mb-2 search-bar">
@@ -151,7 +149,7 @@ export default class AdminTab7 extends Component {
           </table>
           <a href="/createlaptop">
             <button class="addbtn">
-              <i class="fas fa-plus"></i>&nbsp;New Laptop Repair Details
+              <i class="fas fa-plus"></i>&nbsp;New Laptop Details
             </button>
           </a>
         </div>
