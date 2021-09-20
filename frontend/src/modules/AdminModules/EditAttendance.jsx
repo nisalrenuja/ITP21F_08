@@ -14,7 +14,8 @@ export default class EditAttendance extends Component {
       location_type: "",
       location: "",
       time_in: "",
-      time_out: ""
+      time_out: "",
+      assignment_name: ""
     };
   }
 
@@ -37,7 +38,8 @@ export default class EditAttendance extends Component {
       location_type,
       location,
       time_in,
-      time_out
+      time_out,
+      assignment_name
     } = this.state;
 
     const data = {
@@ -47,7 +49,8 @@ export default class EditAttendance extends Component {
       location_type: location_type,
       location: location,
       time_in: time_in,
-      time_out: time_out
+      time_out: time_out,
+      assignment_name: assignment_name
     };
 
     console.log(data);
@@ -64,7 +67,8 @@ export default class EditAttendance extends Component {
             location_type: "",
             location: "",
             time_in: "",
-            time_out: ""
+            time_out: "",
+            assignment_name: ""
           });
         }
       });
@@ -83,7 +87,8 @@ export default class EditAttendance extends Component {
           location_type: res.data.attendance.location_type,
           location: res.data.attendance.location,
           time_in: res.data.attendance.time_in,
-          time_out: res.data.attendance.time_out
+          time_out: res.data.attendance.time_out,
+          assignment_name: res.data.attendance.assignment_name
         });
         console.log(this.state.attendance);
       }
@@ -235,6 +240,18 @@ export default class EditAttendance extends Component {
               value={this.state.location}
               onChange={this.handleInputChange}
             ></textarea>
+          </div>
+
+          <div className="form-group" style={{ marginBottom: "15px" }}>
+            <label style={{ marginBottom: "5px" }}>Assignment Name</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Type participated/allocated assignment name if have"
+              name="assignment_name"
+              value={this.state.assignment_name}
+              onChange={this.handleInputChange}
+            />
           </div>
 
           <div class="d-flex justify-content-between">

@@ -40,7 +40,7 @@ export default class AdminAttendance extends Component {
         .delete(`http://localhost:5000/attendance/delete/${id}`)
         .then(res => {
           alert("Deleted Data Successfully!!");
-          this.retrievePayrolls();
+          this.retrieveAttendances();
         });
     }
   };
@@ -58,7 +58,8 @@ export default class AdminAttendance extends Component {
           .includes(searchKey) ||
         attendance.location_type.toLowerCase().includes(searchKey) ||
         attendance.location.toLowerCase().includes(searchKey) ||
-        attendance.att_type.toLowerCase().includes(searchKey)
+        attendance.att_type.toLowerCase().includes(searchKey) ||
+        attendance.assignment_name.toLowerCase().includes(searchKey)
     );
 
     this.setState({ attendances: result });
@@ -117,6 +118,15 @@ export default class AdminAttendance extends Component {
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <button class="btn btn-lg aptab-btn">
                 <a
+                  href="/allrequests"
+                  style={{ textDecoration: "none", color: "#1687A7" }}
+                >
+                  Requests
+                </a>
+              </button>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <button class="btn btn-lg aptab-btn">
+                <a
                   href="/allsalary"
                   style={{ textDecoration: "none", color: "#1687A7" }}
                 >
@@ -155,8 +165,9 @@ export default class AdminAttendance extends Component {
                 <th scope="col"> #</th>
                 <th scope="col"> Employee ID</th>
                 <th scope="col"> Date</th>
-                <th scope="col"> Attendance Type</th>
                 <th scope="col"> Location Type</th>
+                <th scope="col"> Assignment</th>
+                <th scope="col"> Attendance Type</th>
                 <th scope="col"> Time In</th>
                 <th scope="col"> Time Out</th>
                 <th scope="col"> Action</th>
@@ -178,8 +189,9 @@ export default class AdminAttendance extends Component {
                   </td>
 
                   <td>{attendances.att_date}</td>
-                  <td>{attendances.att_type}</td>
                   <td>{attendances.location_type}</td>
+                  <td>{attendances.assignment_name}</td>
+                  <td>{attendances.att_type}</td>
                   <td>{attendances.time_in}</td>
                   <td>{attendances.time_out}</td>
 

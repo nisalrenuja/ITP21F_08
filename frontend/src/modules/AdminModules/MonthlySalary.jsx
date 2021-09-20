@@ -34,10 +34,13 @@ export default class MonthlySalary extends Component {
   }
 
   onDelete = id => {
-    axios.delete(`http://localhost:5000/salary/delete/${id}`).then(res => {
-      alert("Deleted Monthly Salary Successfully!!");
-      this.retrieveSalaries();
-    });
+    const confirmBox = window.confirm("Do you really want to delete this?");
+    if (confirmBox === true) {
+      axios.delete(`http://localhost:5000/salary/delete/${id}`).then(res => {
+        alert("Deleted Monthly Salary Successfully!!");
+        this.retrieveSalaries();
+      });
+    }
   };
 
   filterData(salaries, searchKey) {
@@ -103,6 +106,15 @@ export default class MonthlySalary extends Component {
                   style={{ textDecoration: "none", color: "#1687A7" }}
                 >
                   Attendance
+                </a>
+              </button>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <button class="btn btn-lg aptab-btn">
+                <a
+                  href="/allrequests"
+                  style={{ textDecoration: "none", color: "#1687A7" }}
+                >
+                  Requests
                 </a>
               </button>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

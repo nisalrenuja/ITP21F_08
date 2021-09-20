@@ -13,7 +13,8 @@ export default class CreateAttendance extends Component {
       location_type: "",
       location: "",
       time_in: "",
-      time_out: ""
+      time_out: "",
+      assignment_name: ""
     };
   }
 
@@ -41,7 +42,8 @@ export default class CreateAttendance extends Component {
       location_type,
       location,
       time_in,
-      time_out
+      time_out,
+      assignment_name
     } = this.state;
 
     const data = {
@@ -51,7 +53,8 @@ export default class CreateAttendance extends Component {
       location_type: location_type,
       location: location,
       time_in: time_in,
-      time_out: time_out
+      time_out: time_out,
+      assignment_name: assignment_name
     };
 
     console.log(data);
@@ -65,7 +68,8 @@ export default class CreateAttendance extends Component {
           location_type: "",
           location: "",
           time_in: "",
-          time_out: ""
+          time_out: "",
+          assignment_name: ""
         });
       }
     });
@@ -187,6 +191,18 @@ export default class CreateAttendance extends Component {
             ></textarea>
           </div>
 
+          <div className="form-group" style={{ marginBottom: "15px" }}>
+            <label style={{ marginBottom: "5px" }}>Assignment Name</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Type participated/allocated assignment name if have"
+              name="assignment_name"
+              value={this.state.assignment_name}
+              onChange={this.handleInputChange}
+            />
+          </div>
+
           <div class="d-flex justify-content-between">
             <div
               className="form-group col-md-5"
@@ -194,7 +210,7 @@ export default class CreateAttendance extends Component {
             >
               <label style={{ marginBottom: "5px" }}>Time In</label>
               <input
-                type="text"
+                type="time"
                 className="form-control"
                 name="time_in"
                 value={this.state.time_in}
@@ -208,7 +224,7 @@ export default class CreateAttendance extends Component {
             >
               <label style={{ marginBottom: "5px" }}>Time Out</label>
               <input
-                type="text"
+                type="time"
                 className="form-control"
                 name="time_out"
                 value={this.state.time_out}

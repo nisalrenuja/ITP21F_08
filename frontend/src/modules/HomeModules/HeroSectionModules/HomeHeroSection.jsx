@@ -20,10 +20,9 @@ const HomeHeroSection = () => (
         </div>
         <button
           type="button"
-          href="/allattendance"
           className="home-header-btn btn btn-success btn-pill"
         >
-          Attendance
+          Let’s Go
         </button>
       </div>
       <div className="col-sm-12 col-md-6 col-lg-6">

@@ -10,7 +10,7 @@ const attendancesSchema = new mongoose.Schema({
         required:true,
     },
     att_date: {
-        type: Date,
+        type: String,
         required:true,
     },
     att_type: {
@@ -35,7 +35,10 @@ const attendancesSchema = new mongoose.Schema({
         type: String,
         required:false,
     },
-    
+    assignment_name: {
+        type: String,
+        required: true,
+    },
 
 
 },
