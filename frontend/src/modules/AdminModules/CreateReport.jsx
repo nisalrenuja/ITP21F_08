@@ -222,11 +222,19 @@ export default class CreateReport extends Component {
               id="file"
               className="form-control"
               name="reportPDF"
-
               // value={this.state.reportPDF}
+              onChange={e => {
+                this.uploadPDF(e);
+              }}
+              multiple=""
             />
             <div className="row d-flex justify-content-end mt-3">
-              <a className="btn btn-primary col-2 me-2">View PDF</a>
+              <a
+                href={this.state.reportPDF}
+                className="btn btn-primary col-2 me-2"
+              >
+                View PDF
+              </a>
             </div>
           </div>
 
