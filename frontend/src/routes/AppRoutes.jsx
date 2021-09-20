@@ -92,6 +92,7 @@ import EmployeeReport from "../modules/AdminModules/EmployeeReport";
 import EmpReportUpload from "../modules/AdminModules/EmpReportUpload";
 import EmpExportReport from "../modules/AdminModules/EmplExportReport";
 import EmpReportEdit from "../modules/AdminModules/EmpReportEdit";
+import EmpProfile from "../modules/AdminModules/EmpProfile";
 import Notices from "../pages/AdminPage/Notices";
 
 const AppRoutes = () => (
@@ -175,6 +176,7 @@ const AppRoutes = () => (
           component={CompletedAssignment}
         />
         <Route exact path="/empexportreport" component={EmpExportReport} />
+        <Route exact path="/empprofile/:id" component={EmpProfile} />
         <Route
           path="/displayexecutive/:id"
           component={DisplayExecutive}
