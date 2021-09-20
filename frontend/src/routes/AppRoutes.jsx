@@ -34,9 +34,9 @@ import CreateExecutive from "../modules/AdminModules/CreateExecutive";
 import NewExecutive from "../modules/AdminModules/NewExecutive";
 import EditExecutive from "../modules/AdminModules/EditExecutive";
 import DisplayExecutive from "../modules/AdminModules/DisplayExecutive";
-import CreateNotice from "../modules/AdminModules/CreateNotice";
-import TopPerformers from "../modules/AdminModules/TopPerformers";
-import NoticeComPerf from "../modules/AdminModules/NoticeComPerf";
+import CreateNotice from "../pages/AdminPage/CreateNotice";
+import TopPerformers from "../pages/AdminPage/TopPerformers";
+import NoticeComPerf from "../pages/AdminPage/NoticeComPerf";
 
 import EditNotices from "../pages/AdminPage/EditNotices"; //edit notices
 import PayrollPage from "../pages/PayrollPage/PayrollPage";
