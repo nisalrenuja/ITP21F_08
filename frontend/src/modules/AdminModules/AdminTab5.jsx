@@ -46,7 +46,7 @@ export default class AdminTab5 extends Component {
   handleSearchArea = e => {
     const searchKey = e.currentTarget.value;
 
-    axios.get("http://localhost:5000/CrateNotices").then(res => {
+    axios.get("http://localhost:5000/CreateNotices").then(res => {
       if (res.data.success) {
         this.filterData(res.data.existingNotices, searchKey);
       }
@@ -79,6 +79,7 @@ export default class AdminTab5 extends Component {
             <input
               class="senselect1"
               type="text"
+              name="searchQuery"
               placeholder="Search by Notice ID"
               onChange={this.handleSearchArea}
             />
