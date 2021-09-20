@@ -37,7 +37,7 @@ import DisplayExecutive from "../modules/AdminModules/DisplayExecutive";
 import CreateNotice from "../pages/AdminPage/CreateNotice";
 import TopPerformers from "../pages/AdminPage/TopPerformers";
 import NoticeComPerf from "../pages/AdminPage/NoticeComPerf";
-
+import DisplayNotice from "../pages/AdminPage/DisplayNotice"; //Display notice
 import EditNotices from "../pages/AdminPage/EditNotices"; //edit notices
 import PayrollPage from "../pages/PayrollPage/PayrollPage";
 import CreatePayroll from "../modules/AdminModules/CreatePayroll";
@@ -243,6 +243,11 @@ const AppRoutes = () => (
           exact
         ></Route>
         <Route path="/AdminTab5" component={Notices} exact></Route>
+        <Route
+          path="/DisplayNotice/:existingNotices"
+          component={DisplayNotice}
+          exact
+        ></Route>
       </Switch>
       <Footer />
     </Router>

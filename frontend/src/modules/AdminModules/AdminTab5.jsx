@@ -81,7 +81,7 @@ export default class AdminTab5 extends Component {
               class="senselect1"
               type="text"
               name="searchQuery"
-              placeholder="Search by Notice ID"
+              placeholder="Search by Notice ID or Employee ID"
               onChange={this.handleSearchArea}
             />
             <a className="btn btn-info sensearch">
@@ -104,7 +104,10 @@ export default class AdminTab5 extends Component {
                 {this.state.existingNotices.map((existingNotices, index) => (
                   <tr key={index}>
                     <td>
-                      <a href={``} style={{ textDecoration: "none" }}>
+                      <a
+                        href={`/DisplayNotice/${existingNotices._id}`}
+                        style={{ textDecoration: "none" }}
+                      >
                         {existingNotices.notice_id}
                       </a>
                     </td>
@@ -114,6 +117,12 @@ export default class AdminTab5 extends Component {
                     <td>{existingNotices.published_date}</td>
 
                     <td>
+                      <a
+                        href={existingNotices.notice_attachments}
+                        class="icon-btns"
+                      >
+                        <i class="fas fa-eye"></i>&nbsp;&nbsp;&nbsp;
+                      </a>
                       <a href={`/EditNotices/${existingNotices._id}`}>
                         <i className="fas fa-edit"></i>&nbsp;
                       </a>
