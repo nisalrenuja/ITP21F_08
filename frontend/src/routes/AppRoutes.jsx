@@ -90,7 +90,7 @@ import EmployeeReport from "../modules/AdminModules/EmployeeReport";
 import EmpReportUpload from "../modules/AdminModules/EmpReportUpload";
 import EmpExportReport from "../modules/AdminModules/EmplExportReport";
 import EmpReportEdit from "../modules/AdminModules/EmpReportEdit";
-import AdminTab5 from "../modules/AdminModules/AdminTab5";
+import Notices from "../pages/AdminPage/Notices";
 
 const AppRoutes = () => (
   <div>
@@ -238,7 +238,7 @@ const AppRoutes = () => (
           component={EditNotices}
           exact
         ></Route>
-        <Route path="/AdminTab5" component={AdminTab5} exact></Route>
+        <Route path="/AdminTab5" component={Notices} exact></Route>
       </Switch>
       <Footer />
     </Router>
