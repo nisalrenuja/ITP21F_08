@@ -110,6 +110,15 @@ export default class AdminTab6 extends Component {
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <button class="btn btn-lg aptab-btn">
                 <a
+                  href="/allrequests"
+                  style={{ textDecoration: "none", color: "#1687A7" }}
+                >
+                  Requests
+                </a>
+              </button>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <button class="btn btn-lg aptab-btn">
+                <a
                   href="/allsalary"
                   style={{ textDecoration: "none", color: "#1687A7" }}
                 >

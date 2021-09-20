@@ -359,7 +359,7 @@ export default class CreateMSalary extends Component {
                 Recieved
               </option>
               <option value="Not Recieved" class="alertred">
-                Senior Staff
+                Not Recieved
               </option>
               <option value="No Pay" class="alertblue">
                 No Pay

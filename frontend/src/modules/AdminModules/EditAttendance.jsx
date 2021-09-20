@@ -203,7 +203,7 @@ export default class EditAttendance extends Component {
             </div>
           </div>
           <hr></hr>
-          <div className="form-group col-sm-5" style={{ marginBottom: "15px" }}>
+          <div className="form-group col-sm-6" style={{ marginBottom: "15px" }}>
             <label style={{ marginBottom: "5px" }}>Location Type</label>
             <select
               defaultValue={"DEFAULT"}
