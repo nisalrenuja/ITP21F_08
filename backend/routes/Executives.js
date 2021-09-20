@@ -1,9 +1,9 @@
-const express = require("express");
-const executives = require("../models/User");
+const express = require('express');
+const executives = require('../models/User');
 const router = express.Router();
-const { protect } = require("../middleware/auth");
+const { protect } = require('../middleware/auth');
 
-router.post("/executives/save", (req, res) => {
+router.post('/executives/save', (req, res) => {
   let newexecutives = new executives(req.body);
   newexecutives.save((err) => {
     if (err) {
@@ -12,12 +12,12 @@ router.post("/executives/save", (req, res) => {
       });
     }
     return res.status(200).json({
-      success: "executives saved succesfully",
+      success: 'executives saved succesfully',
     });
   });
 });
 //get post
-router.get("/executives", protect, (req, res) => {
+router.get('/executives', protect, (req, res) => {
   executives.find().exec((err, executives) => {
     var count = executives.length;
     if (err) {
@@ -32,7 +32,7 @@ router.get("/executives", protect, (req, res) => {
 });
 
 //get specific
-router.get("/executives/:id", (req, res) => {
+router.get('/executives/:id', (req, res) => {
   let postid = req.params.id;
   executives.findById(postid, (err, executives) => {
     if (err) {
@@ -45,7 +45,7 @@ router.get("/executives/:id", (req, res) => {
   });
 });
 //update executives
-router.put("/executives/update/:id", (req, res) => {
+router.put('/executives/update/:id', (req, res) => {
   executives.findByIdAndUpdate(
     req.params.id,
     {
@@ -56,21 +56,21 @@ router.put("/executives/update/:id", (req, res) => {
         return res.status(400).json({ error: err });
       }
       return res.status(200).json({
-        success: "Uploaded Succesfully",
+        success: 'Uploaded Succesfully',
       });
     }
   );
 });
 //delete post
-router.delete("/executives/delete/:id", (req, res) => {
+router.delete('/executives/delete/:id', (req, res) => {
   executives.findByIdAndRemove(req.params.id).exec((err, deletedPost) => {
     if (err)
       return res.status(400).json({
-        message: "Delete Unsuccess",
+        message: 'Delete Unsuccess',
         err,
       });
     return res.json({
-      message: "Delete Success",
+      message: 'Delete Success',
       deletedPost,
     });
   });

@@ -58,7 +58,7 @@ export default class DisplayReview extends Component {
           </button>
         </div>
         <hr />
-        <dl className="row">
+        <dl className="row1">
           <dt className="col-sm-3">Position</dt>
           <dd className="col-sm-9">{position}</dd>
 
