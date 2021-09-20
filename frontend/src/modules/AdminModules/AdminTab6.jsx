@@ -35,10 +35,13 @@ export default class AdminTab6 extends Component {
   }
 
   onDelete = id => {
-    axios.delete(`http://localhost:5000/payroll/delete/${id}`).then(res => {
-      alert("Deleted Payroll Data Successfully!!");
-      this.retrievePayrolls();
-    });
+    const confirmBox = window.confirm("Do you really want to delete this?");
+    if (confirmBox === true) {
+      axios.delete(`http://localhost:5000/payroll/delete/${id}`).then(res => {
+        alert("Deleted Payroll Data Successfully!!");
+        this.retrievePayrolls();
+      });
+    }
   };
 
   filterData(payrolls, searchKey) {
@@ -107,6 +110,15 @@ export default class AdminTab6 extends Component {
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <button class="btn btn-lg aptab-btn">
                 <a
+                  href="/allrequests"
+                  style={{ textDecoration: "none", color: "#1687A7" }}
+                >
+                  Requests
+                </a>
+              </button>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <button class="btn btn-lg aptab-btn">
+                <a
                   href="/allsalary"
                   style={{ textDecoration: "none", color: "#1687A7" }}
                 >
@@ -149,6 +161,7 @@ export default class AdminTab6 extends Component {
                 <th scope="col"> Basic Salary</th>
                 <th scope="col"> Bank</th>
                 <th scope="col"> Account No</th>
+                <th scope="col"> Last Paid</th>
                 <th scope="col"> Action</th>
               </tr>
             </thead>
@@ -171,6 +184,7 @@ export default class AdminTab6 extends Component {
                   <td>{payrolls.basic_salary}</td>
                   <td>{payrolls.bank}</td>
                   <td>{payrolls.account_no}</td>
+                  <td>{payrolls.last_paid}</td>
 
                   <td>
                     <a

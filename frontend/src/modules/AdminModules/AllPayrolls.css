@@ -82,7 +82,7 @@
   border-radius:"15px"
 }
 
-.ap-displaypg{
+.ap1-displaypg{
   margin: auto;
   width: 50%;
   border: 3px solid #D3E0EA;;
@@ -104,6 +104,23 @@
   border: 3px solid #D3E0EA;
   transform: rotate(0.21deg);
 }
+.alertred{
+  color: #DB4437;
+
+}
+select{
+  color: #F4B400;  
+}
+option.alertgreen{
+  color: #0F9D58;
+}
+.alertblue{
+  color: #009fe3;
+
+}
+option[value="Pending"] {
+  color:red;
+ }
 
 
 
