@@ -178,7 +178,10 @@ export default class AdminTab3 extends Component {
                 {this.state.points.map((points, index) => (
                   <tr key={index}>
                     <td>
-                      <a href={``} style={{ textDecoration: "none" }}>
+                      <a
+                        href={`/empprofile/${points._id}`}
+                        style={{ textDecoration: "none" }}
+                      >
                         {points.empno}
                       </a>
                     </td>
@@ -255,7 +258,10 @@ export default class AdminTab3 extends Component {
               {this.state.employee.map((employees, index) => (
                 <tr key={index}>
                   <td>
-                    <a href={``} style={{ textDecoration: "none" }}>
+                    <a
+                      href={`/empprofile/${employees._id}`}
+                      style={{ textDecoration: "none" }}
+                    >
                       {employees.empno}
                     </a>
                   </td>

@@ -51,7 +51,7 @@ const employees_Schema = new mongoose.Schema({
   },
   sector: {
     type: String,
-    required: true,
+    required: false,
   },
   duration:{
     type: String,
@@ -107,7 +107,7 @@ const employees_Schema = new mongoose.Schema({
   },
   type:{
     type: String,
-    required: false,
+    required: true,
   },
   status:{
     type: String,
