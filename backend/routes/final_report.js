@@ -59,15 +59,15 @@ router.put('/finalreports/update/:id', (req,res)=>{
 
 //Delete Reports
 
-router.delete('/post/delete/:id',(req,res) =>{
+router.delete('/final_report/delete/:id',(req,res) =>{
 
-    Posts.findByIdAndRemove(req.params.id).exec((err,deletedPost) =>{
+    Reports.findByIdAndRemove(req.params.id).exec((err,deletedReport) =>{
 
         if(err) return res.status(400).json({
             message:"Delete Unsuccessful",err
         });
         return res.json({
-            message:"Delete Successful",deletedPost
+            message:"Delete Successful",deletedReport
         });
     });
 });

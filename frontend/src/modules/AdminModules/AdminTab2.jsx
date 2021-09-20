@@ -14,13 +14,14 @@ export default class AdminTab2 extends Component {
 
   componentDidMount() {
     this.retrievePosts();
+    this.retrievefinalreport();
   }
 
   retrievePosts() {
     axios.get("http://localhost:5000/review").then(res => {
       if (res.data.success) {
         const acceptedData = res.data.existingPosts.filter(
-          x => x.partnerStatus === "Accepted" && x.isPartnerApprove === true
+          x => x.directorStatus === "Accepted" && x.isDirectorApprove === true
         );
 
         this.setState({
@@ -30,9 +31,6 @@ export default class AdminTab2 extends Component {
     });
   }
 
-  componentDidMount() {
-    this.retrievefinalreport();
-  }
   retrievefinalreport() {
     axios.get("http://localhost:5000/final_report").then(res => {
       if (res.data.success) {
@@ -51,7 +49,16 @@ export default class AdminTab2 extends Component {
     });
   };
 
-  //my delete
+  //final report delete
+  onDeleteanu = id => {
+    console.log(id);
+    axios
+      .delete(`http://localhost:5000/final_report/delete/${id}`)
+      .then(res => {
+        alert("Deleted Succesfully");
+        this.retrievefinalreport();
+      });
+  };
 
   filterData(posts, searchKey) {
     const result = posts.filter(
@@ -108,7 +115,7 @@ export default class AdminTab2 extends Component {
             </thead>
             <tbody class="anutbody1">
               {this.state.posts.map((posts, index) => (
-                <tr key={index + 1}>
+                <tr key={index}>
                   <td>
                     <a
                       href={`/reports/${posts._id}`}
@@ -183,18 +190,13 @@ export default class AdminTab2 extends Component {
                     &nbsp;
                     <a
                       href="#"
-                      onClick={() => this.onDelete(finalreport.report)}
+                      onClick={() => this.onDeleteanu(finalreport._id)}
                     >
                       <i className="far fa-trash-alt"></i>&nbsp;
                     </a>
                   </td>
                 </tr>
               ))}
-              <tfoot class="tfoot">
-                <a href="/createassignment">
-                  <i class="fas fa-plus"></i>&nbsp;New Report
-                </a>
-              </tfoot>
             </tbody>
           </table>
         </div>
