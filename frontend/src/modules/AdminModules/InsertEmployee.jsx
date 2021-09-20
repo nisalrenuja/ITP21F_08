@@ -85,7 +85,7 @@ export default class InsertEmployee extends Component {
     if (!this.state.status) {
       statusError = "**Status Cannot Be Blank";
     }
-    if (!this.state.sector) {
+    if (!this.state.type) {
       typeError = "**Type Cannot Be Blank";
     }
     if (!this.state.contact) {
@@ -341,14 +341,20 @@ export default class InsertEmployee extends Component {
               onChange={this.handleInputChange}
             />
             <p class="label6">Gender: </p>
-            <input
+            <select
               type="text"
               class="box6"
               id="gender"
               name="gender"
               value={this.state.gender}
               onChange={this.handleInputChange}
-            />
+            >
+              <option value="DEFAULT" disabled>
+                Select Gender
+              </option>
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+            </select>
             <p class="label7">NIC No: </p>
             <input
               type="text"
@@ -378,14 +384,28 @@ export default class InsertEmployee extends Component {
               onChange={this.handleInputChange}
             />
             <p class="label10">Province: </p>
-            <input
+            <select
+              value={this.state.province}
               type="text"
               class="box10"
               id="province"
               name="province"
-              value={this.state.province}
               onChange={this.handleInputChange}
-            />
+              placeholder="Enter 'Audit' / 'Tax' (Required)"
+            >
+              <option value="DEFAULT" disabled>
+                Select Province
+              </option>
+              <option value="Western">Western</option>
+              <option value="Central">Central</option>
+              <option value="Southern">Southern</option>
+              <option value="Uva">Uva</option>
+              <option value="Sabaragamuwa">Sabaragamuwa</option>
+              <option value="North Western">North Western</option>
+              <option value="North Central">North Central</option>
+              <option value="Northern">Northern</option>
+              <option value="Eastern">Eastern</option>
+            </select>
             <p class="label11">Place Of Stay: </p>
             <input
               type="text"
@@ -565,8 +585,8 @@ export default class InsertEmployee extends Component {
             defaultValue={"DEFAULT"}
             type="text"
             class="box29"
-            id="sector"
-            name="sector"
+            id="type"
+            name="type"
             onChange={this.handleInputChange}
             placeholder="Enter 'Audit' / 'Tax' (Required)"
           >
