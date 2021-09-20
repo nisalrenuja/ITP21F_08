@@ -8,15 +8,14 @@ export default class TopPerformers extends Component {
     super(props);
 
     this.state = {
-      assignment_name: "",
-      client_no: "",
-      execid: "",
-      place_of_engagement: "",
-      distance: "",
-      date_of_allocation: "",
-      deadline: "",
-      emp_no: "",
-      staff: [],
+      month: "",
+      year: "",
+      rank: "",
+      top_empid: "",
+      top_empname: "",
+      designation: "",
+      total_points: "",
+      //TopPerformers[],
       redirectToReferrer: false
     };
   }
@@ -52,52 +51,46 @@ export default class TopPerformers extends Component {
     e.preventDefault();
 
     const {
-      assignment_name,
-      client_no,
-      execid,
-      place_of_engagement,
-      distance,
-      date_of_allocation,
-      deadline,
-      emp_no
+      month,
+      year,
+      rank,
+      top_empid,
+      top_empname,
+      designation,
+      total_points
     } = this.state;
 
     const data = {
-      assignment_name: assignment_name,
-      client_no: client_no,
-      execid: execid,
-      place_of_engagement: place_of_engagement,
-      distance: distance,
-      date_of_allocation: date_of_allocation,
-      deadline: deadline,
-      emp_no: emp_no,
-      progress: "Assigned"
+      month: month,
+      year: year,
+      rank: rank,
+      top_empid: top_empid,
+      top_empname: top_empname,
+      designation: designation,
+      total_points: total_points
     };
 
     console.log(data);
     axios.post("http://localhost:5000/assignments/save/", data).then(res => {
       if (res.data.success) {
         this.setState({
-          assignment_name: assignment_name,
-          client_no: client_no,
-          execid: execid,
-          place_of_engagement: place_of_engagement,
-          distance: distance,
-          date_of_allocation: date_of_allocation,
-          deadline: deadline,
-          emp_no: "",
+          month: month,
+          year: year,
+          rank: rank,
+          top_empid: top_empid,
+          top_empname: top_empname,
+          designation: designation,
+          total_points: total_points,
           redirectToReferrer: true
         });
-        alert(
-          "Employee added to assignment, Enter employee numbers to add more employees!"
-        );
+        // alert("Employee added to assignment, Enter employee numbers to add more employees!");
       }
     });
   };
   render() {
     const redirectToReferrer = this.state.redirectToReferrer;
     if (redirectToReferrer == true) {
-      return <Redirect to="/allassignments" />;
+      return <Redirect to="/Notices" />;
     }
     return (
       <div className="container">
@@ -105,90 +98,224 @@ export default class TopPerformers extends Component {
           <h1 class="senahead1c">Top Performers</h1>
           <hr class="senaline1c"></hr>
           <div class="senamain33">
+            <a href="">
+              <button class="tsendiv4">
+                <p class="sentxt4">Calculate Top Performers</p>
+              </button>
+            </a>
+
             <form>
-              <p class="senaic">Notice ID:</p>
+              <p class="tsenaic">Year:</p>
               <input
-                type="text"
-                class="senaicc"
-                id="assignment_name"
-                name="assignment_name"
-                value={this.state.assignment_name}
-                onChange={this.handleInputChange}
-              />
-              <p class="senaiic">Emp ID:</p>
-              <input
-                type="text"
-                class="senaiicc"
-                id="client_no"
-                name="client_no"
-                value={this.state.client_no}
+                type="number"
+                class="tsenaicc"
+                id="year"
+                name="year"
+                value={this.state.year}
                 onChange={this.handleInputChange}
               />
 
-              <p class="senaiiic">Emp Name:</p>
+              <div className="form-group" style={{ marginBottom: "15px" }}>
+                <p class="ttsenaic">Month:</p>
+                <select
+                  defaultValue={"DEFAULT"}
+                  class="ttsenaicc"
+                  aria-label="Default select example"
+                  name="month"
+                  onChange={this.handleInputChange}
+                >
+                  <option value="DEFAULT" disabled></option>
+                  <option value="January">January</option>
+                  <option value="February">February</option>
+                  <option value="March">March</option>
+                  <option value="April">April</option>
+                  <option value="May">May</option>
+                  <option value="June">June</option>
+                  <option value="July">July</option>
+                  <option value="August">August</option>
+                  <option value="September">September</option>
+                  <option value="October">October</option>
+                  <option value="November">November</option>
+                  <option value="December">December</option>
+                </select>
+              </div>
+            </form>
+            <hr class="tsenaline1c"></hr>
+            <form>
+              <p class="rank1">RANK:</p>
+              <select
+                defaultValue={"DEFAULT"}
+                class="rank1val"
+                aria-label="Default select example"
+                name="rank"
+                onChange={this.handleInputChange}
+              >
+                <option value="DEFAULT" disabled></option>
+                <option value="01">01</option>
+              </select>
+
+              <p class="rank1id">Emp ID:</p>
               <input
                 type="text"
-                class="senaiiicc"
-                id="execid"
-                name="execid"
-                value={this.state.execid}
+                class="rank1idval"
+                id="top_empid"
+                name="top_empid"
+                value={this.state.top_empid}
                 onChange={this.handleInputChange}
               />
-              <p class="senaivc">Notice Topic:</p>
+
+              <p class="rank1points">Total Points:</p>
+              <input
+                type="number"
+                class="rank1pointsval"
+                id="total_points"
+                name="total_points"
+                value={this.state.total_points}
+                onChange={this.handleInputChange}
+              />
+
+              <p class="rank1name">Emp Name:</p>
               <input
                 type="text"
-                class="senaivcc"
-                id="place_of_engagement"
-                name="place_of_engagement"
-                value={this.state.place_of_engagement}
+                class="rank1nameval"
+                id="top_empname"
+                name="top_empname"
+                value={this.state.top_empname}
                 onChange={this.handleInputChange}
               />
-              <p class="senavc">Content:</p>
+
+              <p class="rank1des">Designation:</p>
+              <input
+                type="text"
+                class="rank1desval"
+                id="designation"
+                name="designation"
+                value={this.state.designation}
+                onChange={this.handleInputChange}
+              />
+
+              <hr class="rank1divider"></hr>
+
+              <p class="rank2">RANK:</p>
+              <select
+                defaultValue={"DEFAULT"}
+                class="rank2val"
+                aria-label="Default select example"
+                name="rank"
+                onChange={this.handleInputChange}
+              >
+                <option value="DEFAULT" disabled></option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+              </select>
+
+              <p class="rank2id">Emp ID:</p>
+              <input
+                type="text"
+                class="rank2idval"
+                id="top_empid"
+                name="top_empid"
+                value={this.state.top_empid}
+                onChange={this.handleInputChange}
+              />
+
+              <p class="rank2points">Total Points:</p>
               <input
                 type="number"
-                class="senavcc"
-                id="distance"
-                name="distance"
-                value={this.state.distance}
+                class="rank2pointsval"
+                id="total_points"
+                name="total_points"
+                value={this.state.total_points}
                 onChange={this.handleInputChange}
               />
-              <p class="senavcattach">Attachments:</p>
+
+              <p class="rank2name">Emp Name:</p>
+              <input
+                type="text"
+                class="rank2nameval"
+                id="top_empname"
+                name="top_empname"
+                value={this.state.top_empname}
+                onChange={this.handleInputChange}
+              />
+
+              <p class="rank2des">Designation:</p>
+              <input
+                type="text"
+                class="rank2desval"
+                id="designation"
+                name="designation"
+                value={this.state.designation}
+                onChange={this.handleInputChange}
+              />
+
+              <hr class="rank2divider"></hr>
+
+              <p class="rank3">RANK:</p>
+              <select
+                defaultValue={"DEFAULT"}
+                class="rank3val"
+                aria-label="Default select example"
+                name="rank"
+                onChange={this.handleInputChange}
+              >
+                <option value="DEFAULT" disabled></option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+              </select>
+
+              <p class="rank3id">Emp ID:</p>
+              <input
+                type="text"
+                class="rank3idval"
+                id="top_empid"
+                name="top_empid"
+                value={this.state.top_empid}
+                onChange={this.handleInputChange}
+              />
+
+              <p class="rank3points">Total Points:</p>
               <input
                 type="number"
-                class="senavccattach"
-                id="distance"
-                name="distance"
-                value={this.state.distance}
+                class="rank3pointsval"
+                id="total_points"
+                name="total_points"
+                value={this.state.total_points}
                 onChange={this.handleInputChange}
               />
-              <p class="senavic">Publishing Date: </p>
+
+              <p class="rank3name">Emp Name:</p>
               <input
-                type="date"
-                class="senavicc"
-                id="date_of_allocation"
-                name="date_of_allocation"
-                value={this.state.date_of_allocation}
+                type="text"
+                class="rank3nameval"
+                id="top_empname"
+                name="top_empname"
+                value={this.state.top_empname}
                 onChange={this.handleInputChange}
               />
-              <p class="senaviic">Delete Notice on: </p>
+
+              <p class="rank3des">Designation:</p>
               <input
-                type="date"
-                class="senaviicc"
-                id="deadline"
-                name="deadline"
-                value={this.state.deadline}
+                type="text"
+                class="rank3desval"
+                id="designation"
+                name="designation"
+                value={this.state.designation}
                 onChange={this.handleInputChange}
               />
 
               <center>
-                <button
-                  className="btn btn-success"
-                  type="submit"
-                  style={{ marginTop: "795px", width: "20%" }}
-                  onClick={this.onSubmit}
-                >
-                  <i className="fas fa-save"></i>&nbsp;Save
-                </button>
+                <div class="senara1">
+                  <button
+                    className="btn btn-success"
+                    type="submit"
+                    style={{ marginTop: "795px", width: "20%" }}
+                    onClick={this.onSubmit}
+                  >
+                    <i class="senara2" className="fas fa-save"></i>&nbsp;Save
+                  </button>
+                </div>
                 <a href="/admin">
                   <button
                     className="btn btn-secondary"

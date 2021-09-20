@@ -91,7 +91,7 @@ export default class CreateExecutive extends Component {
           </div>
           <div className="row">
             <div className="col-lg-9 mt-2 mb-2">
-              <h1 className="h3 mb-3 font-weight-normal">All Executives</h1>
+              <h1 className="h3 mb-3 font-weight-normal">All Users</h1>
             </div>
           </div>
           <table
@@ -101,8 +101,8 @@ export default class CreateExecutive extends Component {
             <thead class="tblhead">
               <tr>
                 <th scope="col"></th>
-                <th scope="col">Executive Id</th>
-                <th scope="col">Executive Name</th>
+                <th scope="col">User Number</th>
+                <th scope="col">Username</th>
                 <th scope="col">Email</th>
 
                 <th scope="col">Action</th>

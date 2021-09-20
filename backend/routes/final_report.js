@@ -23,8 +23,8 @@ router.post('/final_report/save',(req,res)=>{
 
 //Get Reports
 
-router.get('/post',(req,res) =>{
-    Posts.find().exec((err,post) =>{
+router.get('/final_report',(req,res) =>{
+    Reports.find().exec((err,finalreport) =>{
         if(err){
             return res.status(400).json({
                 error:err
@@ -32,7 +32,7 @@ router.get('/post',(req,res) =>{
         }
         return res.status(200).json({
             success:true,
-            existingPosts:post
+            finalreport:finalreport
         });
     });
 });
@@ -59,15 +59,15 @@ router.put('/finalreports/update/:id', (req,res)=>{
 
 //Delete Reports
 
-router.delete('/post/delete/:id',(req,res) =>{
+router.delete('/final_report/delete/:id',(req,res) =>{
 
-    Posts.findByIdAndRemove(req.params.id).exec((err,deletedPost) =>{
+    Reports.findByIdAndRemove(req.params.id).exec((err,deletedReport) =>{
 
         if(err) return res.status(400).json({
             message:"Delete Unsuccessful",err
         });
         return res.json({
-            message:"Delete Successful",deletedPost
+            message:"Delete Successful",deletedReport
         });
     });
 });
