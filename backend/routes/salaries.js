@@ -63,7 +63,7 @@ router.put("/salary/update/:id", (req, res) => {
   );
 });
 //delete specific
-router.delete("/salay/delete/:id", (req, res) => {
+router.delete("/salary/delete/:id", (req, res) => {
   Salaries.findByIdAndRemove(req.params.id).exec((err, deletedSalary) => {
     if (err)
       return res.status(400).json({
@@ -71,7 +71,7 @@ router.delete("/salay/delete/:id", (req, res) => {
         err,
       });
     return res.json({
-      message: "Monthly Salary Deleted zSuccessfully",
+      message: "Monthly Salary Deleted Successfully",
       deletedSalary,
     });
   });

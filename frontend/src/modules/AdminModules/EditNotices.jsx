@@ -1,19 +1,20 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./EditNotices.css";
+import { storage } from "../../firebase";
 import { Redirect } from "react-router";
 
 export default class EditNotices extends Component {
   constructor(props) {
     super(props);
-
+    //this.uploadPDF = this.uploadPDF.bind(this);
     this.state = {
       notice_id: "",
       emp_id: "",
       emp_name: "",
       notice_topic: "",
       notice_content: "",
-      notice_attachments: "",
+      notice_attachments: null,
       published_date: "",
       updateNotice: [],
       updateNotice2: [],
@@ -27,6 +28,11 @@ export default class EditNotices extends Component {
       ...this.state,
       [name]: value
     });
+  };
+
+  handleInputFileChange = e => {
+    var file = e.target.files[0];
+    console.log(file);
   };
 
   onSubmit = e => {
@@ -100,6 +106,40 @@ export default class EditNotices extends Component {
     });
   }
 
+  uploadPDF(e) {
+    if (e.target.files[0] !== null) {
+      const uploadTask = storage
+        .ref(`users/${e.target.files[0].name}`)
+        .put(e.target.files[0]);
+      uploadTask.on(
+        "state_changed",
+        snapshot => {
+          //progress function
+          //const progress = Math.round(
+          //(snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          //);
+          //this.setState({ uploadPercentage: progress });
+        },
+        error => {
+          //error function
+          console.log(error);
+        },
+        () => {
+          //complete function
+          storage
+            .ref("users")
+            .child(e.target.files[0].name)
+            .getDownloadURL()
+            .then(url => {
+              this.setState({ notice_attachments: url });
+              console.log("Hello " + url);
+            });
+        }
+      );
+    } else {
+    }
+  }
+
   render() {
     const redirectToReferrer = this.state.redirectToReferrer;
     if (redirectToReferrer == true) {
@@ -160,13 +200,26 @@ export default class EditNotices extends Component {
               />
               <p class="senavcattach">Attachments:</p>
               <input
-                type="number"
+                type="file"
                 class="senavccattach"
                 id="notice_attachements"
                 name="notice_attachments"
-                value={this.state.notice_attachments}
-                onChange={this.handleInputChange}
+                //value={this.state.notice_attachments}
+                onChange={e => {
+                  this.uploadPDF(e);
+                }}
               />
+              <div class="cookie123">
+                <div className="row d-flex justify-content-end mt-3">
+                  <a
+                    href={this.state.notice_attachments}
+                    className="btncookie btn-primary col-2 me-2"
+                  >
+                    View PDF
+                  </a>
+                </div>
+              </div>
+
               <p class="senavic">Publishing Date: </p>
               <input
                 type="date"
@@ -178,20 +231,21 @@ export default class EditNotices extends Component {
               />
 
               <center>
-                <div class="d-flex justify-content-center">
+                <div class="cookie">
                   <button
                     className="btn btn-warning"
                     type="submit"
-                    style={{ marginTop: "15px" }}
+                    style={{ marginTop: "725px" }}
                     onClick={this.onSubmit}
                   >
+                    <a href="/AdminTab5"></a>
                     <i className="fa fa-refresh"></i>&nbsp;Update
                   </button>{" "}
                   &nbsp;&nbsp;
                   <button
                     className="btn btn-danger"
                     type="cancel"
-                    style={{ marginTop: "15px" }}
+                    style={{ marginTop: "725px" }}
                   >
                     Cancel
                   </button>

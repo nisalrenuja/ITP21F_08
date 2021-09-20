@@ -47,10 +47,10 @@ const leavesRoutes = require("./routes/leaves");
 const final_reportRoutes = require("./routes/final_report");
 const payrollRoutes = require("./routes/payrolls");
 const m_salaryRoutes = require("./routes/salaries");
-
+const TopPerformers = require("./routes/Top_Performers");
 //add routes here ..
 
-
+app.use(TopPerformers);
 app.use(assignment_assignedtostaffRoutes);
 app.use(employees);
 app.use(client_fees_routes);

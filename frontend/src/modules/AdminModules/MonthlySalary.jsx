@@ -34,16 +34,19 @@ export default class MonthlySalary extends Component {
   }
 
   onDelete = id => {
-    axios.delete(`http://localhost:5000/salary/delete/${id}`).then(res => {
-      alert("Deleted Monthly Salary Successfully!!");
-      this.retrieveSalaries();
-    });
+    const confirmBox = window.confirm("Do you really want to delete this?");
+    if (confirmBox === true) {
+      axios.delete(`http://localhost:5000/salary/delete/${id}`).then(res => {
+        alert("Deleted Monthly Salary Successfully!!");
+        this.retrieveSalaries();
+      });
+    }
   };
 
   filterData(salaries, searchKey) {
     const result = salaries.filter(
       salary =>
-        salary.salaryno.toLowerCase().includes(searchKey) ||
+        //salary.salaryno.toLowerCase().includes(searchKey) ||
         salary.empno
           .toString()
           .toLowerCase()
@@ -78,7 +81,7 @@ export default class MonthlySalary extends Component {
             <div class="d-flex justify-content-between">
               <div className="col-lg-9 mt-2 mb-2 font-weight-bold ">
                 <br />
-                <h1 class="ap-topic">Payroll Management | Monthly Salary</h1>
+                <h1 class="ap-topic">Payroll Management</h1>
               </div>
               <div>
                 <Clock />
@@ -103,6 +106,15 @@ export default class MonthlySalary extends Component {
                   style={{ textDecoration: "none", color: "#1687A7" }}
                 >
                   Attendance
+                </a>
+              </button>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <button class="btn btn-lg aptab-btn">
+                <a
+                  href="/allrequests"
+                  style={{ textDecoration: "none", color: "#1687A7" }}
+                >
+                  Requests
                 </a>
               </button>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -144,7 +156,7 @@ export default class MonthlySalary extends Component {
             <thead class="tblhead">
               <tr class="">
                 <th scope="col"> #</th>
-                <th scope="col"> Payslip ID</th>
+                <th scope="col"> Pay Slip ID</th>
                 <th scope="col"> Employee ID</th>
                 <th scope="col"> Month-Year</th>
                 <th scope="col"> Net Salary</th>

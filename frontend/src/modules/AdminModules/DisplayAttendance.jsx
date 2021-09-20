@@ -3,23 +3,23 @@ import axios from "axios";
 import "./AllPayrollDisplays.css";
 //import jsPDF from "jspdf";
 
-export default class DisplayPayroll extends Component {
+export default class DisplayAttendance extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      payroll: {}
+      attendance: {}
     };
   }
   componentDidMount() {
     const id = this.props.match.params.id;
-    axios.get(`http://localhost:5000/payroll/${id}`).then(res => {
+    axios.get(`http://localhost:5000/attendance/${id}`).then(res => {
       if (res.data.success) {
         this.setState({
-          payroll: res.data.payroll
+          payroll: res.data.attendance
         });
 
-        console.log(this.state.payroll);
+        console.log(this.state.attendance);
       }
     });
   }
