@@ -1,4 +1,4 @@
-.need-validation{
+.ckneed-validation{
     background: #D3E0EA;
     border-color: 2px #276678;
     
@@ -65,7 +65,7 @@ hr{
 .ckddp{
     color: #004466;
     position: relative;
-    left: 65px;
+    left: 120px;
     top: 0px;
 }
 

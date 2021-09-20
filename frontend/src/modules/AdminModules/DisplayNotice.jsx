@@ -115,7 +115,7 @@ export default class DisplayNotice extends Component {
           <h2 class="col-10 topic">Notice ID : {notice_id}</h2>
         </div>
         <hr className="hr-line2" />
-        <form className="need-validation">
+        <form>
           <div class="ckbox">
             <dl>
               <p class="cksub-details">Employee ID: &nbsp;{emp_id}</p>
