@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { storage } from "../../firebase";
+import "./UpdateReport.css";
 import Progress from "../../component/common/ProgressBar/progress";
+import { Redirect } from "react-router";
 
-export default class CreateReport extends Component {
+export default class UpdateReport extends Component {
   constructor(props) {
     super(props);
 
@@ -18,7 +20,10 @@ export default class CreateReport extends Component {
       uploadPercentage: 0,
       fileVal: "",
       assignmentstatus: "",
-      managerData: []
+      managerData: [],
+      UpdateReport: [],
+      UpdateReport2: [],
+      redirectToReferrer: false
     };
   }
 
@@ -28,6 +33,11 @@ export default class CreateReport extends Component {
       ...this.state,
       [name]: value
     });
+  };
+
+  handleInputFileChange = e => {
+    var file = e.target.files[0];
+    console.log(file);
   };
 
   onSubmitanu = e => {
@@ -54,36 +64,50 @@ export default class CreateReport extends Component {
     };
 
     console.log(data);
-    axios.post("http://localhost:5000/final_report/save/", data).then(res => {
-      if (res.data.success) {
-        this.setState({
-          execid_review: execid_review,
-          report: report,
-          reportPDF: reportPDF,
-          points: points,
-          feedback: feedback,
-          date_and_time_upload: date_and_time_upload,
-          status: status,
-          redirectToReferrer: true
-        });
-        alert("Report Saved Successfully");
-      }
-    });
+    axios
+      .put(
+        `http://localhost:5000/final_report/update/${this.props.dataFromParent}`,
+        data
+      )
+      .then(res => {
+        if (res.data.success) {
+          this.setState({
+            execid_review: "",
+            report: "",
+            reportPDF: "",
+            points: "",
+            feedback: "",
+            date_and_time_upload: "",
+            status: ""
+          });
+          alert("Report Updated Successfully");
+        }
+      });
   };
 
   componentDidMount() {
+    this.retrievefinalreport();
+  }
+
+  retrievefinalreport() {
     const id = this.props.dataFromParent;
-    axios.get(`http://localhost:5000/review/${id}`).then(res => {
+    console.log(id);
+
+    axios.get(`http://localhost:5000/final_report/${id}`).then(res => {
       if (res.data.success) {
         this.setState({
-          execid_review: res.data.post.execid_review,
-          report: res.data.post.report,
-          reportPDF: res.data.post.reportPDF,
-          points: res.data.post.points,
-          feedback: res.data.post.feedback,
-          status: res.data.post.status
+          UpdateReport: res.data.finalreport,
+          execid_review: res.data.finalreport.execid_review,
+          report: res.data.finalreport.report,
+          reportPDF: res.data.finalreport.reportPDF,
+          points: res.data.finalreport.points,
+          feedback: res.data.finalreport.feedback,
+          date_and_time_upload: res.data.finalreport.date_and_time_upload,
+          status: res.data.finalreport.status,
+
+          UpdateReport2: res.data.finalreport2
         });
-        console.log(res.data.post.points);
+        console.log(this.state.UpdateReport);
       }
     });
   }
@@ -123,10 +147,14 @@ export default class CreateReport extends Component {
   }
 
   render() {
+    const redirectToReferrer = this.state.redirectToReferrer;
+    if (redirectToReferrer == true) {
+      return <Redirect to="/AllReports" />;
+    }
     return (
       <div className="col-md-8 mt-4 mx-auto">
         <h1 className="h3 mb-3 font-weight-normal">
-          Report Management | Add Report Details
+          Report Management | Update Report Details
         </h1>
         <form className="need-validation" noValidate>
           <div className="form-group" style={{ marginBottom: "15px" }}>
@@ -238,14 +266,27 @@ export default class CreateReport extends Component {
             </select>
           </div>
 
-          <button
-            className="btn btn-info mb-2"
-            type="submit"
-            style={{ marginTop: "15px" }}
-            onClick={this.onSubmitanu}
-          >
-            <i className="fas fa-sync"></i>&nbsp;Save
-          </button>
+          <center>
+            <div class="cookie">
+              <button
+                className="btn btn-warning"
+                type="submit"
+                style={{ marginTop: "725px" }}
+                onClick={this.onSubmit}
+              >
+                <a href="/AdminTab2"></a>
+                <i className="fa fa-refresh"></i>&nbsp;Update
+              </button>{" "}
+              &nbsp;&nbsp;
+              <button
+                className="btn btn-danger"
+                type="cancel"
+                style={{ marginTop: "725px" }}
+              >
+                Cancel
+              </button>
+            </div>
+          </center>
         </form>
       </div>
     );

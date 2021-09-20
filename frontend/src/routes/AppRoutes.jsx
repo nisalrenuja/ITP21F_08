@@ -54,7 +54,7 @@ import AllReports from "../pages/AdminPage/AllReports";
 import CreateReport from "../pages/AdminPage/CreateReport";
 import Quarter_Performance from "../pages/AdminPage/Quarter_Performance";
 import Report from "../pages/AdminPage/CreateReport";
-
+import UpdateReport from "../pages/AdminPage/UpdateReport";
 import EditLaptopRepair from "../modules/AdminModules/EditLaptopRepair";
 import CreateLaptopRepair from "../modules/AdminModules/CreateLaptopRepair";
 import LaptopsRepair from "../pages/AdminPage/LaptopRepair";
@@ -243,6 +243,11 @@ const AppRoutes = () => (
           exact
         ></Route>
         <Route path="/AdminTab5" component={AdminTab5} exact></Route>
+        <Route
+          path="/UpdateReport/:finalreport"
+          component={UpdateReport}
+          exact
+        ></Route>
       </Switch>
       <Footer />
     </Router>
