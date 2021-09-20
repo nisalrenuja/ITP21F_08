@@ -23,8 +23,8 @@ router.post('/final_report/save',(req,res)=>{
 
 //Get Reports
 
-router.get('/post',(req,res) =>{
-    Posts.find().exec((err,post) =>{
+router.get('/final_report',(req,res) =>{
+    Reports.find().exec((err,finalreport) =>{
         if(err){
             return res.status(400).json({
                 error:err
@@ -32,7 +32,7 @@ router.get('/post',(req,res) =>{
         }
         return res.status(200).json({
             success:true,
-            existingPosts:post
+            finalreport:finalreport
         });
     });
 });
