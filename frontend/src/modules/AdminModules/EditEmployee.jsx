@@ -59,6 +59,7 @@ export default class EditEmployee extends Component {
     let nameError = "";
     let emailError = "";
     let statusError = "";
+    let contactError = "";
 
     if (!this.state.empno) {
       empnoError = "**EmpNo Cannot Be Blank";
@@ -75,14 +76,29 @@ export default class EditEmployee extends Component {
     if (!this.state.status) {
       statusError = "**Status Cannot Be Blank";
     }
+    if (!this.state.contact) {
+      contactError = "**Contact Number Cannot Be Blank";
+    }
 
-    if (emailError || nameError || empnoError || statusError) {
+    if (emailError || nameError || empnoError || statusError || contactError) {
       //emaiError also equal to emailError:emailError in Js.
-      this.setState({ emailError, nameError, empnoError, statusError });
-      alert("Invalid Form Data. Please Check Emp No, Name, Email & Status!!!");
+      this.setState({
+        emailError,
+        nameError,
+        empnoError,
+        statusError,
+        contactError
+      });
+      alert(
+        "Invalid Form Data. Please Check Emp No, Name, Email, Contact, Type & Status!!!"
+      );
       return false;
     }
     return true;
+  };
+
+  handleCancelClick = () => {
+    this.setState({ redirectToReferrer: true });
   };
 
   onSubmit = e => {
@@ -285,7 +301,7 @@ export default class EditEmployee extends Component {
             <p class="label2">Employee Name: </p>
             <input
               type="text"
-              class="box2"
+              class="bbox2"
               id="name"
               name="name"
               value={this.state.name}
@@ -333,6 +349,16 @@ export default class EditEmployee extends Component {
               value={this.state.contact}
               onChange={this.handleInputChange}
             />
+            <div
+              style={{
+                color: "red",
+                position: "absolute",
+                left: "500px",
+                top: "245px"
+              }}
+            >
+              {this.state.contactError}
+            </div>
             <p class="label5">DOB: </p>
             <input
               type="date"
@@ -343,14 +369,20 @@ export default class EditEmployee extends Component {
               onChange={this.handleInputChange}
             />
             <p class="label6">Gender: </p>
-            <input
+            <select
               type="text"
               class="box6"
               id="gender"
               name="gender"
               value={this.state.gender}
               onChange={this.handleInputChange}
-            />
+            >
+              <option value="DEFAULT" disabled>
+                Select Gender
+              </option>
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+            </select>
             <p class="label7">NIC No: </p>
             <input
               type="text"
@@ -380,14 +412,28 @@ export default class EditEmployee extends Component {
               onChange={this.handleInputChange}
             />
             <p class="label10">Province: </p>
-            <input
+            <select
+              value={this.state.province}
               type="text"
               class="box10"
               id="province"
               name="province"
-              value={this.state.province}
               onChange={this.handleInputChange}
-            />
+              placeholder="Enter 'Audit' / 'Tax' (Required)"
+            >
+              <option value="DEFAULT" disabled>
+                Select Province
+              </option>
+              <option value="Western">Western</option>
+              <option value="Central">Central</option>
+              <option value="Southern">Southern</option>
+              <option value="Uva">Uva</option>
+              <option value="Sabaragamuwa">Sabaragamuwa</option>
+              <option value="North Western">North Western</option>
+              <option value="North Central">North Central</option>
+              <option value="Northern">Northern</option>
+              <option value="Eastern">Eastern</option>
+            </select>
             <p class="label11">Place Of Stay: </p>
             <input
               type="text"
@@ -563,26 +609,38 @@ export default class EditEmployee extends Component {
             />
           </div>
           <p class="label29">Type: </p>
-          <input
+          <select
+            value={this.state.type}
             type="text"
             class="box29"
             id="type"
             name="type"
-            value={this.state.type}
             onChange={this.handleInputChange}
             placeholder="Enter 'Audit' / 'Tax' (Required)"
-          />
+          >
+            <option value="DEFAULT" disabled>
+              Select Type
+            </option>
+            <option value="Audit">Audit</option>
+            <option value="Tax">Tax</option>
+          </select>
           <p class="label30">Status: </p>
-          <input
+          <select
+            value={this.state.status}
             type="text"
             class="box30"
             id="status"
             name="status"
-            value={this.state.status}
             onChange={this.handleInputChange}
             placeholder="Enter 'Trainee' / 'Senior' (Required)"
             required
-          />
+          >
+            <option value="DEFAULT" disabled>
+              Select Status
+            </option>
+            <option value="Trainee">Trainee</option>
+            <option value="Senior">Senior</option>
+          </select>
           <div
             style={{
               color: "red",
@@ -608,13 +666,13 @@ export default class EditEmployee extends Component {
               className="btn btn-light"
               type="cancel"
               style={{
-                marginTop: "300px",
-                marginLeft: "900px",
-                marginRight: "50px",
+                marginTop: "240px",
+                marginLeft: "920px",
+                marginRight: "20px",
                 borderRadius: "60px",
                 filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))"
               }}
-              onClick={() => {}}
+              onClick={this.handleCancelClick}
             >
               <i></i>&nbsp;Cancel
             </button>
@@ -622,7 +680,7 @@ export default class EditEmployee extends Component {
               className="btn btn-success"
               type="submit"
               style={{
-                marginTop: "300px",
+                marginTop: "240px",
                 borderRadius: "60px",
                 filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))"
               }}

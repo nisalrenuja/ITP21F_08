@@ -23,7 +23,7 @@ router.post("/employees/save", (req, res) => {
 
 router.post("/points/save", (req, res) => {
  let newpoints = req.body;
-  Points.create(newpoints,(err) => {
+  Points.create(newpoints, (err) => {
     if (err) {
       return res.status(400).json({
         error: err,
@@ -49,9 +49,36 @@ router.get("/employees", (req, res) => {
      })     
     });
 });
+router.get("/employees/audit", (req, res) => {  
+  employees.find({type : { $eq: "Audit" }}).sort({ "empno": -1 }).exec((err, employees) => { 
+    var count = employees.length;
+    if (err) {
+      return res.status(400).json({ success: false, err });
+    }
+      return res.status(200).json({
+        success: true,
+        existingemployees: employees,
+        employeeCount:count,
+     })     
+    });
+});
+
+router.get("/employees/tax", (req, res) => {  
+  employees.find({type : { $eq: "Tax" }}).sort({ "empno": -1 }).exec((err, employees) => { 
+    var count = employees.length;
+    if (err) {
+      return res.status(400).json({ success: false, err });
+    }
+      return res.status(200).json({
+        success: true,
+        existingemployees: employees,
+        employeeCount:count,
+     })     
+    });
+});
 
 router.get("/employees/counts", (req, res) => {  
-  employees.find({sector : { $eq: "Audit" }}).count().exec((err, audit) => { employees.find({sector : { $eq: "Tax" }}).count().exec((err, tax) => { 
+  employees.find({type : { $eq: "Audit" }}).count().exec((err, audit) => { employees.find({type : { $eq: "Tax" }}).count().exec((err, tax) => { 
     if (err) {
       return res.status(400).json({ success: false, err });
     }
@@ -64,6 +91,68 @@ router.get("/employees/counts", (req, res) => {
     });
 });
 
+router.get("/employees/division", (req, res) => {  
+  employees.find({status : { $eq: "Senior" }}).count().exec((err, senior) => { employees.find({status : { $eq: "Trainee" }}).count().exec((err, trainee) => { 
+    if (err) {
+      return res.status(400).json({ success: false, err });
+    }
+      return res.status(200).json({
+        success: true,
+        seniorcount: senior,
+        traineecount: trainee,
+     })     
+    });
+  });
+});
+
+router.get("/employees/senior", (req, res) => {  
+  employees.find( {
+    $and: [
+       { status: { $eq: "Senior" } },
+       { gender: { $eq: "M" } }
+    ]
+ } ).count().exec((err, seniorM) => { employees.find( {
+  $and: [
+     { status: { $eq: "Senior" } },
+     { gender: { $eq: "F" } }
+  ]
+} ).count().exec((err, seniorF) => { 
+    if (err) {
+      return res.status(400).json({ success: false, err });
+    }
+      return res.status(200).json({
+        success: true,
+        seniorM: seniorM,
+        seniorF: seniorF
+     })     
+    });
+  });
+});
+
+router.get("/employees/trainee", (req, res) => {  
+  employees.find( {
+    $and: [
+       { status: { $eq: "Trainee" } },
+       { gender: { $eq: "M" } }
+    ]
+ } ).count().exec((err, traineeM) => { employees.find( {
+  $and: [
+     { status: { $eq: "Trainee" } },
+     { gender: { $eq: "F" } }
+  ]
+} ).count().exec((err, traineeF) => { 
+    if (err) {
+      return res.status(400).json({ success: false, err });
+    }
+      return res.status(200).json({
+        success: true,
+        traineeM: traineeM,
+        traineeF: traineeF
+     })     
+    });
+  });
+});
+
 router.get("/employees/tax", (req, res) => {  
   employees.find().sort({ "empno": -1 }).exec((err, employees) => { 
     var count = employees.length;
@@ -74,6 +163,68 @@ router.get("/employees/tax", (req, res) => {
         success: true,
         existingemployees: employees,
         employeeCount:count,
+     })     
+    });
+});
+
+router.get("/employees/province", (req, res) => {  
+  employees.aggregate([
+    { "$facet": {
+       "W": [
+      { "$match": { "province": "Western" }},
+      { "$count": "W" }
+      ],
+      "C": [
+      { "$match": { "province": "Central" }},
+      { "$count": "C" }
+      ],
+      "S": [
+      { "$match": { "province": "Southern" }},
+      { "$count": "S" }
+      ],
+      "U": [
+      { "$match": { "province": "Uva" }},
+      { "$count": "U" }
+      ],
+      "Sa": [
+      { "$match": { "province": "Sabaragamuwa" }},
+      { "$count": "Sa" }
+      ],
+      "NW": [
+      { "$match": { "province": "North Western" }},
+      { "$count": "NW" }
+      ],
+      "NC": [
+      { "$match": { "province": "North Central" }},
+      { "$count": "NC" }
+      ],
+      "N": [
+      { "$match": { "province": "Northern" }},
+      { "$count": "N" }
+      ],
+      "E": [
+      { "$match": { "province": "Eastern" }},
+      { "$count": "E" }
+      ]
+    }},
+      { "$project": {
+      "W": { "$arrayElemAt": ["$W.W", 0] },
+      "C": { "$arrayElemAt": ["$C.C", 0] },
+      "S": { "$arrayElemAt": ["$S.S", 0] },
+      "U": { "$arrayElemAt": ["$U.U", 0] },
+      "Sa": { "$arrayElemAt": ["$Sa.Sa", 0] },
+      "NW": { "$arrayElemAt": ["$NW.NW", 0] },
+      "NC": { "$arrayElemAt": ["$NC.NC", 0] },
+      "N": { "$arrayElemAt": ["$N.N", 0] },
+      "E": { "$arrayElemAt": ["$E.E", 0] }
+    }}
+    ]).exec((err, province) => { 
+    if (err) {
+      return res.status(400).json({ success: false, err });
+    }
+      return res.status(200).json({
+        success: true,
+        province: province,
      })     
     });
 });
@@ -268,6 +419,53 @@ router.get("/employees/:id", (req, res) => {
     });
   });
 });
+router.get("/employees/alocation/:id1", (req, res) => {
+  let postid = req.params.id1;
+  assignment_assignedtostaff.find({emp_no :postid}).count().exec((err, allocationcount) => {
+    if (err) {
+      return res.status(400).json({ success: false, err });
+    }
+    return res.status(200).json({
+      success: true,
+      allocationcount,
+    });
+  });
+});
+router.get("/employees/pointsreq/:id2", (req, res) => {
+  let postid2 = parseInt(req.params.id2);
+  Points.aggregate([
+    {
+      "$match": {
+        "empno": {
+          "$eq": postid2
+        }
+      }
+    },
+    {
+      "$group": {
+        "_id": null,
+        "maxpoints": {
+          "$max": "$points"
+        }
+      }
+    },
+    {
+      "$project": {
+        "_id": 0,
+        "maxpoints": 1
+      }
+    }
+  ]).exec((err, maxpoints) => {
+    if (err) {
+      return res.status(400).json({ success: false, err });
+    }
+    return res.status(200).json({
+      success: true,
+      maxpoints,
+    });
+  });
+});
+
 
 //update employees
 

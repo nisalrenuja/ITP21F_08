@@ -16,6 +16,22 @@ top: 200px;
 
 background: #D3E0EA;
 }
+.div99{
+    position: absolute;
+width: 290px;
+height:67px;
+left: 650px;
+top: 200px;
+
+background: #D3E0EA;
+}
+.btn-outline-dark{
+        position: absolute;
+width: 290px;
+height:67px;
+left: 650px;
+top: 200px;
+}
 .emptxt1{
 
 font-family: Inter;
@@ -29,6 +45,18 @@ letter-spacing: -0.00022em;
 color: #FFFFFF;
 }
 .txt2{
+
+    font-family: Inter;
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 19px;
+text-align: center;
+letter-spacing: -0.00022em;
+
+color: #1687A7;
+}
+.txt99{
 
     font-family: Inter;
 font-style: normal;
