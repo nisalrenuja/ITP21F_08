@@ -158,7 +158,7 @@ export default class EditPayroll extends Component {
               Empoyee ID
             </label>
             <input
-              type="text"
+              type="number"
               id="valid1"
               className="form-control"
               name="empno"

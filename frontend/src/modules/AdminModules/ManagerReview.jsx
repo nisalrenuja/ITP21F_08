@@ -19,7 +19,7 @@ export default class AdminTab1 extends Component {
     axios.get("http://localhost:5000/review").then(res => {
       if (res.data.success) {
         const acceptedData = res.data.existingPosts.filter(
-          x => x.status === "Accepted" && x.isAdminApprove === true
+          x => x.init_status === "Accepted" && x.isAdminApprove === true
         );
 
         this.setState({
@@ -73,14 +73,30 @@ export default class AdminTab1 extends Component {
             <div className="col-lg-9 mt-2 mb-2">
               <Clock />
               <br />
-              <button class="btn btn-lg aptab-btn">
-                <a
-                  href="/directorreview"
-                  style={{ textDecoration: "none", color: "black" }}
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <div class="dropdown">
+                <button
+                  className="btn btn-secondary dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
                 >
-                  Director Review
-                </a>
-              </button>
+                  Review As a
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="/managerreview">
+                    Manager
+                  </a>
+                  <a class="dropdown-item" href="/directorreview">
+                    Director
+                  </a>
+                  <a class="dropdown-item" href="/partnerreview">
+                    Partner
+                  </a>
+                </div>
+              </div>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <button className="btn btn-lg aptab-btn">
                 <a
@@ -100,7 +116,7 @@ export default class AdminTab1 extends Component {
             <div className="col-lg-9 mt-2 mb-2">
               <h1 className="h3 mb-3 font-weight-normal">Manager Reviews</h1>
             </div>
-            <div className="col-lg-3 mt-2 mb-2">
+            <div className="col-lg-2 mt-2 mb-2 search-bar">
               <input
                 className="form-control"
                 type="search"
@@ -151,19 +167,16 @@ export default class AdminTab1 extends Component {
                   <td>{posts.feedback}</td>
                   <td>{posts.managerStatus}</td>
                   <td>
-                    <a
-                      className="btn btn-warning"
-                      href={`/editmanagerreview/${posts._id}`}
-                    >
-                      <i className="fas fa-edit"></i>&nbsp;Edit
+                    <a href={`/post/${posts._id}`}>
+                      <i class="far fa-eye"></i>
                     </a>
-                    &nbsp;
-                    <a
-                      className="btn btn-danger"
-                      href="#"
-                      onClick={() => this.onDelete(posts._id)}
-                    >
-                      <i className="fas fa-trash-alt"></i>&nbsp;Delete
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                    <a href={`/editmanagerreview/${posts._id}`}>
+                      <i class="far fa-edit"></i>
+                    </a>
+                    &nbsp; &nbsp; &nbsp;
+                    <a href="#" onClick={() => this.onDelete(posts._id)}>
+                      <i class="far fa-trash-alt"></i>
                     </a>
                   </td>
                 </tr>

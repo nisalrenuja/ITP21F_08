@@ -1,27 +1,28 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./CreateNotice.css";
+import { storage } from "../../firebase";
 import { Redirect } from "react-router";
 
 export default class CreateNotice extends Component {
   constructor(props) {
     super(props);
-
+    this.uploadPDF = this.uploadPDF.bind(this);
     this.state = {
       notice_id: "",
       emp_id: "",
       emp_name: "",
       notice_topic: "",
       notice_content: "",
-      notice_attachments: "",
+      notice_attachments: null,
       published_date: "",
       redirectToReferrer: false
     };
   }
   componentDidMount() {
-    this.retrievePosts();
+    this.retrieveexistingNotices();
   }
-  retrievePosts() {
+  retrieveexistingNotices() {
     axios.get("http://localhost:5000/CreateNotice").then(res => {
       if (res.data.success) {
         this.setState({
@@ -38,6 +39,12 @@ export default class CreateNotice extends Component {
       [name]: value
     });
   };
+
+  handleInputFileChange = e => {
+    var file = e.target.files[0];
+    console.log(file);
+  };
+
   onCheck = name => {
     console.log(name);
     axios.get(`http://localhost:5000/checkassigned/${name}`).then(res => {
@@ -87,6 +94,41 @@ export default class CreateNotice extends Component {
       }
     });
   };
+
+  uploadPDF(e) {
+    if (e.target.files[0] !== null) {
+      const uploadTask = storage
+        .ref(`users/${e.target.files[0].name}`)
+        .put(e.target.files[0]);
+      uploadTask.on(
+        "state_changed",
+        snapshot => {
+          //progress function
+          //const progress = Math.round(
+          //(snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          //);
+          //this.setState({ uploadPercentage: progress });
+        },
+        error => {
+          //error function
+          console.log(error);
+        },
+        () => {
+          //complete function
+          storage
+            .ref("users")
+            .child(e.target.files[0].name)
+            .getDownloadURL()
+            .then(url => {
+              this.setState({ notice_attachments: url });
+              console.log("Hello " + url);
+            });
+        }
+      );
+    } else {
+    }
+  }
+
   render() {
     const redirectToReferrer = this.state.redirectToReferrer;
     if (redirectToReferrer == true) {
@@ -147,19 +189,22 @@ export default class CreateNotice extends Component {
               />
               <p class="senavcattach">Attachments:</p>
               <input
-                type="number"
+                type="file"
                 class="senavccattach"
                 id="notice_attachements"
                 name="notice_attachments"
-                value={this.state.notice_attachments}
-                onChange={this.handleInputChange}
+                //value={this.state.notice_attachments}
+                onChange={e => {
+                  this.uploadPDF(e);
+                }}
+                multiple=""
               />
               <p class="senavic">Publishing Date: </p>
               <input
                 type="date"
                 class="senavicc"
                 id="published_date"
-                name="pulished_date"
+                name="published_date"
                 value={this.state.published_date}
                 onChange={this.handleInputChange}
               />
@@ -171,17 +216,17 @@ export default class CreateNotice extends Component {
                   style={{ marginTop: "795px", width: "20%" }}
                   onClick={this.onSubmit}
                 >
+                  <a href="/AdminTab5"></a>
                   <i className="fas fa-save"></i>&nbsp;Save
                 </button>
-                <a href="/admin">
-                  <button
-                    className="btn btn-secondary"
-                    type="submit"
-                    style={{ marginTop: "795px", width: "20%" }}
-                  >
-                    Cancel
-                  </button>
-                </a>
+
+                <button
+                  className="btn btn-secondary"
+                  type="submit"
+                  style={{ marginTop: "795px", width: "20%" }}
+                >
+                  Cancel
+                </button>
               </center>
             </form>
           </div>

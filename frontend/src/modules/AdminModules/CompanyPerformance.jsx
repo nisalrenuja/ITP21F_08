@@ -6,31 +6,35 @@ export default class CompanyPerfomance extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      assignments: []
+      Performances: []
     };
   }
-  onDelete = name => {
-    console.log(name);
-    axios
-      .delete(`http://localhost:5000/assignments/delete/${name}`)
-      .then(res => {
-        alert("Deleted Succesfully");
-        this.retrievePosts();
-      });
-  };
+
   componentDidMount() {
-    this.retrievePosts();
+    this.retrievePerformances();
   }
-  retrievePosts() {
-    axios.get("http://localhost:5000/assignments/dis").then(res => {
+
+  retrievePerformances() {
+    axios.get("http://localhost:5000/performance").then(res => {
       if (res.data.success) {
         this.setState({
-          assignments: res.data.assignmentsassigned
+          posts: res.data.Performances
         });
-        console.log(this.state.assignments);
+        console.log(this.state.Performances);
       }
     });
   }
+
+  handleSearchArea = e => {
+    const searchKey = e.currentTarget.value;
+
+    axios.get("http://localhost:5000/performance").then(res => {
+      if (res.data.success) {
+        this.filterData(res.data.Performances, searchKey);
+      }
+    });
+  };
+
   render() {
     return (
       <div className="container">
@@ -63,7 +67,9 @@ export default class CompanyPerfomance extends Component {
           <table className="table table-hover anutable41">
             <thead class="anuthead">
               <tr>
+                <th scope="col">Quarter No.</th>
                 <th scope="col">Quarter</th>
+                <th scope="col">Year</th>
                 <th scope="col">From</th>
                 <th scope="col">To</th>
                 <th scope="col">No.of Approved Reports</th>
@@ -71,24 +77,22 @@ export default class CompanyPerfomance extends Component {
               </tr>
             </thead>
             <tbody class="anutbody1">
-              {this.state.assignments.map((assignments, index) => (
+              {this.state.Performances.map((Performances, index) => (
                 <tr key={index}>
+                  <td>{Performances.quarter_no}</td>
+                  <td>{Performances.quarter_name}</td>
+                  <td>{Performances.year}</td>
+                  <td>{Performances.from}</td>
+                  <td>{Performances.to}</td>
+                  <td>{Performances.approved_reports}</td>
                   <td>
-                    <a href={``} style={{ textDecoration: "none" }}>
-                      {assignments.assignment_name}
-                    </a>
-                  </td>
-                  <td>{assignments.client_no}</td>
-                  <td>{assignments.deadline}</td>
-                  <td>{assignments.deadline}</td>
-                  <td>
-                    <a href={`/edit/${assignments._id}`}>
+                    <a href={`/edit/${Performances.quarter_name}`}>
                       <i className="fas fa-edit"></i>&nbsp;
                     </a>
                     &nbsp;
                     <a
                       href="#"
-                      onClick={() => this.onDelete(assignments.assignment_name)}
+                      onClick={() => this.onDelete(Performances.quarter_name)}
                     >
                       <i className="far fa-trash-alt"></i>&nbsp;
                     </a>
@@ -96,8 +100,8 @@ export default class CompanyPerfomance extends Component {
                 </tr>
               ))}
               <tfoot class="tfoot">
-                <a href="/createassignment">
-                  <i class="fas fa-plus"></i>&nbsp;New Record Calculation
+                <a href="/quarterperformance">
+                  <i class="fas fa-plus"></i>&nbsp;New Quater Performance
                 </a>
               </tfoot>
             </tbody>

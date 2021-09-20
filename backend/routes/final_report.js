@@ -5,11 +5,11 @@ const router = express.Router();
 
 //save reports
 
-router.post('/post/save',(req,res)=>{
+router.post('/final_report/save',(req,res)=>{
 
-    let newPost = new Posts(req.body);
+    let newReport = new Reports(req.body);
 
-    newPost.save((err) =>{
+    newReport.save((err) =>{
         if(err){
             return res.status(400).json({
                 error:err
@@ -23,8 +23,8 @@ router.post('/post/save',(req,res)=>{
 
 //Get Reports
 
-router.get('/post',(req,res) =>{
-    Posts.find().exec((err,post) =>{
+router.get('/final_report',(req,res) =>{
+    Reports.find().exec((err,finalreport) =>{
         if(err){
             return res.status(400).json({
                 error:err
@@ -32,14 +32,14 @@ router.get('/post',(req,res) =>{
         }
         return res.status(200).json({
             success:true,
-            existingPosts:post
+            finalreport:finalreport
         });
     });
 });
 
 //Update Reports
 
-router.put('/post/update/:id', (req,res)=>{
+router.put('/finalreports/update/:id', (req,res)=>{
 
     Posts.findByIdAndUpdate(
         req.params.id,

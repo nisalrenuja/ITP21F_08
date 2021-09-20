@@ -1,36 +1,27 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./EditNotices.css";
+import { storage } from "../../firebase";
 import { Redirect } from "react-router";
 
 export default class EditNotices extends Component {
   constructor(props) {
     super(props);
-
+    //this.uploadPDF = this.uploadPDF.bind(this);
     this.state = {
       notice_id: "",
       emp_id: "",
       emp_name: "",
       notice_topic: "",
       notice_content: "",
-      notice_attachments: "",
+      notice_attachments: null,
       published_date: "",
+      updateNotice: [],
+      updateNotice2: [],
       redirectToReferrer: false
     };
   }
-  componentDidMount() {
-    this.retrievePosts();
-  }
-  retrievePosts() {
-    axios.get("http://localhost:5000/CreateNotice").then(res => {
-      if (res.data.success) {
-        this.setState({
-          existingNotices: res.data.staff
-        });
-        console.log(this.state.notice_id);
-      }
-    });
-  }
+
   handleInputChange = e => {
     const { name, value } = e.target;
     this.setState({
@@ -38,16 +29,15 @@ export default class EditNotices extends Component {
       [name]: value
     });
   };
-  onCheck = name => {
-    console.log(name);
-    axios.get(`http://localhost:5000/checkassigned/${name}`).then(res => {
-      if (res.data.success) {
-        alert("Assigned to " + res.data.l + " assignment/s!");
-      }
-    });
+
+  handleInputFileChange = e => {
+    var file = e.target.files[0];
+    console.log(file);
   };
+
   onSubmit = e => {
     e.preventDefault();
+    //const id = this.props.match.params.id;
 
     const {
       notice_id,
@@ -71,22 +61,85 @@ export default class EditNotices extends Component {
     };
 
     console.log(data);
-    axios.post("http://localhost:5000/CreateNotice/save/", data).then(res => {
+    axios
+      .put(
+        `http://localhost:5000/CreateNotice/update/${this.props.dataFromParent}`,
+        data
+      )
+      .then(res => {
+        if (res.data.success) {
+          this.setState({
+            notice_topic: "",
+            notice_content: "",
+            notice_attachments: "",
+            published_date: ""
+          });
+          alert("Notice Updated Successfully");
+        }
+      });
+  };
+
+  componentDidMount() {
+    this.retrieveexsitingNotices();
+  }
+
+  retrieveexsitingNotices() {
+    const id = this.props.dataFromParent;
+    console.log(id);
+
+    axios.get(`http://localhost:5000/CreateNotice/${id}`).then(res => {
       if (res.data.success) {
         this.setState({
-          notice_id: notice_id,
-          emp_id: emp_id,
-          emp_name: emp_name,
-          notice_topic: notice_topic,
-          notice_content: notice_content,
-          notice_attachments: notice_attachments,
-          published_date: published_date,
-          redirectToReferrer: true
+          updateNotice: res.data.existingNotices,
+          notice_id: res.data.existingNotices.notice_id,
+          emp_id: res.data.existingNotices.emp_id,
+          emp_name: res.data.existingNotices.emp_name,
+          notice_topic: res.data.existingNotices.notice_topic,
+          notice_content: res.data.existingNotices.notice_content,
+          notice_attachments: res.data.existingNotices.notice_attachments,
+          published_date: res.data.existingNotices.published_date,
+
+          updateNotice2: res.data.existingNotices2
         });
-        //alert("Employee added to assignment, Enter employee number");
+        console.log(this.state.updateNotice);
       }
     });
-  };
+  }
+
+  uploadPDF(e) {
+    if (e.target.files[0] !== null) {
+      const uploadTask = storage
+        .ref(`users/${e.target.files[0].name}`)
+        .put(e.target.files[0]);
+      uploadTask.on(
+        "state_changed",
+        snapshot => {
+          //progress function
+          //const progress = Math.round(
+          //(snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          //);
+          //this.setState({ uploadPercentage: progress });
+        },
+        error => {
+          //error function
+          console.log(error);
+        },
+        () => {
+          //complete function
+          storage
+            .ref("users")
+            .child(e.target.files[0].name)
+            .getDownloadURL()
+            .then(url => {
+              this.setState({ notice_attachments: url });
+              console.log("Hello " + url);
+            });
+        }
+      );
+    } else {
+    }
+  }
+
   render() {
     const redirectToReferrer = this.state.redirectToReferrer;
     if (redirectToReferrer == true) {
@@ -95,7 +148,7 @@ export default class EditNotices extends Component {
     return (
       <div className="container">
         <div class="senamain3">
-          <h1 class="senahead1c">Notice Management | Create Notice</h1>
+          <h1 class="senahead1c">Notice Management | Edit Notice</h1>
           <hr class="senaline1c"></hr>
           <div class="senamain33">
             <form>
@@ -147,41 +200,56 @@ export default class EditNotices extends Component {
               />
               <p class="senavcattach">Attachments:</p>
               <input
-                type="number"
+                type="file"
                 class="senavccattach"
                 id="notice_attachements"
                 name="notice_attachments"
-                value={this.state.notice_attachments}
-                onChange={this.handleInputChange}
+                //value={this.state.notice_attachments}
+                onChange={e => {
+                  this.uploadPDF(e);
+                }}
               />
+              <div class="cookie123">
+                <div className="row d-flex justify-content-end mt-3">
+                  <a
+                    href={this.state.notice_attachments}
+                    className="btncookie btn-primary col-2 me-2"
+                  >
+                    View PDF
+                  </a>
+                </div>
+              </div>
+
               <p class="senavic">Publishing Date: </p>
               <input
                 type="date"
                 class="senavicc"
                 id="published_date"
-                name="pulished_date"
+                name="published_date"
                 value={this.state.published_date}
                 onChange={this.handleInputChange}
               />
 
               <center>
-                <button
-                  className="btn btn-success"
-                  type="submit"
-                  style={{ marginTop: "795px", width: "20%" }}
-                  onClick={this.onSubmit}
-                >
-                  <i className="fas fa-save"></i>&nbsp;Save
-                </button>
-                <a href="/admin">
+                <div class="cookie">
                   <button
-                    className="btn btn-secondary"
+                    className="btn btn-warning"
                     type="submit"
-                    style={{ marginTop: "795px", width: "20%" }}
+                    style={{ marginTop: "725px" }}
+                    onClick={this.onSubmit}
+                  >
+                    <a href="/AdminTab5"></a>
+                    <i className="fa fa-refresh"></i>&nbsp;Update
+                  </button>{" "}
+                  &nbsp;&nbsp;
+                  <button
+                    className="btn btn-danger"
+                    type="cancel"
+                    style={{ marginTop: "725px" }}
                   >
                     Cancel
                   </button>
-                </a>
+                </div>
               </center>
             </form>
           </div>

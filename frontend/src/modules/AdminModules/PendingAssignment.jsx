@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "./Employees.css";
+import "./PendingAssignment.css";
 
 export default class PendingAssignment extends Component {
   constructor(props) {
@@ -43,25 +43,25 @@ export default class PendingAssignment extends Component {
               <p class="txt2">Employee Points</p>
             </button>
           </a>
-          <div class="div3">
-            <p class="txt3">Filter by</p>
-            <input
-              class="select1"
-              type="text"
-              onChange={this.handleSearchArea}
-            />
-            <a className="btn btn-info search2">
-              <i className="fas fa-search2"></i>&nbsp;Search
-            </a>
-          </div>
-          <table className="table table-hover table1">
+
+          <table className="table table-hover budtable1">
             <thead class="thead">
               <tr>
-                <th scope="col">Assignment Name</th>
-                <th scope="col">Client Number</th>
-                <th scope="col">Executive Number</th>
-                <th scope="col">Place of Engagement</th>
-                <th scope="col">Commencement Date</th>
+                <th scope="col">
+                  Assignment <br /> Name
+                </th>
+                <th scope="col">
+                  Client <br /> Number
+                </th>
+                <th scope="col">
+                  Executive <br /> Number
+                </th>
+                <th scope="col">
+                  Place of <br /> Engagement
+                </th>
+                <th scope="col">
+                  Commencement <br /> Date
+                </th>
                 <th scope="col">Deadline</th>
                 <th scope="col">Action</th>
               </tr>
@@ -100,9 +100,7 @@ export default class PendingAssignment extends Component {
             </tbody>
             &nbsp;
             <tfoot class="tfoot">
-              <a href="/InsertEmployee">
-                <i class="fas fa-plus"></i>&nbsp;New Employee
-              </a>
+              <a href="/InsertEmployee">Add New Employee</a>
             </tfoot>
           </table>
         </div>

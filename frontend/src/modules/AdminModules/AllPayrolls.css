@@ -57,8 +57,8 @@
 .search-bar {
 
   background: #1687A7;
+  height: 48px;
   border-radius: 5px;
-  padding-top: 5px;
   padding-left: 5px;
   padding-right: 5px;
 
@@ -73,7 +73,7 @@
   line-height: 58px;
   padding-top: 15px;
 
-  color: #1687A7;
+  color: #276678;
 }
 .need-validation {
   background-color:"#F6F5F5" ;
@@ -87,6 +87,22 @@
   width: 50%;
   border: 3px solid #D3E0EA;;
   padding: 10px;
+}
+
+/*
+.icon-btns{
+  color:#1687A7;
+}
+*/
+.hr-line{
+
+  width: 1371.03px;
+  height: 0px;
+  left: 478px;
+  top: 308px;
+
+  border: 3px solid #D3E0EA;
+  transform: rotate(0.21deg);
 }
 
 

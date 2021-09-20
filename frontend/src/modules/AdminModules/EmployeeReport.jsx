@@ -36,8 +36,8 @@ export default class EmployeeReport extends Component {
     axios.get("http://localhost:5000/pendingassignments").then(res => {
       if (res.data.success) {
         this.setState({
-          pending2: res.data.Pending,
-          pendingtotal2: res.data.o
+          pending2: res.data.assignmentsassigned,
+          pendingtotal2: res.data.count
         });
         console.log(this.state.pending2);
       }
@@ -51,28 +51,56 @@ export default class EmployeeReport extends Component {
     });
   };
 
-  filterData(posts, searchKey) {
-    const result = posts.filter(
-      post =>
-        post.execid_review.toLowerCase().includes(searchKey) ||
-        post.report.toLowerCase().includes(searchKey) ||
-        post.points.toLowerCase().includes(searchKey) ||
-        post.feedback.toLowerCase().includes(searchKey) ||
-        post.status.toLowerCase().includes(searchKey)
+  filterData1(pending, searchKey) {
+    const result = pending.filter(post =>
+      post.report.toLowerCase().includes(searchKey)
     );
-    this.setState({ posts: result });
+    this.setState({ pending1: result });
   }
 
-  handleSearchArea = e => {
+  handleSearchArea1 = e => {
     const searchKey = e.currentTarget.value;
 
-    axios.get("http://localhost:5000/review").then(res => {
+    axios.get("http://localhost:5000/review/pe").then(res => {
       if (res.data.success) {
-        this.filterData(res.data.existingPosts, searchKey);
+        this.filterData1(res.data.Pending, searchKey);
       }
     });
   };
 
+  filterData2(pending, searchKey) {
+    const result = pending.filter(post =>
+      post.assignment_name.toLowerCase().includes(searchKey)
+    );
+    this.setState({ pending2: result });
+  }
+
+  handleSearchArea2 = e => {
+    const searchKey = e.currentTarget.value;
+
+    axios.get("http://localhost:5000/pendingassignments").then(res => {
+      if (res.data.success) {
+        this.filterData2(res.data.assignmentsassigned, searchKey);
+      }
+    });
+  };
+
+  filterData3(completed, searchKey) {
+    const result = completed.filter(post =>
+      post.report.toLowerCase().includes(searchKey)
+    );
+    this.setState({ completed: result });
+  }
+
+  handleSearchArea3 = e => {
+    const searchKey = e.currentTarget.value;
+
+    axios.get("http://localhost:5000/review/pe").then(res => {
+      if (res.data.success) {
+        this.filterData3(res.data.Completed, searchKey);
+      }
+    });
+  };
   render() {
     return (
       <div className="container">
@@ -107,16 +135,16 @@ export default class EmployeeReport extends Component {
                   <tr key={index}>
                     <td>
                       <a
-                        href={`/assignment/${pending.assignment_name}`}
+                        href={`/assignment/${pending.report}`}
                         style={{ textDecoration: "none" }}
                       >
                         {pending.report}
                       </a>
                     </td>
                     <td>{pending.sub_date}</td>
-                    {pending.work.map(item => (
-                      <td>{item.deadline}</td>
-                    ))}
+
+                    <td>{pending.deadline}</td>
+
                     <td>{pending.points}</td>
                     <td>{pending.feedback}</td>
                     <td>{pending.status}</td>
@@ -129,10 +157,10 @@ export default class EmployeeReport extends Component {
                       </a>
                       &nbsp; / &nbsp;
                       <a
-                        href={`/empreportupload`}
+                        href={`/empreportedit/${pending._id}`}
                         style={{ textDecoration: "none" }}
                       >
-                        Upload Report
+                        Edit Report
                       </a>
                     </td>
                   </tr>
@@ -142,10 +170,13 @@ export default class EmployeeReport extends Component {
           </div>
 
           <div class="budiv3">
-            <input class="buselect1" type="text" />
-            <a className="btn btn-info busearch">
-              <i className="fas fa-search"></i>&nbsp;
-            </a>
+            <input
+              class="buselect1"
+              type="text"
+              onChange={this.handleSearchArea1}
+              placeholder="&nbsp;&nbsp;Enter Assignment Name"
+            />
+            <div className="btn btn-info busearch">Search</div>
           </div>
 
           <h2 class="butah2">Next Assignments ({this.state.pendingtotal2})</h2>
@@ -192,10 +223,13 @@ export default class EmployeeReport extends Component {
             </table>
           </div>
           <div class="budiv31">
-            <input class="buselect1" type="text" />
-            <a className="btn btn-info busearch">
-              <i className="fas fa-search"></i>&nbsp;
-            </a>
+            <input
+              class="buselect1"
+              type="text"
+              onChange={this.handleSearchArea2}
+              placeholder="&nbsp;&nbsp;Enter Assignment Name"
+            />
+            <div className="btn btn-info busearch">Search</div>
           </div>
 
           <h2 class="butah3">
@@ -246,10 +280,13 @@ export default class EmployeeReport extends Component {
             </table>
           </div>
           <div class="budiv331">
-            <input class="buselect1" type="text" />
-            <a className="btn btn-info busearch">
-              <i className="fas fa-search"></i>&nbsp;
-            </a>
+            <input
+              class="buselect1"
+              type="text"
+              onChange={this.handleSearchArea3}
+              placeholder="&nbsp;&nbsp;Enter Assignment Name"
+            />
+            <div className="btn btn-info busearch">Search</div>
           </div>
         </div>
       </div>

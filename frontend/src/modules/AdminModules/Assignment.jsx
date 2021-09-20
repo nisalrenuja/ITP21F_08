@@ -48,6 +48,7 @@ export default class Assignment extends Component {
           sum: sum
         });
         console.log(res.data.ass2.length);
+        console.log(res.data.deadline);
       }
     });
   }
@@ -176,7 +177,7 @@ export default class Assignment extends Component {
             <br />
             <br />
             <center>
-              <h3>Employees Working and Allowances(Rs)</h3>
+              <h4>Employees Working and Allowances(Rs)</h4>
             </center>
             {this.state.assignment2.map((assignment2, index) => (
               <div>
@@ -197,6 +198,13 @@ export default class Assignment extends Component {
                 Total Allowance- Rs{this.state.sum}
               </p>
               <br />
+              {this.state.assignment.map((assignment, index) => (
+                <a href={assignment.scan_invoice_allowance}>
+                  <button type="button" class="btn btn-primary">
+                    Allowances Document
+                  </button>
+                </a>
+              ))}
             </center>
           </div>
         </div>

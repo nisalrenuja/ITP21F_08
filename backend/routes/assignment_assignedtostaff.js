@@ -143,6 +143,24 @@ router.put("/assignments/updateallo/:name", (req, res) => {
       });
     });
 });
+router.put("/assignments/updatescanallo/:name", (req, res) => {
+  let name = req.params.name;
+  assignment_assignedtostaff
+    .updateMany(
+      {   assignment_name: name  },
+      {
+        scan_invoice_allowance: req.body.scan_invoice_allowance,
+      }
+    )
+    .exec((err, post) => {
+      if (err) {
+        return res.status(400).json({ error: err });
+      }
+      return res.status(200).json({
+        success: "Uploaded Succesfully",
+      });
+    });
+});
 //delete post
 router.delete("/assignments/delete/:name", (req, res) => {
   let postid = req.params.name;

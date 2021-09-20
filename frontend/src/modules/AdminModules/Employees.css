@@ -16,14 +16,13 @@ top: 200px;
 
 background: #D3E0EA;
 }
-.txt1{
-
+.emptxt1{
 
 font-family: Inter;
 font-style: normal;
 font-weight: 600;
 font-size: 18px;
-line-height: 19px;
+line-height: 20px;
 text-align: center;
 letter-spacing: -0.00022em;
 
@@ -46,7 +45,7 @@ color: #1687A7;
 width: 623px;
 height: 80px;
 left: 50px;
-top: 50px;
+top: 60px;
 
 font-family: Inter;
 font-style: normal;
@@ -66,12 +65,12 @@ top: 130px;
 border: 3px solid #D3E0EA;
 transform: rotate(0.21deg);
 }
-.div3{
+.buddiv3{
     position: absolute;
-width: 720px;
-height: 151px;
-left: 174px;
-top: 350px;
+width: 450px;
+height: 80px;
+left: 600px;
+top: 300px;
 
 background: #1687A7;
 backdrop-filter: blur(4px);
@@ -79,16 +78,16 @@ backdrop-filter: blur(4px);
 
 border-radius: 5px;
 }
-.txt3{
+.budtxt3{
     position: absolute;
 width: 94px;
 height: 29px;
-left: 85px;
-top: 60px;
+left: 25px;
+top: 28px;
     font-family: Inter;
 font-style: normal;
 font-weight: 600;
-font-size: 24px;
+font-size: 20px;
 line-height: 29px;
 /* identical to box height */
 
@@ -97,17 +96,17 @@ letter-spacing: -0.00022em;
 
 color: #C4C4C4;
 }
-.select1{
+.budselect1{
     position: absolute;
 width: 272px;
-height: 60px;
-left: 185px;
-top: 50px;
+height: 50px;
+left: 150px;
+top: 16px;
 
 background: #FFFFFF;
 border-radius: 5px;
 }
-.search2{
+.budsearch2{
     position: absolute;
 width: 110px;
 height: 40px;
@@ -119,7 +118,7 @@ top: 60px;
 width: 1000px;
 
 left: 50px;
-top: 650px;
+top: 450px;
 
 }
 .thead{
@@ -156,22 +155,21 @@ top: 650px;
 .tfoot:hover{
     background: #47daba;
 }
-.tah{
+.butah{
 position: absolute;
 width: 523px;
 height: 66px;
 left: 50px;
-top: 570px;
+top: 400px;
 
 
 color: #000000;
 }
-.main{
+.budmain{
     width:100%;
-    height:850px;
+    height:750px;
     white-space: nowrap;
     position: relative;
-    overflow-x: scroll;
     overflow-y: scroll;
 }
 .tbody1{

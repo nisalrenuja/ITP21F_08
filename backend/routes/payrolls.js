@@ -23,7 +23,8 @@ router.post("/payroll/save", (req, res) => {
 
 //get leaves deatails table(GET)
 router.get("/payrolls", (req, res) => {
-  Payrolls.find().exec((err, payrolls) => {
+  Payrolls.find().sort({ "empno": -1 }).exec((err, payrolls) => {
+    var pcount = payrolls.length;
     if (err) {
       return res.status(400).json({
         error: err,
@@ -32,6 +33,7 @@ router.get("/payrolls", (req, res) => {
     return res.status(200).json({
       success: true,
       existingPayrolls: payrolls,
+      payrollCount:pcount
     });
   });
 });
@@ -55,7 +57,7 @@ router.get("/payroll/:id", (req, res) =>{
 });
 
 
-//update leave(PUT)
+//update (PUT)
 router.put("/payroll/update/:id", (req, res) => {
   Payrolls.findByIdAndUpdate(
     req.params.id,

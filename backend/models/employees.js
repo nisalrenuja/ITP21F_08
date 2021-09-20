@@ -15,7 +15,7 @@ const employees_Schema = new mongoose.Schema({
   },
   contact: {
     type: Number,
-    required: false,
+    required: true,
   },
   dob:{
     type: Date,
@@ -51,7 +51,7 @@ const employees_Schema = new mongoose.Schema({
   },
   sector: {
     type: String,
-    required: false,
+    required: true,
   },
   duration:{
     type: String,
@@ -101,6 +101,10 @@ const employees_Schema = new mongoose.Schema({
     type: String,
     required: false,
   }, 
+  points:{
+    type: String,
+    required: false,
+  },
   type:{
     type: String,
     required: false,

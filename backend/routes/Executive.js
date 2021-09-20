@@ -17,17 +17,20 @@ router.post("/executive/save", (req, res) => {
 });
 //get post
 router.get("/executive", (req, res) => {
-  executive.find().exec((err, executive) => {
-    var count = executive.length;
-    if (err) {
-      return res.status(400).json({ success: false, err });
-    }
-    return res.status(200).json({
-      success: true,
-      existingexecutive: executive,
-      employeeCount: count,
+  executive
+    .find()
+    .sort({ exeno: -1 })
+    .exec((err, executive) => {
+      var count = executive.length;
+      if (err) {
+        return res.status(400).json({ success: false, err });
+      }
+      return res.status(200).json({
+        success: true,
+        existingexecutive: executive,
+        execoCount: count,
+      });
     });
-  });
 });
 
 //get specific

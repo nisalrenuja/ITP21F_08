@@ -36,7 +36,7 @@ export default class AdminTab6 extends Component {
 
   onDelete = id => {
     axios.delete(`http://localhost:5000/payroll/delete/${id}`).then(res => {
-      alert("Deleted Successfully!!");
+      alert("Deleted Payroll Data Successfully!!");
       this.retrievePayrolls();
     });
   };
@@ -44,11 +44,16 @@ export default class AdminTab6 extends Component {
   filterData(payrolls, searchKey) {
     const result = payrolls.filter(
       payroll =>
-        payroll.empno.toLowerCase().includes(searchKey) ||
+        payroll.empno
+          .toString()
+          .toLowerCase()
+          .includes(searchKey) ||
         payroll.name.toLowerCase().includes(searchKey) ||
         payroll.position.toLowerCase().includes(searchKey) ||
-        payroll.basic_salary.includes(searchKey)
+        payroll.bank.toLowerCase().includes(searchKey) ||
+        payroll.account_no.toLowerCase().includes(searchKey)
     );
+
     this.setState({ payrolls: result });
   }
 
@@ -70,7 +75,7 @@ export default class AdminTab6 extends Component {
       <div className="container">
         <br></br>
 
-        <div className="adminpayroll react-bs-table-pagination">
+        <div className="adminpayroll">
           <div className="row">
             <div class="d-flex justify-content-between">
               <div className="col-lg-9 mt-2 mb-2 font-weight-bold ">
@@ -82,30 +87,30 @@ export default class AdminTab6 extends Component {
               </div>
             </div>
 
-            <hr />
+            <hr class="hr-line" />
 
             <div className="col-lg-9 mt-2 mb-2">
-              <button disabled class="btn btn-lg aptab-disable">
-                <a href="#" style={{ textDecoration: "none", color: "white" }}>
-                  Salary Details
+              <button class="btn btn-lg aptab-disable">
+                <a href="" style={{ textDecoration: "none", color: "white" }}>
+                  Payroll Details
                 </a>
-              </button>{" "}
+              </button>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <button class="btn btn-lg aptab-btn">
                 <a
-                  href="#"
+                  href="/allattendance"
                   style={{ textDecoration: "none", color: "#1687A7" }}
                 >
                   Attendance
                 </a>
-              </button>{" "}
+              </button>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <button class="btn btn-lg aptab-btn">
                 <a
-                  href="/allleaves"
+                  href="/allsalary"
                   style={{ textDecoration: "none", color: "#1687A7" }}
                 >
-                  Leaves
+                  Monthly Salary
                 </a>
               </button>
               <br></br> <br></br>
@@ -115,17 +120,16 @@ export default class AdminTab6 extends Component {
             <div class="d-flex">
               <div className="col-lg-9 mt-2 mb-2 ">
                 <h2 className="h3 mb-3">
-                  Total Salary Records ( {this.state.salarycount} )
+                  Total Payroll Records ( {this.state.payrollcount} )
                 </h2>
               </div>
 
               <div className="col-lg-3 mt-2 mb-2 search-bar">
                 <input
-                  className="form-control mr-sm-2"
+                  className="form-control"
                   type="search"
                   placeholder="Search..."
                   name="searchQuery"
-                  aria-label="Search"
                   onChange={this.handleSearchArea}
                 ></input>
               </div>
@@ -139,11 +143,12 @@ export default class AdminTab6 extends Component {
             <thead class="tblhead">
               <tr class="">
                 <th scope="col"> #</th>
-                <th scope="col"> Employee ID</th>
+                <th scope="col"> Payroll ID</th>
                 <th scope="col"> Name</th>
                 <th scope="col"> Position</th>
                 <th scope="col"> Basic Salary</th>
                 <th scope="col"> Bank</th>
+                <th scope="col"> Account No</th>
                 <th scope="col"> Action</th>
               </tr>
             </thead>
@@ -165,17 +170,25 @@ export default class AdminTab6 extends Component {
                   <td>{payrolls.position}</td>
                   <td>{payrolls.basic_salary}</td>
                   <td>{payrolls.bank}</td>
+                  <td>{payrolls.account_no}</td>
 
                   <td>
-                    <a href={`displaypayroll/${payrolls._id}`}>
+                    <a
+                      href={`displaypayroll/${payrolls._id}`}
+                      class="icon-btns"
+                    >
                       <i class="far fa-eye"></i>
                     </a>
                     &nbsp; &nbsp; &nbsp; &nbsp;
-                    <a href={`/editpayroll/${payrolls._id}`}>
+                    <a href={`/editpayroll/${payrolls._id}`} class="icon-btns">
                       <i class="far fa-edit"></i>
                     </a>
                     &nbsp; &nbsp; &nbsp;
-                    <a href="#" onClick={() => this.onDelete(payrolls._id)}>
+                    <a
+                      href="#"
+                      onClick={() => this.onDelete(payrolls._id)}
+                      class="icon-btns"
+                    >
                       <i class="far fa-trash-alt"></i>
                     </a>
                   </td>
