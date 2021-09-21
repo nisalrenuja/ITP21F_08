@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const leavesSchema = new mongoose.Schema({
     //declare variables/properties
     empno: {
-        type:String,
+        type:Number,
         required:true,//since must have
     },
     name: {
@@ -18,11 +18,11 @@ const leavesSchema = new mongoose.Schema({
     
     //leave dates
     leave_start_date: {
-        type: Date,
+        type: String,
         required: false,
     },
     leave_end_date: {
-        type: Date,
+        type: String,
         required: false,
     },
 

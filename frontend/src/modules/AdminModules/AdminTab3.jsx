@@ -73,8 +73,8 @@ export default class AdminTab3 extends Component {
             </button>
           </a>
           <a href="/EmployeeReport">
-            <button>
-              <p>Employee Report</p>
+            <button class="btn btn-outline-dark">
+              <p>Employee Report Portal</p>
             </button>
           </a>
 
@@ -110,7 +110,10 @@ export default class AdminTab3 extends Component {
               {this.state.employee.map((employees, index) => (
                 <tr key={index}>
                   <td>
-                    <a href={``} style={{ textDecoration: "none" }}>
+                    <a
+                      href={`/empprofile/${employees._id}`}
+                      style={{ textDecoration: "none" }}
+                    >
                       {employees.empno}
                     </a>
                   </td>
@@ -118,9 +121,9 @@ export default class AdminTab3 extends Component {
                   <td>{employees.email}</td>
                   <td>{employees.commencement_date}</td>
                   <td>{employees.status}</td>
-                  <td>{employees.sector}</td>
+                  <td>{employees.type}</td>
                   <td>
-                    <a href={``}>
+                    <a href={`/empprofile/${employees._id}`}>
                       <i class="far fa-eye"></i>
                     </a>
                     &nbsp; &nbsp;

@@ -15,7 +15,8 @@ export default class EditPayroll extends Component {
       bank_branch: "",
       account_no: "",
       basic_salary: "",
-      salary_date: ""
+      salary_date: "",
+      last_paid: ""
     };
   }
 
@@ -39,7 +40,8 @@ export default class EditPayroll extends Component {
       bank_branch,
       account_no,
       basic_salary,
-      salary_date
+      salary_date,
+      last_paid
     } = this.state;
 
     const data = {
@@ -50,7 +52,8 @@ export default class EditPayroll extends Component {
       bank_branch: bank_branch,
       account_no: account_no,
       basic_salary: basic_salary,
-      salary_date: salary_date
+      salary_date: salary_date,
+      last_paid: last_paid
     };
 
     console.log(data);
@@ -66,7 +69,8 @@ export default class EditPayroll extends Component {
           bank_branch: "",
           account_no: "",
           basic_salary: "",
-          salary_date: ""
+          salary_date: "",
+          last_paid: ""
         });
       }
     });
@@ -86,7 +90,8 @@ export default class EditPayroll extends Component {
           bank_branch: res.data.payroll.bank_branch,
           account_no: res.data.payroll.account_no,
           basic_salary: res.data.payroll.basic_salary,
-          salary_date: res.data.payroll.salary_date
+          salary_date: res.data.payroll.salary_date,
+          last_paid: res.data.payroll.last_paid
         });
         console.log(this.state.payroll);
       }
@@ -129,7 +134,7 @@ export default class EditPayroll extends Component {
   */
   render() {
     return (
-      <div className="col-md-8 mt-4 mx-auto">
+      <div className="col-md-6 mt-4 mx-auto">
         <br />
 
         <h1>Payroll Management | Edit Payroll Details</h1>
@@ -181,7 +186,7 @@ export default class EditPayroll extends Component {
             />
           </div>
 
-          <div className="orm-group col-sm-6" style={{ marginBottom: "15px" }}>
+          <div className="form-group col-sm-6" style={{ marginBottom: "15px" }}>
             <label style={{ marginBottom: "5px" }}>Position</label>
             <select
               defaultValue={"DEFAULT"}
@@ -222,7 +227,7 @@ export default class EditPayroll extends Component {
                   {this.state.bank}
                 </option>
                 <option name="boc">Bank of Ceylon</option>
-                <option name="commercial">Commercial Bank of Ceylon</option>
+                <option name="commercial">Commercial Bank</option>
                 <option name="dfcc">DFCC Bank PLC</option>
                 <option name="hatton">Hatton National Bank</option>
                 <option name="hdfc">HDFC Bank</option>
@@ -300,12 +305,39 @@ export default class EditPayroll extends Component {
                 type="date"
                 className="form-control"
                 name="salary_date"
-                placeholder="Enter the pay day"
                 value={this.state.salary_date}
                 onChange={this.handleInputChange}
                 required
               />
             </div>
+          </div>
+
+          <div className="form-group col-md-5" style={{ marginBottom: "15px" }}>
+            <label style={{ marginBottom: "5px" }}>Last Paid Month</label>
+            <select
+              defaultValue={"DEFAULT"}
+              className="form-select"
+              aria-label="Default select example"
+              onChange={this.handleInputChange}
+              name="last_paid"
+              required
+            >
+              <option value="DEFAULT" disabled>
+                {this.state.last_paid}
+              </option>
+              <option name="jan">Jan</option>
+              <option name="feb">Feb</option>
+              <option name="mar">Mar</option>
+              <option name="apr">Apr</option>
+              <option name="may">May</option>
+              <option name="jun">Jun</option>
+              <option name="jul">Jul</option>
+              <option name="aug">Aug</option>
+              <option name="sep">Sep</option>
+              <option name="oct">Oct</option>
+              <option name="nov">Nov</option>
+              <option name="dec">Dec</option>
+            </select>
           </div>
           <br />
 

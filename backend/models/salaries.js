@@ -2,38 +2,41 @@ const mongoose = require("mongoose");
 
 const salariesSchema = new mongoose.Schema({
     //declare variables/properties
-    salaryno: {
+    /*salaryno: {
         type:String,
         required:true,//since must have
-        unique:true
-    },
+        //unique:true
+    },*/
     empno: {
-        type:String,
+        type:Number,
         required:true//since must have
     },
     name: {
         type: String,
-        required: false,
+        required: true,
     },
     pay_month: {
         type: String,
-        required:true//since must have
+        required:true,//since must have
     },
     basic: {
         type: Number,
-        required: false,
+        required: true,
     },
-    OT_rate: {
-        type: Number,
-        required: false,
-    },
+
     OT_hrs: {
         type: Number,
-        required: false,
+
     },
-    total_OT: {//must auto calculted
+
+
+    bonus:{
         type: Number,
-        required: false,
+
+    },
+    aws:{
+        type: Number,
+
     },
 
 //extra earnings
@@ -46,8 +49,8 @@ const salariesSchema = new mongoose.Schema({
     }],
 */
     total_earnings: {//must auto calculated
-        type: String,
-        required: false,
+        type: Number,
+    
     },
 
 //deductions
@@ -58,19 +61,21 @@ const salariesSchema = new mongoose.Schema({
         deduct_amount: {type: Number, required: false,},
     }],
 */
+    nopay_leaves: {
+        type: Number,
+    },
     total_deductions: {//must be auto calculted
-        type: String,
-        required: false,
+        type: Number,
+      
     },
 
     net_salary: {//must be auto calculated
-        type: String,
-        required: false,
-        default: 0,
+        type: Number,
+ 
     },
     salary_status: {
         type: String,
-        required: false,
+        required: true,
     },
  
 

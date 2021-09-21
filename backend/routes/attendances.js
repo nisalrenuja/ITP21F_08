@@ -24,7 +24,7 @@ router.post("/attendance/save", (req, res) => {
 
 //get attendance table (GET)
 router.get("/attendances", (req, res) => {
-  Attendances.find().sort({ "empno": -1 }).exec((err, attendances) => {
+  Attendances.find().exec((err, attendances) => {
     var acount = attendances.length;
     if (err) {
       return res.status(400).json({

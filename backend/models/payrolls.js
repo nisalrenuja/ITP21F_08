@@ -36,9 +36,13 @@ const payrollsSchema = new mongoose.Schema({
         required:[true, "basic salary is required"],
     },
     salary_date: {
-        type: Date,
+        type: String,
         required:[true, "Pay date is required"],
     },
+    last_paid: {
+        type: String,
+
+    }
 
 });
 

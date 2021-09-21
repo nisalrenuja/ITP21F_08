@@ -48,17 +48,17 @@ const EditEmploye = ({ history, match }) => {
         <Container>
           {selectedMenuOption === "Report Review" ? (
             <AdminTab1 />
-          ) : selectedMenuOption === "MenuItem 2" ? (
+          ) : selectedMenuOption === "Reports Management" ? (
             <AdminTab2 />
           ) : selectedMenuOption === "Employees" ? (
             <EditEmployee dataFromParent={match.params.id} />
           ) : selectedMenuOption === "Work Allocation" ? (
             <AdminTab4 />
-          ) : selectedMenuOption === "MenuItem 5" ? (
+          ) : selectedMenuOption === "Notice Management" ? (
             <AdminTab5 />
-          ) : selectedMenuOption === "MenuItem 6" ? (
+          ) : selectedMenuOption === "Attendance & Payroll" ? (
             <AdminTab6 />
-          ) : selectedMenuOption === "MenuItem 7" ? (
+          ) : selectedMenuOption === "Inventory Management" ? (
             <AdminTab7 />
           ) : (
             <AdminTab8 />

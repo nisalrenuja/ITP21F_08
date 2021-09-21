@@ -34,10 +34,15 @@ export default class AdminAttendance extends Component {
   }
 
   onDelete = id => {
-    axios.delete(`http://localhost:5000/attendance/delete/${id}`).then(res => {
-      alert("Deleted Attendance Data Successfully!!");
-      this.retrievePayrolls();
-    });
+    const confirmBox = window.confirm("Do you really want to delete this?");
+    if (confirmBox === true) {
+      axios
+        .delete(`http://localhost:5000/attendance/delete/${id}`)
+        .then(res => {
+          alert("Deleted Data Successfully!!");
+          this.retrieveAttendances();
+        });
+    }
   };
 
   filterData(attendances, searchKey) {
@@ -53,7 +58,8 @@ export default class AdminAttendance extends Component {
           .includes(searchKey) ||
         attendance.location_type.toLowerCase().includes(searchKey) ||
         attendance.location.toLowerCase().includes(searchKey) ||
-        attendance.att_type.toLowerCase().includes(searchKey)
+        attendance.att_type.toLowerCase().includes(searchKey) ||
+        attendance.assignment_name.toLowerCase().includes(searchKey)
     );
 
     this.setState({ attendances: result });
@@ -80,10 +86,13 @@ export default class AdminAttendance extends Component {
         <div className="adminpayroll">
           <div className="row">
             <div class="d-flex justify-content-between">
-              <div className="col-lg-9 mt-2 mb-2 font-weight-bold ">
+              <div className="col-lg-9 mt-2 mb-2 font-weight-bold">
                 <br />
-                <h1 class="ap-topic">Payroll Management | Attendance </h1>
+                <h1 class="ap-topic">Payroll Management</h1>
+                <br />
+                <h4 class="">Assignment Attendance</h4>
               </div>
+
               <div>
                 <Clock />
               </div>
@@ -112,6 +121,15 @@ export default class AdminAttendance extends Component {
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <button class="btn btn-lg aptab-btn">
                 <a
+                  href="/allrequests"
+                  style={{ textDecoration: "none", color: "#1687A7" }}
+                >
+                  Requests
+                </a>
+              </button>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <button class="btn btn-lg aptab-btn">
+                <a
                   href="/allsalary"
                   style={{ textDecoration: "none", color: "#1687A7" }}
                 >
@@ -133,7 +151,7 @@ export default class AdminAttendance extends Component {
                 <input
                   className="form-control"
                   type="search"
-                  placeholder="Search..."
+                  placeholder="Search.."
                   name="searchQuery"
                   onChange={this.handleSearchArea}
                 ></input>
@@ -150,8 +168,9 @@ export default class AdminAttendance extends Component {
                 <th scope="col"> #</th>
                 <th scope="col"> Employee ID</th>
                 <th scope="col"> Date</th>
-                <th scope="col"> Attendance Type</th>
                 <th scope="col"> Location Type</th>
+                <th scope="col"> Assignment</th>
+                <th scope="col"> Attendance Type</th>
                 <th scope="col"> Time In</th>
                 <th scope="col"> Time Out</th>
                 <th scope="col"> Action</th>
@@ -173,8 +192,9 @@ export default class AdminAttendance extends Component {
                   </td>
 
                   <td>{attendances.att_date}</td>
-                  <td>{attendances.att_type}</td>
                   <td>{attendances.location_type}</td>
+                  <td>{attendances.assignment_name}</td>
+                  <td style={{ fontWeight: "bold" }}>{attendances.att_type}</td>
                   <td>{attendances.time_in}</td>
                   <td>{attendances.time_out}</td>
 

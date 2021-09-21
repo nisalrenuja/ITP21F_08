@@ -34,10 +34,10 @@ import CreateExecutive from "../modules/AdminModules/CreateExecutive";
 import NewExecutive from "../modules/AdminModules/NewExecutive";
 import EditExecutive from "../modules/AdminModules/EditExecutive";
 import DisplayExecutive from "../modules/AdminModules/DisplayExecutive";
-import CreateNotice from "../modules/AdminModules/CreateNotice";
-import TopPerformers from "../modules/AdminModules/TopPerformers";
-import NoticeComPerf from "../modules/AdminModules/NoticeComPerf";
-
+import CreateNotice from "../pages/AdminPage/CreateNotice";
+import TopPerformers from "../pages/AdminPage/TopPerformers";
+import NoticeComPerf from "../pages/AdminPage/NoticeComPerf";
+import DisplayNotice from "../pages/AdminPage/DisplayNotice"; //Display notice
 import EditNotices from "../pages/AdminPage/EditNotices"; //edit notices
 import PayrollPage from "../pages/PayrollPage/PayrollPage";
 import CreatePayroll from "../modules/AdminModules/CreatePayroll";
@@ -54,7 +54,7 @@ import AllReports from "../pages/AdminPage/AllReports";
 import CreateReport from "../pages/AdminPage/CreateReport";
 import Quarter_Performance from "../pages/AdminPage/Quarter_Performance";
 import Report from "../pages/AdminPage/CreateReport";
-
+import UpdateReport from "../pages/AdminPage/UpdateReport";
 import EditLaptopRepair from "../modules/AdminModules/EditLaptopRepair";
 import CreateLaptopRepair from "../modules/AdminModules/CreateLaptopRepair";
 import LaptopsRepair from "../pages/AdminPage/LaptopRepair";
@@ -74,11 +74,20 @@ import CreateProfile from "../modules/AdminModules/CreateProfile";
 import EditProfile from "../modules/AdminModules/EditProfile";
 import DisplayProfile from "../modules/AdminModules/DisplayProfile";
 
-import AdminAttendance from "../modules/AdminModules/AdminAttendance";
+import AdminAttendance from "../pages/AdminPage/AdminAttendance";
 import CreateAttendance from "../modules/AdminModules/CreateAttendance";
+import EditAttendance from "../modules/AdminModules/EditAttendance";
+import DisplayAttendance from "../modules/AdminModules/DisplayAttendance";
 
-import MonthlySalary from "../modules/AdminModules/MonthlySalary";
+import MonthlySalary from "../pages/AdminPage/MonthlySalary";
 import CreateMSalary from "../modules/AdminModules/CreateMSalary";
+import EditMSalary from "../modules/AdminModules/EditMSalary";
+import DisplayMSalary from "../modules/AdminModules/DisplayMSalary";
+
+import AdminLeaves from "../pages/AdminPage/AdminLeaves";
+import CreateLeave from "../modules/AdminModules/CreateLeave";
+import EditLeave from "../modules/AdminModules/EditLeave";
+import DisplayLeave from "../modules/AdminModules/DisplayLeave";
 
 import EmployeePoints from "../pages/AdminPage/EmployeePoints";
 import AllEmployees from "../pages/AdminPage/AllEmployees";
@@ -90,7 +99,8 @@ import EmployeeReport from "../modules/AdminModules/EmployeeReport";
 import EmpReportUpload from "../modules/AdminModules/EmpReportUpload";
 import EmpExportReport from "../modules/AdminModules/EmplExportReport";
 import EmpReportEdit from "../modules/AdminModules/EmpReportEdit";
-import AdminTab5 from "../modules/AdminModules/AdminTab5";
+import EmpProfile from "../modules/AdminModules/EmpProfile";
+import Notices from "../pages/AdminPage/Notices";
 
 const AppRoutes = () => (
   <div>
@@ -173,6 +183,7 @@ const AppRoutes = () => (
           component={CompletedAssignment}
         />
         <Route exact path="/empexportreport" component={EmpExportReport} />
+        <Route exact path="/empprofile/:id" component={EmpProfile} />
         <Route
           path="/displayexecutive/:id"
           component={DisplayExecutive}
@@ -189,8 +200,20 @@ const AppRoutes = () => (
         <Route path="/editpayroll/:id" component={EditPayroll} exact />
         <Route path="/allattendance" component={AdminAttendance} exact />
         <Route path="/addattendance" exact component={CreateAttendance}></Route>
+        <Route path="/editattendance/:id" component={EditAttendance} exact />
+        <Route
+          path="/displayattendance/:id"
+          component={DisplayAttendance}
+          exact
+        />
         <Route path="/allsalary" component={MonthlySalary} exact />
         <Route path="/addsalary" component={CreateMSalary} exact />
+        <Route path="/editsalary/:id" component={EditMSalary} exact />
+        <Route path="/displaysalary/:id" component={DisplayMSalary} exact />
+        <Route path="/allrequests" component={AdminLeaves} exact />
+        <Route path="/addleave" component={CreateLeave} exact />
+        <Route path="/editleave/:id" component={EditLeave} exact />
+        <Route path="/displayleave/:id" component={DisplayLeave} exact />
         /*Sajini*/
         <Route path="/laptop" exact component={LaptopPage}></Route>
         <Route path="/createlaptop" component={CreateLaptop} exact />
@@ -238,7 +261,18 @@ const AppRoutes = () => (
           component={EditNotices}
           exact
         ></Route>
-        <Route path="/AdminTab5" component={AdminTab5} exact></Route>
+        <Route path="/AdminTab5" component={Notices} exact></Route>
+        <Route
+          path="/DisplayNotice/:existingNotices"
+          component={DisplayNotice}
+          exact
+        ></Route>
+        //Anujitha Update
+        <Route
+          path="/UpdateReport/:finalreport"
+          component={UpdateReport}
+          exact
+        ></Route>
       </Switch>
       <Footer />
     </Router>
