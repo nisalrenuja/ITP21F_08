@@ -71,6 +71,8 @@ export default class EditProfile extends Component {
 
     axios.get(`http://localhost:5000/executive/${id}`).then(res => {
       if (res.data.success) {
+        console.log(res.data.executive.exeno);
+
         this.setState({
           exeno: res.data.executive.exeno,
           name: res.data.executive.name,
@@ -152,12 +154,13 @@ export default class EditProfile extends Component {
             </label>
             <input
               type="text"
+              required
               id="valid1"
               className="form-control"
               name="exeno"
               value={this.state.exeno}
               onChange={this.handleInputChange}
-              required
+              disabled
             />
           </div>
 

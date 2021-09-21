@@ -34,10 +34,10 @@ import CreateExecutive from "../modules/AdminModules/CreateExecutive";
 import NewExecutive from "../modules/AdminModules/NewExecutive";
 import EditExecutive from "../modules/AdminModules/EditExecutive";
 import DisplayExecutive from "../modules/AdminModules/DisplayExecutive";
-import CreateNotice from "../modules/AdminModules/CreateNotice";
-import TopPerformers from "../modules/AdminModules/TopPerformers";
-import NoticeComPerf from "../modules/AdminModules/NoticeComPerf";
-
+import CreateNotice from "../pages/AdminPage/CreateNotice";
+import TopPerformers from "../pages/AdminPage/TopPerformers";
+import NoticeComPerf from "../pages/AdminPage/NoticeComPerf";
+import DisplayNotice from "../pages/AdminPage/DisplayNotice"; //Display notice
 import EditNotices from "../pages/AdminPage/EditNotices"; //edit notices
 import PayrollPage from "../pages/PayrollPage/PayrollPage";
 import CreatePayroll from "../modules/AdminModules/CreatePayroll";
@@ -99,7 +99,8 @@ import EmployeeReport from "../modules/AdminModules/EmployeeReport";
 import EmpReportUpload from "../modules/AdminModules/EmpReportUpload";
 import EmpExportReport from "../modules/AdminModules/EmplExportReport";
 import EmpReportEdit from "../modules/AdminModules/EmpReportEdit";
-import AdminTab5 from "../modules/AdminModules/AdminTab5";
+import EmpProfile from "../modules/AdminModules/EmpProfile";
+import Notices from "../pages/AdminPage/Notices";
 
 const AppRoutes = () => (
   <div>
@@ -182,6 +183,7 @@ const AppRoutes = () => (
           component={CompletedAssignment}
         />
         <Route exact path="/empexportreport" component={EmpExportReport} />
+        <Route exact path="/empprofile/:id" component={EmpProfile} />
         <Route
           path="/displayexecutive/:id"
           component={DisplayExecutive}
@@ -259,7 +261,12 @@ const AppRoutes = () => (
           component={EditNotices}
           exact
         ></Route>
-        <Route path="/AdminTab5" component={AdminTab5} exact></Route>
+        <Route path="/AdminTab5" component={Notices} exact></Route>
+        <Route
+          path="/DisplayNotice/:existingNotices"
+          component={DisplayNotice}
+          exact
+        ></Route>
       </Switch>
       <Footer />
     </Router>
