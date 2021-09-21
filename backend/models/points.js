@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
 
 const points_Schema = new mongoose.Schema({
-  _id: {
-    type: String,
-    required: false,
-  }, 
+  
   empno: {
     type: Number,
     required: false,
@@ -14,7 +11,7 @@ const points_Schema = new mongoose.Schema({
     required: false,
   },
   date_saved:{
-    type: String,
+    type: Date,
     required: false,
   } 
 });
