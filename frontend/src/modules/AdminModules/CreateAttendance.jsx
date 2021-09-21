@@ -71,7 +71,9 @@ export default class CreateAttendance extends Component {
           time_out: "",
           assignment_name: ""
         });
-      }
+        //alert("Mark attendance Successfully!");
+        //this.props.history.push("/allattendance");
+      } else alert("Mark attendance Unsuccessfull!");
     });
 
     //alert("Mark attendance Successfully!");
@@ -97,27 +99,31 @@ export default class CreateAttendance extends Component {
             borderRadius: "15px"
           }}
         >
-          <h2>Attendance Record</h2>
+          <h2>Assignment Attendance Record</h2>
           <hr></hr>
-          <div className="form-group col-sm-5" style={{ marginBottom: "15px" }}>
-            <label
-              for="valid1"
-              class="form-label"
-              style={{ marginBottom: "5px" }}
-            >
-              Empoyee ID
-            </label>
-            <input
-              type="number"
-              id="valid1"
-              className="form-control"
-              name="empno"
-              value={this.state.empno}
-              onChange={this.handleInputChange}
-              required
-            />
-          </div>
           <div class="d-flex justify-content-between">
+            <div
+              className="form-group col-sm-5"
+              style={{ marginBottom: "15px" }}
+            >
+              <label
+                for="valid1"
+                class="form-label"
+                style={{ marginBottom: "5px" }}
+              >
+                Empoyee ID
+              </label>
+              <input
+                type="number"
+                id="valid1"
+                className="form-control"
+                name="empno"
+                value={this.state.empno}
+                onChange={this.handleInputChange}
+                required
+              />
+            </div>
+
             <div
               className="form-group col-md-5"
               style={{ marginBottom: "15px" }}
@@ -131,33 +137,10 @@ export default class CreateAttendance extends Component {
                 onChange={this.handleInputChange}
               />
             </div>
-
-            <div
-              className="form-group col-md-5"
-              style={{ marginBottom: "15px" }}
-            >
-              <label style={{ marginBottom: "5px" }}>Mark Attendance</label>
-              <select
-                defaultValue={"DEFAULT"}
-                className="form-select"
-                aria-label="Default select example"
-                onChange={this.handleInputChange}
-                name="att_type"
-              >
-                <option value="DEFAULT" disabled>
-                  Select attendance type to mark
-                </option>
-                <option name="present">Present</option>
-                <option name="absent">Absent</option>
-                <option name="paidleave">On Paid Leave</option>
-                <option name="unpaidleave">On Unpaid Leave</option>
-                <option name="holiday">Holiday</option>
-                <option name="other">Other</option>
-              </select>
-            </div>
           </div>
+
           <hr></hr>
-          <div className="form-group col-sm-8" style={{ marginBottom: "15px" }}>
+          <div className="form-group col-sm-6" style={{ marginBottom: "15px" }}>
             <label style={{ marginBottom: "5px" }}>Location Type</label>
             <select
               defaultValue={"DEFAULT"}
@@ -201,6 +184,28 @@ export default class CreateAttendance extends Component {
               value={this.state.assignment_name}
               onChange={this.handleInputChange}
             />
+          </div>
+
+          <hr />
+          <div className="form-group col-md-6" style={{ marginBottom: "15px" }}>
+            <label style={{ marginBottom: "5px" }}>Mark Attendance</label>
+            <select
+              defaultValue={"DEFAULT"}
+              className="form-select"
+              aria-label="Default select example"
+              onChange={this.handleInputChange}
+              name="att_type"
+            >
+              <option value="DEFAULT" disabled>
+                Select attendance type to mark
+              </option>
+              <option name="present">Present</option>
+              <option name="absent">Absent</option>
+              <option name="paidleave">On Paid Leave</option>
+              <option name="unpaidleave">On Unpaid Leave</option>
+              <option name="holiday">Holiday</option>
+              <option name="other">Other</option>
+            </select>
           </div>
 
           <div class="d-flex justify-content-between">
@@ -249,6 +254,14 @@ export default class CreateAttendance extends Component {
           </div>
           <div />
         </form>
+
+        <div class="back">
+          <a href="/allattendance">
+            <i class="fas fa-angle-double-left fa-3x">
+              &nbsp;&nbsp;Back To Attendance List
+            </i>
+          </a>
+        </div>
 
         <br />
       </div>
