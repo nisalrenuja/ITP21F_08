@@ -37,16 +37,36 @@ router.get('/final_report',(req,res) =>{
     });
 });
 
+
+//get specific Reports
+router.get("/final_report/:id", (req,res) =>{
+    let report = req.params.id;
+
+    Reports.findById(report, (err, finalreport) =>{
+        if (err){
+            return res.status(400).json({
+                success: false,
+                err,
+            });
+        }
+        return res.status(200).json({
+            success: true,
+            finalreport
+        });
+    });
+});
+
+
 //Update Reports
 
-router.put('/finalreports/update/:id', (req,res)=>{
+router.put('/final_report/update/:id', (req,res)=>{
 
-    Posts.findByIdAndUpdate(
+    Reports.findByIdAndUpdate(
         req.params.id,
         {
             $set:req.body
         },
-        (err,post)=>{
+        (err,finalreport)=>{
             if(err){
                 return res.status(400).json({error:err});
             }

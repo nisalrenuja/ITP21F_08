@@ -101,7 +101,7 @@ export default class CompanyPerfomance extends Component {
               ))}
               <tfoot class="tfoot">
                 <a href="/quarterperformance">
-                  <i class="fas fa-plus"></i>&nbsp;New Quater Performance
+                  <i class="fas fa-plus"></i>&nbsp;New Quarter Performance
                 </a>
               </tfoot>
             </tbody>

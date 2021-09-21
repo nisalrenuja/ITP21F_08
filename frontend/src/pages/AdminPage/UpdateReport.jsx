@@ -9,9 +9,9 @@ import AdminTab5 from "../../modules/AdminModules/AdminTab5";
 import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
-import LapAllo from "../../modules/AdminModules/LapAllo";
+import UpdateReport from "../../modules/AdminModules/UpdateReport";
 
-const Admin = () => {
+const Updatereport = ({ history, match }) => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -48,9 +48,9 @@ const Admin = () => {
         <Container>
           {selectedMenuOption === "User Executive" ? (
             <AdminTab1 />
-          ) : selectedMenuOption === "Reports Management" ? (
-            <AdminTab2 />
-          ) : selectedMenuOption === "Employees" ? (
+          ) : selectedMenuOption === "Report Management" ? (
+            <UpdateReport dataFromParent={match.params.finalreport} />
+          ) : selectedMenuOption === "MenuItem 3" ? (
             <AdminTab3 />
           ) : selectedMenuOption === "Work Allocation" ? (
             <AdminTab4 />
@@ -58,14 +58,14 @@ const Admin = () => {
             <AdminTab5 />
           ) : selectedMenuOption === "Attendance & Payroll" ? (
             <AdminTab6 />
-          ) : selectedMenuOption === "Inventory Management" ? (
+          ) : selectedMenuOption === "MenuItem 7" ? (
             <AdminTab7 />
           ) : (
             <AdminTab8 />
           )}
         </Container>
       ) : (
-        <div></div>
+        <div> </div>
       )}
       <SideNav
         onMenuItemSelect={updateSelectedMenuOption}
@@ -75,4 +75,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default Updatereport;
