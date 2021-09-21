@@ -23,17 +23,20 @@ const salariesSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    OT_rate: {
-        type: Number,
-        required: true,
-    },
+
     OT_hrs: {
         type: Number,
-        required: true,
+
     },
-    total_OT: {//must auto calculted
+
+
+    bonus:{
         type: Number,
-        required: true,
+
+    },
+    aws:{
+        type: Number,
+
     },
 
 //extra earnings
@@ -47,7 +50,7 @@ const salariesSchema = new mongoose.Schema({
 */
     total_earnings: {//must auto calculated
         type: Number,
-        required: false,
+    
     },
 
 //deductions
@@ -58,18 +61,21 @@ const salariesSchema = new mongoose.Schema({
         deduct_amount: {type: Number, required: false,},
     }],
 */
+    nopay_leaves: {
+        type: Number,
+    },
     total_deductions: {//must be auto calculted
         type: Number,
-        required: false,
+      
     },
 
     net_salary: {//must be auto calculated
         type: Number,
-        required: false
+ 
     },
     salary_status: {
         type: String,
-        required: false,
+        required: true,
     },
  
 

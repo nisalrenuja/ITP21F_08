@@ -37,7 +37,7 @@ const attendancesSchema = new mongoose.Schema({
     },
     assignment_name: {
         type: String,
-        required: true,
+        required: false,
     },
 
 

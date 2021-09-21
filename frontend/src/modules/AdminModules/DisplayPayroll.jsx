@@ -161,7 +161,7 @@ export default class DisplayPayroll extends Component {
         </form>
         &nbsp;
         <div class="back">
-          <a href="/allpayrolls">
+          <a href="/admin">
             <i class="fas fa-angle-double-left fa-3x">
               &nbsp;&nbsp;Back To Payrolls List
             </i>

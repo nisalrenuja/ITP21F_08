@@ -77,10 +77,17 @@ import DisplayProfile from "../modules/AdminModules/DisplayProfile";
 import AdminAttendance from "../pages/AdminPage/AdminAttendance";
 import CreateAttendance from "../modules/AdminModules/CreateAttendance";
 import EditAttendance from "../modules/AdminModules/EditAttendance";
+import DisplayAttendance from "../modules/AdminModules/DisplayAttendance";
 
 import MonthlySalary from "../pages/AdminPage/MonthlySalary";
 import CreateMSalary from "../modules/AdminModules/CreateMSalary";
 import EditMSalary from "../modules/AdminModules/EditMSalary";
+import DisplayMSalary from "../modules/AdminModules/DisplayMSalary";
+
+import AdminLeaves from "../pages/AdminPage/AdminLeaves";
+import CreateLeave from "../modules/AdminModules/CreateLeave";
+import EditLeave from "../modules/AdminModules/EditLeave";
+import DisplayLeave from "../modules/AdminModules/DisplayLeave";
 
 import EmployeePoints from "../pages/AdminPage/EmployeePoints";
 import AllEmployees from "../pages/AdminPage/AllEmployees";
@@ -192,9 +199,19 @@ const AppRoutes = () => (
         <Route path="/allattendance" component={AdminAttendance} exact />
         <Route path="/addattendance" exact component={CreateAttendance}></Route>
         <Route path="/editattendance/:id" component={EditAttendance} exact />
+        <Route
+          path="/displayattendance/:id"
+          component={DisplayAttendance}
+          exact
+        />
         <Route path="/allsalary" component={MonthlySalary} exact />
         <Route path="/addsalary" component={CreateMSalary} exact />
         <Route path="/editsalary/:id" component={EditMSalary} exact />
+        <Route path="/displaysalary/:id" component={DisplayMSalary} exact />
+        <Route path="/allrequests" component={AdminLeaves} exact />
+        <Route path="/addleave" component={CreateLeave} exact />
+        <Route path="/editleave/:id" component={EditLeave} exact />
+        <Route path="/displayleave/:id" component={DisplayLeave} exact />
         /*Sajini*/
         <Route path="/laptop" exact component={LaptopPage}></Route>
         <Route path="/createlaptop" component={CreateLaptop} exact />

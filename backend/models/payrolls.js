@@ -41,7 +41,7 @@ const payrollsSchema = new mongoose.Schema({
     },
     last_paid: {
         type: String,
-        required:[true, "last paid month is required"],
+
     }
 
 });
