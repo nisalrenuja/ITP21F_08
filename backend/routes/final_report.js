@@ -40,9 +40,9 @@ router.get('/final_report',(req,res) =>{
 
 //get specific Reports
 router.get("/final_report/:id", (req,res) =>{
-    let execid_review = req.params.id;
+    let report = req.params.id;
 
-    Reports.findById(execid_review, (err, finalreport) =>{
+    Reports.findById(report, (err, finalreport) =>{
         if (err){
             return res.status(400).json({
                 success: false,
