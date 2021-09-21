@@ -12,7 +12,9 @@ export default class CreateLaptop extends Component {
       storage_type: "",
       purchaase_date: "",
       purchase_price: "",
-      status: ""
+      status: "",
+      discarded_reason: "",
+      discarded_date: ""
     };
   }
 
@@ -35,7 +37,9 @@ export default class CreateLaptop extends Component {
       storage_type,
       purchaase_date,
       purchase_price,
-      status
+      status,
+      discarded_reason,
+      discarded_date
     } = this.state;
     const data = {
       id: id,
@@ -44,7 +48,9 @@ export default class CreateLaptop extends Component {
       storage_type: storage_type,
       purchaase_date: purchaase_date,
       purchase_price: purchase_price,
-      status: status
+      status: status,
+      discarded_reason: discarded_reason,
+      discarded_date: discarded_date
     };
     console.log(data);
     axios.post("http://localhost:5000/laptop/save", data).then(res => {
@@ -56,7 +62,9 @@ export default class CreateLaptop extends Component {
           storage_type: storage_type,
           purchaase_date: purchaase_date,
           purchase_price: purchase_price,
-          status: status
+          status: status,
+          discarded_reason: discarded_reason,
+          discarded_date: discarded_date
         });
         alert("Save Successful!");
         this.props.history.push("/admin"); //==admin
@@ -146,7 +154,7 @@ export default class CreateLaptop extends Component {
               onChange={this.handleInputChange}
             />
           </div>
-          <h5>Laptop Assign Details</h5>
+          <h5>Laptop Availability Details</h5>
           <hr></hr>
           <div className="form-group" style={{ marginBottom: "15px" }}>
             <label style={{ marginBottom: "5px" }}>Status</label>
@@ -160,9 +168,34 @@ export default class CreateLaptop extends Component {
               <option value="DEFAULT" disabled>
                 Status : {this.state.status}
               </option>
-              <option value="Assign">Assign</option>
-              <option value="Not Assign">Not Assign</option>
+              <option value="Available">Available</option>
+              <option value="Occupied">Occupied</option>
+              <option value="Discarded">Discarded</option>
             </select>
+          </div>
+          <h5>If laptop discarded :</h5>
+          <div className="form-group" style={{ marginBottom: "14px" }}>
+            <label style={{ marginBottom: "5px" }}>Discarded Reason</label>
+            <input
+              type="text"
+              className="form-control"
+              name="discarded_reason"
+              placeholder="Enter Discarded Reason"
+              value={this.state.discarded_reason}
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <div className="form-group" style={{ marginBottom: "14px" }}>
+            <label style={{ marginBottom: "5px" }}>Discarded Date</label>
+            <input
+              type="date"
+              id="date"
+              className="form-control"
+              name="discarded_date"
+              placeholder="DD/MM/YY"
+              value={this.state.discarded_date}
+              onChange={this.handleInputChange}
+            />
           </div>
           <button
             className="btn btn-info"

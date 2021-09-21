@@ -91,7 +91,7 @@ export default class AdminTab7 extends Component {
 
             <div class="d-flex">
               <div className="col-lg-9 mt-2 mb-2 ">
-                <h2 className="h3 mb-3">Available Laptops</h2>
+                <h2 className="h3 mb-3"> Laptops Details</h2>
               </div>
 
               <div className="col-lg-3 mt-2 mb-2 search-bar">
@@ -117,7 +117,7 @@ export default class AdminTab7 extends Component {
                 <th scope="col">Laptop Brand</th>
                 <th scope="col">Laptop Model</th>
                 <th scope="col">Storage size</th>
-                <th scope="col">Assign status</th>
+                <th scope="col">Availability status</th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
@@ -131,7 +131,7 @@ export default class AdminTab7 extends Component {
                   <td>{laptops.status}</td>
                   <td>
                     <a href={`/viewlaptop/${laptops._id}`}>
-                      <i class="fas fa-eye"></i>
+                      <i class="far fa-eye"></i>
                     </a>
                     &nbsp; &nbsp; &nbsp; &nbsp;
                     <a href={`/editlaptop/${laptops._id}`}>
@@ -139,7 +139,7 @@ export default class AdminTab7 extends Component {
                     </a>
                     &nbsp; &nbsp; &nbsp; &nbsp;
                     <a href="#" onClick={() => this.onDelete(laptops._id)}>
-                      <i className="fas fa-trash-alt"> </i>
+                      <i className="far fa-trash-alt"> </i>
                     </a>
                   </td>
                 </tr>
