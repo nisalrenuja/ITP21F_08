@@ -75,7 +75,7 @@ export default class PostLaptop extends Component {
             <dd>{status}</dd>
           </dl>
           <div class="box2">
-            <h3>Assign Status</h3>
+            <h3>Current Status</h3>
 
             <dl>
               <p class="status">Status : &nbsp;{status}</p>
