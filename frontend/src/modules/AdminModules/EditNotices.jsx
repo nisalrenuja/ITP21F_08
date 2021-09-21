@@ -72,7 +72,8 @@ export default class EditNotices extends Component {
             notice_topic: "",
             notice_content: "",
             notice_attachments: "",
-            published_date: ""
+            published_date: "",
+            redirectToReferrer: true
           });
           alert("Notice Updated Successfully");
         }
@@ -143,7 +144,7 @@ export default class EditNotices extends Component {
   render() {
     const redirectToReferrer = this.state.redirectToReferrer;
     if (redirectToReferrer == true) {
-      return <Redirect to="/Notices" />;
+      return <Redirect to="/AdminTab5" />;
     }
     return (
       <div className="container">
@@ -232,15 +233,16 @@ export default class EditNotices extends Component {
 
               <center>
                 <div class="cookie">
-                  <button
-                    className="btn btn-warning"
-                    type="submit"
-                    style={{ marginTop: "725px" }}
-                    onClick={this.onSubmit}
-                  >
-                    <a href="/AdminTab5"></a>
-                    <i className="fa fa-refresh"></i>&nbsp;Update
-                  </button>{" "}
+                  <a href="/AdminTab5">
+                    <button
+                      className="btn btn-warning"
+                      type="submit"
+                      style={{ marginTop: "725px" }}
+                      onClick={this.onSubmit}
+                    >
+                      <i className="fa fa-refresh"></i>&nbsp;Update
+                    </button>
+                  </a>{" "}
                   &nbsp;&nbsp;
                   <button
                     className="btn btn-danger"

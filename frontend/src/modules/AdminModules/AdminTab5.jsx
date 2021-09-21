@@ -32,13 +32,13 @@ export default class AdminTab5 extends Component {
     });
   }
   //Search
-  filterData(existingNotices, searchkey) {
+  filterData(existingNotices, searchKey) {
+    console.log(searchKey);
     const result = existingNotices.filter(
       existingNotices =>
-        existingNotices.notice_id.toLowerCase().includes(searchkey) ||
-        existingNotices.emp_id.toLowerCase().includes(searchkey) ||
-        existingNotices.notice_topic.toLowerCase().includes(searchkey) ||
-        existingNotices.published_date.toLowerCase().includes(searchkey)
+        existingNotices.notice_id.toLowerCase().includes(searchKey) ||
+        existingNotices.emp_id.toLowerCase().includes(searchKey) ||
+        existingNotices.notice_topic.toLowerCase().includes(searchKey)
     );
     this.setState({ existingNotices: result });
   }
@@ -48,6 +48,7 @@ export default class AdminTab5 extends Component {
 
     axios.get("http://localhost:5000/CreateNotices").then(res => {
       if (res.data.success) {
+        console.log(res.data.existingNotices);
         this.filterData(res.data.existingNotices, searchKey);
       }
     });
@@ -80,7 +81,7 @@ export default class AdminTab5 extends Component {
               class="senselect1"
               type="text"
               name="searchQuery"
-              placeholder="Search by Notice ID"
+              placeholder="Search by Notice ID or Employee ID"
               onChange={this.handleSearchArea}
             />
             <a className="btn btn-info sensearch">
@@ -103,7 +104,10 @@ export default class AdminTab5 extends Component {
                 {this.state.existingNotices.map((existingNotices, index) => (
                   <tr key={index}>
                     <td>
-                      <a href={``} style={{ textDecoration: "none" }}>
+                      <a
+                        href={`/DisplayNotice/${existingNotices._id}`}
+                        style={{ textDecoration: "none" }}
+                      >
                         {existingNotices.notice_id}
                       </a>
                     </td>
@@ -113,6 +117,12 @@ export default class AdminTab5 extends Component {
                     <td>{existingNotices.published_date}</td>
 
                     <td>
+                      <a
+                        href={existingNotices.notice_attachments}
+                        class="icon-btns"
+                      >
+                        <i class="fas fa-eye"></i>&nbsp;&nbsp;&nbsp;
+                      </a>
                       <a href={`/EditNotices/${existingNotices._id}`}>
                         <i className="fas fa-edit"></i>&nbsp;
                       </a>

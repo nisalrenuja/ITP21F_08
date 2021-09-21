@@ -132,7 +132,7 @@ export default class CreateNotice extends Component {
   render() {
     const redirectToReferrer = this.state.redirectToReferrer;
     if (redirectToReferrer == true) {
-      return <Redirect to="/Notices" />;
+      return <Redirect to="/AdminTab5" />;
     }
     return (
       <div className="container">
@@ -210,16 +210,16 @@ export default class CreateNotice extends Component {
               />
 
               <center>
-                <button
-                  className="btn btn-success"
-                  type="submit"
-                  style={{ marginTop: "795px", width: "20%" }}
-                  onClick={this.onSubmit}
-                >
-                  <a href="/AdminTab5"></a>
-                  <i className="fas fa-save"></i>&nbsp;Save
-                </button>
-
+                <a href="/AdminTab5">
+                  <button
+                    className="btn btn-success"
+                    type="submit"
+                    style={{ marginTop: "795px", width: "20%" }}
+                    onClick={this.onSubmit}
+                  >
+                    <i className="fas fa-save"></i>&nbsp;Save
+                  </button>
+                </a>
                 <button
                   className="btn btn-secondary"
                   type="submit"
