@@ -1219,33 +1219,7 @@
     
   }
 
-  .senara1{
-    position: absolute;
-width: 140px;
-height: 50px;
-left: 350px;
-top: 1250px;
+ .senara998{
+   top: 900px;
 
-background: #276678;
-border-radius: 20px;
-  }
-
-  .senara2{
-    position: absolute;
-width: 99px;
-height: 23px;
-left: 1052px;
-top: 2249px;
-
-font-family: Inter;
-font-style: normal;
-font-weight: 600;
-font-size: 20px;
-line-height: 24px;
-display: flex;
-align-items: center;
-text-align: center;
-letter-spacing: -0.00022em;
-
-color: #FFFFFF;
-  }
+ }

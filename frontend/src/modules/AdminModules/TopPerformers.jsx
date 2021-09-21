@@ -306,7 +306,7 @@ export default class TopPerformers extends Component {
               />
 
               <center>
-                <div class="senara1">
+                <div class="senara998">
                   <button
                     className="btn btn-success"
                     type="submit"
@@ -315,16 +315,17 @@ export default class TopPerformers extends Component {
                   >
                     <i class="senara2" className="fas fa-save"></i>&nbsp;Save
                   </button>
+
+                  <a href="/admin">
+                    <button
+                      className="btn btn-secondary"
+                      type="submit"
+                      style={{ marginTop: "795px", width: "20%" }}
+                    >
+                      Cancel
+                    </button>
+                  </a>
                 </div>
-                <a href="/admin">
-                  <button
-                    className="btn btn-secondary"
-                    type="submit"
-                    style={{ marginTop: "795px", width: "20%" }}
-                  >
-                    Cancel
-                  </button>
-                </a>
               </center>
             </form>
           </div>
