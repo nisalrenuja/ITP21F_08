@@ -86,10 +86,13 @@ export default class AdminAttendance extends Component {
         <div className="adminpayroll">
           <div className="row">
             <div class="d-flex justify-content-between">
-              <div className="col-lg-9 mt-2 mb-2 font-weight-bold ">
+              <div className="col-lg-9 mt-2 mb-2 font-weight-bold">
                 <br />
                 <h1 class="ap-topic">Payroll Management</h1>
+                <br />
+                <h4 class="">Assignment Attendance</h4>
               </div>
+
               <div>
                 <Clock />
               </div>

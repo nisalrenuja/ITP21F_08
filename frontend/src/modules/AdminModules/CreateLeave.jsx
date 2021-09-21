@@ -246,8 +246,12 @@ export default class CreateLeave extends Component {
                 Select
               </option>
               <option name="pending">Pending</option>
-              <option name="approve">Approve</option>
-              <option name="reject">Reject</option>
+              <option value="Approved" name="approve">
+                Approve
+              </option>
+              <option value="Rejected" name="reject">
+                Reject
+              </option>
             </select>
           </div>
           <br />

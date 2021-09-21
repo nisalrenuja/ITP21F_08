@@ -200,7 +200,7 @@ export default class AdminLeaves extends Component {
               ))}
             </tbody>
           </table>
-
+          {/*
           <button className="btn btn-success">
             <a
               href="/addleave"
@@ -208,7 +208,7 @@ export default class AdminLeaves extends Component {
             >
               Request New
             </a>
-          </button>
+          </button>*/}
         </div>
       </div>
     );

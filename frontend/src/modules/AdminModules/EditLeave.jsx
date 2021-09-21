@@ -295,8 +295,12 @@ export default class EditLeave extends Component {
                 {this.state.leave_status}
               </option>
               <option name="pending">Pending</option>
-              <option name="approve">Approve</option>
-              <option name="reject">Reject</option>
+              <option value="Approved" name="approve">
+                Approve
+              </option>
+              <option value="Rejected" name="reject">
+                Reject
+              </option>
             </select>
           </div>
           <br />
