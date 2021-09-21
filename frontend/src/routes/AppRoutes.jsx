@@ -63,7 +63,7 @@ import LaptopPage from "../pages/LaptopPage/LaptopPage";
 import CreateLaptop from "../modules/AdminModules/CreateLaptop";
 import EditLaptopInventory from "../modules/AdminModules/EditLaptopInventory";
 import PostLaptop from "../modules/AdminModules/PostLaptop";
-
+import DisplayReport from "../pages/AdminPage/DisplayReport"; //DisplayReport
 import CreateClient from "../modules/AdminModules/CreateClient";
 import DisplayClient from "../modules/AdminModules/DisplayClient";
 import EditClient from "../modules/AdminModules/EditClient";
@@ -254,6 +254,11 @@ const AppRoutes = () => (
         <Route
           path="/UpdateReport/:finalreport"
           component={UpdateReport}
+          exact
+        ></Route>
+        <Route
+          path="/DisplayReport/:finalreport"
+          component={DisplayReport}
           exact
         ></Route>
       </Switch>

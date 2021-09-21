@@ -194,7 +194,14 @@ export default class AdminTab2 extends Component {
               {this.state.finalreport.map((finalreport, index) => (
                 <tr key={index}>
                   <td>{finalreport.execid_review}</td>
-                  <td>{finalreport.report}</td>
+                  <td>
+                    <a
+                      href={`/DisplayReport/${finalreport._id}`}
+                      style={{ textDecoration: "none" }}
+                    >
+                      {finalreport.report}
+                    </a>
+                  </td>
                   <td>{finalreport.date_and_time_upload}</td>
                   <td>{finalreport.approved_user}</td>
                   <td>{finalreport.status}</td>
