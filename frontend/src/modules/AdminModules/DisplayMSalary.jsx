@@ -55,85 +55,102 @@ export default class DisplaySalary extends Component {
 
     return (
       <div className="col-md-6 mt-4 mx-auto">
-        <div className="">
-          <h2 class="col-10 topic">Monthly Salary - {pay_month}</h2>
-          <br></br>
+        <div className="row">
+          <h2 class="col-8 topic">Monthly Salary 2021</h2>
+          <button
+            type="primary"
+            className="btn btn-warning text-light col-3 float-right"
+            onClick={this.generatePDF}
+          >
+            Download Pay Slip
+          </button>
         </div>
         <hr className="hr-line2" />
         <form className="need-validation">
-          <div class="threerowbox">
-            <dl>
-              <p class="sub-details" style={{ color: "blue" }}>
-                Pay Slip No - MS{empno}-{pay_month}
-              </p>
-            </dl>
-            <dl>
-              <p class="sub-details">Employee ID: &nbsp;{empno}</p>
-            </dl>
-            <dl>
-              <p class="sub-details">Name: &nbsp;{name}</p>
-            </dl>
-          </div>
-          <br />
+          <div className="need-validation3">
+            <h4 class="col-10 topic payslip-topic">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pay
+              Slip for {pay_month}
+            </h4>
+            <br />
+            <div class="">
+              <dl>
+                <p class="" style={{ color: "black" }}>
+                  Pay Slip No - MS{empno}-{pay_month}
+                </p>
+              </dl>
+              <dl>
+                <p class="" style={{ color: "black" }}>
+                  Employee ID: &nbsp;{empno}
+                </p>
+              </dl>
+              <dl>
+                <p class="" style={{ color: "black" }}>
+                  Name: &nbsp;{name}
+                </p>
+              </dl>
+            </div>
 
-          <hr />
+            <hr />
 
-          <dl>
-            <dt>Basic :</dt>
-            <dd>Rs {basic}</dd>
-          </dl>
-          <hr />
-          <dl>
-            <dt>OT Rate:</dt>
+            <dl class="ps-dl">
+              <dt class="">Basic =</dt>
+              <dd class="">Rs {basic}</dd>
+            </dl>
+            <hr />
+            {/*<dl>
+            <dt class="ps-dt">OT Rate:</dt>
             <dd>Rs 120 /hr</dd>
           </dl>
           <dl>
-            <dt>OT Hours:</dt>
+            <dt class="ps-dt">OT Hours:</dt>
             <dd>{OT_hrs}</dd>
-          </dl>
+          </dl>*/}
 
-          <dl>
-            <dt>Total OT Amount:</dt>
-            <dd>{OT_hrs * 120}</dd>
-          </dl>
-          <dl>
-            <dt>Bonus:</dt>
-            <dd>{bonus}</dd>
-          </dl>
-          <dl>
-            <dt>AWS (Annual Wage S)</dt>
-            <dd>{aws}</dd>
-          </dl>
-          <dl>
-            <dt>Other Earnings:</dt>
-            <dd>{total_earnings}</dd>
-          </dl>
-          <dl>
-            <dt>Total Earnings:</dt>
-            <dd>{OT_hrs * 120 + aws + bonus + total_earnings}</dd>
-          </dl>
-          <hr />
-          <dl>
-            <dt>Number of No Pay Leaves</dt>
-            <dd>{nopay_leaves}</dd>
-          </dl>
-          <dl>
-            <dt>Other Deductions:</dt>
-            <dd>{total_deductions}</dd>
-          </dl>
-          <dl>
-            <dt>Total Deductions:</dt>
-            <dd>{nopay_leaves * 100 + total_deductions}</dd>
-          </dl>
-          <hr />
-          <dl style={{ color: "green" }}>
-            <dt>Net Salary:</dt>
-            <dd>
-              {basic +
-                (OT_hrs * 120 + aws + bonus + total_earnings) -
-                (nopay_leaves * 100 + total_deductions)}
-            </dd>
-          </dl>
+            <dl>
+              <dt class="ps-dt">Total OT Amount:</dt>
+              <dd>Rs. {OT_hrs * 120}</dd>
+            </dl>
+            <dl>
+              <dt class="ps-dt">Bonus:</dt>
+              <dd>Rs. {bonus}</dd>
+            </dl>
+            <dl>
+              <dt class="ps-dt">AWS (Annual Wage Supplements)</dt>
+              <dd>Rs. {aws}</dd>
+            </dl>
+            <dl>
+              <dt class="ps-dt">Other Earnings:</dt>
+              <dd>Rs. {total_earnings}</dd>
+            </dl>
+            <dl>
+              <dt class="">Total Earnings =</dt>
+              <dd>Rs. {OT_hrs * 120 + aws + bonus + total_earnings}</dd>
+            </dl>
+            <hr />
+            <dl>
+              <dt class="ps-dt">Number of No Pay Leaves</dt>
+              <dd>{nopay_leaves}</dd>
+            </dl>
+            <dl>
+              <dt class="ps-dt">Other Deductions:</dt>
+              <dd>Rs. {total_deductions}</dd>
+            </dl>
+            <dl>
+              <dt class="">Total Deductions =</dt>
+              <dd>Rs. {nopay_leaves * 100 + total_deductions}</dd>
+            </dl>
+            <hr />
+            <dl>
+              <dt>Net Salary =</dt>
+              <dd style={{ fontWeight: "bolder" }}>
+                Rs.
+                {basic +
+                  (OT_hrs * 120 + aws + bonus + total_earnings) -
+                  (nopay_leaves * 100 + total_deductions)}
+              </dd>
+            </dl>
+          </div>
         </form>
         &nbsp;
         <div class="back">

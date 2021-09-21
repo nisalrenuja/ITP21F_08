@@ -194,7 +194,7 @@ export default class MonthlySalary extends Component {
                   <td>
                     {salaries.nopay_leaves * 100 + salaries.total_deductions}
                   </td>
-                  <td>
+                  <td class="netsal-data" style={{ color: "#c9184a" }}>
                     {salaries.basic +
                       (salaries.OT_hrs * 120 +
                         salaries.aws +
@@ -202,7 +202,9 @@ export default class MonthlySalary extends Component {
                         salaries.total_earnings) -
                       (salaries.nopay_leaves * 100 + salaries.total_deductions)}
                   </td>
-                  <td>{salaries.salary_status}</td>
+                  <td style={{ fontWeight: "bold" }}>
+                    {salaries.salary_status}
+                  </td>
 
                   <td>
                     <a href={`displaysalary/${salaries._id}`}>

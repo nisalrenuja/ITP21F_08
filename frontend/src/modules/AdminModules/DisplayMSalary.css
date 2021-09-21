@@ -1,19 +1,13 @@
 .need-validation{
-    background: #D3E0EA;
-    border-color: 2px #276678;
-
-
+    
+        background: white;
+        border: 1px solid #1687A7;
+        padding: 30px;
+        border-radius: 15px;
+    
 }
-.box{
-    position: relative;
-    background: white;
-    color: #276678;
-    border-radius: 4px;
-    height : 100px;
-    width: 500px;
-    padding: auto;
-    left: 40px;
-    right: 40px;
+.payslip-topic{
+    text-align: center;
 
 }
 .threerowbox{
@@ -29,16 +23,22 @@
 
 }
 
-.sub-details{
-    position: relative;
-    color : #276678;
-    font-size: 18px;
-    font-family: sans-serif;
-    left:30px;
-    top:10px;
-    font-weight: bold;
-
+dl {
+    margin-top: 0;
+    margin-bottom: 0;
 }
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+dl {
+    display: inline;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
 
 .ap-brand{
     position: relative;
@@ -60,19 +60,6 @@ hr{
     color: black;
 }
 
-dt{
-    color: black;
-    position: relative;
-    left:140px;
-    top: 23px;
-}
-
-dd{
-    color:#276678;
-    position: relative;
-    left: 290px;
-    top: 0px;
-}
 
 .back{
     position: relative;
@@ -126,5 +113,26 @@ h3{
     position: relative;
 
     font-weight: bold;
+}
+.ps-dt{
+    
+        color: black;
+        position: relative;
+        left: 0px;
+        top: 23px;
+        font-weight: 500;
+        display: block;
+    
+}
+
+.ps-dd {
+    color: #276678;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    margin-bottom: 0;
+    margin-left: 0;
+    display: block;
+    margin-inline-start: 100px;
 }
 

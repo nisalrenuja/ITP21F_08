@@ -181,7 +181,7 @@ export default class AdminLeaves extends Component {
                   <td>{leaves.name}</td>
                   <td>{leaves.leave_type}</td>
                   <td>{leaves.no_of_leaves}</td>
-                  <td>{leaves.leave_status}</td>
+                  <td style={{ fontWeight: "bold" }}>{leaves.leave_status}</td>
 
                   <td>
                     <a href={`displayleave/${leaves._id}`}>

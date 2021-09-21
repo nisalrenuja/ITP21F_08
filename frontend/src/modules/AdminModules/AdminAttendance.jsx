@@ -191,7 +191,7 @@ export default class AdminAttendance extends Component {
                   <td>{attendances.att_date}</td>
                   <td>{attendances.location_type}</td>
                   <td>{attendances.assignment_name}</td>
-                  <td>{attendances.att_type}</td>
+                  <td style={{ fontWeight: "bold" }}>{attendances.att_type}</td>
                   <td>{attendances.time_in}</td>
                   <td>{attendances.time_out}</td>
 
