@@ -65,8 +65,8 @@ export default class DisplaySalary extends Component {
             Download Pay Slip
           </button>
         </div>
-        <hr className="hr-line2" />
-        <form className="need-validation">
+        <hr className="hr-line2" /> <br />
+        <form className="need-validation2">
           <div className="need-validation3">
             <h4 class="col-10 topic payslip-topic">
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pay
@@ -129,8 +129,8 @@ export default class DisplaySalary extends Component {
             </dl>
             <hr />
             <dl>
-              <dt class="ps-dt">Number of No Pay Leaves</dt>
-              <dd>{nopay_leaves}</dd>
+              <dt class="ps-dt">No Pay Leaves</dt>
+              <dd>Rs. {nopay_leaves * 100}</dd>
             </dl>
             <dl>
               <dt class="ps-dt">Other Deductions:</dt>

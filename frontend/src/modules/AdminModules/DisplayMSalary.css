@@ -1,4 +1,4 @@
-.need-validation{
+.need-validation2{
     
         background: white;
         border: 1px solid #1687A7;
@@ -31,7 +31,7 @@ dl {
     box-sizing: border-box;
 }
 
-dl {
+dl.ps-dl {
     display: inline;
     margin-block-start: 0;
     margin-block-end: 0;
