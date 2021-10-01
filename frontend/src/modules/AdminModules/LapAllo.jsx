@@ -62,27 +62,28 @@ export default class LapAllo extends Component {
           </a>
           <hr class="line1l"></hr>
           <a href="/allassignments">
-            <button class="div11">
-              <p class="txt11">Assignments</p>
+            <button class="div1331">
+              <p class="txt1x1" style={{ paddingTop: "11px" }}>
+                Assignments
+              </p>
             </button>
           </a>
           <a href="/laptopallocation">
-            <button class="div22">
-              <p class="txt22">Allocate Laptops</p>
+            <button class="div2332">
+              <p class="txt2x2" style={{ paddingTop: "11px" }}>
+                Allocate Laptops
+              </p>
             </button>
           </a>
-          <div class="div3">
-            <p class="txt3">Filter by</p>
+          <div class="div3112">
+            <p class="txt354">Filter by</p>
             <input
-              class="select121"
+              class="select121x"
               type="text"
               placeholder="Search..."
               name="searchQuery"
               onChange={this.handleSearchArea}
             />
-            <a className="btn btn-info search121">
-              <i className="fas fa-search"></i>&nbsp;Search
-            </a>
           </div>
           <h2 class="tah121">Total Laptop Allocations({this.state.l})</h2>
           <table className="table table-hover table121">

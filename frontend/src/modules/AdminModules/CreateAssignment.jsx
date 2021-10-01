@@ -48,6 +48,52 @@ export default class CreateAssignment extends Component {
       }
     });
   };
+  validate = () => {
+    let empnoError = "";
+    let nameError = "";
+    let emailError = "";
+    let statusError = "";
+    let typeError = "";
+    let contactError = "";
+
+    if (!this.state.assignment_name) {
+      empnoError = "**EmpNo Cannot Be Blank";
+    }
+
+    if (!this.state.client_no) {
+      nameError = "**Name Cannot Be Blank";
+    }
+
+    if (!this.state.execid) {
+      emailError = "**Invlaid email";
+    }
+
+    if (!this.state.emp_no) {
+      statusError = "**Status Cannot Be Blank";
+    }
+
+    if (
+      emailError ||
+      nameError ||
+      empnoError ||
+      statusError ||
+      typeError ||
+      contactError
+    ) {
+      //emaiError also equal to emailError:emailError in Js.
+      this.setState({
+        emailError,
+        nameError,
+        empnoError,
+        statusError,
+        typeError,
+        contactError
+      });
+      alert("Invalid Form Data. Please Check All the Fields!!!");
+      return false;
+    }
+    return true;
+  };
   onSubmit = e => {
     e.preventDefault();
 
@@ -74,35 +120,37 @@ export default class CreateAssignment extends Component {
       emp_no: emp_no,
       progress: "Assigned"
     };
-
-    axios.get(`http://localhost:5000/staff/check/${emp_no}`).then(res => {
-      if (res.data.success) {
-        if (res.data.staffs.length !== 0) {
-          axios
-            .post("http://localhost:5000/assignments/save/", data)
-            .then(res => {
-              if (res.data.success) {
-                this.setState({
-                  assignment_name: assignment_name,
-                  client_no: client_no,
-                  execid: execid,
-                  place_of_engagement: place_of_engagement,
-                  distance: distance,
-                  date_of_allocation: date_of_allocation,
-                  deadline: deadline,
-                  emp_no: "",
-                  redirectToReferrer: true
-                });
-                alert(
-                  "Employee added to assignment, Enter employee numbers to add more employees!"
-                );
-              }
-            });
-        } else {
-          alert("Invalid Employee Number, Please enter again!");
+    const isValid = this.validate();
+    if (isValid) {
+      axios.get(`http://localhost:5000/staff/check/${emp_no}`).then(res => {
+        if (res.data.success) {
+          if (res.data.staffs.length !== 0) {
+            axios
+              .post("http://localhost:5000/assignments/save/", data)
+              .then(res => {
+                if (res.data.success) {
+                  this.setState({
+                    assignment_name: assignment_name,
+                    client_no: client_no,
+                    execid: execid,
+                    place_of_engagement: place_of_engagement,
+                    distance: distance,
+                    date_of_allocation: date_of_allocation,
+                    deadline: deadline,
+                    emp_no: "",
+                    redirectToReferrer: true
+                  });
+                  alert(
+                    "Employee added to assignment, Enter employee numbers to add more employees!"
+                  );
+                }
+              });
+          } else {
+            alert("Invalid Employee Number, Please enter again!");
+          }
         }
-      }
-    });
+      });
+    }
   };
   filterData(staff, searchKey) {
     console.log(searchKey);
