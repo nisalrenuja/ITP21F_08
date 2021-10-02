@@ -254,15 +254,26 @@ export default class EditProfile extends Component {
           </div>
 
           <label style={{ marginBottom: "5px" }}>Date of Birth</label>
-          <input
+          {/* <input
             type="date"
             className="form-control"
             name="dob"
-            placeholder="Enter Date of Birth"
+            id="date"
+            placeholder="DD/MM/YY"
             value={this.state.dob}
             onChange={this.handleInputChange}
             required
+          /> */}
+          <input
+            type="date"
+            id="date"
+            className="form-control"
+            name="dob"
+            placeholder="DD/MM/YY"
+            value={this.state.dob}
+            onChange={this.handleInputChange}
           />
+
           <br />
 
           <div class="d-flex justify-content-center">

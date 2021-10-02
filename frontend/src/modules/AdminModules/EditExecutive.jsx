@@ -59,27 +59,27 @@ export default class EditExecutive extends Component {
   render() {
     return (
       <div className="col-md-8 mt-4 mx-auto">
-        <h1 className="h3 mb-3 font-weight-normal">Edit Review</h1>
+        <h1 className="h3 mb-3 font-weight-normal">Edit Current User</h1>
         <form className="need-validation" noValidate>
           <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Review Id</label>
+            <label style={{ marginBottom: "5px" }}>Username</label>
             <input
               type="text"
               className="form-control"
               name="username"
-              placeholder="Edit Review Id"
+              placeholder="Edit Username"
               value={this.state.username}
               onChange={this.handleInputChange}
             />
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Report Name</label>
+            <label style={{ marginBottom: "5px" }}>Email</label>
             <input
               type="text"
               className="form-control"
               name="email"
-              placeholder="Edit Report Name"
+              placeholder="Edit Email"
               value={this.state.email}
               onChange={this.handleInputChange}
             />
