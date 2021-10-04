@@ -40,6 +40,7 @@ width: 318px;
 height: 36px;
 left: -55px;
 top: 325px;
+bottom: 50px;
 
 font-family: Inter;
 font-style: normal;
@@ -52,11 +53,11 @@ color: rgba(0, 0, 0, 0.53);
 }
 
 .bubupoints1{
-    position: relative;
+    position: absolute;
 width: 41px;
 height: 40px;
-left: -25px;
-top: 100px;
+left: -22px;
+top: 400px;
 
 /* Headings/ H4 */
 
@@ -72,11 +73,11 @@ letter-spacing: -0.019px;
 color: #000000;
 }
 .bubupoints12{
-    position: relative;
+    position: absolute;
     width: 73px;
     height: 58px;
     left: -50px;
-    top: 90px;
+    top: 450px;
     
     font-family: Inter;
     font-style: normal;
@@ -91,11 +92,11 @@ color: #000000;
 }
 
 .bubupoints2{
-    position: relative;
+    position: absolute;
 width: 41px;
 height: 40px;
 left: 175px;
-top: -15px;
+top: 400px;
 
 /* Headings/ H4 */
 
@@ -112,11 +113,11 @@ color: #000000;
 }
 
 .bubupoints13{
-    position: relative;
+    position: absolute;
     width: 120px;
     height: 58px;
     left: 120px;
-    top: -25px;
+    top: 450px;
     
     font-family: Inter;
     font-style: normal;

@@ -60,29 +60,31 @@ export default class AdminTab4 extends Component {
           </a>
           <hr class="line1w"></hr>
           <a href="/allassignments">
-            <button class="div1">
-              <p class="txt1">Assignments</p>
+            <button class="div111">
+              <p class="txt111" style={{ paddingTop: "11px" }}>
+                Assignments
+              </p>
             </button>
           </a>
           <a href="/laptopallocation">
-            <button class="div2">
-              <p class="txt2">Allocate Laptops</p>
+            <button class="div222">
+              <p class="txt222" style={{ paddingTop: "11px" }}>
+                Allocate Laptops
+              </p>
             </button>
           </a>
-
-          <div class="div3">
-            <p class="txt3">Filter by</p>
-            <input
-              class="select11"
-              type="search"
-              placeholder="Search..."
-              name="searchQuery"
-              onChange={this.handleSearchArea}
-            />
-            <a className="btn btn-info search22">
-              <i className="fas fa-search"></i>&nbsp;Search
-            </a>
-          </div>
+          <center>
+            <div class="div34">
+              <p class="txt34">Filter by</p>
+              <input
+                class="select11"
+                type="search"
+                placeholder="Search..."
+                name="searchQuery"
+                onChange={this.handleSearchArea}
+              />
+            </div>
+          </center>
           <h2 class="tah101">Total Assignments({this.state.l})</h2>
           <table className="table table-hover table101">
             <thead class="thead101">

@@ -81,11 +81,11 @@ export default class LaptopRepair extends Component {
                 href="/admin"
                 style={{ textDecoration: "none", color: "white" }}
               >
-                <button className="btn btn-lg aptab-disable">Laptops</button>
+                <button className="btn btn-lg aptab-btn">Laptops</button>
               </a>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <a href="/repairinglaptop">
-                <button className="btn btn-lg aptab-btn">
+                <button className="btn btn-lg aptab-disable">
                   Repairing Laptops
                 </button>
               </a>
@@ -93,9 +93,7 @@ export default class LaptopRepair extends Component {
 
             <div class="d-flex">
               <div className="col-lg-9 mt-2 mb-2 ">
-                <h2 className="h3 mb-3">
-                  Total Available Repair Laptops ( {this.state.LaptopRepair} )
-                </h2>
+                <h2 className="h3 mb-3">Available Repair Laptops</h2>
               </div>
 
               <div className="col-lg-3 mt-2 mb-2 search-bar">
@@ -134,18 +132,18 @@ export default class LaptopRepair extends Component {
 
                   <td>
                     <a href={`/viewrepair/${laptopsRepair._id}`}>
-                      <i class="fas fa-eye"></i>
+                      <i class="far fa-eye"></i>
                     </a>
                     &nbsp; &nbsp; &nbsp; &nbsp;
                     <a href={`/editrepair/${laptopsRepair._id}`}>
-                      <i class="fas fa-edit"></i>
+                      <i class="far fa-edit"></i>
                     </a>
                     &nbsp; &nbsp; &nbsp; &nbsp;
                     <a
                       href="#"
                       onClick={() => this.onDelete(laptopsRepair._id)}
                     >
-                      <i className="fas fa-trash-alt"></i>
+                      <i className="far fa-trash-alt"></i>
                     </a>
                   </td>
                 </tr>

@@ -25,7 +25,7 @@ export default class EditLaptopRepair extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const _id = this.props.match.params._id;
+    const _id = this.props.match.params.id;
     const { id, repair_reason, repair_cost, repair_date } = this.state;
     const data = {
       id: id,
@@ -45,6 +45,7 @@ export default class EditLaptopRepair extends Component {
             repair_cost: "",
             repair_date: ""
           });
+          this.props.history.push("/repairinglaptop");
         }
       });
   };

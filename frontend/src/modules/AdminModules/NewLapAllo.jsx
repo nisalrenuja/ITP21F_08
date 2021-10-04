@@ -45,6 +45,52 @@ export default class NewLapAllo extends Component {
       }
     });
   };
+  validate = () => {
+    let empnoError = "";
+    let nameError = "";
+    let emailError = "";
+    let statusError = "";
+    let typeError = "";
+    let contactError = "";
+
+    if (!this.state.assignment_name) {
+      empnoError = "**EmpNo Cannot Be Blank";
+    }
+
+    if (!this.state.client_no) {
+      nameError = "**Name Cannot Be Blank";
+    }
+
+    if (!this.state.execid) {
+      emailError = "**Invlaid email";
+    }
+
+    if (!this.state.empno) {
+      statusError = "**Status Cannot Be Blank";
+    }
+
+    if (
+      emailError ||
+      nameError ||
+      empnoError ||
+      statusError ||
+      typeError ||
+      contactError
+    ) {
+      //emaiError also equal to emailError:emailError in Js.
+      this.setState({
+        emailError,
+        nameError,
+        empnoError,
+        statusError,
+        typeError,
+        contactError
+      });
+      alert("Invalid Form Data. Please Check All the Fields!!!");
+      return false;
+    }
+    return true;
+  };
   onSubmit = e => {
     e.preventDefault();
 
@@ -69,33 +115,35 @@ export default class NewLapAllo extends Component {
       date_received: date_received,
       lapid: lapid
     };
-
-    console.log(data);
-    axios.get(`http://localhost:5000/laps/check/${lapid}`).then(res => {
-      if (res.data.success) {
-        if (res.data.laps.length !== 0) {
-          axios
-            .post("http://localhost:5000/lapassignments/save/", data)
-            .then(res => {
-              if (res.data.success) {
-                this.setState({
-                  assignment_name: "",
-                  client_no: "",
-                  execid: "",
-                  empno: "",
-                  status: "",
-                  date_allocated: "",
-                  date_received: "",
-                  lapid: ""
-                });
-                alert("Done!");
-              }
-            });
-        } else {
-          alert("Invalid Laptop ID, Please enter again!");
+    const isValid = this.validate();
+    if (isValid) {
+      console.log(data);
+      axios.get(`http://localhost:5000/laps/check/${lapid}`).then(res => {
+        if (res.data.success) {
+          if (res.data.laps.length !== 0) {
+            axios
+              .post("http://localhost:5000/lapassignments/save/", data)
+              .then(res => {
+                if (res.data.success) {
+                  this.setState({
+                    assignment_name: "",
+                    client_no: "",
+                    execid: "",
+                    empno: "",
+                    status: "",
+                    date_allocated: "",
+                    date_received: "",
+                    lapid: ""
+                  });
+                  alert("Done!");
+                }
+              });
+          } else {
+            alert("Invalid Laptop ID, Please enter again!");
+          }
         }
-      }
-    });
+      });
+    }
   };
   filterData(laps, searchKey) {
     console.log(searchKey);

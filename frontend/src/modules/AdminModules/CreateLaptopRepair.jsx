@@ -42,6 +42,7 @@ export default class CreateLaptopRepair extends Component {
           repair_cost: repair_cost
         });
         alert("Save Successful!");
+        this.props.history.push("/repairinglaptop");
       }
     });
   };
