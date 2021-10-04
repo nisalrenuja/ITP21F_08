@@ -6,12 +6,12 @@ import AdminTab2 from "../../modules/AdminModules/AdminTab2";
 import AdminTab3 from "../../modules/AdminModules/AdminTab3";
 import AdminTab4 from "../../modules/AdminModules/AdminTab4";
 import AdminTab5 from "../../modules/AdminModules/AdminTab5";
-import AdminTab6 from "../../modules/AdminModules/AdminTab6";
+//import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
-import LapAllo from "../../modules/AdminModules/LapAllo";
+import AdminLeaves from "../../modules/AdminModules/AdminLeaves";
 
-const Admin = () => {
+const PendingAssignment = ({ history, match }) => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -20,7 +20,7 @@ const Admin = () => {
       window.localStorage.getItem("MenuOptionCache") || "";
   }
   const [selectedMenuOption, setSelectedMenuOption] = useState(
-    "User Executive"
+    "Attendance & Payroll"
   );
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const Admin = () => {
         <Container>
           {selectedMenuOption === "User Executive" ? (
             <AdminTab1 />
-          ) : selectedMenuOption === "Reports Management" ? (
+          ) : selectedMenuOption === "MenuItem 2" ? (
             <AdminTab2 />
           ) : selectedMenuOption === "Employees" ? (
             <AdminTab3 />
@@ -57,8 +57,8 @@ const Admin = () => {
           ) : selectedMenuOption === "Notice Management" ? (
             <AdminTab5 />
           ) : selectedMenuOption === "Attendance & Payroll" ? (
-            <AdminTab6 />
-          ) : selectedMenuOption === "Inventory Management" ? (
+            <AdminLeaves />
+          ) : selectedMenuOption === "MenuItem 7" ? (
             <AdminTab7 />
           ) : (
             <AdminTab8 />
@@ -75,4 +75,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default PendingAssignment;

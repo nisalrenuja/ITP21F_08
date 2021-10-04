@@ -52,7 +52,7 @@
   align-items: center;
   letter-spacing: -0.00022em;
 
-  color: #1687a7;
+  color: black;
 }
 .icc {
   position: absolute;
@@ -81,7 +81,7 @@
   align-items: center;
   letter-spacing: -0.00022em;
 
-  color: #1687a7;
+  color: black;
 }
 .iicc {
   position: absolute;
@@ -110,7 +110,7 @@
   align-items: center;
   letter-spacing: -0.00022em;
 
-  color: #1687a7;
+  color: black;
 }
 .iiicc {
   position: absolute;
@@ -139,7 +139,7 @@
   align-items: center;
   letter-spacing: -0.00022em;
 
-  color: #1687a7;
+  color: black;
 }
 .ivcc {
   position: absolute;
@@ -168,7 +168,7 @@
   align-items: center;
   letter-spacing: -0.00022em;
 
-  color: #1687a7;
+  color: black;
 }
 .vcc {
   position: absolute;
@@ -197,7 +197,7 @@
   align-items: center;
   letter-spacing: -0.00022em;
 
-  color: #1687a7;
+  color: black;
 }
 .vicc {
   position: absolute;
@@ -229,12 +229,12 @@
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
-  line-height: 24px;
+  line-height: 20px;
   display: flex;
   align-items: center;
   letter-spacing: -0.00022em;
 
-  color: #1687a7;
+  color: black;
 }
 .viicc {
   position: absolute;
@@ -274,7 +274,7 @@
   align-items: center;
   letter-spacing: -0.00022em;
 
-  color: #1687a7;
+  color: black;
 }
 .viiicc {
   position: absolute;
@@ -308,7 +308,7 @@
 }
 .main332 {
   position: absolute;
-  width: 100%;
+  width: 90%;
   height: 1600px;
   left: 50px;
   top: 200px;
@@ -321,7 +321,7 @@
 }
 .main3322 {
   position: absolute;
-  width: 100%;
+  width: 90%;
   height: 100%;
   left: 50px;
   top: 200px;

@@ -309,6 +309,14 @@ export default class CreatePayroll extends Component {
         </form>
 
         <br />
+        <div class="back">
+          <a href="/admin">
+            <i class="fas fa-angle-double-left fa-3x">
+              &nbsp;&nbsp;Back To Payrolls List
+            </i>
+          </a>
+        </div>
+        <br />
       </div>
     );
   }

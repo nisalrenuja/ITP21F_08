@@ -83,20 +83,20 @@ export default class EditAssignments extends Component {
                 <strong>
                   <center>
                     <br />
-                    <p style={{ color: "#1687a7", fontSize: "30px" }}>
+                    <p style={{ color: "black", fontSize: "22px" }}>
                       Assignment Name - {assignment.assignment_name}
                     </p>
                     <br />
-                    <p style={{ color: "#1687a7", fontSize: "30px" }}>
+                    <p style={{ color: "black", fontSize: "22px" }}>
                       Laptop ID - {assignment.lapid}
                     </p>
                     <br />
-                    <p style={{ color: "#1687a7", fontSize: "30px" }}>
+                    <p style={{ color: "black", fontSize: "22px" }}>
                       Allocated On -{assignment.date_allocated}
                     </p>
                     <br />
 
-                    <p style={{ color: "#1687a7", fontSize: "30px" }}>
+                    <p style={{ color: "black", fontSize: "22px" }}>
                       Due Date - {this.state.date_received}
                     </p>
                     <p class="vic">Change Due Date: </p>
@@ -109,12 +109,15 @@ export default class EditAssignments extends Component {
                       onChange={this.handleInputChange}
                     />
                     <br />
-                    <p style={{ color: "#1687a7", fontSize: "30px" }}>
+                    <p style={{ color: "black", fontSize: "22px" }}>
                       Status - {this.state.status}
                     </p>
 
                     <br />
-                    <p class="viic">
+                    <p
+                      class="viic"
+                      style={{ color: "black", fontSize: "22px" }}
+                    >
                       Change Status
                       <br />
                       (Completed if done):
@@ -126,10 +129,26 @@ export default class EditAssignments extends Component {
                       name="status"
                       value={this.state.status}
                       onChange={this.handleInputChange}
+                      style={{ color: "black", fontSize: "15px" }}
                     >
-                      <option value="Assigned">Assigned</option>
-                      <option value="Working">Working</option>
-                      <option value="Completed">Completed</option>
+                      <option
+                        value="Assigned"
+                        style={{ color: "black", fontSize: "15px" }}
+                      >
+                        Assigned
+                      </option>
+                      <option
+                        value="Working"
+                        style={{ color: "black", fontSize: "15px" }}
+                      >
+                        Working
+                      </option>
+                      <option
+                        value="Completed"
+                        style={{ color: "black", fontSize: "15px" }}
+                      >
+                        Completed
+                      </option>
                     </select>
                   </center>
                 </strong>
@@ -139,14 +158,17 @@ export default class EditAssignments extends Component {
             <br />
             <br />
             <br />
-            <button
-              className="btn btn-success"
-              type="submit"
-              style={{ marginTop: "135px", marginLeft: "700px" }}
-              onClick={this.onSubmit}
-            >
-              <i className="fas fa-save"></i>&nbsp;Save
-            </button>
+            <br />
+            <center>
+              <button
+                className="btn btn-success"
+                type="submit"
+                style={{ marginTop: "135px" }}
+                onClick={this.onSubmit}
+              >
+                <i className="fas fa-save"></i>&nbsp;Save
+              </button>
+            </center>
             <br />
             <br />
             <br />

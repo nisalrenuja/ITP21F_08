@@ -3,32 +3,32 @@ import axios from "axios";
 import Clock from "../../component/common/clock/Clock";
 import "./AllPayrolls.css";
 
-export default class AdminAttendance extends Component {
+export default class AdminLeaves extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       //posts will be stated as an array
-      attendances: []
+      leaves: []
     };
   }
 
   //A method in react life cycle
   componentDidMount() {
-    this.retrieveAttendances();
+    this.retrieveLeaves();
   }
 
-  retrieveAttendances() {
+  retrieveLeaves() {
     //end point
-    axios.get("http://localhost:5000/attendances").then(res => {
+    axios.get("http://localhost:5000/leaves").then(res => {
       if (res.data.success) {
         this.setState({
-          attendances: res.data.existingAttendances,
-          attendancecount: res.data.attendanceCount
+          leaves: res.data.existingLeaves,
+          leavecount: res.data.leaveCount
         });
 
-        console.log(this.state.attendances);
-        console.log(this.state.attendancecount);
+        console.log(this.state.leaves);
+        console.log(this.state.leavecount);
       }
     });
   }
@@ -36,33 +36,26 @@ export default class AdminAttendance extends Component {
   onDelete = id => {
     const confirmBox = window.confirm("Do you really want to delete this?");
     if (confirmBox === true) {
-      axios
-        .delete(`http://localhost:5000/attendance/delete/${id}`)
-        .then(res => {
-          alert("Deleted Data Successfully!!");
-          this.retrieveAttendances();
-        });
+      axios.delete(`http://localhost:5000/leave/delete/${id}`).then(res => {
+        alert("Deleted Data Successfully!!");
+        this.retrieveLeaves();
+      });
     }
   };
 
-  filterData(attendances, searchKey) {
-    const result = attendances.filter(
-      attendance =>
-        attendance.empno
+  filterData(leaves, searchKey) {
+    const result = leaves.filter(
+      leave =>
+        leave.empno
           .toString()
           .toLowerCase()
           .includes(searchKey) ||
-        attendance.att_date
-          .toString()
-          .toLowerCase()
-          .includes(searchKey) ||
-        attendance.location_type.toLowerCase().includes(searchKey) ||
-        attendance.location.toLowerCase().includes(searchKey) ||
-        attendance.att_type.toLowerCase().includes(searchKey) ||
-        attendance.assignment_name.toLowerCase().includes(searchKey)
+        leave.name.toLowerCase().includes(searchKey) ||
+        leave.leave_type.toLowerCase().includes(searchKey) ||
+        leave.leave_status.toLowerCase().includes(searchKey)
     );
 
-    this.setState({ attendances: result });
+    this.setState({ leaves: result });
   }
 
   handleSearchArea = e => {
@@ -71,9 +64,9 @@ export default class AdminAttendance extends Component {
 
     const searchKey = e.currentTarget.value;
 
-    axios.get("http://localhost:5000/attendances").then(res => {
+    axios.get("http://localhost:5000/leaves").then(res => {
       if (res.data.success) {
-        this.filterData(res.data.existingAttendances, searchKey);
+        this.filterData(res.data.existingLeaves, searchKey);
       }
     });
   };
@@ -86,13 +79,10 @@ export default class AdminAttendance extends Component {
         <div className="adminpayroll">
           <div className="row">
             <div class="d-flex justify-content-between">
-              <div className="col-lg-9 mt-2 mb-2 font-weight-bold">
+              <div className="col-lg-9 mt-2 mb-2 font-weight-bold ">
                 <br />
                 <h1 class="ap-topic">Payroll Management</h1>
-                <br />
-                <h4 class="">Assignment Attendance</h4>
               </div>
-
               <div>
                 <Clock />
               </div>
@@ -110,19 +100,19 @@ export default class AdminAttendance extends Component {
                 </a>
               </button>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <button class="btn btn-lg aptab-disable">
+              <button class="btn btn-lg aptab-btn">
                 <a
                   href="/allattendance"
-                  style={{ textDecoration: "none", color: "white" }}
+                  style={{ textDecoration: "none", color: "#1687A7" }}
                 >
                   Attendance
                 </a>
               </button>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <button class="btn btn-lg aptab-btn">
+              <button class="btn btn-lg aptab-disable">
                 <a
                   href="/allrequests"
-                  style={{ textDecoration: "none", color: "#1687A7" }}
+                  style={{ textDecoration: "none", color: "white" }}
                 >
                   Requests
                 </a>
@@ -143,7 +133,7 @@ export default class AdminAttendance extends Component {
             <div class="d-flex">
               <div className="col-lg-9 mt-2 mb-2 ">
                 <h2 className="h3 mb-3">
-                  Total Attendance Records ( {this.state.attendancecount} )
+                  Total Records ( {this.state.leavecount} )
                 </h2>
               </div>
 
@@ -167,47 +157,42 @@ export default class AdminAttendance extends Component {
               <tr class="">
                 <th scope="col"> #</th>
                 <th scope="col"> Employee ID</th>
-                <th scope="col"> Date</th>
-                <th scope="col"> Location Type</th>
-                <th scope="col"> Assignment</th>
-                <th scope="col"> Attendance Type</th>
-                <th scope="col"> Time In</th>
-                <th scope="col"> Time Out</th>
+                <th scope="col"> Name</th>
+                <th scope="col"> Leave Type</th>
+                <th scope="col"> No of Leaves</th>
+                <th scope="col"> Leave Status</th>
                 <th scope="col"> Action</th>
               </tr>
             </thead>
 
             <tbody>
-              {this.state.attendances.map((attendances, index) => (
+              {this.state.leaves.map((leaves, index) => (
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
 
                   <td>
                     <a
-                      href={`/displayattendance/${attendances._id}`}
+                      href={`/displayleave/${leaves._id}`}
                       style={{ textDecoration: "none" }}
                     >
-                      {attendances.empno}
+                      {leaves.empno}
                     </a>
                   </td>
-
-                  <td>{attendances.att_date}</td>
-                  <td>{attendances.location_type}</td>
-                  <td>{attendances.assignment_name}</td>
-                  <td style={{ fontWeight: "bold" }}>{attendances.att_type}</td>
-                  <td>{attendances.time_in}</td>
-                  <td>{attendances.time_out}</td>
+                  <td>{leaves.name}</td>
+                  <td>{leaves.leave_type}</td>
+                  <td>{leaves.no_of_leaves}</td>
+                  <td style={{ fontWeight: "bold" }}>{leaves.leave_status}</td>
 
                   <td>
-                    <a href={`displayattendance/${attendances._id}`}>
+                    <a href={`displayleave/${leaves._id}`}>
                       <i class="far fa-eye"></i>
                     </a>
                     &nbsp; &nbsp; &nbsp; &nbsp;
-                    <a href={`/editattendance/${attendances._id}`}>
+                    <a href={`/editleave/${leaves._id}`}>
                       <i class="far fa-edit"></i>
                     </a>
                     &nbsp; &nbsp; &nbsp;
-                    <a href="#" onClick={() => this.onDelete(attendances._id)}>
+                    <a href="#" onClick={() => this.onDelete(leaves._id)}>
                       <i class="far fa-trash-alt"></i>
                     </a>
                   </td>
@@ -215,15 +200,15 @@ export default class AdminAttendance extends Component {
               ))}
             </tbody>
           </table>
-
+          {/*
           <button className="btn btn-success">
             <a
-              href="/addattendance"
+              href="/addleave"
               style={{ textDecoration: "none", color: "white" }}
             >
-              Mark Attendance
+              Request New
             </a>
-          </button>
+          </button>*/}
         </div>
       </div>
     );

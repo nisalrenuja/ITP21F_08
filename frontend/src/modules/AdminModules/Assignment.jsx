@@ -134,39 +134,41 @@ export default class Assignment extends Component {
                 <strong>
                   <center>
                     <br />
-                    <p style={{ color: "#1687a7", fontSize: "30px" }}>
-                      Assignment Name - {assignment.assignment_name}
+                    <p style={{ color: "black", fontSize: "28px" }}>
+                      <b>
+                        <u>{assignment.assignment_name}</u>
+                      </b>
                     </p>
                     <br />
-                    <p style={{ color: "#1687a7", fontSize: "30px" }}>
+                    <p style={{ color: "black", fontSize: "22px" }}>
                       Client No - {assignment.client_no}
                     </p>
                     <br />
-                    <p style={{ color: "#1687a7", fontSize: "30px" }}>
+                    <p style={{ color: "black", fontSize: "22px" }}>
                       Allocated On -{assignment.date_of_allocation}
                     </p>
                     <br />
-                    <p style={{ color: "#1687a7", fontSize: "30px" }}>
+                    <p style={{ color: "black", fontSize: "22px" }}>
                       Deadline - {this.state.deadline}
                     </p>
                     <br />
-                    <p style={{ color: "#1687a7", fontSize: "30px" }}>
+                    <p style={{ color: "black", fontSize: "22px" }}>
                       Executive ID - {assignment.execid}
                     </p>
                     <br />
-                    <p style={{ color: "#1687a7", fontSize: "30px" }}>
+                    <p style={{ color: "black", fontSize: "22px" }}>
                       No of Members - {this.state.l}
                     </p>
                     <br />
-                    <p style={{ color: "#1687a7", fontSize: "30px" }}>
+                    <p style={{ color: "black", fontSize: "22px" }}>
                       Location - {assignment.place_of_engagement}
                     </p>
                     <br />
-                    <p style={{ color: "#1687a7", fontSize: "30px" }}>
+                    <p style={{ color: "black", fontSize: "22px" }}>
                       Distance - {assignment.distance}km
                     </p>
                     <br />
-                    <p style={{ color: "#1687a7", fontSize: "30px" }}>
+                    <p style={{ color: "black", fontSize: "22px" }}>
                       Progress - {assignment.progress}
                     </p>
                   </center>
@@ -177,13 +179,15 @@ export default class Assignment extends Component {
             <br />
             <br />
             <center>
-              <h4>Employees Working and Allowances(Rs)</h4>
+              <h4>
+                <u>Employees Working and Allowances(Rs)</u>
+              </h4>
             </center>
             {this.state.assignment2.map((assignment2, index) => (
               <div>
                 <strong>
                   <center>
-                    <p style={{ color: "#1687a7", fontSize: "20px" }}>
+                    <p style={{ color: "black", fontSize: "20px" }}>
                       Emp No:-{assignment2.employees[0].empno} - Name:-{" "}
                       {assignment2.employees[0].name} - Allowances:-
                       {assignment2.travel_allowance}
@@ -194,7 +198,7 @@ export default class Assignment extends Component {
             ))}
             <center>
               <br />
-              <p style={{ color: "#1687a7", fontSize: "24px" }}>
+              <p style={{ color: "black", fontSize: "24px" }}>
                 Total Allowance- Rs{this.state.sum}
               </p>
               <br />

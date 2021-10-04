@@ -12,12 +12,15 @@ export default class EditMSalary extends Component {
       name: "",
       pay_month: "",
       basic: "",
-      OT_rate: "",
+      //OT_rate: "",
       OT_hrs: "",
-      total_OT: "",
+      //total_OT: "",
+      bonus: "",
+      aws: "",
       //earnings: [{ earn_reason: "", earn_amount : "" }],
       total_earnings: "",
       //deductions: [{ deduct_reason: "", deduct_amount : "" }],
+      nopay_leaves: "",
       total_deductions: "",
       net_salary: "",
       salary_status: ""
@@ -41,12 +44,15 @@ export default class EditMSalary extends Component {
       name,
       pay_month,
       basic,
-      OT_rate,
+      //OT_rate,
       OT_hrs,
-      total_OT,
+      //total_OT,
+      bonus,
+      aws,
       //earnings: [{ earn_reason: "", earn_amount : "" }],
       total_earnings,
       //deductions: [{ deduct_reason: "", deduct_amount : "" }],
+      nopay_leaves,
       total_deductions,
       net_salary,
       salary_status
@@ -57,12 +63,15 @@ export default class EditMSalary extends Component {
       name: name,
       pay_month: pay_month,
       basic: basic,
-      OT_rate: OT_rate,
+      //OT_rate: OT_rate,
       OT_hrs: OT_hrs,
-      total_OT: total_OT,
+      //total_OT: total_OT,
+      bonus: bonus,
+      aws: aws,
       //earnings: [{ earn_reason: "", earn_amount : "" }],
       total_earnings: total_earnings,
       //deductions: [{ deduct_reason: "", deduct_amount : "" }],
+      nopay_leaves: nopay_leaves,
       total_deductions: total_deductions,
       net_salary: net_salary,
       salary_status: salary_status
@@ -78,12 +87,15 @@ export default class EditMSalary extends Component {
           name: "",
           pay_month: "",
           basic: "",
-          OT_rate: "",
+          //OT_rate: "",
           OT_hrs: "",
-          total_OT: "",
+          //total_OT: "",
+          bonus: "",
+          aws: "",
           //earnings: [{ earn_reason: "", earn_amount : "" }],
           total_earnings: "",
           //deductions: [{ deduct_reason: "", deduct_amount : "" }],
+          nopay_leaves: "",
           total_deductions: "",
           net_salary: "",
           salary_status: ""
@@ -103,10 +115,13 @@ export default class EditMSalary extends Component {
           name: res.data.salary.name,
           pay_month: res.data.salary.pay_month,
           basic: res.data.salary.basic,
-          OT_rate: res.data.salary.OT_rate,
+          //OT_rate: res.data.salary.OT_rate,
           OT_hrs: res.data.salary.OT_hrs,
-          total_OT: res.data.salary.total_OT,
+          //total_OT: res.data.salary.total_OT,
+          bonus: res.data.salary.bonus,
+          aws: res.data.salary.aws,
           total_earnings: res.data.salary.total_earnings,
+          nopay_leaves: res.data.salary.nopay_leaves,
           total_deductions: res.data.salary.total_deductions,
           net_salary: res.data.salary.net_salary,
           salary_status: res.data.salary.salary_status
@@ -169,7 +184,7 @@ export default class EditMSalary extends Component {
             borderRadius: "15px"
           }}
         >
-          <h2>Employee Details</h2>
+          <h5>Employee Details</h5>
           <hr></hr>
           <div className="form-group col-sm-5" style={{ marginBottom: "15px" }}>
             <label
@@ -201,10 +216,12 @@ export default class EditMSalary extends Component {
               required
             />
           </div>
+          <br />
+          <h5>Basic</h5>
           <hr></hr>
           <div class="d-flex justify-content-between">
             <div
-              className="form-group  col-md-5"
+              className="form-group  col-md-6"
               style={{ marginBottom: "15px" }}
             >
               <label style={{ marginBottom: "5px" }}>Month-Year</label>
@@ -243,6 +260,10 @@ export default class EditMSalary extends Component {
               </div>
             </div>{" "}
           </div>
+          <br />
+          <h5>Earnings</h5>
+          <hr></hr>
+          <p style={{ color: "red" }}>** Current OT Rate/hr = Rs 120.00 **</p>
           <div className="form-group col-md-5" style={{ marginBottom: "15px" }}>
             <label style={{ marginBottom: "5px" }}>OT Hours</label>
             <div class="input-group">
@@ -267,7 +288,7 @@ export default class EditMSalary extends Component {
               className="form-group col-md-5"
               style={{ marginBottom: "15px" }}
             >
-              <label style={{ marginBottom: "5px" }}>OT Rate/hr</label>
+              <label style={{ marginBottom: "5px" }}>Bonus</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroupPrepend">
@@ -277,9 +298,9 @@ export default class EditMSalary extends Component {
                 <input
                   type="number"
                   className="form-control"
-                  name="OT_rate"
+                  name="bonus"
                   placeholder=""
-                  value={this.state.OT_rate}
+                  value={this.state.bonus}
                   onChange={this.handleInputChange}
                   required
                 />
@@ -289,8 +310,8 @@ export default class EditMSalary extends Component {
               className="form-group col-md-5"
               style={{ marginBottom: "15px" }}
             >
-              <label style={{ marginBottom: "5px", color: "blue" }}>
-                OT Amount
+              <label style={{ marginBottom: "5px" }}>
+                AWS (Annual Wage Supplements)
               </label>
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -301,94 +322,79 @@ export default class EditMSalary extends Component {
                 <input
                   type="number"
                   className="form-control"
-                  name="total_OT"
+                  name="aws"
                   placeholder=""
-                  value={this.state.total_OT}
+                  value={this.state.aws}
                   onChange={this.handleInputChange}
                   required
                 />
               </div>
             </div>{" "}
           </div>
-          <div class="d-flex align-items-end flex-column">
-            <div
-              className="form-group col-md-5"
-              style={{ marginBottom: "15px" }}
-            >
-              <label style={{ marginBottom: "5px", color: "blue" }}>
-                Other Earnings
-              </label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroupPrepend">
-                    Rs
-                  </span>
-                </div>
-                <input
-                  type="number"
-                  className="form-control"
-                  name="total_earnings"
-                  placeholder=""
-                  value={this.state.total_earnings}
-                  onChange={this.handleInputChange}
-                  required
-                />
+          <div className="form-group col-md-5" style={{ marginBottom: "15px" }}>
+            <label style={{ marginBottom: "5px" }}>Other Earnings</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend">
+                  Rs
+                </span>
               </div>
-            </div>{" "}
-            <div
-              className="form-group col-md-5"
-              style={{ marginBottom: "15px" }}
+              <input
+                type="number"
+                className="form-control"
+                name="total_earnings"
+                placeholder=""
+                value={this.state.total_earnings}
+                onChange={this.handleInputChange}
+                required
+              />
+            </div>
+          </div>{" "}
+          <br />
+          <h5>Deductions</h5>
+          <hr></hr>
+          <div className="form-group col-sm-5" style={{ marginBottom: "15px" }}>
+            <label
+              for="valid1"
+              class="form-label"
+              style={{ marginBottom: "5px" }}
             >
-              <label style={{ marginBottom: "5px", color: "red" }}>
-                Deductions
-              </label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroupPrepend">
-                    Rs
-                  </span>
-                </div>
-                <input
-                  type="number"
-                  className="form-control"
-                  name="total_deductions"
-                  placeholder=""
-                  value={this.state.total_deductions}
-                  onChange={this.handleInputChange}
-                  required
-                />
-              </div>
-            </div>{" "}
-            <br />
-            <div
-              className="form-group col-md-5"
-              style={{ marginBottom: "15px" }}
-            >
-              <label style={{ marginBottom: "5px", color: "#1687A7" }}>
-                Net Salary
-              </label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroupPrepend">
-                    Rs
-                  </span>
-                </div>
-                <input
-                  type="number"
-                  className="form-control"
-                  name="net_salary"
-                  placeholder=""
-                  value={this.state.net_salary}
-                  onChange={this.handleInputChange}
-                  required
-                />
-              </div>
-            </div>{" "}
+              Number of No Pay Leaves
+            </label>
+            <input
+              type="number"
+              id="valid1"
+              className="form-control"
+              name="nopay_leaves"
+              value={this.state.nopay_leaves}
+              onChange={this.handleInputChange}
+              required
+            />
           </div>
+          <div className="form-group col-md-5" style={{ marginBottom: "15px" }}>
+            <label style={{ marginBottom: "5px" }}>Deductions</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend">
+                  Rs
+                </span>
+              </div>
+              <input
+                type="number"
+                className="form-control"
+                name="total_deductions"
+                placeholder=""
+                value={this.state.total_deductions}
+                onChange={this.handleInputChange}
+                required
+              />
+            </div>
+          </div>{" "}
+          <br />
           <hr></hr>
           <div className="form-group col-sm-6" style={{ marginBottom: "15px" }}>
             <label style={{ marginBottom: "5px" }}>
-              Does the employee recieved the salary ?
+              Did the employee recieved the salary ?
             </label>
             <select
               defaultValue={"DEFAULT"}

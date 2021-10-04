@@ -159,6 +159,9 @@ export default class MonthlySalary extends Component {
                 <th scope="col"> Pay Slip ID</th>
                 <th scope="col"> Employee ID</th>
                 <th scope="col"> Month-Year</th>
+                <th scope="col"> Basic</th>
+                <th scope="col"> Total Earnings</th>
+                <th scope="col"> Total Deductions</th>
                 <th scope="col"> Net Salary</th>
                 <th scope="col"> Salary Status</th>
                 <th scope="col"> Action</th>
@@ -175,14 +178,33 @@ export default class MonthlySalary extends Component {
                       href={`/displaysalary/${salaries._id}`}
                       style={{ textDecoration: "none" }}
                     >
-                      MS{index + 1000}
+                      MS{salaries.empno}-{salaries.pay_month}
                     </a>
                   </td>
 
                   <td>{salaries.empno}</td>
                   <td>{salaries.pay_month}</td>
-                  <td>{salaries.net_salary}</td>
-                  <td>{salaries.salary_status}</td>
+                  <td>{salaries.basic}</td>
+                  <td>
+                    {salaries.OT_hrs * 120 +
+                      salaries.aws +
+                      salaries.bonus +
+                      salaries.total_earnings}
+                  </td>
+                  <td>
+                    {salaries.nopay_leaves * 100 + salaries.total_deductions}
+                  </td>
+                  <td class="netsal-data" style={{ color: "#c9184a" }}>
+                    {salaries.basic +
+                      (salaries.OT_hrs * 120 +
+                        salaries.aws +
+                        salaries.bonus +
+                        salaries.total_earnings) -
+                      (salaries.nopay_leaves * 100 + salaries.total_deductions)}
+                  </td>
+                  <td style={{ fontWeight: "bold" }}>
+                    {salaries.salary_status}
+                  </td>
 
                   <td>
                     <a href={`displaysalary/${salaries._id}`}>

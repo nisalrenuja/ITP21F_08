@@ -48,7 +48,7 @@ const EditLapAllo = ({ history, match }) => {
     <div>
       {selectedMenuOption !== "" ? (
         <Container>
-          {selectedMenuOption === "User Executive" ? (
+          {selectedMenuOption === "Reports Management" ? (
             <AdminTab1 />
           ) : selectedMenuOption === "MenuItem 2" ? (
             <AdminTab2 />
@@ -56,11 +56,11 @@ const EditLapAllo = ({ history, match }) => {
             <AdminTab3 />
           ) : selectedMenuOption === "Work Allocation" ? (
             <EditLap dataFromParent={match.params.assignment} />
-          ) : selectedMenuOption === "MenuItem 5" ? (
+          ) : selectedMenuOption === "Notice Management" ? (
             <AdminTab5 />
-          ) : selectedMenuOption === "MenuItem 6" ? (
+          ) : selectedMenuOption === "Attendance & Payroll" ? (
             <AdminTab6 />
-          ) : selectedMenuOption === "MenuItem 7" ? (
+          ) : selectedMenuOption === "Inventory Management" ? (
             <AdminTab7 />
           ) : (
             <AdminTab8 />

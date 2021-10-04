@@ -72,7 +72,7 @@ export default class AdminTab2 extends Component {
     this.setState({ posts: result });
   }
 
-  handleSearchArea = e => {
+  handleSearchArea2 = e => {
     const searchKey = e.currentTarget.value;
 
     axios.get("http://localhost:5000/review").then(res => {
@@ -82,10 +82,30 @@ export default class AdminTab2 extends Component {
     });
   };
 
+  //Search
+  filterData(finalreport, searchkey) {
+    const result = finalreport.filter(
+      finalreport =>
+        finalreport.execid_review.toLowerCase().includes(searchkey) ||
+        finalreport.report.toLowerCase().includes(searchkey)
+    );
+    this.setState({ finalreport: result });
+  }
+
+  handleSearchArea = e => {
+    const searchKey = e.currentTarget.value;
+
+    axios.get("http://localhost:5000/final_report").then(res => {
+      if (res.data.success) {
+        this.filterData(res.data.finalreport, searchKey);
+      }
+    });
+  };
+
   render() {
     return (
       <div className="container">
-        <div class="anumain">
+        <div class="anumainform">
           <h2 class="anuhead1">Reports Management</h2>
           <hr class="anuline1"></hr>
 
@@ -100,6 +120,13 @@ export default class AdminTab2 extends Component {
               <p class="anutxt2">Company Performance</p>
             </button>
           </a>
+
+          <div class="anudiv3">
+            <input class="anuselect1" type="text" name="searchQuery" />
+            <a className="btn btn-info anusearch">
+              <i className="fas fa-search"></i>&nbsp;
+            </a>
+          </div>
 
           <h2 class="anutah">Pending Report Reviews</h2>
           <table className="table table-hover anutable1">
@@ -129,12 +156,8 @@ export default class AdminTab2 extends Component {
                   <td>{posts.feedback}</td>
                   <td>{posts.status}</td>
                   <td>
-                    <a href={`/edit/${posts.report}`}>
-                      <i className="fas fa-edit"></i>&nbsp;
-                    </a>
-                    &nbsp;
                     <a href="#" onClick={() => this.onDelete(posts.report)}>
-                      <i className="far fa-trash-alt"></i>&nbsp;
+                      <i className="fas fa-trash-alt"></i>&nbsp;
                     </a>
                   </td>
                 </tr>
@@ -142,15 +165,14 @@ export default class AdminTab2 extends Component {
             </tbody>
           </table>
 
-          <div class="anudiv3">
-            <input class="anuselect1" type="text" />
-            <a className="btn btn-info anusearch">
-              <i className="fas fa-search"></i>&nbsp;
-            </a>
-          </div>
-
           <div class="anudiv51">
-            <input class="anuselect1" type="text" />
+            <input
+              class="anuselect1"
+              type="text"
+              name="searchQuery"
+              placeholder="Search by Report ID"
+              onChange={this.handleSearchArea}
+            />
             <a className="btn btn-info anusearch">
               <i className="fas fa-search"></i>&nbsp;
             </a>
@@ -160,10 +182,10 @@ export default class AdminTab2 extends Component {
           <table className="table table-hover anutable2">
             <thead class="anuthead">
               <tr>
-                <th scope="col">Review ID</th>
+                <th scope="col">Report ID</th>
                 <th scope="col">Report Name</th>
-                <th scope="col">Partner Name</th>
-                <th scope="col">Submitted Date</th>
+                <th scope="col">Published Date</th>
+                <th scope="col">Approved User</th>
                 <th scope="col">Status</th>
                 <th scope="col">Action</th>
               </tr>
@@ -171,28 +193,25 @@ export default class AdminTab2 extends Component {
             <tbody class="anutbody1">
               {this.state.finalreport.map((finalreport, index) => (
                 <tr key={index}>
-                  <td>
-                    <a
-                      href={`/reports/${finalreport._id}`}
-                      style={{ textDecoration: "none" }}
-                    >
-                      {finalreport.execid_review}
-                    </a>
-                  </td>
+                  <td>{finalreport.execid_review}</td>
                   <td>{finalreport.report}</td>
-                  <td>{finalreport.points}</td>
-                  <td>{finalreport.feedback}</td>
+                  <td>{finalreport.date_and_time_upload}</td>
+                  <td>{finalreport.approved_user}</td>
                   <td>{finalreport.status}</td>
                   <td>
-                    <a href={`/edit/${finalreport.report}`}>
+                    <a href={finalreport.reportPDF} class="icon-btns">
+                      <i class="fas fa-eye"></i>
+                    </a>
+                    &nbsp; &nbsp; &nbsp; &nbsp;
+                    <a href={`/UpdateReport/${finalreport._id}`}>
                       <i className="fas fa-edit"></i>&nbsp;
                     </a>
-                    &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp;
                     <a
                       href="#"
                       onClick={() => this.onDeleteanu(finalreport._id)}
                     >
-                      <i className="far fa-trash-alt"></i>&nbsp;
+                      <i className="fas fa-trash-alt"></i>&nbsp;
                     </a>
                   </td>
                 </tr>

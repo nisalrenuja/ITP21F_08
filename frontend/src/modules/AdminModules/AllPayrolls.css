@@ -75,6 +75,7 @@
 
   color: #276678;
 }
+
 .need-validation {
   background-color:"#F6F5F5" ;
   border:"5px solid eastern blue";
@@ -121,6 +122,8 @@ option.alertgreen{
 option[value="Pending"] {
   color:red;
  }
+
+
 
 
 

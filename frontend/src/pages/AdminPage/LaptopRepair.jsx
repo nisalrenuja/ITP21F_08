@@ -7,7 +7,7 @@ import AdminTab3 from "../../modules/AdminModules/AdminTab3";
 import AdminTab4 from "../../modules/AdminModules/AdminTab4";
 import AdminTab5 from "../../modules/AdminModules/AdminTab5";
 import AdminTab6 from "../../modules/AdminModules/AdminTab6";
-import AdminTab7 from "../../modules/AdminModules/AdminTab7";
+//import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
 import LaptopRepair from "../../modules/AdminModules/LaptopRepair";
 
