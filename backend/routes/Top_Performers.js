@@ -1,5 +1,6 @@
 const express = require('express');
 const TopPerformers = require('../models/Top_Performers');
+const Points = require('../models/points')
 
 const router = express.Router();
 
@@ -24,7 +25,7 @@ router.post('TopPerformers/save', (req,res)=>{
 //Get Top Performers
 
 router.get('/TopPerformers', (req,res)=>{
-    TopPerformers.find().exec((err, existingNotices) =>{
+    TopPerformers.find().exec((err, existingTopPerformers) =>{
         if(err){
             return res.status(400).json({
                 error:err
