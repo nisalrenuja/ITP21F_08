@@ -8,27 +8,27 @@ const top_Performers_Schema = new mongoose.Schema({
     },*/
     year:{
       type:Number,
-      required: true
+      required: false
     },
     month:{
       type:String,
-      required: true
+      required: false
     },
     rank1:{
       type: Number,
-      required: true
+      required: false
     },
     top_empid1:{
       type: String,
-      required: true
+      required: false
     },
     top_empname1:{
       type: String,
-      required: true
+      required: false
     },
     total_points1:{
       type: Number,
-      required: true 
+      required: false 
     },
     rank2:{
       type: Number,

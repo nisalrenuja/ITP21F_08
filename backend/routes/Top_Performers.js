@@ -20,7 +20,32 @@ router.get('/TopPerformers',(req,res) =>{
 });
 
 //save Top Performers
+router.post("/TopPerformers/save", (req, res) => {
 
+    let newpoints = req.body;
+   
+     TopPerformers.create(newpoints, (err) => {
+   
+       if (err) {
+   
+         return res.status(400).json({
+   
+           error: err,
+   
+         });
+   
+       }
+   
+       return res.status(200).json({
+   
+         success: "points saved succesfully",
+   
+       });
+   
+     });
+   
+   });
+/*
 router.post('TopPerformers/save', (req,res)=>{
 
     let newTopPerformer = new TopPerformers(req.body);
@@ -36,7 +61,7 @@ router.post('TopPerformers/save', (req,res)=>{
         });
     });
 });
-
+*/
 //Get Top Performers
 
 router.get('/TopPerformers', (req,res)=>{

@@ -77,35 +77,29 @@ export default class TopPerformers extends Component {
     const {
       year,
       month,
-      rank1,
-      top_empid1,
+
       top_empname1,
-      total_points1,
-      rank2,
-      top_empid2,
+
       top_empname2,
-      total_points2,
-      rank3,
-      top_empid3,
-      top_empname3,
-      total_points3
+
+      top_empname3
     } = this.state;
 
     const data = {
       year: year,
       month: month,
-      rank1: rank1,
-      top_empid1: top_empid1,
+      rank1: 1,
+      top_empid1: this.state.existingPoints[0].empno,
       top_empname1: top_empname1,
-      total_points1: total_points1,
-      rank2: rank2,
-      top_empid2: top_empid2,
+      total_points1: this.state.existingPoints[0].points,
+      rank2: 1,
+      top_empid2: this.state.existingPoints[1].empno,
       top_empname2: top_empname2,
-      total_points2: total_points2,
-      rank3: rank3,
-      top_empid3: top_empid3,
+      total_points2: this.state.existingPoints[1].points,
+      rank3: 1,
+      top_empid3: this.state.existingPoints[2].empno,
       top_empname3: top_empname3,
-      total_points3: total_points3
+      total_points3: this.state.existingPoints[2].points
     };
 
     console.log(data);
@@ -114,18 +108,18 @@ export default class TopPerformers extends Component {
         this.setState({
           year: year,
           month: month,
-          rank1: rank1,
-          top_empid1: top_empid1,
+          rank1: 1,
+          top_empid1: this.state.existingPoints[0].empno,
           top_empname1: top_empname1,
-          total_points1: total_points1,
-          rank2: rank2,
-          top_empid2: top_empid2,
+          total_points1: this.state.existingPoints[0].points,
+          rank2: 1,
+          top_empid2: this.state.existingPoints[1].empno,
           top_empname2: top_empname2,
-          total_points2: total_points2,
-          rank3: rank3,
-          top_empid3: top_empid3,
-          top_empname3: top_empname2,
-          total_points3: total_points3,
+          total_points2: this.state.existingPoints[1].points,
+          rank3: 1,
+          top_empid3: this.state.existingPoints[2].empno,
+          top_empname3: top_empname3,
+          total_points3: this.state.existingPoints[2].points,
           redirectToReferrer: true
         });
         //alert("Employee added to assignment, Enter employee number");
@@ -143,6 +137,11 @@ export default class TopPerformers extends Component {
         <div class="senmain">
           <h2 class="senhead1">Notice Management | Top Performers</h2>
           <hr class="senline1"></hr>
+          <a href="">
+            <button class="sendiv4">
+              <p class="sentxt4">Retrieve</p>
+            </button>
+          </a>
 
           <div>
             <h2 class="sentahss">Current Top Performers</h2>
@@ -205,11 +204,9 @@ export default class TopPerformers extends Component {
                   </tr>
                 ))}
               </tbody>
-
               <tfoot class="tfoot"></tfoot>
             </table>
           </div>
-
           <div>
             <a href="">
               <button class="amandi" type="submit" onClick={this.onSubmit}>
