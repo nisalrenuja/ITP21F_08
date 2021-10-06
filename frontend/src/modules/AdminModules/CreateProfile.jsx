@@ -96,16 +96,20 @@ export default class CreateProfile extends Component {
       );
     } else if (exeno === "") {
       //document.getElementsByClassName('errorMessage').innerHTML = '';
-      document.getElementById("errorMessageExID").innerHTML = "hello";
+      document.getElementById("errorMessageExID").innerHTML =
+        "Enter Correct Executive ID";
     } else if (name === "") {
       //document.getElementsByClassName('errorMessage').innerHTML = '';
-      document.getElementById("errorMessageName").innerHTML = "hello";
+      document.getElementById("errorMessageName").innerHTML =
+        "Enter Correct Name";
     } else if (email === "") {
       //document.getElementsByClassName('errorMessage').innerHTML = '';
-      document.getElementById("errorMessageEmail").innerHTML = "hello";
+      document.getElementById("errorMessageEmail").innerHTML =
+        "Enter Correct Email";
     } else if (contact === "") {
       //document.getElementsByClassName('errorMessage').innerHTML = '';
-      document.getElementById("errorMessageContact").innerHTML = "hello";
+      document.getElementById("errorMessageContact").innerHTML =
+        "Enter Correct Contact Number";
       //} //else if (position === "") {
       //document.getElementsByClassName('errorMessage').innerHTML = '';
       //document.getElementById("errorMessage").innerHTML = "hello";
