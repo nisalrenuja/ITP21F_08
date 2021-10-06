@@ -4,7 +4,7 @@ import axios from "axios";
 //import Progress from "../../component/common/ProgressBar/progress";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
-import moment from "moment";
+//import moment from "moment";
 
 export default class EditProfile extends Component {
   constructor(props) {

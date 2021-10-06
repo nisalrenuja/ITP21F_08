@@ -13,6 +13,26 @@ export default class EditExecutive extends Component {
 
   handleInputChange = e => {
     const { name, value } = e.target;
+    if (name === "username") {
+      if (value.match("^[a-zA-Z][a-zA-Z\\s]+$")) {
+        document.getElementById("errorMessageName").innerHTML = "";
+      } else {
+        document.getElementById("errorMessageName").innerHTML =
+          "Please Enter correct Username";
+      }
+    }
+
+    if (name === "email") {
+      console.log("Email");
+      console.log(value);
+      if (value.match("[a-z0-9.]{1,}[@]{1}[a-z]{1,}[.]{1}(com)$")) {
+        document.getElementById("errorMessageEmail").innerHTML = "";
+      } else {
+        document.getElementById("errorMessageEmail").innerHTML =
+          "example@gmail.com";
+      }
+    }
+
     this.setState({
       ...this.state,
       [name]: value
@@ -23,6 +43,23 @@ export default class EditExecutive extends Component {
     e.preventDefault();
     const id = this.props.match.params.id;
     const { username, email } = this.state;
+
+    if (username === "" && email === "") {
+      this.errorMessageAlert(
+        "You can't save anything without entering details"
+      );
+    } else if (username === "") {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+      document.getElementById("errorMessageName").innerHTML =
+        "Enter Correct Username";
+    } else if (email === "") {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+      document.getElementById("errorMessageEmail").innerHTML =
+        "Enter Correct Email";
+    } else {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+    }
+
     const data = {
       username: username,
 
@@ -71,6 +108,7 @@ export default class EditExecutive extends Component {
               value={this.state.username}
               onChange={this.handleInputChange}
             />
+            <span id="errorMessageName" style={{ color: "red" }}></span>
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
@@ -83,6 +121,7 @@ export default class EditExecutive extends Component {
               value={this.state.email}
               onChange={this.handleInputChange}
             />
+            <span id="errorMessageEmail" style={{ color: "red" }}></span>
           </div>
 
           <button

@@ -53,7 +53,7 @@ export default class CreateProfile extends Component {
     }
 
     if (name === "contact") {
-      if (value.match("^[0-9]{10}$")) {
+      if (value.match("^[0-9]{11}$")) {
         document.getElementById("errorMessageContact").innerHTML = "";
       } else {
         document.getElementById("errorMessageContact").innerHTML =

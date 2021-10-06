@@ -19,6 +19,34 @@ export default class CreateReview extends Component {
 
   handleInputChange = e => {
     const { name, value } = e.target;
+
+    if (name === "execid_review") {
+      if (value.match("^[A-Z]{1}[0-9]{1,4}$")) {
+        document.getElementById("errorMessageExID").innerHTML = "";
+      } else {
+        document.getElementById("errorMessageExID").innerHTML =
+          "Please Enter correct Review ID";
+      }
+    }
+
+    if (name === "report") {
+      if (value.match("^[a-zA-Z][a-zA-Z\\s]+$")) {
+        document.getElementById("errorMessageName").innerHTML = "";
+      } else {
+        document.getElementById("errorMessageName").innerHTML =
+          "Please Enter correct Report Name";
+      }
+    }
+
+    if (name === "feedback") {
+      if (value.match("^[a-zA-Z][a-zA-Z\\s]+$")) {
+        document.getElementById("errorMessageFeed").innerHTML = "";
+      } else {
+        document.getElementById("errorMessageFeed").innerHTML =
+          "Please Enter correct Feedback";
+      }
+    }
+
     this.setState({
       ...this.state,
       [name]: value
@@ -41,6 +69,27 @@ export default class CreateReview extends Component {
       feedback,
       status
     } = this.state;
+
+    if (execid_review === "" && report === "" && feedback === "") {
+      this.errorMessageAlert(
+        "You can't save anything without entering details"
+      );
+    } else if (execid_review === "") {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+      document.getElementById("errorMessageExID").innerHTML =
+        "Enter Correct Report ID";
+    } else if (report === "") {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+      document.getElementById("errorMessageName").innerHTML =
+        "Enter Correct Report Name";
+    } else if (feedback === "") {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+      document.getElementById("errorMessageFeed").innerHTML =
+        "Enter Correct Feedback";
+    } else {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+    }
+
     const data = {
       execid_review: execid_review,
       report: report,
@@ -104,15 +153,16 @@ export default class CreateReview extends Component {
         <h1 className="h3 mb-3 font-weight-normal">Create New Review</h1>
         <form className="need-validation" noValidate>
           <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Topic</label>
+            <label style={{ marginBottom: "5px" }}>Review ID</label>
             <input
               type="text"
               className="form-control"
               name="execid_review"
-              placeholder="Enter Executive Id"
+              placeholder="Enter Review ID"
               value={this.state.execid_review}
               onChange={this.handleInputChange}
             />
+            <span id="errorMessageExID" style={{ color: "red" }}></span>
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
@@ -125,6 +175,7 @@ export default class CreateReview extends Component {
               value={this.state.report}
               onChange={this.handleInputChange}
             />
+            <span id="errorMessageName" style={{ color: "red" }}></span>
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
@@ -175,6 +226,7 @@ export default class CreateReview extends Component {
               value={this.state.feedback}
               onChange={this.handleInputChange}
             />
+            <span id="errorMessageFeed" style={{ color: "red" }}></span>
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
