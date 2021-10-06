@@ -156,7 +156,7 @@ export default class AdminTab2 extends Component {
                   <td>{posts.feedback}</td>
                   <td>{posts.status}</td>
                   <td>
-                    <a href="#" onClick={() => this.onDelete(posts.report)}>
+                    <a href="#" onClick={() => this.onDelete(posts._id)}>
                       <i className="fas fa-trash-alt"></i>&nbsp;
                     </a>
                   </td>

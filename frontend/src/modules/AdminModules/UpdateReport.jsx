@@ -16,6 +16,7 @@ export default class UpdateReport extends Component {
       points: "",
       feedback: "",
       date_and_time_upload: "",
+      approved_user: "",
       status: "",
       uploadPercentage: 0,
       fileVal: "",
@@ -40,7 +41,7 @@ export default class UpdateReport extends Component {
     console.log(file);
   };
 
-  onSubmitanu = e => {
+  onSubmitupdate = e => {
     e.preventDefault();
 
     const {
@@ -50,6 +51,7 @@ export default class UpdateReport extends Component {
       points,
       feedback,
       date_and_time_upload,
+      approved_user,
       status
     } = this.state;
 
@@ -60,6 +62,7 @@ export default class UpdateReport extends Component {
       points: points,
       feedback: feedback,
       date_and_time_upload: date_and_time_upload,
+      approved_user: approved_user,
       status: status
     };
 
@@ -78,6 +81,7 @@ export default class UpdateReport extends Component {
             points: "",
             feedback: "",
             date_and_time_upload: "",
+            approved_user: "",
             status: ""
           });
           alert("Report Updated Successfully");
@@ -103,6 +107,7 @@ export default class UpdateReport extends Component {
           points: res.data.finalreport.points,
           feedback: res.data.finalreport.feedback,
           date_and_time_upload: res.data.finalreport.date_and_time_upload,
+          approved_user: res.data.approved_user,
           status: res.data.finalreport.status,
 
           UpdateReport2: res.data.finalreport2
@@ -156,7 +161,7 @@ export default class UpdateReport extends Component {
         <h1 className="h3 mb-3 font-weight-normal">
           Report Management | Update Report Details
         </h1>
-        <div class="anuupdateform">
+        <div class="anuupdateform2">
           <form className="need-validation" noValidate>
             <div className="form-group" style={{ marginBottom: "15px" }}>
               <label style={{ marginBottom: "5px" }}>Review ID</label>
@@ -217,6 +222,7 @@ export default class UpdateReport extends Component {
                 className="form-select"
                 aria-label="Default select example"
                 name="points"
+                value={this.state.points}
                 onChange={this.handleInputChange}
               >
                 <option value="DEFAULT" disabled></option>
@@ -252,12 +258,26 @@ export default class UpdateReport extends Component {
             </div>
 
             <div className="form-group" style={{ marginBottom: "15px" }}>
+              <label style={{ marginBottom: "5px" }}>Approved User</label>
+              <input
+                type="text"
+                className="form-control"
+                id="approved_user"
+                name="approved_user"
+                placeholder="Enter Approved User "
+                value={this.state.approved_user}
+                onChange={this.handleInputChange}
+              />
+            </div>
+
+            <div className="form-group" style={{ marginBottom: "15px" }}>
               <label style={{ marginBottom: "5px" }}>Report Status</label>
               <select
                 defaultValue={"DEFAULT"}
                 className="form-select"
                 aria-label="Default select example"
                 name="status"
+                value={this.state.status}
                 onChange={this.handleInputChange}
               >
                 <option value="DEFAULT" disabled></option>
@@ -267,27 +287,13 @@ export default class UpdateReport extends Component {
               </select>
             </div>
 
-            <center>
-              <div class="cookie">
-                <button
-                  className="btn btn-warning"
-                  type="submit"
-                  style={{ marginTop: "725px" }}
-                  onClick={this.onSubmit}
-                >
-                  <a href="/AdminTab2"></a>
-                  <i className="fa fa-refresh"></i>&nbsp;Update
-                </button>{" "}
-                &nbsp;&nbsp;
-                <button
-                  className="btn btn-danger"
-                  type="cancel"
-                  style={{ marginTop: "725px" }}
-                >
-                  Cancel
-                </button>
-              </div>
-            </center>
+            <button
+              className="btn btn-warning"
+              type="submit"
+              onClick={this.onSubmitupdate}
+            >
+              Update
+            </button>
           </form>
         </div>
       </div>
