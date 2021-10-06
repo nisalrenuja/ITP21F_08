@@ -4,6 +4,21 @@ const Points = require('../models/points')
 
 const router = express.Router();
 
+//Get Performers from Points
+router.get('/TopPerformers',(req,res) =>{
+    Points.find().sort({points: -1}).limit(3).exec((err, existingPoints) =>{
+        if(err){
+            return res.status(400).json({
+                error:err
+            });
+        }
+        return res.status(200).json({
+            success:true,
+            existingPoints:existingPoints
+        });
+    });
+});
+
 //save Top Performers
 
 router.post('TopPerformers/save', (req,res)=>{
@@ -40,7 +55,20 @@ router.get('/TopPerformers', (req,res)=>{
 
 //Get specific TopPerformers
 router.get("TopPerformers/:id", (req,res) =>{
-    let
+    let top_empid1 = req.params.id;
+
+    TopPerformers.findById(top_empid1, (err, existingTopPerformers) =>{
+        if(err){
+            return res.status(400).json({
+                success: false,
+                err,
+            });
+        }
+        return res.status(200).json({
+            success: true,
+            existingTopPerformers
+        });
+    });
 });
 
 

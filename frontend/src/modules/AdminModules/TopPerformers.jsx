@@ -21,7 +21,10 @@ export default class TopPerformers extends Component {
       top_empid3: "",
       top_empname3: "",
       total_points3: "",
-      existingTopPerformers: []
+      empno: "",
+      points: "",
+      existingTopPerformers: [],
+      existingPoints: []
     };
   }
 
@@ -37,6 +40,17 @@ export default class TopPerformers extends Component {
 
   componentDidMount() {
     this.retrieveexistingTopPerformers();
+    this.retrieveexistingPoints();
+  }
+  retrieveexistingPoints() {
+    axios.get("http://localhost:5000/TopPerformers").then(res => {
+      if (res.data.success) {
+        this.setState({
+          existingPoints: res.data.existingPoints
+        });
+        console.log(this.state.existingPoints);
+      }
+    });
   }
   retrieveexistingTopPerformers() {
     axios.get("http://localhost:5000/TopPerformers").then(res => {
@@ -90,7 +104,7 @@ export default class TopPerformers extends Component {
       total_points2: total_points2,
       rank3: rank3,
       top_empid3: top_empid3,
-      top_empname3: top_empname2,
+      top_empname3: top_empname3,
       total_points3: total_points3
     };
 
@@ -127,13 +141,8 @@ export default class TopPerformers extends Component {
     return (
       <div className="container">
         <div class="senmain">
-          <h2 class="senhead1">Top Performers</h2>
+          <h2 class="senhead1">Notice Management | Top Performers</h2>
           <hr class="senline1"></hr>
-          <a href="">
-            <button class="sendiv4">
-              <p class="sentxt4">Retrieve</p>
-            </button>
-          </a>
 
           <div>
             <h2 class="sentahss">Current Top Performers</h2>
@@ -180,72 +189,23 @@ export default class TopPerformers extends Component {
                 <tr>
                   <th scope="col">Rank</th>
                   <th scope="col">Emp ID</th>
-                  <th scope="col">Emp Name</th>
+
                   <th scope="col">Total Points</th>
                 </tr>
               </thead>
-              <tbody class="sentbody1">
-                {this.state.existingTopPerformers.map(
-                  (existingTopPerformers, index) => (
-                    <tr key={index}>
-                      <td>
-                        <a
-                          href={`/DisplayTopPerformer/${existingTopPerformers._id}`}
-                          style={{ textDecoration: "none" }}
-                        >
-                          {existingTopPerformers.rank1}
-                        </a>
-                      </td>
-                      <td>{existingTopPerformers.top_empid1}</td>
+              <tbody class="sentbody99">
+                {this.state.existingPoints.map((existingPoints, index) => (
+                  <tr key={index}>
+                    <td>
+                      <p>01</p>
+                    </td>
+                    <td>{existingPoints.empno}</td>
 
-                      <td>{existingTopPerformers.top_empname1}</td>
-                      <td>{existingTopPerformers.total_points1}</td>
-                    </tr>
-                  )
-                )}
+                    <td>{existingPoints.points}</td>
+                  </tr>
+                ))}
               </tbody>
 
-              <tbody class="sentbody1">
-                {this.state.existingTopPerformers.map(
-                  (existingTopPerformers, index) => (
-                    <tr key={index}>
-                      <td>
-                        <a
-                          href={`/DisplayTopPerformer/${existingTopPerformers._id}`}
-                          style={{ textDecoration: "none" }}
-                        >
-                          {existingTopPerformers.rank2}
-                        </a>
-                      </td>
-                      <td>{existingTopPerformers.top_empid2}</td>
-
-                      <td>{existingTopPerformers.top_empname2}</td>
-                      <td>{existingTopPerformers.total_points2}</td>
-                    </tr>
-                  )
-                )}
-              </tbody>
-
-              <tbody class="sentbody1">
-                {this.state.existingTopPerformers.map(
-                  (existingTopPerformers, index) => (
-                    <tr key={index}>
-                      <td>
-                        <a
-                          href={`/DisplayTopPerformer/${existingTopPerformers._id}`}
-                          style={{ textDecoration: "none" }}
-                        >
-                          {existingTopPerformers.rank3}
-                        </a>
-                      </td>
-                      <td>{existingTopPerformers.top_empid3}</td>
-
-                      <td>{existingTopPerformers.top_empname3}</td>
-                      <td>{existingTopPerformers.total_points3}</td>
-                    </tr>
-                  )
-                )}
-              </tbody>
               <tfoot class="tfoot"></tfoot>
             </table>
           </div>
@@ -256,58 +216,6 @@ export default class TopPerformers extends Component {
                 <p class="banana">Accepted</p>
               </button>
             </a>
-          </div>
-
-          <div>
-            <table className="table table-hover sentable2">
-              <thead class="senthead">
-                <tr>
-                  <th scope="col">Year</th>
-                  <th scope="col">Month</th>
-                  <th scope="col">Rank 1</th>
-                  <th scope="col">Rank 2</th>
-                  <th scope="col">Rank 3</th>
-                  <th scope="col">Actions</th>
-                </tr>
-              </thead>
-              <tbody class="sentbody1">
-                {this.state.existingTopPerformers.map(
-                  (existingTopPerformers, index) => (
-                    <tr key={index}>
-                      <td>{existingTopPerformers.year}</td>
-                      <td>
-                        <a
-                          href={`/AllTopPerformers/${existingTopPerformers._id}`}
-                          style={{ textDecoration: "none" }}
-                        >
-                          {existingTopPerformers.month}
-                        </a>
-                      </td>
-                      <td>{existingTopPerformers.top_empid1}</td>
-
-                      <td>{existingTopPerformers.top_empid2}</td>
-                      <td>{existingTopPerformers.top_empid3}</td>
-
-                      <td>
-                        <a href={existingTopPerformers._id} class="icon-btns">
-                          <i class="fas fa-eye"></i>&nbsp;&nbsp;&nbsp;
-                        </a>
-                        &nbsp;
-                        <a
-                          href="#"
-                          onClick={() =>
-                            this.onDelete(existingTopPerformers._id)
-                          }
-                        >
-                          <i className="far fa-trash-alt"></i>&nbsp;
-                        </a>
-                      </td>
-                    </tr>
-                  )
-                )}
-              </tbody>
-              <tfoot class="tfoot"></tfoot>
-            </table>
           </div>
         </div>
       </div>
