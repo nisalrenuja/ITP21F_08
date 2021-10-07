@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 //import { storage } from "../../firebase";
 //import Progress from "../../component/common/ProgressBar/progress";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+//import moment from "moment";
 
 export default class EditProfile extends Component {
   constructor(props) {
@@ -20,10 +23,53 @@ export default class EditProfile extends Component {
 
   handleInputChange = e => {
     const { name, value } = e.target;
+
+    if (name === "exeno") {
+      if (value.match("^[A-Z]{1}[0-9]{1,4}$")) {
+        document.getElementById("errorMessageExID").innerHTML = "";
+      } else {
+        document.getElementById("errorMessageExID").innerHTML =
+          "Please Enter correct type of Executive ID (like E1245)";
+      }
+    }
+
+    if (name === "name") {
+      if (value.match("^[a-zA-Z][a-zA-Z\\s]+$")) {
+        document.getElementById("errorMessageName").innerHTML = "";
+      } else {
+        document.getElementById("errorMessageName").innerHTML =
+          "Please Enter correct type of Executive ID (like Nisal Palliyaguru)";
+      }
+    }
+
+    if (name === "email") {
+      console.log("Email");
+      console.log(value);
+      if (value.match("[a-z0-9.]{1,}[@]{1}[a-z]{1,}[.]{1}(com)$")) {
+        document.getElementById("errorMessageEmail").innerHTML = "";
+      } else {
+        document.getElementById("errorMessageEmail").innerHTML =
+          "example@gmail.com";
+      }
+    }
+
+    if (name === "contact") {
+      if (value.match("^[0-9]{10}$")) {
+        document.getElementById("errorMessageContact").innerHTML = "";
+      } else {
+        document.getElementById("errorMessageContact").innerHTML =
+          "Please Enter correct contact number (like 0711111111 )";
+      }
+    }
+
     this.setState({
       ...this.state,
       [name]: value
     });
+  };
+
+  errorMessageAlert = message => {
+    toast.error(message);
   };
 
   onSubmit = e => {
@@ -32,6 +78,46 @@ export default class EditProfile extends Component {
 
     const { exeno, name, position, email, contact, gender, dob } = this.state;
 
+    if (
+      exeno === "" &&
+      name === "" &&
+      email === "" &&
+      contact === "" &&
+      position === "" &&
+      gender === "" &&
+      dob === ""
+    ) {
+      this.errorMessageAlert(
+        "You can't save anything without entering details"
+      );
+    } else if (exeno === "") {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+      document.getElementById("errorMessageExID").innerHTML =
+        "Enter Correct Executive ID";
+    } else if (name === "") {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+      document.getElementById("errorMessageName").innerHTML =
+        "Enter Correct Name";
+    } else if (email === "") {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+      document.getElementById("errorMessageEmail").innerHTML =
+        "Enter Correct Email";
+    } else if (contact === "") {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+      document.getElementById("errorMessageContact").innerHTML =
+        "Enter Correct Contact Number";
+      //} //else if (position === "") {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+      //document.getElementById("errorMessage").innerHTML = "hello";
+      //} //else if (gender === "") {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+      // document.getElementById("errorMessage").innerHTML = "hello";
+      //} else if (dob === "") {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+      //  document.getElementById("errorMessage").innerHTML = "hello";
+    } else {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+    }
     const data = {
       exeno: exeno,
       name: name,
@@ -162,6 +248,7 @@ export default class EditProfile extends Component {
               onChange={this.handleInputChange}
               disabled
             />
+            <span id="errorMessageExID" style={{ color: "red" }}></span>
           </div>
 
           <div className="form-group " style={{ marginBottom: "15px" }}>
@@ -175,6 +262,7 @@ export default class EditProfile extends Component {
               onChange={this.handleInputChange}
               required
             />
+            <span id="errorMessageName" style={{ color: "red" }}></span>
           </div>
 
           <div className="orm-group col-sm-6" style={{ marginBottom: "15px" }}>
@@ -194,6 +282,7 @@ export default class EditProfile extends Component {
               <option value="Partner">Partner</option>
               <option value="Other">Other</option>
             </select>
+            <span id="errorMessageName" style={{ color: "red" }}></span>
           </div>
 
           <br />
@@ -217,6 +306,7 @@ export default class EditProfile extends Component {
                   onChange={this.handleInputChange}
                   required
                 />
+                <span id="errorMessageEmail" style={{ color: "red" }}></span>
               </div>
               <div className="form-group " style={{ marginBottom: "15px" }}>
                 <label style={{ marginBottom: "5px" }}>Contact Number</label>
@@ -229,6 +319,7 @@ export default class EditProfile extends Component {
                   onChange={this.handleInputChange}
                   required
                 />
+                <span id="errorMessageContact" style={{ color: "red" }}></span>
               </div>
               <label style={{ marginBottom: "5px" }}>Gender</label>
               <select
@@ -245,6 +336,7 @@ export default class EditProfile extends Component {
                 <option name="male">Male</option>
                 <option name="female">Female</option>
               </select>
+              <span id="errorMessageName" style={{ color: "red" }}></span>
             </div>
 
             <div
@@ -254,15 +346,27 @@ export default class EditProfile extends Component {
           </div>
 
           <label style={{ marginBottom: "5px" }}>Date of Birth</label>
-          <input
+          {/* <input
             type="date"
             className="form-control"
             name="dob"
-            placeholder="Enter Date of Birth"
+            id="date"
+            placeholder="DD/MM/YY"
             value={this.state.dob}
             onChange={this.handleInputChange}
             required
+          /> */}
+          <input
+            type="date"
+            id="date"
+            className="form-control"
+            name="dob"
+            placeholder="DD/MM/YY"
+            value={this.state.dob}
+            onChange={this.handleInputChange}
           />
+
+          <span id="errorMessageName" style={{ color: "red" }}></span>
           <br />
 
           <div class="d-flex justify-content-center">
@@ -275,6 +379,7 @@ export default class EditProfile extends Component {
               <i className="fa fa-refresh"></i>&nbsp;Update
             </button>{" "}
             &nbsp;&nbsp;
+            <ToastContainer />
             <button
               className="btn btn-danger"
               type="cancel"
