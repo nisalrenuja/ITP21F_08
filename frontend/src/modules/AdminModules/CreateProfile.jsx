@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./Review.css";
 import { ToastContainer, toast } from "react-toastify";
+import moment from "moment";
 import "react-toastify/dist/ReactToastify.css";
 
 export default class CreateProfile extends Component {
@@ -52,7 +53,7 @@ export default class CreateProfile extends Component {
     }
 
     if (name === "contact") {
-      if (value.match("^[0-9]{10}$")) {
+      if (value.match("^[0-9]{11}$")) {
         document.getElementById("errorMessageContact").innerHTML = "";
       } else {
         document.getElementById("errorMessageContact").innerHTML =
@@ -95,25 +96,29 @@ export default class CreateProfile extends Component {
       );
     } else if (exeno === "") {
       //document.getElementsByClassName('errorMessage').innerHTML = '';
-      document.getElementById("errorMessageExID").innerHTML = "hello";
+      document.getElementById("errorMessageExID").innerHTML =
+        "Enter Correct Executive ID";
     } else if (name === "") {
       //document.getElementsByClassName('errorMessage').innerHTML = '';
-      document.getElementById("errorMessageName").innerHTML = "hello";
+      document.getElementById("errorMessageName").innerHTML =
+        "Enter Correct Name";
     } else if (email === "") {
       //document.getElementsByClassName('errorMessage').innerHTML = '';
-      document.getElementById("errorMessageEmail").innerHTML = "hello";
+      document.getElementById("errorMessageEmail").innerHTML =
+        "Enter Correct Email";
     } else if (contact === "") {
       //document.getElementsByClassName('errorMessage').innerHTML = '';
-      document.getElementById("errorMessageContact").innerHTML = "hello";
-    } else if (position === "") {
+      document.getElementById("errorMessageContact").innerHTML =
+        "Enter Correct Contact Number";
+      //} //else if (position === "") {
       //document.getElementsByClassName('errorMessage').innerHTML = '';
-      document.getElementById("errorMessage").innerHTML = "hello";
-    } else if (gender === "") {
+      //document.getElementById("errorMessage").innerHTML = "hello";
+      //} //else if (gender === "") {
       //document.getElementsByClassName('errorMessage').innerHTML = '';
-      document.getElementById("errorMessage").innerHTML = "hello";
-    } else if (dob === "") {
+      // document.getElementById("errorMessage").innerHTML = "hello";
+      //} else if (dob === "") {
       //document.getElementsByClassName('errorMessage').innerHTML = '';
-      document.getElementById("errorMessage").innerHTML = "hello";
+      //  document.getElementById("errorMessage").innerHTML = "hello";
     } else {
       //document.getElementsByClassName('errorMessage').innerHTML = '';
       const data = {
@@ -204,14 +209,14 @@ export default class CreateProfile extends Component {
           <div className="orm-group col-sm-6" style={{ marginBottom: "15px" }}>
             <label style={{ marginBottom: "5px" }}>Position</label>
             <select
-              defaultValue={"DEFAULT"}
+              defaultValue={"Manager"}
               className="form-select"
               onChange={this.handleInputChange}
               name="position"
               required
             >
-              <option value="DEFAULT" disabled>
-                Select executive's position
+              <option value="Manager" disabled>
+                Manager
               </option>
               <option value="Manager">Manager</option>
               <option value="Director">Director</option>
@@ -259,15 +264,15 @@ export default class CreateProfile extends Component {
               </div>
               <label style={{ marginBottom: "5px" }}>Gender</label>
               <select
-                defaultValue={"DEFAULT"}
+                defaultValue={"Male"}
                 className="form-select"
                 aria-label="Default select example"
                 onChange={this.handleInputChange}
                 name="gender"
                 required
               >
-                <option value="DEFAULT" disabled>
-                  Select Gender
+                <option value="Male" disabled>
+                  Male
                 </option>
                 <option name="male">Male</option>
                 <option name="female">Female</option>
@@ -281,7 +286,7 @@ export default class CreateProfile extends Component {
             ></div>
           </div>
           <div>
-            <label style={{ marginBottom: "5px" }}>Date of Birth</label>
+            {/* <label style={{ marginBottom: "5px" }}>Date of Birth</label>
             <input
               type="date"
               className="form-control"
@@ -290,7 +295,17 @@ export default class CreateProfile extends Component {
               value={this.state.dob}
               onChange={this.handleInputChange}
               required
+            /> */}
+            <label>Date of Birth</label>
+            <input
+              type="date"
+              className="form-control"
+              placeholder="Date of Birth"
+              name="dob"
+              onChange={this.handleInputChange}
+              max={moment().format("YYYY-MM-DD")}
             />
+
             <span id="errorMessageName" style={{ color: "red" }}></span>
           </div>
 
