@@ -6,32 +6,63 @@ import { Redirect } from "react-router";
 export default class TopPerformers extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      month: "",
       year: "",
-      rank: "",
-      top_empid: "",
-      top_empname: "",
-      designation: "",
-      total_points: "",
-      //TopPerformers[],
-      redirectToReferrer: false
+      month: "",
+      rank1: "",
+      top_empid1: "",
+      top_empname1: "",
+      total_points1: "",
+      rank2: "",
+      top_empid2: "",
+      top_empname2: "",
+      total_points2: "",
+      rank3: "",
+      top_empid3: "",
+      top_empname3: "",
+      total_points3: "",
+      empno: "",
+      points: "",
+      existingTopPerformers: [],
+      existingPoints: []
     };
   }
+
+  onDelete = id => {
+    console.log(id);
+    axios
+      .delete(`http://localhost:5000/TopPerformers/delete/${id}`)
+      .then(res => {
+        alert("Deleted Succesfully");
+        this.retrieveexistingTopPerformers();
+      });
+  };
+
   componentDidMount() {
-    this.retrievePosts();
+    this.retrieveexistingTopPerformers();
+    this.retrieveexistingPoints();
   }
-  retrievePosts() {
-    axios.get("http://localhost:5000/staff/ass").then(res => {
+  retrieveexistingPoints() {
+    axios.get("http://localhost:5000/TopPerformers").then(res => {
       if (res.data.success) {
         this.setState({
-          staff: res.data.staff
+          existingPoints: res.data.existingPoints
         });
-        console.log(this.state.staff);
+        console.log(this.state.existingPoints);
       }
     });
   }
+  retrieveexistingTopPerformers() {
+    axios.get("http://localhost:5000/TopPerformers").then(res => {
+      if (res.data.success) {
+        this.setState({
+          existingTopPerformers: res.data.existingTopPerformers
+        });
+        console.log(this.state.existingTopPerformers);
+      }
+    });
+  }
+
   handleInputChange = e => {
     const { name, value } = e.target;
     this.setState({
@@ -39,76 +70,87 @@ export default class TopPerformers extends Component {
       [name]: value
     });
   };
-  onCheck = name => {
-    console.log(name);
-    axios.get(`http://localhost:5000/checkassigned/${name}`).then(res => {
-      if (res.data.success) {
-        alert("Assigned to " + res.data.l + " assignment/s!");
-      }
-    });
-  };
+
   onSubmit = e => {
     e.preventDefault();
 
     const {
-      month,
       year,
-      rank,
-      top_empid,
-      top_empname,
-      designation,
-      total_points
+      month,
+
+      top_empname1,
+
+      top_empname2,
+
+      top_empname3
     } = this.state;
 
     const data = {
-      month: month,
       year: year,
-      rank: rank,
-      top_empid: top_empid,
-      top_empname: top_empname,
-      designation: designation,
-      total_points: total_points
+      month: month,
+      rank1: 1,
+      top_empid1: this.state.existingPoints[0].empno,
+      top_empname1: top_empname1,
+      total_points1: this.state.existingPoints[0].points,
+      rank2: 1,
+      top_empid2: this.state.existingPoints[1].empno,
+      top_empname2: top_empname2,
+      total_points2: this.state.existingPoints[1].points,
+      rank3: 1,
+      top_empid3: this.state.existingPoints[2].empno,
+      top_empname3: top_empname3,
+      total_points3: this.state.existingPoints[2].points
     };
 
     console.log(data);
-    axios.post("http://localhost:5000/assignments/save/", data).then(res => {
+    axios.post("http://localhost:5000/TopPerformers/save/", data).then(res => {
       if (res.data.success) {
         this.setState({
-          month: month,
           year: year,
-          rank: rank,
-          top_empid: top_empid,
-          top_empname: top_empname,
-          designation: designation,
-          total_points: total_points,
+          month: month,
+          rank1: 1,
+          top_empid1: this.state.existingPoints[0].empno,
+          top_empname1: top_empname1,
+          total_points1: this.state.existingPoints[0].points,
+          rank2: 1,
+          top_empid2: this.state.existingPoints[1].empno,
+          top_empname2: top_empname2,
+          total_points2: this.state.existingPoints[1].points,
+          rank3: 1,
+          top_empid3: this.state.existingPoints[2].empno,
+          top_empname3: top_empname3,
+          total_points3: this.state.existingPoints[2].points,
           redirectToReferrer: true
         });
-        // alert("Employee added to assignment, Enter employee numbers to add more employees!");
+        //alert("Employee added to assignment, Enter employee number");
       }
     });
   };
+
   render() {
     const redirectToReferrer = this.state.redirectToReferrer;
     if (redirectToReferrer == true) {
-      return <Redirect to="/Notices" />;
+      return <Redirect to="/AdminTab5" />;
     }
     return (
       <div className="container">
-        <div class="senamain3">
-          <h1 class="senahead1c">Top Performers</h1>
-          <hr class="senaline1c"></hr>
-          <div class="senamain33">
-            <a href="">
-              <button class="tsendiv4">
-                <p class="sentxt4">Calculate Top Performers</p>
-              </button>
-            </a>
+        <div class="senmain">
+          <h2 class="senhead1">Notice Management | Top Performers</h2>
+          <hr class="senline1"></hr>
+          <a href="">
+            <button class="sendiv4">
+              <p class="sentxt4">Retrieve</p>
+            </button>
+          </a>
+
+          <div>
+            <h2 class="sentahss">Current Top Performers</h2>
 
             <form>
-              <p class="tsenaic">Year:</p>
+              <p class="ketchup">Year:</p>
               <input
                 type="number"
-                class="tsenaicc"
+                class="sauce"
                 id="year"
                 name="year"
                 value={this.state.year}
@@ -116,10 +158,10 @@ export default class TopPerformers extends Component {
               />
 
               <div className="form-group" style={{ marginBottom: "15px" }}>
-                <p class="ttsenaic">Month:</p>
+                <p class="berry">Month:</p>
                 <select
                   defaultValue={"DEFAULT"}
-                  class="ttsenaicc"
+                  class="cherry"
                   aria-label="Default select example"
                   name="month"
                   onChange={this.handleInputChange}
@@ -140,193 +182,37 @@ export default class TopPerformers extends Component {
                 </select>
               </div>
             </form>
-            <hr class="tsenaline1c"></hr>
-            <form>
-              <p class="rank1">RANK:</p>
-              <select
-                defaultValue={"DEFAULT"}
-                class="rank1val"
-                aria-label="Default select example"
-                name="rank"
-                onChange={this.handleInputChange}
-              >
-                <option value="DEFAULT" disabled></option>
-                <option value="01">01</option>
-              </select>
 
-              <p class="rank1id">Emp ID:</p>
-              <input
-                type="text"
-                class="rank1idval"
-                id="top_empid"
-                name="top_empid"
-                value={this.state.top_empid}
-                onChange={this.handleInputChange}
-              />
+            <table className="table table-hover sentable1">
+              <thead class="senthead">
+                <tr>
+                  <th scope="col">Rank</th>
+                  <th scope="col">Emp ID</th>
 
-              <p class="rank1points">Total Points:</p>
-              <input
-                type="number"
-                class="rank1pointsval"
-                id="total_points"
-                name="total_points"
-                value={this.state.total_points}
-                onChange={this.handleInputChange}
-              />
+                  <th scope="col">Total Points</th>
+                </tr>
+              </thead>
+              <tbody class="sentbody99">
+                {this.state.existingPoints.map((existingPoints, index) => (
+                  <tr key={index}>
+                    <td>
+                      <p>01</p>
+                    </td>
+                    <td>{existingPoints.empno}</td>
 
-              <p class="rank1name">Emp Name:</p>
-              <input
-                type="text"
-                class="rank1nameval"
-                id="top_empname"
-                name="top_empname"
-                value={this.state.top_empname}
-                onChange={this.handleInputChange}
-              />
-
-              <p class="rank1des">Designation:</p>
-              <input
-                type="text"
-                class="rank1desval"
-                id="designation"
-                name="designation"
-                value={this.state.designation}
-                onChange={this.handleInputChange}
-              />
-
-              <hr class="rank1divider"></hr>
-
-              <p class="rank2">RANK:</p>
-              <select
-                defaultValue={"DEFAULT"}
-                class="rank2val"
-                aria-label="Default select example"
-                name="rank"
-                onChange={this.handleInputChange}
-              >
-                <option value="DEFAULT" disabled></option>
-                <option value="01">01</option>
-                <option value="02">02</option>
-              </select>
-
-              <p class="rank2id">Emp ID:</p>
-              <input
-                type="text"
-                class="rank2idval"
-                id="top_empid"
-                name="top_empid"
-                value={this.state.top_empid}
-                onChange={this.handleInputChange}
-              />
-
-              <p class="rank2points">Total Points:</p>
-              <input
-                type="number"
-                class="rank2pointsval"
-                id="total_points"
-                name="total_points"
-                value={this.state.total_points}
-                onChange={this.handleInputChange}
-              />
-
-              <p class="rank2name">Emp Name:</p>
-              <input
-                type="text"
-                class="rank2nameval"
-                id="top_empname"
-                name="top_empname"
-                value={this.state.top_empname}
-                onChange={this.handleInputChange}
-              />
-
-              <p class="rank2des">Designation:</p>
-              <input
-                type="text"
-                class="rank2desval"
-                id="designation"
-                name="designation"
-                value={this.state.designation}
-                onChange={this.handleInputChange}
-              />
-
-              <hr class="rank2divider"></hr>
-
-              <p class="rank3">RANK:</p>
-              <select
-                defaultValue={"DEFAULT"}
-                class="rank3val"
-                aria-label="Default select example"
-                name="rank"
-                onChange={this.handleInputChange}
-              >
-                <option value="DEFAULT" disabled></option>
-                <option value="01">01</option>
-                <option value="02">02</option>
-                <option value="03">03</option>
-              </select>
-
-              <p class="rank3id">Emp ID:</p>
-              <input
-                type="text"
-                class="rank3idval"
-                id="top_empid"
-                name="top_empid"
-                value={this.state.top_empid}
-                onChange={this.handleInputChange}
-              />
-
-              <p class="rank3points">Total Points:</p>
-              <input
-                type="number"
-                class="rank3pointsval"
-                id="total_points"
-                name="total_points"
-                value={this.state.total_points}
-                onChange={this.handleInputChange}
-              />
-
-              <p class="rank3name">Emp Name:</p>
-              <input
-                type="text"
-                class="rank3nameval"
-                id="top_empname"
-                name="top_empname"
-                value={this.state.top_empname}
-                onChange={this.handleInputChange}
-              />
-
-              <p class="rank3des">Designation:</p>
-              <input
-                type="text"
-                class="rank3desval"
-                id="designation"
-                name="designation"
-                value={this.state.designation}
-                onChange={this.handleInputChange}
-              />
-
-              <center>
-                <div class="senara1">
-                  <button
-                    className="btn btn-success"
-                    type="submit"
-                    style={{ marginTop: "795px", width: "20%" }}
-                    onClick={this.onSubmit}
-                  >
-                    <i class="senara2" className="fas fa-save"></i>&nbsp;Save
-                  </button>
-                </div>
-                <a href="/admin">
-                  <button
-                    className="btn btn-secondary"
-                    type="submit"
-                    style={{ marginTop: "795px", width: "20%" }}
-                  >
-                    Cancel
-                  </button>
-                </a>
-              </center>
-            </form>
+                    <td>{existingPoints.points}</td>
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot class="tfoot"></tfoot>
+            </table>
+          </div>
+          <div>
+            <a href="">
+              <button class="amandi" type="submit" onClick={this.onSubmit}>
+                <p class="banana">Accepted</p>
+              </button>
+            </a>
           </div>
         </div>
       </div>
