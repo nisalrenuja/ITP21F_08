@@ -45,14 +45,60 @@ export default class CreateNotice extends Component {
     console.log(file);
   };
 
-  onCheck = name => {
-    console.log(name);
-    axios.get(`http://localhost:5000/checkassigned/${name}`).then(res => {
-      if (res.data.success) {
-        alert("Assigned to " + res.data.l + " assignment/s!");
-      }
-    });
+  validate = () => {
+    let noticeidError = "";
+    let empidError = "";
+    let empnameError = "";
+    let noticetopicError = "";
+    let noticecontentError = "";
+    let pubdateError = "";
+
+    if (!this.state.notice_id) {
+      noticeidError = "Notice ID required";
+    }
+
+    if (!this.state.emp_id) {
+      empidError = "Enter your Employee ID";
+    }
+
+    if (!this.state.emp_name) {
+      empnameError = "Enter Employee Name";
+    }
+
+    if (!this.state.notice_topic) {
+      noticetopicError = "Please enter a Notice Topic";
+    }
+
+    if (!this.state.notice_content) {
+      noticecontentError = "Please enter Notice Content";
+    }
+
+    if (!this.state.published_date) {
+      pubdateError = "Enter the Date";
+    }
+
+    if (
+      noticeidError ||
+      empidError ||
+      empnameError ||
+      noticetopicError ||
+      noticecontentError ||
+      pubdateError
+    ) {
+      this.setState({
+        noticeidError,
+        empidError,
+        empnameError,
+        noticetopicError,
+        noticecontentError,
+        pubdateError
+      });
+      alert("Please fill the required fields!");
+      return false;
+    }
+    return true;
   };
+
   onSubmit = e => {
     e.preventDefault();
 
@@ -78,21 +124,24 @@ export default class CreateNotice extends Component {
     };
 
     console.log(data);
-    axios.post("http://localhost:5000/CreateNotice/save/", data).then(res => {
-      if (res.data.success) {
-        this.setState({
-          notice_id: notice_id,
-          emp_id: emp_id,
-          emp_name: emp_name,
-          notice_topic: notice_topic,
-          notice_content: notice_content,
-          notice_attachments: notice_attachments,
-          published_date: published_date,
-          redirectToReferrer: true
-        });
-        //alert("Employee added to assignment, Enter employee number");
-      }
-    });
+    const isValid = this.validate();
+    if (isValid) {
+      axios.post("http://localhost:5000/CreateNotice/save/", data).then(res => {
+        if (res.data.success) {
+          this.setState({
+            notice_id: notice_id,
+            emp_id: emp_id,
+            emp_name: emp_name,
+            notice_topic: notice_topic,
+            notice_content: notice_content,
+            notice_attachments: notice_attachments,
+            published_date: published_date,
+            redirectToReferrer: true
+          });
+          //alert("Employee added to assignment, Enter employee number");
+        }
+      });
+    }
   };
 
   uploadPDF(e) {

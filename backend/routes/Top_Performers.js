@@ -1,6 +1,7 @@
 const express = require('express');
 const TopPerformers = require('../models/Top_Performers');
 const Points = require('../models/points')
+const employees = require('../models/employees')
 
 const router = express.Router();
 
@@ -18,7 +19,22 @@ router.get('/TopPerformers',(req,res) =>{
         });
     });
 });
-
+/*
+//Get Employee names matching the Emp IDs
+router.get('/TopPerformers',(req,res) =>{
+    employees.find({_id: {$in: empno}}).exec((err, existingNames) =>{
+    if(err){
+        return res.status(400).json({
+            error:err
+        });
+    }
+    return res.status(200).json({
+        success:true,
+        existingNames: existingNames
+    });    
+    });
+});
+*/
 //save Top Performers
 router.post("/TopPerformers/save", (req, res) => {
 

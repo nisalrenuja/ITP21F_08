@@ -22,10 +22,7 @@ const top_Performers_Schema = new mongoose.Schema({
       type: String,
       required: false
     },
-    top_empname1:{
-      type: String,
-      required: false
-    },
+    
     total_points1:{
       type: Number,
       required: false 
@@ -38,10 +35,7 @@ const top_Performers_Schema = new mongoose.Schema({
       type: String,
       required: false
     },
-    top_empname2:{
-      type: String,
-      required: false
-    },
+    
     total_points2:{
       type: Number,
       required: false 
@@ -54,10 +48,7 @@ const top_Performers_Schema = new mongoose.Schema({
       type: String,
       required: false
     },
-    top_empname3:{
-      type: String,
-      required: false
-    },
+    
     total_points3:{
       type: Number,
       required: false 
