@@ -16,6 +16,7 @@ export default class UpdateReport extends Component {
       points: "",
       feedback: "",
       date_and_time_upload: "",
+      approved_user: "",
       status: "",
       uploadPercentage: 0,
       fileVal: "",
@@ -40,7 +41,7 @@ export default class UpdateReport extends Component {
     console.log(file);
   };
 
-  onSubmitanu = e => {
+  onSubmitupdate = e => {
     e.preventDefault();
 
     const {
@@ -50,6 +51,7 @@ export default class UpdateReport extends Component {
       points,
       feedback,
       date_and_time_upload,
+      approved_user,
       status
     } = this.state;
 
@@ -60,6 +62,7 @@ export default class UpdateReport extends Component {
       points: points,
       feedback: feedback,
       date_and_time_upload: date_and_time_upload,
+      approved_user: approved_user,
       status: status
     };
 
@@ -78,6 +81,7 @@ export default class UpdateReport extends Component {
             points: "",
             feedback: "",
             date_and_time_upload: "",
+            approved_user: "",
             status: ""
           });
           alert("Report Updated Successfully");
@@ -103,6 +107,7 @@ export default class UpdateReport extends Component {
           points: res.data.finalreport.points,
           feedback: res.data.finalreport.feedback,
           date_and_time_upload: res.data.finalreport.date_and_time_upload,
+          approved_user: res.data.approved_user,
           status: res.data.finalreport.status,
 
           UpdateReport2: res.data.finalreport2
@@ -156,138 +161,141 @@ export default class UpdateReport extends Component {
         <h1 className="h3 mb-3 font-weight-normal">
           Report Management | Update Report Details
         </h1>
-        <form className="need-validation" noValidate>
-          <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Review ID</label>
-            <input
-              type="text"
-              className="form-control"
-              name="execid_review"
-              placeholder="Edit Review Id"
-              value={this.state.execid_review}
-            />
-          </div>
-
-          <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Report Name</label>
-            <input
-              id="report"
-              type="text"
-              className="form-control"
-              name="report"
-              placeholder="Edit Report Name"
-              value={this.state.report}
-              onChange={this.handleInputChange}
-            />
-          </div>
-
-          <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>
-              Upload Your Report PDF
-            </label>
-
-            <input
-              type="file"
-              id="file"
-              className="form-control"
-              name="reportPDF"
-              // value={this.state.reportPDF}
-              onChange={e => {
-                this.uploadPDF(e);
-              }}
-              multiple=""
-            />
-            <div className="row d-flex justify-content-end mt-3">
-              <a
-                href={this.state.reportPDF}
-                className="btn btn-primary col-2 me-2"
-              >
-                View PDF
-              </a>
+        <div class="anuupdateform2">
+          <form className="need-validation" noValidate>
+            <div className="form-group" style={{ marginBottom: "15px" }}>
+              <label style={{ marginBottom: "5px" }}>Review ID</label>
+              <input
+                type="text"
+                className="form-control"
+                name="execid_review"
+                placeholder="Edit Review Id"
+                value={this.state.execid_review}
+              />
             </div>
-          </div>
 
-          <div className="mt-3"></div>
-
-          <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Report Points</label>
-            <select
-              defaultValue={"DEFAULT"}
-              className="form-select"
-              aria-label="Default select example"
-              name="points"
-              onChange={this.handleInputChange}
-            >
-              <option value="DEFAULT" disabled></option>
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
-            </select>
-          </div>
-
-          <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Feedback</label>
-            <input
-              type="text"
-              className="form-control"
-              name="feedback"
-              placeholder="Edit Feedback"
-              value={this.state.feedback}
-              onChange={this.handleInputChange}
-            />
-          </div>
-
-          <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Published Date</label>
-            <input
-              type="date"
-              className="form-control"
-              id="date_and_time_upload"
-              name="date_and_time_upload"
-              placeholder="Enter Published Date "
-              value={this.state.date_and_time_upload}
-              onChange={this.handleInputChange}
-            />
-          </div>
-
-          <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Report Status</label>
-            <select
-              defaultValue={"DEFAULT"}
-              className="form-select"
-              aria-label="Default select example"
-              name="status"
-              onChange={this.handleInputChange}
-            >
-              <option value="DEFAULT" disabled></option>
-              <option value="Pending">Pending</option>
-              <option value="Rejected">Rejected</option>
-              <option value="Accepted">Accepted</option>
-            </select>
-          </div>
-
-          <center>
-            <div class="cookie">
-              <button
-                className="btn btn-warning"
-                type="submit"
-                style={{ marginTop: "725px" }}
-                onClick={this.onSubmit}
-              >
-                <a href="/AdminTab2"></a>
-                <i className="fa fa-refresh"></i>&nbsp;Update
-              </button>{" "}
-              &nbsp;&nbsp;
-              <button
-                className="btn btn-danger"
-                type="cancel"
-                style={{ marginTop: "725px" }}
-              >
-                Cancel
-              </button>
+            <div className="form-group" style={{ marginBottom: "15px" }}>
+              <label style={{ marginBottom: "5px" }}>Report Name</label>
+              <input
+                id="report"
+                type="text"
+                className="form-control"
+                name="report"
+                placeholder="Edit Report Name"
+                value={this.state.report}
+                onChange={this.handleInputChange}
+              />
             </div>
-          </center>
-        </form>
+
+            <div className="form-group" style={{ marginBottom: "15px" }}>
+              <label style={{ marginBottom: "5px" }}>
+                Upload Your Report PDF
+              </label>
+
+              <input
+                type="file"
+                id="file"
+                className="form-control"
+                name="reportPDF"
+                // value={this.state.reportPDF}
+                onChange={e => {
+                  this.uploadPDF(e);
+                }}
+                multiple=""
+              />
+              <div className="row d-flex justify-content-end mt-3">
+                <a
+                  href={this.state.reportPDF}
+                  className="btn btn-primary col-2 me-2"
+                >
+                  View PDF
+                </a>
+              </div>
+            </div>
+
+            <div className="mt-3"></div>
+
+            <div className="form-group" style={{ marginBottom: "15px" }}>
+              <label style={{ marginBottom: "5px" }}>Report Points</label>
+              <select
+                defaultValue={"DEFAULT"}
+                className="form-select"
+                aria-label="Default select example"
+                name="points"
+                value={this.state.points}
+                onChange={this.handleInputChange}
+              >
+                <option value="DEFAULT" disabled></option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+              </select>
+            </div>
+
+            <div className="form-group" style={{ marginBottom: "15px" }}>
+              <label style={{ marginBottom: "5px" }}>Feedback</label>
+              <input
+                type="text"
+                className="form-control"
+                name="feedback"
+                placeholder="Edit Feedback"
+                value={this.state.feedback}
+                onChange={this.handleInputChange}
+              />
+            </div>
+
+            <div className="form-group" style={{ marginBottom: "15px" }}>
+              <label style={{ marginBottom: "5px" }}>Published Date</label>
+              <input
+                type="date"
+                className="form-control"
+                id="date_and_time_upload"
+                name="date_and_time_upload"
+                placeholder="Enter Published Date "
+                value={this.state.date_and_time_upload}
+                onChange={this.handleInputChange}
+              />
+            </div>
+
+            <div className="form-group" style={{ marginBottom: "15px" }}>
+              <label style={{ marginBottom: "5px" }}>Approved User</label>
+              <input
+                type="text"
+                className="form-control"
+                id="approved_user"
+                name="approved_user"
+                placeholder="Enter Approved User "
+                value={this.state.approved_user}
+                onChange={this.handleInputChange}
+              />
+            </div>
+
+            <div className="form-group" style={{ marginBottom: "15px" }}>
+              <label style={{ marginBottom: "5px" }}>Report Status</label>
+              <select
+                defaultValue={"DEFAULT"}
+                className="form-select"
+                aria-label="Default select example"
+                name="status"
+                value={this.state.status}
+                onChange={this.handleInputChange}
+              >
+                <option value="DEFAULT" disabled></option>
+                <option value="Pending">Pending</option>
+                <option value="Rejected">Rejected</option>
+                <option value="Accepted">Accepted</option>
+              </select>
+            </div>
+
+            <button
+              className="btn btn-warning"
+              type="submit"
+              onClick={this.onSubmitupdate}
+            >
+              Update
+            </button>
+          </form>
+        </div>
       </div>
     );
   }
