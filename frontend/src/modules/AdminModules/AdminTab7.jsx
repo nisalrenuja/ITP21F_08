@@ -159,7 +159,7 @@ export default class AdminTab7 extends Component {
           </div>
           <div>
             <button class="btn btn-primary" onClick={() => this.printData()}>
-              PRINT
+              <i class="fa fa-print" aria-hidden="true"></i>&nbsp; PRINT
             </button>
             <p>
               Click above button opens print preview with Laptop Inventory
