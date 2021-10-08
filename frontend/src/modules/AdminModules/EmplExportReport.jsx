@@ -6,6 +6,7 @@ import "./EmpExportReport.css";
 export default class WorkReport extends Component {
   constructor(props) {
     super(props);
+    //set the initial states
     this.state = {
       assignments: [],
       ncompleted: [],
@@ -26,10 +27,15 @@ export default class WorkReport extends Component {
       traineeF: ""
     };
   }
+
+  //Load the employee data
   componentDidMount() {
     this.retrievePosts();
   }
+
+  //Retrieve all the employee data for charts and tables
   retrievePosts() {
+    //Get all the employee details in type "Audit"
     axios.get("http://localhost:5000/employees/audit").then(res => {
       if (res.data.success) {
         this.setState({
@@ -39,6 +45,8 @@ export default class WorkReport extends Component {
         });
       }
     });
+
+    //Get all the employee details in type "Tax"
     axios.get("http://localhost:5000/employees/tax").then(res => {
       if (res.data.success) {
         this.setState({
@@ -49,6 +57,7 @@ export default class WorkReport extends Component {
       }
     });
 
+    //Get the data for PieChart1 for Seniors and Trainees
     axios.get("http://localhost:5000/employees/division").then(res => {
       if (res.data.success) {
         this.setState({
@@ -57,6 +66,8 @@ export default class WorkReport extends Component {
         });
       }
     });
+
+    //Get the data for PieChart2 for Province
     axios.get("http://localhost:5000/employees/province").then(res => {
       if (res.data.success) {
         this.setState({
@@ -64,6 +75,8 @@ export default class WorkReport extends Component {
         });
       }
     });
+
+    //Get the data for BarChar for Seniors based on gender
     axios.get("http://localhost:5000/employees/senior").then(res => {
       if (res.data.success) {
         this.setState({
@@ -72,6 +85,8 @@ export default class WorkReport extends Component {
         });
       }
     });
+
+    //Get the data for BarChar for Trainees based on gender
     axios.get("http://localhost:5000/employees/trainee").then(res => {
       if (res.data.success) {
         this.setState({
@@ -81,6 +96,8 @@ export default class WorkReport extends Component {
       }
     });
   }
+
+  //Generate PDF of loaded details
   generatePDF = () => {
     var content = document.getElementById("reportContent");
     var pri = document.getElementById("ifmcontentstoprint").contentWindow;
