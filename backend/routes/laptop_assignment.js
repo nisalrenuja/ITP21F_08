@@ -1,5 +1,6 @@
 const express = require("express");
 const laptop_assignment = require("../models/laptop_assignment");
+const assignment_assignedtostaff = require("../models/assignment_assignedtostaff");
 const laptop = require("../models/laptop");
 const router = express.Router();
 
@@ -18,12 +19,19 @@ router.post("/lapassignments/save/", (req, res) => {
 });
 //get post
 router.get("/laps/ass", (req, res) => {
-  laptop.find({ $and: [{ status: { $ne: "Repairing" } }, { status: { $ne: "Discarded" } }] }).exec((err, laps) => {
-    return res.status(200).json({
-      success: true,
-      laps: laps,
+  laptop
+    .find({
+      $and: [
+        { status: { $ne: "Repairing" } },
+        { status: { $ne: "Discarded" } },
+      ],
+    })
+    .exec((err, laps) => {
+      return res.status(200).json({
+        success: true,
+        laps: laps,
+      });
     });
-  });
 });
 router.get("/laps/check/:id", (req, res) => {
   let lapid = req.params.id;
@@ -47,10 +55,22 @@ router.get("/checklapassigned/:id", (req, res) => {
       });
     });
 });
+router.get("/checkassignmentlap/:id", (req, res) => {
+  let assid = req.params.id;
+  assignment_assignedtostaff
+    .find({ assignment_name: assid })
+    .exec((err, check) => {
+      var l = check.length;
+      return res.status(200).json({
+        success: true,
+        check: check,
+        l: l,
+      });
+    });
+});
 router.get("/lapsassigned/", (req, res) => {
-  
   laptop_assignment
-    .find( { status: { $ne: "Completed" } } )
+    .find({ status: { $ne: "Completed" } })
     .exec((err, check) => {
       var l = check.length;
       return res.status(200).json({
@@ -61,17 +81,14 @@ router.get("/lapsassigned/", (req, res) => {
     });
 });
 router.get("/lapscomp/", (req, res) => {
-  
-  laptop_assignment
-    .find( { status: "Completed" } )
-    .exec((err, check) => {
-      var l = check.length;
-      return res.status(200).json({
-        success: true,
-        check: check,
-        l: l,
-      });
+  laptop_assignment.find({ status: "Completed" }).exec((err, check) => {
+    var l = check.length;
+    return res.status(200).json({
+      success: true,
+      check: check,
+      l: l,
     });
+  });
 });
 
 router.get("/lapassignments/dis", (req, res) => {
@@ -109,14 +126,12 @@ router.get("/lapassignment/:id", (req, res) => {
     .limit(1)
     .sort({ $natural: -1 })
     .exec((err, lapass) => {
-          return res.status(200).json({
-            success: true,
-            lapass: lapass,
-           
-          });
-        });
+      return res.status(200).json({
+        success: true,
+        lapass: lapass,
+      });
     });
-
+});
 
 router.put("/lapassignments/update/:name", (req, res) => {
   let name = req.params.name;
