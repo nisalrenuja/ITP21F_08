@@ -80,7 +80,7 @@ router.post('TopPerformers/save', (req,res)=>{
 */
 //Get Top Performers
 
-router.get('/TopPerformers', (req,res)=>{
+router.get('/TopPerformersTable', (req,res)=>{
     TopPerformers.find().exec((err, existingTopPerformers) =>{
         if(err){
             return res.status(400).json({

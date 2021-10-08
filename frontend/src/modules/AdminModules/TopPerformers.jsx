@@ -11,24 +11,21 @@ export default class TopPerformers extends Component {
       month: "",
       rank1: "",
       top_empid1: "",
-
       total_points1: "",
       rank2: "",
       top_empid2: "",
-
       total_points2: "",
       rank3: "",
       top_empid3: "",
-
       total_points3: "",
       empno: "",
       points: "",
       existingTopPerformers: [],
       existingPoints: []
-      //existingNames: []
     };
   }
 
+  //Delete finction for Top Performers
   onDelete = id => {
     console.log(id);
     axios
@@ -39,10 +36,13 @@ export default class TopPerformers extends Component {
       });
   };
 
+  //Retrieving Top Performers
   componentDidMount() {
     this.retrieveexistingTopPerformers();
     this.retrieveexistingPoints();
   }
+
+  //Retrieving Employee Points
   retrieveexistingPoints() {
     axios.get("http://localhost:5000/TopPerformers").then(res => {
       if (res.data.success) {
@@ -53,8 +53,10 @@ export default class TopPerformers extends Component {
       }
     });
   }
+
+  //Reteiving new top performers
   retrieveexistingTopPerformers() {
-    axios.get("http://localhost:5000/TopPerformers").then(res => {
+    axios.get("http://localhost:5000/TopPerformersTable").then(res => {
       if (res.data.success) {
         this.setState({
           existingTopPerformers: res.data.existingTopPerformers
@@ -64,6 +66,7 @@ export default class TopPerformers extends Component {
     });
   }
 
+  //insert function
   handleInputChange = e => {
     const { name, value } = e.target;
     this.setState({
@@ -72,34 +75,23 @@ export default class TopPerformers extends Component {
     });
   };
 
+  //Save function for Accepted button
   onSubmit = e => {
     e.preventDefault();
 
-    const {
-      year,
-      month
-
-      //top_empname1,
-
-      //top_empname2,
-
-      //top_empname3
-    } = this.state;
+    const { year, month } = this.state;
 
     const data = {
       year: year,
       month: month,
       rank1: 1,
       top_empid1: this.state.existingPoints[0].empno,
-      //top_empname1: top_empname1,
       total_points1: this.state.existingPoints[0].points,
       rank2: 1,
       top_empid2: this.state.existingPoints[1].empno,
-      //top_empname2: top_empname2,
       total_points2: this.state.existingPoints[1].points,
       rank3: 1,
       top_empid3: this.state.existingPoints[2].empno,
-      //top_empname3: top_empname3,
       total_points3: this.state.existingPoints[2].points
     };
 
@@ -111,26 +103,23 @@ export default class TopPerformers extends Component {
           month: month,
           rank1: 1,
           top_empid1: this.state.existingPoints[0].empno,
-          //top_empname1: top_empname1,
           total_points1: this.state.existingPoints[0].points,
           rank2: 1,
           top_empid2: this.state.existingPoints[1].empno,
-          //top_empname2: top_empname2,
           total_points2: this.state.existingPoints[1].points,
           rank3: 1,
           top_empid3: this.state.existingPoints[2].empno,
-          //top_empname3: top_empname3,
           total_points3: this.state.existingPoints[2].points,
           redirectToReferrer: true
         });
-        //alert("Employee added to assignment, Enter employee number");
+        alert("New Top Performers for the Month added successfully!");
       }
     });
   };
 
   render() {
     const redirectToReferrer = this.state.redirectToReferrer;
-    if (redirectToReferrer == true) {
+    if (redirectToReferrer == false) {
       return <Redirect to="/AdminTab5" />;
     }
     return (
@@ -216,6 +205,59 @@ export default class TopPerformers extends Component {
             </a>
           </div>
           <br></br>
+          <br></br>
+
+          <div>
+            <table className="table table-hover sentable2">
+              <thead class="senthead">
+                <tr>
+                  <th scope="col">Year</th>
+                  <th scope="col">Month</th>
+                  <th scope="col">Rank 1</th>
+                  <th scope="col">Rank 2</th>
+                  <th scope="col">Rank 3</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="sentbody1">
+                {this.state.existingTopPerformers.map(
+                  (existingTopPerformers, index) => (
+                    <tr key={index}>
+                      <td>{existingTopPerformers.year}</td>
+                      <td>
+                        <a
+                          href={`/AllTopPerformers/${existingTopPerformers._id}`}
+                          style={{ textDecoration: "none" }}
+                        >
+                          {existingTopPerformers.month}
+                        </a>
+                      </td>
+                      <td>{existingTopPerformers.top_empid1}</td>
+
+                      <td>{existingTopPerformers.top_empid2}</td>
+                      <td>{existingTopPerformers.top_empid3}</td>
+
+                      <td>
+                        <a href={existingTopPerformers._id} class="icon-btns">
+                          <i class="fas fa-eye"></i>&nbsp;&nbsp;&nbsp;
+                        </a>
+                        &nbsp;
+                        <a
+                          href="#"
+                          onClick={() =>
+                            this.onDelete(existingTopPerformers._id)
+                          }
+                        >
+                          <i className="far fa-trash-alt"></i>&nbsp;
+                        </a>
+                      </td>
+                    </tr>
+                  )
+                )}
+              </tbody>
+              <tfoot class="tfoot"></tfoot>
+            </table>
+          </div>
         </div>
       </div>
     );
