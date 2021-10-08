@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./CreateLaptop.css";
 
-//createlaptop inventory
 export default class EditLaptopRepair extends Component {
   constructor(props) {
     super(props);
@@ -87,6 +86,7 @@ export default class EditLaptopRepair extends Component {
             <label style={{ marginBottom: "5px" }}>Laptop ID</label>
             <input
               type="text"
+              disabled
               className="form-control"
               name="id"
               placeholder="Enter Laptop ID"
