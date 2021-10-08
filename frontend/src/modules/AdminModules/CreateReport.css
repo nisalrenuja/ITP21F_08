@@ -11,7 +11,7 @@ backdrop-filter: blur(4px);
 
 .anumainform {
     width: 100%;
-    height: 1000px;
+    height: 900px;
     white-space: nowrap;
     position: relative;
     overflow-y: scroll;

@@ -32,6 +32,60 @@ export default class CreateReport extends Component {
     });
   };
 
+  validate = () => {
+    let execidError = "";
+    let pointsError = "";
+    let feedbackError = "";
+    let dateError = "";
+    let approveduserError = "";
+    let statusError = "";
+
+    if (!this.state.execid_review) {
+      execidError = "**Executive ID field empty";
+    }
+
+    if (!this.state.points) {
+      pointsError = "**Points field empty";
+    }
+
+    if (!this.state.feedback) {
+      feedbackError = "**Feedback field empty";
+    }
+
+    if (!this.state.date_and_time_upload) {
+      dateError = "**Date field empty";
+    }
+
+    if (!this.state.approved_user) {
+      approveduserError = "**Approved User field empty";
+    }
+
+    if (!this.state.status) {
+      statusError = "**Status field empty";
+    }
+
+    if (
+      execidError ||
+      pointsError ||
+      feedbackError ||
+      dateError ||
+      approveduserError ||
+      statusError
+    ) {
+      this.setState({
+        execidError,
+        pointsError,
+        feedbackError,
+        dateError,
+        approveduserError,
+        statusError
+      });
+      alert("Hello Admin! Please fill the fields.");
+      return false;
+    }
+    return true;
+  };
+
   onSubmitanu = e => {
     e.preventDefault();
 
@@ -58,22 +112,25 @@ export default class CreateReport extends Component {
     };
 
     console.log(data);
-    axios.post("http://localhost:5000/final_report/save/", data).then(res => {
-      if (res.data.success) {
-        this.setState({
-          execid_review: execid_review,
-          report: report,
-          reportPDF: reportPDF,
-          points: points,
-          feedback: feedback,
-          date_and_time_upload: date_and_time_upload,
-          approved_user: approved_user,
-          status: status,
-          redirectToReferrer: true
-        });
-        alert("Report Saved Successfully");
-      }
-    });
+    const isValid = this.validate();
+    if (isValid) {
+      axios.post("http://localhost:5000/final_report/save/", data).then(res => {
+        if (res.data.success) {
+          this.setState({
+            execid_review: execid_review,
+            report: report,
+            reportPDF: reportPDF,
+            points: points,
+            feedback: feedback,
+            date_and_time_upload: date_and_time_upload,
+            approved_user: approved_user,
+            status: status,
+            redirectToReferrer: true
+          });
+          alert("Report Saved Successfully");
+        }
+      });
+    }
   };
 
   componentDidMount() {

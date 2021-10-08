@@ -13,6 +13,26 @@ export default class EditExecutive extends Component {
 
   handleInputChange = e => {
     const { name, value } = e.target;
+    if (name === "username") {
+      if (value.match("^[a-zA-Z][a-zA-Z\\s]+$")) {
+        document.getElementById("errorMessageName").innerHTML = "";
+      } else {
+        document.getElementById("errorMessageName").innerHTML =
+          "Please Enter correct Username";
+      }
+    }
+
+    if (name === "email") {
+      console.log("Email");
+      console.log(value);
+      if (value.match("[a-z0-9.]{1,}[@]{1}[a-z]{1,}[.]{1}(com)$")) {
+        document.getElementById("errorMessageEmail").innerHTML = "";
+      } else {
+        document.getElementById("errorMessageEmail").innerHTML =
+          "example@gmail.com";
+      }
+    }
+
     this.setState({
       ...this.state,
       [name]: value
@@ -23,6 +43,23 @@ export default class EditExecutive extends Component {
     e.preventDefault();
     const id = this.props.match.params.id;
     const { username, email } = this.state;
+
+    if (username === "" && email === "") {
+      this.errorMessageAlert(
+        "You can't save anything without entering details"
+      );
+    } else if (username === "") {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+      document.getElementById("errorMessageName").innerHTML =
+        "Enter Correct Username";
+    } else if (email === "") {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+      document.getElementById("errorMessageEmail").innerHTML =
+        "Enter Correct Email";
+    } else {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+    }
+
     const data = {
       username: username,
 
@@ -59,30 +96,32 @@ export default class EditExecutive extends Component {
   render() {
     return (
       <div className="col-md-8 mt-4 mx-auto">
-        <h1 className="h3 mb-3 font-weight-normal">Edit Review</h1>
+        <h1 className="h3 mb-3 font-weight-normal">Edit Current User</h1>
         <form className="need-validation" noValidate>
           <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Review Id</label>
+            <label style={{ marginBottom: "5px" }}>Username</label>
             <input
               type="text"
               className="form-control"
               name="username"
-              placeholder="Edit Review Id"
+              placeholder="Edit Username"
               value={this.state.username}
               onChange={this.handleInputChange}
             />
+            <span id="errorMessageName" style={{ color: "red" }}></span>
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Report Name</label>
+            <label style={{ marginBottom: "5px" }}>Email</label>
             <input
               type="text"
               className="form-control"
               name="email"
-              placeholder="Edit Report Name"
+              placeholder="Edit Email"
               value={this.state.email}
               onChange={this.handleInputChange}
             />
+            <span id="errorMessageEmail" style={{ color: "red" }}></span>
           </div>
 
           <button
