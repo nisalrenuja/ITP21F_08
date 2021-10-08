@@ -21,6 +21,7 @@ router.post("/employees/save", (req, res) => {
   });
 });
 
+//save all the points given to employees
 router.post("/points/save", (req, res) => {
  let newpoints = req.body;
   Points.create(newpoints, (err) => {
@@ -49,6 +50,7 @@ router.get("/employees", (req, res) => {
      })     
     });
 });
+
 router.get("/employees/audit", (req, res) => {  
   employees.find({type : { $eq: "Audit" }}).sort({ "empno": -1 }).exec((err, employees) => { 
     var count = employees.length;
@@ -404,6 +406,15 @@ router.get("/review/pe", (req, res) => {
 });
 });
 
+router.get("/employees/checkempno", (req, res) => {
+  employees.find().sort({empno:-1}).limit(1).exec((err, empno) => {
+    return res.status(200).json({
+      success: true,
+      empno: empno,
+    });
+  });
+});
+
 
 //get specific
 
@@ -465,6 +476,19 @@ router.get("/employees/pointsreq/:id2", (req, res) => {
     });
   });
 });
+
+router.get("/employees/checknic/:no", (req, res) => {
+  let nic_no = req.params.no;
+  employees.find({ nic_no: nic_no }).exec((err, staffs) => {
+    return res.status(200).json({
+      success: true,
+      staffs: staffs,
+    });
+  });
+});
+
+
+
 
 
 //update employees

@@ -9,9 +9,9 @@ import AdminTab5 from "../../modules/AdminModules/AdminTab5";
 import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
-import UpdateReport from "../../modules/AdminModules/UpdateReport";
+import DisplayReport from "../../modules/AdminModules/DisplayReport";
 
-const Updatereport = ({ history, match }) => {
+const Displayreport = ({ history, match }) => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -49,7 +49,7 @@ const Updatereport = ({ history, match }) => {
           {selectedMenuOption === "User Executive" ? (
             <AdminTab1 />
           ) : selectedMenuOption === "Report Management" ? (
-            <UpdateReport dataFromParent={match.params.finalreport} />
+            <DisplayReport dataFromParent={match.params.finalreport} />
           ) : selectedMenuOption === "MenuItem 3" ? (
             <AdminTab3 />
           ) : selectedMenuOption === "Work Allocation" ? (
@@ -61,7 +61,7 @@ const Updatereport = ({ history, match }) => {
           ) : selectedMenuOption === "MenuItem 7" ? (
             <AdminTab7 />
           ) : (
-            <UpdateReport dataFromParent={match.params.finalreport} />
+            <AdminTab8 />
           )}
         </Container>
       ) : (
@@ -75,4 +75,4 @@ const Updatereport = ({ history, match }) => {
   );
 };
 
-export default Updatereport;
+export default Displayreport;

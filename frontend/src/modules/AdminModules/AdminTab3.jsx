@@ -1,10 +1,16 @@
 import React, { Component } from "react";
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ReactTooltip from "react-tooltip";
 import axios from "axios";
 import "./Employees.css";
 
 export default class AdminTab3 extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       employee: []
     };
@@ -33,10 +39,13 @@ export default class AdminTab3 extends Component {
       }
     });
   }
+  notify = () => {
+    toast.success("Deleted Successfully ! 👌");
+  };
   onDelete = id => {
     axios.delete(`http://localhost:5000/employees/delete/${id}`).then(res => {
-      alert("Deleted Succeefully");
       this.retrieveemployee();
+      this.notify();
     });
   };
 
@@ -63,17 +72,17 @@ export default class AdminTab3 extends Component {
           <h2 class="heademp">Employees</h2>
           <hr class="lineemp"></hr>
           <a href="/AllEmployees">
-            <button class="div1">
-              <p class="emptxt1">Employee List</p>
+            <button class="bbbdiv1" style={{ paddingTop: "11px" }}>
+              <p class="txt1">Employee List</p>
             </button>
           </a>
           <a href="/EmployeePoints">
-            <button class="div2">
+            <button class="bbbdiv2" style={{ paddingTop: "11px" }}>
               <p class="txt2">Employee Points</p>
             </button>
           </a>
           <a href="/EmployeeReport">
-            <button class="btn btn-outline-dark">
+            <button class="btn btn-outline-dark" style={{ paddingTop: "15px" }}>
               <p>Employee Report Portal</p>
             </button>
           </a>
@@ -113,9 +122,14 @@ export default class AdminTab3 extends Component {
                     <a
                       href={`/empprofile/${employees._id}`}
                       style={{ textDecoration: "none" }}
+                      data-tip
+                      data-for="profileTip"
                     >
                       {employees.empno}
                     </a>
+                    <ReactTooltip id="profileTip" place="top">
+                      <span>Show Employee Profile</span>
+                    </ReactTooltip>
                   </td>
                   <td>{employees.name}</td>
                   <td>{employees.email}</td>
@@ -123,17 +137,54 @@ export default class AdminTab3 extends Component {
                   <td>{employees.status}</td>
                   <td>{employees.type}</td>
                   <td>
-                    <a href={`/empprofile/${employees._id}`}>
+                    <a
+                      href={`/empprofile/${employees._id}`}
+                      data-tip
+                      data-for="profileTip"
+                    >
                       <i class="far fa-eye"></i>
                     </a>
+                    <ReactTooltip id="profileTip" place="top">
+                      <span>Show Employee Profile</span>
+                    </ReactTooltip>
                     &nbsp; &nbsp;
-                    <a href={`/EditEmployee/${employees._id}`}>
+                    <a
+                      href={`/EditEmployee/${employees._id}`}
+                      data-tip
+                      data-for="EditTip"
+                    >
                       <i class="far fa-edit"></i>
                     </a>
+                    <ReactTooltip id="EditTip" place="top">
+                      <span>Edit Employee Profile</span>
+                    </ReactTooltip>
                     &nbsp; &nbsp;
-                    <a href="#" onClick={() => this.onDelete(employees._id)}>
+                    <a
+                      href="#"
+                      data-tip
+                      data-for="DeleteTip"
+                      onClick={() =>
+                        confirmAlert({
+                          title: "Confirm to Delete",
+                          message: "Are you sure to do this ?",
+                          buttons: [
+                            {
+                              label: "Yes",
+                              onClick: () => this.onDelete(employees._id)
+                            },
+                            {
+                              label: "No",
+                              onClick: () => window.close
+                            }
+                          ]
+                        })
+                      }
+                    >
                       <i class="far fa-trash-alt"></i>
                     </a>
+                    <ReactTooltip id="DeleteTip" place="top">
+                      <span>Delete Employee Profile</span>
+                    </ReactTooltip>
                   </td>
                 </tr>
               ))}
@@ -143,6 +194,19 @@ export default class AdminTab3 extends Component {
               <a href="/InsertEmployee">Add New Employee</a>
             </tfoot>
           </table>
+          <ToastContainer
+            position="bottom-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme={"dark"}
+            type="success"
+          />
         </div>
       </div>
     );

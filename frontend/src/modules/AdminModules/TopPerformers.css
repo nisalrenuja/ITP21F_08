@@ -1,1251 +1,421 @@
-.senamain3 {
-    width: 100%;
-    height: 850px;
-    white-space: nowrap;
-    position: relative;
-    overflow-x: scroll;
-    overflow-y: scroll;
-  }
+.sendiv1 {
+  position: absolute;
+  width: 290px;
+  height: 67px;
+  left: 0px;
+  top: 200px;
 
-  .senahead1c {
-    position: absolute;
-    width: 800px;
-    height: 80px;
-    left: 50px;
-    top: 50px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 48px;
-    line-height: 58px;
-  
-    color: #1687a7;
-  }
+  background: #276678;
+}
+.sendiv2 {
+  position: absolute;
+  width: 290px;
+  height: 67px;
+  left: 300px;
+  top: 200px;
 
-  .senaline1c {
-    position: absolute;
-    width: 1000.03px;
-    height: 0px;
-    left: 50px;
-    top: 130px;
-  
-    border: 3px solid #d3e0ea;
-    transform: rotate(0.21deg);
-  }
-
-  .tsenaline1c {
-    position: absolute;
-    width: 1000.03px;
-    height: 0px;
-    left: 50px;
-    top: 150px;
-  
-    border: 3px solid #d3e0ea;
-    transform: rotate(0.21deg);
-  }
-
-  .senamain33 {
-    position: absolute;
-    width: 100%;
-    height: 1100px;
-    left: 50px;
-    top: 200px;
-  
-    background: #f6f5f5;
-    backdrop-filter: blur(4px);
-    /* Note: backdrop-filter has minimal browser support */
-  
-    border-radius: 15px;
-  }
-
-  .senaic {
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 100px;
-    top: 300px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
-
-  .topsenaic {
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 100px;
-    top: 275px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
-
-
-  .tsenaic {
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 100px;
-    top: 75px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
-
-  .ttsenaic {
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 400px;
-    top: 75px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
-
-  .senaicc {
-    position: absolute;
-    width: 150px;
-    height: 40px;
-    left: 200px;
-    top: 200px;
-  
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
-  }
-
-  .tsenaicc {
-    position: absolute;
-    width: 150px;
-    height: 40px;
-    left: 175px;
-    top: 75px;
-  
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
-  }
-
-  .topsenaicc {
-    position: absolute;
-    width: 150px;
-    height: 40px;
-    left: 200px;
-    top: 275px;
-  
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
-  }
-
-  .ttsenaicc {
-    position: absolute;
-    width: 200px;
-    height: 40px;
-    left: 500px;
-    top: 75px;
-  
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
-  }
-
-  .senaiic {
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 100px;
-    top: 175px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
-  .senaiicc {
-    position: absolute;
-    width: 150px;
-    height: 40px;
-    left: 200px;
-    top: 175px;
-  
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
-  }
-
-  .senaiiic {
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 475px;
-    top: 275px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
-  .senaiiicc {
-    position: absolute;
-    width: 350px;
-    height: 40px;
-    left: 600px;
-    top: 275px;
-  
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
-  }
-
-  .senaivc {
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 100px;
-    top: 275px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
-  .senaivcc {
-    position: absolute;
-    width: 450px;
-    height: 40px;
-    left: 250px;
-    top: 275px;
-  
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
-  }
-
-
-.senavc {
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 100px;
-    top: 350px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
-  .senavcc {
-    position: absolute;
-    width: 450px;
-    height: 125px;
-    left: 250px;
-    top: 350px;
-  
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
-  }
-
-  .senavic {
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 100px;
-    top: 655px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
-  .senavicc {
-    position: absolute;
-    width: 350px;
-    height: 40px;
-    left: 300px;
-    top: 655px;
-  
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
-  }
-
-  .senaviic {
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 100px;
-    top: 725px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
-  .senaviicc {
-    position: absolute;
-    width: 350px;
-    height: 40px;
-    left: 300px;
-    top: 725px;
-  
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
-  }
-
-  .senavcattach {
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 100px;
-    top: 500px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
-  .senavccattach {
-    position: absolute;
-    width: 450px;
-    height: 125px;
-    left: 250px;
-    top: 500px;
-  
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
-  }
-
-  .tsendiv4{
-    position: absolute;
-    width: 251px;
-    height: 48px;
-    left: 800px;
-    top: 25px;
-
-    background: #276678;
-    background: #1687A7;
-    
-
-    border-radius: 5px;
-
-  }
-
-
-
-.rank1{
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 100px;
-    top: 205px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;  
+  background: #d3e0ea;
 }
 
-.rank1val{
-    position: absolute;
-    width: 150px;
-    height: 40px;
-    left: 200px;
-    top: 205px;
+/*New Report Button*/
+.sendiv4{
+  position: absolute;
+  width: 251px;
+  height: 48px;
+  left: 700px;
+  top: 165px;
+
+  background: #276678;
+  background: #1687A7;
   
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
+
+  border-radius: 5px;
+
 }
 
-.rank1id {
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 100px;
-    top: 275px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
+.sentxt4{
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 40px;
 
-  .rank1idval {
-    position: absolute;
-    width: 150px;
-    height: 40px;
-    left: 200px;
-    top: 275px;
-  
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
-  }
+  /* identical to box height */
+  text-align: center;
+  letter-spacing: -0.00022em;
 
-  .rank1points {
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 475px;
-    top: 275px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
-  .rank1pointsval {
-    position: absolute;
-    width: 150px;
-    height: 40px;
-    left: 600px;
-    top: 275px;
-  
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
-  }
-
-  .rank1name {
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 100px;
-    top: 345px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
-  .rank1nameval {
-    position: absolute;
-    width: 350px;
-    height: 40px;
-    left: 225px;
-    top: 345px;
-  
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
-  }
-
-  .rank1des {
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 100px;
-    top: 415px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
-  .rank1desval {
-    position: absolute;
-    width: 350px;
-    height: 40px;
-    left: 225px;
-    top: 415px;
-  
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
-  }
-
-  .rank1divider {
-    position: absolute;
-    width: 1000.03px;
-    height: 0px;
-    left: 50px;
-    top: 500px;
-  
-    border: 3px solid #d3e0ea;
-    transform: rotate(0.21deg);
-  }
-
-  .rank2{
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 100px;
-    top: 555px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;  
+  color: #F6F5F5;
 }
 
-.rank2val{
-    position: absolute;
-    width: 150px;
-    height: 40px;
-    left: 200px;
-    top: 555px;
+.amandi{
+  position: absolute;
+  width: 100px;
+  height: 48px;
+  left: 800px;
+  top: 525px;
+
+  background: #D3E0EA;;
   
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
+  
+
+  border-radius: 5px;
+
 }
 
-.rank2id {
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 100px;
-    top: 625px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
+.banana{
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 40px;
 
-  .rank2idval {
-    position: absolute;
-    width: 150px;
-    height: 40px;
-    left: 200px;
-    top: 625px;
-  
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
-  }
+  /* identical to box height */
+  text-align: center;
+  letter-spacing: -0.00022em;
 
-  .rank2points {
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 475px;
-    top: 625px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
-  .rank2pointsval {
-    position: absolute;
-    width: 150px;
-    height: 40px;
-    left: 600px;
-    top: 625px;
-  
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
-  }
-
-  .rank2name {
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 100px;
-    top: 695px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
-  .rank2nameval {
-    position: absolute;
-    width: 350px;
-    height: 40px;
-    left: 225px;
-    top: 695px;
-  
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
-  }
-
-  .rank2des {
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 100px;
-    top: 765px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
-  .rank2desval {
-    position: absolute;
-    width: 350px;
-    height: 40px;
-    left: 225px;
-    top: 765px;
-  
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
-  }
-
-  .rank2divider {
-    position: absolute;
-    width: 1000.03px;
-    height: 0px;
-    left: 50px;
-    top: 850px;
-  
-    border: 3px solid #d3e0ea;
-    transform: rotate(0.21deg);
-  }
-
-  .rank3{
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 100px;
-    top: 905px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;  
+  color: #000000;
 }
 
-.rank3val{
-    position: absolute;
-    width: 150px;
-    height: 40px;
-    left: 200px;
-    top: 905px;
+/*Navigation Buttons*/
+.senadiv1{
+  position: absolute;
+  width: 251px;
+  height: 48px;
+  left: 450px;
+  top: 65px;
+
+  background: #276678;
+  background: #276678;
+  ;
   
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
+
+  border-radius: 5px;
+
+}
+.senatxt1{
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 40px;
+
+  /* identical to box height */
+  text-align: center;
+  letter-spacing: -0.00022em;
+
+  color: #F6F5F5;
 }
 
-.rank3id {
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 100px;
-    top: 975px;
+.senadiv2{
+  position: absolute;
+  width: 251px;
+  height: 48px;
+  left: 725px;
+  top: 65px;
+
+  background: #276678;
+  background: #276678;
+  ;
   
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
+
+  border-radius: 5px;
+}
+
+.senatxt2{
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 40px;
+
+  /* identical to box height */
+  text-align: center;
+  letter-spacing: -0.00022em;
+
+  color: #F6F5F5;
+}
+
+/*Two Tabs*/
+
+.sentxt1 {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 60px;
+  text-align: center;
+  letter-spacing: -0.00022em;
+
+  color: #ffffff;
+}
+.sentxt2 {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 60px;
+  text-align: center;
+  letter-spacing: -0.00022em;
+
+  color: #1687a7;
+}
+.senhead1 {
+  position: absolute;
+  width: 623px;
+  height: 129px;
+  left: 0px;
+  top: 60px;
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 58px;
+
+  color: #1687A7;
+}
+.senline1 {
+  position: absolute;
+  width: 1071.03px;
+  height: 0px;
+  left: 0px;
+  top: 130px;
+
+  border: 3px solid #d3e0ea;
+  transform: rotate(0.21deg);
+}
+
+/*Search Tab*/
+.sendiv3 {
+  position: absolute;
+  width: 413px;
+  height: 55px;
+  left: 550px;
+  top: 235px;
+
+  background: #1687a7;
+  backdrop-filter: blur(4px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 5px;
+}
+
+.sendiv31 {
+  position: absolute;
+  width: 413px;
+  height: 55px;
+  left: 550px;
+  top: 525px;
+
+  background: #1687a7;
+  backdrop-filter: blur(4px);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 5px;
+}
+
+.sentxt3 {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 30px;
+  top: 20px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  /* identical to box height */
+
+  text-align: center;
+  letter-spacing: -0.00022em;
+
+  color: #c4c4c4;
+}
+.senselect1 {
+  position: absolute;
+  width: 272px;
+  height: 40px;
+  left: 10px;
+  top:8px;
+
+  background: #ffffff;
+  border-radius: 5px;
+}
+.sensearch {
+  position: absolute;
+  width: 110px;
+  height: 40px;
+  left: 295px;
+  top: 8px;
+
+  background: #D3E0EA;
+  border: 1.5px solid #FFFFFF;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
   }
 
-  .rank3idval {
-    position: absolute;
-    width: 150px;
-    height: 40px;
-    left: 200px;
-    top: 975px;
+  .sensearch1 {
+      position: absolute;
+      width: 110px;
+      height: 40px;
+      left: 295px;
+      top: 8px;
   
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
+      background: #D3E0EA;
+      border: 1.5px solid #FFFFFF;
+      box-sizing: border-box;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+      border-radius: 30px; 
   }
-
-  .rank3points {
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 475px;
-    top: 975px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
-  .rank3pointsval {
-    position: absolute;
-    width: 150px;
-    height: 40px;
-    left: 600px;
-    top: 975px;
-  
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
-  }
-
-  .rank3name {
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 100px;
-    top: 1045px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
-  .rank3nameval {
-    position: absolute;
-    width: 350px;
-    height: 40px;
-    left: 225px;
-    top: 1045px;
-  
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
-  }
-
-  .rank3des {
-    position: absolute;
-    width: 192px;
-    height: 33px;
-    left: 100px;
-    top: 1115px;
-  
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
-  .rank3desval {
-    position: absolute;
-    width: 350px;
-    height: 40px;
-    left: 225px;
-    top: 1115px;
-  
-    background: #ffffff;
-    border: 2px solid #c4c4c4;
-    box-sizing: border-box;
-  }
-
-
-
-
-
-  .sendiv1 {
-    position: absolute;
-    width: 290px;
-    height: 67px;
-    left: 0px;
-    top: 200px;
-  
-    background: #276678;
-  }
-  .sendiv2 {
-    position: absolute;
-    width: 290px;
-    height: 67px;
-    left: 300px;
-    top: 200px;
-  
-    background: #d3e0ea;
-  }
-
-  /*New Report Button*/
-  .sendiv4{
-    position: absolute;
-    width: 251px;
-    height: 48px;
-    left: 700px;
-    top: 165px;
-
-    background: #276678;
-    background: #1687A7;
-    
-
-    border-radius: 5px;
-
-  }
-
-  .sentxt4{
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 40px;
-
-    /* identical to box height */
-    text-align: center;
-    letter-spacing: -0.00022em;
-
-    color: #F6F5F5;
-  }
-
-  /*Navigation Buttons*/
-  .senadiv1{
-    position: absolute;
-    width: 251px;
-    height: 48px;
-    left: 450px;
-    top: 65px;
-
-    background: #276678;
-    background: #276678;
-    ;
-    
-
-    border-radius: 5px;
-
-  }
-  .senatxt1{
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 40px;
-
-    /* identical to box height */
-    text-align: center;
-    letter-spacing: -0.00022em;
-
-    color: #F6F5F5;
-  }
-
-  .senadiv2{
-    position: absolute;
-    width: 251px;
-    height: 48px;
-    left: 725px;
-    top: 65px;
-
-    background: #276678;
-    background: #276678;
-    ;
-    
-
-    border-radius: 5px;
-  }
-
-  .senatxt2{
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 40px;
-
-    /* identical to box height */
-    text-align: center;
-    letter-spacing: -0.00022em;
-
-    color: #F6F5F5;
-  }
-
-  /*Two Tabs*/
-
-  .sentxt1 {
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 60px;
-    text-align: center;
-    letter-spacing: -0.00022em;
-  
-    color: #ffffff;
-  }
-  .sentxt2 {
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 60px;
-    text-align: center;
-    letter-spacing: -0.00022em;
-  
-    color: #1687a7;
-  }
-  .senhead1 {
-    position: absolute;
-    width: 623px;
-    height: 129px;
-    left: 0px;
-    top: 60px;
-
-    font-family: Inter;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 48px;
-    line-height: 58px;
-
-    color: #1687A7;
-  }
-  .senline1 {
-    position: absolute;
-    width: 1071.03px;
-    height: 0px;
-    left: 0px;
-    top: 130px;
-  
-    border: 3px solid #d3e0ea;
-    transform: rotate(0.21deg);
-  }
-
-  /*Search Tab*/
-  .sendiv3 {
-    position: absolute;
-    width: 413px;
-    height: 55px;
-    left: 550px;
-    top: 235px;
-  
-    background: #1687a7;
-    backdrop-filter: blur(4px);
-    /* Note: backdrop-filter has minimal browser support */
-  
-    border-radius: 5px;
-  }
-
-  .sendiv31 {
-    position: absolute;
-    width: 413px;
-    height: 55px;
-    left: 550px;
-    top: 525px;
-  
-    background: #1687a7;
-    backdrop-filter: blur(4px);
-    /* Note: backdrop-filter has minimal browser support */
-  
-    border-radius: 5px;
-  }
-
-  .sentxt3 {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    left: 30px;
-    top: 20px;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 29px;
-    /* identical to box height */
-  
-    text-align: center;
-    letter-spacing: -0.00022em;
-  
-    color: #c4c4c4;
-  }
-  .senselect1 {
-    position: absolute;
-    width: 272px;
-    height: 40px;
-    left: 10px;
-    top:8px;
-  
-    background: #ffffff;
-    border-radius: 5px;
-  }
-  .sensearch {
-    position: absolute;
-    width: 110px;
-    height: 40px;
-    left: 295px;
-    top: 8px;
-
-    background: #D3E0EA;
-    border: 1.5px solid #FFFFFF;
-    box-sizing: border-box;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 30px;
-    }
-
-    .sensearch1 {
-        position: absolute;
-        width: 110px;
-        height: 40px;
-        left: 295px;
-        top: 8px;
-    
-        background: #D3E0EA;
-        border: 1.5px solid #FFFFFF;
-        box-sizing: border-box;
-        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
-        border-radius: 30px; 
-    }
 
 /*Table 1*/
-  .sentable1 {
-    position: absolute;
-    width: 100%;
+.sentable1 {
+  position: absolute;
+  width: 100%;
+
+  left: 0px;
+  top: 300px;
+}
+
+.sentable2 {
+  position: absolute;
+  width: 100%;
+
+  left: 0px;
+  top: 575px;
+}
+
+.senthead {
+  background: #276678;;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: -0.00022em;
+  color: #ffffff;
+  background: #276678;;
+}
+.tfoot {
+  background: #276678;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: -0.00022em;
+  color: #ffffff;
+  background: #276678;
+}
+.tfoot a {
+  text-decoration: none;
+  color: #ffffff;
+}
+.tfoot:hover {
+  background: #47daba;
+}
+
+.sentahss {
+  position: absolute;
+  width: 523px;
+  height: 66px;
+  left: 0px;
+  top: 235px;
+
+
+  color: #000000;
+}
+
+.sentah1 {
+  position: absolute;
+  width: 523px;
+  height: 66px;
+  left: 0px;
+  top: 525px;
+
+  color: #000000;
+}
+
+.sentbody99 {
+  text-align: center;
+}
+
+.senmain {
+  width: 100%;
+  height: 850px;
+  white-space: nowrap;
+  position: relative;
   
-    left: 0px;
-    top: 300px;
-  }
+}
 
-  .sentable2 {
-    position: absolute;
-    width: 100%;
+.ketchup{
+  position: absolute;
+  width: 97px;
+  height: 45px;
+  left: 50px;
+  top: 165px;
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.00022em;
+
+  color: #000000;
+
+}
+
+
+.sauce{
+  position: absolute;
+  width: 150px;
+  height: 40px;
+  left: 100px;
+  top: 165px;
   
-    left: 0px;
-    top: 600px;
-  }
+  background: #ffffff;
+  border: 2px solid #c4c4c4;
+  box-sizing: border-box;
 
-  .senthead {
-    background: #276678;;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 24px;
-    text-align: center;
-    letter-spacing: -0.00022em;
-    color: #ffffff;
-    background: #276678;;
-  }
-  .tfoot {
-    background: #276678;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 24px;
-    text-align: center;
-    letter-spacing: -0.00022em;
-    color: #ffffff;
-    background: #276678;
-  }
-  .tfoot a {
-    text-decoration: none;
-    color: #ffffff;
-  }
-  .tfoot:hover {
-    background: #47daba;
-  }
+}
 
-  .sentah {
-    position: absolute;
-    width: 523px;
-    height: 66px;
-    left: 0px;
-    top: 235px;
+.berry{
+  position: absolute;
+  width: 97px;
+  height: 45px;
+  left: 300px;
+  top: 165px;
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.00022em;
+
+  color: #000000;
+}
+
+
+
+.cherry{
+  position: absolute;
+    width: 200px;
+    height: 40px;
+    left: 375px;
+    top: 165px;
   
-  
-    color: #000000;
-  }
+    background: #ffffff;
+    border: 2px solid #c4c4c4;
+    box-sizing: border-box;
 
-  .sentah1 {
-    position: absolute;
-    width: 523px;
-    height: 66px;
-    left: 0px;
-    top: 525px;
-  
-    color: #000000;
-  }
- 
-  .sentbody1 {
-    text-align: center;
-  }
-
-  .senmain {
-    width: 100%;
-    height: 850px;
-    white-space: nowrap;
-    position: relative;
-    
-  }
-
-  .senara1{
-    position: absolute;
-width: 140px;
-height: 50px;
-left: 350px;
-top: 1250px;
-
-background: #276678;
-border-radius: 20px;
-  }
-
-  .senara2{
-    position: absolute;
-width: 99px;
-height: 23px;
-left: 1052px;
-top: 2249px;
-
-font-family: Inter;
-font-style: normal;
-font-weight: 600;
-font-size: 20px;
-line-height: 24px;
-display: flex;
-align-items: center;
-text-align: center;
-letter-spacing: -0.00022em;
-
-color: #FFFFFF;
-  }
+}

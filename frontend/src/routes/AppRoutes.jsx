@@ -63,7 +63,7 @@ import LaptopPage from "../pages/LaptopPage/LaptopPage";
 import CreateLaptop from "../modules/AdminModules/CreateLaptop";
 import EditLaptopInventory from "../modules/AdminModules/EditLaptopInventory";
 import PostLaptop from "../modules/AdminModules/PostLaptop";
-
+import DisplayReport from "../pages/AdminPage/DisplayReport"; //DisplayReport
 import CreateClient from "../modules/AdminModules/CreateClient";
 import DisplayClient from "../modules/AdminModules/DisplayClient";
 import EditClient from "../modules/AdminModules/EditClient";
@@ -100,6 +100,8 @@ import EmpReportUpload from "../modules/AdminModules/EmpReportUpload";
 import EmpExportReport from "../modules/AdminModules/EmplExportReport";
 import EmpReportEdit from "../modules/AdminModules/EmpReportEdit";
 import EmpProfile from "../modules/AdminModules/EmpProfile";
+import EmpRegister from "../pages/LoginPage/EmpRegisterScreen";
+
 import Notices from "../pages/AdminPage/Notices";
 
 const AppRoutes = () => (
@@ -159,6 +161,7 @@ const AppRoutes = () => (
         <Route path="/reportwork" component={WorkReport} exact />
         <Route path="/lapalloreport" component={LapReport} exact />
         <Route path="/InsertEmployee" component={InsertEmployee} exact />
+        <Route path="/employeeregister" component={EmpRegister} exact />
         /*Anujitha Routes*/
         <Route
           path="/quarterperformance"
@@ -271,6 +274,11 @@ const AppRoutes = () => (
         <Route
           path="/UpdateReport/:finalreport"
           component={UpdateReport}
+          exact
+        ></Route>
+        <Route
+          path="/DisplayReport/:finalreport"
+          component={DisplayReport}
           exact
         ></Route>
       </Switch>

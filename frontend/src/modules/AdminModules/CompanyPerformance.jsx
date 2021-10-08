@@ -73,32 +73,41 @@ export default class CompanyPerfomance extends Component {
                 <th scope="col">From</th>
                 <th scope="col">To</th>
                 <th scope="col">No.of Approved Reports</th>
-                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody class="anutbody1">
-              {this.state.Performances.map((Performances, index) => (
-                <tr key={index}>
-                  <td>{Performances.quarter_no}</td>
-                  <td>{Performances.quarter_name}</td>
-                  <td>{Performances.year}</td>
-                  <td>{Performances.from}</td>
-                  <td>{Performances.to}</td>
-                  <td>{Performances.approved_reports}</td>
-                  <td>
-                    <a href={`/edit/${Performances.quarter_name}`}>
-                      <i className="fas fa-edit"></i>&nbsp;
-                    </a>
-                    &nbsp;
-                    <a
-                      href="#"
-                      onClick={() => this.onDelete(Performances.quarter_name)}
-                    >
-                      <i className="far fa-trash-alt"></i>&nbsp;
-                    </a>
-                  </td>
-                </tr>
-              ))}
+              <tr>
+                <td> #1</td>
+                <td> 2021 - Q1 </td>
+                <td> 2021 </td>
+                <td> 1st January </td>
+                <td> 31st March </td>
+                <td> </td>
+              </tr>
+              <tr>
+                <td> #2</td>
+                <td> 2021 - Q2 </td>
+                <td> 2021 </td>
+                <td> 1st April </td>
+                <td> 30th June </td>
+                <td></td>
+              </tr>
+              <tr>
+                <td> #3</td>
+                <td> 2021 - Q3 </td>
+                <td> 2021 </td>
+                <td> 1st July </td>
+                <td> 30th September</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td> #4</td>
+                <td> 2021 - Q4 </td>
+                <td> 2021 </td>
+                <td> 1st October</td>
+                <td> 31st December </td>
+                <td></td>
+              </tr>
               <tfoot class="tfoot">
                 <a href="/quarterperformance">
                   <i class="fas fa-plus"></i>&nbsp;New Quarter Performance
