@@ -100,6 +100,8 @@ import EmpReportUpload from "../modules/AdminModules/EmpReportUpload";
 import EmpExportReport from "../modules/AdminModules/EmplExportReport";
 import EmpReportEdit from "../modules/AdminModules/EmpReportEdit";
 import EmpProfile from "../modules/AdminModules/EmpProfile";
+import EmpRegister from "../pages/LoginPage/EmpRegisterScreen";
+
 import Notices from "../pages/AdminPage/Notices";
 
 const AppRoutes = () => (
@@ -159,6 +161,7 @@ const AppRoutes = () => (
         <Route path="/reportwork" component={WorkReport} exact />
         <Route path="/lapalloreport" component={LapReport} exact />
         <Route path="/InsertEmployee" component={InsertEmployee} exact />
+        <Route path="/employeeregister" component={EmpRegister} exact />
         /*Anujitha Routes*/
         <Route
           path="/quarterperformance"
