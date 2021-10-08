@@ -99,7 +99,9 @@ export default class EditAssignments extends Component {
                     <p style={{ color: "black", fontSize: "22px" }}>
                       Due Date - {this.state.date_received}
                     </p>
-                    <p class="vic">Change Due Date: </p>
+                    <p class="vic" style={{ color: "black", fontSize: "20px" }}>
+                      Change Due Date:{" "}
+                    </p>
                     <input
                       type="date"
                       class="vicc"
@@ -116,11 +118,10 @@ export default class EditAssignments extends Component {
                     <br />
                     <p
                       class="viic"
-                      style={{ color: "black", fontSize: "22px" }}
+                      style={{ color: "black", fontSize: "20px" }}
                     >
-                      Change Status
+                      Change Status :
                       <br />
-                      (Completed if done):
                     </p>
                     <select
                       type="text"
@@ -155,6 +156,7 @@ export default class EditAssignments extends Component {
               </div>
             ))}
 
+            <br />
             <br />
             <br />
             <br />
