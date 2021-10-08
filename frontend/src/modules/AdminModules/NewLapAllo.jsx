@@ -118,32 +118,58 @@ export default class NewLapAllo extends Component {
     const isValid = this.validate();
     if (isValid) {
       console.log(data);
-      axios.get(`http://localhost:5000/laps/check/${lapid}`).then(res => {
-        if (res.data.success) {
-          if (res.data.laps.length !== 0) {
-            axios
-              .post("http://localhost:5000/lapassignments/save/", data)
-              .then(res => {
-                if (res.data.success) {
-                  this.setState({
-                    assignment_name: "",
-                    client_no: "",
-                    execid: "",
-                    empno: "",
-                    status: "",
-                    date_allocated: "",
-                    date_received: "",
-                    lapid: ""
-                  });
-                  alert("Done!");
-                }
-              });
-          } else {
-            alert("Invalid Laptop ID, Please enter again!");
+      axios
+        .get(`http://localhost:5000/checkassignmentlap/${assignment_name}`)
+        .then(res => {
+          if (res.data.success) {
+            if (res.data.l !== 0) {
+              axios
+                .get(`http://localhost:5000/laps/check/${lapid}`)
+                .then(res => {
+                  if (res.data.success) {
+                    if (res.data.laps.length !== 0) {
+                      axios
+                        .post(
+                          "http://localhost:5000/lapassignments/save/",
+                          data
+                        )
+                        .then(res => {
+                          if (res.data.success) {
+                            this.setState({
+                              assignment_name: "",
+                              client_no: "",
+                              execid: "",
+                              empno: "",
+                              status: "",
+                              date_allocated: "",
+                              date_received: "",
+                              lapid: ""
+                            });
+                            alert("Done!");
+                          }
+                        });
+                    } else {
+                      alert("Invalid Laptop ID, Please enter again!");
+                    }
+                  }
+                });
+            } else {
+              alert("Invalid Assignment Name!");
+            }
           }
-        }
-      });
+        });
     }
+  };
+  demo = e => {
+    e.preventDefault();
+    this.setState({
+      assignment_name: "Assignment 6",
+      client_no: "C002",
+      execid: "DOO2",
+      empno: "1000",
+      date_allocated: "2021-11-02",
+      date_received: "2021-11-05"
+    });
   };
   filterData(laps, searchKey) {
     console.log(searchKey);
@@ -288,6 +314,16 @@ export default class NewLapAllo extends Component {
                   onClick={this.onSubmit}
                 >
                   <i className="fas fa-save"></i>&nbsp;Save
+                </button>
+                <br />
+                <br />
+                <br />
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  onClick={this.demo}
+                >
+                  Demo
                 </button>
               </center>
             </form>
