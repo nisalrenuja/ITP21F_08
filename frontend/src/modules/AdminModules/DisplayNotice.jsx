@@ -24,6 +24,7 @@ export default class DisplayNotice extends Component {
     };
   }
 
+  //inserting fields function
   handleInputChange = e => {
     const { name, value } = e.target;
     this.setState({
@@ -32,6 +33,7 @@ export default class DisplayNotice extends Component {
     });
   };
 
+  //retrieving notices to display
   componentDidMount() {
     this.retrieveexistingNotices();
   }
@@ -59,6 +61,7 @@ export default class DisplayNotice extends Component {
     });
   }
 
+  //Function to upload PDFs (For notice attachments)
   uploadPDF(e) {
     if (e.target.files[0] !== null) {
       const uploadTask = storage
@@ -66,13 +69,7 @@ export default class DisplayNotice extends Component {
         .put(e.target.files[0]);
       uploadTask.on(
         "state_changed",
-        snapshot => {
-          //progress function
-          //const progress = Math.round(
-          //(snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          //);
-          //this.setState({ uploadPercentage: progress });
-        },
+        snapshot => {},
         error => {
           //error function
           console.log(error);

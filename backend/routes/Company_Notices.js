@@ -21,7 +21,7 @@ router.post('/CreateNotice/save', (req,res)=>{
     });
 });
 
-//Get Notices
+//Get All Notices
 
 router.get('/CreateNotices',(req,res) =>{
     Notices.find().exec((err,existingNotices) =>{

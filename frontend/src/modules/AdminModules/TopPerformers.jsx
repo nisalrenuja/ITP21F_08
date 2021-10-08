@@ -216,58 +216,6 @@ export default class TopPerformers extends Component {
             </a>
           </div>
           <br></br>
-
-          <div>
-            <table className="table table-hover sentable2">
-              <thead class="senthead">
-                <tr>
-                  <th scope="col">Year</th>
-                  <th scope="col">Month</th>
-                  <th scope="col">Rank 1</th>
-                  <th scope="col">Rank 2</th>
-                  <th scope="col">Rank 3</th>
-                  <th scope="col">Actions</th>
-                </tr>
-              </thead>
-              <tbody class="sentbody1">
-                {this.state.existingTopPerformers.map(
-                  (existingTopPerformers, index) => (
-                    <tr key={index}>
-                      <td>{existingTopPerformers.year}</td>
-                      <td>
-                        <a
-                          href={`/AllTopPerformers/${existingTopPerformers._id}`}
-                          style={{ textDecoration: "none" }}
-                        >
-                          {existingTopPerformers.month}
-                        </a>
-                      </td>
-                      <td>{existingTopPerformers.top_empid1}</td>
-
-                      <td>{existingTopPerformers.top_empid2}</td>
-                      <td>{existingTopPerformers.top_empid3}</td>
-
-                      <td>
-                        <a href={existingTopPerformers._id} class="icon-btns">
-                          <i class="fas fa-eye"></i>&nbsp;&nbsp;&nbsp;
-                        </a>
-                        &nbsp;
-                        <a
-                          href="#"
-                          onClick={() =>
-                            this.onDelete(existingTopPerformers._id)
-                          }
-                        >
-                          <i className="far fa-trash-alt"></i>&nbsp;
-                        </a>
-                      </td>
-                    </tr>
-                  )
-                )}
-              </tbody>
-              <tfoot class="tfoot"></tfoot>
-            </table>
-          </div>
         </div>
       </div>
     );

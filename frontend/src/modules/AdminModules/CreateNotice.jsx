@@ -32,6 +32,7 @@ export default class CreateNotice extends Component {
       }
     });
   }
+  //input fields
   handleInputChange = e => {
     const { name, value } = e.target;
     this.setState({
@@ -40,11 +41,13 @@ export default class CreateNotice extends Component {
     });
   };
 
+  //insert PDFs
   handleInputFileChange = e => {
     var file = e.target.files[0];
     console.log(file);
   };
 
+  //Validation for the form
   validate = () => {
     let noticeidError = "";
     let empidError = "";
@@ -99,6 +102,7 @@ export default class CreateNotice extends Component {
     return true;
   };
 
+  //Submit function for the Save button
   onSubmit = e => {
     e.preventDefault();
 
@@ -120,9 +124,9 @@ export default class CreateNotice extends Component {
       notice_content: notice_content,
       notice_attachments: notice_attachments,
       published_date: published_date
-      //progress: "Assigned"
     };
 
+    //Saving notices
     console.log(data);
     const isValid = this.validate();
     if (isValid) {
@@ -138,12 +142,13 @@ export default class CreateNotice extends Component {
             published_date: published_date,
             redirectToReferrer: true
           });
-          //alert("Employee added to assignment, Enter employee number");
+          alert("New notice is created");
         }
       });
     }
   };
 
+  //Uploading PDFs (Notice attachments)
   uploadPDF(e) {
     if (e.target.files[0] !== null) {
       const uploadTask = storage
@@ -151,13 +156,7 @@ export default class CreateNotice extends Component {
         .put(e.target.files[0]);
       uploadTask.on(
         "state_changed",
-        snapshot => {
-          //progress function
-          //const progress = Math.round(
-          //(snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          //);
-          //this.setState({ uploadPercentage: progress });
-        },
+        snapshot => {},
         error => {
           //error function
           console.log(error);
@@ -196,6 +195,7 @@ export default class CreateNotice extends Component {
                 class="senaicc"
                 id="notice_id"
                 name="notice_id"
+                placeholder="NB000"
                 value={this.state.notice_id}
                 onChange={this.handleInputChange}
               />
