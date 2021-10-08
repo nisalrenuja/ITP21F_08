@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactTooltip from "react-tooltip";
 import axios from "axios";
 import "./EmployeePoints.css";
 
@@ -157,11 +158,13 @@ export default class AdminTab3 extends Component {
           <hr class="lineemp"></hr>
           <a href="/AllEmployees">
             <button class="div11">
-              <p class="txt11">Employee List</p>
+              <p class="txt11" style={{ paddingTop: "11px" }}>
+                Employee List
+              </p>
             </button>
           </a>
           <a href="/EmployeePoints">
-            <button class="div22">
+            <button class="div22" style={{ paddingTop: "11px" }}>
               <p class="txt22">Employee Points</p>
             </button>
           </a>
@@ -261,9 +264,14 @@ export default class AdminTab3 extends Component {
                     <a
                       href={`/empprofile/${employees._id}`}
                       style={{ textDecoration: "none" }}
+                      data-tip
+                      data-for="profileTip"
                     >
                       {employees.empno}
                     </a>
+                    <ReactTooltip id="profileTip" place="top">
+                      <span>Show Employee Profile</span>
+                    </ReactTooltip>
                   </td>
                   <td>{employees.name}</td>
                   <td>{employees.email}</td>
@@ -272,17 +280,27 @@ export default class AdminTab3 extends Component {
                     <a
                       href={`/PendingAssignments/${employees.empno}`}
                       style={{ textDecoration: "none" }}
+                      data-tip
+                      data-for="pendingTip"
                     >
                       {this.state.pending[index]}
                     </a>
+                    <ReactTooltip id="pendingTip" place="top">
+                      <span>Click to Show Pending Assignments</span>
+                    </ReactTooltip>
                   </td>
                   <td>
                     <a
                       href={`/CompletedAssignments/${employees.empno}`}
                       style={{ textDecoration: "none" }}
+                      data-tip
+                      data-for="completedTip"
                     >
                       {this.state.completions[index]}
                     </a>
+                    <ReactTooltip id="completedTip" place="top">
+                      <span>Click to Show Completed Assignments</span>
+                    </ReactTooltip>
                   </td>
                 </tr>
               ))}

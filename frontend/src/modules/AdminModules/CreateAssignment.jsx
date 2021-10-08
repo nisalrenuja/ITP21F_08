@@ -152,6 +152,18 @@ export default class CreateAssignment extends Component {
       });
     }
   };
+  demo = e => {
+    e.preventDefault();
+    this.setState({
+      assignment_name: "Assignment 6",
+      client_no: "C002",
+      execid: "DOO2",
+      place_of_engagement: "Kandy",
+      distance: "20",
+      date_of_allocation: "2021-11-02",
+      deadline: "2021-11-05"
+    });
+  };
   filterData(staff, searchKey) {
     console.log(searchKey);
     const result = staff.filter(staff =>
@@ -312,6 +324,12 @@ export default class CreateAssignment extends Component {
                   Done
                 </button>
               </a>
+              <br />
+              <br />
+              <br />
+              <button type="button" class="btn btn-warning" onClick={this.demo}>
+                Demo
+              </button>
             </center>
           </div>
         </div>

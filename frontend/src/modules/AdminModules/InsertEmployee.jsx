@@ -50,10 +50,40 @@ export default class InsertEmployee extends Component {
       nameError: "",
       emailError: "",
       statusError: "",
+      employee: [],
       redirectToReferrer: false
     };
   }
-
+  demo = e => {
+    e.preventDefault();
+    this.setState({
+      name: "Test Name",
+      email: "Test@gmail.com",
+      dob: "2021-10-13",
+      gender: "Male",
+      nic_no: "199912617535",
+      permernant_address: "94/3,Cross Street,Colombo 07",
+      district: "Colombo",
+      province: "Western",
+      place_of_stay: "iijij",
+      organization: "Nawaloka Constructions",
+      sector: "Audit",
+      duration: "6 yrs",
+      ending_date: "2021-10-13",
+      professional_education: "CASL",
+      completed_stage: "Business Level",
+      current_stage: "Cooperate Level",
+      attempt: "1",
+      subjects: "Tax, Finance",
+      al_year: "2015",
+      university: "Sri Jayawardenapura",
+      graduated_yr: "2019",
+      department: "Management",
+      old_password: "",
+      new_password: "",
+      confirm_password: ""
+    });
+  };
   handleInputChange = e => {
     const { name, value } = e.target;
     this.setState({
@@ -62,6 +92,29 @@ export default class InsertEmployee extends Component {
     });
   };
 
+  componentDidMount() {
+    this.retrievePosts();
+  }
+
+  retrievePosts() {
+    axios.get(`http://localhost:5000/employees/checkempno`).then(res => {
+      if (res.data.success) {
+        this.setState({
+          employee: res.data.empno
+        });
+        if (res.data.empno.length == 0) {
+          console.log(res.data.staffs.length);
+
+          this.state.empno = 1000;
+        } else {
+          var no = this.state.employee[0].empno;
+          this.state.empno = no + 1;
+          console.log(this.state.empno);
+        }
+      }
+    });
+  }
+
   validate = () => {
     let empnoError = "";
     let nameError = "";
@@ -69,6 +122,7 @@ export default class InsertEmployee extends Component {
     let statusError = "";
     let typeError = "";
     let contactError = "";
+    let NICError = "";
 
     if (!this.state.empno) {
       empnoError = "**EmpNo Cannot Be Blank";
@@ -78,8 +132,8 @@ export default class InsertEmployee extends Component {
       nameError = "**Name Cannot Be Blank";
     }
 
-    if (!this.state.email.includes("@")) {
-      emailError = "**Invlaid email";
+    if (!this.state.email.match("[a-z0-9.]{1,}[@]{1}[a-z]{1,}[.]{1}(com)$")) {
+      emailError = "**Invalid email";
     }
 
     if (!this.state.status) {
@@ -90,6 +144,20 @@ export default class InsertEmployee extends Component {
     }
     if (!this.state.contact) {
       contactError = "**Contact Number Cannot Be Blank";
+    } else if (this.state.contact.length !== 10) {
+      contactError = "**Contact Number must have 10 digits";
+    }
+    if (!this.state.nic_no) {
+      NICError = "**NIC Cannot Be Blank";
+    } else if (
+      this.state.nic_no.length !== 12 &&
+      this.state.nic_no.length !== 10
+    ) {
+      NICError = "**Invalid NIC";
+    } else if (this.state.nic_no.length == 10) {
+      if (this.state.nic_no.includes("V")) {
+        NICError = "**Invalid Old NIC";
+      }
     }
 
     if (
@@ -98,7 +166,8 @@ export default class InsertEmployee extends Component {
       empnoError ||
       statusError ||
       typeError ||
-      contactError
+      contactError ||
+      NICError
     ) {
       //emaiError also equal to emailError:emailError in Js.
       this.setState({
@@ -107,10 +176,11 @@ export default class InsertEmployee extends Component {
         empnoError,
         statusError,
         typeError,
-        contactError
+        contactError,
+        NICError
       });
       alert(
-        "Invalid Form Data. Please Check Emp No, Name, Email, Status, Type & Contact!!!"
+        "Invalid Form Data. Please Check Name, Email, Status, Type, Contact & NIC Number!!!"
       );
       return false;
     }
@@ -121,9 +191,18 @@ export default class InsertEmployee extends Component {
     this.setState({ redirectToReferrer: true });
   };
 
-  onSubmit = e => {
+  onSubmit = async e => {
     e.preventDefault();
-
+    await axios.get(`http://localhost:5000/employees/checkempno`).then(res => {
+      if (res.data.success) {
+        this.setState({
+          employee: res.data.empno
+        });
+        var no = this.state.employee[0].empno;
+        this.state.empno = no + 1;
+        console.log(this.state.empno);
+      }
+    });
     const {
       empno,
       name,
@@ -189,59 +268,65 @@ export default class InsertEmployee extends Component {
       type: type,
       status: status
     };
+
     const isValid = this.validate();
     if (isValid) {
-      console.log(this.state);
-      console.log(empno);
-      axios.get(`http://localhost:5000/staff/check/${empno}`).then(res => {
-        if (res.data.success) {
-          if (res.data.staffs.length == 0) {
-            console.log(res.data.staffs.length);
-            axios
-              .post("http://localhost:5000/employees/save", data)
-              .then(res => {
-                if (res.data.success) {
-                  this.setState({
-                    empno: empno,
-                    name: name,
-                    email: email,
-                    contact: contact,
-                    dob: dob,
-                    gender: gender,
-                    nic_no: nic_no,
-                    permernant_address: permernant_address,
-                    district: district,
-                    province: province,
-                    place_of_stay: place_of_stay,
-                    organization: organization,
-                    sector: sector,
-                    duration: duration,
-                    commencement_date: commencement_date,
-                    ending_date: ending_date,
-                    professional_education: professional_education,
-                    completed_stage: completed_stage,
-                    current_stage: current_stage,
-                    attempt: attempt,
-                    subjects: subjects,
-                    al_year: al_year,
-                    university: university,
-                    graduated_yr: graduated_yr,
-                    department: department,
-                    old_password: old_password,
-                    new_password: new_password,
-                    confirm_password: confirm_password,
-                    type: type,
-                    status: status,
-                    redirectToReferrer: true
-                  });
-                  alert("Employee Details Saved!");
-                }
-              });
-          } else {
-            alert("Employee Already Exists, Please enter again!");
+      console.log(this.state.empno);
+      console.log(data);
+
+      axios
+        .get(`http://localhost:5000/employees/checknic/${nic_no}`)
+        .then(res => {
+          if (res.data.success) {
+            if (res.data.staffs.length == 0) {
+              console.log(res.data.staffs.length);
+              axios
+                .post("http://localhost:5000/employees/save", data)
+                .then(res => {
+                  if (res.data.success) {
+                    this.setState({
+                      empno: empno,
+                      name: name,
+                      email: email,
+                      contact: contact,
+                      dob: dob,
+                      gender: gender,
+                      nic_no: nic_no,
+                      permernant_address: permernant_address,
+                      district: district,
+                      province: province,
+                      place_of_stay: place_of_stay,
+                      organization: organization,
+                      sector: sector,
+                      duration: duration,
+                      commencement_date: commencement_date,
+                      ending_date: ending_date,
+                      professional_education: professional_education,
+                      completed_stage: completed_stage,
+                      current_stage: current_stage,
+                      attempt: attempt,
+                      subjects: subjects,
+                      al_year: al_year,
+                      university: university,
+                      graduated_yr: graduated_yr,
+                      department: department,
+                      old_password: old_password,
+                      new_password: new_password,
+                      confirm_password: confirm_password,
+                      type: type,
+                      status: status,
+                      redirectToReferrer: true
+                    });
+                    alert("Employee Details Saved!");
+                  }
+                });
+            } else {
+              alert(
+                "Employee Already Exists, Please check your NIC and enter again!"
+              );
+            }
           }
-        }
-      });
+        });
     }
   };
   render() {
@@ -254,6 +339,20 @@ export default class InsertEmployee extends Component {
       <div className="container">
         <h1 class="headie">Add New Employee </h1>
         <hr class="lineie"></hr>
+        <button
+          type="button"
+          class="btn btn-warning"
+          onClick={this.demo}
+          style={{
+            marginTop: "0px",
+            marginLeft: "920px",
+            marginRight: "20px",
+            borderRadius: "60px",
+            filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))"
+          }}
+        >
+          Demo
+        </button>
         <form>
           <div class="mainie">
             <h1 class="head1">Basic Info </h1>
@@ -265,9 +364,8 @@ export default class InsertEmployee extends Component {
               id="empno"
               name="empno"
               value={this.state.empno}
-              onChange={this.handleInputChange}
-              placeholder="Enter Employee Number (Required)"
-              required
+              placeholder="Automatically Generated"
+              disabled
             />
             <div
               style={{
@@ -359,6 +457,7 @@ export default class InsertEmployee extends Component {
               name="gender"
               value={this.state.gender}
               onChange={this.handleInputChange}
+              style={{ color: "black" }}
             >
               <option value="DEFAULT" disabled>
                 Select Gender
@@ -374,7 +473,18 @@ export default class InsertEmployee extends Component {
               name="nic_no"
               value={this.state.nic_no}
               onChange={this.handleInputChange}
+              placeholder="Enter NIC Number (Required)"
             />
+            <div
+              style={{
+                color: "red",
+                position: "absolute",
+                left: "50px",
+                top: "425px"
+              }}
+            >
+              {this.state.NICError}
+            </div>
             <p class="label8">Permanent Address: </p>
             <input
               type="text"
@@ -403,6 +513,7 @@ export default class InsertEmployee extends Component {
               name="province"
               onChange={this.handleInputChange}
               placeholder="Enter 'Audit' / 'Tax' (Required)"
+              style={{ color: "black" }}
             >
               <option value="DEFAULT" disabled>
                 Select Province
@@ -599,6 +710,7 @@ export default class InsertEmployee extends Component {
             id="type"
             name="type"
             onChange={this.handleInputChange}
+            style={{ color: "black" }}
             placeholder="Enter 'Audit' / 'Tax' (Required)"
           >
             <option value="DEFAULT" disabled>
@@ -616,6 +728,7 @@ export default class InsertEmployee extends Component {
             name="status"
             onChange={this.handleInputChange}
             placeholder="Enter 'Trainee' / 'Senior' (Required)"
+            style={{ color: "black" }}
             required
           >
             <option value="DEFAULT" disabled>
