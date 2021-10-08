@@ -214,8 +214,8 @@ export default class EditAssignments extends Component {
                     <p style={{ color: "black", fontSize: "22px" }}>
                       Deadline - {this.state.deadline}
                     </p>
-                    <p class="vic" style={{ color: "black", fontSize: "22px" }}>
-                      Change Deadline:{" "}
+                    <p class="vic" style={{ color: "black", fontSize: "20px" }}>
+                      Change Deadline :{" "}
                     </p>
                     <input
                       type="date"
@@ -233,11 +233,10 @@ export default class EditAssignments extends Component {
                     <br />
                     <p
                       class="viic"
-                      style={{ color: "black", fontSize: "22px" }}
+                      style={{ color: "black", fontSize: "20px" }}
                     >
-                      Change Progress
+                      Change Progress :
                       <br />
-                      (Completed if done):
                     </p>
 
                     <select

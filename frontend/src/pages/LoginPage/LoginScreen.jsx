@@ -36,6 +36,12 @@ const LoginScreen = ({ history }) => {
     }
   };
 
+  //set path to employee register page on button click
+  const routeChange = () => {
+    let path = `/EmployeeReport`;
+    history.push(path);
+  };
+
   return (
     <div className="login-screen">
       <form onSubmit={loginHandler} className="login-screen__form">
@@ -74,10 +80,16 @@ const LoginScreen = ({ history }) => {
         <button type="submit" className="btn btn-primary">
           Login
         </button>
-
         <span className="login-screen__subtext">
-          Don't have an account? <Link to="/register">Register</Link>
+          Don't have an account? <Link to="/register">Register As Admin</Link>
         </span>
+        or
+        <span className="login-screen__subtext">
+          <Link to="/employeeregister">Register As Employee</Link>
+        </span>
+        <button className="btn btn-primary" onClick={routeChange}>
+          Employee Reports Portal
+        </button>
       </form>
     </div>
   );
