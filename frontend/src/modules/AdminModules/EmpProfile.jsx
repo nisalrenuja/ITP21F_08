@@ -5,6 +5,7 @@ import "./EmpProfile.css";
 export default class EmployeeReport extends Component {
   constructor(props) {
     super(props);
+    //set the initial states
     this.state = {
       empno: "",
       name: "",
@@ -46,13 +47,17 @@ export default class EmployeeReport extends Component {
     };
   }
 
+  //Load the retreived employee details
   componentDidMount() {
     this.retrievePosts();
   }
 
+  //Retrieve all the employee details for the profile
   async retrievePosts() {
     const id = this.props.match.params.id;
     console.log(id);
+
+    //Get all the employee details of the employee
     await axios.get(`http://localhost:5000/employees/${id}`).then(res => {
       if (res.data.success) {
         this.setState({
@@ -92,6 +97,7 @@ export default class EmployeeReport extends Component {
       }
     });
 
+    //Get the total allocation
     await axios
       .get(`http://localhost:5000/employees/alocation/${this.state.empno}`)
       .then(res => {
@@ -104,6 +110,8 @@ export default class EmployeeReport extends Component {
           console.log(res.data);
         }
       });
+
+    //Get the total points
     await axios
       .get(`http://localhost:5000/employees/pointsreq/${this.state.empno}`)
       .then(res => {
@@ -141,9 +149,9 @@ export default class EmployeeReport extends Component {
           </div>
 
           <div className="bubumain2">
-            <a href="/EmployeeReport" class="report">
-              <button class="btn btn-secondary">
-                <p>Report Submission </p>
+            <a href="/AllEmployees" class="report">
+              <button class="btn-outline-secondary">
+                <p>Back </p>
               </button>
             </a>
             <div className="basiccomp">

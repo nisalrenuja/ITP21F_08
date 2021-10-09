@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { confirmAlert } from "react-confirm-alert"; // Import
+import { confirmAlert } from "react-confirm-alert"; // Imports for confirm alert
 import "react-confirm-alert/src/react-confirm-alert.css";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify"; // Imports for toastify
 import "react-toastify/dist/ReactToastify.css";
-import ReactTooltip from "react-tooltip";
+import ReactTooltip from "react-tooltip"; // Imports for tool-tip
 import axios from "axios";
 import "./Employees.css";
 
@@ -15,10 +15,15 @@ export default class AdminTab3 extends Component {
       employee: []
     };
   }
+
+  //Load the retreived employee details in the employees table
   componentDidMount() {
     this.retrieveemployee();
   }
+
+  //Retrieve all the employee details for the employees table
   retrieveemployee() {
+    //Retrieves all the employee details, with total employee count
     axios.get("http://localhost:5000/employees").then(res => {
       if (res.data.success) {
         this.setState({
@@ -30,6 +35,8 @@ export default class AdminTab3 extends Component {
         console.log(this.state.employeecount);
       }
     });
+
+    //Retrieves the employee counts for tax and audit
     axios.get("http://localhost:5000/employees/counts").then(res => {
       if (res.data.success) {
         this.setState({
@@ -39,9 +46,13 @@ export default class AdminTab3 extends Component {
       }
     });
   }
+
+  //toast notification when a record is deleted
   notify = () => {
-    toast.success("Deleted Successfully ! 👌");
+    toast.success("Deleted Successfully !!!");
   };
+
+  //Delete method to execute onclick of Delete button
   onDelete = id => {
     axios.delete(`http://localhost:5000/employees/delete/${id}`).then(res => {
       this.retrieveemployee();
@@ -49,6 +60,7 @@ export default class AdminTab3 extends Component {
     });
   };
 
+  //Filter method used in search box
   filterData(employees, searchKey) {
     const result = employees.filter(employees =>
       employees.name.toLowerCase().includes(searchKey)
@@ -56,6 +68,7 @@ export default class AdminTab3 extends Component {
     this.setState({ employee: result });
   }
 
+  //Handle input change in the search box
   handleSearchArea = e => {
     const searchKey = e.currentTarget.value;
     axios.get("http://localhost:5000/employees").then(res => {

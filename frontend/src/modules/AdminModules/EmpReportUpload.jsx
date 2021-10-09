@@ -6,6 +6,7 @@ import { Redirect } from "react-router";
 export default class EmpReportUpload extends Component {
   constructor(props) {
     super(props);
+    //Generate Date
     var today = new Date(),
       date =
         today.getFullYear() +
@@ -17,6 +18,7 @@ export default class EmpReportUpload extends Component {
 
     this.uploadPDF = this.uploadPDF.bind(this);
 
+    //set the initial states
     this.state = {
       execid_review: "",
       report: "",
@@ -33,9 +35,12 @@ export default class EmpReportUpload extends Component {
     };
   }
 
+  //Load the employee data
   componentDidMount() {
     this.retrievePosts();
   }
+
+  //Retrieve the  pending and assigned assignment names and the allocated employee numbers
   retrievePosts() {
     axios.get("http://localhost:5000/assignments/empreportupload").then(res => {
       if (res.data.success) {
@@ -49,35 +54,42 @@ export default class EmpReportUpload extends Component {
     });
   }
 
+  //validate the form data
   validate = () => {
     let empnoError = "";
     let executiveError = "";
     let reportnameError = "";
     let PDFerror = "";
 
+    //validate the employee number field
     if (!this.state.empno) {
       empnoError = "**Employee Number Cannot Be Blank";
     }
 
+    //validate the execetive field
     if (!this.state.execid_review) {
       executiveError = "**ExecutiveID Cannot Be Blank";
     }
 
+    //validate the report name field
     if (!this.state.report) {
       reportnameError = "**Report Name Cannot be Blank";
     }
+
+    //validate the upload report field
     if (this.state.reportPDF == null) {
       PDFerror = "**PDF Upload Cannot be Blank";
     }
 
+    //Validate if theres a error state triggered
     if (reportnameError || executiveError || empnoError || PDFerror) {
-      //emaiError also equal to reportnameError:reportnameError in Js.
       this.setState({
         reportnameError,
         executiveError,
         empnoError,
         PDFerror
       });
+      //Alert to display when error is triggered
       alert(
         "Invalid Form Data. Please Check ExecutiveID, Empno, PDF Upload & ReportName !!!"
       );
@@ -86,6 +98,7 @@ export default class EmpReportUpload extends Component {
     return true;
   };
 
+  //Assign the values from the input fields to states when changed
   handleInputChange = e => {
     const { name, value } = e.target;
     this.setState({
@@ -94,15 +107,18 @@ export default class EmpReportUpload extends Component {
     });
   };
 
+  //PDF upload file change
   handleInputFileChange = e => {
     var file = e.target.files[0];
     console.log(file);
   };
 
+  //On cancel button click
   handleCancelClick = () => {
     this.setState({ redirectToReferrer: true });
   };
 
+  //Submit on save button click
   onSubmit = e => {
     e.preventDefault();
 
@@ -131,8 +147,10 @@ export default class EmpReportUpload extends Component {
     const data1 = { progress: "Working" };
     console.log(data);
 
+    //Validate the form data
     const isValid = this.validate();
     if (isValid) {
+      //uppdate the work assignment table progress from "Assigned" to "Working"
       axios
         .put(
           `http://localhost:5000/assignments/updte/${this.state.report}`,
@@ -145,6 +163,7 @@ export default class EmpReportUpload extends Component {
             });
           }
         });
+      //Save the data into Reviews Table
       axios.post("http://localhost:5000/review/save", data).then(res => {
         if (res.data.success) {
           this.setState({
@@ -165,6 +184,7 @@ export default class EmpReportUpload extends Component {
     }
   };
 
+  //Upload PDF function
   uploadPDF(e) {
     if (e.target.files[0] !== null) {
       const uploadTask = storage

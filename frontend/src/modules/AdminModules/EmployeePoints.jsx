@@ -6,7 +6,7 @@ import "./EmployeePoints.css";
 export default class AdminTab3 extends Component {
   constructor(props) {
     super(props);
-
+    //set the initial states
     this.state = {
       employee: [],
       TotalCompletedReports: "",
@@ -15,6 +15,7 @@ export default class AdminTab3 extends Component {
       points: []
     };
   }
+  //Load the employee points and the employees assignments table
   componentDidMount() {
     this.retrieveemployee();
   }
@@ -25,6 +26,7 @@ export default class AdminTab3 extends Component {
         var pending = [];
         var count1 = 0;
         var count2 = 0;
+        //count the number of completed and pending assignments per employee
         for (var i = 0; i < res.data.employees.length; i++) {
           count1 = 0;
           count2 = 0;
@@ -58,6 +60,7 @@ export default class AdminTab3 extends Component {
         console.log(this.state.pending);
       }
     });
+    //retrieve the total points accumulated in reviews per employee
     axios.get("http://localhost:5000/employeepoints2").then(res => {
       if (res.data.success) {
         this.setState({
@@ -68,13 +71,8 @@ export default class AdminTab3 extends Component {
       }
     });
   }
-  onDelete = id => {
-    axios.delete(`http://localhost:5000/employees/delete/${id}`).then(res => {
-      alert("Deleted Succeefully");
-      this.retrieveemployee();
-    });
-  };
 
+  //Method triggered when save button is clicked
   onSubmit = e => {
     e.preventDefault();
 
@@ -85,6 +83,7 @@ export default class AdminTab3 extends Component {
     };
     console.log(data);
 
+    //save the points table
     axios.post("http://localhost:5000/points/save", points).then(res => {
       if (res.data.success) {
         this.setState({
@@ -95,12 +94,14 @@ export default class AdminTab3 extends Component {
     });
   };
 
+  //Filter method used in search box for employee name
   filterData(employees, searchKey) {
     const result = employees.filter(employees =>
       employees.name.toLowerCase().includes(searchKey)
     );
     this.setState({ employee: result });
   }
+  //Filter method used in search box for employeeID
   filterData2(employees, searchKey) {
     if (searchKey == null) {
       const result1 = employees.filter(employees =>
@@ -113,16 +114,7 @@ export default class AdminTab3 extends Component {
     console.log(employees.findIndex(result));
   }
 
-  filterData3(employees, searchKey) {
-    if (searchKey == null) {
-      const result1 = employees.filter(employees =>
-        employees.name.toLowerCase().includes(searchKey)
-      );
-      this.setState({ spemployee: result1 });
-    }
-    const result = employees.filter(employees => employees.empno == searchKey);
-    this.setState({ spemployee: result });
-  }
+  //Handle input Employee Name change in the search box
   handleSearchArea = e => {
     const searchKey = e.currentTarget.value;
     axios.get("http://localhost:5000/employees").then(res => {
@@ -131,21 +123,12 @@ export default class AdminTab3 extends Component {
       }
     });
   };
-
+  //Handle input EmployeeID change in the search box
   handleSearchArea2 = e => {
     const searchKey = e.currentTarget.value;
     axios.get("http://localhost:5000/employees").then(res => {
       if (res.data.success) {
         this.filterData2(res.data.existingemployees, searchKey);
-      }
-    });
-  };
-
-  handleSearchArea3 = e => {
-    const searchKey = e.currentTarget.value;
-    axios.get("http://localhost:5000/employees").then(res => {
-      if (res.data.success) {
-        this.filterData3(res.data.existingemployees, searchKey);
       }
     });
   };
