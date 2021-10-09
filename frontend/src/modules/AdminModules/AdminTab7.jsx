@@ -17,11 +17,23 @@ export default class AdminTab7 extends Component {
     this.retrievePosts();
   }
 
-  printData(getprintout) {
-    let printTable = document.getElementById("laptopdetails");
-    getprintout = window.open("");
-    getprintout.document.write("Available Inventory Laptops Details");
-    getprintout.document.write(printTable.outerHTML);
+  printData() {
+    let printTable = document.getElementById("laptopdetails").innerHTML;
+    let getprintout = window.open("", "", "height=1024, width=1024");
+    getprintout.document.write(
+      "<html><head><title>Laptop Print Page</title></head>"
+    );
+    getprintout.document.write(
+      '<body style="font-family:Arial, Helvetica, sans-serif;font-size:10px;color:#000000";margin:100;padding:40> <h1 style="text-align:center"><u>Inventory Laptops Details </u></h1><br>'
+    );
+    getprintout.document.write(
+      '<table style="width: 100%; border: 1px  solid black ;text-align: center"><hr><tbody style=" font-size: 36px; padding: 25px ;border: 1px  solid black ;text-align: center"',
+      printTable,
+      "</table><br>"
+    );
+    getprintout.document.write("...................<br>");
+    getprintout.document.write("signature");
+    getprintout.document.write("</body></html>");
     getprintout.print();
     getprintout.close();
   }
