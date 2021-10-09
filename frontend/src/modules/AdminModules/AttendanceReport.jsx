@@ -41,8 +41,8 @@ export default class AttendanceReport extends Component {
     axios.get("http://localhost:5000/attendances/incompany").then(res => {
       if (res.data.success) {
         this.setState({
-          employee1: res.data.existingemployees,
-          employeecount1: res.data.employeeCount,
+          attend1: res.data.existingAttendances,
+          attendcount1: res.data.attendanceCount,
           auditcount: res.data.empAuditCount
         });
       }
@@ -52,8 +52,8 @@ export default class AttendanceReport extends Component {
     axios.get("http://localhost:5000/employees/tax").then(res => {
       if (res.data.success) {
         this.setState({
-          employee2: res.data.existingemployees,
-          employeecount2: res.data.employeeCount,
+          attend2: res.data.existingAttendances,
+          attendcount2: res.data.attendanceCount,
           Taxcount: res.data.empAuditCount
         });
       }
@@ -139,70 +139,80 @@ export default class AttendanceReport extends Component {
       <div className="container container222">
         <center>
           <br />
-          <h1> Report On All Employees</h1>&nbsp;
+          <h1> Attendance Report 2021</h1>&nbsp;
           <button
             type="primary"
             className="btn btn-warning text-light col-2 float-right"
             onClick={this.generatePDF}
           >
-            Print/PDF
+            Print(PDF)
           </button>
           <div
             id="reportContent"
             style={{ marginTop: "10px", padding: "10px", paddingRight: "5px" }}
           >
             <div>
-              <h2>Audit Employees ({this.state.employeecount1})</h2>&nbsp;
+              <h2>Assignment Attendance Records ({this.state.attendcount1})</h2>
+              &nbsp;
               <table className="table table-hover bbtable1">
                 <thead class="thead">
                   <tr>
                     <th scope="col">Employee ID</th>
-                    <th scope="col">Employee Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Contact Number</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Assignment</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Assignment Type</th>
+                    <th scope="col">Time In</th>
+                    <th scope="col">Time Out</th>
                   </tr>
                 </thead>
                 <tbody class="tbody1">
-                  {this.state.employee1.map((employees, index) => (
+                  {this.state.attendances.map((attendances, index) => (
                     <tr key={index}>
                       <td>
                         <a href={``} style={{ textDecoration: "none" }}>
-                          {employees.empno}
+                          {attendances.empno}
                         </a>
                       </td>
-                      <td>{employees.name}</td>
-                      <td>{employees.email}</td>
-                      <td>{employees.contact}</td>
-                      <td>{employees.status}</td>
+                      <td>{attendances.att_date}</td>
+                      <td>{attendances.assignment_name}</td>
+                      <td>{attendances.loacation}</td>
+                      <td style={{ fontWeight: "bold" }}>
+                        {attendances.att_type}
+                      </td>
+                      <td>{attendances.time_in}</td>
+                      <td>{attendances.time_out}</td>
                     </tr>
                   ))}
+                  ;
                 </tbody>
                 &nbsp;
               </table>
-              <h2>Tax Employees ({this.state.employeecount2})</h2>&nbsp;
+              <h2>In Company Records ({this.state.attendcount2})</h2>&nbsp;
               <table className="table table-hover bbtable1">
                 <thead class="thead">
                   <tr>
                     <th scope="col">Employee ID</th>
-                    <th scope="col">Employee Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Contact Number</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Assignment Type</th>
+                    <th scope="col">Time In</th>
+                    <th scope="col">Time Out</th>
                   </tr>
                 </thead>
                 <tbody class="tbody1">
-                  {this.state.employee2.map((employees, index) => (
+                  {this.state.attend2.map((attendances, index) => (
                     <tr key={index}>
                       <td>
                         <a href={``} style={{ textDecoration: "none" }}>
-                          {employees.empno}
+                          {attendances.empno}
                         </a>
                       </td>
-                      <td>{employees.name}</td>
-                      <td>{employees.email}</td>
-                      <td>{employees.contact}</td>
-                      <td>{employees.status}</td>
+                      <td>{attendances.att_date}</td>
+                      <td style={{ fontWeight: "bold" }}>
+                        {attendances.att_type}
+                      </td>
+                      <td>{attendances.time_in}</td>
+                      <td>{attendances.time_out}</td>
                     </tr>
                   ))}
                 </tbody>
