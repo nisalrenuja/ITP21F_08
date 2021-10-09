@@ -92,6 +92,12 @@ export default class AdminAttendance extends Component {
                 <br />
                 <h4 class="">Assignment Attendance</h4>
               </div>
+              <div>
+                <a href="/empexportreport" class="btn btn-info">
+                  Attendance
+                  <i class="fa fa-file fa-2x" aria-hidden="true"></i>&nbsp;
+                </a>
+              </div>
 
               <div>
                 <Clock />
