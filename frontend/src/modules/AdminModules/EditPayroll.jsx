@@ -97,41 +97,7 @@ export default class EditPayroll extends Component {
       }
     });
   }
-  /*
-  uploadPDF(e) {
-    if (e.target.files[0] !== null) {
-      const uploadTask = storage
-        .ref(`users/${e.target.files[0].name}`)
-        .put(e.target.files[0]);
-      uploadTask.on(
-        "state_changed",
-        snapshot => {
-          //progress function
-          const progress = Math.round(
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          );
-          this.setState({ uploadPercentage: progress });
-        },
-        error => {
-          //error function
-          console.log(error);
-        },
-        () => {
-          //complete function
-          storage
-            .ref("users")
-            .child(e.target.files[0].name)
-            .getDownloadURL()
-            .then(url => {
-              this.setState({ reportPDF: url });
-              console.log("Hello " + url);
-            });
-        }
-      );
-    } else {
-    }
-  }
-  */
+
   render() {
     return (
       <div className="col-md-6 mt-4 mx-auto">
