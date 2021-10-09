@@ -1,34 +1,26 @@
-.need-validation{
+.ckneed-validation{
     background: #D3E0EA;
     border-color: 2px #276678;
-
+    
 
 }
-.box{
+.ckbox{
     position: relative;
-    background: white;
-    color: #276678;
+    background: rgb(146, 195, 241);
+    color: #343e41;
     border-radius: 4px;
     height : 100px;
-    width: 500px;
+    width: 400px;
     padding: auto;
-    left: 40px;
+    left: 35px;
     right: 40px;
 
 }
-.lap{
-    position: relative;
-    color : #276678;
-    font-size: 18px;
-    font-family: sans-serif;
-    left: 155px;
-    top:20px;
-}
 
-.laps{
+.cksub-details{
     position: relative;
-    color : #276678;
-    font-size: 24px;
+    color : #08080a;
+    font-size: 18px;
     font-family: sans-serif;
     left:30px;
     top:10px;
@@ -36,7 +28,7 @@
 
 }
 
-.lapsbrand{
+.ap-brand{
     position: relative;
     color : #276678;
     font-size: 24px;
@@ -56,17 +48,24 @@ hr{
     color: black;
 }
 
-dt{
-    color: black;
+.ckdt{
+    color: #004466;
     position: relative;
-    left:140px;
+    left:1.5px;
     top: 23px;
 }
 
-dd{
-    color:#276678;
+.ckdd{
+    color: #004466;
     position: relative;
-    left: 290px;
+    left: 120px;
+    top: 0px;
+}
+
+.ckddp{
+    color: #004466;
+    position: relative;
+    left: 120px;
     top: 0px;
 }
 
@@ -106,3 +105,31 @@ h3{
     color: white;
 }
 
+.hr-line2{
+
+
+    height: 0px;
+    left: 478px;
+    top: 308px;
+  
+    border: 3px solid #D3E0EA;
+    transform: rotate(0.21deg);
+  }
+
+  .topic{
+    color: #1687A7;
+    position: relative;
+
+    font-weight: bold;
+}
+
+.btncookies{
+position: absolute;
+width: 90px;
+height: 25px;
+left: 300px;
+top: -20px;
+
+background: #276678;
+border-radius: 20px;
+  }

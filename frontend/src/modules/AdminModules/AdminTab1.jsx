@@ -39,7 +39,6 @@ export default class AdminTab1 extends Component {
       post =>
         post.execid_review.toLowerCase().includes(searchKey) ||
         post.report.toLowerCase().includes(searchKey) ||
-        post.points.toLowerCase().includes(searchKey) ||
         post.feedback.toLowerCase().includes(searchKey) ||
         post.status.toLowerCase().includes(searchKey)
     );

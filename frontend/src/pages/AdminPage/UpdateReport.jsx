@@ -61,7 +61,7 @@ const Updatereport = ({ history, match }) => {
           ) : selectedMenuOption === "MenuItem 7" ? (
             <AdminTab7 />
           ) : (
-            <AdminTab8 />
+            <UpdateReport dataFromParent={match.params.finalreport} />
           )}
         </Container>
       ) : (

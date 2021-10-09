@@ -198,23 +198,25 @@ export default class EditAssignments extends Component {
                 <strong>
                   <center>
                     <br />
-                    <p style={{ color: "#1687a7", fontSize: "30px" }}>
+                    <p style={{ color: "black", fontSize: "22px" }}>
                       Assignment Name - {assignment.assignment_name}
                     </p>
                     <br />
-                    <p style={{ color: "#1687a7", fontSize: "30px" }}>
+                    <p style={{ color: "black", fontSize: "22px" }}>
                       Client No - {assignment.client_no}
                     </p>
                     <br />
-                    <p style={{ color: "#1687a7", fontSize: "30px" }}>
+                    <p style={{ color: "black", fontSize: "22px" }}>
                       Allocated On -{assignment.date_of_allocation}
                     </p>
                     <br />
 
-                    <p style={{ color: "#1687a7", fontSize: "30px" }}>
+                    <p style={{ color: "black", fontSize: "22px" }}>
                       Deadline - {this.state.deadline}
                     </p>
-                    <p class="vic">Change Deadline: </p>
+                    <p class="vic" style={{ color: "black", fontSize: "20px" }}>
+                      Change Deadline :{" "}
+                    </p>
                     <input
                       type="date"
                       class="vicc"
@@ -224,15 +226,17 @@ export default class EditAssignments extends Component {
                       onChange={this.handleInputChange}
                     />
                     <br />
-                    <p style={{ color: "#1687a7", fontSize: "30px" }}>
+                    <p style={{ color: "black", fontSize: "22px" }}>
                       Progress - {this.state.progress}
                     </p>
 
                     <br />
-                    <p class="viic">
-                      Change Progress
+                    <p
+                      class="viic"
+                      style={{ color: "black", fontSize: "20px" }}
+                    >
+                      Change Progress :
                       <br />
-                      (Completed if done):
                     </p>
 
                     <select
@@ -242,36 +246,58 @@ export default class EditAssignments extends Component {
                       name="progress"
                       value={this.state.progress}
                       onChange={this.handleInputChange}
+                      style={{ color: "black", fontSize: "15px" }}
                     >
-                      <option value="Assigned">Assigned</option>
-                      <option value="Working">Working</option>
-                      <option value="Completed">Completed</option>
+                      <option
+                        value="Assigned"
+                        style={{ color: "black", fontSize: "15px" }}
+                      >
+                        Assigned
+                      </option>
+                      <option
+                        value="Working"
+                        style={{ color: "black", fontSize: "15px" }}
+                      >
+                        Working
+                      </option>
+                      <option
+                        value="Completed"
+                        style={{ color: "black", fontSize: "15px" }}
+                      >
+                        Completed
+                      </option>
                     </select>
                   </center>
                 </strong>
               </div>
             ))}
-
             <br />
-            <button
-              className="btn btn-success"
-              type="submit"
-              style={{ marginTop: "135px", marginLeft: "700px" }}
-              onClick={this.onSubmit}
-            >
-              <i className="fas fa-save"></i>&nbsp;Save
-            </button>
             <br />
             <br />
             <br />
             <center>
-              <h4>Allowances to Employees(Rs)</h4>
+              <button
+                className="btn btn-success"
+                type="submit"
+                style={{ marginTop: "135px" }}
+                onClick={this.onSubmit}
+              >
+                <i className="fas fa-save"></i>&nbsp;Save
+              </button>
+            </center>
+            <br />
+            <br />
+            <br />
+            <center>
+              <h4>
+                <u>Allowances to Employees(Rs)</u>
+              </h4>
             </center>
             {this.state.assignment2.map((assignment2, index) => (
               <div>
                 <strong>
                   <center>
-                    <p style={{ color: "#1687a7", fontSize: "20px" }}>
+                    <p style={{ color: "black", fontSize: "20px" }}>
                       Emp No:-{assignment2.employees[0].empno} - Name:-{" "}
                       {assignment2.employees[0].name} - Allowances:-
                       {assignment2.travel_allowance}
@@ -280,69 +306,76 @@ export default class EditAssignments extends Component {
                 </strong>
               </div>
             ))}
-            <br />
-            <br />
-            <h4>Edit Allowances to Employees(Rs)(Enter one by one)</h4>
-            <input
-              type="text"
-              id="empno"
-              name="empno"
-              placeholder="Enter empno"
-              value={this.state.empno}
-              onChange={this.handleInputChange2}
-            />
-            <input
-              type="text"
-              id="travel_allowance"
-              name="travel_allowance"
-              placeholder="Enter allowance"
-              value={this.state.travel_allowance}
-              onChange={this.handleInputChange2}
-            />
-            <br />
-            <button
-              className="btn btn-success"
-              type="submit"
-              onClick={this.onSubmit2}
-            >
-              Set
-            </button>
-            <br />
-            <br />
-
-            <h4>Document of Bills(For Allowances) </h4>
-            <input
-              type="file"
-              id="scan_invoice_allowance"
-              name="scan_invoice_allowance"
-              onChange={e => {
-                this.uploadPDF(e);
-              }}
-              multiple=""
-            />
-            <button
-              className="btn btn-success"
-              type="submit"
-              onClick={this.onSubmit3}
-            >
-              Submit
-            </button>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
             <center>
-              <a href="/admin">
-                <button
-                  className="btn btn-secondary"
-                  type="submit"
-                  style={{ width: "20%" }}
-                >
-                  Done
-                </button>
-              </a>
+              <br />
+              <br />
+              <h4>
+                <u>Edit Allowances to Employees(Rs)(Enter one by one)</u>
+              </h4>
+              <input
+                type="text"
+                id="empno"
+                name="empno"
+                placeholder="Enter empno"
+                value={this.state.empno}
+                onChange={this.handleInputChange2}
+              />
+              <input
+                type="text"
+                id="travel_allowance"
+                name="travel_allowance"
+                placeholder="Enter allowance"
+                value={this.state.travel_allowance}
+                onChange={this.handleInputChange2}
+              />
+              <br />
+              <button
+                className="btn btn-success"
+                type="submit"
+                onClick={this.onSubmit2}
+              >
+                Set
+              </button>
+              <br />
+              <br />
+
+              <h4>
+                <u>Document of Bills(For Allowances) </u>
+              </h4>
+              <input
+                type="file"
+                id="scan_invoice_allowance"
+                name="scan_invoice_allowance"
+                onChange={e => {
+                  this.uploadPDF(e);
+                }}
+                multiple=""
+              />
+              <br />
+              <button
+                className="btn btn-success"
+                type="submit"
+                onClick={this.onSubmit3}
+              >
+                Submit
+              </button>
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <center>
+                <a href="/admin">
+                  <button
+                    className="btn btn-secondary"
+                    type="submit"
+                    style={{ width: "20%" }}
+                  >
+                    Done
+                  </button>
+                </a>
+              </center>
             </center>
           </div>
         </div>

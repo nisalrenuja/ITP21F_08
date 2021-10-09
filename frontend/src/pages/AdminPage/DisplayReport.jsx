@@ -7,11 +7,11 @@ import AdminTab3 from "../../modules/AdminModules/AdminTab3";
 import AdminTab4 from "../../modules/AdminModules/AdminTab4";
 import AdminTab5 from "../../modules/AdminModules/AdminTab5";
 import AdminTab6 from "../../modules/AdminModules/AdminTab6";
-//import AdminTab7 from "../../modules/AdminModules/AdminTab7";
+import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
-import LaptopRepair from "../../modules/AdminModules/LaptopRepair";
+import DisplayReport from "../../modules/AdminModules/DisplayReport";
 
-const LaptopsRepair = () => {
+const Displayreport = ({ history, match }) => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -34,7 +34,7 @@ const LaptopsRepair = () => {
       setSelectedMenuOption(selectedMenuOptionCache);
     }
   }, [selectedMenuOptionCache]);
-  //laptop
+
   const updateSelectedMenuOption = option => {
     setSelectedMenuOption(option);
     if (process.browser) {
@@ -48,18 +48,18 @@ const LaptopsRepair = () => {
         <Container>
           {selectedMenuOption === "User Executive" ? (
             <AdminTab1 />
-          ) : selectedMenuOption === "MenuItem 2" ? (
-            <AdminTab2 />
-          ) : selectedMenuOption === "Employees" ? (
+          ) : selectedMenuOption === "Report Management" ? (
+            <DisplayReport dataFromParent={match.params.finalreport} />
+          ) : selectedMenuOption === "MenuItem 3" ? (
             <AdminTab3 />
           ) : selectedMenuOption === "Work Allocation" ? (
             <AdminTab4 />
-          ) : selectedMenuOption === "MenuItem 5" ? (
+          ) : selectedMenuOption === "Notice Management" ? (
             <AdminTab5 />
-          ) : selectedMenuOption === "MenuItem 6" ? (
+          ) : selectedMenuOption === "Attendance & Payroll" ? (
             <AdminTab6 />
-          ) : selectedMenuOption === "Inventory Management" ? (
-            <LaptopRepair />
+          ) : selectedMenuOption === "MenuItem 7" ? (
+            <AdminTab7 />
           ) : (
             <AdminTab8 />
           )}
@@ -75,5 +75,4 @@ const LaptopsRepair = () => {
   );
 };
 
-export default LaptopsRepair;
-//lap
+export default Displayreport;

@@ -49,6 +49,43 @@ export default class EmpReportUpload extends Component {
     });
   }
 
+  validate = () => {
+    let empnoError = "";
+    let executiveError = "";
+    let reportnameError = "";
+    let PDFerror = "";
+
+    if (!this.state.empno) {
+      empnoError = "**Employee Number Cannot Be Blank";
+    }
+
+    if (!this.state.execid_review) {
+      executiveError = "**ExecutiveID Cannot Be Blank";
+    }
+
+    if (!this.state.report) {
+      reportnameError = "**Report Name Cannot be Blank";
+    }
+    if (this.state.reportPDF == null) {
+      PDFerror = "**PDF Upload Cannot be Blank";
+    }
+
+    if (reportnameError || executiveError || empnoError || PDFerror) {
+      //emaiError also equal to reportnameError:reportnameError in Js.
+      this.setState({
+        reportnameError,
+        executiveError,
+        empnoError,
+        PDFerror
+      });
+      alert(
+        "Invalid Form Data. Please Check ExecutiveID, Empno, PDF Upload & ReportName !!!"
+      );
+      return false;
+    }
+    return true;
+  };
+
   handleInputChange = e => {
     const { name, value } = e.target;
     this.setState({
@@ -60,6 +97,10 @@ export default class EmpReportUpload extends Component {
   handleInputFileChange = e => {
     var file = e.target.files[0];
     console.log(file);
+  };
+
+  handleCancelClick = () => {
+    this.setState({ redirectToReferrer: true });
   };
 
   onSubmit = e => {
@@ -85,38 +126,43 @@ export default class EmpReportUpload extends Component {
       due_date: due_date,
       redirectToReferrer: true
     };
+
     const { progress } = this.state;
     const data1 = { progress: "Working" };
     console.log(data);
-    axios
-      .put(
-        `http://localhost:5000/assignments/updte/${this.state.report}`,
-        data1
-      )
-      .then(res => {
+
+    const isValid = this.validate();
+    if (isValid) {
+      axios
+        .put(
+          `http://localhost:5000/assignments/updte/${this.state.report}`,
+          data1
+        )
+        .then(res => {
+          if (res.data.success) {
+            this.setState({
+              progress: ""
+            });
+          }
+        });
+      axios.post("http://localhost:5000/review/save", data).then(res => {
         if (res.data.success) {
           this.setState({
-            progress: ""
+            execid_review: "",
+            report: "",
+            reportPDF: "",
+            points: "",
+            feedback: "",
+            status: "",
+            empno: "",
+            sub_date: "",
+            due_date: "",
+            redirectToReferrer: true
           });
+          alert("Submitted Successfully");
         }
       });
-    axios.post("http://localhost:5000/review/save", data).then(res => {
-      if (res.data.success) {
-        this.setState({
-          execid_review: "",
-          report: "",
-          reportPDF: "",
-          points: "",
-          feedback: "",
-          status: "",
-          empno: "",
-          sub_date: "",
-          due_date: "",
-          redirectToReferrer: true
-        });
-        alert("Submitted Successfully");
-      }
-    });
+    }
   };
 
   uploadPDF(e) {
@@ -180,7 +226,16 @@ export default class EmpReportUpload extends Component {
                 onChange={this.handleInputChange}
                 required
               />
-              <div class="invalid-feedback">Please choose a username.</div>
+              <div
+                style={{
+                  color: "red",
+                  position: "absolute",
+                  left: "0px",
+                  top: "35px"
+                }}
+              >
+                {this.state.executiveError}
+              </div>
             </div>
           </div>
 
@@ -199,6 +254,16 @@ export default class EmpReportUpload extends Component {
                 <option key={index}>{pending}</option>
               ))}
             </select>
+            <div
+              style={{
+                color: "red",
+                position: "absolute",
+                left: "250px",
+                top: "375px"
+              }}
+            >
+              {this.state.reportnameError}
+            </div>
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
@@ -215,6 +280,16 @@ export default class EmpReportUpload extends Component {
               }}
               multiple=""
             />
+            <div
+              style={{
+                color: "red",
+                position: "absolute",
+                left: "250px",
+                top: "453px"
+              }}
+            >
+              {this.state.PDFerror}
+            </div>
           </div>
 
           <div className="mt-3">
@@ -248,15 +323,41 @@ export default class EmpReportUpload extends Component {
                 <option key={index}>{pending}</option>
               ))}
             </select>
+            <div
+              style={{
+                color: "red",
+                position: "absolute",
+                left: "250px",
+                top: "633px"
+              }}
+            >
+              {this.state.empnoError}
+            </div>
           </div>
 
           <button
-            className="btn btn-danger"
+            className="btn btn-success"
             type="submit"
-            style={{ marginTop: "15px", marginBottom: "15px" }}
+            style={{
+              marginTop: "15px",
+              marginBottom: "15px",
+              borderRadius: "60px"
+            }}
             onClick={this.onSubmit}
           >
             <i className="fa"></i>&nbsp;Save
+          </button>
+          <button
+            className="btn btn-light"
+            type="cancel"
+            style={{
+              marginLeft: "15px",
+              borderRadius: "60px",
+              filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))"
+            }}
+            onClick={this.handleCancelClick}
+          >
+            Cancel
           </button>
         </form>
       </div>

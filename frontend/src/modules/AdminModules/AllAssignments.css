@@ -1,38 +1,38 @@
-.div1 {
+.div111 {
   position: absolute;
-  width: 290px;
-  height: 67px;
+  width: 250px;
+  height: 60px;
   left: 50px;
-  top: 200px;
-
+  top: 190px;
+border-radius: 20px;
   background: #276678;
 }
-.div2 {
+.div222 {
   position: absolute;
-  width: 290px;
-  height: 67px;
-  left: 350px;
-  top: 200px;
-
+  width: 250px;
+  height: 60px;
+  left: 310px;
+  top: 190px;
+  border-radius: 20px;
   background: #d3e0ea;
 }
-.txt1 {
+.txt111 {
   font-family: Inter;
   font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 19px;
+  font-weight: 550;
+  font-size: 20px;
+  line-height: 29px;
   text-align: center;
   letter-spacing: -0.00022em;
 
   color: #ffffff;
 }
-.txt2 {
+.txt222 {
   font-family: Inter;
   font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 19px;
+  font-weight: 550;
+  font-size: 20px;
+  line-height: 29px;
   text-align: center;
   letter-spacing: -0.00022em;
 
@@ -63,25 +63,25 @@
   border: 3px solid #d3e0ea;
   transform: rotate(0.21deg);
 }
-.div3 {
+.div34 {
   position: absolute;
-  width: 720px;
-  height: 151px;
-  left: 174px;
-  top: 350px;
+  width: 360px;
+  height: 100px;
+  left: 570px;
+  top: 290px;
 
   background: #1687a7;
   backdrop-filter: blur(4px);
   /* Note: backdrop-filter has minimal browser support */
 
-  border-radius: 5px;
+  border-radius: 10px;
 }
-.txt3 {
+.txt34 {
   position: absolute;
-  width: 94px;
-  height: 29px;
-  left: 85px;
-  top: 60px;
+  width: 74px;
+  height: 28px;
+  left: 30px;
+  top: 35px;
   font-family: Inter;
   font-style: normal;
   font-weight: 600;
@@ -92,17 +92,17 @@
   text-align: center;
   letter-spacing: -0.00022em;
 
-  color: #c4c4c4;
+  color: white;
 }
 .select11 {
   position: absolute;
-  width: 272px;
+  width: 202px;
   height: 60px;
-  left: 185px;
-  top: 50px;
+  left: 140px;
+  top: 20px;
 
   background: #ffffff;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 .search22 {
   position: absolute;
@@ -116,7 +116,7 @@
   width: 100%;
 
   left: 40px;
-  top: 650px;
+  top: 455px;
 }
 .thead101 {
   background: #276678;
@@ -154,7 +154,7 @@
   width: 523px;
   height: 66px;
   left: 50px;
-  top: 570px;
+  top: 405px;
 
   color: #000000;
 }
