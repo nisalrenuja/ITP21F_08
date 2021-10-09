@@ -164,7 +164,16 @@ export default class AdminTab1 extends Component {
                   </td>
                   <td>{posts.points}</td>
                   <td>{posts.feedback}</td>
-                  <td>{posts.managerStatus}</td>
+
+                  <td>
+                    <a
+                      href={`/editmanagerreview/${posts._id}`}
+                      style={{ textDecoration: "none" }}
+                    >
+                      {posts.managerStatus}
+                    </a>
+                  </td>
+
                   <td>
                     <a href={`/post/${posts._id}`}>
                       <i class="far fa-eye"></i>

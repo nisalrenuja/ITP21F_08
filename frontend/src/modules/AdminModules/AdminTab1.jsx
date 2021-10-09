@@ -127,7 +127,10 @@ export default class AdminTab1 extends Component {
               ></input>
             </div>
           </div>
-          <table className="table table-hover" style={{ marginTop: "30px" }}>
+          <table
+            className="table table-hover text-center"
+            style={{ marginTop: "30px" }}
+          >
             <thead className="tblhead">
               <tr class="">
                 <th scope="col"></th>
