@@ -120,7 +120,10 @@ export default class AdminTab1 extends Component {
               ></input>
             </div>
           </div>
-          <table className="table table-hover" style={{ marginTop: "30px" }}>
+          <table
+            className="table table-hover text-center"
+            style={{ marginTop: "30px" }}
+          >
             <thead className="tblhead">
               <tr>
                 <th scope="col"></th>
@@ -156,7 +159,14 @@ export default class AdminTab1 extends Component {
                   </td>
                   <td>{posts.points}</td>
                   <td>{posts.feedback}</td>
-                  <td>{posts.partnerStatus}</td>
+                  <td>
+                    <a
+                      href={`/editpartnerreview/${posts._id}`}
+                      style={{ textDecoration: "none" }}
+                    >
+                      {posts.partnerStatus}
+                    </a>
+                  </td>
                   <td>
                     <a href={`/post/${posts._id}`}>
                       <i class="far fa-eye"></i>
