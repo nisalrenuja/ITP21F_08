@@ -34,6 +34,15 @@ text-align: center;
 color: #1687A7;
 }
 
+.btn-outline-secondary{
+  position: absolute;
+  width: 70px;
+  height: 30px;
+  left: 0px;
+  top: 10px;
+  border-radius: 20px;
+}
+
 .bubutype{
     position: absolute;
 width: 318px;

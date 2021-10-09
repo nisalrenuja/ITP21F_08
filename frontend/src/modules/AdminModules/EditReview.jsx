@@ -145,7 +145,7 @@ export default class EditReview extends Component {
   render() {
     return (
       <div className="col-md-8 mt-4 mx-auto">
-        <h1 className="h3 mb-3 font-weight-normal">Edit Review</h1>
+        <h1 className="h3 mb-3 font-weight-normal">Edit Initial Review</h1>
         <form className="need-validation" noValidate>
           <div className="form-group" style={{ marginBottom: "15px" }}>
             <label style={{ marginBottom: "5px" }}>Review Id</label>

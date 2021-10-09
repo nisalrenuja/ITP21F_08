@@ -6,6 +6,7 @@ import { Redirect } from "react-router";
 export default class InsertEmployee extends Component {
   constructor(props) {
     super(props);
+    //Generate Date
     var today = new Date(),
       date =
         today.getFullYear() +
@@ -15,6 +16,7 @@ export default class InsertEmployee extends Component {
         today.getDate();
     console.log(date);
 
+    //set the initial states
     this.state = {
       empno: "",
       name: "",
@@ -54,19 +56,22 @@ export default class InsertEmployee extends Component {
       redirectToReferrer: false
     };
   }
+
+  //Method invoked onclick of Demo Button
   demo = e => {
     e.preventDefault();
     this.setState({
-      name: "Test Name",
-      email: "Test@gmail.com",
+      name: "Admin Name",
+      email: "admintest@gmail.com",
+      contact: "0718964563",
       dob: "2021-10-13",
-      gender: "Male",
+      gender: "M",
       nic_no: "199912617535",
       permernant_address: "94/3,Cross Street,Colombo 07",
       district: "Colombo",
       province: "Western",
-      place_of_stay: "iijij",
-      organization: "Nawaloka Constructions",
+      place_of_stay: "Wijerama",
+      organization: "SDB",
       sector: "Audit",
       duration: "6 yrs",
       ending_date: "2021-10-13",
@@ -84,6 +89,8 @@ export default class InsertEmployee extends Component {
       confirm_password: ""
     });
   };
+
+  //Assign the values from the input fields to states when changed
   handleInputChange = e => {
     const { name, value } = e.target;
     this.setState({
@@ -92,10 +99,12 @@ export default class InsertEmployee extends Component {
     });
   };
 
+  //Load the automatically generated employee number
   componentDidMount() {
     this.retrievePosts();
   }
 
+  //retrieve the max employee number to automatically generate the employee number
   retrievePosts() {
     axios.get(`http://localhost:5000/employees/checkempno`).then(res => {
       if (res.data.success) {
@@ -115,6 +124,7 @@ export default class InsertEmployee extends Component {
     });
   }
 
+  //Form validations for Employee name, email, status, type, status, contactNo and NICNo
   validate = () => {
     let empnoError = "";
     let nameError = "";
@@ -124,29 +134,33 @@ export default class InsertEmployee extends Component {
     let contactError = "";
     let NICError = "";
 
+    //validate employee number is blank
     if (!this.state.empno) {
       empnoError = "**EmpNo Cannot Be Blank";
     }
-
+    //Validate employee name is blank
     if (!this.state.name) {
       nameError = "**Name Cannot Be Blank";
     }
-
+    //Validate email with the conditions
     if (!this.state.email.match("[a-z0-9.]{1,}[@]{1}[a-z]{1,}[.]{1}(com)$")) {
       emailError = "**Invalid email";
     }
-
+    //Validate status is blank
     if (!this.state.status) {
       statusError = "**Status Cannot Be Blank";
     }
+    //Validate type is blank
     if (!this.state.type) {
       typeError = "**Type Cannot Be Blank";
     }
+    //Validate contact has 10 digits
     if (!this.state.contact) {
       contactError = "**Contact Number Cannot Be Blank";
     } else if (this.state.contact.length !== 10) {
       contactError = "**Contact Number must have 10 digits";
     }
+    //Validate NIC Number for Both Old and New
     if (!this.state.nic_no) {
       NICError = "**NIC Cannot Be Blank";
     } else if (
@@ -155,11 +169,12 @@ export default class InsertEmployee extends Component {
     ) {
       NICError = "**Invalid NIC";
     } else if (this.state.nic_no.length == 10) {
-      if (this.state.nic_no.includes("V")) {
+      if (!this.state.nic_no.includes("V")) {
         NICError = "**Invalid Old NIC";
       }
     }
 
+    //Validate if theres a error state triggered
     if (
       emailError ||
       nameError ||
@@ -169,7 +184,6 @@ export default class InsertEmployee extends Component {
       contactError ||
       NICError
     ) {
-      //emaiError also equal to emailError:emailError in Js.
       this.setState({
         emailError,
         nameError,
@@ -179,6 +193,7 @@ export default class InsertEmployee extends Component {
         contactError,
         NICError
       });
+      //Alert to display when error is triggered
       alert(
         "Invalid Form Data. Please Check Name, Email, Status, Type, Contact & NIC Number!!!"
       );
@@ -186,13 +201,15 @@ export default class InsertEmployee extends Component {
     }
     return true;
   };
-
+  //Method triggered when cancel button is clicked to redirect
   handleCancelClick = () => {
     this.setState({ redirectToReferrer: true });
   };
 
+  //Method triggered when save button is clicked
   onSubmit = async e => {
     e.preventDefault();
+    //Check the employee number before submission
     await axios.get(`http://localhost:5000/employees/checkempno`).then(res => {
       if (res.data.success) {
         this.setState({
@@ -269,15 +286,17 @@ export default class InsertEmployee extends Component {
       status: status
     };
 
+    //Validate the form data
     const isValid = this.validate();
     if (isValid) {
       console.log(this.state.empno);
       console.log(data);
-
+      //Check if the same NIC exists in the database
       axios
         .get(`http://localhost:5000/employees/checknic/${nic_no}`)
         .then(res => {
           if (res.data.success) {
+            //If the request does not respond with a value the data is submitted
             if (res.data.staffs.length == 0) {
               console.log(res.data.staffs.length);
               axios
@@ -344,7 +363,7 @@ export default class InsertEmployee extends Component {
           class="btn btn-warning"
           onClick={this.demo}
           style={{
-            marginTop: "0px",
+            marginTop: "50px",
             marginLeft: "920px",
             marginRight: "20px",
             borderRadius: "60px",
@@ -762,8 +781,8 @@ export default class InsertEmployee extends Component {
               className="btn btn-light"
               type="cancel"
               style={{
-                marginTop: "240px",
-                marginLeft: "920px",
+                marginTop: "150px",
+                marginLeft: "900px",
                 marginRight: "20px",
                 borderRadius: "60px",
                 filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))"
@@ -776,7 +795,7 @@ export default class InsertEmployee extends Component {
               className="btn btn-success"
               type="submit"
               style={{
-                marginTop: "240px",
+                marginTop: "150px",
                 borderRadius: "60px",
                 filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))"
               }}
