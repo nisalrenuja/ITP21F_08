@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import axios from "axios";
 import Clock from "../../component/common/clock/Clock";
 import "./Review.css";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ReactTooltip from "react-tooltip";
 export default class AdminTab1 extends Component {
   constructor(props) {
     super(props);
@@ -29,10 +34,14 @@ export default class AdminTab1 extends Component {
     });
   }
 
+  notify = () => {
+    toast.success("Deleted Successfully !!!");
+  };
+
   onDelete = id => {
     axios.delete(`http://localhost:5000/review/delete/${id}`).then(res => {
-      alert("Deleted Successfully");
       this.retrievePosts();
+      this.notify();
     });
   };
 
@@ -163,32 +172,83 @@ export default class AdminTab1 extends Component {
                     <a
                       href={`/editpartnerreview/${posts._id}`}
                       style={{ textDecoration: "none" }}
+                      data-tip
+                      data-for="EditPar"
                     >
                       {posts.partnerStatus}
                     </a>
+                    <ReactTooltip id="EditPar" place="top">
+                      <span>Edit Partner Review</span>
+                    </ReactTooltip>
                   </td>
                   <td>
-                    <a href={`/post/${posts._id}`}>
+                    <a href={`/post/${posts._id}`} data-tip data-for="ViewPar">
                       <i class="far fa-eye"></i>
                     </a>
+                    <ReactTooltip id="ViewPar" place="top">
+                      <span>View Partner Review</span>
+                    </ReactTooltip>
                     &nbsp; &nbsp; &nbsp; &nbsp;
-                    <a href={`/editpartnerreview/${posts._id}`}>
+                    <a
+                      href={`/editpartnerreview/${posts._id}`}
+                      data-tip
+                      data-for="EditPar"
+                    >
                       <i class="far fa-edit"></i>
                     </a>
+                    <ReactTooltip id="EditPar" place="top">
+                      <span>Edit Partner Review</span>
+                    </ReactTooltip>
                     &nbsp; &nbsp; &nbsp;
-                    <a href="#" onClick={() => this.onDelete(posts._id)}>
+                    <a
+                      href="#"
+                      data-tip
+                      data-for="DeletePar"
+                      onClick={() =>
+                        confirmAlert({
+                          title: "Confirm to Delete",
+                          message: "Are you sure to do this ?",
+                          buttons: [
+                            {
+                              label: "Yes",
+                              onClick: () => this.onDelete(posts._id)
+                            },
+                            {
+                              label: "No",
+                              onClick: () => window.close
+                            }
+                          ]
+                        })
+                      }
+                    >
                       <i class="far fa-trash-alt"></i>
                     </a>
+                    <ReactTooltip id="DeletePar" place="top">
+                      <span>Delete Partner Review</span>
+                    </ReactTooltip>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <button className="btn btn-success">
+          {/* <button className="btn btn-success">
             <a href="/add" style={{ textDecoration: "none", color: "white" }}>
               Create New Review
             </a>
-          </button>
+          </button> */}
+          <ToastContainer
+            position="bottom-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme={"dark"}
+            type="success"
+          />
         </div>
       </div>
     );
