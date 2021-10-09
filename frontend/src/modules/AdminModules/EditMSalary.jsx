@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 //import { storage } from "../../firebase";
 //import Progress from "../../component/common/ProgressBar/progress";
+import "./AllPayrolls.css";
 
 export default class EditMSalary extends Component {
   constructor(props) {
@@ -175,7 +176,7 @@ export default class EditMSalary extends Component {
         <br />
 
         <form
-          className="need-validation"
+          className="need-validation2"
           noValidate
           style={{
             backgroundColor: "#F6F5F5",

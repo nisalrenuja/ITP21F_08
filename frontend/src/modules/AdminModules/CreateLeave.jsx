@@ -88,7 +88,7 @@ export default class CreateLeave extends Component {
         <br />
 
         <form
-          className="need-validation"
+          className="need-validation2"
           noValidate
           style={{
             backgroundColor: "#F6F5F5",

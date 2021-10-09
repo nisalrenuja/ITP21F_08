@@ -44,3 +44,18 @@ In the web application, the company process has been categorized into the follow
 | IT20192464 | Gunasinghe K.D.K.     |    Attendance & Payroll Management |
 | IT20064754     | Dampahalage S.S.K.    |  Inventory Management |
 | IT20063382 | Thisarani N.J.L.D    |   Client Management |
+
+## To run the application locally:
+### Backend
+```
+  cd backend
+  npm install
+  npm run server
+```
+
+### Frontend
+```
+  cd frontend
+  npm install
+  npm start
+```

@@ -90,7 +90,7 @@ export default class CreateAttendance extends Component {
         <br />
 
         <form
-          className="need-validation"
+          className="need-validation2"
           noValidate
           style={{
             backgroundColor: "#F6F5F5",
@@ -117,6 +117,7 @@ export default class CreateAttendance extends Component {
                 type="number"
                 id="valid1"
                 className="form-control"
+                placeholder="required**"
                 name="empno"
                 value={this.state.empno}
                 onChange={this.handleInputChange}

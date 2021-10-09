@@ -91,7 +91,7 @@ export default class CreatePayroll extends Component {
         <br />
 
         <form
-          className="need-validation"
+          className="need-validation2"
           noValidate
           style={{
             backgroundColor: "#F6F5F5",
@@ -115,6 +115,7 @@ export default class CreatePayroll extends Component {
               type="number"
               id="valid1"
               className="form-control"
+              placeholder="required**"
               name="empno"
               value={this.state.empno}
               onChange={this.handleInputChange}
@@ -128,7 +129,7 @@ export default class CreatePayroll extends Component {
               type="text"
               className="form-control"
               name="name"
-              placeholder="Enter full name"
+              placeholder="Enter full name(requied**)"
               value={this.state.name}
               onChange={this.handleInputChange}
               required
@@ -202,7 +203,6 @@ export default class CreatePayroll extends Component {
                 placeholder=""
                 value={this.state.bank_branch}
                 onChange={this.handleInputChange}
-                required
               />
             </div>
           </div>
@@ -216,7 +216,6 @@ export default class CreatePayroll extends Component {
               placeholder="Type the correct account number"
               value={this.state.account_no}
               onChange={this.handleInputChange}
-              required
             />
           </div>
           <hr></hr>
@@ -240,7 +239,6 @@ export default class CreatePayroll extends Component {
                   placeholder=""
                   value={this.state.basic_salary}
                   onChange={this.handleInputChange}
-                  required
                 />
               </div>
             </div>{" "}
@@ -270,7 +268,6 @@ export default class CreatePayroll extends Component {
               aria-label="Default select example"
               onChange={this.handleInputChange}
               name="last_paid"
-              required
             >
               <option value="DEFAULT" disabled>
                 Select Month

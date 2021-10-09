@@ -76,7 +76,7 @@
   color: #276678;
 }
 
-.need-validation {
+.need-validation2 {
   background-color:"#F6F5F5" ;
   border:"5px solid eastern blue";
   padding :"30px";
@@ -122,6 +122,29 @@ option.alertgreen{
 option[value="Pending"] {
   color:red;
  }
+
+body::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+
+
+}
+
+body::-webkit-scrollbar-thumb {
+background-color: #1687A7;
+outline: 1px solid #1687A7;
+
+}
+.dim_main{
+  width:100%;
+  height:816px;
+  white-space: nowrap;
+  position: relative;
+  overflow-y: auto;
+}
 
 
 
