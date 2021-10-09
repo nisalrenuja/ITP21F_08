@@ -82,6 +82,7 @@ export default class PostLaptop extends Component {
             </dl>
           </div>
         </form>
+
         <div class="back">
           <a href="/admin">
             <i class="fas fa-angle-double-left fa-3x">

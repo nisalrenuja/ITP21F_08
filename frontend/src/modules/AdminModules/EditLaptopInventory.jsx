@@ -1,7 +1,25 @@
 import React, { Component } from "react";
 import "./CreateLaptop.css";
 import axios from "axios";
-//laptop inventory
+
+//set id validation
+
+const formValid = ({ formErrors, ...rest }) => {
+  let valid = true;
+
+  // validate form errors being empty
+  Object.values(formErrors).forEach(val => {
+    val.length > 0 && (valid = false);
+  });
+
+  // validate the form was filled out
+  Object.values(rest).forEach(val => {
+    val === null && (valid = false);
+  });
+
+  return valid;
+};
+
 export default class EditLaptopInventory extends Component {
   constructor(props) {
     super(props);
@@ -15,61 +33,104 @@ export default class EditLaptopInventory extends Component {
       purchase_price: "",
       status: "",
       discarded_reason: "",
-      discarded_date: ""
+      discarded_date: "",
+      formErrors: {
+        id: "",
+        brand: "",
+        model: "",
+        status: "",
+        discarded_reason: "",
+        discarded_date: ""
+      }
     };
   }
 
   handleInputChange = e => {
     const { name, value } = e.target;
-    this.setState({
-      ...this.state,
-      [name]: value
-    });
+
+    //validation checking
+    let formErrors = { ...this.state.formErrors };
+
+    switch (name) {
+      case "brand":
+        formErrors.brand =
+          value.length <= 0 ? "**Laptop Brand Cannot Be Empty**" : "";
+        break;
+      case "model":
+        formErrors.model =
+          value.length < 4 ? "**Minimum 4 characaters required**" : "";
+        break;
+      /*
+        case "status":
+          if(this.state.status == "Available" || this.state.status == "Occupied"){
+            //document.getElementById("discarded_reason").setAttribute('value','')
+            //document.getElementById("discarded_date").setAttribute('value','')
+            document.getElementById("discarded_date").disabled = false;
+            document.getElementById("discarded_reason").disabled = false;
+          }
+          else{
+            //document.getElementById("discarded_reason").setAttribute('value','')
+            //document.getElementById("discarded_date").setAttribute('value','')
+            document.getElementById("discarded_reason").disabled = true;
+            document.getElementById("discarded_date").disabled = true;
+          
+          }
+          break;*/
+
+      default:
+        break;
+    }
+
+    this.setState({ formErrors, [name]: value }, () => console.log(this.state));
   };
 
   onSubmit = e => {
     e.preventDefault();
     const _id = this.props.match.params.id;
-    const {
-      id,
-      brand,
-      model,
-      storage_type,
-      purchaase_date,
-      purchase_price,
-      status,
-      discarded_reason,
-      discarded_date
-    } = this.state;
-    const data = {
-      id: id,
-      brand: brand,
-      model: model,
-      storage_type: storage_type,
-      purchaase_date: purchaase_date,
-      purchase_price: purchase_price,
-      status: status,
-      discarded_reason: discarded_reason,
-      discarded_date: discarded_date
-    };
-    console.log(data);
-    axios.put(`http://localhost:5000/laptop/update/${_id}`, data).then(res => {
-      if (res.data.success) {
-        alert("Laptop Update Successfully!");
-        this.setState({
-          id: "",
-          brand: "",
-          model: "",
-          storage_type: "",
-          purchaase_date: "",
-          purchase_price: "",
-          status: "",
-          discarded_reason: "",
-          discarded_date: ""
+    if (formValid(this.state)) {
+      const {
+        id,
+        brand,
+        model,
+        storage_type,
+        purchaase_date,
+        purchase_price,
+        status,
+        discarded_reason,
+        discarded_date
+      } = this.state;
+      const data = {
+        id: id,
+        brand: brand,
+        model: model,
+        storage_type: storage_type,
+        purchaase_date: purchaase_date,
+        purchase_price: purchase_price,
+        status: status,
+        discarded_reason: discarded_reason,
+        discarded_date: discarded_date
+      };
+      console.log(data);
+      axios
+        .put(`http://localhost:5000/laptop/update/${_id}`, data)
+        .then(res => {
+          if (res.data.success) {
+            alert("Laptop Update Successfully!");
+            this.setState({
+              id: "",
+              brand: "",
+              model: "",
+              storage_type: "",
+              purchaase_date: "",
+              purchase_price: "",
+              status: "",
+              discarded_reason: "",
+              discarded_date: ""
+            });
+            this.props.history.push("/admin");
+          }
         });
-        this.props.history.push("/admin");
-      }
-    });
+    }
   };
 
   componentDidMount() {
@@ -94,6 +155,8 @@ export default class EditLaptopInventory extends Component {
   }
 
   render() {
+    const { formErrors } = this.state;
+
     return (
       <div className="col-md-6 mt-4 mx-auto">
         <h1 className="h3 mb-3 font-weight-normal">Inventory Management</h1>
@@ -114,6 +177,7 @@ export default class EditLaptopInventory extends Component {
             <label style={{ marginBottom: "5px" }}>Laptop ID</label>
             <input
               type="text"
+              disabled
               className="form-control"
               name="id"
               placeholder="Enter Laptop ID"
@@ -131,6 +195,9 @@ export default class EditLaptopInventory extends Component {
               value={this.state.brand}
               onChange={this.handleInputChange}
             />
+            {formErrors.brand.length > 0 && (
+              <span style={{ color: "red" }}>{formErrors.brand}</span>
+            )}
           </div>
           <div className="form-group" style={{ marginBottom: "14px" }}>
             <label style={{ marginBottom: "5px" }}>Model</label>
@@ -142,6 +209,9 @@ export default class EditLaptopInventory extends Component {
               value={this.state.model}
               onChange={this.handleInputChange}
             />
+            {formErrors.model.length > 0 && (
+              <span style={{ color: "red" }}>{formErrors.model}</span>
+            )}
           </div>
           <div className="form-group" style={{ marginBottom: "15px" }}>
             <label style={{ marginBottom: "5px" }}>Storage Size</label>

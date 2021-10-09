@@ -1,7 +1,27 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import axios from "axios";
 import "./CreateLaptop.css";
 //create laptop inventory
+
+//set id validation
+const idRegex = RegExp(/^[A-Z]+[0-9]*$/);
+
+const formValid = ({ formErrors, ...rest }) => {
+  let valid = true;
+
+  // validate form errors being empty
+  Object.values(formErrors).forEach(val => {
+    val.length > 0 && (valid = false);
+  });
+
+  // validate the form was filled out
+  Object.values(rest).forEach(val => {
+    val === null && (valid = false);
+  });
+
+  return valid;
+};
+
 export default class CreateLaptop extends Component {
   constructor(props) {
     super(props);
@@ -14,65 +34,112 @@ export default class CreateLaptop extends Component {
       purchase_price: "",
       status: "",
       discarded_reason: "",
-      discarded_date: ""
+      discarded_date: "",
+      formErrors: {
+        id: "",
+        brand: "",
+        model: "",
+        status: "",
+        discarded_reason: "",
+        discarded_date: ""
+      }
     };
   }
 
   handleInputChange = e => {
     const { name, value } = e.target;
-    this.setState({
-      ...this.state,
-      [name]: value
-    });
+
+    //validation checking
+    let formErrors = { ...this.state.formErrors };
+
+    switch (name) {
+      case "id":
+        formErrors.id = idRegex.test(value)
+          ? ""
+          : "**Please Use Only Correct Way [Eg: LP1090]**";
+
+        break;
+      case "brand":
+        formErrors.brand =
+          value.length <= 0 ? "**Laptop Brand Cannot Be Empty**" : "";
+        break;
+      case "model":
+        formErrors.model =
+          value.length < 4 ? "**Minimum 4 characaters required**" : "";
+        break;
+      case "status":
+        if (
+          this.state.status == "Available" ||
+          this.state.status == "Occupied"
+        ) {
+          document.getElementById("discarded_date").disabled = false;
+          document.getElementById("discarded_reason").disabled = false;
+        } else {
+          document.getElementById("discarded_reason").disabled = true;
+          document.getElementById("discarded_date").disabled = true;
+        }
+        break;
+
+      default:
+        break;
+    }
+
+    this.setState({ formErrors, [name]: value }, () => console.log(this.state));
   };
 
   onSubmit = e => {
-    //(e) --> method invoke
+    //(e)  method invoke
     e.preventDefault();
 
-    const {
-      id,
-      brand,
-      model,
-      storage_type,
-      purchaase_date,
-      purchase_price,
-      status,
-      discarded_reason,
-      discarded_date
-    } = this.state;
-    const data = {
-      id: id,
-      brand: brand,
-      model: model,
-      storage_type: storage_type,
-      purchaase_date: purchaase_date,
-      purchase_price: purchase_price,
-      status: status,
-      discarded_reason: discarded_reason,
-      discarded_date: discarded_date
-    };
-    console.log(data);
-    axios.post("http://localhost:5000/laptop/save", data).then(res => {
-      if (res.data.success) {
-        this.setState({
-          id: id,
-          brand: brand,
-          model: model,
-          storage_type: storage_type,
-          purchaase_date: purchaase_date,
-          purchase_price: purchase_price,
-          status: status,
-          discarded_reason: discarded_reason,
-          discarded_date: discarded_date
-        });
-        alert("Save Successful!");
-        this.props.history.push("/admin"); //==admin
-      }
-    });
+    if (formValid(this.state)) {
+      const {
+        id,
+        brand,
+        model,
+        storage_type,
+        purchaase_date,
+        purchase_price,
+        status,
+        discarded_reason,
+        discarded_date
+      } = this.state;
+      const data = {
+        id: id,
+        brand: brand,
+        model: model,
+        storage_type: storage_type,
+        purchaase_date: purchaase_date,
+        purchase_price: purchase_price,
+        status: status,
+        discarded_reason: discarded_reason,
+        discarded_date: discarded_date
+      };
+      console.log(data);
+      axios.post("http://localhost:5000/laptop/save", data).then(res => {
+        if (res.data.success) {
+          this.setState({
+            id: id,
+            brand: brand,
+            model: model,
+            storage_type: storage_type,
+            purchaase_date: purchaase_date,
+            purchase_price: purchase_price,
+            status: status,
+            discarded_reason: discarded_reason,
+            discarded_date: discarded_date
+          });
+          alert("Save Successful!");
+          this.props.history.push("/admin");
+        }
+      });
+      console.log("Submitting");
+    } else {
+      console.error("Form invalid");
+    }
   };
 
   render() {
+    const { formErrors } = this.state;
     return (
       <div className="col-md-6 mt-4 mx-auto">
         <h1>Inventory Management</h1>
@@ -84,28 +151,40 @@ export default class CreateLaptop extends Component {
 
             <label style={{ marginBottom: "5px" }}>Laptop ID</label>
             <input
+              ref="id"
               type="text"
+              required
               className="form-control"
               name="id"
               placeholder="Enter Laptop ID"
               value={this.state.id}
               onChange={this.handleInputChange}
             />
+            {formErrors.id.length > 0 && (
+              <span style={{ color: "red" }}>{formErrors.id}</span>
+            )}
           </div>
           <div className="form-group" style={{ marginBottom: "14px" }}>
             <label style={{ marginBottom: "5px" }}>Brand</label>
             <input
+              ref="brand"
               type="text"
+              required
               className="form-control"
               name="brand"
               placeholder="Enter Brand"
               value={this.state.brand}
               onChange={this.handleInputChange}
             />
+            {formErrors.brand.length > 0 && (
+              <span style={{ color: "red" }}>{formErrors.brand}</span>
+            )}
           </div>
           <div className="form-group" style={{ marginBottom: "14px" }}>
             <label style={{ marginBottom: "5px" }}>Model</label>
             <input
+              ref="model"
+              required
               type="text"
               className="form-control"
               name="model"
@@ -113,15 +192,21 @@ export default class CreateLaptop extends Component {
               value={this.state.model}
               onChange={this.handleInputChange}
             />
+            {formErrors.model.length > 0 && (
+              <span style={{ color: "red" }}>{formErrors.model}</span>
+            )}
           </div>
           <div className="form-group" style={{ marginBottom: "15px" }}>
             <label style={{ marginBottom: "5px" }}>Storage Size</label>
             <select
+              ref="storage_type"
               defaultValue={"DEFAULT"}
-              className="form-select"
+              className="form-control"
               aria-label="Default select example"
               onChange={this.handleInputChange}
               name="storage_type"
+              type="select"
+              noValidate
             >
               <option value="DEFAULT" disabled>
                 Storage Type : {this.state.storage_type}
@@ -134,6 +219,7 @@ export default class CreateLaptop extends Component {
           <div className="form-group" style={{ marginBottom: "14px" }}>
             <label style={{ marginBottom: "5px" }}>Laptop Price</label>
             <input
+              ref="purchase_price"
               type="text"
               className="form-control"
               name="purchase_price"
@@ -145,6 +231,7 @@ export default class CreateLaptop extends Component {
           <div className="form-group" style={{ marginBottom: "14px" }}>
             <label style={{ marginBottom: "5px" }}>Purchase Date</label>
             <input
+              ref="date"
               type="date"
               id="date"
               className="form-control"
@@ -160,7 +247,7 @@ export default class CreateLaptop extends Component {
             <label style={{ marginBottom: "5px" }}>Status</label>
             <select
               defaultValue={"DEFAULT"}
-              className="form-select"
+              className="form-control"
               aria-label="Default select example"
               onChange={this.handleInputChange}
               name="status"
@@ -168,28 +255,29 @@ export default class CreateLaptop extends Component {
               <option value="DEFAULT" disabled>
                 Status : {this.state.status}
               </option>
-              <option value="Available">Available</option>
-              <option value="Occupied">Occupied</option>
-              <option value="Discarded">Discarded</option>
+              <option status="Available">Available</option>
+              <option status="Occupied">Occupied</option>
+              <option status="Discarded">Discarded</option>
             </select>
           </div>
           <h5>If laptop discarded :</h5>
           <div className="form-group" style={{ marginBottom: "14px" }}>
             <label style={{ marginBottom: "5px" }}>Discarded Reason</label>
             <input
+              onChange={this.handleInputChange}
+              id="discarded_reason"
               type="text"
               className="form-control"
               name="discarded_reason"
               placeholder="Enter Discarded Reason"
               value={this.state.discarded_reason}
-              onChange={this.handleInputChange}
             />
           </div>
           <div className="form-group" style={{ marginBottom: "14px" }}>
             <label style={{ marginBottom: "5px" }}>Discarded Date</label>
             <input
               type="date"
-              id="date"
+              id="discarded_date"
               className="form-control"
               name="discarded_date"
               placeholder="DD/MM/YY"

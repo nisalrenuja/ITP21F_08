@@ -6,6 +6,7 @@
     border: 2px solid #276678;
     padding :30px;
     border-radius:15px;
+    height: fit-content;
 }
 
 .form-group {
