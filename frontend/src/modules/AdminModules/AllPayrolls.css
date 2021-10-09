@@ -146,6 +146,22 @@ outline: 1px solid #1687A7;
   overflow-y: auto;
 }
 
+.formValid{
+  font-size: 12px ;
+  color: red;
+}
+
+.reportdiv{
+  position: absolute;
+width: 170px;
+height: 50px;
+left: 700px;
+top: 60px;
+
+background: #1687A7;
+box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+border-radius: 32px;
+}
 
 
 

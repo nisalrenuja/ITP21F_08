@@ -82,25 +82,25 @@ export default class CreatePayroll extends Component {
     let basic_salaryError = "";
 
     if (!this.state.empno) {
-      empnoError = "** employee no. required";
+      empnoError = "Employee no. required";
     }
     if (!this.state.name) {
-      nameError = "** employee name required";
+      nameError = "Employee name required";
     }
     if (!this.state.position) {
-      positionError = "** position required";
+      positionError = "Position required";
     }
     if (!this.state.bank) {
-      bankError = "** bank name required";
+      bankError = "Bank name required";
     }
     if (!this.state.bank_branch) {
-      bank_branchError = "** branch required";
+      bank_branchError = "Branch required";
     }
     if (!this.state.account_no) {
-      account_noError = "** account no. required";
+      account_noError = "Account no. required";
     }
     if (!this.state.basic_salary) {
-      basic_salaryError = "** basic salary required";
+      basic_salaryError = "Basic salary required";
     }
 
     if (
@@ -251,7 +251,7 @@ export default class CreatePayroll extends Component {
             <label
               for="valid1"
               class="form-label"
-              style={{ marginBottom: "5px" }}
+              style={({ marginBottom: "5px" }, { color: "#1687A7" })}
             >
               Payroll ID
             </label>
@@ -265,27 +265,26 @@ export default class CreatePayroll extends Component {
               onChange={this.handleInputChange}
               disabled
             />
-            <div style={{ color: "red" }}>{this.state.empnoError}</div>
+            <div className="formValid">{this.state.empnoError}</div>
           </div>
 
           <div className="form-group " style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>
-              Name<span style={{ color: "red" }}> *</span>
+            <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+              Full Name<span style={{ color: "red" }}> *</span>
             </label>
             <input
               type="text"
               className="form-control"
               name="name"
-              placeholder="Enter full name"
               value={this.state.name}
               onChange={this.handleInputChange}
               required
             />
-            <div style={{ color: "red" }}>{this.state.nameError}</div>
+            <div className="formValid">{this.state.nameError}</div>
           </div>
 
           <div className="form-group col-sm-6" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>
+            <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
               Position<span style={{ color: "red" }}> *</span>
             </label>
             <select
@@ -305,7 +304,7 @@ export default class CreatePayroll extends Component {
               <option value="Trainee">Trainee</option>
               <option value="Other">Other</option>
             </select>
-            <div style={{ color: "red" }}>{this.state.positionError}</div>
+            <div className="formValid">{this.state.positionError}</div>
           </div>
           <br />
 
@@ -317,7 +316,7 @@ export default class CreatePayroll extends Component {
               className="form-group col-md-6"
               style={{ marginBottom: "15px" }}
             >
-              <label style={{ marginBottom: "5px" }}>
+              <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
                 Bank <span style={{ color: "red" }}> *</span>
               </label>
               <select
@@ -325,7 +324,6 @@ export default class CreatePayroll extends Component {
                 className="form-select"
                 aria-label="Default select example"
                 onChange={this.handleInputChange}
-                style={{ color: "grey" }}
                 name="bank"
                 required
               >
@@ -345,14 +343,14 @@ export default class CreatePayroll extends Component {
                 <option name="seylan">Seylan Bank</option>
                 <option name="union">Union Bank-Colombo</option>
               </select>
-              <div style={{ color: "red" }}>{this.state.bankError}</div>
+              <div className="formValid">{this.state.bankError}</div>
             </div>
 
             <div
               className="form-group col-md-5"
               style={{ marginBottom: "15px" }}
             >
-              <label style={{ marginBottom: "5px" }}>
+              <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
                 Branch <span style={{ color: "red" }}> *</span>
               </label>
               <input
@@ -362,12 +360,12 @@ export default class CreatePayroll extends Component {
                 value={this.state.bank_branch}
                 onChange={this.handleInputChange}
               />
-              <div style={{ color: "red" }}>{this.state.branchError}</div>
+              <div className="formValid">{this.state.branchError}</div>
             </div>
           </div>
 
           <div className="form-group col-md-6" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>
+            <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
               Account No <span style={{ color: "red" }}> **</span>
             </label>
             <input
@@ -378,7 +376,7 @@ export default class CreatePayroll extends Component {
               value={this.state.account_no}
               onChange={this.handleInputChange}
             />
-            <div style={{ color: "red" }}>{this.state.account_noError}</div>
+            <div className="formValid">{this.state.account_noError}</div>
           </div>
           <hr></hr>
 
@@ -387,7 +385,7 @@ export default class CreatePayroll extends Component {
               className="form-group col-md-6"
               style={{ marginBottom: "15px" }}
             >
-              <label style={{ marginBottom: "5px" }}>
+              <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
                 Basic Salary<span style={{ color: "red" }}> *</span>
               </label>
               <div class="input-group">
@@ -404,9 +402,7 @@ export default class CreatePayroll extends Component {
                   onChange={this.handleInputChange}
                   required
                 />
-                <div style={{ color: "red" }}>
-                  {this.state.basic_salaryError}
-                </div>
+                <div className="formValid">{this.state.basic_salaryError}</div>
               </div>
             </div>{" "}
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -414,7 +410,9 @@ export default class CreatePayroll extends Component {
               className="form-group col-md-5"
               style={{ marginBottom: "15px" }}
             >
-              <label style={{ marginBottom: "5px" }}>Pay Date</label>
+              <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+                Pay Date
+              </label>
               <input
                 type="date"
                 className="form-control"
@@ -428,7 +426,9 @@ export default class CreatePayroll extends Component {
           </div>
 
           <div className="form-group col-md-5" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Last Paid Month</label>
+            <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+              Last Paid Month
+            </label>
             <select
               defaultValue={"DEFAULT"}
               className="form-select"
