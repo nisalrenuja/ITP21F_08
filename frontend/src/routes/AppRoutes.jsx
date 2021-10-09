@@ -78,6 +78,7 @@ import AdminAttendance from "../pages/AdminPage/AdminAttendance";
 import CreateAttendance from "../modules/AdminModules/CreateAttendance";
 import EditAttendance from "../modules/AdminModules/EditAttendance";
 import DisplayAttendance from "../modules/AdminModules/DisplayAttendance";
+import AttendanceReport from "../modules/AdminModules/AttendanceReport";
 
 import MonthlySalary from "../pages/AdminPage/MonthlySalary";
 import CreateMSalary from "../modules/AdminModules/CreateMSalary";
@@ -209,6 +210,9 @@ const AppRoutes = () => (
           component={DisplayAttendance}
           exact
         />
+        {/*     Attendance Report Generation    
+          <Route exact path="/attendancereport" component={AttendanceReport} />
+        */}
         <Route path="/allsalary" component={MonthlySalary} exact />
         <Route path="/addsalary" component={CreateMSalary} exact />
         <Route path="/editsalary/:id" component={EditMSalary} exact />

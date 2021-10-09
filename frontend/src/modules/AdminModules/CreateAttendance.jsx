@@ -152,10 +152,8 @@ export default class CreateAttendance extends Component {
               <option value="DEFAULT" disabled>
                 Select location type
               </option>
-              <option value="in company">In Company</option>
-              <option value="assignment location">
-                Assignment Assigned Loctation
-              </option>
+              <option value="In Company">In Company</option>
+              <option value="Assignment Loctation">Assignment Loctation</option>
               <option value="other">Other</option>
             </select>
           </div>

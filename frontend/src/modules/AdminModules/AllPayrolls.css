@@ -1,3 +1,4 @@
+
 .adminpayroll {
     width: 100%;
     height: 850px;
@@ -65,13 +66,13 @@
 
 }
 
-.ap-topic{
+h1.ap-topic{
   font-family: Inter;
   font-style: normal;
   font-weight: bold;
   font-size: 48px;
   line-height: 58px;
-  padding-top: 15px;
+  padding: 0px 0px 0px;
 
   color: #276678;
 }
@@ -151,17 +152,17 @@ outline: 1px solid #1687A7;
   color: red;
 }
 
-.reportdiv{
-  position: absolute;
-width: 170px;
-height: 50px;
-left: 700px;
-top: 60px;
-
-background: #1687A7;
-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
-border-radius: 32px;
-}
+.att-reportbtn{
+  background: #1687A7;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  }
+  
+  .clockdiv{
+    margin: 0px 0px 0px 0px;
+    padding-right: 10%;
+  }
+  
 
 
 
