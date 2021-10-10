@@ -73,6 +73,10 @@ export default class CreateProfile extends Component {
     };
     */
 
+  DetailsSave = () => {
+    toast.success("Details Saved Successfully");
+  };
+
   errorMessageAlert = message => {
     toast.error(message);
   };
@@ -135,6 +139,7 @@ export default class CreateProfile extends Component {
 
       axios.post("http://localhost:5000/executive/save", data).then(res => {
         if (res.data.success) {
+          this.DetailsSave("Details Saved Successfully");
           this.setState({
             exeno: "",
             name: "",

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 export default class EditExecutive extends Component {
   constructor(props) {
     super(props);
@@ -39,6 +40,10 @@ export default class EditExecutive extends Component {
     });
   };
 
+  UserUpdate = () => {
+    toast.success("User Updated Successfully");
+  };
+
   onSubmit = e => {
     e.preventDefault();
     const id = this.props.match.params.id;
@@ -70,13 +75,14 @@ export default class EditExecutive extends Component {
       .put(`http://localhost:5000/executives/update/${id}`, data)
       .then(res => {
         if (res.data.success) {
-          alert("User Updated Successfully");
+          this.UserUpdate("Details Updated Successfully");
           this.setState({
             username: "",
 
             email: ""
           });
         }
+        this.props.history.push("/createexecutive");
       });
   };
 
@@ -124,14 +130,20 @@ export default class EditExecutive extends Component {
             <span id="errorMessageEmail" style={{ color: "red" }}></span>
           </div>
 
-          <button
-            className="btn btn-info mb-2"
-            type="submit"
-            style={{ marginTop: "15px" }}
-            onClick={this.onSubmit}
-          >
-            <i className="fas fa-sync"></i>&nbsp;Update
-          </button>
+          <div class="d-flex justify-content-center">
+            <button
+              className="btn btn-info"
+              type="submit"
+              style={{ backgroundColor: "#1687A7" }}
+              onClick={this.onSubmit}
+            >
+              &nbsp;&nbsp;Save&nbsp;&nbsp;
+            </button>{" "}
+            &nbsp;&nbsp;
+            <button className="btn btn-danger" type="cancel">
+              Cancel
+            </button>
+          </div>
         </form>
       </div>
     );
