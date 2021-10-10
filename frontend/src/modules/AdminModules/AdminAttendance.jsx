@@ -187,8 +187,8 @@ export default class AdminAttendance extends Component {
             <thead class="tblhead">
               <tr class="">
                 <th scope="col"> #</th>
-                <th scope="col"> Employee ID</th>
                 <th scope="col"> Date</th>
+                <th scope="col"> Employee ID</th>
                 <th scope="col"> Location Type</th>
                 <th scope="col"> Assignment</th>
                 <th scope="col"> Attendance Type</th>
@@ -202,7 +202,7 @@ export default class AdminAttendance extends Component {
               {this.state.attendances.map((attendances, index) => (
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
-
+                  <td>{attendances.att_date}</td>
                   <td>
                     <a
                       href={`/displayattendance/${attendances._id}`}
@@ -216,8 +216,6 @@ export default class AdminAttendance extends Component {
                       <span>View Attendance</span>
                     </ReactTooltip>
                   </td>
-
-                  <td>{attendances.att_date}</td>
                   <td>{attendances.location_type}</td>
                   <td>{attendances.assignment_name}</td>
                   <td style={{ fontWeight: "bold" }}>{attendances.att_type}</td>
