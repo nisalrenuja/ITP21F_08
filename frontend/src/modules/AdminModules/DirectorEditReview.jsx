@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { storage } from "../../firebase";
 import Progress from "../../component/common/ProgressBar/progress";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default class DirectorEditReview extends Component {
   constructor(props) {
     super(props);
@@ -40,6 +42,10 @@ export default class DirectorEditReview extends Component {
       ...this.state,
       [name]: value
     });
+  };
+
+  ReviewUpdate = () => {
+    toast.success("Review Updated Successfully");
   };
 
   onSubmit = e => {
@@ -82,9 +88,9 @@ export default class DirectorEditReview extends Component {
 
     axios.put(`http://localhost:5000/review/update/${id}`, data).then(res => {
       if (res.data.success) {
+        this.ReviewUpdate("Review Updated Successfully");
         let managerReview = data;
 
-        alert("Review Updated Successfully");
         this.setState({
           execid_review: "",
           report: "",
@@ -95,6 +101,7 @@ export default class DirectorEditReview extends Component {
         });
       }
     });
+    this.props.history.push("/managerreview");
   };
 
   componentDidMount() {
@@ -149,7 +156,7 @@ export default class DirectorEditReview extends Component {
   render() {
     return (
       <div className="col-md-8 mt-4 mx-auto">
-        <h1 className="h3 mb-3 font-weight-normal">Edit Review</h1>
+        <h1 className="h3 mb-3 font-weight-normal">Edit Director Review</h1>
         <form className="need-validation" noValidate>
           <div className="form-group" style={{ marginBottom: "15px" }}>
             <label style={{ marginBottom: "5px" }}>Review Id</label>
@@ -253,14 +260,33 @@ export default class DirectorEditReview extends Component {
             </select>
           </div>
 
-          <button
-            className="btn btn-info mb-2"
-            type="submit"
-            style={{ marginTop: "15px" }}
-            onClick={this.onSubmit}
-          >
-            <i className="fas fa-sync"></i>&nbsp;Update
-          </button>
+          <div class="d-flex justify-content-center">
+            <button
+              className="btn btn-info"
+              type="submit"
+              style={{ backgroundColor: "#1687A7" }}
+              onClick={this.onSubmit}
+            >
+              &nbsp;&nbsp;Save&nbsp;&nbsp;
+            </button>{" "}
+            &nbsp;&nbsp;
+            <ToastContainer
+              position="bottom-center"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme={"dark"}
+              type="success"
+            />
+            <button className="btn btn-danger" type="cancel">
+              Cancel
+            </button>
+          </div>
         </form>
       </div>
     );

@@ -68,6 +68,10 @@ export default class EditProfile extends Component {
     });
   };
 
+  DetailsUpdate = () => {
+    toast.success("Details Updated Successfully");
+  };
+
   errorMessageAlert = message => {
     toast.error(message);
   };
@@ -135,8 +139,7 @@ export default class EditProfile extends Component {
       .put(`http://localhost:5000/executive/update/${id}`, data)
       .then(res => {
         if (res.data.success) {
-          alert("Executive Details Updated Successfully");
-
+          this.DetailsUpdate("Details Updated Successfully");
           this.setState({
             exeno: "",
             name: "",

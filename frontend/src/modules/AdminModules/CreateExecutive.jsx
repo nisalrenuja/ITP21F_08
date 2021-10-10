@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import axios from "axios";
 import Clock from "../../component/common/clock/Clock";
 import "./Review.css";
-
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ReactTooltip from "react-tooltip";
 export default class CreateExecutive extends Component {
   constructor(props) {
     super(props);
@@ -34,10 +38,14 @@ export default class CreateExecutive extends Component {
       });
   }
 
+  notify = () => {
+    toast.success("Deleted Successfully !!!");
+  };
+
   onDelete = id => {
     axios.delete(`http://localhost:5000/executives/delete/${id}`).then(res => {
-      alert("Deleted Successfully");
       this.retrieveexecutives();
+      this.notify();
     });
   };
 
@@ -124,18 +132,61 @@ export default class CreateExecutive extends Component {
                   <td>{executives.email}</td>
 
                   <td>
-                    <a href={`/editexecutive/${executives._id}`}>
+                    <a
+                      href={`/editexecutive/${executives._id}`}
+                      data-tip
+                      data-for="EditUser"
+                    >
                       <i class="far fa-edit"></i>
                     </a>
+                    <ReactTooltip id="EditUser" place="top">
+                      <span>Edit Current User</span>
+                    </ReactTooltip>
                     &nbsp; &nbsp; &nbsp;
-                    <a href="#" onClick={() => this.onDelete(executives._id)}>
+                    <a
+                      href="#"
+                      data-tip
+                      data-for="DeleteUser"
+                      onClick={() =>
+                        confirmAlert({
+                          title: "Confirm to Delete",
+                          message: "Are you sure to do this ?",
+                          buttons: [
+                            {
+                              label: "Yes",
+                              onClick: () => this.onDelete(executives._id)
+                            },
+                            {
+                              label: "No",
+                              onClick: () => window.close
+                            }
+                          ]
+                        })
+                      }
+                    >
                       <i class="far fa-trash-alt"></i>
                     </a>
+                    <ReactTooltip id="DeleteUser" place="top">
+                      <span>Delete Current User</span>
+                    </ReactTooltip>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
+          <ToastContainer
+            position="bottom-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme={"dark"}
+            type="success"
+          />
         </div>
       </div>
     );

@@ -23,9 +23,11 @@ export default class Assignment extends Component {
       sum: ""
     };
   }
+  //retreve data
   componentDidMount() {
     this.retrievePosts();
   }
+  //retrieve function
   retrievePosts() {
     const p = this.props.dataFromParent;
     console.log(p);
@@ -67,61 +69,6 @@ export default class Assignment extends Component {
     });
   };
 
-  onSubmit = e => {
-    e.preventDefault();
-
-    const { deadline, progress } = this.state;
-
-    const data = {
-      deadline: deadline,
-
-      progress: progress
-    };
-
-    console.log(data);
-    axios
-      .put(
-        `http://localhost:5000/assignments/update/${this.props.dataFromParent}`,
-        data
-      )
-      .then(res => {
-        if (res.data.success) {
-          this.setState({
-            deadline: deadline,
-            progress: progress
-          });
-          alert("Updated");
-        }
-      });
-  };
-  onSubmit2 = e => {
-    e.preventDefault();
-
-    const { empno, travel_allowance } = this.state;
-
-    const data = {
-      empno: empno,
-
-      travel_allowance: travel_allowance
-    };
-
-    console.log(data);
-    axios
-      .put(
-        `http://localhost:5000/assignments/updateallo/${this.props.dataFromParent}`,
-        data
-      )
-      .then(res => {
-        if (res.data.success) {
-          this.setState({
-            empno: "",
-            travel_allowance: ""
-          });
-          alert("Updated Allowance");
-          this.retrievePosts();
-        }
-      });
-  };
   render() {
     return (
       <div className="container">
@@ -180,7 +127,7 @@ export default class Assignment extends Component {
             <br />
             <center>
               <h4>
-                <u>Employees Working and Allowances(Rs)</u>
+                <u>Employees Assigned and Allowances(Rs)</u>
               </h4>
             </center>
             {this.state.assignment2.map((assignment2, index) => (
