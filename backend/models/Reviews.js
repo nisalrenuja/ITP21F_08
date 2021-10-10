@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const review_Schema = new mongoose.Schema({
   execid_review: {
-    type: String,
+    type: Number,
     required: true,
   },
   report: {
@@ -43,31 +43,31 @@ const review_Schema = new mongoose.Schema({
   },
   isAdminApprove: {
     type: Boolean,
-        default: false
+    default: false,
   },
   managerStatus: {
     type: String,
-    default:"Pending"
+    default: "Pending",
   },
   isManagerApprove: {
     type: Boolean,
-        default: false
+    default: false,
   },
   directorStatus: {
     type: String,
-    default:"Pending"
+    default: "Pending",
   },
   isDirectorApprove: {
     type: Boolean,
-        default: false
+    default: false,
   },
   partnerStatus: {
     type: String,
-    default:"Pending"
+    default: "Pending",
   },
   isPartnerApprove: {
     type: Boolean,
-        default: false
+    default: false,
   },
 });
 
