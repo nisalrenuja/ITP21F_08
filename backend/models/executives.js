@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const executive_Schema = new mongoose.Schema({
   exeno: {
-    type: String,
+    type: Number,
     required: true,
   },
   name: {
