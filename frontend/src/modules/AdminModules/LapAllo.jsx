@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./LapAllo.css";
+import { confirmAlert } from "react-confirm-alert"; // Imports for confirm alert
+import "react-confirm-alert/src/react-confirm-alert.css";
+import ReactTooltip from "react-tooltip"; // Imports for tooltip
 
 export default class LapAllo extends Component {
   constructor(props) {
@@ -9,9 +12,11 @@ export default class LapAllo extends Component {
       lapassignments: []
     };
   }
+  //retrirve data
   componentDidMount() {
     this.retrievePosts();
   }
+  //retrieve function for allocations
   retrievePosts() {
     axios.get("http://localhost:5000/lapassignments/dis").then(res => {
       if (res.data.success) {
@@ -23,6 +28,7 @@ export default class LapAllo extends Component {
       }
     });
   }
+  //delete function
   onDelete = name => {
     console.log(name);
     axios
@@ -32,6 +38,7 @@ export default class LapAllo extends Component {
         this.retrievePosts();
       });
   };
+  //search filter
   filterData(lapassignmentsassigned, searchKey) {
     console.log(searchKey);
     const result = lapassignmentsassigned.filter(
@@ -43,6 +50,7 @@ export default class LapAllo extends Component {
     );
     this.setState({ lapassignments: result });
   }
+  //search function
   handleSearchArea = e => {
     const searchKey = e.currentTarget.value;
     axios.get("http://localhost:5000/lapassignments/dis").then(res => {
@@ -112,18 +120,46 @@ export default class LapAllo extends Component {
                   </td>
 
                   <td>
-                    <a href={`/editlapallo/${lapassignments.assignment_name}`}>
+                    <a
+                      href={`/editlapallo/${lapassignments.assignment_name}`}
+                      data-tip
+                      data-for="allocationEditTip"
+                    >
                       <i className="fas fa-edit"></i>&nbsp;
                     </a>
                     &nbsp;
+                    <ReactTooltip id="allocationEditTip" place="top">
+                      <span>Edit Allocation</span>
+                    </ReactTooltip>
+                    &nbsp; &nbsp;
                     <a
                       href="#"
                       onClick={() =>
-                        this.onDelete(lapassignments.assignment_name)
+                        confirmAlert({
+                          title: "Confirm to Delete",
+                          message: "Are you sure to delete ?",
+                          buttons: [
+                            {
+                              label: "Yes",
+                              onClick: () =>
+                                this.onDelete(lapassignments.assignment_name)
+                            },
+                            {
+                              label: "No",
+                              onClick: () => window.close
+                            }
+                          ]
+                        })
                       }
+                      data-tip
+                      data-for="allocationDeleteTip"
                     >
                       <i className="far fa-trash-alt"></i>&nbsp;
                     </a>
+                    <ReactTooltip id="allocationDeleteTip" place="top">
+                      <span>Delete Allocation</span>
+                    </ReactTooltip>
+                    &nbsp; &nbsp;
                   </td>
                 </tr>
               ))}

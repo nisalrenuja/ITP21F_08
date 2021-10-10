@@ -17,9 +17,11 @@ export default class NewLapAllo extends Component {
       laps: []
     };
   }
+  //retrieve data
   componentDidMount() {
     this.retrievePosts();
   }
+  ///retrieve function for laptops
   retrievePosts() {
     axios.get("http://localhost:5000/laps/ass").then(res => {
       if (res.data.success) {
@@ -37,6 +39,7 @@ export default class NewLapAllo extends Component {
       [name]: value
     });
   };
+  //laptops check function
   onCheck = id => {
     console.log(id);
     axios.get(`http://localhost:5000/checklapassigned/${id}`).then(res => {
@@ -45,6 +48,7 @@ export default class NewLapAllo extends Component {
       }
     });
   };
+  //function to validate
   validate = () => {
     let empnoError = "";
     let nameError = "";
@@ -54,19 +58,19 @@ export default class NewLapAllo extends Component {
     let contactError = "";
 
     if (!this.state.assignment_name) {
-      empnoError = "**EmpNo Cannot Be Blank";
+      empnoError = "*";
     }
 
     if (!this.state.client_no) {
-      nameError = "**Name Cannot Be Blank";
+      nameError = "*";
     }
 
     if (!this.state.execid) {
-      emailError = "**Invlaid email";
+      emailError = "*";
     }
 
     if (!this.state.empno) {
-      statusError = "**Status Cannot Be Blank";
+      statusError = "*";
     }
 
     if (
@@ -91,6 +95,7 @@ export default class NewLapAllo extends Component {
     }
     return true;
   };
+  //insert function for laptop allocations
   onSubmit = e => {
     e.preventDefault();
 
@@ -160,6 +165,7 @@ export default class NewLapAllo extends Component {
         });
     }
   };
+  //demo button function
   demo = e => {
     e.preventDefault();
     this.setState({
@@ -171,6 +177,7 @@ export default class NewLapAllo extends Component {
       date_received: "2021-11-05"
     });
   };
+  //search filter
   filterData(laps, searchKey) {
     console.log(searchKey);
     const result = laps.filter(
@@ -180,6 +187,7 @@ export default class NewLapAllo extends Component {
     );
     this.setState({ laps: result });
   }
+  //search function
   handleSearchArea = e => {
     const searchKey = e.currentTarget.value;
     axios.get("http://localhost:5000/laps/ass").then(res => {
