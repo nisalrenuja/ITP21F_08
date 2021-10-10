@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./AllAssignments.css";
+import { confirmAlert } from "react-confirm-alert"; // Imports for confirm alert
+import "react-confirm-alert/src/react-confirm-alert.css";
+import ReactTooltip from "react-tooltip"; // Imports for tooltip
 
 export default class AdminTab4 extends Component {
   constructor(props) {
@@ -9,6 +12,7 @@ export default class AdminTab4 extends Component {
       assignments: []
     };
   }
+  //delete function
   onDelete = name => {
     console.log(name);
     axios
@@ -21,6 +25,7 @@ export default class AdminTab4 extends Component {
   componentDidMount() {
     this.retrievePosts();
   }
+  //retrieve function
   retrievePosts() {
     axios.get("http://localhost:5000/assignments/dis").then(res => {
       if (res.data.success) {
@@ -32,6 +37,7 @@ export default class AdminTab4 extends Component {
       }
     });
   }
+  //search filter
   filterData(assignmentsassigned, searchKey) {
     console.log(searchKey);
     const result = assignmentsassigned.filter(
@@ -41,6 +47,7 @@ export default class AdminTab4 extends Component {
     );
     this.setState({ assignments: result });
   }
+  //search function
   handleSearchArea = e => {
     const searchKey = e.currentTarget.value;
     axios.get("http://localhost:5000/assignments/dis").then(res => {
@@ -104,9 +111,15 @@ export default class AdminTab4 extends Component {
                     <a
                       href={`/assignment/${assignments.assignment_name}`}
                       style={{ textDecoration: "none" }}
+                      data-tip
+                      data-for="assignmentTip"
                     >
                       {assignments.assignment_name}
                     </a>
+                    <ReactTooltip id="assignmentTip" place="top">
+                      <span>Show Assignment</span>
+                    </ReactTooltip>
+                    &nbsp; &nbsp;
                   </td>
                   <td>{assignments.client_no}</td>
                   <td>{assignments.deadline}</td>
@@ -117,16 +130,46 @@ export default class AdminTab4 extends Component {
                   </td>
 
                   <td>
-                    <a href={`/editassignment/${assignments.assignment_name}`}>
+                    <a
+                      href={`/editassignment/${assignments.assignment_name}`}
+                      data-tip
+                      data-for="assignmentEditTip"
+                    >
                       <i className="fas fa-edit"></i>&nbsp;
                     </a>
                     &nbsp;
+                    <ReactTooltip id="assignmentEditTip" place="top">
+                      <span>Edit Assignment</span>
+                    </ReactTooltip>
+                    &nbsp; &nbsp;
                     <a
                       href="#"
-                      onClick={() => this.onDelete(assignments.assignment_name)}
+                      onClick={() =>
+                        confirmAlert({
+                          title: "Confirm to Delete",
+                          message: "Are you sure to delete ?",
+                          buttons: [
+                            {
+                              label: "Yes",
+                              onClick: () =>
+                                this.onDelete(assignments.assignment_name)
+                            },
+                            {
+                              label: "No",
+                              onClick: () => window.close
+                            }
+                          ]
+                        })
+                      }
+                      data-tip
+                      data-for="assignmentDeleteTip"
                     >
                       <i className="far fa-trash-alt"></i>&nbsp;
                     </a>
+                    <ReactTooltip id="assignmentDeleteTip" place="top">
+                      <span>Delete Assignment</span>
+                    </ReactTooltip>
+                    &nbsp; &nbsp;
                   </td>
                 </tr>
               ))}
