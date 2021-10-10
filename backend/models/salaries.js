@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 
 const salariesSchema = new mongoose.Schema({
     //declare variables/properties
-    /*salaryno: {
-        type:String,
+    payslipID: {
+        type:Number,
         required:true,//since must have
         //unique:true
-    },*/
+    },
     empno: {
         type:Number,
         required:true//since must have

@@ -45,6 +45,22 @@ router.get("/salary/:id", (req, res) => {
     });
   });
 });
+
+
+//To get the max payslip ID in the table, for automatic employee number generation
+router.get("/salaries/checkPayslipID", (req, res) => {
+  Salaries.find().sort({payslipID:-1}).limit(1).exec((err, payslipID) => {
+    return res.status(200).json({
+      success: true,
+      payslipID: payslipID,
+    });
+  });
+});
+
+
+
+
+
 //update 
 router.put("/salary/update/:id", (req, res) => {
   Salaries.findByIdAndUpdate(
