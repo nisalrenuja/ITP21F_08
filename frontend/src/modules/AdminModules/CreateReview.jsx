@@ -60,6 +60,10 @@ export default class CreateReview extends Component {
     console.log(file);
   };
 
+  ReviewSave = () => {
+    toast.success("Initial Review Saved Successfully");
+  };
+
   errorMessageAlert = message => {
     toast.error(message);
   };
@@ -107,6 +111,7 @@ export default class CreateReview extends Component {
     console.log(data);
     axios.post("http://localhost:5000/review/save", data).then(res => {
       if (res.data.success) {
+        this.ReviewSave("Initial Review Saved Successfully");
         this.setState({
           execid_review: "",
           report: "",
@@ -117,6 +122,7 @@ export default class CreateReview extends Component {
         });
       }
     });
+    this.props.history.push("/admin");
   };
 
   uploadPDF(e) {
@@ -253,15 +259,34 @@ export default class CreateReview extends Component {
             </select>
           </div>
 
-          <button
-            className="btn btn-success mb-2"
-            type="submit"
-            style={{ marginTop: "15px" }}
-            onClick={this.onSubmit}
-          >
-            <ToastContainer />
-            <i className="far fa-save"></i>&nbsp;Save
-          </button>
+          <div class="d-flex justify-content-center">
+            <button
+              className="btn btn-info"
+              type="submit"
+              style={{ backgroundColor: "#1687A7" }}
+              onClick={this.onSubmit}
+            >
+              &nbsp;&nbsp;Save&nbsp;&nbsp;
+            </button>{" "}
+            &nbsp;&nbsp;
+            <ToastContainer
+              position="bottom-center"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme={"dark"}
+              type="success"
+            />
+            <button className="btn btn-danger" type="cancel">
+              Cancel
+            </button>
+          </div>
+          <div />
         </form>
       </div>
     );
