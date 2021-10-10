@@ -64,37 +64,40 @@ export default class TopEmpReport extends Component {
           <div
             id="reportContent"
             style={{ marginTop: "10px", padding: "10px", paddingRight: "5px" }}
-          ></div>
+          >
+            <div>
+              <h2 class="mouse">Company Top Performers</h2>
+              <table className="table table-hover sentable9384">
+                <thead class="senthead">
+                  <tr>
+                    <th scope="col">Year</th>
+                    <th scope="col">Month</th>
+                    <th scope="col">Emp ID : Rank 1</th>
+                    <th scope="col">Emp ID : Rank 2</th>
+                    <th scope="col">Emp ID : Rank 3</th>
+                  </tr>
+                </thead>
+                <tbody class="sentbody1">
+                  {this.state.existingTopPerformers.map(
+                    (existingTopPerformers, index) => (
+                      <tr key={index}>
+                        <td>{existingTopPerformers.year}</td>
+                        <td>{existingTopPerformers.month}</td>
+                        <td>{existingTopPerformers.top_empid1}</td>
 
-          <div>
-            <h2 class="mouse">Company Top Performers</h2>
-            <table className="table table-hover sentable9384">
-              <thead class="senthead">
-                <tr>
-                  <th scope="col">Year</th>
-                  <th scope="col">Month</th>
-                  <th scope="col">Emp ID : Rank 1</th>
-                  <th scope="col">Emp ID : Rank 2</th>
-                  <th scope="col">Emp ID : Rank 3</th>
-                </tr>
-              </thead>
-              <tbody class="sentbody1">
-                {this.state.existingTopPerformers.map(
-                  (existingTopPerformers, index) => (
-                    <tr key={index}>
-                      <td>{existingTopPerformers.year}</td>
-                      <td>{existingTopPerformers.month}</td>
-                      <td>{existingTopPerformers.top_empid1}</td>
-
-                      <td>{existingTopPerformers.top_empid2}</td>
-                      <td>{existingTopPerformers.top_empid3}</td>
-                    </tr>
-                  )
-                )}
-              </tbody>
-              <tfoot class="tfoot"></tfoot>
-            </table>
+                        <td>{existingTopPerformers.top_empid2}</td>
+                        <td>{existingTopPerformers.top_empid3}</td>
+                      </tr>
+                    )
+                  )}
+                </tbody>
+                <tfoot class="tfoot"></tfoot>
+              </table>
+            </div>
           </div>
+        </div>
+        <div>
+          <iframe id="ifmcontentstoprint" style={{ display: "none" }}></iframe>
         </div>
       </div>
     );
