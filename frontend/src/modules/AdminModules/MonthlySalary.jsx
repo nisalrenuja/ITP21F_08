@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Clock from "../../component/common/clock/Clock";
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ReactTooltip from "react-tooltip";
 import "./AllPayrolls.css";
 
 export default class MonthlySalary extends Component {
@@ -33,14 +38,15 @@ export default class MonthlySalary extends Component {
     });
   }
 
+  notify = () => {
+    toast.success("Deleted Salary Successfully! 👌");
+  };
+
   onDelete = id => {
-    const confirmBox = window.confirm("Do you really want to delete this?");
-    if (confirmBox === true) {
-      axios.delete(`http://localhost:5000/salary/delete/${id}`).then(res => {
-        alert("Deleted Monthly Salary Successfully!!");
-        this.retrieveSalaries();
-      });
-    }
+    axios.delete(`http://localhost:5000/salary/delete/${id}`).then(res => {
+      this.notify();
+      this.retrieveSalaries();
+    });
   };
 
   filterData(salaries, searchKey) {
@@ -177,9 +183,14 @@ export default class MonthlySalary extends Component {
                     <a
                       href={`/displaysalary/${salaries._id}`}
                       style={{ textDecoration: "none" }}
+                      data-tip
+                      data-for="showTip"
                     >
-                      MS{salaries.empno}-{salaries.pay_month}
+                      S{salaries.payslipID}-{salaries.pay_month}
                     </a>
+                    <ReactTooltip id="showTip" place="top">
+                      <span>View pay slip</span>
+                    </ReactTooltip>
                   </td>
 
                   <td>{salaries.empno}</td>
@@ -207,17 +218,54 @@ export default class MonthlySalary extends Component {
                   </td>
 
                   <td>
-                    <a href={`displaysalary/${salaries._id}`}>
+                    <a
+                      href={`displaysalary/${salaries._id}`}
+                      data-tip
+                      data-for="showTip"
+                    >
                       <i class="far fa-eye"></i>
                     </a>
+                    <ReactTooltip id="showTip" place="top">
+                      <span>View pay slip</span>
+                    </ReactTooltip>
                     &nbsp; &nbsp; &nbsp; &nbsp;
-                    <a href={`/editsalary/${salaries._id}`}>
+                    <a
+                      href={`/editsalary/${salaries._id}`}
+                      data-tip
+                      data-for="EditTip"
+                    >
                       <i class="far fa-edit"></i>
                     </a>
+                    <ReactTooltip id="EditTip" place="top">
+                      <span>Edit pay slip</span>
+                    </ReactTooltip>
                     &nbsp; &nbsp; &nbsp;
-                    <a href="#" onClick={() => this.onDelete(salaries._id)}>
+                    <a
+                      href="#"
+                      data-tip
+                      data-for="DeleteTip"
+                      onClick={() =>
+                        confirmAlert({
+                          title: "Confirm to Delete",
+                          message: "Are you sure to do this ?",
+                          buttons: [
+                            {
+                              label: "Yes",
+                              onClick: () => this.onDelete(salaries._id)
+                            },
+                            {
+                              label: "No",
+                              onClick: () => window.close
+                            }
+                          ]
+                        })
+                      }
+                    >
                       <i class="far fa-trash-alt"></i>
                     </a>
+                    <ReactTooltip id="DeleteTip" place="top">
+                      <span>Delete pay slip</span>
+                    </ReactTooltip>
                   </td>
                 </tr>
               ))}
@@ -232,6 +280,20 @@ export default class MonthlySalary extends Component {
               New Pay Slip
             </a>
           </button>
+
+          <ToastContainer
+            position="bottom-center"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme={"dark"}
+            type="success"
+          />
         </div>
       </div>
     );

@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Redirect } from "react-router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./AllPayrolls.css";
 
 export default class CreateMSalary extends Component {
@@ -26,6 +29,24 @@ export default class CreateMSalary extends Component {
       salary_status: ""
     };
   }
+
+  demo = e => {
+    e.preventDefault();
+    this.setState({
+      empno: "1008",
+      name: "Sahani Anjana",
+      pay_month: "10-2021",
+      basic: "37000",
+      OT_hrs: "11",
+      bonus: "2300",
+      aws: "700",
+      total_earnings: "0", //other_earnings
+      nopay_leaves: "2",
+      total_deductions: "3100", //other deductions
+      net_salary: "", //(auto calculated)
+      salary_status: "Pending"
+    });
+  };
 
   handleInputChange = e => {
     const { name, value } = e.target;
