@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "./InsertEmployee.css";
+import "./EditEmployee.css";
 import { Redirect } from "react-router";
 
 export default class EditEmployee extends Component {
   constructor(props) {
     super(props);
-
+    //set the initial states
     this.state = {
       empno: "",
       name: "",
@@ -47,6 +47,7 @@ export default class EditEmployee extends Component {
     };
   }
 
+  //Assign the values from the input fields to states when changed
   handleInputChange = e => {
     const { name, value } = e.target;
     this.setState({
@@ -55,6 +56,7 @@ export default class EditEmployee extends Component {
     });
   };
 
+  //Form validations for Employee name, email, status, type, status, contactNo and NICNo
   validate = async () => {
     let empnoError = "";
     let nameError = "";
@@ -63,27 +65,30 @@ export default class EditEmployee extends Component {
     let contactError = "";
     let NICError = "";
 
+    //validate employee number is blank
     if (!this.state.empno) {
       empnoError = "**EmpNo Cannot Be Blank";
     }
-
+    //Validate employee name is blank
     if (!this.state.name) {
       nameError = "**Name Cannot Be Blank";
     }
-
+    //Validate email with the conditions
     if (!this.state.email.match("[a-z0-9.]{1,}[@]{1}[a-z]{1,}[.]{1}(com)$")) {
       emailError = "**Invalid email";
     }
-
+    //Validate status is blank
     if (!this.state.status) {
       statusError = "**Status Cannot Be Blank";
     }
+    //Validate type is blank
     if (!this.state.contact) {
       contactError = "**Contact Number Cannot Be Blank";
     } else if (this.state.contact.length == undefined) {
     } else if (this.state.contact.length !== 10) {
       contactError = "**Contact Number must have 10 digits";
     }
+    //Validate NIC Number for Both Old and New
     if (!this.state.nic_no) {
       NICError = "**NIC Cannot Be Blank";
     } else if (
@@ -99,7 +104,7 @@ export default class EditEmployee extends Component {
     } else if (this.state.nic_no == this.state.nic_no_copy) {
     } else {
       const { nic_no } = this.state;
-
+      //Validate if an employee with the same nic already exist
       await axios
         .get(`http://localhost:5000/employees/checknic/${nic_no}`)
         .then(res => {
@@ -117,6 +122,7 @@ export default class EditEmployee extends Component {
         });
     }
 
+    //Validate if theres a error state triggered
     if (
       emailError ||
       nameError ||
@@ -125,7 +131,6 @@ export default class EditEmployee extends Component {
       contactError ||
       NICError
     ) {
-      //emaiError also equal to emailError:emailError in Js.
       this.setState({
         emailError,
         nameError,
@@ -134,6 +139,7 @@ export default class EditEmployee extends Component {
         contactError,
         NICError
       });
+      //Alert to display when error is triggered
       alert(
         "Invalid Form Data. Please Check Name, Email, Status, Type, Contact & NIC Number!!!"
       );
@@ -142,10 +148,12 @@ export default class EditEmployee extends Component {
     return true;
   };
 
+  //Method triggered when cancel button is clicked to redirect
   handleCancelClick = () => {
     this.setState({ redirectToReferrer: true });
   };
 
+  //Method triggered when save button is clicked
   onSubmit = async e => {
     e.preventDefault();
     const id = this.props.dataFromParent;
@@ -215,6 +223,7 @@ export default class EditEmployee extends Component {
       type: type,
       status: status
     };
+    //Validate the form data
     const isValid = await this.validate();
     if (isValid) {
       console.log(isValid);
@@ -259,7 +268,6 @@ export default class EditEmployee extends Component {
           }
         });
     } else {
-      alert("Employee Already Exists, Please check your NIC and enter again!");
     }
   };
 
@@ -321,7 +329,7 @@ export default class EditEmployee extends Component {
         <h1 class="headie">Edit Employee Details </h1>
         <hr class="lineie"></hr>
         <form>
-          <div class="mainie">
+          <div class="mbmainie">
             <h1 class="head1">Basic Info </h1>
             <hr class="line1"></hr>
             <p class="label1">Employee Number: </p>
@@ -423,6 +431,7 @@ export default class EditEmployee extends Component {
               name="gender"
               value={this.state.gender}
               onChange={this.handleInputChange}
+              style={{ color: "black" }}
             >
               <option value="DEFAULT" disabled>
                 Select Gender
@@ -476,6 +485,7 @@ export default class EditEmployee extends Component {
               id="province"
               name="province"
               onChange={this.handleInputChange}
+              style={{ color: "black" }}
               placeholder="Enter 'Audit' / 'Tax' (Required)"
             >
               <option value="DEFAULT" disabled>
@@ -674,6 +684,7 @@ export default class EditEmployee extends Component {
             name="type"
             onChange={this.handleInputChange}
             placeholder="Enter 'Audit' / 'Tax' (Required)"
+            style={{ color: "black" }}
           >
             <option value="DEFAULT" disabled>
               Select Type
@@ -690,6 +701,7 @@ export default class EditEmployee extends Component {
             name="status"
             onChange={this.handleInputChange}
             placeholder="Enter 'Trainee' / 'Senior' (Required)"
+            style={{ color: "black" }}
             required
           >
             <option value="DEFAULT" disabled>

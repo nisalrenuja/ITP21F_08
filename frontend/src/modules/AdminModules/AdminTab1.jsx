@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import axios from "axios";
 import Clock from "../../component/common/clock/Clock";
 import "./Review.css";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ReactTooltip from "react-tooltip";
 export default class AdminTab1 extends Component {
   constructor(props) {
     super(props);
@@ -27,10 +32,14 @@ export default class AdminTab1 extends Component {
     });
   }
 
+  notify = () => {
+    toast.success("Deleted Successfully !!!");
+  };
+
   onDelete = id => {
     axios.delete(`http://localhost:5000/review/delete/${id}`).then(res => {
-      alert("Deleted Successfully");
       this.retrievePosts();
+      this.notify();
     });
   };
 
@@ -127,7 +136,10 @@ export default class AdminTab1 extends Component {
               ></input>
             </div>
           </div>
-          <table className="table table-hover" style={{ marginTop: "30px" }}>
+          <table
+            className="table table-hover text-center"
+            style={{ marginTop: "30px" }}
+          >
             <thead className="tblhead">
               <tr class="">
                 <th scope="col"></th>
@@ -154,17 +166,49 @@ export default class AdminTab1 extends Component {
                   </td>
 
                   <td>
-                    <a href={`/post/${posts._id}`}>
+                    <a href={`/post/${posts._id}`} data-tip data-for="ViewInit">
                       <i class="far fa-eye"></i>
                     </a>
+                    <ReactTooltip id="ViewInit" place="top">
+                      <span>View Initial Review</span>
+                    </ReactTooltip>
                     &nbsp; &nbsp; &nbsp; &nbsp;
-                    <a href={`/edit/${posts._id}`}>
+                    <a href={`/edit/${posts._id}`} data-tip data-for="EditInit">
                       <i class="far fa-edit"></i>
                     </a>
+                    <ReactTooltip id="EditInit" place="top">
+                      <span>Edit Initial Review</span>
+                    </ReactTooltip>
                     &nbsp; &nbsp; &nbsp;
-                    <a href="#" onClick={() => this.onDelete(posts._id)}>
+                    {/* <a href="#" onClick={() => this.onDelete(posts._id)}>
+                      <i class="far fa-trash-alt"></i>
+                    </a> */}
+                    <a
+                      href="#"
+                      data-tip
+                      data-for="DeleteInit"
+                      onClick={() =>
+                        confirmAlert({
+                          title: "Confirm to Delete",
+                          message: "Are you sure to do this ?",
+                          buttons: [
+                            {
+                              label: "Yes",
+                              onClick: () => this.onDelete(posts._id)
+                            },
+                            {
+                              label: "No",
+                              onClick: () => window.close
+                            }
+                          ]
+                        })
+                      }
+                    >
                       <i class="far fa-trash-alt"></i>
                     </a>
+                    <ReactTooltip id="DeleteInit" place="top">
+                      <span>Delete Initial Review</span>
+                    </ReactTooltip>
                   </td>
                 </tr>
               ))}
@@ -175,6 +219,19 @@ export default class AdminTab1 extends Component {
               Create New Review
             </a>
           </button>
+          <ToastContainer
+            position="bottom-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme={"dark"}
+            type="success"
+          />
         </div>
       </div>
     );

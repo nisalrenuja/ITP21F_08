@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import axios from "axios";
 import Clock from "../../component/common/clock/Clock";
 import "./Review.css";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ReactTooltip from "react-tooltip";
 export default class AdminTab1 extends Component {
   constructor(props) {
     super(props);
@@ -29,10 +34,14 @@ export default class AdminTab1 extends Component {
     });
   }
 
+  notify = () => {
+    toast.success("Deleted Successfully !!!");
+  };
+
   onDelete = id => {
     axios.delete(`http://localhost:5000/review/delete/${id}`).then(res => {
-      alert("Deleted Successfully");
       this.retrievePosts();
+      this.notify();
     });
   };
 
@@ -120,7 +129,10 @@ export default class AdminTab1 extends Component {
               ></input>
             </div>
           </div>
-          <table className="table table-hover" style={{ marginTop: "30px" }}>
+          <table
+            className="table table-hover text-center"
+            style={{ marginTop: "30px" }}
+          >
             <thead className="tblhead">
               <tr>
                 <th scope="col"></th>
@@ -156,29 +168,87 @@ export default class AdminTab1 extends Component {
                   </td>
                   <td>{posts.points}</td>
                   <td>{posts.feedback}</td>
-                  <td>{posts.directorStatus}</td>
                   <td>
-                    <a href={`/post/${posts._id}`}>
+                    <a
+                      href={`/editdirectorreview/${posts._id}`}
+                      style={{ textDecoration: "none" }}
+                      data-tip
+                      data-for="EditDir"
+                    >
+                      {posts.directorStatus}
+                    </a>
+                    <ReactTooltip id="EditDir" place="top">
+                      <span>Edit Director Review</span>
+                    </ReactTooltip>
+                  </td>
+                  <td>
+                    <a href={`/post/${posts._id}`} data-tip data-for="ViewDir">
                       <i class="far fa-eye"></i>
                     </a>
+                    <ReactTooltip id="ViewDir" place="top">
+                      <span>View Director Review</span>
+                    </ReactTooltip>
                     &nbsp; &nbsp; &nbsp; &nbsp;
-                    <a href={`/editdirectorreview/${posts._id}`}>
+                    <a
+                      href={`/editdirectorreview/${posts._id}`}
+                      data-tip
+                      data-for="EditDir"
+                    >
                       <i class="far fa-edit"></i>
                     </a>
+                    <ReactTooltip id="EditDir" place="top">
+                      <span>Edit Director Review</span>
+                    </ReactTooltip>
                     &nbsp; &nbsp; &nbsp;
-                    <a href="#" onClick={() => this.onDelete(posts._id)}>
+                    <a
+                      href="#"
+                      data-tip
+                      data-for="DeleteDir"
+                      onClick={() =>
+                        confirmAlert({
+                          title: "Confirm to Delete",
+                          message: "Are you sure to do this ?",
+                          buttons: [
+                            {
+                              label: "Yes",
+                              onClick: () => this.onDelete(posts._id)
+                            },
+                            {
+                              label: "No",
+                              onClick: () => window.close
+                            }
+                          ]
+                        })
+                      }
+                    >
                       <i class="far fa-trash-alt"></i>
                     </a>
+                    <ReactTooltip id="DeleteDir" place="top">
+                      <span>Delete Director Review</span>
+                    </ReactTooltip>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <button className="btn btn-success">
+          {/* <button className="btn btn-success">
             <a href="/add" style={{ textDecoration: "none", color: "white" }}>
               Create New Review
             </a>
-          </button>
+          </button> */}
+          <ToastContainer
+            position="bottom-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme={"dark"}
+            type="success"
+          />
         </div>
       </div>
     );

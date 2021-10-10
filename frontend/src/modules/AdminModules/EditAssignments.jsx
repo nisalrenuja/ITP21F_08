@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./CreateAssignment.css";
-import { storage } from "../../firebase";
+import { storage } from "../../firebase"; // Imports for firebase
 import { Redirect } from "react-router";
+import { ToastContainer, toast } from "react-toastify"; // Imports for toastify
+import "react-toastify/dist/ReactToastify.css"; // Imports for toastify
 
 export default class EditAssignments extends Component {
   constructor(props) {
@@ -26,9 +28,15 @@ export default class EditAssignments extends Component {
       scan_invoice_allowance: null
     };
   }
+  // retrieve data
   componentDidMount() {
     this.retrievePosts();
   }
+  //notify when uploading document
+  notify = () => {
+    toast.success("Uploading...");
+  };
+  //retrieve function
   retrievePosts() {
     const p = this.props.dataFromParent;
     console.log(p);
@@ -45,6 +53,7 @@ export default class EditAssignments extends Component {
       }
     });
   }
+  //search filter
   handleInputChange = e => {
     const { name, value } = e.target;
     this.setState({
@@ -63,7 +72,7 @@ export default class EditAssignments extends Component {
     var file = e.target.files[0];
     console.log(file);
   };
-
+  //update function for deadline and progress
   onSubmit = e => {
     e.preventDefault();
 
@@ -92,6 +101,7 @@ export default class EditAssignments extends Component {
         }
       });
   };
+  //update function for allowances
   onSubmit2 = e => {
     e.preventDefault();
 
@@ -129,6 +139,7 @@ export default class EditAssignments extends Component {
       }
     });
   };
+  //update function for bills document
   onSubmit3 = e => {
     e.preventDefault();
 
@@ -183,6 +194,8 @@ export default class EditAssignments extends Component {
             });
         }
       );
+
+      this.notify();
     } else {
     }
   }
@@ -379,6 +392,19 @@ export default class EditAssignments extends Component {
             </center>
           </div>
         </div>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme={"dark"}
+          type="success"
+        />
       </div>
     );
   }

@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import axios from "axios";
 import Clock from "../../component/common/clock/Clock";
 import "./Review.css";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ReactTooltip from "react-tooltip";
 export default class ProfilePage extends Component {
   constructor(props) {
     super(props);
@@ -27,10 +32,14 @@ export default class ProfilePage extends Component {
     });
   }
 
+  notify = () => {
+    toast.success("Deleted Successfully !!!");
+  };
+
   onDelete = id => {
     axios.delete(`http://localhost:5000/executive/delete/${id}`).then(res => {
-      alert("Deleted Successfully");
       this.retrieveexecutive();
+      this.notify();
     });
   };
 
@@ -122,17 +131,54 @@ export default class ProfilePage extends Component {
                   <td>{executive.email}</td>
                   <td>{executive.contact}</td>
                   <td>
-                    <a href={`/postprofile/${executive._id}`}>
+                    <a
+                      href={`/postprofile/${executive._id}`}
+                      data-tip
+                      data-for="ViewExe"
+                    >
                       <i class="far fa-eye"></i>
                     </a>
+                    <ReactTooltip id="ViewExe" place="top">
+                      <span>View Executive User Profile</span>
+                    </ReactTooltip>
                     &nbsp; &nbsp; &nbsp; &nbsp;
-                    <a href={`/editprofile/${executive._id}`}>
+                    <a
+                      href={`/editprofile/${executive._id}`}
+                      data-tip
+                      data-for="EditExe"
+                    >
                       <i class="far fa-edit"></i>
                     </a>
+                    <ReactTooltip id="EditExe" place="top">
+                      <span>Edit Executive User Profile</span>
+                    </ReactTooltip>
                     &nbsp; &nbsp; &nbsp;
-                    <a href="#" onClick={() => this.onDelete(executive._id)}>
+                    <a
+                      href="#"
+                      data-tip
+                      data-for="DeleteExe"
+                      onClick={() =>
+                        confirmAlert({
+                          title: "Confirm to Delete",
+                          message: "Are you sure to do this ?",
+                          buttons: [
+                            {
+                              label: "Yes",
+                              onClick: () => this.onDelete(executive._id)
+                            },
+                            {
+                              label: "No",
+                              onClick: () => window.close
+                            }
+                          ]
+                        })
+                      }
+                    >
                       <i class="far fa-trash-alt"></i>
                     </a>
+                    <ReactTooltip id="DeleteExe" place="top">
+                      <span>Delete Executive User Profile</span>
+                    </ReactTooltip>
                   </td>
                 </tr>
               ))}
@@ -146,6 +192,19 @@ export default class ProfilePage extends Component {
               Create New Executive Profile
             </a>
           </button>
+          <ToastContainer
+            position="bottom-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme={"dark"}
+            type="success"
+          />
         </div>
       </div>
     );

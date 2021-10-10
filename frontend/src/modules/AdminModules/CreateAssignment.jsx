@@ -20,9 +20,11 @@ export default class CreateAssignment extends Component {
       redirectToReferrer: false
     };
   }
+  //retrieve details
   componentDidMount() {
     this.retrievePosts();
   }
+  //retrieve function
   retrievePosts() {
     axios.get("http://localhost:5000/staff/ass").then(res => {
       if (res.data.success) {
@@ -40,6 +42,7 @@ export default class CreateAssignment extends Component {
       [name]: value
     });
   };
+  //staff status check function
   onCheck = name => {
     console.log(name);
     axios.get(`http://localhost:5000/checkassigned/${name}`).then(res => {
@@ -48,6 +51,7 @@ export default class CreateAssignment extends Component {
       }
     });
   };
+  //validation for fields
   validate = () => {
     let empnoError = "";
     let nameError = "";
@@ -57,19 +61,19 @@ export default class CreateAssignment extends Component {
     let contactError = "";
 
     if (!this.state.assignment_name) {
-      empnoError = "**EmpNo Cannot Be Blank";
+      empnoError = "*";
     }
 
     if (!this.state.client_no) {
-      nameError = "**Name Cannot Be Blank";
+      nameError = "*";
     }
 
     if (!this.state.execid) {
-      emailError = "**Invlaid email";
+      emailError = "*";
     }
 
     if (!this.state.emp_no) {
-      statusError = "**Status Cannot Be Blank";
+      statusError = "*";
     }
 
     if (
@@ -80,7 +84,6 @@ export default class CreateAssignment extends Component {
       typeError ||
       contactError
     ) {
-      //emaiError also equal to emailError:emailError in Js.
       this.setState({
         emailError,
         nameError,
@@ -94,6 +97,7 @@ export default class CreateAssignment extends Component {
     }
     return true;
   };
+  //insert function of assignment
   onSubmit = e => {
     e.preventDefault();
 
@@ -152,6 +156,7 @@ export default class CreateAssignment extends Component {
       });
     }
   };
+  //demo button
   demo = e => {
     e.preventDefault();
     this.setState({
@@ -164,6 +169,7 @@ export default class CreateAssignment extends Component {
       deadline: "2021-11-05"
     });
   };
+  //search filter
   filterData(staff, searchKey) {
     console.log(searchKey);
     const result = staff.filter(staff =>
@@ -171,6 +177,7 @@ export default class CreateAssignment extends Component {
     );
     this.setState({ staff: result });
   }
+  //search function
   handleSearchArea = e => {
     const searchKey = e.currentTarget.value;
     axios.get("http://localhost:5000/staff/ass").then(res => {

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { storage } from "../../firebase";
 import Progress from "../../component/common/ProgressBar/progress";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default class EditReview extends Component {
   constructor(props) {
     super(props);
@@ -37,6 +39,10 @@ export default class EditReview extends Component {
     });
   };
 
+  ManagerUpdate = () => {
+    toast.success("Manager Review Updated Successfully");
+  };
+
   onSubmit = e => {
     e.preventDefault();
     const id = this.props.match.params.id;
@@ -60,7 +66,7 @@ export default class EditReview extends Component {
     console.log(this.state.status);
     axios.put(`http://localhost:5000/review/update/${id}`, data).then(res => {
       if (res.data.success) {
-        alert("Review Updated Successfully");
+        this.ManagerUpdate("Manager Review Updated Successfully");
         this.setState({
           execid_review: "",
           report: "",
@@ -71,6 +77,7 @@ export default class EditReview extends Component {
         });
       }
     });
+    this.props.history.push("/admin");
   };
 
   componentDidMount() {
@@ -229,14 +236,33 @@ export default class EditReview extends Component {
             </select>
           </div>
 
-          <button
-            className="btn btn-info mb-2"
-            type="submit"
-            style={{ marginTop: "15px" }}
-            onClick={this.onSubmit}
-          >
-            <i className="fas fa-sync"></i>&nbsp;Update
-          </button>
+          <div class="d-flex justify-content-center">
+            <button
+              className="btn btn-info"
+              type="submit"
+              style={{ backgroundColor: "#1687A7" }}
+              onClick={this.onSubmit}
+            >
+              &nbsp;&nbsp;Save&nbsp;&nbsp;
+            </button>{" "}
+            &nbsp;&nbsp;
+            <ToastContainer
+              position="bottom-center"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme={"dark"}
+              type="success"
+            />
+            <button className="btn btn-danger" type="cancel">
+              Cancel
+            </button>
+          </div>
         </form>
       </div>
     );
