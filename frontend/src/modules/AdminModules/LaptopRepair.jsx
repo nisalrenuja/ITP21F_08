@@ -4,6 +4,7 @@ import "./LaptopInventory.css";
 import Clock from "../../component/common/clock/Clock";
 
 //laptop
+
 export default class LaptopRepair extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +16,27 @@ export default class LaptopRepair extends Component {
 
   componentDidMount() {
     this.retrievePosts();
+  }
+
+  printData() {
+    let printTable = document.getElementById("laptopRepairdetails").innerHTML;
+    let getprintout = window.open("", "", "height=1024, width=1024");
+    getprintout.document.write(
+      "<html><head><title>Laptop Repair Print Page</title></head>"
+    );
+    getprintout.document.write(
+      '<body style="font-family:Arial, Helvetica, sans-serif;font-size:10px;color:#000000";margin:100;padding:40> <h1 style="text-align:center"><u>Laptop Repair Details </u></h1><br>'
+    );
+    getprintout.document.write(
+      '<table style="width: 100%; border: 1px  solid black ;text-align: center"><hr><tbody style=" font-size: 36px; padding: 25px ;border: 1px  solid black ;text-align: center"',
+      printTable,
+      "</table><br>"
+    );
+    getprintout.document.write("...................<br>");
+    getprintout.document.write("signature");
+    getprintout.document.write("</body></html>");
+    getprintout.print();
+    getprintout.close();
   }
 
   retrievePosts() {
@@ -57,6 +79,7 @@ export default class LaptopRepair extends Component {
       }
     });
   };
+
   render() {
     return (
       <div className="container">
@@ -108,49 +131,59 @@ export default class LaptopRepair extends Component {
               </div>
             </div>
           </div>
-
-          <table
-            className="table table-hover text-center"
-            style={{ marginTop: "40px" }}
-          >
-            <thead class="tblhead">
-              <tr>
-                <th scope="col">Laptop ID</th>
-                <th scope="col">Repair Reason </th>
-                <th scope="col">Repair Date</th>
-                <th scope="col">Repair Price</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.laptopsRepair.map((laptopsRepair, index) => (
+          <div id="laptopRepairdetails">
+            <table
+              className="table table-hover text-center"
+              style={{ marginTop: "40px" }}
+            >
+              <thead class="tblhead">
                 <tr>
-                  <td>{laptopsRepair.id}</td>
-                  <td>{laptopsRepair.repair_reason}</td>
-                  <td>{laptopsRepair.repair_date}</td>
-                  <td>{laptopsRepair.repair_cost}</td>
-
-                  <td>
-                    <a href={`/viewrepair/${laptopsRepair._id}`}>
-                      <i class="far fa-eye"></i>
-                    </a>
-                    &nbsp; &nbsp; &nbsp; &nbsp;
-                    <a href={`/editrepair/${laptopsRepair._id}`}>
-                      <i class="far fa-edit"></i>
-                    </a>
-                    &nbsp; &nbsp; &nbsp; &nbsp;
-                    <a
-                      href="#"
-                      onClick={() => this.onDelete(laptopsRepair._id)}
-                    >
-                      <i className="far fa-trash-alt"></i>
-                    </a>
-                  </td>
+                  <th scope="col">Laptop ID</th>
+                  <th scope="col">Repair Reason </th>
+                  <th scope="col">Repair Date</th>
+                  <th scope="col">Repair Price</th>
+                  <th scope="col">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-            <tfoot></tfoot>
-          </table>
+              </thead>
+              <tbody>
+                {this.state.laptopsRepair.map((laptopsRepair, index) => (
+                  <tr>
+                    <td>{laptopsRepair.id}</td>
+                    <td>{laptopsRepair.repair_reason}</td>
+                    <td>{laptopsRepair.repair_date}</td>
+                    <td>{laptopsRepair.repair_cost}</td>
+
+                    <td>
+                      <a href={`/viewrepair/${laptopsRepair._id}`}>
+                        <i class="far fa-eye"></i>
+                      </a>
+                      &nbsp; &nbsp; &nbsp; &nbsp;
+                      <a href={`/editrepair/${laptopsRepair._id}`}>
+                        <i class="far fa-edit"></i>
+                      </a>
+                      &nbsp; &nbsp; &nbsp; &nbsp;
+                      <a
+                        href="#"
+                        onClick={() => this.onDelete(laptopsRepair._id)}
+                      >
+                        <i className="far fa-trash-alt"></i>
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot></tfoot>
+            </table>
+          </div>
+          <div>
+            <button class="btn btn-primary" onClick={() => this.printData()}>
+              <i class="fa fa-print" aria-hidden="true"></i>&nbsp; PRINT
+            </button>
+            <p>
+              Click above button opens print preview with Laptop Repair Details
+            </p>
+          </div>
+
           <a href="/createlaptoprepair">
             <button class="addbtn">
               <i class="fas fa-plus"></i>&nbsp;New Laptop Repair Details

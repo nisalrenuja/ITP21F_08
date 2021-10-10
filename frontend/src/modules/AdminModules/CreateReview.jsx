@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { storage } from "../../firebase";
 import Progress from "../../component/common/ProgressBar/progress";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default class CreateReview extends Component {
   constructor(props) {
     super(props);
@@ -56,6 +58,10 @@ export default class CreateReview extends Component {
   handleInputFileChange = e => {
     var file = e.target.files[0];
     console.log(file);
+  };
+
+  errorMessageAlert = message => {
+    toast.error(message);
   };
 
   onSubmit = e => {
@@ -253,6 +259,7 @@ export default class CreateReview extends Component {
             style={{ marginTop: "15px" }}
             onClick={this.onSubmit}
           >
+            <ToastContainer />
             <i className="far fa-save"></i>&nbsp;Save
           </button>
         </form>

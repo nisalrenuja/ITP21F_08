@@ -6,7 +6,10 @@ const Points = require("../models/points");
 
 const router = express.Router();
 
-//save employee details
+//=======================Save Routes====================================
+
+
+//Save new employee details
 router.post("/employees/save", (req, res) => {
   let newemployees = new employees(req.body);
   newemployees.save((err) => {
@@ -21,7 +24,7 @@ router.post("/employees/save", (req, res) => {
   });
 });
 
-//save all the points given to employees
+//Save all the points given to employees to points table
 router.post("/points/save", (req, res) => {
  let newpoints = req.body;
   Points.create(newpoints, (err) => {
@@ -36,7 +39,9 @@ router.post("/points/save", (req, res) => {
   });
 });
 
-//get employees, assignments, reviews
+//=======================Retrieve Routes====================================
+
+//Get all the employee details sorted in descending order for employees list 
 router.get("/employees", (req, res) => {  
   employees.find().sort({ "empno": -1 }).exec((err, employees) => { 
     var count = employees.length;
@@ -51,6 +56,7 @@ router.get("/employees", (req, res) => {
     });
 });
 
+//Get details of employees of the type Audit for Employee report
 router.get("/employees/audit", (req, res) => {  
   employees.find({type : { $eq: "Audit" }}).sort({ "empno": -1 }).exec((err, employees) => { 
     var count = employees.length;
@@ -65,6 +71,7 @@ router.get("/employees/audit", (req, res) => {
     });
 });
 
+//Get details of employees of the type Tax for Employee report
 router.get("/employees/tax", (req, res) => {  
   employees.find({type : { $eq: "Tax" }}).sort({ "empno": -1 }).exec((err, employees) => { 
     var count = employees.length;
@@ -79,6 +86,7 @@ router.get("/employees/tax", (req, res) => {
     });
 });
 
+//Get the count of employees based on Type Audit and Tax
 router.get("/employees/counts", (req, res) => {  
   employees.find({type : { $eq: "Audit" }}).count().exec((err, audit) => { employees.find({type : { $eq: "Tax" }}).count().exec((err, tax) => { 
     if (err) {
@@ -93,6 +101,7 @@ router.get("/employees/counts", (req, res) => {
     });
 });
 
+//Get a count of employees based on status [Senior/Trainee] for employee report
 router.get("/employees/division", (req, res) => {  
   employees.find({status : { $eq: "Senior" }}).count().exec((err, senior) => { employees.find({status : { $eq: "Trainee" }}).count().exec((err, trainee) => { 
     if (err) {
@@ -107,6 +116,7 @@ router.get("/employees/division", (req, res) => {
   });
 });
 
+//Get a count of employees of Status: Senior into Males and Females for employee report
 router.get("/employees/senior", (req, res) => {  
   employees.find( {
     $and: [
@@ -131,6 +141,7 @@ router.get("/employees/senior", (req, res) => {
   });
 });
 
+//Get a count of employees of Status: Trainees into Males and Females for employee report
 router.get("/employees/trainee", (req, res) => {  
   employees.find( {
     $and: [
@@ -155,6 +166,7 @@ router.get("/employees/trainee", (req, res) => {
   });
 });
 
+//Get a list of employeees in Tax for employee report
 router.get("/employees/tax", (req, res) => {  
   employees.find().sort({ "empno": -1 }).exec((err, employees) => { 
     var count = employees.length;
@@ -169,6 +181,7 @@ router.get("/employees/tax", (req, res) => {
     });
 });
 
+//Get a list of employeees in each province for employee report
 router.get("/employees/province", (req, res) => {  
   employees.aggregate([
     { "$facet": {
@@ -231,6 +244,7 @@ router.get("/employees/province", (req, res) => {
     });
 });
 
+//Get a all the emloyees and assignments
 router.get("/employeepoints", (req, res) => {
   let empno = req.params.name;
   employees.find().sort({ "empno": -1 }).exec((err, employees) => { 
@@ -249,6 +263,7 @@ router.get("/employeepoints", (req, res) => {
   });
 });
 
+//Get a  the total points assigned based on the emlpoyee no and assignment name from the reviews table er emloyee
 router.get("/employeepoints2", (req, res) => {
   let empno = req.params.name;
   employees.aggregate([
@@ -295,30 +310,7 @@ router.get("/employeepoints2", (req, res) => {
   });
 
 
-router.get("/checkassigned/:id", (req, res) => {
-  let empno = req.params.id;
-  assignment_assignedtostaff
-    .find({ $and: [{ emp_no: empno }, { progress: { $ne: "Completed" } }] })
-    .exec((err, check) => {
-        return res.status(200).json({
-        success: true,
-        check: check,
-      });
-    });
-});
-
-router.get("/checkcompleted/:id", (req, res) => {
-  let empno = req.params.id;
-  assignment_assignedtostaff
-    .find({ $and: [{ emp_no: empno }, { progress: { $eq: "Completed" } }] })
-    .exec((err, check) => {
-        return res.status(200).json({
-        success: true,
-        check: check,
-      });
-    });
-});
-
+//get all the pending assignments from workallocation to display in pending assignments in employee report portal
 router.get("/pendingassignments", (req, res) => {
   assignment_assignedtostaff.aggregate([
     {$match:{progress:"Assigned"}},
@@ -344,8 +336,7 @@ router.get("/pendingassignments", (req, res) => {
     });
 })
 
-
-
+//Get all the assignment names which are pending and the employees in the pending and assigned assignments for report upload form
 router.get("/assignments/empreportupload", (req, res) => {
   assignment_assignedtostaff
   .distinct("emp_no", { progress: { $ne: "Completed" } })
@@ -361,6 +352,7 @@ router.get("/assignments/empreportupload", (req, res) => {
   });
 });
 
+//Get all the assignments where the status is pending or rejected from the reviews table and then get all the assignments which are completed for the employee report upload portal tables
 router.get("/review/pe", (req, res) => {
   Posts.aggregate([{ $match:{ $or: [   { status: "Pending" } , { status: "Rejected"}]}},{
     $lookup: {
@@ -406,6 +398,7 @@ router.get("/review/pe", (req, res) => {
 });
 });
 
+//To get the max employee number in the table, for automatic employee number generation
 router.get("/employees/checkempno", (req, res) => {
   employees.find().sort({empno:-1}).limit(1).exec((err, empno) => {
     return res.status(200).json({
@@ -415,9 +408,8 @@ router.get("/employees/checkempno", (req, res) => {
   });
 });
 
-
-//get specific
-
+//=======================Get Specific Routes====================================
+//Get the details of a specific employee for employee profile
 router.get("/employees/:id", (req, res) => {
   let postid = req.params.id;
   employees.findById(postid, (err, employee) => {
@@ -430,6 +422,8 @@ router.get("/employees/:id", (req, res) => {
     });
   });
 });
+
+//Get the total allocations a specific employee had for the employee profile 
 router.get("/employees/alocation/:id1", (req, res) => {
   let postid = req.params.id1;
   assignment_assignedtostaff.find({emp_no :postid}).count().exec((err, allocationcount) => {
@@ -442,6 +436,8 @@ router.get("/employees/alocation/:id1", (req, res) => {
     });
   });
 });
+
+//Get the points a specific employee has got from the oints table based on the employee number for the employee profile 
 router.get("/employees/pointsreq/:id2", (req, res) => {
   let postid2 = parseInt(req.params.id2);
   Points.aggregate([
@@ -477,6 +473,34 @@ router.get("/employees/pointsreq/:id2", (req, res) => {
   });
 });
 
+//Get the all the assignments which are not completed to displayed in the pending assignments for a particular employee
+router.get("/checkassigned/:id", (req, res) => {
+  let empno = req.params.id;
+  assignment_assignedtostaff
+    .find({ $and: [{ emp_no: empno }, { progress: { $ne: "Completed" } }] })
+    .exec((err, check) => {
+        return res.status(200).json({
+        success: true,
+        check: check,
+      });
+    });
+});
+
+//Get the all the assignments which are completed to displayed in the pcompleted assignments for a particular employee
+router.get("/checkcompleted/:id", (req, res) => {
+  let empno = req.params.id;
+  assignment_assignedtostaff
+    .find({ $and: [{ emp_no: empno }, { progress: { $eq: "Completed" } }] })
+    .exec((err, check) => {
+        return res.status(200).json({
+        success: true,
+        check: check,
+      });
+    });
+});
+
+
+//check if a particular nic_no exists in the system for employee validation
 router.get("/employees/checknic/:no", (req, res) => {
   let nic_no = req.params.no;
   employees.find({ nic_no: nic_no }).exec((err, staffs) => {
@@ -488,11 +512,9 @@ router.get("/employees/checknic/:no", (req, res) => {
 });
 
 
+//=======================Update Routes====================================
 
-
-
-//update employees
-
+//Updates employee details
 router.put("/employees/update/:id", (req, res) => {
   employees.findByIdAndUpdate(
     req.params.id,
@@ -510,6 +532,7 @@ router.put("/employees/update/:id", (req, res) => {
   );
 });
 
+//updates the status of an assignment from "Assigned" to "Working" in the work allocation table when a employee submits a report for review
 router.put("/assignments/updte/:name", (req, res) => {
   let name = req.params.name;
   assignment_assignedtostaff
@@ -530,8 +553,9 @@ router.put("/assignments/updte/:name", (req, res) => {
 });
 
 
-//delete post
+//=======================Delete Routes====================================
 
+//Delete a specific employee details
 router.delete("/employees/delete/:id", (req, res) => {
   employees.findByIdAndRemove(req.params.id).exec((err, deletedPost) => {
     if (err)

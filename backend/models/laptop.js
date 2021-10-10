@@ -15,7 +15,7 @@ const laptop_Schema = new mongoose.Schema({
   },
   storage_type: {
     type: String,
-    required: true,
+    required: false,
   },
   purchaase_date: {
     type: String,

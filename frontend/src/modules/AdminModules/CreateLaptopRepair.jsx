@@ -1,7 +1,25 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./CreateLaptop.css";
-//createlaptop inventory
+
+//set id validation
+const idRegex = RegExp(/^[A-Z]+[0-9]*$/);
+
+const formValid = ({ formErrors, ...rest }) => {
+  let valid = true;
+
+  // validate form errors being empty
+  Object.values(formErrors).forEach(val => {
+    val.length > 0 && (valid = false);
+  });
+
+  // validate the form was filled out
+  Object.values(rest).forEach(val => {
+    val === null && (valid = false);
+  });
+
+  return valid;
+};
 
 export default class CreateLaptopRepair extends Component {
   constructor(props) {
@@ -10,44 +28,61 @@ export default class CreateLaptopRepair extends Component {
       id: "",
       repair_reason: "",
       repair_date: "",
-      repair_cost: ""
+      repair_cost: "",
+      formErrors: {
+        id: ""
+      }
     };
   }
 
   handleInputchange = e => {
     const { name, value } = e.target;
-    this.setState({
-      ...this.state,
-      [name]: value
-    });
+
+    //validation checking
+    let formErrors = { ...this.state.formErrors };
+
+    switch (name) {
+      case "id":
+        formErrors.id = idRegex.test(value)
+          ? ""
+          : "**Please Use Only Correct Way [Eg: LP1090]**";
+
+        break;
+      default:
+        break;
+    }
+
+    this.setState({ formErrors, [name]: value }, () => console.log(this.state));
   };
 
   onSubmit = e => {
     e.preventDefault();
-
-    const { id, repair_reason, repair_date, repair_cost } = this.state;
-    const data = {
-      id: id,
-      repair_reason: repair_reason,
-      repair_date: repair_date,
-      repair_cost: repair_cost
-    };
-    console.log(data);
-    axios.post("http://localhost:5000/laptop_repair/save", data).then(res => {
-      if (res.data.success) {
-        this.setState({
-          id: id,
-          repair_reason: repair_reason,
-          repair_date: repair_cost,
-          repair_cost: repair_cost
-        });
-        alert("Save Successful!");
-        this.props.history.push("/repairinglaptop");
-      }
-    });
+    if (formValid(this.state)) {
+      const { id, repair_reason, repair_date, repair_cost } = this.state;
+      const data = {
+        id: id,
+        repair_reason: repair_reason,
+        repair_date: repair_date,
+        repair_cost: repair_cost
+      };
+      console.log(data);
+      axios.post("http://localhost:5000/laptop_repair/save", data).then(res => {
+        if (res.data.success) {
+          this.setState({
+            id: id,
+            repair_reason: repair_reason,
+            repair_date: repair_cost,
+            repair_cost: repair_cost
+          });
+          alert("Save Successful!");
+          this.props.history.push("/repairinglaptop");
+        }
+      });
+    }
   };
 
   render() {
+    const { formErrors } = this.state;
     return (
       <div className="col-md-6 mt-4 mx-auto">
         <h1 className="h3 mb-3 font-weight-normal">
@@ -67,6 +102,9 @@ export default class CreateLaptopRepair extends Component {
               value={this.state.id}
               onChange={this.handleInputchange}
             />
+            {formErrors.id.length > 0 && (
+              <span style={{ color: "red" }}>{formErrors.id}</span>
+            )}
           </div>
           <div className="form-group" style={{ marginBottom: "14px" }}>
             <label style={{ marginBottom: "5px" }}>Repair</label>

@@ -17,6 +17,27 @@ export default class AdminTab7 extends Component {
     this.retrievePosts();
   }
 
+  printData() {
+    let printTable = document.getElementById("laptopdetails").innerHTML;
+    let getprintout = window.open("", "", "height=1024, width=1024");
+    getprintout.document.write(
+      "<html><head><title>Laptop Print Page</title></head>"
+    );
+    getprintout.document.write(
+      '<body style="font-family:Arial, Helvetica, sans-serif;font-size:10px;color:#000000";margin:100;padding:40> <h1 style="text-align:center"><u>Inventory Laptops Details </u></h1><br>'
+    );
+    getprintout.document.write(
+      '<table style="width: 100%; border: 1px  solid black ;text-align: center"><hr><tbody style=" font-size: 36px; padding: 25px ;border: 1px  solid black ;text-align: center"',
+      printTable,
+      "</table><br>"
+    );
+    getprintout.document.write("...................<br>");
+    getprintout.document.write("signature");
+    getprintout.document.write("</body></html>");
+    getprintout.print();
+    getprintout.close();
+  }
+
   retrievePosts() {
     axios.get("http://localhost:5000/laptops").then(res => {
       if (res.data.success) {
@@ -91,7 +112,7 @@ export default class AdminTab7 extends Component {
 
             <div class="d-flex">
               <div className="col-lg-9 mt-2 mb-2 ">
-                <h2 className="h3 mb-3"> Laptops Details</h2>
+                <h2 className="h3 mb-3"> Laptops Inventory Details</h2>
               </div>
 
               <div className="col-lg-3 mt-2 mb-2 search-bar">
@@ -106,53 +127,65 @@ export default class AdminTab7 extends Component {
               </div>
             </div>
           </div>
-
-          <table
-            className="table table-hover text-center"
-            style={{ marginTop: "40px" }}
-          >
-            <thead class="tblhead">
-              <tr>
-                <th scope="col">Laptop ID</th>
-                <th scope="col">Laptop Brand</th>
-                <th scope="col">Laptop Model</th>
-                <th scope="col">Storage size</th>
-                <th scope="col">Availability status</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.laptops.map((laptops, index) => (
+          <div id="laptopdetails">
+            <table
+              className="table table-hover text-center"
+              style={{ marginTop: "40px" }}
+            >
+              <thead class="tblhead">
                 <tr>
-                  <td>{laptops.id}</td>
-                  <td>{laptops.brand}</td>
-                  <td>{laptops.model}</td>
-                  <td>{laptops.storage_type}</td>
-                  <td>{laptops.status}</td>
-                  <td>
-                    <a href={`/viewlaptop/${laptops._id}`}>
-                      <i class="far fa-eye"></i>
-                    </a>
-                    &nbsp; &nbsp; &nbsp; &nbsp;
-                    <a href={`/editlaptop/${laptops._id}`}>
-                      <i class="far fa-edit"></i>
-                    </a>
-                    &nbsp; &nbsp; &nbsp; &nbsp;
-                    <a href="#" onClick={() => this.onDelete(laptops._id)}>
-                      <i className="far fa-trash-alt"> </i>
-                    </a>
-                  </td>
+                  <th scope="col">Laptop ID</th>
+                  <th scope="col">Laptop Brand</th>
+                  <th scope="col">Laptop Model</th>
+                  <th scope="col">Storage size</th>
+                  <th scope="col">Availability status</th>
+                  <th scope="col">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-            <tfoot></tfoot>
-          </table>
+              </thead>
+              <tbody>
+                {this.state.laptops.map((laptops, index) => (
+                  <tr>
+                    <td>{laptops.id}</td>
+                    <td>{laptops.brand}</td>
+                    <td>{laptops.model}</td>
+                    <td>{laptops.storage_type}</td>
+                    <td>{laptops.status}</td>
+                    <td>
+                      <a href={`/viewlaptop/${laptops._id}`}>
+                        <i class="far fa-eye"></i>
+                      </a>
+                      &nbsp; &nbsp; &nbsp; &nbsp;
+                      <a href={`/editlaptop/${laptops._id}`}>
+                        <i class="far fa-edit"></i>
+                      </a>
+                      &nbsp; &nbsp; &nbsp; &nbsp;
+                      <a href="#" onClick={() => this.onDelete(laptops._id)}>
+                        <i className="far fa-trash-alt"> </i>
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot></tfoot>
+            </table>
+          </div>
+          <div>
+            <button class="btn btn-primary" onClick={() => this.printData()}>
+              <i class="fa fa-print" aria-hidden="true"></i>&nbsp; PRINT
+            </button>
+            <p>
+              Click above button opens print preview with Laptop Inventory
+              Details
+            </p>
+          </div>
+
           <a href="/createlaptop">
             <button class="addbtn">
               <i class="fas fa-plus"></i>&nbsp;New Laptop Details
             </button>
           </a>
         </div>
+        <br />
       </div>
     );
   }

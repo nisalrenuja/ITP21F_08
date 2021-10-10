@@ -321,7 +321,19 @@ export default class CreateProfile extends Component {
               &nbsp;&nbsp;Save&nbsp;&nbsp;
             </button>{" "}
             &nbsp;&nbsp;
-            <ToastContainer />
+            <ToastContainer
+              position="bottom-center"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme={"dark"}
+              type="success"
+            />
             <button className="btn btn-danger" type="cancel">
               Cancel
             </button>
