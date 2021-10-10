@@ -57,7 +57,7 @@ const DisplaySalary = ({ history, match }) => {
           ) : selectedMenuOption === "Notice Management" ? (
             <AdminTab5 />
           ) : selectedMenuOption === "Attendance & Payroll" ? (
-            <DisplayMSalary />
+            <DisplayMSalary dataFromParent={match.params.id} />
           ) : selectedMenuOption === "MenuItem 7" ? (
             <AdminTab7 />
           ) : (

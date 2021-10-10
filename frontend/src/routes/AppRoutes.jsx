@@ -84,6 +84,7 @@ import MonthlySalary from "../pages/AdminPage/MonthlySalary"; //salary
 import CreateMSalary from "../modules/AdminModules/CreateMSalary";
 import EditMSalary from "../modules/AdminModules/EditMSalary";
 import DisplayMSalary from "../modules/AdminModules/DisplayMSalary";
+//import DisplayMSalary from "../pages/AdminPage/DisplayMSalary";
 
 import AdminLeaves from "../pages/AdminPage/AdminLeaves"; //leaves
 import CreateLeave from "../modules/AdminModules/CreateLeave";
