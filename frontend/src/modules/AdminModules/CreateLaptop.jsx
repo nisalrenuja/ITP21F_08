@@ -46,6 +46,22 @@ export default class CreateLaptop extends Component {
     };
   }
 
+  //demo button
+  demo = e => {
+    e.preventDefault();
+    this.setState({
+      id: "LP3018",
+      brand: "ASUS",
+      model: "A1122",
+      storage_type: "16GB",
+      purchaase_date: "2019-03-11",
+      purchase_price: "Rs.189000",
+      status: "",
+      discarded_reason: "",
+      discarded_date: ""
+    });
+  };
+
   handleInputChange = e => {
     const { name, value } = e.target;
 
@@ -146,9 +162,21 @@ export default class CreateLaptop extends Component {
 
         <form className="need-validation" noValidate>
           <div className="form-group" style={{ marginBottom: "14px" }}>
-            <h5>Laptop Details</h5>
+            <h5>Create New Laptop Details</h5>
             <hr />
-
+            <button
+              type="button"
+              class="btn btn-warning"
+              onClick={this.demo}
+              style={{
+                marginRight: "10px",
+                marginBottom: "5px",
+                float: "right"
+              }}
+            >
+              {" "}
+              Demo{" "}
+            </button>
             <label style={{ marginBottom: "5px" }}>Laptop ID</label>
             <input
               ref="id"

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./LaptopInventory.css";
 import Clock from "../../component/common/clock/Clock";
-
+import { confirmAlert } from "react-confirm-alert";
 //laptop
 
 export default class LaptopRepair extends Component {
@@ -164,7 +164,22 @@ export default class LaptopRepair extends Component {
                       &nbsp; &nbsp; &nbsp; &nbsp;
                       <a
                         href="#"
-                        onClick={() => this.onDelete(laptopsRepair._id)}
+                        onClick={() =>
+                          confirmAlert({
+                            title: "Delete Confirmation",
+                            message: "Are you sure to delete this?",
+                            buttons: [
+                              {
+                                label: "Yes",
+                                onClick: () => this.onDelete(laptopsRepair._id)
+                              },
+                              {
+                                label: "No",
+                                onClick: () => window.close
+                              }
+                            ]
+                          })
+                        }
                       >
                         <i className="far fa-trash-alt"></i>
                       </a>

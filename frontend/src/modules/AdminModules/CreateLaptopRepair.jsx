@@ -35,6 +35,17 @@ export default class CreateLaptopRepair extends Component {
     };
   }
 
+  //demo button
+  demo = e => {
+    e.preventDefault();
+    this.setState({
+      id: "LP3008",
+      repair_reason: "MotherBoeard Change",
+      repair_date: "2020-08-01",
+      repair_cost: "Rs.12000"
+    });
+  };
+
   handleInputchange = e => {
     const { name, value } = e.target;
 
@@ -93,6 +104,19 @@ export default class CreateLaptopRepair extends Component {
           <div className="form-group" style={{ marginBottom: "14px" }}>
             <h5>Laptop Details</h5>
             <hr></hr>
+            <button
+              type="button"
+              class="btn btn-warning"
+              onClick={this.demo}
+              style={{
+                marginRight: "10px",
+                marginBottom: "5px",
+                float: "right"
+              }}
+            >
+              {" "}
+              Demo{" "}
+            </button>
             <label style={{ marginBottom: "5px" }}>Laptop ID</label>
             <input
               type="text"
