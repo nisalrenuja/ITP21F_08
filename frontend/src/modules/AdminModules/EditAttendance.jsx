@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Redirect } from "react-router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 //import { storage } from "../../firebase";
 //import Progress from "../../component/common/ProgressBar/progress";
 
@@ -25,6 +28,56 @@ export default class EditAttendance extends Component {
       ...this.state,
       [name]: value
     });
+  };
+
+  validate = () => {
+    let empnoError = "";
+    let att_dateError = "";
+    let att_typeError = "";
+    let location_typeError = "";
+    let locationError = "";
+    let time_inError = "";
+    let time_outError = "";
+    let assignment_nameError = "";
+
+    if (!this.state.empno) {
+      empnoError = "Employee no. required";
+    }
+    if (!this.state.att_date) {
+      att_dateError = "Date required";
+    }
+    if (!this.state.location_type) {
+      location_typeError = "Location type required";
+    }
+
+    if (!this.state.att_type) {
+      att_typeError = "Attendance type required";
+    }
+
+    if (
+      empnoError ||
+      att_dateError ||
+      att_typeError ||
+      location_typeError ||
+      locationError ||
+      time_inError ||
+      time_outError ||
+      assignment_nameError
+    ) {
+      this.setState({
+        empnoError,
+        att_dateError,
+        att_typeError,
+        location_typeError,
+        locationError,
+        time_inError,
+        time_outError,
+        assignment_nameError
+      });
+      toast.warn("Error while Updating. Please Check Again!!!");
+      return false;
+    }
+    return true;
   };
 
   onSubmit = e => {
@@ -53,26 +106,29 @@ export default class EditAttendance extends Component {
       assignment_name: assignment_name
     };
 
-    console.log(data);
-    axios
-      .put(`http://localhost:5000/attendance/update/${id}`, data)
-      .then(res => {
-        if (res.data.success) {
-          alert("Attendance Updated Successfully");
+    const isValid = this.validate();
+    if (isValid) {
+      console.log(this.state.empno);
+      console.log(data);
 
-          this.setState({
-            empno: "",
-            att_date: "",
-            att_type: "",
-            location_type: "",
-            location: "",
-            time_in: "",
-            time_out: "",
-            assignment_name: ""
-          });
-        }
-      });
-    this.props.history.push("/allattendance");
+      axios
+        .put(`http://localhost:5000/attendance/update/${id}`, data)
+        .then(res => {
+          if (res.data.success) {
+            this.setState({
+              empno: "",
+              att_date: "",
+              att_type: "",
+              location_type: "",
+              location: "",
+              time_in: "",
+              time_out: "",
+              assignment_name: ""
+            });
+            toast.success("Attendance Updated Successfully!");
+          }
+        });
+    }
   };
 
   componentDidMount() {
@@ -130,6 +186,11 @@ export default class EditAttendance extends Component {
   }
   */
   render() {
+    const redirectToReferrer = this.state.redirectToReferrer;
+    if (redirectToReferrer == true) {
+      return <Redirect to="/allattendance" />;
+    }
+
     return (
       <div className="col-md-6 mt-4 mx-auto">
         <br />
@@ -139,7 +200,7 @@ export default class EditAttendance extends Component {
         <br />
 
         <form
-          className="need-validation"
+          className="need-validation2"
           noValidate
           style={{
             backgroundColor: "#F6F5F5",
@@ -148,7 +209,7 @@ export default class EditAttendance extends Component {
             borderRadius: "15px"
           }}
         >
-          <h2>Attendance Record</h2>
+          <h2>Record Assignment Attendance</h2>
           <hr></hr>
           <div class="d-flex justify-content-between">
             <div
@@ -158,9 +219,9 @@ export default class EditAttendance extends Component {
               <label
                 for="valid1"
                 class="form-label"
-                style={{ marginBottom: "5px" }}
+                style={({ marginBottom: "5px" }, { color: "#1687A7" })}
               >
-                Empoyee ID
+                Empoyee ID <span style={{ color: "red" }}> *</span>
               </label>
               <input
                 type="number"
@@ -171,45 +232,55 @@ export default class EditAttendance extends Component {
                 onChange={this.handleInputChange}
                 required
               />
+              <div className="formValid">{this.state.empnoError}</div>
             </div>
 
             <div
               className="form-group col-md-5"
               style={{ marginBottom: "15px" }}
             >
-              <label style={{ marginBottom: "5px" }}>Date</label>
+              <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+                Date <span style={{ color: "red" }}> *</span>
+              </label>
               <input
                 type="date"
                 className="form-control"
                 name="att_date"
                 value={this.state.att_date}
                 onChange={this.handleInputChange}
+                required
               />
+              <div className="formValid">{this.state.att_dateError}</div>
             </div>
           </div>
 
           <hr></hr>
           <div className="form-group col-sm-6" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Location Type</label>
+            <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+              Location Type <span style={{ color: "red" }}> *</span>
+            </label>
             <select
               defaultValue={"DEFAULT"}
               className="form-select"
               onChange={this.handleInputChange}
               name="location_type"
+              required
             >
               <option value="DEFAULT" disabled>
                 {this.state.location_type}
               </option>
-              <option value="in company">In Company</option>
-              <option value="assignment location">
-                Assignment Assigned Loctation
-              </option>
+              <option value="In Company">In Company</option>
+              <option value="Assignment Loctation">Assignment Loctation</option>
               <option value="other">Other</option>
             </select>
+            <div className="formValid">{this.state.location_typeError}</div>
           </div>
 
           <div class="form-group" style={{ marginBottom: "15px" }}>
-            <label for="ap-text-box" style={{ marginBottom: "5px" }}>
+            <label
+              for="ap-text-box"
+              style={({ marginBottom: "5px" }, { color: "#1687A7" })}
+            >
               If location is not "in company"
             </label>
             <textarea
@@ -221,10 +292,13 @@ export default class EditAttendance extends Component {
               value={this.state.location}
               onChange={this.handleInputChange}
             ></textarea>
+            <div className="formValid">{this.state.locationError}</div>
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Assignment Name</label>
+            <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+              Assignment Name
+            </label>
             <input
               type="text"
               className="form-control"
@@ -233,17 +307,21 @@ export default class EditAttendance extends Component {
               value={this.state.assignment_name}
               onChange={this.handleInputChange}
             />
+            <div className="formValid">{this.state.assignment_nameError}</div>
           </div>
 
           <hr />
           <div className="form-group col-md-6" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Mark Attendance</label>
+            <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+              Mark Attendance<span style={{ color: "red" }}> **</span>
+            </label>
             <select
               defaultValue={"DEFAULT"}
               className="form-select"
               aria-label="Default select example"
               onChange={this.handleInputChange}
               name="att_type"
+              required
             >
               <option value="DEFAULT" disabled>
                 {this.state.att_type}
@@ -255,6 +333,7 @@ export default class EditAttendance extends Component {
               <option name="holiday">Holiday</option>
               <option name="other">Other</option>
             </select>
+            <div className="formValid">{this.state.att_typeError}</div>
           </div>
 
           <div class="d-flex justify-content-between">
@@ -262,7 +341,9 @@ export default class EditAttendance extends Component {
               className="form-group col-md-5"
               style={{ marginBottom: "15px" }}
             >
-              <label style={{ marginBottom: "5px" }}>Time In</label>
+              <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+                Time In
+              </label>
               <input
                 type="time"
                 className="form-control"
@@ -270,13 +351,16 @@ export default class EditAttendance extends Component {
                 value={this.state.time_in}
                 onChange={this.handleInputChange}
               />
+              <div className="formValid">{this.state.time_inError}</div>
             </div>
 
             <div
               className="form-group col-md-5"
               style={{ marginBottom: "15px" }}
             >
-              <label style={{ marginBottom: "5px" }}>Time Out</label>
+              <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+                Time Out
+              </label>
               <input
                 type="time"
                 className="form-control"
@@ -309,7 +393,28 @@ export default class EditAttendance extends Component {
           <div />
         </form>
 
+        <div class="back">
+          <a href="/allattendance">
+            <i class="fas fa-angle-double-left fa-3x">
+              &nbsp;&nbsp;Back To Attendance List
+            </i>
+          </a>
+        </div>
+
         <br />
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme={"dark"}
+          type="success"
+        />
       </div>
     );
   }

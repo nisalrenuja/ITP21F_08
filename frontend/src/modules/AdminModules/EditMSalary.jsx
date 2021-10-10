@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-//import { storage } from "../../firebase";
-//import Progress from "../../component/common/ProgressBar/progress";
+import { Redirect } from "react-router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./AllPayrolls.css";
 
 export default class EditMSalary extends Component {
@@ -9,6 +10,7 @@ export default class EditMSalary extends Component {
     super(props);
 
     this.state = {
+      payslipID: "",
       empno: "",
       name: "",
       pay_month: "",
@@ -22,7 +24,7 @@ export default class EditMSalary extends Component {
       total_earnings: "",
       //deductions: [{ deduct_reason: "", deduct_amount : "" }],
       nopay_leaves: "",
-      total_deductions: "",
+      total_deductions: "", //other deductions
       net_salary: "",
       salary_status: ""
     };
@@ -36,11 +38,65 @@ export default class EditMSalary extends Component {
     });
   };
 
+  validate = () => {
+    let payslipIDError = "";
+    let empnoError = "";
+    let nameError = "";
+    let pay_monthError = "";
+    let basicError = "";
+    let salary_statusError = "";
+
+    if (!this.state.payslipID) {
+      payslipIDError = "Pay slip ID required";
+    }
+    if (!this.state.empno) {
+      empnoError = "Employee no. required";
+    }
+    if (!this.state.name) {
+      nameError = "Employee name required";
+    }
+    if (!this.state.pay_month) {
+      pay_monthError = "Pay slip month required";
+    }
+    if (!this.state.basic) {
+      basicError = "Basic salary required";
+    }
+    if (!this.state.salary_status) {
+      salary_statusError = "Salary status required";
+    }
+
+    if (
+      payslipIDError ||
+      empnoError ||
+      nameError ||
+      pay_monthError ||
+      basicError ||
+      salary_statusError
+    ) {
+      this.setState({
+        payslipIDError,
+        empnoError,
+        nameError,
+        pay_monthError,
+        basicError,
+        salary_statusError
+      });
+      toast.error("Error while Updating. Please Check Again!!!");
+      return false;
+    }
+    return true;
+  };
+
+  handleBackClick = () => {
+    this.setState({ redirectToReferrer: true });
+  };
+
   onSubmit = e => {
     e.preventDefault();
     const id = this.props.match.params.id;
 
     const {
+      payslipID,
       empno,
       name,
       pay_month,
@@ -60,6 +116,7 @@ export default class EditMSalary extends Component {
     } = this.state;
 
     const data = {
+      payslipID: payslipID,
       empno: empno,
       name: name,
       pay_month: pay_month,
@@ -78,32 +135,36 @@ export default class EditMSalary extends Component {
       salary_status: salary_status
     };
 
-    console.log(data);
-    axios.put(`http://localhost:5000/salary/update/${id}`, data).then(res => {
-      if (res.data.success) {
-        alert("Monthly Salary Updated Successfully");
+    const isValid = this.validate();
+    if (isValid) {
+      console.log(this.state.payslipID);
+      console.log(data);
 
-        this.setState({
-          empno: "",
-          name: "",
-          pay_month: "",
-          basic: "",
-          //OT_rate: "",
-          OT_hrs: "",
-          //total_OT: "",
-          bonus: "",
-          aws: "",
-          //earnings: [{ earn_reason: "", earn_amount : "" }],
-          total_earnings: "",
-          //deductions: [{ deduct_reason: "", deduct_amount : "" }],
-          nopay_leaves: "",
-          total_deductions: "",
-          net_salary: "",
-          salary_status: ""
-        });
-      }
-    });
-    this.props.history.push("/allsalary");
+      axios.put(`http://localhost:5000/salary/update/${id}`, data).then(res => {
+        if (res.data.success) {
+          this.setState({
+            payslipID: "",
+            empno: "",
+            name: "",
+            pay_month: "",
+            basic: 0,
+            //OT_rate: "",
+            OT_hrs: 0,
+            //total_OT: "",
+            bonus: 0,
+            aws: 0,
+            //earnings: [{ earn_reason: "", earn_amount : "" }],
+            total_earnings: 0,
+            //deductions: [{ deduct_reason: "", deduct_amount : "" }],
+            nopay_leaves: 0,
+            total_deductions: 0,
+            net_salary: 0,
+            salary_status: ""
+          });
+          toast.success("Updated Details Successfully!");
+        }
+      });
+    }
   };
 
   componentDidMount() {
@@ -112,6 +173,7 @@ export default class EditMSalary extends Component {
     axios.get(`http://localhost:5000/salary/${id}`).then(res => {
       if (res.data.success) {
         this.setState({
+          payslipID: res.data.salary.payslipID,
           empno: res.data.salary.empno,
           name: res.data.salary.name,
           pay_month: res.data.salary.pay_month,
@@ -131,42 +193,13 @@ export default class EditMSalary extends Component {
       }
     });
   }
-  /*
-  uploadPDF(e) {
-    if (e.target.files[0] !== null) {
-      const uploadTask = storage
-        .ref(`users/${e.target.files[0].name}`)
-        .put(e.target.files[0]);
-      uploadTask.on(
-        "state_changed",
-        snapshot => {
-          //progress function
-          const progress = Math.round(
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          );
-          this.setState({ uploadPercentage: progress });
-        },
-        error => {
-          //error function
-          console.log(error);
-        },
-        () => {
-          //complete function
-          storage
-            .ref("users")
-            .child(e.target.files[0].name)
-            .getDownloadURL()
-            .then(url => {
-              this.setState({ reportPDF: url });
-              console.log("Hello " + url);
-            });
-        }
-      );
-    } else {
-    }
-  }
-  */
+
   render() {
+    const redirectToReferrer = this.state.redirectToReferrer;
+    if (redirectToReferrer == true) {
+      return <Redirect to="/allsalary" />;
+    }
+
     return (
       <div className="col-md-6 mt-4 mx-auto">
         <br />
@@ -185,15 +218,35 @@ export default class EditMSalary extends Component {
             borderRadius: "15px"
           }}
         >
-          <h5>Employee Details</h5>
+          <div className="form-group col-sm-5" style={{ marginBottom: "15px" }}>
+            <label
+              for="valid1"
+              class="form-label"
+              style={({ marginBottom: "5px" }, { color: "#1687A7" })}
+            >
+              Pay Slip No
+            </label>
+            <input
+              type="text"
+              id="valid1"
+              className="form-control"
+              placeholder="auto generated"
+              name="payslipID"
+              value={this.state.payslipID}
+              onChange={this.handleInputChange}
+              disabled
+            />
+            <div className="formValid">{this.state.payslipIDError}</div>
+          </div>
+          <h4>Employee Details</h4>
           <hr></hr>
           <div className="form-group col-sm-5" style={{ marginBottom: "15px" }}>
             <label
               for="valid1"
               class="form-label"
-              style={{ marginBottom: "5px" }}
+              style={({ marginBottom: "5px" }, { color: "#1687A7" })}
             >
-              Employee ID
+              Employee ID<span style={{ color: "red" }}> *</span>
             </label>
             <input
               type="number"
@@ -204,28 +257,35 @@ export default class EditMSalary extends Component {
               onChange={this.handleInputChange}
               required
             />
+            <div className="formValid">{this.state.empnoError}</div>
           </div>
           <div className="form-group " style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Name</label>
+            <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+              Name<span style={{ color: "red" }}> *</span>
+            </label>
             <input
               type="text"
               className="form-control"
               name="name"
+              placeholder="required**"
               placeholder="Enter full name"
               value={this.state.name}
               onChange={this.handleInputChange}
               required
             />
+            <div className="formValid">{this.state.nameError}</div>
           </div>
           <br />
-          <h5>Basic</h5>
+          <h4>Basic</h4>
           <hr></hr>
           <div class="d-flex justify-content-between">
             <div
               className="form-group  col-md-6"
               style={{ marginBottom: "15px" }}
             >
-              <label style={{ marginBottom: "5px" }}>Month-Year</label>
+              <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+                Month-Year<span style={{ color: "red" }}> *</span>
+              </label>
               <input
                 type="text"
                 className="form-control"
@@ -235,13 +295,14 @@ export default class EditMSalary extends Component {
                 onChange={this.handleInputChange}
                 required
               />
+              <div className="formValid">{this.state.pay_monthError}</div>
             </div>
             <div
               className="form-group col-md-5"
               style={{ marginBottom: "15px" }}
             >
               <label style={{ marginBottom: "5px", color: "blue" }}>
-                Basic Salary
+                Basic Salary<span style={{ color: "red" }}> *</span>
               </label>
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -259,14 +320,17 @@ export default class EditMSalary extends Component {
                   required
                 />
               </div>
+              <div className="formValid">{this.state.basicError}</div>
             </div>{" "}
           </div>
           <br />
-          <h5>Earnings</h5>
+          <h4>Earnings</h4>
           <hr></hr>
           <p style={{ color: "red" }}>** Current OT Rate/hr = Rs 120.00 **</p>
           <div className="form-group col-md-5" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>OT Hours</label>
+            <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+              OT Hours
+            </label>
             <div class="input-group">
               <input
                 type="number"
@@ -289,7 +353,9 @@ export default class EditMSalary extends Component {
               className="form-group col-md-5"
               style={{ marginBottom: "15px" }}
             >
-              <label style={{ marginBottom: "5px" }}>Bonus</label>
+              <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+                Bonus
+              </label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroupPrepend">
@@ -311,7 +377,7 @@ export default class EditMSalary extends Component {
               className="form-group col-md-5"
               style={{ marginBottom: "15px" }}
             >
-              <label style={{ marginBottom: "5px" }}>
+              <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
                 AWS (Annual Wage Supplements)
               </label>
               <div class="input-group">
@@ -333,7 +399,9 @@ export default class EditMSalary extends Component {
             </div>{" "}
           </div>
           <div className="form-group col-md-5" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Other Earnings</label>
+            <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+              Other Earnings
+            </label>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupPrepend">
@@ -352,13 +420,13 @@ export default class EditMSalary extends Component {
             </div>
           </div>{" "}
           <br />
-          <h5>Deductions</h5>
+          <h4>Deductions</h4>
           <hr></hr>
           <div className="form-group col-sm-5" style={{ marginBottom: "15px" }}>
             <label
               for="valid1"
               class="form-label"
-              style={{ marginBottom: "5px" }}
+              style={({ marginBottom: "5px" }, { color: "#1687A7" })}
             >
               Number of No Pay Leaves
             </label>
@@ -373,7 +441,9 @@ export default class EditMSalary extends Component {
             />
           </div>
           <div className="form-group col-md-5" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Deductions</label>
+            <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+              Deductions
+            </label>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupPrepend">
@@ -394,14 +464,16 @@ export default class EditMSalary extends Component {
           <br />
           <hr></hr>
           <div className="form-group col-sm-6" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>
+            <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
               Did the employee recieved the salary ?
+              <span style={{ color: "red" }}> *</span>
             </label>
             <select
               defaultValue={"DEFAULT"}
               className="form-select"
               onChange={this.handleInputChange}
               name="salary_status"
+              placeholder="Select Salary Status"
               required
             >
               <option value="DEFAULT" disabled>
@@ -421,6 +493,7 @@ export default class EditMSalary extends Component {
               </option>
               <option value="Other">Other</option>
             </select>
+            <div className="formValid">{this.state.salary_statusError}</div>
           </div>
           <br />
           <div class="d-flex justify-content-center">
@@ -443,6 +516,27 @@ export default class EditMSalary extends Component {
           </div>
           <div />
         </form>
+        <div class="back">
+          <a onClick={this.handleBackClick}>
+            <i class="fas fa-angle-double-left fa-3x">
+              &nbsp;&nbsp;Back To Salary List
+            </i>
+          </a>
+        </div>
+
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme={"dark"}
+          type="success"
+        />
 
         <br />
       </div>

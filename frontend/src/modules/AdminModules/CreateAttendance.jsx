@@ -139,9 +139,6 @@ export default class CreateAttendance extends Component {
           toast.success("Mark attendance Successfully!");
           //alert("Mark attendance Successfully!");
           //this.props.history.push("/allattendance");
-        } else {
-          toast.error("Mark attendance Unsuccessfull!");
-          //alert("Mark attendance Unsuccessfull!");
         }
       });
 
@@ -245,7 +242,7 @@ export default class CreateAttendance extends Component {
               required
             >
               <option value="DEFAULT" disabled>
-                Select location type
+                {this.state.location_type}
               </option>
               <option value="In Company">In Company</option>
               <option value="Assignment Loctation">Assignment Loctation</option>
@@ -302,7 +299,7 @@ export default class CreateAttendance extends Component {
               required
             >
               <option value="DEFAULT" disabled>
-                Select attendance type to mark
+                {this.state.att_type}
               </option>
               <option name="present">Present</option>
               <option name="absent">Absent</option>

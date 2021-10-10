@@ -36,6 +36,7 @@ export default class DisplaySalary extends Component {
 
   render() {
     const {
+      payslipID,
       empno,
       name,
       pay_month,
@@ -80,17 +81,20 @@ export default class DisplaySalary extends Component {
               <div class="">
                 <dl className="d-data">
                   <p className="ps-data" style={{ color: "black" }}>
-                    Pay Slip No - MS{empno}-{pay_month}
+                    Pay Slip No: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {payslipID}-{pay_month}
                   </p>
                 </dl>
                 <dl className="d-data">
                   <p className="ps-data" style={{ color: "black" }}>
-                    Employee ID: &nbsp;{empno}
+                    Employee ID: &nbsp;&nbsp;&nbsp;&nbsp;{empno}
                   </p>
                 </dl>
                 <dl>
                   <p className="ps-data" style={{ color: "black" }}>
-                    Name: &nbsp;{name}
+                    Name:
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {name}
                   </p>
                 </dl>
               </div>
@@ -98,7 +102,7 @@ export default class DisplaySalary extends Component {
               <hr className="ps-hr" />
 
               <dt class="">Basic</dt>
-              <dd class="">Rs {basic}</dd>
+              <dd class="">Rs. {basic}</dd>
 
               <hr className="ps-hr" />
               {/*<dl>
@@ -114,15 +118,15 @@ export default class DisplaySalary extends Component {
               <dd>Rs. {OT_hrs * 120}</dd>
 
               <dt class="ps-dt">Bonus:</dt>
-              <dd>Rs. {bonus}</dd>
+              <dd>Rs. {0 + bonus}</dd>
 
               <dl className="d-data">
                 <dt class="ps-dt">AWS (Annual Wage Supplements:)</dt>
-                <dd>Rs. {aws}</dd>
+                <dd>Rs. {0 + aws}</dd>
               </dl>
               <dl className="d-data">
                 <dt class="ps-dt">Other Earnings:</dt>
-                <dd>Rs. {total_earnings}</dd>
+                <dd>Rs. {0 + total_earnings}</dd>
               </dl>
               <dl className="d-data">
                 <dt class="">Total Earnings </dt>
@@ -135,7 +139,7 @@ export default class DisplaySalary extends Component {
               </dl>
               <dl className="d-data">
                 <dt class="ps-dt">Other Deductions:</dt>
-                <dd>Rs. {total_deductions}</dd>
+                <dd>Rs. {0 + total_deductions}</dd>
               </dl>
               <dl className="d-data">
                 <dt class="">Total Deductions </dt>
@@ -145,7 +149,7 @@ export default class DisplaySalary extends Component {
               <dl className="d-data">
                 <dt>Net Salary </dt>
                 <dd style={{ fontWeight: "bolder" }}>
-                  Rs.
+                  Rs.{" "}
                   {basic +
                     (OT_hrs * 120 + aws + bonus + total_earnings) -
                     (nopay_leaves * 100 + total_deductions)}

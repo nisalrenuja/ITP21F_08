@@ -18,7 +18,7 @@ router.post("/salary/save", (req, res) => {
 });
 //get all
 router.get("/salaries", (req, res) => {
-  Salaries.find().sort({ "pay_month": -1 }).exec((err, salaries) => {
+  Salaries.find().sort({ "payslipID": -1 }).exec((err, salaries) => {
     var scount = salaries.length;
     if (err) {
       return res.status(400).json({ success: false, err });

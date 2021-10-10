@@ -31,7 +31,7 @@ export default class CreatePayroll extends Component {
       account_no: "23778001",
       basic_salary: "37000",
       salary_date: "2021-10-13",
-      last_paid: "Sep"
+      last_paid: "September"
     });
   };
 
@@ -121,13 +121,13 @@ export default class CreatePayroll extends Component {
         account_noError,
         basic_salaryError
       });
-      toast.warn("Invalid Form. Please Check Again!!!");
+      toast.error("Invalid Form. Please Check Again!!!");
       return false;
     }
     return true;
   };
 
-  handleCancelClick = () => {
+  handleBackClick = () => {
     this.setState({ redirectToReferrer: true });
   };
 
@@ -200,7 +200,7 @@ export default class CreatePayroll extends Component {
                   }
                 });
             } else {
-              toast.error("Account number already exists, Please check again!");
+              toast.warn("Account number already exists!!");
             }
           }
         });
@@ -296,8 +296,8 @@ export default class CreatePayroll extends Component {
               name="position"
               required
             >
-              <option value="DEFAULT" disabled>
-                Select position
+              <option value="DEFAULT" placeholder="Select" disabled>
+                {this.state.position}
               </option>
               <option name="Manager" value="Manager">
                 Manager
@@ -330,7 +330,7 @@ export default class CreatePayroll extends Component {
                 required
               >
                 <option value="DEFAULT" disabled>
-                  Select Bank Name
+                  {this.state.bank}
                 </option>
                 <option name="boc">Bank of Ceylon</option>
                 <option name="commercial">Commercial Bank</option>
@@ -362,7 +362,7 @@ export default class CreatePayroll extends Component {
                 value={this.state.bank_branch}
                 onChange={this.handleInputChange}
               />
-              <div className="formValid">{this.state.branchError}</div>
+              <div className="formValid">{this.state.bank_branchError}</div>
             </div>
           </div>
 
@@ -404,8 +404,8 @@ export default class CreatePayroll extends Component {
                   onChange={this.handleInputChange}
                   required
                 />
-                <div className="formValid">{this.state.basic_salaryError}</div>
               </div>
+              <div className="formValid">{this.state.basic_salaryError}</div>
             </div>{" "}
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div
@@ -439,20 +439,20 @@ export default class CreatePayroll extends Component {
               name="last_paid"
             >
               <option value="DEFAULT" disabled>
-                Select Month
+                {this.state.last_paid}
               </option>
-              <option name="jan">Jan</option>
-              <option name="feb">Feb</option>
-              <option name="mar">Mar</option>
-              <option name="apr">Apr</option>
+              <option name="jan">January</option>
+              <option name="feb">February</option>
+              <option name="mar">March</option>
+              <option name="apr">April</option>
               <option name="may">May</option>
-              <option name="jun">Jun</option>
-              <option name="jul">Jul</option>
-              <option name="aug">Aug</option>
-              <option name="sep">Sep</option>
-              <option name="oct">Oct</option>
-              <option name="nov">Nov</option>
-              <option name="dec">Dec</option>
+              <option name="jun">June</option>
+              <option name="jul">July</option>
+              <option name="aug">August</option>
+              <option name="sep">September</option>
+              <option name="oct">October</option>
+              <option name="nov">November</option>
+              <option name="dec">December</option>
             </select>
           </div>
           <br />
@@ -476,7 +476,7 @@ export default class CreatePayroll extends Component {
 
         <br />
         <div class="back">
-          <a onClick={this.handleCancelClick}>
+          <a onClick={this.handleBackClick}>
             <i class="fas fa-angle-double-left fa-3x">
               &nbsp;&nbsp;Back To Salary List
             </i>
@@ -485,7 +485,7 @@ export default class CreatePayroll extends Component {
         <br />
         <ToastContainer
           position="top-center"
-          autoClose={4000}
+          autoClose={3000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick

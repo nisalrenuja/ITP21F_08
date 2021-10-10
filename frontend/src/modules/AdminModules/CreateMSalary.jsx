@@ -129,7 +129,7 @@ export default class CreateMSalary extends Component {
     return true;
   };
 
-  handleCancelClick = () => {
+  handleBackClick = () => {
     this.setState({ redirectToReferrer: true });
   };
 
@@ -216,13 +216,11 @@ export default class CreateMSalary extends Component {
             net_salary: 0,
             salary_status: ""
           });
-          toast.success("Save Details Successfully!");
+          toast.success("Saved Details Successfully!");
         }
       });
-
-      //this.props.history.push("/admin");
     }
-    this.setState({ redirectToReferrer: true });
+
     //alert("Save Details Successful!");
     //this.props.history.push("/allsalary");
   };
@@ -519,10 +517,11 @@ export default class CreateMSalary extends Component {
               className="form-select"
               onChange={this.handleInputChange}
               name="salary_status"
+              placeholder="Select Salary Status"
               required
             >
               <option value="DEFAULT" disabled>
-                Select Salary Status
+                {this.state.salary_status}
               </option>
               <option value="Pending" class="alertyellow">
                 Pending
@@ -558,7 +557,7 @@ export default class CreateMSalary extends Component {
           <div />
         </form>
         <div class="back">
-          <a onClick={this.handleCancelClick}>
+          <a onClick={this.handleBackClick}>
             <i class="fas fa-angle-double-left fa-3x">
               &nbsp;&nbsp;Back To Salary List
             </i>
