@@ -24,7 +24,7 @@ export default class CreatePayroll extends Component {
   demo = e => {
     e.preventDefault();
     this.setState({
-      name: "Sahani Kulari",
+      name: "Sahani Kavindi",
       position: "Manager",
       bank: "Peoples Bank",
       bank_branch: "Malabe",
@@ -214,12 +214,14 @@ export default class CreatePayroll extends Component {
     if (redirectToReferrer == true) {
       return <Redirect to="/admin" />;
     }
+
     return (
       <div className="col-md-6 mt-4 mx-auto">
         <br />
 
         <h1>Payroll Management | Add Payroll Details</h1>
         <br />
+
         <button
           type="button"
           class="btn btn-warning"
@@ -465,11 +467,7 @@ export default class CreatePayroll extends Component {
               &nbsp;&nbsp;Save&nbsp;&nbsp;
             </button>{" "}
             &nbsp;&nbsp;
-            <button
-              className="btn btn-danger"
-              type="cancel"
-              onClick={this.handleCancelClick}
-            >
+            <button className="btn btn-danger" type="cancel">
               Cancel
             </button>
           </div>
@@ -478,9 +476,9 @@ export default class CreatePayroll extends Component {
 
         <br />
         <div class="back">
-          <a href="/admin">
+          <a onClick={this.handleCancelClick}>
             <i class="fas fa-angle-double-left fa-3x">
-              &nbsp;&nbsp;Back To Payrolls List
+              &nbsp;&nbsp;Back To Salary List
             </i>
           </a>
         </div>
