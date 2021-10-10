@@ -73,7 +73,7 @@ export default class AdminLeaves extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container dim_main">
         <br></br>
 
         <div className="adminpayroll">

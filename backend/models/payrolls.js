@@ -20,20 +20,20 @@ const payrollsSchema = new mongoose.Schema({
     },
     bank: {
         type: String,
-        required:[true, "bank name is required"],
+        //required:[true, "bank name is required"],
     },
     bank_branch: {
         type: String,
-        required: [true, "bamk branch is required"],
+        //required: [true, "bamk branch is required"],
     },
     account_no: {
         type: String,
-        required:[true, "account no is required"],
-        unique:true,
+        //required:[true, "account no is required"],
+        //unique:true,
     },
     basic_salary: {
         type: Number,
-        required:[true, "basic salary is required"],
+        //required:[true, "basic salary is required"],
     },
     salary_date: {
         type: String,

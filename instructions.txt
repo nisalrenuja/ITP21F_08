@@ -1,0 +1,33 @@
+
+# credentials to login: (required because app is protected with authentication) => {
+  to login as admin : [
+    {
+      email : admin1@gmail.com,
+      password: admin1#
+    }
+  ]
+  to login as regular employee: [
+     {
+      email : employee1@gmail.com,
+      password: emp1#
+    }
+  ]
+} 
+
+
+****
+    Or you can register and create your employee user role 
+    and can login using the email and the password you specified
+
+
+# instructions for running it locally.
+
+1. to run frontend on local system : 
+  a. cd frontend
+  b. npm install
+  c. npm start
+
+2. to run backend on local system:
+  a. cd backend
+  b. npm install
+  c. npm run server

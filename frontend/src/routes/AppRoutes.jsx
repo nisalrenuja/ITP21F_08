@@ -74,17 +74,19 @@ import CreateProfile from "../modules/AdminModules/CreateProfile";
 import EditProfile from "../modules/AdminModules/EditProfile";
 import DisplayProfile from "../modules/AdminModules/DisplayProfile";
 
-import AdminAttendance from "../pages/AdminPage/AdminAttendance";
+import AdminAttendance from "../pages/AdminPage/AdminAttendance"; //attendance
 import CreateAttendance from "../modules/AdminModules/CreateAttendance";
 import EditAttendance from "../modules/AdminModules/EditAttendance";
 import DisplayAttendance from "../modules/AdminModules/DisplayAttendance";
+import AttendanceReport from "../modules/AdminModules/AttendanceReport";
 
-import MonthlySalary from "../pages/AdminPage/MonthlySalary";
+import MonthlySalary from "../pages/AdminPage/MonthlySalary"; //salary
 import CreateMSalary from "../modules/AdminModules/CreateMSalary";
 import EditMSalary from "../modules/AdminModules/EditMSalary";
 import DisplayMSalary from "../modules/AdminModules/DisplayMSalary";
+//import DisplayMSalary from "../pages/AdminPage/DisplayMSalary";
 
-import AdminLeaves from "../pages/AdminPage/AdminLeaves";
+import AdminLeaves from "../pages/AdminPage/AdminLeaves"; //leaves
 import CreateLeave from "../modules/AdminModules/CreateLeave";
 import EditLeave from "../modules/AdminModules/EditLeave";
 import DisplayLeave from "../modules/AdminModules/DisplayLeave";
@@ -197,11 +199,13 @@ const AppRoutes = () => (
         <Route path="/TopPerformers" component={TopPerformers} exact></Route>
         <Route path="/NoticeComPerf" component={NoticeComPerf} exact></Route>
         /*Dimashi Routes*/
+        {/*payroll routes*/}
         <Route path="/allpayrolls" component={PayrollPage} exact />
         <Route path="/addpayroll" exact component={CreatePayroll}></Route>
         <Route path="/displaypayroll/:id" component={DisplayPayroll} exact />
         <Route path="/editpayroll/:id" component={EditPayroll} exact />
         <Route path="/allattendance" component={AdminAttendance} exact />
+        {/*attendance routes*/}
         <Route path="/addattendance" exact component={CreateAttendance}></Route>
         <Route path="/editattendance/:id" component={EditAttendance} exact />
         <Route
@@ -209,10 +213,14 @@ const AppRoutes = () => (
           component={DisplayAttendance}
           exact
         />
+        {/*Attendance Report Generation*/}
+        <Route exact path="/attendancereport" component={AttendanceReport} />
+        {/*salary routes*/}
         <Route path="/allsalary" component={MonthlySalary} exact />
         <Route path="/addsalary" component={CreateMSalary} exact />
         <Route path="/editsalary/:id" component={EditMSalary} exact />
         <Route path="/displaysalary/:id" component={DisplayMSalary} exact />
+        {/*leaves routes*/}
         <Route path="/allrequests" component={AdminLeaves} exact />
         <Route path="/addleave" component={CreateLeave} exact />
         <Route path="/editleave/:id" component={EditLeave} exact />

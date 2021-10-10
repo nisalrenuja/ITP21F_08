@@ -1,3 +1,4 @@
+
 .adminpayroll {
     width: 100%;
     height: 850px;
@@ -65,18 +66,18 @@
 
 }
 
-.ap-topic{
+h1.ap-topic{
   font-family: Inter;
   font-style: normal;
   font-weight: bold;
   font-size: 48px;
   line-height: 58px;
-  padding-top: 15px;
+  padding: 0px 0px 0px;
 
   color: #276678;
 }
 
-.need-validation {
+.need-validation2 {
   background-color:"#F6F5F5" ;
   border:"5px solid eastern blue";
   padding :"30px";
@@ -123,6 +124,45 @@ option[value="Pending"] {
   color:red;
  }
 
+body::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+
+
+}
+
+body::-webkit-scrollbar-thumb {
+background-color: #1687A7;
+outline: 1px solid #1687A7;
+
+}
+.dim_main{
+  width:100%;
+  height:816px;
+  white-space: nowrap;
+  position: relative;
+  overflow-y: auto;
+}
+
+.formValid{
+  font-size: 12px ;
+  color: red;
+}
+
+.att-reportbtn{
+  background: #1687A7;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  }
+  
+  .clockdiv{
+    margin: 0px 0px 0px 0px;
+    padding-right: 10%;
+  }
+  
 
 
 

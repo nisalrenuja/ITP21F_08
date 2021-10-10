@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Clock from "../../component/common/clock/Clock";
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ReactTooltip from "react-tooltip";
 import "./AllPayrolls.css";
-//import Payrolljs from "../../assets/payrollJS/index";
 
 export default class AdminTab6 extends Component {
   constructor(props) {
@@ -33,15 +37,23 @@ export default class AdminTab6 extends Component {
       }
     });
   }
-
+  notify = () => {
+    toast.success("Deleted Payroll Data Successfully! 👌");
+  };
   onDelete = id => {
+    /*
     const confirmBox = window.confirm("Do you really want to delete this?");
     if (confirmBox === true) {
       axios.delete(`http://localhost:5000/payroll/delete/${id}`).then(res => {
-        alert("Deleted Payroll Data Successfully!!");
         this.retrievePayrolls();
+        this.notify();
       });
     }
+    */
+    axios.delete(`http://localhost:5000/payroll/delete/${id}`).then(res => {
+      this.notify();
+      this.retrievePayrolls();
+    });
   };
 
   filterData(payrolls, searchKey) {
@@ -75,9 +87,8 @@ export default class AdminTab6 extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container dim_main">
         <br></br>
-
         <div className="adminpayroll">
           <div className="row">
             <div class="d-flex justify-content-between">
@@ -175,9 +186,14 @@ export default class AdminTab6 extends Component {
                     <a
                       href={`/displaypayroll/${payrolls._id}`}
                       style={{ textDecoration: "none" }}
+                      data-tip
+                      data-for="profileTip"
                     >
                       {payrolls.empno}
                     </a>
+                    <ReactTooltip id="profileTip" place="top">
+                      <span>Show Payroll Profile</span>
+                    </ReactTooltip>
                   </td>
                   <td>{payrolls.name}</td>
                   <td>{payrolls.position}</td>
@@ -190,21 +206,54 @@ export default class AdminTab6 extends Component {
                     <a
                       href={`displaypayroll/${payrolls._id}`}
                       class="icon-btns"
+                      data-tip
+                      data-for="profileTip"
                     >
                       <i class="far fa-eye"></i>
                     </a>
+                    <ReactTooltip id="profileTip" place="top">
+                      <span>Show Payroll Profile</span>
+                    </ReactTooltip>
                     &nbsp; &nbsp; &nbsp; &nbsp;
-                    <a href={`/editpayroll/${payrolls._id}`} class="icon-btns">
+                    <a
+                      href={`/editpayroll/${payrolls._id}`}
+                      class="icon-btns"
+                      data-tip
+                      data-for="EditTip"
+                    >
                       <i class="far fa-edit"></i>
                     </a>
+                    <ReactTooltip id="EditTip" place="top">
+                      <span>Edit Payroll Profile</span>
+                    </ReactTooltip>
                     &nbsp; &nbsp; &nbsp;
                     <a
                       href="#"
-                      onClick={() => this.onDelete(payrolls._id)}
+                      data-tip
+                      data-for="DeleteTip"
+                      onClick={() =>
+                        confirmAlert({
+                          title: "Confirm to Delete",
+                          message: "Are you sure to do this ?",
+                          buttons: [
+                            {
+                              label: "Yes",
+                              onClick: () => this.onDelete(payrolls._id)
+                            },
+                            {
+                              label: "No",
+                              onClick: () => window.close
+                            }
+                          ]
+                        })
+                      }
                       class="icon-btns"
                     >
                       <i class="far fa-trash-alt"></i>
                     </a>
+                    <ReactTooltip id="DeleteTip" place="top">
+                      <span>Delete Payroll Record</span>
+                    </ReactTooltip>
                   </td>
                 </tr>
               ))}
@@ -219,6 +268,19 @@ export default class AdminTab6 extends Component {
               Add New
             </a>
           </button>
+          <ToastContainer
+            position="bottom-center"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme={"dark"}
+            type="success"
+          />
         </div>
       </div>
     );
