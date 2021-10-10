@@ -1,6 +1,6 @@
 const express = require('express');
 const Notices = require('../models/Company_Notices');
-
+const employees = require("../models/employees");
 const router = express.Router();
 
 //Save Notices
@@ -20,7 +20,18 @@ router.post('/CreateNotice/save', (req,res)=>{
         });
     });
 });
-
+/*
+//Check Employee IDs
+router.get()("/CreateNoticeEmp/check/:no", (req,res) => {
+    let empno = req.params.no;
+    employees.find({empno: empno}).exec((err, NoticeEmp) =>{
+        return res.status(200).json({
+            success:true,
+            NoticeEmp: NoticeEmp
+        });
+    });
+});
+*/
 //Get All Notices
 
 router.get('/CreateNotices',(req,res) =>{

@@ -29,7 +29,7 @@ import DisplayReview from "../modules/AdminModules/DisplayReview";
 import EditLapAllo from "../pages/AdminPage/EditLapAllo";
 import WorkReport from "../pages/AdminPage/WorkReport";
 import CompanyPerfomance from "../pages/AdminPage/CompanyPerformance";
-
+import TopEmpReport from "../modules/AdminModules/TopEmpReport"; //TopEmployee Report
 import CreateExecutive from "../modules/AdminModules/CreateExecutive";
 import NewExecutive from "../modules/AdminModules/NewExecutive";
 import EditExecutive from "../modules/AdminModules/EditExecutive";
@@ -281,6 +281,8 @@ const AppRoutes = () => (
           component={DisplayReport}
           exact
         ></Route>
+        //Senara Routes
+        <Route path="/TopEmpReport" component={TopEmpReport} exact></Route>
       </Switch>
       <Footer />
     </Router>

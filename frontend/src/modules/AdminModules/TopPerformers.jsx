@@ -124,12 +124,17 @@ export default class TopPerformers extends Component {
     }
     return (
       <div className="container">
-        <div class="senmain">
-          <h2 class="senhead1">Notice Management | Top Performers</h2>
+        <div class="senmaintop">
+          <h2 class="senhead1"> Top Performers</h2>
           <hr class="senline1"></hr>
+
+          <a href="/TopEmpReport" class="btn btn-info reportdiv">
+            <i class="fa fa-file fa-2x" aria-hidden="true"></i>&nbsp;
+          </a>
+
           <a href="">
             <button class="sendiv4">
-              <p class="sentxt4">Retrieve</p>
+              <p class="sentxt4">Get Top Employees</p>
             </button>
           </a>
 
@@ -208,6 +213,7 @@ export default class TopPerformers extends Component {
           <br></br>
 
           <div>
+            <h2 class="puppy"> All Company Top Performers </h2>
             <table className="table table-hover sentable2">
               <thead class="senthead">
                 <tr>
@@ -224,14 +230,7 @@ export default class TopPerformers extends Component {
                   (existingTopPerformers, index) => (
                     <tr key={index}>
                       <td>{existingTopPerformers.year}</td>
-                      <td>
-                        <a
-                          href={`/AllTopPerformers/${existingTopPerformers._id}`}
-                          style={{ textDecoration: "none" }}
-                        >
-                          {existingTopPerformers.month}
-                        </a>
-                      </td>
+                      <td>{existingTopPerformers.month}</td>
                       <td>{existingTopPerformers.top_empid1}</td>
 
                       <td>{existingTopPerformers.top_empid2}</td>
