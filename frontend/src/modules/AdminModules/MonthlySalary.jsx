@@ -52,7 +52,10 @@ export default class MonthlySalary extends Component {
   filterData(salaries, searchKey) {
     const result = salaries.filter(
       salary =>
-        //salary.salaryno.toLowerCase().includes(searchKey) ||
+        salary.payslipID
+          .toString()
+          .toLowerCase()
+          .includes(searchKey) ||
         salary.empno
           .toString()
           .toLowerCase()
@@ -186,7 +189,7 @@ export default class MonthlySalary extends Component {
                       data-tip
                       data-for="showTip"
                     >
-                      S{salaries.payslipID}-{salaries.pay_month}
+                      {salaries.payslipID}-{salaries.pay_month}
                     </a>
                     <ReactTooltip id="showTip" place="top">
                       <span>View pay slip</span>
