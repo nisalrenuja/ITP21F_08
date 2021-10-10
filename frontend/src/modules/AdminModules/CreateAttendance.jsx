@@ -27,7 +27,7 @@ export default class CreateAttendance extends Component {
       empno: "1008",
       att_date: "2021-10-13",
       att_type: "Present",
-      location_type: "Assignment Location",
+      location_type: "Assignment-Location",
       location: "Helix Pvt.Ltd",
       time_in: "07:10",
       time_out: "13:30",
@@ -244,8 +244,8 @@ export default class CreateAttendance extends Component {
               <option value="DEFAULT" disabled>
                 {this.state.location_type}
               </option>
-              <option value="In Company">In Company</option>
-              <option value="Assignment Loctation">Assignment Loctation</option>
+              <option value="In-Company">In-Company</option>
+              <option value="Assignment-Loctation">Assignment-Loctation</option>
               <option value="other">Other</option>
             </select>
             <div className="formValid">{this.state.location_typeError}</div>

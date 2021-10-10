@@ -59,7 +59,7 @@ router.get("/attendance/:id", (req, res) =>{
 
 //Get type in company attendances for the report
 router.get("/attendances/incompany", (req, res) => {  
-  Attendances.find({type : { $eq: "In Company" }}).sort({ "empno": -1 }).exec((err, attendances) => { 
+  Attendances.find({type : { $eq: "In-Company" }}).sort({ "empno": -1 }).exec((err, attendances) => { 
     var acount = attendances.length;
     if (err) {
       return res.status(400).json({ success: false, err });
@@ -74,7 +74,7 @@ router.get("/attendances/incompany", (req, res) => {
 
 //Get type assignment attendances for the report
 router.get("/attendances/assignlocation", (req, res) => {  
-  Attendances.find({type : { $eq: "Assignment Loctation" }}).sort({ "empno": -1 }).exec((err, attendances) => { 
+  Attendances.find({type : { $eq: "Assignment-Loctation" }}).sort({ "empno": -1 }).exec((err, attendances) => { 
     var acount = attendances.length;
     if (err) {
       return res.status(400).json({ success: false, err });
@@ -87,16 +87,16 @@ router.get("/attendances/assignlocation", (req, res) => {
     });
 });
 
-//Get the count of employees based on Type in company and assignment location
+//Get the count of records based on Type incompany and assignment location
 router.get("/attendances/counts", (req, res) => {  
-  Attendances.find({type : { $eq: "In Comany" }}).count().exec((err, incompany) => { Attendances.find({type : { $eq: "Assignment Loaction" }}).count().exec((err, assignlocation) => { 
+  Attendances.find({type : { $eq: "In-Company" }}).count().exec((err, incompany) => { Attendances.find({type : { $eq: "Assignment Loaction" }}).count().exec((err, assignlocation) => { 
     if (err) {
       return res.status(400).json({ success: false, err });
     }
       return res.status(200).json({
         success: true,
         incompanycount: incompany,
-        assignloactioncount: assignloaction,
+        assignloactioncount: assignlocation,
      })     
     });
     });

@@ -269,9 +269,8 @@ export default class EditAttendance extends Component {
               <option value="DEFAULT" disabled>
                 {this.state.location_type}
               </option>
-              <option value="In Company">In Company</option>
-              <option value="Assignment Loctation">Assignment Loctation</option>
-              <option value="other">Other</option>
+              <option value="In-Company">In-Company</option>
+              <option value="Assignment-Loctation">Assignment-Loctation</option>
             </select>
             <div className="formValid">{this.state.location_typeError}</div>
           </div>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Chart from "react-google-charts";
 import "./AttendanceReport.css";
+import "./AllPayrolls.css";
 
 export default class AttendanceReport extends Component {
   constructor(props) {
@@ -9,7 +10,12 @@ export default class AttendanceReport extends Component {
     //set the initial states
     this.state = {
       attendances: [],
+      attend1: [],
+      attend2: [],
+      attendcount1: "",
+      attendcount2: ""
 
+      /*
       assignments: [],
       ncompleted: [],
       staff: [],
@@ -27,10 +33,12 @@ export default class AttendanceReport extends Component {
       seniorF: "",
       traineeM: "",
       traineeF: ""
+
+      */
     };
   }
 
-  //Load the employee data
+  //Load the attendance data
   componentDidMount() {
     this.retrieveAttendances();
   }
@@ -43,57 +51,18 @@ export default class AttendanceReport extends Component {
         this.setState({
           attend1: res.data.existingAttendances,
           attendcount1: res.data.attendanceCount,
-          auditcount: res.data.empAuditCount
+          incompanycount: res.data.attendlocationCount
         });
       }
     });
 
-    //Get all the employee details in type "Tax"
-    axios.get("http://localhost:5000/employees/tax").then(res => {
+    //Get all assignment attendance
+    axios.get("http://localhost:5000/attendances/assignlocation").then(res => {
       if (res.data.success) {
         this.setState({
           attend2: res.data.existingAttendances,
           attendcount2: res.data.attendanceCount,
-          Taxcount: res.data.empAuditCount
-        });
-      }
-    });
-
-    //Get the data for PieChart1 for Seniors and Trainees
-    axios.get("http://localhost:5000/employees/division").then(res => {
-      if (res.data.success) {
-        this.setState({
-          Seniortotal: res.data.seniorcount,
-          Tranineetotal: res.data.traineecount
-        });
-      }
-    });
-
-    //Get the data for PieChart2 for Province
-    axios.get("http://localhost:5000/employees/province").then(res => {
-      if (res.data.success) {
-        this.setState({
-          province: res.data.province
-        });
-      }
-    });
-
-    //Get the data for BarChar for Seniors based on gender
-    axios.get("http://localhost:5000/employees/senior").then(res => {
-      if (res.data.success) {
-        this.setState({
-          seniorM: res.data.seniorM,
-          seniorF: res.data.seniorF
-        });
-      }
-    });
-
-    //Get the data for BarChar for Trainees based on gender
-    axios.get("http://localhost:5000/employees/trainee").then(res => {
-      if (res.data.success) {
-        this.setState({
-          traineeM: res.data.traineeM,
-          traineeF: res.data.traineeF
+          assignlocationcount: res.data.attendlocationCount
         });
       }
     });
@@ -101,7 +70,7 @@ export default class AttendanceReport extends Component {
 
   //Generate PDF of loaded details
   generatePDF = () => {
-    var content = document.getElementById("reportContent");
+    var content = document.getElementById("AttReportContent");
     var pri = document.getElementById("ifmcontentstoprint").contentWindow;
     pri.document.open();
     pri.document.write(content.innerHTML);
@@ -111,44 +80,21 @@ export default class AttendanceReport extends Component {
   };
 
   render() {
-    var W = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-    {
-      this.state.province.map(
-        (employees, index) => (
-          (W[0] = employees.W),
-          (W[1] = employees.C),
-          (W[2] = employees.S),
-          (W[3] = employees.U),
-          (W[4] = employees.Sa),
-          (W[5] = employees.NW),
-          (W[6] = employees.NC),
-          (W[7] = employees.N),
-          (W[8] = employees.E)
-        )
-      );
-    }
-
-    /*for (var i = 0; i < W.length; i++) {
-      if(W[i] != 0){
-        W[i] = 0;
-      }
-    }*/
-
-    console.log(W);
     return (
-      <div className="container container222">
+      <div className="container dim_main">
         <center>
           <br />
           <h1> Attendance Report 2021</h1>&nbsp;
+          <br />
           <button
             type="primary"
             className="btn btn-warning text-light col-2 float-right"
             onClick={this.generatePDF}
           >
-            Print(PDF)
+            Print:PDF
           </button>
           <div
-            id="reportContent"
+            id="AttReportContent"
             style={{ marginTop: "10px", padding: "10px", paddingRight: "5px" }}
           >
             <div>
@@ -157,24 +103,24 @@ export default class AttendanceReport extends Component {
               <table className="table table-hover bbtable1">
                 <thead class="thead">
                   <tr>
-                    <th scope="col">Employee ID</th>
                     <th scope="col">Date</th>
-                    <th scope="col">Assignment</th>
+                    <th scope="col">Employee-ID</th>
+                    <th scope="col">Assignment-Name</th>
                     <th scope="col">Location</th>
-                    <th scope="col">Assignment Type</th>
-                    <th scope="col">Time In</th>
-                    <th scope="col">Time Out</th>
+                    <th scope="col">Attendance</th>
+                    <th scope="col">Time-In</th>
+                    <th scope="col">Time-Out</th>
                   </tr>
                 </thead>
                 <tbody class="tbody1">
-                  {this.state.attendances.map((attendances, index) => (
+                  {this.state.attend1.map((attendances, index) => (
                     <tr key={index}>
+                      <td>{attendances.att_date}</td>
                       <td>
                         <a href={``} style={{ textDecoration: "none" }}>
                           {attendances.empno}
                         </a>
                       </td>
-                      <td>{attendances.att_date}</td>
                       <td>{attendances.assignment_name}</td>
                       <td>{attendances.loacation}</td>
                       <td style={{ fontWeight: "bold" }}>
@@ -184,17 +130,18 @@ export default class AttendanceReport extends Component {
                       <td>{attendances.time_out}</td>
                     </tr>
                   ))}
-                  ;
                 </tbody>
                 &nbsp;
               </table>
-              <h2>In Company Records ({this.state.attendcount2})</h2>&nbsp;
+              <hr></hr>
+              <h2>In Company Attendance Records ({this.state.attendcount2})</h2>
+              &nbsp;
               <table className="table table-hover bbtable1">
                 <thead class="thead">
                   <tr>
-                    <th scope="col">Employee ID</th>
                     <th scope="col">Date</th>
-                    <th scope="col">Assignment Type</th>
+                    <th scope="col">Employee ID</th>
+                    <th scope="col">Attendance</th>
                     <th scope="col">Time In</th>
                     <th scope="col">Time Out</th>
                   </tr>
@@ -202,12 +149,12 @@ export default class AttendanceReport extends Component {
                 <tbody class="tbody1">
                   {this.state.attend2.map((attendances, index) => (
                     <tr key={index}>
+                      <td>{attendances.att_date}</td>
                       <td>
                         <a href={``} style={{ textDecoration: "none" }}>
                           {attendances.empno}
                         </a>
                       </td>
-                      <td>{attendances.att_date}</td>
                       <td style={{ fontWeight: "bold" }}>
                         {attendances.att_type}
                       </td>
@@ -219,6 +166,8 @@ export default class AttendanceReport extends Component {
                 &nbsp;
               </table>
             </div>
+            <hr></hr>
+            {/*}
             <h1></h1>
             <Chart
               width={"800px"}
@@ -280,7 +229,7 @@ export default class AttendanceReport extends Component {
               }}
               // For tests
               rootProps={{ "data-testid": "1" }}
-            />
+            />*/}
           </div>
         </center>
         <br />

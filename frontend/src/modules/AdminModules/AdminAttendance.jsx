@@ -30,22 +30,11 @@ export default class AdminAttendance extends Component {
         this.setState({
           attendances: res.data.existingAttendances,
           attendancecount: res.data.attendanceCount,
-          locationcount: res.data.att_locationCount
+          locationcount: res.data.attendlocationCount
         });
 
         console.log(this.state.attendances);
         console.log(this.state.attendancecount);
-      }
-    });
-
-    //Retrieves the location counts for incompany and assignment
-    axios.get("http://localhost:5000/payrolls/counts").then(res => {
-      if (res.data.success) {
-        this.setState({
-          incompany: res.data.incompcount,
-          assignmenplace: res.data.assignplacecount,
-          other: res.data.othercount
-        });
       }
     });
   }
