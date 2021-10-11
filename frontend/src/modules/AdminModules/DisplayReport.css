@@ -4,26 +4,26 @@
     
 
 }
-.ckbox{
+.ackbox{
     position: relative;
-    background: rgb(146, 195, 241);
+    background: 	#7393B3;
     color: #343e41;
     border-radius: 4px;
-    height : 100px;
+    height : 50px;
     width: 400px;
     padding: auto;
-    left: 35px;
+    left: 100px;
     right: 40px;
 
 }
 
-.cksub-details{
+.acksub-details{
     position: relative;
     color : #08080a;
     font-size: 18px;
     font-family: sans-serif;
-    left:30px;
-    top:10px;
+    left:135px;
+    top:12px;
     font-weight: bold;
 
 }
@@ -123,13 +123,18 @@ h3{
     font-weight: bold;
 }
 
-.btncookies{
+.btnanujiview{
 position: absolute;
-width: 90px;
+width: 190px;
 height: 25px;
-left: 300px;
+left: 130px;
 top: -20px;
 
-background: #276678;
+background: 	#008080;
 border-radius: 20px;
   }
+
+  .need-validation{
+    background: #D3E0EA;
+    border-color: 2px #276678;
+}
