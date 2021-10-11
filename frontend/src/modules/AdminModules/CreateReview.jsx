@@ -261,6 +261,7 @@ export default class CreateReview extends Component {
               <option value="DEFAULT" disabled>
                 Open this select Point
               </option>
+              <option value="0">0</option>
               <option value="5">5</option>
               <option value="10">10</option>
               <option value="15">15</option>

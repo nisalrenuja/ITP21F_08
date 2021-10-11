@@ -271,6 +271,7 @@ export default class EditReview extends Component {
               <option value="DEFAULT" disabled>
                 selected Point is : {this.state.points}
               </option>
+              <option value="0">0</option>
               <option value="5">5</option>
               <option value="10">10</option>
               <option value="15">15</option>

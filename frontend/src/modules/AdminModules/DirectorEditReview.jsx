@@ -213,6 +213,7 @@ export default class DirectorEditReview extends Component {
               placeholder="Edit Review Id"
               value={this.state.execid_review}
               onChange={this.handleInputChange}
+              disabled
             />
             <span id="errorMessageExID" style={{ color: "red" }}></span>
           </div>
@@ -226,12 +227,13 @@ export default class DirectorEditReview extends Component {
               placeholder="Edit Report Name"
               value={this.state.report}
               onChange={this.handleInputChange}
+              disabled
             />
             <span id="errorMessageName" style={{ color: "red" }}></span>
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>
+            <label style={{ marginBottom: "5px" }} disabled>
               Upload Your Report PDF
             </label>
 
@@ -245,6 +247,7 @@ export default class DirectorEditReview extends Component {
                 this.uploadPDF(e);
               }}
               multiple=""
+              disabled
             />
             <div className="row d-flex justify-content-end mt-3">
               <a
