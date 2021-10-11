@@ -133,6 +133,29 @@ export default class AttendanceReport extends Component {
                 </tbody>
                 &nbsp;
               </table>
+              <div class="assignPie">
+                <Chart
+                  width={"650px"}
+                  height={"500px"}
+                  chartType="PieChart"
+                  loader={<div>Loading Assignments Chart</div>}
+                  data={[
+                    ["Attendance", "Value"],
+                    ["Present", 11],
+                    ["Absent", 2],
+                    ["On Paid Leave", 2],
+                    ["On Unpaid Leave", 2],
+                    ["Holiday", 7],
+                    ["Other", 2]
+                  ]}
+                  options={{
+                    title: "Assignment Attendance Summary",
+                    // Just add this option
+                    is3D: true
+                  }}
+                  rootProps={{ "data-testid": "2" }}
+                />
+              </div>
               <hr></hr>
               <h2>In Company Attendance Records ({this.state.attendcount2})</h2>
               &nbsp;
@@ -166,7 +189,58 @@ export default class AttendanceReport extends Component {
                 &nbsp;
               </table>
             </div>
+
+            <div class="incompanyPie">
+              <Chart
+                width={"650px"}
+                height={"500px"}
+                chartType="PieChart"
+                loader={<div>Loading In company Chart</div>}
+                data={[
+                  ["Attendance", "Value"],
+                  ["Present", 11],
+                  ["Absent", 2],
+                  ["On Paid Leave", 2],
+                  ["On Unpaid Leave", 2],
+                  ["Holiday", 7],
+                  ["Other", 2]
+                ]}
+                options={{
+                  title: "Incompany Attendance Summary",
+                  // Just add this option
+                  is3D: true
+                }}
+                rootProps={{ "data-testid": "2" }}
+              />
+            </div>
+
             <hr></hr>
+
+            <div class="totalAttendPie">
+              <Chart
+                width={"700px"}
+                height={"400px"}
+                chartType="Bar"
+                loader={<div>Loading Chart</div>}
+                data={[
+                  ["Year", "Present", "Absent", "Other"],
+                  ["2019", 1030, 540, 350],
+                  ["2020", 660, 1120, 300],
+                  ["2021", 1170, 460, 250],
+                  ["2022", 0, 0, 0]
+                ]}
+                options={{
+                  // Material design options
+                  chart: {
+                    title: "Total Attendance",
+                    subtitle: "2019-2022"
+                  }
+                }}
+                // For tests
+                rootProps={{ "data-testid": "2" }}
+              />
+            </div>
+
             {/*}
             <h1></h1>
             <Chart
