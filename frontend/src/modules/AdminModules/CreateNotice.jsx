@@ -20,7 +20,7 @@ export default class CreateNotice extends Component {
     };
   }
 
-  //demo
+  //demonstrating the Create notice
   demosenara = e => {
     e.preventDefault();
     this.setState({
@@ -30,7 +30,7 @@ export default class CreateNotice extends Component {
       notice_topic: "Company Special Holiday",
       notice_content:
         "The 20th of October is declared a Company Special Holiday to celebrate the...",
-      published_date: "2021-10-13"
+      published_date: "2021-10-12"
     });
   };
 
