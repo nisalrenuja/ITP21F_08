@@ -61,7 +61,7 @@ const Displayreport = ({ history, match }) => {
           ) : selectedMenuOption === "MenuItem 7" ? (
             <AdminTab7 />
           ) : (
-            <AdminTab8 />
+            <DisplayReport dataFromParent={match.params.finalreport} />
           )}
         </Container>
       ) : (

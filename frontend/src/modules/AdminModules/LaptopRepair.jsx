@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./LaptopInventory.css";
 import Clock from "../../component/common/clock/Clock";
-
-//laptop
+import { confirmAlert } from "react-confirm-alert";
 
 export default class LaptopRepair extends Component {
   constructor(props) {
@@ -43,9 +42,11 @@ export default class LaptopRepair extends Component {
     axios.get("http://localhost:5000/laptops_repair").then(res => {
       if (res.data.success) {
         this.setState({
-          laptopsRepair: res.data.existingLaptopsRepair
+          laptopsRepair: res.data.existingLaptopsRepair,
+          laptoprepiarCount: res.data.repairCount
         });
         console.log(this.state.laptopsRepair);
+        console.log(this.state.laptoprepiarCount);
       }
     });
   }
@@ -81,6 +82,13 @@ export default class LaptopRepair extends Component {
   };
 
   render() {
+    // calculate total repair cost
+    const totalcost = this.state.laptopsRepair.reduce(
+      (totalcost, laptopsRepair) =>
+        (totalcost += parseInt(laptopsRepair.repair_cost, 10)),
+      0
+    );
+
     return (
       <div className="container">
         <br></br>
@@ -116,7 +124,9 @@ export default class LaptopRepair extends Component {
 
             <div class="d-flex">
               <div className="col-lg-9 mt-2 mb-2 ">
-                <h2 className="h3 mb-3">Available Repair Laptops</h2>
+                <h2 className="h3 mb-3">
+                  Total Repair Laptops ({this.state.laptoprepiarCount})
+                </h2>
               </div>
 
               <div className="col-lg-3 mt-2 mb-2 search-bar">
@@ -151,7 +161,7 @@ export default class LaptopRepair extends Component {
                     <td>{laptopsRepair.id}</td>
                     <td>{laptopsRepair.repair_reason}</td>
                     <td>{laptopsRepair.repair_date}</td>
-                    <td>{laptopsRepair.repair_cost}</td>
+                    <td>Rs. {laptopsRepair.repair_cost}</td>
 
                     <td>
                       <a href={`/viewrepair/${laptopsRepair._id}`}>
@@ -164,7 +174,22 @@ export default class LaptopRepair extends Component {
                       &nbsp; &nbsp; &nbsp; &nbsp;
                       <a
                         href="#"
-                        onClick={() => this.onDelete(laptopsRepair._id)}
+                        onClick={() =>
+                          confirmAlert({
+                            title: "Delete Confirmation",
+                            message: "Are you sure to delete this?",
+                            buttons: [
+                              {
+                                label: "Yes",
+                                onClick: () => this.onDelete(laptopsRepair._id)
+                              },
+                              {
+                                label: "No",
+                                onClick: () => window.close
+                              }
+                            ]
+                          })
+                        }
                       >
                         <i className="far fa-trash-alt"></i>
                       </a>
@@ -175,6 +200,7 @@ export default class LaptopRepair extends Component {
               <tfoot></tfoot>
             </table>
           </div>
+          <div class="total">Total Repairing Cost : Rs. {totalcost}</div>
           <div>
             <button class="btn btn-primary" onClick={() => this.printData()}>
               <i class="fa fa-print" aria-hidden="true"></i>&nbsp; PRINT

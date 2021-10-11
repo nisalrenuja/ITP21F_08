@@ -107,14 +107,21 @@ export default class EditLaptopRepair extends Component {
           </div>
           <div className="form-group" style={{ marginBottom: "14px" }}>
             <label style={{ marginBottom: "5px" }}>Repair Price</label>
-            <input
-              type="text"
-              className="form-control"
-              name="repair_cost"
-              placeholder="Enter Laptop Repair Price"
-              value={this.state.repair_cost}
-              onChange={this.handleInputChange}
-            />
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend">
+                  Rs
+                </span>
+              </div>
+              <input
+                type="text"
+                className="form-control"
+                name="repair_cost"
+                placeholder="Enter Laptop Repair Price"
+                value={this.state.repair_cost}
+                onChange={this.handleInputChange}
+              />
+            </div>
           </div>
           <div className="form-group" style={{ marginBottom: "14px" }}>
             <label style={{ marginBottom: "5px" }}>Repairing Date</label>
@@ -134,7 +141,7 @@ export default class EditLaptopRepair extends Component {
             style={{ backgroundColor: "#1687A7" }}
             onClick={this.onSubmit}
           >
-            Save
+            Update & Save
           </button>
           &nbsp;
           <button

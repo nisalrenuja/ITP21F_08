@@ -24,6 +24,7 @@ router.post("/laptop/save", (req, res) => {
 
 router.get("/laptops", (req, res) => {
     Laptop.find().exec((err, laptops) => {
+      var lapcount = laptops.length;
     if (err) {
       return res.status(400).json({
         error: err,
@@ -32,6 +33,7 @@ router.get("/laptops", (req, res) => {
     return res.status(200).json({
       success: true,
       existingLaptops: laptops,
+      laptopCount: lapcount,
     });
   });
 });

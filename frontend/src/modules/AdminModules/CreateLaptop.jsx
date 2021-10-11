@@ -4,7 +4,7 @@ import "./CreateLaptop.css";
 //create laptop inventory
 
 //set id validation
-const idRegex = RegExp(/^[A-Z]+[0-9]*$/);
+const validation = RegExp(/^[A-Z]+[0-9]*$/);
 
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
@@ -46,6 +46,22 @@ export default class CreateLaptop extends Component {
     };
   }
 
+  //demo button
+  demo = e => {
+    e.preventDefault();
+    this.setState({
+      id: "LP3018",
+      brand: "ASUS",
+      model: "A1122",
+      storage_type: "16GB",
+      purchaase_date: "2019-03-11",
+      purchase_price: "189000",
+      status: "",
+      discarded_reason: "",
+      discarded_date: ""
+    });
+  };
+
   handleInputChange = e => {
     const { name, value } = e.target;
 
@@ -54,7 +70,7 @@ export default class CreateLaptop extends Component {
 
     switch (name) {
       case "id":
-        formErrors.id = idRegex.test(value)
+        formErrors.id = validation.test(value)
           ? ""
           : "**Please Use Only Correct Way [Eg: LP1090]**";
 
@@ -146,9 +162,21 @@ export default class CreateLaptop extends Component {
 
         <form className="need-validation" noValidate>
           <div className="form-group" style={{ marginBottom: "14px" }}>
-            <h5>Laptop Details</h5>
+            <h5>Create New Laptop Details</h5>
             <hr />
-
+            <button
+              type="button"
+              class="btn btn-warning"
+              onClick={this.demo}
+              style={{
+                marginRight: "10px",
+                marginBottom: "5px",
+                float: "right"
+              }}
+            >
+              {" "}
+              Demo{" "}
+            </button>
             <label style={{ marginBottom: "5px" }}>Laptop ID</label>
             <input
               ref="id"
@@ -218,15 +246,22 @@ export default class CreateLaptop extends Component {
           </div>
           <div className="form-group" style={{ marginBottom: "14px" }}>
             <label style={{ marginBottom: "5px" }}>Laptop Price</label>
-            <input
-              ref="purchase_price"
-              type="text"
-              className="form-control"
-              name="purchase_price"
-              placeholder="Enter Laptop Price"
-              value={this.state.purchase_price}
-              onChange={this.handleInputChange}
-            />
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend">
+                  Rs
+                </span>
+              </div>
+              <input
+                ref="purchase_price"
+                type="text"
+                className="form-control"
+                name="purchase_price"
+                placeholder="Enter Laptop Price"
+                value={this.state.purchase_price}
+                onChange={this.handleInputChange}
+              />
+            </div>
           </div>
           <div className="form-group" style={{ marginBottom: "14px" }}>
             <label style={{ marginBottom: "5px" }}>Purchase Date</label>

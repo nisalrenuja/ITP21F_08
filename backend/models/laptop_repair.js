@@ -15,7 +15,7 @@ const laptop_repair_Schema = new mongoose.Schema({
     required: false,
   },
   repair_cost: {
-    type: String,
+    type: Number,
     required: true,
     required: false,
   },

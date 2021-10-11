@@ -121,7 +121,6 @@ export default class CreateProfile extends Component {
     const { exeno, name, email, contact, position, gender, dob } = this.state;
 
     if (
-      exeno === "" &&
       name === "" &&
       email === "" &&
       contact === "" &&
@@ -132,10 +131,6 @@ export default class CreateProfile extends Component {
       this.errorMessageAlert(
         "You can't save anything without entering details"
       );
-    } else if (exeno === "") {
-      //document.getElementsByClassName('errorMessage').innerHTML = '';
-      document.getElementById("errorMessageExID").innerHTML =
-        "Enter Correct Executive ID";
     } else if (name === "") {
       //document.getElementsByClassName('errorMessage').innerHTML = '';
       document.getElementById("errorMessageName").innerHTML =
@@ -362,7 +357,7 @@ export default class CreateProfile extends Component {
             </button>{" "}
             &nbsp;&nbsp;
             <ToastContainer
-              position="bottom-center"
+              position="top-center"
               autoClose={5000}
               hideProgressBar={false}
               newestOnTop={false}

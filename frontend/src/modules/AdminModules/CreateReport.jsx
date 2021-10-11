@@ -24,6 +24,16 @@ export default class CreateReport extends Component {
     };
   }
 
+  //demo
+  demoanu = e => {
+    e.preventDefault();
+    this.setState({
+      execid_review: "M03",
+      approved_user: "Buddhima Jayasinghe",
+      date_and_time_upload: "2021-10-13"
+    });
+  };
+
   handleInputChange = e => {
     const { name, value } = e.target;
     this.setState({
@@ -186,14 +196,30 @@ export default class CreateReport extends Component {
 
   render() {
     return (
-      <div className="col-md-8 mt-4 mx-auto">
-        <h1 className="h3 mb-3 font-weight-normal">
-          Report Management | Add Report Details
-        </h1>
-        <div class="anumain">
-          <form className="need-validation" noValidate>
+      <div class="anuformin">
+        <div className="col-md-8 mt-4 mx-auto">
+          <h1 className="h3 mb-3 font-weight-normal">
+            Report Management | Add Report Details
+          </h1>
+
+          <button
+            type="button"
+            class="btn btn-warning"
+            onClick={this.demoanu}
+            style={{
+              marginTop: "0px",
+              marginBottom: "0px",
+              marginLeft: "500",
+              borderRadius: "40px",
+              filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2))"
+            }}
+          >
+            Demo
+          </button>
+
+          <form className="need-validationanu" noValidate>
             <div className="form-group" style={{ marginBottom: "15px" }}>
-              <label style={{ marginBottom: "5px" }}>Review ID</label>
+              <label style={{ marginBottom: "5px" }}>Report ID</label>
               <input
                 type="text"
                 className="form-control"
