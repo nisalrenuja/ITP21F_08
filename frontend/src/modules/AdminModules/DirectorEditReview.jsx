@@ -147,7 +147,7 @@ export default class DirectorEditReview extends Component {
         });
       }
     });
-    this.props.history.push("/managerreview");
+    this.props.history.push("/directorreview");
   };
 
   componentDidMount() {
@@ -320,7 +320,7 @@ export default class DirectorEditReview extends Component {
             </button>{" "}
             &nbsp;&nbsp;
             <ToastContainer
-              position="bottom-center"
+              position="top-center"
               autoClose={5000}
               hideProgressBar={false}
               newestOnTop={false}
