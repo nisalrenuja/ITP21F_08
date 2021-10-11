@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { storage } from "../../firebase";
 import Progress from "../../component/common/ProgressBar/progress";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default class ManagerEditReview extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +24,32 @@ export default class ManagerEditReview extends Component {
 
   handleInputChange = e => {
     const { name, value } = e.target;
+    if (name === "execid_review") {
+      if (value.match("^[A-Z]{1}[0-9]{1,4}$")) {
+        document.getElementById("errorMessageExID").innerHTML = "";
+      } else {
+        document.getElementById("errorMessageExID").innerHTML =
+          "Please Enter correct Review ID";
+      }
+    }
+
+    if (name === "report") {
+      if (value.match("^[a-zA-Z][a-zA-Z\\s]+$")) {
+        document.getElementById("errorMessageName").innerHTML = "";
+      } else {
+        document.getElementById("errorMessageName").innerHTML =
+          "Please Enter correct Report Name";
+      }
+    }
+
+    if (name === "feedback") {
+      if (value.match("^[a-zA-Z][a-zA-Z\\s]+$")) {
+        document.getElementById("errorMessageFeed").innerHTML = "";
+      } else {
+        document.getElementById("errorMessageFeed").innerHTML =
+          "Please Enter correct Feedback";
+      }
+    }
     console.log(name);
     console.log(value);
     if (name === "partnerStatus") {
@@ -47,6 +75,10 @@ export default class ManagerEditReview extends Component {
     });
   };
 
+  ReviewUpdate = () => {
+    toast.success("Review Updated Successfully");
+  };
+
   onSubmit = e => {
     e.preventDefault();
     const id = this.props.match.params.id;
@@ -59,6 +91,26 @@ export default class ManagerEditReview extends Component {
       partnerStatus,
       status
     } = this.state;
+
+    if (execid_review === "" && report === "" && feedback === "") {
+      this.errorMessageAlert(
+        "You can't save anything without entering details"
+      );
+    } else if (execid_review === "") {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+      document.getElementById("errorMessageExID").innerHTML =
+        "Enter Correct Report ID";
+    } else if (report === "") {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+      document.getElementById("errorMessageName").innerHTML =
+        "Enter Correct Report Name";
+    } else if (feedback === "") {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+      document.getElementById("errorMessageFeed").innerHTML =
+        "Enter Correct Feedback";
+    } else {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+    }
     let data = "";
     if (partnerStatus === "Accepted") {
       data = {
@@ -103,7 +155,7 @@ export default class ManagerEditReview extends Component {
       if (res.data.success) {
         let managerReview = data;
 
-        alert("Review Updated Successfully");
+        this.ReviewUpdate("Review Updated Successfully");
         this.setState({
           execid_review: "",
           report: "",
@@ -114,6 +166,7 @@ export default class ManagerEditReview extends Component {
         });
       }
     });
+    this.props.history.push("/partnerreview");
   };
 
   componentDidMount() {
@@ -168,7 +221,7 @@ export default class ManagerEditReview extends Component {
   render() {
     return (
       <div className="col-md-8 mt-4 mx-auto">
-        <h1 className="h3 mb-3 font-weight-normal">Edit Review</h1>
+        <h1 className="h3 mb-3 font-weight-normal">Edit Partner Review</h1>
         <form className="need-validation" noValidate>
           <div className="form-group" style={{ marginBottom: "15px" }}>
             <label style={{ marginBottom: "5px" }}>Review Id</label>
@@ -180,6 +233,7 @@ export default class ManagerEditReview extends Component {
               value={this.state.execid_review}
               onChange={this.handleInputChange}
             />
+            <span id="errorMessageExID" style={{ color: "red" }}></span>
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
@@ -192,6 +246,7 @@ export default class ManagerEditReview extends Component {
               value={this.state.report}
               onChange={this.handleInputChange}
             />
+            <span id="errorMessageName" style={{ color: "red" }}></span>
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
@@ -252,6 +307,7 @@ export default class ManagerEditReview extends Component {
               value={this.state.feedback}
               onChange={this.handleInputChange}
             />
+            <span id="errorMessageFeed" style={{ color: "red" }}></span>
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
@@ -272,14 +328,33 @@ export default class ManagerEditReview extends Component {
             </select>
           </div>
 
-          <button
-            className="btn btn-info mb-2"
-            type="submit"
-            style={{ marginTop: "15px" }}
-            onClick={this.onSubmit}
-          >
-            <i className="fas fa-sync"></i>&nbsp;Update
-          </button>
+          <div class="d-flex justify-content-center">
+            <button
+              className="btn btn-info"
+              type="submit"
+              style={{ backgroundColor: "#1687A7" }}
+              onClick={this.onSubmit}
+            >
+              &nbsp;&nbsp;Save&nbsp;&nbsp;
+            </button>{" "}
+            &nbsp;&nbsp;
+            <ToastContainer
+              position="bottom-center"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme={"dark"}
+              type="success"
+            />
+            <button className="btn btn-danger" type="cancel">
+              Cancel
+            </button>
+          </div>
         </form>
       </div>
     );

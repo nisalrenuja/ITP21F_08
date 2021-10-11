@@ -18,9 +18,11 @@ export default class EditAssignments extends Component {
       lapassignment: []
     };
   }
+  //retrieve data
   componentDidMount() {
     this.retrievePosts();
   }
+  //retrieve function
   retrievePosts() {
     const p = this.props.dataFromParent;
     console.log(p);
@@ -43,7 +45,7 @@ export default class EditAssignments extends Component {
       [name]: value
     });
   };
-
+  //update function for allocations
   onSubmit = e => {
     e.preventDefault();
 

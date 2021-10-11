@@ -1,8 +1,10 @@
 const express = require("express");
+//import models
 const assignment_assignedtostaff = require("../models/assignment_assignedtostaff");
 const employees = require("../models/employees");
 const router = express.Router();
 
+//insert assigments function
 router.post("/assignments/save/", (req, res) => {
   let newPost = new assignment_assignedtostaff(req.body);
   newPost.save((err) => {
@@ -16,7 +18,7 @@ router.post("/assignments/save/", (req, res) => {
     });
   });
 });
-//get post
+//retrieve staff function
 router.get("/staff/ass", (req, res) => {
   employees.find().exec((err, staff) => {
     return res.status(200).json({
@@ -25,6 +27,7 @@ router.get("/staff/ass", (req, res) => {
     });
   });
 });
+//check staff retrieve function
 router.get("/staff/check/:no", (req, res) => {
   let empno = req.params.no;
   employees.find({ empno: empno }).exec((err, staffs) => {
@@ -34,6 +37,7 @@ router.get("/staff/check/:no", (req, res) => {
     });
   });
 });
+//check staff retrieve function
 router.get("/checkassigned/:name", (req, res) => {
   let empno = req.params.name;
   assignment_assignedtostaff
@@ -47,7 +51,7 @@ router.get("/checkassigned/:name", (req, res) => {
       });
     });
 });
-
+//get all assignments function
 router.get("/assignments/dis", (req, res) => {
   assignment_assignedtostaff
     .aggregate([
@@ -74,7 +78,7 @@ router.get("/assignments/dis", (req, res) => {
     });
 });
 
-//get specific
+//get specific assignment function
 router.get("/assignment/:id", (req, res) => {
   let assid = req.params.id;
   assignment_assignedtostaff
@@ -103,7 +107,7 @@ router.get("/assignment/:id", (req, res) => {
         });
     });
 });
-
+//update assignmentt function
 router.put("/assignments/update/:name", (req, res) => {
   let name = req.params.name;
   assignment_assignedtostaff
@@ -123,7 +127,7 @@ router.put("/assignments/update/:name", (req, res) => {
       });
     });
 });
-//update posts
+//update allowance function
 router.put("/assignments/updateallo/:name", (req, res) => {
   let name = req.params.name;
   let empno = req.body.empno;
@@ -143,11 +147,12 @@ router.put("/assignments/updateallo/:name", (req, res) => {
       });
     });
 });
+//update document function
 router.put("/assignments/updatescanallo/:name", (req, res) => {
   let name = req.params.name;
   assignment_assignedtostaff
     .updateMany(
-      {   assignment_name: name  },
+      { assignment_name: name },
       {
         scan_invoice_allowance: req.body.scan_invoice_allowance,
       }
@@ -161,7 +166,7 @@ router.put("/assignments/updatescanallo/:name", (req, res) => {
       });
     });
 });
-//delete post
+//delete assignment function
 router.delete("/assignments/delete/:name", (req, res) => {
   let postid = req.params.name;
   assignment_assignedtostaff
@@ -178,6 +183,7 @@ router.delete("/assignments/delete/:name", (req, res) => {
       });
     });
 });
+//function for charts
 router.get("/assignments/count", (req, res) => {
   assignment_assignedtostaff
     .distinct("assignment_name", { progress: { $ne: "Completed" } })
@@ -197,6 +203,7 @@ router.get("/assignments/count", (req, res) => {
         });
     });
 });
+//function for charts
 router.get("/assignments/staffcount", (req, res) => {
   employees.find().exec((err, staff) => {
     assignment_assignedtostaff
@@ -211,6 +218,7 @@ router.get("/assignments/staffcount", (req, res) => {
       });
   });
 });
+//function for charts
 router.get("/assignments/allowances1", (req, res) => {
   var d = new Date();
   var n = d.getMonth() + 1;
