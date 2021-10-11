@@ -87,7 +87,7 @@ export default class CreateProfile extends Component {
         if (res.data.exeno.length == 0) {
           console.log(res.data.exeno.length);
 
-          this.state.exeno = 1000;
+          this.state.exeno = 2000;
         } else {
           var no = this.state.executive[0].exeno;
           this.state.exeno = no + 1;
