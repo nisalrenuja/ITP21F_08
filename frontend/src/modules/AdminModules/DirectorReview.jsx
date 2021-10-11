@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import axios from "axios";
 import Clock from "../../component/common/clock/Clock";
 import "./Review.css";
+
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReactTooltip from "react-tooltip";
+
 export default class AdminTab1 extends Component {
   constructor(props) {
     super(props);
@@ -168,7 +170,43 @@ export default class AdminTab1 extends Component {
                   </td>
                   <td>{posts.points}</td>
                   <td>{posts.feedback}</td>
-                  <td>
+                  {posts.directorStatus === "Accepted" && (
+                    <td>
+                      <a
+                        href={`/editdirectorreview/${posts._id}`}
+                        style={{ textDecoration: "none" }}
+                        data-tip
+                        data-for="EditDir"
+                      >
+                        <b style={{ color: "green" }}>Accepted</b>
+                      </a>
+                    </td>
+                  )}
+                  {posts.directorStatus === "Rejected" && (
+                    <td>
+                      <a
+                        href={`/editdirectorreview/${posts._id}`}
+                        style={{ textDecoration: "none" }}
+                        data-tip
+                        data-for="EditDir"
+                      >
+                        <b style={{ color: "red" }}>Rejected</b>
+                      </a>
+                    </td>
+                  )}
+                  {posts.directorStatus === "Pending" && (
+                    <td>
+                      <a
+                        href={`/editdirectorreview/${posts._id}`}
+                        style={{ textDecoration: "none" }}
+                        data-tip
+                        data-for="EditDir"
+                      >
+                        <b style={{ color: "blue" }}>Pending</b>
+                      </a>
+                    </td>
+                  )}
+                  {/* <td>
                     <a
                       href={`/editdirectorreview/${posts._id}`}
                       style={{ textDecoration: "none" }}
@@ -180,7 +218,7 @@ export default class AdminTab1 extends Component {
                     <ReactTooltip id="EditDir" place="top">
                       <span>Edit Director Review</span>
                     </ReactTooltip>
-                  </td>
+                  </td> */}
                   <td>
                     <a href={`/post/${posts._id}`} data-tip data-for="ViewDir">
                       <i class="far fa-eye"></i>

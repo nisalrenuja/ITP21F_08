@@ -220,7 +220,7 @@ export default class AdminTab1 extends Component {
             </a>
           </button>
           <ToastContainer
-            position="top-center"
+            position="bottom-center"
             autoClose={3000}
             hideProgressBar={false}
             newestOnTop={false}

@@ -147,7 +147,7 @@ export default class DirectorEditReview extends Component {
         });
       }
     });
-    this.props.history.push("/managerreview");
+    this.props.history.push("/directorreview");
   };
 
   componentDidMount() {

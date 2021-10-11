@@ -93,3 +93,15 @@
   border: 3px solid #d3e0ea;
   padding: 10px;
 }
+
+.approve {
+  color: green;
+}
+
+.pending {
+  color: yellow;
+}
+
+.rejected {
+  color: red;
+}

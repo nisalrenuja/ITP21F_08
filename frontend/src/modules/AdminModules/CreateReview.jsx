@@ -115,14 +115,10 @@ export default class CreateReview extends Component {
       status
     } = this.state;
 
-    if (execid_review === "" && report === "" && feedback === "") {
+    if (report === "" && feedback === "") {
       this.errorMessageAlert(
         "You can't save anything without entering details"
       );
-    } else if (execid_review === "") {
-      //document.getElementsByClassName('errorMessage').innerHTML = '';
-      document.getElementById("errorMessageExID").innerHTML =
-        "Enter Correct Report ID";
     } else if (report === "") {
       //document.getElementsByClassName('errorMessage').innerHTML = '';
       document.getElementById("errorMessageName").innerHTML =

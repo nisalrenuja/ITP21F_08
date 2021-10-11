@@ -168,7 +168,43 @@ export default class AdminTab1 extends Component {
                   </td>
                   <td>{posts.points}</td>
                   <td>{posts.feedback}</td>
-                  <td>
+                  {posts.partnerStatus === "Accepted" && (
+                    <td>
+                      <a
+                        href={`/editpartnerreview/${posts._id}`}
+                        style={{ textDecoration: "none" }}
+                        data-tip
+                        data-for="EditPar"
+                      >
+                        <b style={{ color: "green" }}>Accepted</b>
+                      </a>
+                    </td>
+                  )}
+                  {posts.partnerStatus === "Rejected" && (
+                    <td>
+                      <a
+                        href={`/editpartnerreview/${posts._id}`}
+                        style={{ textDecoration: "none" }}
+                        data-tip
+                        data-for="EditPar"
+                      >
+                        <b style={{ color: "red" }}>Rejected</b>
+                      </a>
+                    </td>
+                  )}
+                  {posts.partnerStatus === "Pending" && (
+                    <td>
+                      <a
+                        href={`/editpartnerreview/${posts._id}`}
+                        style={{ textDecoration: "none" }}
+                        data-tip
+                        data-for="EditPar"
+                      >
+                        <b style={{ color: "blue" }}>Pending</b>
+                      </a>
+                    </td>
+                  )}
+                  {/* <td>
                     <a
                       href={`/editpartnerreview/${posts._id}`}
                       style={{ textDecoration: "none" }}
@@ -180,7 +216,7 @@ export default class AdminTab1 extends Component {
                     <ReactTooltip id="EditPar" place="top">
                       <span>Edit Partner Review</span>
                     </ReactTooltip>
-                  </td>
+                  </td> */}
                   <td>
                     <a href={`/post/${posts._id}`} data-tip data-for="ViewPar">
                       <i class="far fa-eye"></i>

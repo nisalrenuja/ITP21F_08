@@ -174,7 +174,43 @@ export default class AdminTab1 extends Component {
                   <td>{posts.points}</td>
                   <td>{posts.feedback}</td>
 
-                  <td>
+                  {posts.managerStatus === "Accepted" && (
+                    <td>
+                      <a
+                        href={`/editmanagerreview/${posts._id}`}
+                        style={{ textDecoration: "none" }}
+                        data-tip
+                        data-for="EditMan"
+                      >
+                        <b style={{ color: "green" }}>Accepted</b>
+                      </a>
+                    </td>
+                  )}
+                  {posts.managerStatus === "Rejected" && (
+                    <td>
+                      <a
+                        href={`/editmanagerreview/${posts._id}`}
+                        style={{ textDecoration: "none" }}
+                        data-tip
+                        data-for="EditMan"
+                      >
+                        <b style={{ color: "red" }}>Rejected</b>
+                      </a>
+                    </td>
+                  )}
+                  {posts.managerStatus === "Pending" && (
+                    <td>
+                      <a
+                        href={`/editmanagerreview/${posts._id}`}
+                        style={{ textDecoration: "none" }}
+                        data-tip
+                        data-for="EditMan"
+                      >
+                        <b style={{ color: "blue" }}>Pending</b>
+                      </a>
+                    </td>
+                  )}
+                  {/* <td>
                     <a
                       href={`/editmanagerreview/${posts._id}`}
                       style={{ textDecoration: "none" }}
@@ -182,11 +218,12 @@ export default class AdminTab1 extends Component {
                       data-for="EditMan"
                     >
                       {posts.managerStatus}
+
                     </a>
                     <ReactTooltip id="EditMan" place="top">
                       <span>Edit Manager Review</span>
                     </ReactTooltip>
-                  </td>
+                  </td> */}
 
                   <td>
                     <a href={`/post/${posts._id}`} data-tip data-for="ViewMan">
