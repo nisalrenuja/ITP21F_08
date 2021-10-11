@@ -121,38 +121,39 @@ export default class EditProfile extends Component {
       //  document.getElementById("errorMessage").innerHTML = "hello";
     } else {
       //document.getElementsByClassName('errorMessage').innerHTML = '';
+
+      const data = {
+        exeno: exeno,
+        name: name,
+
+        position: position,
+        email: email,
+        contact: contact,
+
+        gender: gender,
+        dob: dob
+      };
+
+      console.log(data);
+      axios
+        .put(`http://localhost:5000/executive/update/${id}`, data)
+        .then(res => {
+          if (res.data.success) {
+            this.DetailsUpdate("Details Updated Successfully");
+            this.setState({
+              exeno: "",
+              name: "",
+              position: "",
+              email: "",
+              contact: "",
+
+              gender: "",
+              dob: ""
+            });
+          }
+        });
+      this.props.history.push("/profilepage");
     }
-    const data = {
-      exeno: exeno,
-      name: name,
-
-      position: position,
-      email: email,
-      contact: contact,
-
-      gender: gender,
-      dob: dob
-    };
-
-    console.log(data);
-    axios
-      .put(`http://localhost:5000/executive/update/${id}`, data)
-      .then(res => {
-        if (res.data.success) {
-          this.DetailsUpdate("Details Updated Successfully");
-          this.setState({
-            exeno: "",
-            name: "",
-            position: "",
-            email: "",
-            contact: "",
-
-            gender: "",
-            dob: ""
-          });
-        }
-      });
-    this.props.history.push("/profilepage");
   };
 
   componentDidMount() {

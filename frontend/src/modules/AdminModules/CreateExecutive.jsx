@@ -25,7 +25,7 @@ export default class CreateExecutive extends Component {
       .get("http://localhost:5000/executives", {
         headers: {
           authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNDlhMGRmNDUwMmI1MGQxNDE0MDFlMCIsImlhdCI6MTYzMjIxNTI3MCwiZXhwIjoxNjYzNzUxMjcwfQ.oBQjV4xKfvPtE5raIXBUF7emlx2UxFI5S1fTmyd279U"
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNjQ0OGJiYmFmNjM0MDIwYzhjODNmOSIsImlhdCI6MTYzMzk2MjE3NiwiZXhwIjoxNjY1NDk4MTc2fQ.qgMYNjDmXA43zcr2vg4gXvQm-o0p4KnBDpRFOJPCeo8"
         }
       })
       .then(res => {
