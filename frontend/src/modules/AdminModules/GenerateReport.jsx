@@ -27,7 +27,7 @@ export default class GenerateReport extends Component {
   }
 
   //Generate PDF of loaded details
-  generatePDF = () => {
+  generatePDF1 = () => {
     var content = document.getElementById("reportContent");
     var pri = document.getElementById("ifmcontentstoprint").contentWindow;
     pri.document.open();
@@ -41,8 +41,7 @@ export default class GenerateReport extends Component {
     return (
       <div className="container">
         <div class="anumaingenerate">
-          <h2 class="anutah1g">Summary of Reviewed Assignment Reports </h2>
-          <button type="primary" class="anubtng" onClick={this.generatePDF}>
+          <button type="primary" class="anubtng" onClick={this.generatePDF1}>
             Print/PDF
           </button>
 
@@ -50,6 +49,8 @@ export default class GenerateReport extends Component {
             id="reportContent"
             style={{ marginTop: "10px", padding: "10px", paddingRight: "5px" }}
           >
+            <h2 class="anutah1g"> Reviewed Assignment Reports 2021 </h2>
+
             <table className="table table-hover anutableg">
               <thead class="anutheadg">
                 <tr>

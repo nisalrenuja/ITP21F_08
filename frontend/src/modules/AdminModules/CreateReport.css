@@ -1,4 +1,4 @@
-.need-validation{
+.need-validationanu{
   position: relative;
   top:10px;
   bottom:10px;
@@ -9,9 +9,9 @@
   height: fit-content;
 }
 
-.anuformi {
+.anuformin {
     width: 100%;
-    height: 600px;
+    height: 800px;
     white-space: nowrap;
     position: relative;
     overflow-y: scroll;

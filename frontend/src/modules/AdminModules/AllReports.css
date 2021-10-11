@@ -4,6 +4,7 @@
     height: 67px;
     left: 0px;
     top: 200px;
+    border-radius: 10px;
   
     background: #276678;
   }
@@ -13,6 +14,7 @@
     height: 67px;
     left: 300px;
     top: 200px;
+    border-radius: 10px;
   
     background: #d3e0ea;
   }
@@ -72,7 +74,7 @@
   }
   .anuline1 {
     position: absolute;
-    width: 1071.03px;
+    width: 1225px;
     height: 0px;
     left: 0px;
     top: 130px;
@@ -86,7 +88,7 @@
     position: absolute;
     width: 413px;
     height: 55px;
-    left: 650px;
+    left: 815px;
     top: 310px;
   
     background: #1687a7;
@@ -100,8 +102,8 @@
     position: absolute;
     width: 413px;
     height: 55px;
-    left: 650px;
-    top: 575px;
+    left: 815px;
+    top: 568px;
   
     background: #1687a7;
     backdrop-filter: blur(4px);
@@ -155,7 +157,7 @@
 /*Table 1*/
   .anutable1 {
     position: absolute;
-    width: 100%;
+    width: 97%;
   
     left: 0px;
     top: 390px;
@@ -209,7 +211,7 @@
   /*Table 2*/
   .anutable2 {
     position: absolute;
-    width: 100%;
+    width: 97%;
   
     left: 0px;
     top: 650px;
@@ -226,9 +228,22 @@
   }
 
   .anumaintab2 {
-    width: 100%;
+    width: 105%;
     height: 750px;
     white-space: nowrap;
     position: relative;
     overflow-y: scroll;
+  }
+
+
+  .reportdivanu{
+    position: absolute;
+  width: 150px;
+  height: 50px;
+  left: 1050px;
+  top: 67px;
+  
+  background: #1687A7;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 32px;
   }

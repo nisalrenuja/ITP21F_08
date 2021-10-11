@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "./DisplayNotice.css";
+import "./DisplayReport.css";
 import { Redirect } from "react-router";
 import { storage } from "../../firebase";
 //import jsPDF from "jspdf";
 
-export default class DisplayNotice extends Component {
+export default class DisplayReport extends Component {
   constructor(props) {
     super(props);
 
@@ -21,9 +21,9 @@ export default class DisplayNotice extends Component {
       uploadPercentage: 0,
       fileVal: "",
       assignmentstatus: "",
-      //existingNotices: {}
-      updateNotice: [],
-      updateNotice2: [],
+
+      UpdateReport: [],
+      UpdateReport2: [],
       redirectToReferrer: false
     };
   }
@@ -37,10 +37,10 @@ export default class DisplayNotice extends Component {
   };
 
   componentDidMount() {
-    this.retrieveexistingNotices();
+    this.retrievefinalreport();
   }
 
-  retrieveexistingNotices() {
+  retrievefinalreport() {
     const id = this.props.dataFromParent;
     console.log(id);
 
@@ -72,13 +72,7 @@ export default class DisplayNotice extends Component {
         .put(e.target.files[0]);
       uploadTask.on(
         "state_changed",
-        snapshot => {
-          //progress function
-          //const progress = Math.round(
-          //(snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          //);
-          //this.setState({ uploadPercentage: progress });
-        },
+        snapshot => {},
         error => {
           //error function
           console.log(error);
@@ -90,7 +84,7 @@ export default class DisplayNotice extends Component {
             .child(e.target.files[0].name)
             .getDownloadURL()
             .then(url => {
-              this.setState({ notice_attachments: url });
+              this.setState({ reportPDF: url });
               console.log("Hello " + url);
             });
         }
@@ -114,7 +108,6 @@ export default class DisplayNotice extends Component {
       date_and_time_upload,
       approved_user,
       status,
-      uploadPercentage,
       fileVal,
       assignmentstatus
     } = this.state.UpdateReport;
@@ -122,52 +115,57 @@ export default class DisplayNotice extends Component {
     return (
       <div className="col-md-6 mt-4 mx-auto">
         <div className="row">
-          <h2 class="col-10 topic">Notice ID : {execid_review}</h2>
+          <h2 class="col-10 topic">Report ID : {execid_review}</h2>
         </div>
         <hr className="hr-line2" />
-        <form>
-          <div class="ckbox">
+        <form className="need-validation">
+          <div class="ackbox">
             <dl>
-              <p class="cksub-details">Employee ID: &nbsp;{report}</p>
-            </dl>
-            <dl>
-              <p class="cksub-details">Employee Name : &nbsp;{points}</p>
+              <p class="acksub-details"> &nbsp;{report}</p>
             </dl>
           </div>
           <br />
 
           <dl>
-            <dt class="ckdt">Notice Topic:</dt>
+            <dt class="ckdt">Report Points :</dt>
+            <dd class="ckdd">{points}</dd>
+          </dl>
+
+          <dl>
+            <dt class="ckdt">Feedback :</dt>
             <dd class="ckdd">{feedback}</dd>
           </dl>
 
           <dl>
-            <dt class="ckdt">Content:</dt>
-            <p class="ckddp">{approved_user}</p>
-          </dl>
-          <dl>
-            <dt class="ckdt">Attachments: </dt>
+            <dt class="ckdt">Attachments : </dt>
             <div class="cookie123">
               <div className="row d-flex justify-content-end mt-3">
                 <a
                   href={this.state.reportPDF}
-                  className="btncookies btn-primary col-2 me-2"
+                  className="btnanujiview btn-primary col-2 me-2"
                 >
-                  View PDF
+                  Click to view Document
                 </a>
               </div>
             </div>
           </dl>
 
           <dl>
-            <dt class="ckdt">Published Date: </dt>
+            <dt class="ckdt">Published Date : </dt>
             <dd class="ckdd"> {date_and_time_upload}</dd>
+          </dl>
+
+          <dl>
+            <dt class="ckdt">Approved User : </dt>
+            <p class="ckddp">{approved_user}</p>
           </dl>
         </form>
         &nbsp;
         <div class="back">
-          <a href="/AdminTab2">
-            <i class="fas fa-angle-double-left fa-3x">&nbsp;&nbsp;Back</i>
+          <a href="/AllReports">
+            <i class="fas fa-angle-double-left fa-3x">
+              &nbsp;&nbsp;Back to Reports
+            </i>
           </a>
         </div>
         <br />

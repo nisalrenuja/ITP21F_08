@@ -22,15 +22,81 @@ router.post('/final_report/save',(req,res)=>{
 });
 
 //Count reports
-router.get('/finalreport',(req, res) =>{
+router.get("/finalreport1", (req, res) => {
     Reports.find({
         date_and_time_upload: {
-            $gte: ISODate("2021-10-01T00:00:00.000Z"),
-            $lt: ISODate("2021-12-31T00:00:00.000Z")
+            $gte: "2021-01-01T00:00:00.000Z",
+            $lt: "2021-04-01T00:00:00.000Z"
         }
-    }).count();
-});
+    }).exec((err,finalreport) =>{
+        if(err){
+            return res.status(400).json({
+                error:err
+            });
+        }
+        return res.status(200).json({
+            success:true,
+            finalreport:finalreport
+        });
+    });
+  });
+  
+  router.get("/finalreport2", (req, res) => {
+    Reports.find({
+        date_and_time_upload: {
+            $gte: "2021-04-01T00:00:00.000Z",
+            $lt: "2021-07-01T00:00:00.000Z"
+        }
+    }).exec((err,finalreport) =>{
+        if(err){
+            return res.status(400).json({
+                error:err
+            });
+        }
+        return res.status(200).json({
+            success:true,
+            finalreport:finalreport
+        });
+    });
+  })
 
+  router.get("/finalreport3", (req, res) => {
+    Reports.find({
+        date_and_time_upload: {
+            $gte: "2021-07-01T00:00:00.000Z",
+            $lt: "2021-10-01T00:00:00.000Z"
+        }
+    }).exec((err,finalreport) =>{
+        if(err){
+            return res.status(400).json({
+                error:err
+            });
+        }
+        return res.status(200).json({
+            success:true,
+            finalreport:finalreport
+        });
+    });
+  })
+
+  router.get("/finalreport4", (req, res) => {
+    Reports.find({
+        date_and_time_upload: {
+            $gte: "2021-10-01T00:00:00.000Z",
+            $lt: "2022-01-01T00:00:00.000Z"
+        }
+    }).exec((err,finalreport) =>{
+        if(err){
+            return res.status(400).json({
+                error:err
+            });
+        }
+        return res.status(200).json({
+            success:true,
+            finalreport:finalreport
+        });
+    });
+  })
 
 //Get Reports
 
