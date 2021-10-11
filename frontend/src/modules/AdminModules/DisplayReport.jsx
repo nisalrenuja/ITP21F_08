@@ -3,7 +3,6 @@ import axios from "axios";
 import "./DisplayReport.css";
 import { Redirect } from "react-router";
 import { storage } from "../../firebase";
-//import jsPDF from "jspdf";
 
 export default class DisplayReport extends Component {
   constructor(props) {
