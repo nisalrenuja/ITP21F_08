@@ -21,6 +21,17 @@ router.post('/final_report/save',(req,res)=>{
     });
 });
 
+//Count reports
+router.get('/finalreport',(req, res) =>{
+    Reports.find({
+        date_and_time_upload: {
+            $gte: ISODate("2021-10-01T00:00:00.000Z"),
+            $lt: ISODate("2021-12-31T00:00:00.000Z")
+        }
+    }).count();
+});
+
+
 //Get Reports
 
 router.get('/final_report',(req,res) =>{

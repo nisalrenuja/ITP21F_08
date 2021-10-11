@@ -16,7 +16,7 @@ import LapAllo from "../pages/AdminPage/Laps";
 import AllAssignmnets from "../pages/AdminPage/AllAssignments";
 import CreateAssignment from "../pages/AdminPage/CreateAssignmentt";
 import CreateLapAllo from "../pages/AdminPage/CreateLapAllo";
-
+import GenerateReport from "../modules/AdminModules/GenerateReport";
 import EditAssignment from "../pages/AdminPage/EditAssignment";
 import Assignment from "../pages/AdminPage/Assignment";
 import ReviewPage from "../pages/ReviewPage/ReviewPage";
@@ -281,6 +281,7 @@ const AppRoutes = () => (
           component={DisplayReport}
           exact
         ></Route>
+        <Route path="/generatereport" component={GenerateReport}></Route>
       </Switch>
       <Footer />
     </Router>

@@ -1,0 +1,54 @@
+.anutah1g {
+    position: absolute;
+    width: 523px;
+    height: 66px;
+    left: 0px;
+    top: 75px;
+  
+    color: #000000;
+  }
+
+  .anutableg {
+    position: absolute;
+    width: 100%;
+  
+    left: 0px;
+    top: 150px;
+  }
+
+  
+  .anumaingenerate {
+    width: 100%;
+    height: 850px;
+    white-space: nowrap;
+    position: relative;
+  }
+
+  .anutheadg {
+    background: #276678;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: -0.00022em;
+    color: #1687A7;
+    background: #D3E0EA;
+    
+  }
+
+  .anubtng{
+    position: absolute;
+    width: 100px;
+    height: 48px;
+    left: 1400px;
+    top: 75px;
+  
+    background: 	#008080;;
+    
+    
+  
+    border-radius: 5px;
+  
+  }

@@ -6,39 +6,29 @@ export default class CompanyPerfomance extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Performances: []
+      finalreport: []
     };
   }
 
   componentDidMount() {
-    this.retrievePerformances();
+    this.retrievefinalreport();
   }
 
-  retrievePerformances() {
-    axios.get("http://localhost:5000/performance").then(res => {
+  retrievefinalreport() {
+    axios.get("http://localhost:5000/finalreport").then(res => {
       if (res.data.success) {
         this.setState({
-          posts: res.data.Performances
+          finalreport: res.data.finalreport
         });
-        console.log(this.state.Performances);
+        console.log(this.state.finalreport);
       }
     });
   }
-
-  handleSearchArea = e => {
-    const searchKey = e.currentTarget.value;
-
-    axios.get("http://localhost:5000/performance").then(res => {
-      if (res.data.success) {
-        this.filterData(res.data.Performances, searchKey);
-      }
-    });
-  };
 
   render() {
     return (
       <div className="container">
-        <div class="anumain3">
+        <div class="anumain4">
           <h2 class="anuhead41">Reports Management</h2>
           <hr class="anuline41"></hr>
 
@@ -56,13 +46,6 @@ export default class CompanyPerfomance extends Component {
             </button>
           </a>
 
-          <div class="anudiv44">
-            <input class="anuselect41" type="text" />
-            <a className="btn btn-info anusearch">
-              <i className="fas fa-search"></i>&nbsp;
-            </a>
-          </div>
-
           <h2 class="anutah43">Reports</h2>
           <table className="table table-hover anutable41">
             <thead class="anuthead">
@@ -75,6 +58,7 @@ export default class CompanyPerfomance extends Component {
                 <th scope="col">No.of Approved Reports</th>
               </tr>
             </thead>
+
             <tbody class="anutbody1">
               <tr>
                 <td> #1</td>
@@ -84,14 +68,16 @@ export default class CompanyPerfomance extends Component {
                 <td> 31st March </td>
                 <td> </td>
               </tr>
+
               <tr>
                 <td> #2</td>
                 <td> 2021 - Q2 </td>
                 <td> 2021 </td>
                 <td> 1st April </td>
                 <td> 30th June </td>
-                <td></td>
+                <td> </td>
               </tr>
+
               <tr>
                 <td> #3</td>
                 <td> 2021 - Q3 </td>
@@ -100,13 +86,14 @@ export default class CompanyPerfomance extends Component {
                 <td> 30th September</td>
                 <td></td>
               </tr>
+
               <tr>
                 <td> #4</td>
                 <td> 2021 - Q4 </td>
                 <td> 2021 </td>
                 <td> 1st October</td>
                 <td> 31st December </td>
-                <td></td>
+                <td> </td>
               </tr>
               <tfoot class="tfoot">
                 <a href="/quarterperformance">

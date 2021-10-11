@@ -190,7 +190,7 @@ export default class CreateReport extends Component {
         <h1 className="h3 mb-3 font-weight-normal">
           Report Management | Add Report Details
         </h1>
-        <div class="anumain">
+        <div class="anuformi">
           <form className="need-validation" noValidate>
             <div className="form-group" style={{ marginBottom: "15px" }}>
               <label style={{ marginBottom: "5px" }}>Review ID</label>

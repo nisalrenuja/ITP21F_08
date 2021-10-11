@@ -105,9 +105,13 @@ export default class AdminTab2 extends Component {
   render() {
     return (
       <div className="container">
-        <div class="anumainform">
+        <div class="anumaintab2">
           <h2 class="anuhead1">Reports Management</h2>
           <hr class="anuline1"></hr>
+
+          <a href="/generatereport" class="btn btn-info reportdiv">
+            <i class="fa fa-file fa-2x" aria-hidden="true"></i>&nbsp;
+          </a>
 
           <a href="/allreports">
             <button class="anudiv1">
