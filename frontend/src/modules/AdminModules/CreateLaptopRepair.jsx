@@ -3,7 +3,7 @@ import axios from "axios";
 import "./CreateLaptop.css";
 
 //set id validation
-const idRegex = RegExp(/^[A-Z]+[0-9]*$/);
+const validation = RegExp(/^[A-Z]+[0-9]*$/);
 
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
@@ -35,6 +35,17 @@ export default class CreateLaptopRepair extends Component {
     };
   }
 
+  //demo button
+  demo = e => {
+    e.preventDefault();
+    this.setState({
+      id: "LP3008",
+      repair_reason: "MotherBoeard Change",
+      repair_date: "2020-08-01",
+      repair_cost: "12000"
+    });
+  };
+
   handleInputchange = e => {
     const { name, value } = e.target;
 
@@ -43,7 +54,7 @@ export default class CreateLaptopRepair extends Component {
 
     switch (name) {
       case "id":
-        formErrors.id = idRegex.test(value)
+        formErrors.id = validation.test(value)
           ? ""
           : "**Please Use Only Correct Way [Eg: LP1090]**";
 
@@ -93,6 +104,19 @@ export default class CreateLaptopRepair extends Component {
           <div className="form-group" style={{ marginBottom: "14px" }}>
             <h5>Laptop Details</h5>
             <hr></hr>
+            <button
+              type="button"
+              class="btn btn-warning"
+              onClick={this.demo}
+              style={{
+                marginRight: "10px",
+                marginBottom: "5px",
+                float: "right"
+              }}
+            >
+              {" "}
+              Demo{" "}
+            </button>
             <label style={{ marginBottom: "5px" }}>Laptop ID</label>
             <input
               type="text"
@@ -131,14 +155,21 @@ export default class CreateLaptopRepair extends Component {
           </div>
           <div className="form-group" style={{ marginBottom: "14px" }}>
             <label style={{ marginBottom: "5px" }}>Repair Price</label>
-            <input
-              type="text"
-              className="form-control"
-              name="repair_cost"
-              placeholder="Enter Laptop Repair Price"
-              value={this.state.repair_cost}
-              onChange={this.handleInputchange}
-            />
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend">
+                  Rs
+                </span>
+              </div>
+              <input
+                type="Number"
+                className="form-control"
+                name="repair_cost"
+                placeholder="Enter Laptop Repair Price"
+                value={this.state.repair_cost}
+                onChange={this.handleInputchange}
+              />
+            </div>
           </div>
           <button
             className="btn btn-info"
@@ -168,4 +199,3 @@ export default class CreateLaptopRepair extends Component {
     );
   }
 }
-//laptopss

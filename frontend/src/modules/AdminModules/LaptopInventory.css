@@ -82,7 +82,7 @@
   position: relative;
   width: auto;
   height: 50px;
-  top: 50px;
+  top: 30px;
   float: right;
   padding: 12px 28px;
   border-radius: 4px;
@@ -96,8 +96,32 @@
   color: #276678;
 }
 
+.total{
+  float: right;
+  font-size: 20px;
+  border: 2px solid #1687A7;
+  border-radius: 30px;
+  padding: 10px;
+}
 
+table::-webkit-scrollbar {
+  width: 10px;
+}
 
+/* Track */
+table::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+table::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+table::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
 
 
 
