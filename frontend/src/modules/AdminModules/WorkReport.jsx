@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Chart from "react-google-charts";
+import Chart from "react-google-charts"; //import google charts
 import "./WorkReport.css";
 
 export default class WorkReport extends Component {
@@ -14,9 +14,11 @@ export default class WorkReport extends Component {
       allowances: []
     };
   }
+  //retrieve data
   componentDidMount() {
     this.retrievePosts();
   }
+  //retrieve function for all chart data
   retrievePosts() {
     axios.get("http://localhost:5000/assignments/count").then(res => {
       if (res.data.success) {
@@ -105,6 +107,7 @@ export default class WorkReport extends Component {
       }
     });
   }
+  //generate pdf function
   generatePDF = () => {
     var content = document.getElementById("reportContent");
     var pri = document.getElementById("ifmcontentstoprint").contentWindow;

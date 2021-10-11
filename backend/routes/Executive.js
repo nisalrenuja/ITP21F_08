@@ -21,6 +21,7 @@ router.get("/executive", (req, res) => {
     .find()
     .sort({ exeno: -1 })
     .exec((err, executive) => {
+      console.log(executive + "hi");
       var count = executive.length;
       if (err) {
         return res.status(400).json({ success: false, err });
@@ -76,5 +77,37 @@ router.delete("/executive/delete/:id", (req, res) => {
       deletedPost,
     });
   });
+});
+
+/* router.get("/executive/checkexeno", (req, res) => {
+  executive
+    .find()
+    .sort({ exeno: -1 })
+    .limit(1)
+    .exec((err, exeno) => {
+      console.log(exeno);
+      return res.status(200).json({
+        success: true,
+        exeno: exeno,
+      });
+    });
+}); */
+
+router.get("/checkexeno", (req, res) => {
+  executive
+    .find()
+    .sort({ exeno: -1 })
+    .limit(1)
+    .exec((err, executive) => {
+      console.log(executive);
+      var count = executive.length;
+      if (err) {
+        return res.status(400).json({ success: false, err });
+      }
+      return res.status(200).json({
+        success: true,
+        exeno: executive,
+      });
+    });
 });
 module.exports = router;

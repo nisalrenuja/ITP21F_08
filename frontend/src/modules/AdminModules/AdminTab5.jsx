@@ -9,6 +9,8 @@ export default class AdminTab5 extends Component {
       existingNotices: [] //CreateNotice
     };
   }
+
+  //Delete function
   onDelete = id => {
     console.log(id);
     axios
@@ -18,6 +20,8 @@ export default class AdminTab5 extends Component {
         this.retrieveexistingNotices();
       });
   };
+
+  //Retireving the saved Notices
   componentDidMount() {
     this.retrieveexistingNotices();
   }
@@ -31,14 +35,14 @@ export default class AdminTab5 extends Component {
       }
     });
   }
-  //Search
+  //Search function
   filterData(existingNotices, searchKey) {
     console.log(searchKey);
     const result = existingNotices.filter(
       existingNotices =>
-        existingNotices.notice_id.toLowerCase().includes(searchKey) ||
-        existingNotices.emp_id.toLowerCase().includes(searchKey) ||
-        existingNotices.notice_topic.toLowerCase().includes(searchKey)
+        existingNotices.notice_id.includes(searchKey) ||
+        existingNotices.emp_id.includes(searchKey) ||
+        existingNotices.notice_topic.includes(searchKey)
     );
     this.setState({ existingNotices: result });
   }

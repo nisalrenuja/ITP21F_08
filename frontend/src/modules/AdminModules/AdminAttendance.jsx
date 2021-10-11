@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Clock from "../../component/common/clock/Clock";
+import { confirmAlert } from "react-confirm-alert"; // Imports for confirm alert
+import "react-confirm-alert/src/react-confirm-alert.css";
+import { ToastContainer, toast } from "react-toastify"; // Imports for toastify
+import "react-toastify/dist/ReactToastify.css";
+import ReactTooltip from "react-tooltip";
 import "./AllPayrolls.css";
 
 export default class AdminAttendance extends Component {
@@ -24,7 +29,8 @@ export default class AdminAttendance extends Component {
       if (res.data.success) {
         this.setState({
           attendances: res.data.existingAttendances,
-          attendancecount: res.data.attendanceCount
+          attendancecount: res.data.attendanceCount,
+          locationcount: res.data.attendlocationCount
         });
 
         console.log(this.state.attendances);
@@ -32,17 +38,15 @@ export default class AdminAttendance extends Component {
       }
     });
   }
+  notify = () => {
+    toast.success("Deleted Attendance Successfully! 👌");
+  };
 
   onDelete = id => {
-    const confirmBox = window.confirm("Do you really want to delete this?");
-    if (confirmBox === true) {
-      axios
-        .delete(`http://localhost:5000/attendance/delete/${id}`)
-        .then(res => {
-          alert("Deleted Data Successfully!!");
-          this.retrieveAttendances();
-        });
-    }
+    axios.delete(`http://localhost:5000/attendance/delete/${id}`).then(res => {
+      this.notify();
+      this.retrieveAttendances();
+    });
   };
 
   filterData(attendances, searchKey) {
@@ -80,20 +84,26 @@ export default class AdminAttendance extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container dim_main">
         <br></br>
 
         <div className="adminpayroll">
           <div className="row">
-            <div class="d-flex justify-content-between">
-              <div className="col-lg-9 mt-2 mb-2 font-weight-bold">
+            <div class="d-flex">
+              <div className="col-lg-8 mt-2  font-weight-bold p-2">
                 <br />
                 <h1 class="ap-topic">Payroll Management</h1>
                 <br />
                 <h4 class="">Assignment Attendance</h4>
               </div>
+              <div className="p-2">
+                <a href="/attendancereport" class="btn btn-info att-reportbtn">
+                  Attendance &nbsp;
+                  <i class="fa fa-file fa-2x" aria-hidden="true"></i>
+                </a>
+              </div>
 
-              <div>
+              <div class="ml-auto p-2 clockdiv">
                 <Clock />
               </div>
             </div>
@@ -166,8 +176,8 @@ export default class AdminAttendance extends Component {
             <thead class="tblhead">
               <tr class="">
                 <th scope="col"> #</th>
-                <th scope="col"> Employee ID</th>
                 <th scope="col"> Date</th>
+                <th scope="col"> Employee ID</th>
                 <th scope="col"> Location Type</th>
                 <th scope="col"> Assignment</th>
                 <th scope="col"> Attendance Type</th>
@@ -181,17 +191,20 @@ export default class AdminAttendance extends Component {
               {this.state.attendances.map((attendances, index) => (
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
-
+                  <td>{attendances.att_date}</td>
                   <td>
                     <a
                       href={`/displayattendance/${attendances._id}`}
                       style={{ textDecoration: "none" }}
+                      data-tip
+                      data-for="showTip"
                     >
                       {attendances.empno}
                     </a>
+                    <ReactTooltip id="showTip" place="top">
+                      <span>View Attendance</span>
+                    </ReactTooltip>
                   </td>
-
-                  <td>{attendances.att_date}</td>
                   <td>{attendances.location_type}</td>
                   <td>{attendances.assignment_name}</td>
                   <td style={{ fontWeight: "bold" }}>{attendances.att_type}</td>
@@ -199,17 +212,55 @@ export default class AdminAttendance extends Component {
                   <td>{attendances.time_out}</td>
 
                   <td>
-                    <a href={`displayattendance/${attendances._id}`}>
+                    <a
+                      href={`displayattendance/${attendances._id}`}
+                      data-tip
+                      data-for="showTip"
+                    >
                       <i class="far fa-eye"></i>
                     </a>
+                    <ReactTooltip id="showTip" place="top">
+                      <span>View Attendance</span>
+                    </ReactTooltip>
                     &nbsp; &nbsp; &nbsp; &nbsp;
-                    <a href={`/editattendance/${attendances._id}`}>
+                    <a
+                      href={`/editattendance/${attendances._id}`}
+                      data-tip
+                      data-for="EditTip"
+                    >
                       <i class="far fa-edit"></i>
                     </a>
+                    <ReactTooltip id="EditTip" place="top">
+                      <span>Edit Attendance</span>
+                    </ReactTooltip>
                     &nbsp; &nbsp; &nbsp;
-                    <a href="#" onClick={() => this.onDelete(attendances._id)}>
+                    <a
+                      href="#"
+                      data-tip
+                      data-for="DeleteTip"
+                      onClick={() =>
+                        confirmAlert({
+                          title: "Confirm to Delete",
+                          message: "Are you sure to do this ?",
+                          buttons: [
+                            {
+                              label: "Yes",
+                              onClick: () => this.onDelete(attendances._id)
+                            },
+                            {
+                              label: "No",
+                              onClick: () => window.close
+                            }
+                          ]
+                        })
+                      }
+                      class="icon-btns"
+                    >
                       <i class="far fa-trash-alt"></i>
                     </a>
+                    <ReactTooltip id="DeleteTip" place="top">
+                      <span>Delete Attendance</span>
+                    </ReactTooltip>
                   </td>
                 </tr>
               ))}
@@ -224,6 +275,19 @@ export default class AdminAttendance extends Component {
               Mark Attendance
             </a>
           </button>
+          <ToastContainer
+            position="bottom-center"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme={"dark"}
+            type="success"
+          />
         </div>
       </div>
     );

@@ -129,7 +129,7 @@ export default class EditLeave extends Component {
   */
   render() {
     return (
-      <div className="col-md-8 mt-4 mx-auto">
+      <div className="col-md-6 mt-4 mx-auto">
         <br />
 
         <h1>Payroll Management | Response to Leave Requests</h1>
@@ -137,7 +137,7 @@ export default class EditLeave extends Component {
         <br />
 
         <form
-          className="need-validation"
+          className="need-validation2"
           noValidate
           style={{
             backgroundColor: "#F6F5F5",
@@ -304,7 +304,6 @@ export default class EditLeave extends Component {
             </select>
           </div>
           <br />
-
           <div class="d-flex justify-content-center">
             <button
               className="btn btn-warning"
@@ -324,6 +323,9 @@ export default class EditLeave extends Component {
             </button>
           </div>
         </form>
+        <br />
+        <br />
+        <br />
         <br />
       </div>
     );

@@ -56,6 +56,31 @@ router.get("/payroll/:id", (req, res) =>{
   });
 });
 
+//To get the max employee number in the table, for automatic employee number generation
+router.get("/payrolls/checkEmpNo", (req, res) => {
+  Payrolls.find().sort({empno:-1}).limit(1).exec((err, empno) => {
+    return res.status(200).json({
+      success: true,
+      empno: empno,
+    });
+  });
+});
+
+
+//check if acc no. already exists in the system for validation
+router.get("/payroll/checkAccountNo/:no", (req, res) => {
+  let account_no = req.params.no;
+  Payrolls.find({ account_no: account_no}).exec((err, staffs) => {
+    return res.status(200).json({
+      success: true,
+      staffs: staffs,
+    });
+  });
+});
+
+
+
+
 
 //update (PUT)
 router.put("/payroll/update/:id", (req, res) => {

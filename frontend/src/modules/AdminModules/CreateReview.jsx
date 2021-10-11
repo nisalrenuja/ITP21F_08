@@ -15,7 +15,8 @@ export default class CreateReview extends Component {
       points: "",
       feedback: "",
       status: "",
-      uploadPercentage: 0
+      uploadPercentage: 0,
+      review: []
     };
   }
 
@@ -55,17 +56,55 @@ export default class CreateReview extends Component {
     });
   };
 
+  componentDidMount() {
+    this.retrievePosts();
+  }
+
+  retrievePosts() {
+    axios.get(`http://localhost:5000/checkreviewno`).then(res => {
+      if (res.data.success) {
+        this.setState({
+          review: res.data.execid_review
+        });
+        if (res.data.execid_review.length == 0) {
+          console.log(res.data.execid_review.length);
+
+          this.state.execid_review = 1000;
+        } else {
+          var no = this.state.review[0].execid_review;
+          this.state.execid_review = no + 1;
+          console.log(this.state.execid_review);
+        }
+      }
+    });
+  }
+
   handleInputFileChange = e => {
     var file = e.target.files[0];
     console.log(file);
+  };
+
+  ReviewSave = () => {
+    toast.success("Initial Review Saved Successfully");
   };
 
   errorMessageAlert = message => {
     toast.error(message);
   };
 
-  onSubmit = e => {
+  onSubmit = async e => {
     e.preventDefault();
+    await axios.get(`http://localhost:5000/checkreviewno`).then(res => {
+      if (res.data.success) {
+        console.log(typeof res.data.execid_review);
+        this.setState({
+          review: res.data.execid_review
+        });
+        var no = this.state.review[0].execid_review;
+        this.state.execid_review = no + 1;
+        console.log(this.state.execid_review);
+      }
+    });
 
     const {
       execid_review,
@@ -107,6 +146,7 @@ export default class CreateReview extends Component {
     console.log(data);
     axios.post("http://localhost:5000/review/save", data).then(res => {
       if (res.data.success) {
+        this.ReviewSave("Initial Review Saved Successfully");
         this.setState({
           execid_review: "",
           report: "",
@@ -117,6 +157,7 @@ export default class CreateReview extends Component {
         });
       }
     });
+    this.props.history.push("/admin");
   };
 
   uploadPDF(e) {
@@ -161,12 +202,14 @@ export default class CreateReview extends Component {
           <div className="form-group" style={{ marginBottom: "15px" }}>
             <label style={{ marginBottom: "5px" }}>Review ID</label>
             <input
-              type="text"
+              type="number"
               className="form-control"
               name="execid_review"
               placeholder="Enter Review ID"
               value={this.state.execid_review}
               onChange={this.handleInputChange}
+              required
+              disabled
             />
             <span id="errorMessageExID" style={{ color: "red" }}></span>
           </div>
@@ -253,15 +296,34 @@ export default class CreateReview extends Component {
             </select>
           </div>
 
-          <button
-            className="btn btn-success mb-2"
-            type="submit"
-            style={{ marginTop: "15px" }}
-            onClick={this.onSubmit}
-          >
-            <ToastContainer />
-            <i className="far fa-save"></i>&nbsp;Save
-          </button>
+          <div class="d-flex justify-content-center">
+            <button
+              className="btn btn-info"
+              type="submit"
+              style={{ backgroundColor: "#1687A7" }}
+              onClick={this.onSubmit}
+            >
+              &nbsp;&nbsp;Save&nbsp;&nbsp;
+            </button>{" "}
+            &nbsp;&nbsp;
+            <ToastContainer
+              position="bottom-center"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme={"dark"}
+              type="success"
+            />
+            <button className="btn btn-danger" type="cancel">
+              Cancel
+            </button>
+          </div>
+          <div />
         </form>
       </div>
     );

@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Redirect } from "react-router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 //import { storage } from "../../firebase";
 //import Progress from "../../component/common/ProgressBar/progress";
 
@@ -26,6 +29,65 @@ export default class EditPayroll extends Component {
       ...this.state,
       [name]: value
     });
+  };
+
+  validate = () => {
+    let empnoError = "";
+    let nameError = "";
+    let positionError = "";
+    let bankError = "";
+    let bank_branchError = "";
+    let account_noError = "";
+    let basic_salaryError = "";
+
+    if (!this.state.empno) {
+      empnoError = "Employee no. required";
+    }
+    if (!this.state.name) {
+      nameError = "Employee name required";
+    }
+    if (!this.state.position) {
+      positionError = "Position required";
+    }
+    if (!this.state.bank) {
+      bankError = "Bank name required";
+    }
+    if (!this.state.bank_branch) {
+      bank_branchError = "Branch required";
+    }
+    if (!this.state.account_no) {
+      account_noError = "Account no. required";
+    }
+    if (!this.state.basic_salary) {
+      basic_salaryError = "Basic salary required";
+    }
+
+    if (
+      empnoError ||
+      nameError ||
+      positionError ||
+      bankError ||
+      bank_branchError ||
+      account_noError ||
+      basic_salaryError
+    ) {
+      this.setState({
+        empnoError,
+        nameError,
+        positionError,
+        bankError,
+        bank_branchError,
+        account_noError,
+        basic_salaryError
+      });
+      toast.error("Error while Updating. Please Check Again!!!");
+      return false;
+    }
+    return true;
+  };
+
+  handleBackClick = () => {
+    this.setState({ redirectToReferrer: true });
   };
 
   onSubmit = e => {
@@ -56,25 +118,30 @@ export default class EditPayroll extends Component {
       last_paid: last_paid
     };
 
-    console.log(data);
-    axios.put(`http://localhost:5000/payroll/update/${id}`, data).then(res => {
-      if (res.data.success) {
-        alert("Salary Details Updated Successfully");
+    const isValid = this.validate();
+    if (isValid) {
+      console.log(this.state.empno);
+      console.log(data);
 
-        this.setState({
-          empno: "",
-          name: "",
-          position: "",
-          bank: "",
-          bank_branch: "",
-          account_no: "",
-          basic_salary: "",
-          salary_date: "",
-          last_paid: ""
+      axios
+        .put(`http://localhost:5000/payroll/update/${id}`, data)
+        .then(res => {
+          if (res.data.success) {
+            this.setState({
+              empno: "",
+              name: "",
+              position: "",
+              bank: "",
+              bank_branch: "",
+              account_no: "",
+              basic_salary: "",
+              salary_date: "",
+              last_paid: ""
+            });
+            toast.success("Updated Details Successfully!");
+          }
         });
-      }
-    });
-    this.props.history.push("/admin");
+    }
   };
 
   componentDidMount() {
@@ -97,42 +164,13 @@ export default class EditPayroll extends Component {
       }
     });
   }
-  /*
-  uploadPDF(e) {
-    if (e.target.files[0] !== null) {
-      const uploadTask = storage
-        .ref(`users/${e.target.files[0].name}`)
-        .put(e.target.files[0]);
-      uploadTask.on(
-        "state_changed",
-        snapshot => {
-          //progress function
-          const progress = Math.round(
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          );
-          this.setState({ uploadPercentage: progress });
-        },
-        error => {
-          //error function
-          console.log(error);
-        },
-        () => {
-          //complete function
-          storage
-            .ref("users")
-            .child(e.target.files[0].name)
-            .getDownloadURL()
-            .then(url => {
-              this.setState({ reportPDF: url });
-              console.log("Hello " + url);
-            });
-        }
-      );
-    } else {
-    }
-  }
-  */
+
   render() {
+    const redirectToReferrer = this.state.redirectToReferrer;
+    if (redirectToReferrer == true) {
+      return <Redirect to="/admin" />;
+    }
+
     return (
       <div className="col-md-6 mt-4 mx-auto">
         <br />
@@ -142,7 +180,7 @@ export default class EditPayroll extends Component {
         <br />
 
         <form
-          className="need-validation"
+          className="need-validation2"
           noValidate
           style={{
             backgroundColor: "#F6F5F5",
@@ -151,43 +189,49 @@ export default class EditPayroll extends Component {
             borderRadius: "15px"
           }}
         >
-          <h2>Employee Details</h2>
+          <h4>Employee Details</h4>
           <hr></hr>
 
-          <div className="form-group col-sm-4" style={{ marginBottom: "15px" }}>
+          <div className="form-group col-sm-6" style={{ marginBottom: "15px" }}>
             <label
               for="valid1"
               class="form-label"
-              style={{ marginBottom: "5px" }}
+              style={({ marginBottom: "5px" }, { color: "#1687A7" })}
             >
-              Empoyee ID
+              Payroll ID
             </label>
             <input
-              type="number"
+              type="text"
               id="valid1"
               className="form-control"
+              placeholder="automatically generated"
               name="empno"
               value={this.state.empno}
               onChange={this.handleInputChange}
-              required
+              disabled
             />
+            <div className="formValid">{this.state.empnoError}</div>
           </div>
 
           <div className="form-group " style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Name</label>
+            <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+              Full Name<span style={{ color: "red" }}> *</span>
+            </label>
             <input
               type="text"
               className="form-control"
               name="name"
-              placeholder="Enter full name"
               value={this.state.name}
               onChange={this.handleInputChange}
               required
             />
+            <div className="formValid">{this.state.nameError}</div>
           </div>
 
           <div className="form-group col-sm-6" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Position</label>
+            <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+              Position<span style={{ color: "red" }}> *</span>
+            </label>
             <select
               defaultValue={"DEFAULT"}
               className="form-select"
@@ -195,18 +239,21 @@ export default class EditPayroll extends Component {
               name="position"
               required
             >
-              <option value="DEFAULT" disabled>
+              <option value="DEFAULT" placeholder="Select" disabled>
                 {this.state.position}
               </option>
-              <option value="Manager">Manager</option>
+              <option name="Manager" value="Manager">
+                Manager
+              </option>
               <option value="Senior">Senior Staff</option>
               <option value="Trainee">Trainee</option>
               <option value="Other">Other</option>
             </select>
+            <div className="formValid">{this.state.positionError}</div>
           </div>
           <br />
 
-          <h2>Bank Details</h2>
+          <h4>Bank Details</h4>
           <hr></hr>
 
           <div class="d-flex justify-content-between">
@@ -214,7 +261,9 @@ export default class EditPayroll extends Component {
               className="form-group col-md-6"
               style={{ marginBottom: "15px" }}
             >
-              <label style={{ marginBottom: "5px" }}>Bank</label>
+              <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+                Bank <span style={{ color: "red" }}> *</span>
+              </label>
               <select
                 defaultValue={"DEFAULT"}
                 className="form-select"
@@ -239,36 +288,40 @@ export default class EditPayroll extends Component {
                 <option name="seylan">Seylan Bank</option>
                 <option name="union">Union Bank-Colombo</option>
               </select>
+              <div className="formValid">{this.state.bankError}</div>
             </div>
 
             <div
               className="form-group col-md-5"
               style={{ marginBottom: "15px" }}
             >
-              <label style={{ marginBottom: "5px" }}>Branch</label>
+              <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+                Branch <span style={{ color: "red" }}> *</span>
+              </label>
               <input
                 type="text"
                 className="form-control"
                 name="bank_branch"
-                placeholder=""
                 value={this.state.bank_branch}
                 onChange={this.handleInputChange}
-                required
               />
+              <div className="formValid">{this.state.bank_branchError}</div>
             </div>
           </div>
 
           <div className="form-group col-md-6" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Account No</label>
+            <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+              Account No <span style={{ color: "red" }}> **</span>
+            </label>
             <input
               type="text"
               className="form-control"
               name="account_no"
-              placeholder="Type the correct account number"
+              placeholder="Type the correctly (unique*)"
               value={this.state.account_no}
               onChange={this.handleInputChange}
-              required
             />
+            <div className="formValid">{this.state.account_noError}</div>
           </div>
           <hr></hr>
 
@@ -277,7 +330,9 @@ export default class EditPayroll extends Component {
               className="form-group col-md-6"
               style={{ marginBottom: "15px" }}
             >
-              <label style={{ marginBottom: "5px" }}>Basic Salary</label>
+              <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+                Basic Salary<span style={{ color: "red" }}> *</span>
+              </label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroupPrepend">
@@ -288,23 +343,26 @@ export default class EditPayroll extends Component {
                   type="number"
                   className="form-control"
                   name="basic_salary"
-                  placeholder=""
                   value={this.state.basic_salary}
                   onChange={this.handleInputChange}
                   required
                 />
               </div>
+              <div className="formValid">{this.state.basic_salaryError}</div>
             </div>{" "}
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div
               className="form-group col-md-5"
               style={{ marginBottom: "15px" }}
             >
-              <label style={{ marginBottom: "5px" }}>Pay Date</label>
+              <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+                Pay Date
+              </label>
               <input
                 type="date"
                 className="form-control"
                 name="salary_date"
+                placeholder="Enter the pay day"
                 value={this.state.salary_date}
                 onChange={this.handleInputChange}
                 required
@@ -313,30 +371,31 @@ export default class EditPayroll extends Component {
           </div>
 
           <div className="form-group col-md-5" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Last Paid Month</label>
+            <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+              Last Paid Month
+            </label>
             <select
               defaultValue={"DEFAULT"}
               className="form-select"
               aria-label="Default select example"
               onChange={this.handleInputChange}
               name="last_paid"
-              required
             >
               <option value="DEFAULT" disabled>
                 {this.state.last_paid}
               </option>
-              <option name="jan">Jan</option>
-              <option name="feb">Feb</option>
-              <option name="mar">Mar</option>
-              <option name="apr">Apr</option>
+              <option name="jan">January</option>
+              <option name="feb">February</option>
+              <option name="mar">March</option>
+              <option name="apr">April</option>
               <option name="may">May</option>
-              <option name="jun">Jun</option>
-              <option name="jul">Jul</option>
-              <option name="aug">Aug</option>
-              <option name="sep">Sep</option>
-              <option name="oct">Oct</option>
-              <option name="nov">Nov</option>
-              <option name="dec">Dec</option>
+              <option name="jun">June</option>
+              <option name="jul">July</option>
+              <option name="aug">August</option>
+              <option name="sep">September</option>
+              <option name="oct">October</option>
+              <option name="nov">November</option>
+              <option name="dec">December</option>
             </select>
           </div>
           <br />
@@ -360,7 +419,28 @@ export default class EditPayroll extends Component {
             </button>
           </div>
         </form>
+        <div class="back">
+          <a onClick={this.handleBackClick}>
+            <i class="fas fa-angle-double-left fa-3x">
+              &nbsp;&nbsp;Back To Salary List
+            </i>
+          </a>
+        </div>
         <br />
+
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme={"dark"}
+          type="success"
+        />
       </div>
     );
   }

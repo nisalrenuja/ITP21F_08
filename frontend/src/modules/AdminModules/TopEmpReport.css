@@ -1,0 +1,26 @@
+.mouse{
+    top: 250px;
+}
+
+.sentable9384 {
+    position: absolute;
+    width: 100%;
+  
+    left: 0px;
+    top: 350px;
+  }
+
+  .cat{
+    position: absolute;
+    width: 100px;
+    height: 48px;
+    left: 1000px;
+    top: 175px;
+  
+    background: #FEE12B;;
+    
+    
+  
+    border-radius: 5px;
+  
+  }

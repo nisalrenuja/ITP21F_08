@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./DisplayMSalary.css";
-//import jsPDF from "jspdf";
+import jsPDF from "jspdf";
 
 export default class DisplaySalary extends Component {
   constructor(props) {
@@ -23,18 +23,20 @@ export default class DisplaySalary extends Component {
       }
     });
   }
-  /*
+
   generatePDF = () => {
     var doc = new jsPDF("p", "pt", "a4");
-    doc.html(document.querySelector("#reportContent"), {
+
+    doc.html(document.querySelector("#payslipContent"), {
       callback: function(doc) {
         doc.save("payslip.pdf");
       }
     });
   };
-*/
+
   render() {
     const {
+      payslipID,
       empno,
       name,
       pay_month,
@@ -54,51 +56,56 @@ export default class DisplaySalary extends Component {
     } = this.state.salary;
 
     return (
-      <div className="col-md-6 mt-4 mx-auto">
+      <div className="payslipContainer">
+        <br />
         <div className="row">
           <h2 class="col-8 topic">Monthly Salary 2021</h2>
           <button
             type="primary"
-            className="btn btn-warning text-light col-3 float-right"
+            className="btn btn-warning text-light col-2 float-right"
             onClick={this.generatePDF}
           >
             Download Pay Slip
           </button>
         </div>
         <hr className="hr-line2" /> <br />
-        <form className="need-validation2">
-          <div className="need-validation3">
-            <h4 class="col-10 topic payslip-topic">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pay
-              Slip for {pay_month}
-            </h4>
-            <br />
-            <div class="">
-              <dl>
-                <p class="" style={{ color: "black" }}>
-                  Pay Slip No - MS{empno}-{pay_month}
-                </p>
-              </dl>
-              <dl>
-                <p class="" style={{ color: "black" }}>
-                  Employee ID: &nbsp;{empno}
-                </p>
-              </dl>
-              <dl>
-                <p class="" style={{ color: "black" }}>
-                  Name: &nbsp;{name}
-                </p>
-              </dl>
-            </div>
+        <div id="payslipContent" className="col-md-7">
+          <form>
+            <div className="need-validation4">
+              <br />
+              <h4 class="col-10 topic payslip-topic">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Pay Slip for {pay_month}
+              </h4>
+              <br />
+              <div class="">
+                <dl className="d-data">
+                  <p className="ps-data" style={{ color: "black" }}>
+                    Pay Slip No: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {payslipID}-{pay_month}
+                  </p>
+                </dl>
+                <dl className="d-data">
+                  <p className="ps-data" style={{ color: "black" }}>
+                    Employee ID: &nbsp;&nbsp;&nbsp;&nbsp;{empno}
+                  </p>
+                </dl>
+                <dl>
+                  <p className="ps-data" style={{ color: "black" }}>
+                    Name:
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {name}
+                  </p>
+                </dl>
+              </div>
 
-            <hr />
+              <hr className="ps-hr" />
 
-            <dl class="ps-dl">
-              <dt class="">Basic =</dt>
-              <dd class="">Rs {basic}</dd>
-            </dl>
-            <hr />
-            {/*<dl>
+              <dt class="">Basic</dt>
+              <dd class="">Rs. {basic}</dd>
+
+              <hr className="ps-hr" />
+              {/*<dl>
             <dt class="ps-dt">OT Rate:</dt>
             <dd>Rs 120 /hr</dd>
           </dl>
@@ -107,51 +114,50 @@ export default class DisplaySalary extends Component {
             <dd>{OT_hrs}</dd>
           </dl>*/}
 
-            <dl>
               <dt class="ps-dt">Total OT Amount:</dt>
               <dd>Rs. {OT_hrs * 120}</dd>
-            </dl>
-            <dl>
+
               <dt class="ps-dt">Bonus:</dt>
-              <dd>Rs. {bonus}</dd>
-            </dl>
-            <dl>
-              <dt class="ps-dt">AWS (Annual Wage Supplements)</dt>
-              <dd>Rs. {aws}</dd>
-            </dl>
-            <dl>
-              <dt class="ps-dt">Other Earnings:</dt>
-              <dd>Rs. {total_earnings}</dd>
-            </dl>
-            <dl>
-              <dt class="">Total Earnings =</dt>
-              <dd>Rs. {OT_hrs * 120 + aws + bonus + total_earnings}</dd>
-            </dl>
-            <hr />
-            <dl>
-              <dt class="ps-dt">No Pay Leaves</dt>
-              <dd>Rs. {nopay_leaves * 100}</dd>
-            </dl>
-            <dl>
-              <dt class="ps-dt">Other Deductions:</dt>
-              <dd>Rs. {total_deductions}</dd>
-            </dl>
-            <dl>
-              <dt class="">Total Deductions =</dt>
-              <dd>Rs. {nopay_leaves * 100 + total_deductions}</dd>
-            </dl>
-            <hr />
-            <dl>
-              <dt>Net Salary =</dt>
-              <dd style={{ fontWeight: "bolder" }}>
-                Rs.
-                {basic +
-                  (OT_hrs * 120 + aws + bonus + total_earnings) -
-                  (nopay_leaves * 100 + total_deductions)}
-              </dd>
-            </dl>
-          </div>
-        </form>
+              <dd>Rs. {0 + bonus}</dd>
+
+              <dl className="d-data">
+                <dt class="ps-dt">AWS (Annual Wage Supplements:)</dt>
+                <dd>Rs. {0 + aws}</dd>
+              </dl>
+              <dl className="d-data">
+                <dt class="ps-dt">Other Earnings:</dt>
+                <dd>Rs. {0 + total_earnings}</dd>
+              </dl>
+              <dl className="d-data">
+                <dt class="">Total Earnings </dt>
+                <dd>Rs. {OT_hrs * 120 + aws + bonus + total_earnings}</dd>
+              </dl>
+              <hr className="ps-hr" />
+              <dl className="d-data">
+                <dt class="ps-dt">No Pay Leaves:</dt>
+                <dd>Rs. {nopay_leaves * 100}</dd>
+              </dl>
+              <dl className="d-data">
+                <dt class="ps-dt">Other Deductions:</dt>
+                <dd>Rs. {0 + total_deductions}</dd>
+              </dl>
+              <dl className="d-data">
+                <dt class="">Total Deductions </dt>
+                <dd>Rs. {nopay_leaves * 100 + total_deductions}</dd>
+              </dl>
+              <hr className="ps-hr" />
+              <dl className="d-data">
+                <dt>Net Salary </dt>
+                <dd style={{ fontWeight: "bolder" }}>
+                  Rs.{" "}
+                  {basic +
+                    (OT_hrs * 120 + aws + bonus + total_earnings) -
+                    (nopay_leaves * 100 + total_deductions)}
+                </dd>
+              </dl>
+            </div>
+          </form>
+        </div>
         &nbsp;
         <div class="back">
           <a href="/allsalary">

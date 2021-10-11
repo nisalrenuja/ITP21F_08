@@ -7,7 +7,7 @@ import { Redirect } from "react-router";
 export default class EditNotices extends Component {
   constructor(props) {
     super(props);
-    //this.uploadPDF = this.uploadPDF.bind(this);
+
     this.state = {
       notice_id: "",
       emp_id: "",
@@ -22,6 +22,7 @@ export default class EditNotices extends Component {
     };
   }
 
+  //Insert fields function
   handleInputChange = e => {
     const { name, value } = e.target;
     this.setState({
@@ -30,14 +31,15 @@ export default class EditNotices extends Component {
     });
   };
 
+  //inserting PDFs for notice attachments
   handleInputFileChange = e => {
     var file = e.target.files[0];
     console.log(file);
   };
 
+  //Submit function for the Update Button
   onSubmit = e => {
     e.preventDefault();
-    //const id = this.props.match.params.id;
 
     const {
       notice_id,
@@ -57,9 +59,9 @@ export default class EditNotices extends Component {
       notice_content: notice_content,
       notice_attachments: notice_attachments,
       published_date: published_date
-      //progress: "Assigned"
     };
 
+    //Updating Notices
     console.log(data);
     axios
       .put(
@@ -80,6 +82,7 @@ export default class EditNotices extends Component {
       });
   };
 
+  //Retrieving specific Notices
   componentDidMount() {
     this.retrieveexsitingNotices();
   }
@@ -107,6 +110,7 @@ export default class EditNotices extends Component {
     });
   }
 
+  //Upload PDFs for notice attachments
   uploadPDF(e) {
     if (e.target.files[0] !== null) {
       const uploadTask = storage
@@ -114,13 +118,7 @@ export default class EditNotices extends Component {
         .put(e.target.files[0]);
       uploadTask.on(
         "state_changed",
-        snapshot => {
-          //progress function
-          //const progress = Math.round(
-          //(snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          //);
-          //this.setState({ uploadPercentage: progress });
-        },
+        snapshot => {},
         error => {
           //error function
           console.log(error);

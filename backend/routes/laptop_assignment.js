@@ -1,9 +1,11 @@
 const express = require("express");
+//import models
 const laptop_assignment = require("../models/laptop_assignment");
 const assignment_assignedtostaff = require("../models/assignment_assignedtostaff");
 const laptop = require("../models/laptop");
 const router = express.Router();
 
+//insert allocations
 router.post("/lapassignments/save/", (req, res) => {
   let newPost = new laptop_assignment(req.body);
   newPost.save((err) => {
@@ -17,7 +19,7 @@ router.post("/lapassignments/save/", (req, res) => {
     });
   });
 });
-//get post
+//get laptops
 router.get("/laps/ass", (req, res) => {
   laptop
     .find({
@@ -33,6 +35,7 @@ router.get("/laps/ass", (req, res) => {
       });
     });
 });
+//check laptop status function
 router.get("/laps/check/:id", (req, res) => {
   let lapid = req.params.id;
   laptop.find({ id: lapid }).exec((err, laps) => {
@@ -42,6 +45,7 @@ router.get("/laps/check/:id", (req, res) => {
     });
   });
 });
+//check laptop status function
 router.get("/checklapassigned/:id", (req, res) => {
   let lapid = req.params.id;
   laptop_assignment
@@ -55,6 +59,7 @@ router.get("/checklapassigned/:id", (req, res) => {
       });
     });
 });
+//check assignment name function
 router.get("/checkassignmentlap/:id", (req, res) => {
   let assid = req.params.id;
   assignment_assignedtostaff
@@ -68,6 +73,7 @@ router.get("/checkassignmentlap/:id", (req, res) => {
       });
     });
 });
+//check laptop assignment
 router.get("/lapsassigned/", (req, res) => {
   laptop_assignment
     .find({ status: { $ne: "Completed" } })
@@ -80,6 +86,7 @@ router.get("/lapsassigned/", (req, res) => {
       });
     });
 });
+//functions for charts
 router.get("/lapscomp/", (req, res) => {
   laptop_assignment.find({ status: "Completed" }).exec((err, check) => {
     var l = check.length;
@@ -117,8 +124,7 @@ router.get("/lapassignments/dis", (req, res) => {
     });
 });
 
-//get specific
-
+//get specific lap allocation
 router.get("/lapassignment/:id", (req, res) => {
   let assid = req.params.id;
   laptop_assignment
@@ -133,6 +139,7 @@ router.get("/lapassignment/:id", (req, res) => {
     });
 });
 
+//update laptop allocation
 router.put("/lapassignments/update/:name", (req, res) => {
   let name = req.params.name;
   laptop_assignment
@@ -173,7 +180,7 @@ router.put("/assignments/updateallo/:name", (req, res) => {
       });
     });
 }); */
-//delete post
+//delete allocation
 router.delete("/lapassignments/delete/:name", (req, res) => {
   let postid = req.params.name;
   laptop_assignment
