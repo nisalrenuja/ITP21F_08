@@ -24,6 +24,7 @@ router.post("/laptop_repair/save", (req, res) => {
 
 router.get("/laptops_repair", (req, res) => {
     LaptopRepair.find().exec((err, laptopsRepair) => {
+    var lrcount = laptopsRepair.length;
     if (err) {
       return res.status(400).json({
         error: err,
@@ -32,6 +33,7 @@ router.get("/laptops_repair", (req, res) => {
     return res.status(200).json({
       success: true,
       existingLaptopsRepair: laptopsRepair,
+      repairCount: lrcount,
     });
   });
 });

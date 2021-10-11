@@ -11,6 +11,7 @@ export default class PostLaptop extends Component {
     };
   }
 
+  //retrieve data for each laptop one by one
   componentDidMount() {
     const id = this.props.match.params.id;
     axios.get(`http://localhost:5000/laptop/${id}`).then(res => {
@@ -68,7 +69,7 @@ export default class PostLaptop extends Component {
           </dl>
           <dl>
             <dt>Purchas Price :</dt>
-            <dd>{purchase_price}</dd>
+            <dd>Rs. {purchase_price}</dd>
           </dl>
           <dl>
             <dt>Status :</dt>

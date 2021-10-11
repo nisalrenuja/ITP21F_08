@@ -4,7 +4,7 @@ import "./CreateLaptop.css";
 //create laptop inventory
 
 //set id validation
-const idRegex = RegExp(/^[A-Z]+[0-9]*$/);
+const validation = RegExp(/^[A-Z]+[0-9]*$/);
 
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
@@ -55,7 +55,7 @@ export default class CreateLaptop extends Component {
       model: "A1122",
       storage_type: "16GB",
       purchaase_date: "2019-03-11",
-      purchase_price: "Rs.189000",
+      purchase_price: "189000",
       status: "",
       discarded_reason: "",
       discarded_date: ""
@@ -70,7 +70,7 @@ export default class CreateLaptop extends Component {
 
     switch (name) {
       case "id":
-        formErrors.id = idRegex.test(value)
+        formErrors.id = validation.test(value)
           ? ""
           : "**Please Use Only Correct Way [Eg: LP1090]**";
 
@@ -246,15 +246,22 @@ export default class CreateLaptop extends Component {
           </div>
           <div className="form-group" style={{ marginBottom: "14px" }}>
             <label style={{ marginBottom: "5px" }}>Laptop Price</label>
-            <input
-              ref="purchase_price"
-              type="text"
-              className="form-control"
-              name="purchase_price"
-              placeholder="Enter Laptop Price"
-              value={this.state.purchase_price}
-              onChange={this.handleInputChange}
-            />
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend">
+                  Rs
+                </span>
+              </div>
+              <input
+                ref="purchase_price"
+                type="text"
+                className="form-control"
+                name="purchase_price"
+                placeholder="Enter Laptop Price"
+                value={this.state.purchase_price}
+                onChange={this.handleInputChange}
+              />
+            </div>
           </div>
           <div className="form-group" style={{ marginBottom: "14px" }}>
             <label style={{ marginBottom: "5px" }}>Purchase Date</label>

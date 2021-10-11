@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./PostLaptopDetails.css";
-//laptopss
+
 export default class PostLaptopRepair extends Component {
   constructor(props) {
     super(props);
@@ -60,7 +60,7 @@ export default class PostLaptopRepair extends Component {
           </dl>
           <dl>
             <dt>Repair Cost:</dt>
-            <dd>{repair_cost}</dd>
+            <dd>Rs. {repair_cost}</dd>
           </dl>
         </form>
         &nbsp;

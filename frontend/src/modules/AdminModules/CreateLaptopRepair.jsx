@@ -3,7 +3,7 @@ import axios from "axios";
 import "./CreateLaptop.css";
 
 //set id validation
-const idRegex = RegExp(/^[A-Z]+[0-9]*$/);
+const validation = RegExp(/^[A-Z]+[0-9]*$/);
 
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
@@ -42,7 +42,7 @@ export default class CreateLaptopRepair extends Component {
       id: "LP3008",
       repair_reason: "MotherBoeard Change",
       repair_date: "2020-08-01",
-      repair_cost: "Rs.12000"
+      repair_cost: "12000"
     });
   };
 
@@ -54,7 +54,7 @@ export default class CreateLaptopRepair extends Component {
 
     switch (name) {
       case "id":
-        formErrors.id = idRegex.test(value)
+        formErrors.id = validation.test(value)
           ? ""
           : "**Please Use Only Correct Way [Eg: LP1090]**";
 
@@ -155,14 +155,21 @@ export default class CreateLaptopRepair extends Component {
           </div>
           <div className="form-group" style={{ marginBottom: "14px" }}>
             <label style={{ marginBottom: "5px" }}>Repair Price</label>
-            <input
-              type="text"
-              className="form-control"
-              name="repair_cost"
-              placeholder="Enter Laptop Repair Price"
-              value={this.state.repair_cost}
-              onChange={this.handleInputchange}
-            />
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend">
+                  Rs
+                </span>
+              </div>
+              <input
+                type="Number"
+                className="form-control"
+                name="repair_cost"
+                placeholder="Enter Laptop Repair Price"
+                value={this.state.repair_cost}
+                onChange={this.handleInputchange}
+              />
+            </div>
           </div>
           <button
             className="btn btn-info"
@@ -192,4 +199,3 @@ export default class CreateLaptopRepair extends Component {
     );
   }
 }
-//laptopss
