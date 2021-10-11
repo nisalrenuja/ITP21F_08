@@ -141,7 +141,9 @@ export default class EditExecutive extends Component {
             </button>{" "}
             &nbsp;&nbsp;
             <button className="btn btn-danger" type="cancel">
-              Cancel
+              <a href="/createexecutive" style={{ textDecoration: "none" }}>
+                Cancel
+              </a>
             </button>
           </div>
         </form>

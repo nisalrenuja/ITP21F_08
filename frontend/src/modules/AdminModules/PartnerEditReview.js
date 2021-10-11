@@ -355,7 +355,9 @@ export default class ManagerEditReview extends Component {
               type="success"
             />
             <button className="btn btn-danger" type="cancel">
-              Cancel
+              <a href="/partnerreview" style={{ textDecoration: "none" }}>
+                Cancel
+              </a>
             </button>
           </div>
         </form>

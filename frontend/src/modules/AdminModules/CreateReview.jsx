@@ -323,7 +323,9 @@ export default class CreateReview extends Component {
               type="success"
             />
             <button className="btn btn-danger" type="cancel">
-              Cancel
+              <a href="/admin" style={{ textDecoration: "none" }}>
+                Cancel
+              </a>
             </button>
           </div>
           <div />

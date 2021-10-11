@@ -389,7 +389,9 @@ export default class EditProfile extends Component {
               type="cancel"
               style={{ marginTop: "15px" }}
             >
-              Cancel
+              <a href="/profilepage" style={{ textDecoration: "none" }}>
+                Cancel
+              </a>
             </button>
           </div>
         </form>

@@ -370,7 +370,9 @@ export default class CreateProfile extends Component {
               type="success"
             />
             <button className="btn btn-danger" type="cancel">
-              Cancel
+              <a href="/profilepage" style={{ textDecoration: "none" }}>
+                Cancel
+              </a>
             </button>
           </div>
           <div />
