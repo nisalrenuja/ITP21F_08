@@ -237,7 +237,7 @@ export default class EmpReportUpload extends Component {
             </label>
             <div class="input-group has-validation">
               <input
-                type="text"
+                type="number"
                 id="validationCustom03"
                 className="form-control"
                 name="execid_review"

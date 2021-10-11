@@ -333,7 +333,7 @@ left: 50px;
 top: 940px;
 
 }
-.thead{
+.tbhead{
     background: #276678;
     font-family: Inter;
     font-style: normal;
@@ -342,11 +342,11 @@ top: 940px;
     line-height: 24px;
     text-align: center;
     letter-spacing: -0.00022em;
-    color: #1687A7;
-    background: #D3E0EA;
+    color: #ffffff;
+    background: #276678;
     
 }
-.tfoot{
+.tbfoot{
     background: #276678;
     font-family: Inter;
     font-style: normal;
@@ -355,16 +355,16 @@ top: 940px;
     line-height: 24px;
     text-align: center;
     letter-spacing: -0.00022em;
-    color: #FFFFFF;
-    background: #D3E0EA;
+    color: #ffffff;
+    background: #276678;
     
 }
-.tfoot a{
+.tbfoot a{
     text-decoration: none;
-    color: #1687A7;
+    color: #ffffff;
     
 }
-.tfoot:hover{
+.tbfoot:hover{
     background: #47daba;
 }
 .tah1{
@@ -405,8 +405,8 @@ top: 50px;
     line-height: 24px;
     text-align: center;
     letter-spacing: -0.00022em;
-    color: #1687A7;
-    background: #D3E0EA;
+    color: #ffffff;
+    background: #276678;
     
 }
 

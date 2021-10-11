@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./EditEmployee.css";
 import { Redirect } from "react-router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default class EditEmployee extends Component {
   constructor(props) {
@@ -54,6 +56,13 @@ export default class EditEmployee extends Component {
       ...this.state,
       [name]: value
     });
+  };
+
+  //toast notification for invalid form data
+  notify = () => {
+    toast.error(
+      "Invalid Form Data. Please Check Name, Email, Status, Type, Contact & NIC Number !!!"
+    );
   };
 
   //Form validations for Employee name, email, status, type, status, contactNo and NICNo
@@ -139,10 +148,8 @@ export default class EditEmployee extends Component {
         contactError,
         NICError
       });
-      //Alert to display when error is triggered
-      alert(
-        "Invalid Form Data. Please Check Name, Email, Status, Type, Contact & NIC Number!!!"
-      );
+      //toast to display when error is triggered
+      this.notify();
       return false;
     }
     return true;
@@ -759,6 +766,19 @@ export default class EditEmployee extends Component {
             </button>
           </center>
         </form>
+        <ToastContainer
+          position="top-center"
+          autoClose={false}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme={"dark"}
+          type="success"
+        />
       </div>
     );
   }
