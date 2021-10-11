@@ -9,9 +9,12 @@ import AdminTab5 from "../../modules/AdminModules/AdminTab5";
 import AdminTab6 from "../../modules/AdminModules/AdminTab6";
 import AdminTab7 from "../../modules/AdminModules/AdminTab7";
 import AdminTab8 from "../../modules/AdminModules/AdminTab8";
-import DisplayReport from "../../modules/AdminModules/DisplayReport";
+import LapAllo from "../../modules/AdminModules/LapAllo";
+import CreateNotice from "../../modules/AdminModules/CreateNotice";
+import TopPerformers from "../../modules/AdminModules/TopPerformers";
+import TopEmpReport from "../../modules/AdminModules/TopEmpReport";
 
-const Displayreport = ({ history, match }) => {
+const Topempreport = ({ history, match }) => {
   let userRole = "";
   let selectedMenuOptionCache = "";
   if (process.browser) {
@@ -19,9 +22,7 @@ const Displayreport = ({ history, match }) => {
     selectedMenuOptionCache =
       window.localStorage.getItem("MenuOptionCache") || "";
   }
-  const [selectedMenuOption, setSelectedMenuOption] = useState(
-    "User Executive"
-  );
+  const [selectedMenuOption, setSelectedMenuOption] = useState("Report Review");
 
   useEffect(() => {
     if (userRole !== "Admin") {
@@ -46,22 +47,22 @@ const Displayreport = ({ history, match }) => {
     <div>
       {selectedMenuOption !== "" ? (
         <Container>
-          {selectedMenuOption === "User Executive" ? (
+          {selectedMenuOption === "Report Review" ? (
             <AdminTab1 />
-          ) : selectedMenuOption === "Report Management" ? (
-            <DisplayReport dataFromParent={match.params.finalreport} />
-          ) : selectedMenuOption === "MenuItem 3" ? (
+          ) : selectedMenuOption === "MenuItem 2" ? (
+            <AdminTab2 />
+          ) : selectedMenuOption === "Employees" ? (
             <AdminTab3 />
           ) : selectedMenuOption === "Work Allocation" ? (
             <AdminTab4 />
           ) : selectedMenuOption === "Notice Management" ? (
-            <AdminTab5 />
-          ) : selectedMenuOption === "Attendance & Payroll" ? (
+            <TopEmpReport />
+          ) : selectedMenuOption === "MenuItem 6" ? (
             <AdminTab6 />
           ) : selectedMenuOption === "MenuItem 7" ? (
             <AdminTab7 />
           ) : (
-            <DisplayReport dataFromParent={match.params.finalreport} />
+            <AdminTab8 />
           )}
         </Container>
       ) : (
@@ -75,4 +76,4 @@ const Displayreport = ({ history, match }) => {
   );
 };
 
-export default Displayreport;
+export default Topempreport;

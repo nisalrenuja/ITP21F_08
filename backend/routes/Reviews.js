@@ -109,4 +109,21 @@ router.delete("/review/delete/:id", (req, res) => {
   });
 });
 
+router.get("/checkreviewno", (req, res) => {
+  Posts.find()
+    .sort({ execid_review: -1 })
+    .limit(1)
+    .exec((err, Posts) => {
+      console.log(Posts);
+      var count = Posts.length;
+      if (err) {
+        return res.status(400).json({ success: false, err });
+      }
+      return res.status(200).json({
+        success: true,
+        execid_review: Posts,
+      });
+    });
+});
+
 module.exports = router;

@@ -92,12 +92,12 @@
     width: 623px;
     height: 129px;
     left: 250px;
-    top: 300px;
+    top: 310px;
 
     font-family: Inter;
     font-style: normal;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 30px;
     line-height: 39px;
     text-align: center;
 
@@ -106,7 +106,7 @@
 
   .anuline41 {
     position: absolute;
-    width: 1071.03px;
+    width: 1227px;
     height: 0px;
     left: 0px;
     top: 130px;
@@ -202,7 +202,7 @@
     width: 100%;
   
     left: 0px;
-    top: 450px;
+    top: 425px;
   }
   .anuthead {
     background: #276678;
@@ -241,10 +241,21 @@
   }
 
   
-  .anumain3 {
+  .anumain4 {
     width: 100%;
     height: 850px;
     white-space: nowrap;
     position: relative;
-    overflow-y: scroll;
+  }
+
+  .anubtng2{
+    position: absolute;
+    width: 100px;
+    height: 48px;
+    left: 1100px;
+    top: 75px;
+    background: 	#008080;;
+    
+    border-radius: 5px;
+  
   }

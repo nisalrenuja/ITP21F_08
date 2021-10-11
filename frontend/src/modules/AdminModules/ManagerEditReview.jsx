@@ -23,6 +23,32 @@ export default class ManagerEditReview extends Component {
 
   handleInputChange = e => {
     const { name, value } = e.target;
+    if (name === "execid_review") {
+      if (value.match("^[A-Z]{1}[0-9]{1,4}$")) {
+        document.getElementById("errorMessageExID").innerHTML = "";
+      } else {
+        document.getElementById("errorMessageExID").innerHTML =
+          "Please Enter correct Review ID";
+      }
+    }
+
+    if (name === "report") {
+      if (value.match("^[a-zA-Z][a-zA-Z\\s]+$")) {
+        document.getElementById("errorMessageName").innerHTML = "";
+      } else {
+        document.getElementById("errorMessageName").innerHTML =
+          "Please Enter correct Report Name";
+      }
+    }
+
+    if (name === "feedback") {
+      if (value.match("^[a-zA-Z][a-zA-Z\\s]+$")) {
+        document.getElementById("errorMessageFeed").innerHTML = "";
+      } else {
+        document.getElementById("errorMessageFeed").innerHTML =
+          "Please Enter correct Feedback";
+      }
+    }
     console.log(name);
     console.log(value);
     if (name === "managerStatus") {
@@ -59,6 +85,26 @@ export default class ManagerEditReview extends Component {
       managerStatus,
       status
     } = this.state;
+
+    if (execid_review === "" && report === "" && feedback === "") {
+      this.errorMessageAlert(
+        "You can't save anything without entering details"
+      );
+    } else if (execid_review === "") {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+      document.getElementById("errorMessageExID").innerHTML =
+        "Enter Correct Report ID";
+    } else if (report === "") {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+      document.getElementById("errorMessageName").innerHTML =
+        "Enter Correct Report Name";
+    } else if (feedback === "") {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+      document.getElementById("errorMessageFeed").innerHTML =
+        "Enter Correct Feedback";
+    } else {
+      //document.getElementsByClassName('errorMessage').innerHTML = '';
+    }
     let data = "";
     if (managerStatus === "Accepted") {
       data = {
@@ -167,6 +213,7 @@ export default class ManagerEditReview extends Component {
               value={this.state.execid_review}
               onChange={this.handleInputChange}
             />
+            <span id="errorMessageExID" style={{ color: "red" }}></span>
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
@@ -179,6 +226,7 @@ export default class ManagerEditReview extends Component {
               value={this.state.report}
               onChange={this.handleInputChange}
             />
+            <span id="errorMessageName" style={{ color: "red" }}></span>
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
@@ -239,6 +287,7 @@ export default class ManagerEditReview extends Component {
               value={this.state.feedback}
               onChange={this.handleInputChange}
             />
+            <span id="errorMessageFeed" style={{ color: "red" }}></span>
           </div>
 
           <div className="form-group" style={{ marginBottom: "15px" }}>
@@ -270,7 +319,7 @@ export default class ManagerEditReview extends Component {
             </button>{" "}
             &nbsp;&nbsp;
             <ToastContainer
-              position="bottom-center"
+              position="top-center"
               autoClose={5000}
               hideProgressBar={false}
               newestOnTop={false}

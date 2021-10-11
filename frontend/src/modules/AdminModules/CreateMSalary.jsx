@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Redirect } from "react-router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./AllPayrolls.css";
 
 export default class CreateMSalary extends Component {
@@ -7,7 +10,7 @@ export default class CreateMSalary extends Component {
     super(props);
 
     this.state = {
-      //salaryno: "",
+      payslipID: "",
       empno: "",
       name: "",
       pay_month: "",
@@ -27,6 +30,24 @@ export default class CreateMSalary extends Component {
     };
   }
 
+  demo = e => {
+    e.preventDefault();
+    this.setState({
+      empno: "1008",
+      name: "Sahani Kavindi",
+      pay_month: "10-2021",
+      basic: "37000",
+      OT_hrs: "11",
+      bonus: "2300",
+      aws: "700",
+      total_earnings: "0", //other_earnings
+      nopay_leaves: "2",
+      total_deductions: "3100", //other deductions
+      net_salary: "", //(auto calculated)
+      salary_status: "Pending"
+    });
+  };
+
   handleInputChange = e => {
     const { name, value } = e.target;
 
@@ -36,18 +57,101 @@ export default class CreateMSalary extends Component {
     });
   };
 
-  /*
-    handleInputFileChange = e => {
-        var file = e.target.files[0];
-        console.log(file);
-    };
-    */
+  componentDidMount() {
+    this.retrieveSalaries();
+  }
 
-  onSubmit = e => {
+  retrieveSalaries() {
+    axios.get(`http://localhost:5000/salaries/checkPayslipID`).then(res => {
+      if (res.data.success) {
+        this.setState({
+          salary: res.data.payslipID
+        });
+        if (res.data.payslipID.length == 0) {
+          console.log(res.data.staffs.length);
+
+          this.state.payslipID = 4000;
+        } else {
+          var no = this.state.salary[0].payslipID;
+          this.state.payslipID = no + 1;
+          console.log(this.state.payslipID);
+        }
+      }
+    });
+  }
+
+  validate = () => {
+    let payslipIDError = "";
+    let empnoError = "";
+    let nameError = "";
+    let pay_monthError = "";
+    let basicError = "";
+    let salary_statusError = "";
+
+    if (!this.state.payslipID) {
+      payslipIDError = "Pay slip ID required";
+    }
+    if (!this.state.empno) {
+      empnoError = "Employee no. required";
+    }
+    if (!this.state.name) {
+      nameError = "Employee name required";
+    }
+    if (!this.state.pay_month) {
+      pay_monthError = "Pay slip month required";
+    }
+    if (!this.state.basic) {
+      basicError = "Basic salary required";
+    }
+    if (!this.state.salary_status) {
+      salary_statusError = "Salary status required";
+    }
+
+    if (
+      payslipIDError ||
+      empnoError ||
+      nameError ||
+      pay_monthError ||
+      basicError ||
+      salary_statusError
+    ) {
+      this.setState({
+        payslipIDError,
+        empnoError,
+        nameError,
+        pay_monthError,
+        basicError,
+        salary_statusError
+      });
+      toast.warn("Invalid Form. Please Check Again!!!");
+      return false;
+    }
+    return true;
+  };
+
+  handleBackClick = () => {
+    this.setState({ redirectToReferrer: true });
+  };
+
+  onSubmit = async e => {
     e.preventDefault();
 
+    await axios
+      .get(`http://localhost:5000/salaries/checkPayslipID`)
+      .then(res => {
+        if (res.data.success) {
+          this.setState({
+            salary: res.data.payslipID
+          });
+          var no = this.state.salary[0].payslipID;
+          this.state.payslipID = no + 1;
+          console.log(this.state.payslipID);
+        } else {
+        }
+      });
+
     const {
-      //salaryno,
+      payslipID,
       empno,
       name,
       pay_month,
@@ -67,7 +171,7 @@ export default class CreateMSalary extends Component {
     } = this.state;
 
     const data = {
-      //salaryno: salaryno,
+      payslipID: payslipID,
       empno: empno,
       name: name,
       pay_month: pay_month,
@@ -86,35 +190,47 @@ export default class CreateMSalary extends Component {
       salary_status: salary_status
     };
 
-    console.log(data);
+    const isValid = this.validate();
+    if (isValid) {
+      console.log(this.state.payslipID);
+      console.log(data);
 
-    axios.post("http://localhost:5000/salary/save", data).then(res => {
-      if (res.data.success) {
-        this.setState({
-          empno: "",
-          name: "",
-          pay_month: "",
-          basic: "",
-          //OT_rate: "",
-          OT_hrs: "",
-          //total_OT: "",
-          bonus: "",
-          aws: "",
-          //earnings: [{ earn_reason: "", earn_amount : "" }],
-          total_earnings: "",
-          //deductions: [{ deduct_reason: "", deduct_amount : "" }],
-          nopay_leaves: "",
-          total_deductions: "",
-          net_salary: "",
-          salary_status: ""
-        });
-      }
-    });
+      axios.post("http://localhost:5000/salary/save", data).then(res => {
+        if (res.data.success) {
+          this.setState({
+            payslipID: "",
+            empno: "",
+            name: "",
+            pay_month: "",
+            basic: 0,
+            //OT_rate: "",
+            OT_hrs: 0,
+            //total_OT: "",
+            bonus: 0,
+            aws: 0,
+            //earnings: [{ earn_reason: "", earn_amount : "" }],
+            total_earnings: 0,
+            //deductions: [{ deduct_reason: "", deduct_amount : "" }],
+            nopay_leaves: 0,
+            total_deductions: 0,
+            net_salary: 0,
+            salary_status: ""
+          });
+          toast.success("Saved Details Successfully!");
+        }
+      });
+    }
+
     //alert("Save Details Successful!");
     //this.props.history.push("/allsalary");
   };
 
   render() {
+    const redirectToReferrer = this.state.redirectToReferrer;
+    if (redirectToReferrer == true) {
+      return <Redirect to="/allsalary" />;
+    }
+
     return (
       <div className="col-md-6 mt-4 mx-auto">
         <br />
@@ -122,9 +238,22 @@ export default class CreateMSalary extends Component {
         <h1>Payroll Management | Calculate Monthly Salary</h1>
         <br />
         <br />
+        <button
+          type="button"
+          class="btn btn-warning"
+          onClick={this.demo}
+          style={{
+            marginTop: "0px",
+            marginBottom: "30px",
+            borderRadius: "40px",
+            filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2))"
+          }}
+        >
+          Demo
+        </button>
 
         <form
-          className="need-validation"
+          className="need-validation2"
           noValidate
           style={{
             backgroundColor: "#F6F5F5",
@@ -133,15 +262,35 @@ export default class CreateMSalary extends Component {
             borderRadius: "15px"
           }}
         >
-          <h5>Employee Details</h5>
+          <div className="form-group col-sm-5" style={{ marginBottom: "15px" }}>
+            <label
+              for="valid1"
+              class="form-label"
+              style={({ marginBottom: "5px" }, { color: "#1687A7" })}
+            >
+              Pay Slip No
+            </label>
+            <input
+              type="text"
+              id="valid1"
+              className="form-control"
+              placeholder="auto generated"
+              name="payslipID"
+              value={this.state.payslipID}
+              onChange={this.handleInputChange}
+              disabled
+            />
+            <div className="formValid">{this.state.payslipIDError}</div>
+          </div>
+          <h4>Employee Details</h4>
           <hr></hr>
           <div className="form-group col-sm-5" style={{ marginBottom: "15px" }}>
             <label
               for="valid1"
               class="form-label"
-              style={{ marginBottom: "5px" }}
+              style={({ marginBottom: "5px" }, { color: "#1687A7" })}
             >
-              Employee ID
+              Employee ID<span style={{ color: "red" }}> *</span>
             </label>
             <input
               type="number"
@@ -152,28 +301,35 @@ export default class CreateMSalary extends Component {
               onChange={this.handleInputChange}
               required
             />
+            <div className="formValid">{this.state.empnoError}</div>
           </div>
           <div className="form-group " style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Name</label>
+            <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+              Name<span style={{ color: "red" }}> *</span>
+            </label>
             <input
               type="text"
               className="form-control"
               name="name"
+              placeholder="required**"
               placeholder="Enter full name"
               value={this.state.name}
               onChange={this.handleInputChange}
               required
             />
+            <div className="formValid">{this.state.nameError}</div>
           </div>
           <br />
-          <h5>Basic</h5>
+          <h4>Basic</h4>
           <hr></hr>
           <div class="d-flex justify-content-between">
             <div
               className="form-group  col-md-6"
               style={{ marginBottom: "15px" }}
             >
-              <label style={{ marginBottom: "5px" }}>Month-Year</label>
+              <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+                Month-Year<span style={{ color: "red" }}> *</span>
+              </label>
               <input
                 type="text"
                 className="form-control"
@@ -183,13 +339,14 @@ export default class CreateMSalary extends Component {
                 onChange={this.handleInputChange}
                 required
               />
+              <div className="formValid">{this.state.pay_monthError}</div>
             </div>
             <div
               className="form-group col-md-5"
               style={{ marginBottom: "15px" }}
             >
               <label style={{ marginBottom: "5px", color: "blue" }}>
-                Basic Salary
+                Basic Salary<span style={{ color: "red" }}> *</span>
               </label>
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -207,14 +364,17 @@ export default class CreateMSalary extends Component {
                   required
                 />
               </div>
+              <div className="formValid">{this.state.basicError}</div>
             </div>{" "}
           </div>
           <br />
-          <h5>Earnings</h5>
+          <h4>Earnings</h4>
           <hr></hr>
           <p style={{ color: "red" }}>** Current OT Rate/hr = Rs 120.00 **</p>
           <div className="form-group col-md-5" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>OT Hours</label>
+            <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+              OT Hours
+            </label>
             <div class="input-group">
               <input
                 type="number"
@@ -237,7 +397,9 @@ export default class CreateMSalary extends Component {
               className="form-group col-md-5"
               style={{ marginBottom: "15px" }}
             >
-              <label style={{ marginBottom: "5px" }}>Bonus</label>
+              <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+                Bonus
+              </label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroupPrepend">
@@ -259,7 +421,7 @@ export default class CreateMSalary extends Component {
               className="form-group col-md-5"
               style={{ marginBottom: "15px" }}
             >
-              <label style={{ marginBottom: "5px" }}>
+              <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
                 AWS (Annual Wage Supplements)
               </label>
               <div class="input-group">
@@ -281,7 +443,9 @@ export default class CreateMSalary extends Component {
             </div>{" "}
           </div>
           <div className="form-group col-md-5" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Other Earnings</label>
+            <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+              Other Earnings
+            </label>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupPrepend">
@@ -300,13 +464,13 @@ export default class CreateMSalary extends Component {
             </div>
           </div>{" "}
           <br />
-          <h5>Deductions</h5>
+          <h4>Deductions</h4>
           <hr></hr>
           <div className="form-group col-sm-5" style={{ marginBottom: "15px" }}>
             <label
               for="valid1"
               class="form-label"
-              style={{ marginBottom: "5px" }}
+              style={({ marginBottom: "5px" }, { color: "#1687A7" })}
             >
               Number of No Pay Leaves
             </label>
@@ -321,7 +485,9 @@ export default class CreateMSalary extends Component {
             />
           </div>
           <div className="form-group col-md-5" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Deductions</label>
+            <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
+              Deductions
+            </label>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupPrepend">
@@ -342,18 +508,20 @@ export default class CreateMSalary extends Component {
           <br />
           <hr></hr>
           <div className="form-group col-sm-6" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>
+            <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
               Did the employee recieved the salary ?
+              <span style={{ color: "red" }}> *</span>
             </label>
             <select
               defaultValue={"DEFAULT"}
               className="form-select"
               onChange={this.handleInputChange}
               name="salary_status"
+              placeholder="Select Salary Status"
               required
             >
               <option value="DEFAULT" disabled>
-                Select Salary Status
+                {this.state.salary_status}
               </option>
               <option value="Pending" class="alertyellow">
                 Pending
@@ -369,6 +537,7 @@ export default class CreateMSalary extends Component {
               </option>
               <option value="Other">Other</option>
             </select>
+            <div className="formValid">{this.state.salary_statusError}</div>
           </div>
           <br />
           <div class="d-flex justify-content-center">
@@ -388,7 +557,7 @@ export default class CreateMSalary extends Component {
           <div />
         </form>
         <div class="back">
-          <a href="/allsalary">
+          <a onClick={this.handleBackClick}>
             <i class="fas fa-angle-double-left fa-3x">
               &nbsp;&nbsp;Back To Salary List
             </i>
@@ -396,6 +565,19 @@ export default class CreateMSalary extends Component {
         </div>
 
         <br />
+        <ToastContainer
+          position="top-center"
+          autoClose={4000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme={"dark"}
+          type="success"
+        />
       </div>
     );
   }

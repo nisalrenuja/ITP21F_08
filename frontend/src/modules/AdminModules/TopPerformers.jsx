@@ -11,15 +11,12 @@ export default class TopPerformers extends Component {
       month: "",
       rank1: "",
       top_empid1: "",
-      top_empname1: "",
       total_points1: "",
       rank2: "",
       top_empid2: "",
-      top_empname2: "",
       total_points2: "",
       rank3: "",
       top_empid3: "",
-      top_empname3: "",
       total_points3: "",
       empno: "",
       points: "",
@@ -28,6 +25,7 @@ export default class TopPerformers extends Component {
     };
   }
 
+  //Delete finction for Top Performers
   onDelete = id => {
     console.log(id);
     axios
@@ -38,10 +36,13 @@ export default class TopPerformers extends Component {
       });
   };
 
+  //Retrieving Top Performers
   componentDidMount() {
     this.retrieveexistingTopPerformers();
     this.retrieveexistingPoints();
   }
+
+  //Retrieving Employee Points
   retrieveexistingPoints() {
     axios.get("http://localhost:5000/TopPerformers").then(res => {
       if (res.data.success) {
@@ -52,8 +53,10 @@ export default class TopPerformers extends Component {
       }
     });
   }
+
+  //Reteiving new top performers
   retrieveexistingTopPerformers() {
-    axios.get("http://localhost:5000/TopPerformers").then(res => {
+    axios.get("http://localhost:5000/TopPerformersTable").then(res => {
       if (res.data.success) {
         this.setState({
           existingTopPerformers: res.data.existingTopPerformers
@@ -63,6 +66,7 @@ export default class TopPerformers extends Component {
     });
   }
 
+  //insert function
   handleInputChange = e => {
     const { name, value } = e.target;
     this.setState({
@@ -71,34 +75,23 @@ export default class TopPerformers extends Component {
     });
   };
 
+  //Save function for Accepted button
   onSubmit = e => {
     e.preventDefault();
 
-    const {
-      year,
-      month,
-
-      top_empname1,
-
-      top_empname2,
-
-      top_empname3
-    } = this.state;
+    const { year, month } = this.state;
 
     const data = {
       year: year,
       month: month,
       rank1: 1,
       top_empid1: this.state.existingPoints[0].empno,
-      top_empname1: top_empname1,
       total_points1: this.state.existingPoints[0].points,
       rank2: 1,
       top_empid2: this.state.existingPoints[1].empno,
-      top_empname2: top_empname2,
       total_points2: this.state.existingPoints[1].points,
       rank3: 1,
       top_empid3: this.state.existingPoints[2].empno,
-      top_empname3: top_empname3,
       total_points3: this.state.existingPoints[2].points
     };
 
@@ -110,36 +103,38 @@ export default class TopPerformers extends Component {
           month: month,
           rank1: 1,
           top_empid1: this.state.existingPoints[0].empno,
-          top_empname1: top_empname1,
           total_points1: this.state.existingPoints[0].points,
           rank2: 1,
           top_empid2: this.state.existingPoints[1].empno,
-          top_empname2: top_empname2,
           total_points2: this.state.existingPoints[1].points,
           rank3: 1,
           top_empid3: this.state.existingPoints[2].empno,
-          top_empname3: top_empname3,
           total_points3: this.state.existingPoints[2].points,
           redirectToReferrer: true
         });
-        //alert("Employee added to assignment, Enter employee number");
+        alert("New Top Performers for the Month added successfully!");
       }
     });
   };
 
   render() {
     const redirectToReferrer = this.state.redirectToReferrer;
-    if (redirectToReferrer == true) {
+    if (redirectToReferrer == false) {
       return <Redirect to="/AdminTab5" />;
     }
     return (
       <div className="container">
-        <div class="senmain">
-          <h2 class="senhead1">Notice Management | Top Performers</h2>
+        <div class="senmaintop">
+          <h2 class="senhead1"> Top Performers</h2>
           <hr class="senline1"></hr>
+
+          <a href="/TopEmpReport" class="btn btn-info reportdiv">
+            <i class="fa fa-file fa-2x" aria-hidden="true"></i>&nbsp;
+          </a>
+
           <a href="">
             <button class="sendiv4">
-              <p class="sentxt4">Retrieve</p>
+              <p class="sentxt4">Get Top Employees</p>
             </button>
           </a>
 
@@ -194,7 +189,7 @@ export default class TopPerformers extends Component {
               </thead>
               <tbody class="sentbody99">
                 {this.state.existingPoints.map((existingPoints, index) => (
-                  <tr key={index}>
+                  <tr>
                     <td>
                       <p>01</p>
                     </td>
@@ -213,6 +208,54 @@ export default class TopPerformers extends Component {
                 <p class="banana">Accepted</p>
               </button>
             </a>
+          </div>
+          <br></br>
+          <br></br>
+
+          <div>
+            <h2 class="puppy"> All Company Top Performers </h2>
+            <table className="table table-hover sentable2">
+              <thead class="senthead">
+                <tr>
+                  <th scope="col">Year</th>
+                  <th scope="col">Month</th>
+                  <th scope="col">Rank 1</th>
+                  <th scope="col">Rank 2</th>
+                  <th scope="col">Rank 3</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="sentbody1">
+                {this.state.existingTopPerformers.map(
+                  (existingTopPerformers, index) => (
+                    <tr key={index}>
+                      <td>{existingTopPerformers.year}</td>
+                      <td>{existingTopPerformers.month}</td>
+                      <td>{existingTopPerformers.top_empid1}</td>
+
+                      <td>{existingTopPerformers.top_empid2}</td>
+                      <td>{existingTopPerformers.top_empid3}</td>
+
+                      <td>
+                        <a href={existingTopPerformers._id} class="icon-btns">
+                          <i class="fas fa-eye"></i>&nbsp;&nbsp;&nbsp;
+                        </a>
+                        &nbsp;
+                        <a
+                          href="#"
+                          onClick={() =>
+                            this.onDelete(existingTopPerformers._id)
+                          }
+                        >
+                          <i className="far fa-trash-alt"></i>&nbsp;
+                        </a>
+                      </td>
+                    </tr>
+                  )
+                )}
+              </tbody>
+              <tfoot class="tfoot"></tfoot>
+            </table>
           </div>
         </div>
       </div>

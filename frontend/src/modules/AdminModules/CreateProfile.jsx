@@ -16,7 +16,8 @@ export default class CreateProfile extends Component {
       contact: "",
       position: "",
       gender: "",
-      dob: ""
+      dob: "",
+      executive: []
     };
   }
 
@@ -73,6 +74,29 @@ export default class CreateProfile extends Component {
     };
     */
 
+  componentDidMount() {
+    this.retrievePosts();
+  }
+
+  retrievePosts() {
+    axios.get(`http://localhost:5000/checkexeno`).then(res => {
+      if (res.data.success) {
+        this.setState({
+          executive: res.data.exeno
+        });
+        if (res.data.exeno.length == 0) {
+          console.log(res.data.exeno.length);
+
+          this.state.exeno = 1000;
+        } else {
+          var no = this.state.executive[0].exeno;
+          this.state.exeno = no + 1;
+          console.log(this.state.exeno);
+        }
+      }
+    });
+  }
+
   DetailsSave = () => {
     toast.success("Details Saved Successfully");
   };
@@ -81,13 +105,22 @@ export default class CreateProfile extends Component {
     toast.error(message);
   };
 
-  onSubmit = e => {
+  onSubmit = async e => {
     e.preventDefault();
+    await axios.get(`http://localhost:5000/checkexeno`).then(res => {
+      if (res.data.success) {
+        this.setState({
+          executive: res.data.exeno
+        });
+        var no = this.state.executive[0].exeno;
+        this.state.exeno = no + 1;
+        console.log(this.state.exeno);
+      }
+    });
 
     const { exeno, name, email, contact, position, gender, dob } = this.state;
 
     if (
-      exeno === "" &&
       name === "" &&
       email === "" &&
       contact === "" &&
@@ -98,10 +131,6 @@ export default class CreateProfile extends Component {
       this.errorMessageAlert(
         "You can't save anything without entering details"
       );
-    } else if (exeno === "") {
-      //document.getElementsByClassName('errorMessage').innerHTML = '';
-      document.getElementById("errorMessageExID").innerHTML =
-        "Enter Correct Executive ID";
     } else if (name === "") {
       //document.getElementsByClassName('errorMessage').innerHTML = '';
       document.getElementById("errorMessageName").innerHTML =
@@ -186,13 +215,14 @@ export default class CreateProfile extends Component {
               Executive ID
             </label>
             <input
-              type="text"
+              type="number"
               id="valid1"
               className="form-control"
               name="exeno"
               value={this.state.exeno}
               onChange={this.handleInputChange}
               required
+              disabled
             />
             <span id="errorMessageExID" style={{ color: "red" }}></span>
           </div>
@@ -327,7 +357,7 @@ export default class CreateProfile extends Component {
             </button>{" "}
             &nbsp;&nbsp;
             <ToastContainer
-              position="bottom-center"
+              position="top-center"
               autoClose={5000}
               hideProgressBar={false}
               newestOnTop={false}

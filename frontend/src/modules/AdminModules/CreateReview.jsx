@@ -15,7 +15,8 @@ export default class CreateReview extends Component {
       points: "",
       feedback: "",
       status: "",
-      uploadPercentage: 0
+      uploadPercentage: 0,
+      review: []
     };
   }
 
@@ -55,6 +56,29 @@ export default class CreateReview extends Component {
     });
   };
 
+  componentDidMount() {
+    this.retrievePosts();
+  }
+
+  retrievePosts() {
+    axios.get(`http://localhost:5000/checkreviewno`).then(res => {
+      if (res.data.success) {
+        this.setState({
+          review: res.data.execid_review
+        });
+        if (res.data.execid_review.length == 0) {
+          console.log(res.data.execid_review.length);
+
+          this.state.execid_review = 1000;
+        } else {
+          var no = this.state.review[0].execid_review;
+          this.state.execid_review = no + 1;
+          console.log(this.state.execid_review);
+        }
+      }
+    });
+  }
+
   handleInputFileChange = e => {
     var file = e.target.files[0];
     console.log(file);
@@ -68,8 +92,19 @@ export default class CreateReview extends Component {
     toast.error(message);
   };
 
-  onSubmit = e => {
+  onSubmit = async e => {
     e.preventDefault();
+    await axios.get(`http://localhost:5000/checkreviewno`).then(res => {
+      if (res.data.success) {
+        console.log(typeof res.data.execid_review);
+        this.setState({
+          review: res.data.execid_review
+        });
+        var no = this.state.review[0].execid_review;
+        this.state.execid_review = no + 1;
+        console.log(this.state.execid_review);
+      }
+    });
 
     const {
       execid_review,
@@ -80,14 +115,10 @@ export default class CreateReview extends Component {
       status
     } = this.state;
 
-    if (execid_review === "" && report === "" && feedback === "") {
+    if (report === "" && feedback === "") {
       this.errorMessageAlert(
         "You can't save anything without entering details"
       );
-    } else if (execid_review === "") {
-      //document.getElementsByClassName('errorMessage').innerHTML = '';
-      document.getElementById("errorMessageExID").innerHTML =
-        "Enter Correct Report ID";
     } else if (report === "") {
       //document.getElementsByClassName('errorMessage').innerHTML = '';
       document.getElementById("errorMessageName").innerHTML =
@@ -167,12 +198,14 @@ export default class CreateReview extends Component {
           <div className="form-group" style={{ marginBottom: "15px" }}>
             <label style={{ marginBottom: "5px" }}>Review ID</label>
             <input
-              type="text"
+              type="number"
               className="form-control"
               name="execid_review"
               placeholder="Enter Review ID"
               value={this.state.execid_review}
               onChange={this.handleInputChange}
+              required
+              disabled
             />
             <span id="errorMessageExID" style={{ color: "red" }}></span>
           </div>
@@ -270,7 +303,7 @@ export default class CreateReview extends Component {
             </button>{" "}
             &nbsp;&nbsp;
             <ToastContainer
-              position="bottom-center"
+              position="top-center"
               autoClose={5000}
               hideProgressBar={false}
               newestOnTop={false}

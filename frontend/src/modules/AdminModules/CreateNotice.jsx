@@ -32,6 +32,7 @@ export default class CreateNotice extends Component {
       }
     });
   }
+  //input fields
   handleInputChange = e => {
     const { name, value } = e.target;
     this.setState({
@@ -40,19 +41,68 @@ export default class CreateNotice extends Component {
     });
   };
 
+  //insert PDFs
   handleInputFileChange = e => {
     var file = e.target.files[0];
     console.log(file);
   };
 
-  onCheck = name => {
-    console.log(name);
-    axios.get(`http://localhost:5000/checkassigned/${name}`).then(res => {
-      if (res.data.success) {
-        alert("Assigned to " + res.data.l + " assignment/s!");
-      }
-    });
+  //Validation for the form
+  validate = () => {
+    let noticeidError = "";
+    let empidError = "";
+    let empnameError = "";
+    let noticetopicError = "";
+    let noticecontentError = "";
+    let pubdateError = "";
+
+    if (!this.state.notice_id) {
+      noticeidError = "Notice ID required";
+    }
+
+    if (!this.state.emp_id) {
+      empidError = "Enter your Employee ID";
+    }
+
+    if (!this.state.emp_name) {
+      empnameError = "Enter Employee Name";
+    }
+
+    if (!this.state.notice_topic) {
+      noticetopicError = "Please enter a Notice Topic";
+    }
+
+    if (!this.state.notice_content) {
+      noticecontentError = "Please enter Notice Content";
+    }
+
+    if (!this.state.published_date) {
+      pubdateError = "Enter the Date";
+    }
+
+    if (
+      noticeidError ||
+      empidError ||
+      empnameError ||
+      noticetopicError ||
+      noticecontentError ||
+      pubdateError
+    ) {
+      this.setState({
+        noticeidError,
+        empidError,
+        empnameError,
+        noticetopicError,
+        noticecontentError,
+        pubdateError
+      });
+      alert("Please fill the required fields!");
+      return false;
+    }
+    return true;
   };
+
+  //Submit function for the Save button
   onSubmit = e => {
     e.preventDefault();
 
@@ -74,27 +124,31 @@ export default class CreateNotice extends Component {
       notice_content: notice_content,
       notice_attachments: notice_attachments,
       published_date: published_date
-      //progress: "Assigned"
     };
 
+    //Saving notices
     console.log(data);
-    axios.post("http://localhost:5000/CreateNotice/save/", data).then(res => {
-      if (res.data.success) {
-        this.setState({
-          notice_id: notice_id,
-          emp_id: emp_id,
-          emp_name: emp_name,
-          notice_topic: notice_topic,
-          notice_content: notice_content,
-          notice_attachments: notice_attachments,
-          published_date: published_date,
-          redirectToReferrer: true
-        });
-        //alert("Employee added to assignment, Enter employee number");
-      }
-    });
+    const isValid = this.validate();
+    if (isValid) {
+      axios.post("http://localhost:5000/CreateNotice/save/", data).then(res => {
+        if (res.data.success) {
+          this.setState({
+            notice_id: notice_id,
+            emp_id: emp_id,
+            emp_name: emp_name,
+            notice_topic: notice_topic,
+            notice_content: notice_content,
+            notice_attachments: notice_attachments,
+            published_date: published_date,
+            redirectToReferrer: true
+          });
+          alert("New notice is created");
+        }
+      });
+    }
   };
 
+  //Uploading PDFs (Notice attachments)
   uploadPDF(e) {
     if (e.target.files[0] !== null) {
       const uploadTask = storage
@@ -102,13 +156,7 @@ export default class CreateNotice extends Component {
         .put(e.target.files[0]);
       uploadTask.on(
         "state_changed",
-        snapshot => {
-          //progress function
-          //const progress = Math.round(
-          //(snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          //);
-          //this.setState({ uploadPercentage: progress });
-        },
+        snapshot => {},
         error => {
           //error function
           console.log(error);
@@ -147,6 +195,7 @@ export default class CreateNotice extends Component {
                 class="senaicc"
                 id="notice_id"
                 name="notice_id"
+                placeholder="NB000"
                 value={this.state.notice_id}
                 onChange={this.handleInputChange}
               />
