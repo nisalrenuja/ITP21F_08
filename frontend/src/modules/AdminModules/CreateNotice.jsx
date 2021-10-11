@@ -19,6 +19,21 @@ export default class CreateNotice extends Component {
       redirectToReferrer: false
     };
   }
+
+  //demo
+  demosenara = e => {
+    e.preventDefault();
+    this.setState({
+      notice_id: "NB001",
+      emp_id: "EM923",
+      emp_name: "C. T. Perera",
+      notice_topic: "Company Special Holiday",
+      notice_content:
+        "The 20th of October is declared a Company Special Holiday to celebrate the...",
+      published_date: "2021-10-13"
+    });
+  };
+
   componentDidMount() {
     this.retrieveexistingNotices();
   }
@@ -187,6 +202,22 @@ export default class CreateNotice extends Component {
         <div class="senamain3">
           <h1 class="senahead1c">Notice Management | Create Notice</h1>
           <hr class="senaline1c"></hr>
+
+          <button
+            type="button"
+            class="kottu"
+            onClick={this.demosenara}
+            style={{
+              marginTop: "0px",
+              marginBottom: "0px",
+              marginLeft: "500",
+              borderRadius: "40px",
+              filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2))"
+            }}
+          >
+            Demo
+          </button>
+
           <div class="senamain33">
             <form>
               <p class="senaic">Notice ID:</p>
@@ -259,20 +290,24 @@ export default class CreateNotice extends Component {
               />
 
               <center>
-                <a href="/AdminTab5">
-                  <button
-                    className="btn btn-success"
-                    type="submit"
-                    style={{ marginTop: "795px", width: "20%" }}
-                    onClick={this.onSubmit}
-                  >
-                    <i className="fas fa-save"></i>&nbsp;Save
-                  </button>
-                </a>
+                {" "}
                 <button
-                  className="btn btn-secondary"
+                  className="btn btn-info"
                   type="submit"
-                  style={{ marginTop: "795px", width: "20%" }}
+                  style={{
+                    backgroundColor: "#1687A7",
+                    marginTop: "795px",
+                    width: "10%"
+                  }}
+                  onClick={this.onSubmit}
+                >
+                  &nbsp;&nbsp;Save&nbsp;&nbsp;
+                </button>{" "}
+                &nbsp;&nbsp;
+                <button
+                  className="btn btn-danger"
+                  type="cancel"
+                  style={{ marginTop: "795px", width: "10%" }}
                 >
                   Cancel
                 </button>

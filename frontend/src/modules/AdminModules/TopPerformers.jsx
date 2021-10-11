@@ -36,7 +36,7 @@ export default class TopPerformers extends Component {
       });
   };
 
-  //Retrieving Top Performers
+  //Loading Top Performers
   componentDidMount() {
     this.retrieveexistingTopPerformers();
     this.retrieveexistingPoints();
@@ -237,9 +237,6 @@ export default class TopPerformers extends Component {
                       <td>{existingTopPerformers.top_empid3}</td>
 
                       <td>
-                        <a href={existingTopPerformers._id} class="icon-btns">
-                          <i class="fas fa-eye"></i>&nbsp;&nbsp;&nbsp;
-                        </a>
                         &nbsp;
                         <a
                           href="#"
@@ -247,7 +244,7 @@ export default class TopPerformers extends Component {
                             this.onDelete(existingTopPerformers._id)
                           }
                         >
-                          <i className="far fa-trash-alt"></i>&nbsp;
+                          <i className="far fa-trash-alt"></i>
                         </a>
                       </td>
                     </tr>
