@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 
 const top_Performers_Schema = new mongoose.Schema({
   
-    /*notice_top_id:{
-      type: String,
-      required: true,
-    },*/
     year:{
       type:Number,
       required: false
