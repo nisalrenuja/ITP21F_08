@@ -9,64 +9,31 @@ export default class AttendanceReport extends Component {
     super(props);
     //set the initial states
     this.state = {
-      attendances: [],
-      attend1: [],
-      attend2: [],
-      attendcount1: "",
-      attendcount2: ""
-
-      /*
-      assignments: [],
-      ncompleted: [],
-      staff: [],
-      fstaff: [],
-      allowances: [],
-      employee1: [],
-      employee2: [],
-      province: [],
-      since: [],
-      employeecount1: "",
-      employeecount2: "",
-      Tranineetotal: "",
-      Seniortotal: "",
-      seniorM: "",
-      seniorF: "",
-      traineeM: "",
-      traineeF: ""
-
-      */
+      attendances: []
     };
   }
 
-  //Load the attendance data
+  //A method in react life cycle
   componentDidMount() {
     this.retrieveAttendances();
   }
 
-  //Retrieve all the attendance data for charts and tables
   retrieveAttendances() {
-    //Get all in company attendance
-    axios.get("http://localhost:5000/attendances/incompany").then(res => {
+    //end point
+    axios.get("http://localhost:5000/attendances").then(res => {
       if (res.data.success) {
         this.setState({
-          attend1: res.data.existingAttendances,
-          attendcount1: res.data.attendanceCount,
-          incompanycount: res.data.attendlocationCount
+          attendances: res.data.existingAttendances,
+          attendancecount: res.data.attendanceCount
         });
-      }
-    });
 
-    //Get all assignment attendance
-    axios.get("http://localhost:5000/attendances/assignlocation").then(res => {
-      if (res.data.success) {
-        this.setState({
-          attend2: res.data.existingAttendances,
-          attendcount2: res.data.attendanceCount,
-          assignlocationcount: res.data.attendlocationCount
-        });
+        console.log(this.state.attendances);
+        console.log(this.state.attendancecount);
       }
     });
   }
+
+  //Retrieve all the attendance data for charts and tables
 
   //Generate PDF of loaded details
   generatePDF = () => {
@@ -80,8 +47,64 @@ export default class AttendanceReport extends Component {
   };
 
   render() {
+    /*
+    //count no of employeed who did not get paid yet
+    const notpaidcount = this.state.salaries.reduce((notpaidcount, salaries) => {
+      if (salaries.salary_status.toLowerCase() === 'not recieved') {
+        return notpaidcount + (salaries.basic, 1);
+      } 
+      return notpaidcount;
+    }, 0);*/
+
+    //count no of employeed each month
+    const presentcountA = this.state.attendances.reduce(
+      (presentcountA, attendances) => {
+        if (attendances.att_type.toLowerCase() === "present") {
+          return presentcountA + (attendances.empno, 1);
+        }
+        return presentcountA;
+      },
+      0
+    );
+    const absentcountA = this.state.attendances.reduce(
+      (absentcountA, attendances) => {
+        if (attendances.att_type.toLowerCase() === "absent") {
+          return absentcountA + (attendances.empno, 1);
+        }
+        return absentcountA;
+      },
+      0
+    );
+    const paidleavecountA = this.state.attendances.reduce(
+      (paidleavecountA, attendances) => {
+        if (attendances.att_type.toLowerCase() === "on paid leave") {
+          return paidleavecountA + (attendances.empno, 1);
+        }
+        return paidleavecountA;
+      },
+      0
+    );
+    const unpaidleavecountA = this.state.attendances.reduce(
+      (unpaidleavecountA, attendances) => {
+        if (attendances.att_type.toLowerCase() === "on unpaid leave") {
+          return unpaidleavecountA + (attendances.empno, 1);
+        }
+        return unpaidleavecountA;
+      },
+      0
+    );
+    const holidaycountA = this.state.attendances.reduce(
+      (holidaycountA, attendances) => {
+        if (attendances.att_type.toLowerCase() === "holiday") {
+          return holidaycountA + (attendances.empno, 1);
+        }
+        return holidaycountA;
+      },
+      0
+    );
+
     return (
-      <div className="container dim_main">
+      <div className="container container222 ">
         <center>
           <br />
           <h1> Attendance Report 2021</h1>&nbsp;
@@ -93,12 +116,16 @@ export default class AttendanceReport extends Component {
           >
             Print:PDF
           </button>
+          <hr></hr>
+          {holidaycountA}
           <div
             id="AttReportContent"
             style={{ marginTop: "10px", padding: "10px", paddingRight: "5px" }}
           >
             <div>
-              <h2>Assignment Attendance Records ({this.state.attendcount1})</h2>
+              <h2>
+                Assignment Attendance Records ( {this.state.attendancecount} )
+              </h2>
               &nbsp;
               <table className="table table-hover bbtable1">
                 <thead class="thead">
@@ -113,16 +140,12 @@ export default class AttendanceReport extends Component {
                   </tr>
                 </thead>
                 <tbody class="tbody1">
-                  {this.state.attend1.map((attendances, index) => (
+                  {this.state.attendances.map((attendances, index) => (
                     <tr key={index}>
                       <td>{attendances.att_date}</td>
-                      <td>
-                        <a href={``} style={{ textDecoration: "none" }}>
-                          {attendances.empno}
-                        </a>
-                      </td>
+                      <td>{attendances.empno}</td>
                       <td>{attendances.assignment_name}</td>
-                      <td>{attendances.loacation}</td>
+                      <td>{attendances.location}</td>
                       <td style={{ fontWeight: "bold" }}>
                         {attendances.att_type}
                       </td>
@@ -133,103 +156,44 @@ export default class AttendanceReport extends Component {
                 </tbody>
                 &nbsp;
               </table>
-              <hr></hr>
-              <h2>In Company Attendance Records ({this.state.attendcount2})</h2>
-              &nbsp;
-              <table className="table table-hover bbtable1">
-                <thead class="thead">
-                  <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Employee ID</th>
-                    <th scope="col">Attendance</th>
-                    <th scope="col">Time In</th>
-                    <th scope="col">Time Out</th>
-                  </tr>
-                </thead>
-                <tbody class="tbody1">
-                  {this.state.attend2.map((attendances, index) => (
-                    <tr key={index}>
-                      <td>{attendances.att_date}</td>
-                      <td>
-                        <a href={``} style={{ textDecoration: "none" }}>
-                          {attendances.empno}
-                        </a>
-                      </td>
-                      <td style={{ fontWeight: "bold" }}>
-                        {attendances.att_type}
-                      </td>
-                      <td>{attendances.time_in}</td>
-                      <td>{attendances.time_out}</td>
-                    </tr>
-                  ))}
-                </tbody>
-                &nbsp;
-              </table>
+              <Chart
+                width={"100%"}
+                height={"500px"}
+                chartType="ComboChart"
+                loader={<div>Loading Chart</div>}
+                data={[
+                  [
+                    "Type",
+                    "Present",
+                    "Absent",
+                    "On Paid Leave",
+                    "On Unpaid Leave",
+                    "Holiday"
+                  ],
+                  ["In Company(Demo Values)", 25, 8, 2, 8, 0], // demo values
+                  [
+                    "Assignments",
+                    presentcountA,
+                    absentcountA,
+                    paidleavecountA,
+                    unpaidleavecountA,
+                    holidaycountA
+                  ]
+                ]}
+                options={{
+                  title: "Attendance Summary",
+                  vAxis: { title: "Attendance Count" },
+                  hAxis: { title: "Attendance Type" },
+                  seriesType: "bars",
+                  series: { 5: { type: "line" } }
+                }}
+                rootProps={{ "data-testid": "1" }}
+              />
             </div>
+
             <hr></hr>
-            {/*}
-            <h1></h1>
-            <Chart
-              width={"800px"}
-              height={"600px"}
-              chartType="PieChart"
-              loader={<div>Loading Chart</div>}
-              data={[
-                ["Task", "Hours per Day"],
-                ["Seniors", this.state.Seniortotal],
-                ["Trainees", this.state.Tranineetotal]
-              ]}
-              options={{
-                title: "Employee Distribution"
-              }}
-              rootProps={{ "data-testid": "1" }}
-            />
-            <Chart
-              width={"800px"}
-              height={"700px"}
-              chartType="PieChart"
-              loader={<div>Loading Chart</div>}
-              data={[
-                ["Task", "Hours per Day"],
-                ["Western", W[0]],
-                ["Cental", W[1]],
-                ["Southern", W[2]],
-                ["Southern", W[3]],
-                ["Sabaragamuwa", W[4]],
-                ["North Western", W[5]],
-                ["North Central", W[6]],
-                ["Northern", W[7]],
-                ["Eastern", W[8]]
-              ]}
-              options={{
-                title: "Employee Origin"
-              }}
-              rootProps={{ "data-testid": "1" }}
-            />
-            <Chart
-              width={"800px"}
-              height={"400px"}
-              chartType="BarChart"
-              loader={<div>Loading Chart</div>}
-              data={[
-                ["Status", "Male", "Female"],
-                ["Seniors", this.state.seniorM, this.state.seniorF],
-                ["Trainees", this.state.traineeM, this.state.traineeF]
-              ]}
-              options={{
-                title: "Employee Gender Classification Based on Status",
-                chartArea: { width: "50%" },
-                hAxis: {
-                  title: "Total Employees",
-                  minValue: 0
-                },
-                vAxis: {
-                  title: "Status"
-                }
-              }}
-              // For tests
-              rootProps={{ "data-testid": "1" }}
-            />*/}
+
+            <br />
           </div>
         </center>
         <br />

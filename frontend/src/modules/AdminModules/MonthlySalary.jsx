@@ -81,17 +81,26 @@ export default class MonthlySalary extends Component {
   };
 
   render() {
+    
     return (
       <div className="container dim_main">
         <br></br>
 
         <div className="adminpayroll">
           <div className="row">
-            <div class="d-flex justify-content-between">
+            <div class="d-flex">
               <div className="col-lg-9 mt-2 mb-2 font-weight-bold ">
                 <br />
                 <h1 class="ap-topic">Payroll Management</h1>
               </div>
+
+              <div className="p-2">
+                <a href="/salaryreport" class="btn btn-info att-reportbtn">
+                  Salary &nbsp;
+                  <i class="fa fa-file fa-2x" aria-hidden="true"></i>
+                </a>
+              </div>
+
               <div>
                 <Clock />
               </div>
@@ -166,7 +175,7 @@ export default class MonthlySalary extends Component {
               <tr class="">
                 <th scope="col"> #</th>
                 <th scope="col"> Pay Slip ID</th>
-                <th scope="col"> Employee ID</th>
+                <th scope="col"> Employee Name</th>
                 <th scope="col"> Month-Year</th>
                 <th scope="col"> Basic</th>
                 <th scope="col"> Total Earnings</th>
@@ -189,14 +198,14 @@ export default class MonthlySalary extends Component {
                       data-tip
                       data-for="showTip"
                     >
-                      {salaries.payslipID}-{salaries.pay_month}
+                      {salaries.payslipID}-{salaries.empno}
                     </a>
                     <ReactTooltip id="showTip" place="top">
                       <span>View pay slip</span>
                     </ReactTooltip>
                   </td>
 
-                  <td>{salaries.empno}</td>
+                  <td>{salaries.name}</td>
                   <td>{salaries.pay_month}</td>
                   <td>{salaries.basic}</td>
                   <td>

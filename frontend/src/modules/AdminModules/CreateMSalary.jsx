@@ -79,6 +79,29 @@ export default class CreateMSalary extends Component {
       }
     });
   }
+  /*
+  formValid = () => {
+    let payslipIDError, empnoError, nameError, pay_monthError, basicError, salary_statusError= "";
+    //validation
+    if (this.state.payslipID === '' || !this.state.empno) invalidEmpno = 'Employee no. required'
+    else if (this.state.empno === '' || !this.state.name) invalidName = 'Employee name required'
+    else if (this.state.name === '' || !this.state.position) invalidPosition = 'Position required'
+    else if (this.state.pay_month === '' || !this.state.bank) invalidBank = 'Bank name required'
+    else if ( this.state.basic === '' || !this.state.bank_branch) invalidBank_branch = 'Branch required'
+    else if (this.state.salary_status === '' || !this.state.account_no) invalidAccount = 'Account no. required'
+  
+
+    while( invalidEmpno ||invalidName ||invalidPosition ||invalidBank ||
+      invalidBank_branch ||invalidAccount ||invalidBasic
+    ) {this.setState({
+        invalidEmpno, invalidName, invalidPosition, invalidBank,
+        invalidBank_branch, invalidAccount, invalidBasic
+      });
+      toast.error("Error While Saving. Please Check Again!!!");
+      return false;
+    }
+    return true;
+  };*/
 
   validate = () => {
     let payslipIDError = "";
@@ -246,7 +269,7 @@ export default class CreateMSalary extends Component {
             marginTop: "0px",
             marginBottom: "30px",
             borderRadius: "40px",
-            filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2))"
+            filter: "drop-shadow(0px 4px 4px rgba (0, 0, 0, 0.2))"
           }}
         >
           Demo
@@ -274,7 +297,7 @@ export default class CreateMSalary extends Component {
               type="text"
               id="valid1"
               className="form-control"
-              placeholder="auto generated"
+              placeholder=""
               name="payslipID"
               value={this.state.payslipID}
               onChange={this.handleInputChange}
@@ -324,21 +347,35 @@ export default class CreateMSalary extends Component {
           <hr></hr>
           <div class="d-flex justify-content-between">
             <div
-              className="form-group  col-md-6"
+              className="form-group col-md-5"
               style={{ marginBottom: "15px" }}
             >
               <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
-                Month-Year<span style={{ color: "red" }}> *</span>
+                Month
               </label>
-              <input
-                type="text"
-                className="form-control"
-                name="pay_month"
-                placeholder="Please type mm-yyyy (eg: 01-2021)"
-                value={this.state.pay_month}
+              <select
+                defaultValue={"DEFAULT"}
+                className="form-select"
+                aria-label="Default select example"
                 onChange={this.handleInputChange}
-                required
-              />
+                name="pay_month"
+              >
+                <option value="DEFAULT" disabled>
+                  {this.state.pay_month}
+                </option>
+                <option name="jan">January</option>
+                <option name="feb">February</option>
+                <option name="mar">March</option>
+                <option name="apr">April</option>
+                <option name="may">May</option>
+                <option name="jun">June</option>
+                <option name="jul">July</option>
+                <option name="aug">August</option>
+                <option name="sep">September</option>
+                <option name="oct">October</option>
+                <option name="nov">November</option>
+                <option name="dec">December</option>
+              </select>
               <div className="formValid">{this.state.pay_monthError}</div>
             </div>
             <div
@@ -529,6 +566,7 @@ export default class CreateMSalary extends Component {
               <option value="Recieved" class="alertgreen">
                 Recieved
               </option>
+              salary{" "}
               <option value="Not Recieved" class="alertred">
                 Not Recieved
               </option>
@@ -567,7 +605,7 @@ export default class CreateMSalary extends Component {
         <br />
         <ToastContainer
           position="top-center"
-          autoClose={4000}
+          autoClose={3000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick

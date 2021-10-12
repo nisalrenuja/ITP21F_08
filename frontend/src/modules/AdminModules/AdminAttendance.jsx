@@ -30,7 +30,7 @@ export default class AdminAttendance extends Component {
         this.setState({
           attendances: res.data.existingAttendances,
           attendancecount: res.data.attendanceCount,
-          locationcount: res.data.attendlocationCount
+
         });
 
         console.log(this.state.attendances);
