@@ -157,7 +157,6 @@ export default class CreateLaptop extends Component {
           this.props.history.push("/admin");
         }
       });
-      console.log("Submitting");
     } else {
       console.error("Form invalid");
     }
@@ -175,7 +174,7 @@ export default class CreateLaptop extends Component {
             <hr />
             <button
               type="button"
-              class="btn btn-warning"
+              class="btn btn-info"
               onClick={this.demobtn}
               style={{
                 marginRight: "10px",

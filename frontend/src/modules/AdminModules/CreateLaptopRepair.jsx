@@ -106,7 +106,7 @@ export default class CreateLaptopRepair extends Component {
             <hr></hr>
             <button
               type="button"
-              class="btn btn-warning"
+              class="btn btn-info"
               onClick={this.demobtn}
               style={{
                 marginRight: "10px",
