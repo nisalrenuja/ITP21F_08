@@ -73,22 +73,46 @@ export default class CreatePayroll extends Component {
   }
 
   formValid = () => {
-    let invalidEmpno, invalidName, invalidPosition, invalidBank, invalidBank_branch, invalidAccount, invalidBasic = "";
+    let invalidEmpno,
+      invalidName,
+      invalidPosition,
+      invalidBank,
+      invalidBank_branch,
+      invalidAccount,
+      invalidBasic = "";
     //validation
-    if (this.state.empno === '' || !this.state.empno) invalidEmpno = 'Employee no. required'
-    else if (this.state.name === '' || !this.state.name) invalidName = 'Employee name required'
-    else if (this.state.position === '' || !this.state.position) invalidPosition = 'Position required'
-    else if (this.state.bank === '' || !this.state.bank) invalidBank = 'Bank name required'
-    else if ( this.state.bank_branch === '' || !this.state.bank_branch) invalidBank_branch = 'Branch required'
-    else if (this.state.account_no === '' || !this.state.account_no) invalidAccount = 'Account no. required'
-    else if (this.state.basic_salary === '' || !this.state.basic_salary) invalidBasic = 'Basic salary required'
-    
+    if (this.state.empno === "" || !this.state.empno)
+      invalidEmpno = "Employee no. required";
+    else if (this.state.name === "" || !this.state.name)
+      invalidName = "Employee name required";
+    else if (this.state.position === "" || !this.state.position)
+      invalidPosition = "Position required";
+    else if (this.state.bank === "" || !this.state.bank)
+      invalidBank = "Bank name required";
+    else if (this.state.bank_branch === "" || !this.state.bank_branch)
+      invalidBank_branch = "Branch required";
+    else if (this.state.account_no === "" || !this.state.account_no)
+      invalidAccount = "Account no. required";
+    else if (this.state.basic_salary === "" || !this.state.basic_salary)
+      invalidBasic = "Basic salary required";
 
-    while( invalidEmpno ||invalidName ||invalidPosition ||invalidBank ||
-      invalidBank_branch ||invalidAccount ||invalidBasic
-    ) {this.setState({
-        invalidEmpno, invalidName, invalidPosition, invalidBank,
-        invalidBank_branch, invalidAccount, invalidBasic
+    while (
+      invalidEmpno ||
+      invalidName ||
+      invalidPosition ||
+      invalidBank ||
+      invalidBank_branch ||
+      invalidAccount ||
+      invalidBasic
+    ) {
+      this.setState({
+        invalidEmpno,
+        invalidName,
+        invalidPosition,
+        invalidBank,
+        invalidBank_branch,
+        invalidAccount,
+        invalidBasic
       });
       toast.error("Error While Saving. Please Check Again!!!");
       return false;
@@ -231,7 +255,7 @@ export default class CreatePayroll extends Component {
               type="text"
               id="valid1"
               className="form-control"
-              placeholder="automatically generated"
+              placeholder=""
               name="empno"
               value={this.state.empno}
               onChange={this.handleInputChange}

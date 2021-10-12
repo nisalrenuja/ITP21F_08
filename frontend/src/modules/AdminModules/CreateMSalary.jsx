@@ -79,6 +79,29 @@ export default class CreateMSalary extends Component {
       }
     });
   }
+  /*
+  formValid = () => {
+    let payslipIDError, empnoError, nameError, pay_monthError, basicError, salary_statusError= "";
+    //validation
+    if (this.state.payslipID === '' || !this.state.empno) invalidEmpno = 'Employee no. required'
+    else if (this.state.empno === '' || !this.state.name) invalidName = 'Employee name required'
+    else if (this.state.name === '' || !this.state.position) invalidPosition = 'Position required'
+    else if (this.state.pay_month === '' || !this.state.bank) invalidBank = 'Bank name required'
+    else if ( this.state.basic === '' || !this.state.bank_branch) invalidBank_branch = 'Branch required'
+    else if (this.state.salary_status === '' || !this.state.account_no) invalidAccount = 'Account no. required'
+  
+
+    while( invalidEmpno ||invalidName ||invalidPosition ||invalidBank ||
+      invalidBank_branch ||invalidAccount ||invalidBasic
+    ) {this.setState({
+        invalidEmpno, invalidName, invalidPosition, invalidBank,
+        invalidBank_branch, invalidAccount, invalidBasic
+      });
+      toast.error("Error While Saving. Please Check Again!!!");
+      return false;
+    }
+    return true;
+  };*/
 
   validate = () => {
     let payslipIDError = "";
@@ -274,7 +297,7 @@ export default class CreateMSalary extends Component {
               type="text"
               id="valid1"
               className="form-control"
-              placeholder="auto generated"
+              placeholder=""
               name="payslipID"
               value={this.state.payslipID}
               onChange={this.handleInputChange}
@@ -323,7 +346,10 @@ export default class CreateMSalary extends Component {
           <h4>Basic</h4>
           <hr></hr>
           <div class="d-flex justify-content-between">
-            <div className="form-group col-md-5" style={{ marginBottom: "15px" }}>
+            <div
+              className="form-group col-md-5"
+              style={{ marginBottom: "15px" }}
+            >
               <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
                 Month
               </label>
@@ -540,7 +566,8 @@ export default class CreateMSalary extends Component {
               <option value="Recieved" class="alertgreen">
                 Recieved
               </option>
-     salary         <option value="Not Recieved" class="alertred">
+              salary{" "}
+              <option value="Not Recieved" class="alertred">
                 Not Recieved
               </option>
               <option value="No Pay" class="alertblue">
