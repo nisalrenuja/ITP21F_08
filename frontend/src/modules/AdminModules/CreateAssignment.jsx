@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./CreateAssignment.css";
 import { Redirect } from "react-router";
+import { ToastContainer, toast } from "react-toastify"; // Imports for toastify
+import "react-toastify/dist/ReactToastify.css"; // Imports for toastify
 
 export default class CreateAssignment extends Component {
   constructor(props) {
@@ -55,44 +57,33 @@ export default class CreateAssignment extends Component {
   validate = () => {
     let empnoError = "";
     let nameError = "";
-    let emailError = "";
-    let statusError = "";
-    let typeError = "";
-    let contactError = "";
+    let clientError = "";
+    let execidError = "";
 
     if (!this.state.assignment_name) {
-      empnoError = "*";
-    }
-
-    if (!this.state.client_no) {
       nameError = "*";
     }
 
+    if (!this.state.client_no) {
+      clientError = "*";
+    }
+
     if (!this.state.execid) {
-      emailError = "*";
+      execidError = "*";
     }
 
     if (!this.state.emp_no) {
-      statusError = "*";
+      empnoError = "*";
     }
 
-    if (
-      emailError ||
-      nameError ||
-      empnoError ||
-      statusError ||
-      typeError ||
-      contactError
-    ) {
+    if (clientError || nameError || empnoError || execidError) {
       this.setState({
-        emailError,
+        clientError,
         nameError,
         empnoError,
-        statusError,
-        typeError,
-        contactError
+        execidError
       });
-      alert("Invalid Form Data. Please Check All the Fields!!!");
+      toast.warn("Invalid Form Data. Please Check All the Fields!!!");
       return false;
     }
     return true;
@@ -150,7 +141,7 @@ export default class CreateAssignment extends Component {
                 }
               });
           } else {
-            alert("Invalid Employee Number, Please enter again!");
+            toast.warn("Invalid Employee Number, Please enter again!");
           }
         }
       });
@@ -160,13 +151,13 @@ export default class CreateAssignment extends Component {
   demo = e => {
     e.preventDefault();
     this.setState({
-      assignment_name: "Assignment 6",
-      client_no: "C002",
+      assignment_name: "Assignment6",
+      client_no: "CL005",
       execid: "DOO2",
       place_of_engagement: "Kandy",
-      distance: "20",
-      date_of_allocation: "2021-11-02",
-      deadline: "2021-11-05"
+      distance: "70",
+      date_of_allocation: "2021-10-10",
+      deadline: "2021-10-15"
     });
   };
   //search filter
@@ -340,6 +331,19 @@ export default class CreateAssignment extends Component {
             </center>
           </div>
         </div>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme={"dark"}
+          type="success"
+        />
       </div>
     );
   }
