@@ -6,7 +6,7 @@ export default class AdminTab5 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      existingNotices: [] //CreateNotice
+      existingNotices: []
     };
   }
 
