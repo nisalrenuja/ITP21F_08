@@ -143,11 +143,49 @@ router.get("/lapassignment/:id", (req, res) => {
 router.put("/lapassignments/update/:name", (req, res) => {
   let name = req.params.name;
   laptop_assignment
-    .update(
+    .updateOne(
       { assignment_name: name },
       {
         date_received: req.body.date_received,
         status: req.body.status,
+      }
+    )
+    .exec((err, Post1) => {
+      if (err) {
+        return res.status(400).json({ error: err });
+      }
+      return res.status(200).json({
+        success: "Uploaded Succesfully",
+      });
+    });
+});
+//Update laptop as occupied
+router.put("/lapallocated/:name", (req, res) => {
+  let name = req.params.name;
+  laptop
+    .updateOne(
+      { id: name },
+      {
+        status:"Occupied"
+      }
+    )
+    .exec((err, Post1) => {
+      if (err) {
+        return res.status(400).json({ error: err });
+      }
+      return res.status(200).json({
+        success: "Uploaded Succesfully",
+      });
+    });
+});
+//Update laptop as available
+router.put("/lapdeallocated/:name", (req, res) => {
+  let name = req.params.name;
+  laptop
+    .updateOne(
+      { id: name },
+      {
+        status:"Available"
       }
     )
     .exec((err, Post1) => {
