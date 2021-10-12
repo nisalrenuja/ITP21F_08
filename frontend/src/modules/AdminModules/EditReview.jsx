@@ -104,49 +104,49 @@ export default class EditReview extends Component {
         "Enter Correct Feedback";
     } else {
       //document.getElementsByClassName('errorMessage').innerHTML = '';
-    }
 
-    let data = "";
-    if (init_status === "Accepted") {
-      data = {
-        execid_review: execid_review,
-        report: report,
-        reportPDF: reportPDF,
-        points: points,
-        feedback: feedback,
-        init_status: init_status,
-        status: status,
-        isAdminApprove: true
-      };
-    } else {
-      data = {
-        execid_review: execid_review,
-        report: report,
-        reportPDF: reportPDF,
-        points: points,
-        feedback: feedback,
-        status: status,
-        isAdminApprove: false
-      };
-    }
-
-    console.log(this.state.status);
-    axios.put(`http://localhost:5000/review/update/${id}`, data).then(res => {
-      if (res.data.success) {
-        this.ReviewUpdate("Review Updated Successfully");
-        let managerReview = data;
-        this.setState({
-          execid_review: "",
-          report: "",
-          reportPDF: null,
-          points: "",
-          feedback: "",
-          init_status: "",
-          status: "Pending"
-        });
+      let data = "";
+      if (init_status === "Accepted") {
+        data = {
+          execid_review: execid_review,
+          report: report,
+          reportPDF: reportPDF,
+          points: points,
+          feedback: feedback,
+          init_status: init_status,
+          status: status,
+          isAdminApprove: true
+        };
+      } else {
+        data = {
+          execid_review: execid_review,
+          report: report,
+          reportPDF: reportPDF,
+          points: points,
+          feedback: feedback,
+          status: status,
+          isAdminApprove: false
+        };
       }
-    });
-    this.props.history.push("/admin");
+
+      console.log(this.state.status);
+      axios.put(`http://localhost:5000/review/update/${id}`, data).then(res => {
+        if (res.data.success) {
+          this.ReviewUpdate("Review Updated Successfully");
+          let managerReview = data;
+          this.setState({
+            execid_review: "",
+            report: "",
+            reportPDF: null,
+            points: "",
+            feedback: "",
+            init_status: "",
+            status: "Pending"
+          });
+        }
+      });
+      this.props.history.push("/admin");
+    }
   };
 
   componentDidMount() {
@@ -271,6 +271,7 @@ export default class EditReview extends Component {
               <option value="DEFAULT" disabled>
                 selected Point is : {this.state.points}
               </option>
+              <option value="0">0</option>
               <option value="5">5</option>
               <option value="10">10</option>
               <option value="15">15</option>

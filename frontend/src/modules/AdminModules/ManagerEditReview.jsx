@@ -212,6 +212,7 @@ export default class ManagerEditReview extends Component {
               placeholder="Edit Review Id"
               value={this.state.execid_review}
               onChange={this.handleInputChange}
+              disabled
             />
             <span id="errorMessageExID" style={{ color: "red" }}></span>
           </div>
@@ -225,6 +226,7 @@ export default class ManagerEditReview extends Component {
               placeholder="Edit Report Name"
               value={this.state.report}
               onChange={this.handleInputChange}
+              disabled
             />
             <span id="errorMessageName" style={{ color: "red" }}></span>
           </div>
@@ -244,6 +246,7 @@ export default class ManagerEditReview extends Component {
                 this.uploadPDF(e);
               }}
               multiple=""
+              disabled
             />
             <div className="row d-flex justify-content-end mt-3">
               <a
@@ -332,7 +335,9 @@ export default class ManagerEditReview extends Component {
               type="success"
             />
             <button className="btn btn-danger" type="cancel">
-              Cancel
+              <a href="/managerreview" style={{ textDecoration: "none" }}>
+                Cancel
+              </a>
             </button>
           </div>
         </form>

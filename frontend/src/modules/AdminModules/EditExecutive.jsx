@@ -63,27 +63,27 @@ export default class EditExecutive extends Component {
         "Enter Correct Email";
     } else {
       //document.getElementsByClassName('errorMessage').innerHTML = '';
+
+      const data = {
+        username: username,
+
+        email: email
+      };
+      console.log(data);
+      axios
+        .put(`http://localhost:5000/executives/update/${id}`, data)
+        .then(res => {
+          if (res.data.success) {
+            this.UserUpdate("Details Updated Successfully");
+            this.setState({
+              username: "",
+
+              email: ""
+            });
+          }
+          this.props.history.push("/createexecutive");
+        });
     }
-
-    const data = {
-      username: username,
-
-      email: email
-    };
-    console.log(data);
-    axios
-      .put(`http://localhost:5000/executives/update/${id}`, data)
-      .then(res => {
-        if (res.data.success) {
-          this.UserUpdate("Details Updated Successfully");
-          this.setState({
-            username: "",
-
-            email: ""
-          });
-        }
-        this.props.history.push("/createexecutive");
-      });
   };
 
   componentDidMount() {
@@ -141,7 +141,9 @@ export default class EditExecutive extends Component {
             </button>{" "}
             &nbsp;&nbsp;
             <button className="btn btn-danger" type="cancel">
-              Cancel
+              <a href="/createexecutive" style={{ textDecoration: "none" }}>
+                Cancel
+              </a>
             </button>
           </div>
         </form>

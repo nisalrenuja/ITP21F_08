@@ -115,7 +115,13 @@ export default class CreateReview extends Component {
       status
     } = this.state;
 
-    if (report === "" && feedback === "") {
+    if (
+      report === "" &&
+      feedback === "" &&
+      reportPDF === null &&
+      points === "" &&
+      status === ""
+    ) {
       this.errorMessageAlert(
         "You can't save anything without entering details"
       );
@@ -129,31 +135,31 @@ export default class CreateReview extends Component {
         "Enter Correct Feedback";
     } else {
       //document.getElementsByClassName('errorMessage').innerHTML = '';
-    }
 
-    const data = {
-      execid_review: execid_review,
-      report: report,
-      reportPDF: reportPDF,
-      points: points,
-      feedback: feedback,
-      status: status
-    };
-    console.log(data);
-    axios.post("http://localhost:5000/review/save", data).then(res => {
-      if (res.data.success) {
-        this.ReviewSave("Initial Review Saved Successfully");
-        this.setState({
-          execid_review: "",
-          report: "",
-          reportPDF: "",
-          points: "",
-          feedback: "",
-          status: ""
-        });
-      }
-    });
-    this.props.history.push("/admin");
+      const data = {
+        execid_review: execid_review,
+        report: report,
+        reportPDF: reportPDF,
+        points: points,
+        feedback: feedback,
+        status: status
+      };
+      console.log(data);
+      axios.post("http://localhost:5000/review/save", data).then(res => {
+        if (res.data.success) {
+          this.ReviewSave("Initial Review Saved Successfully");
+          this.setState({
+            execid_review: "",
+            report: "",
+            reportPDF: "",
+            points: "",
+            feedback: "",
+            status: ""
+          });
+        }
+      });
+      this.props.history.push("/admin");
+    }
   };
 
   uploadPDF(e) {
@@ -255,6 +261,7 @@ export default class CreateReview extends Component {
               <option value="DEFAULT" disabled>
                 Open this select Point
               </option>
+              <option value="0">0</option>
               <option value="5">5</option>
               <option value="10">10</option>
               <option value="15">15</option>
@@ -316,7 +323,9 @@ export default class CreateReview extends Component {
               type="success"
             />
             <button className="btn btn-danger" type="cancel">
-              Cancel
+              <a href="/admin" style={{ textDecoration: "none" }}>
+                Cancel
+              </a>
             </button>
           </div>
           <div />
