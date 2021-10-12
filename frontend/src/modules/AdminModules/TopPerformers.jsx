@@ -148,6 +148,7 @@ export default class TopPerformers extends Component {
                 class="sauce"
                 id="year"
                 name="year"
+                placeholder="Enter year"
                 value={this.state.year}
                 onChange={this.handleInputChange}
               />

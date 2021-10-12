@@ -213,7 +213,7 @@ export default class CreateNotice extends Component {
                 class="senaicc"
                 id="notice_id"
                 name="notice_id"
-                placeholder="NB000"
+                placeholder="Enter ID: NB000"
                 value={this.state.notice_id}
                 onChange={this.handleInputChange}
               />
