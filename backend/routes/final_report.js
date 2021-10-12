@@ -21,7 +21,7 @@ router.post('/final_report/save',(req,res)=>{
     });
 });
 
-//Count reports
+//Count reports of the 1st Quarter
 router.get("/finalreport1", (req, res) => {
     Reports.find({
         date_and_time_upload: {
@@ -41,6 +41,7 @@ router.get("/finalreport1", (req, res) => {
     });
   });
   
+  //Count for the 2nd Quarter
   router.get("/finalreport2", (req, res) => {
     Reports.find({
         date_and_time_upload: {
@@ -60,6 +61,7 @@ router.get("/finalreport1", (req, res) => {
     });
   })
 
+  //Count for the 3rd Quarter
   router.get("/finalreport3", (req, res) => {
     Reports.find({
         date_and_time_upload: {
@@ -79,6 +81,7 @@ router.get("/finalreport1", (req, res) => {
     });
   })
 
+  //count for the 4th Quarter
   router.get("/finalreport4", (req, res) => {
     Reports.find({
         date_and_time_upload: {

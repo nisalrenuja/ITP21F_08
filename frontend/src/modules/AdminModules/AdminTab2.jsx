@@ -12,11 +12,13 @@ export default class AdminTab2 extends Component {
     };
   }
 
+  //execute the REACT code
   componentDidMount() {
     this.retrievePosts();
     this.retrievefinalreport();
   }
 
+  //retrieving reviewed reports
   retrievePosts() {
     axios.get("http://localhost:5000/review").then(res => {
       if (res.data.success) {
@@ -31,6 +33,7 @@ export default class AdminTab2 extends Component {
     });
   }
 
+  //final report retrieve function
   retrievefinalreport() {
     axios.get("http://localhost:5000/final_report").then(res => {
       if (res.data.success) {
@@ -42,6 +45,7 @@ export default class AdminTab2 extends Component {
     });
   }
 
+  //Reviewed reports delete function
   onDelete = id => {
     axios.delete(`http://localhost:5000/review/delete/${id}`).then(res => {
       alert("Deleted Successfully");
@@ -49,7 +53,7 @@ export default class AdminTab2 extends Component {
     });
   };
 
-  //final report delete
+  //final report delete function
   onDeleteanu = id => {
     console.log(id);
     axios
@@ -60,6 +64,7 @@ export default class AdminTab2 extends Component {
       });
   };
 
+  //Search filter for reviewed reports
   filterData2(posts, searchKey) {
     const result = posts.filter(post =>
       post.execid_review.toLowerCase().includes(searchKey)
@@ -77,7 +82,7 @@ export default class AdminTab2 extends Component {
     });
   };
 
-  //Search
+  //Search filter of final reports
   filterData(finalreport, searchkey) {
     const result = finalreport.filter(
       finalreport =>
@@ -87,6 +92,7 @@ export default class AdminTab2 extends Component {
     this.setState({ finalreport: result });
   }
 
+  //search function for final reports
   handleSearchArea = e => {
     const searchKey = e.currentTarget.value;
 
