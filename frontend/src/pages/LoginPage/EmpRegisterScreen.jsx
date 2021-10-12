@@ -69,7 +69,7 @@ export default class InsertEmployee extends Component {
       contact: "0717896543",
       dob: "2022-12-19",
       gender: "F",
-      nic_no: "196465423V",
+      nic_no: "196465423123",
       permernant_address: "94/3,Redmond Street,Colombo 07",
       district: "Jaffna",
       province: "Northern",

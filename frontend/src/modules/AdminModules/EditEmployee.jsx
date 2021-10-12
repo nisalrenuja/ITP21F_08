@@ -64,6 +64,12 @@ export default class EditEmployee extends Component {
       "Invalid Form Data. Please Check Name, Email, Status, Type, Contact & NIC Number !!!"
     );
   };
+  //toast notification for invalid form data
+  notify1 = () => {
+    toast.warn(
+      "Employee Already Exists, Please check your NIC and enter again!"
+    );
+  };
 
   //Form validations for Employee name, email, status, type, status, contactNo and NICNo
   validate = async () => {
@@ -121,9 +127,7 @@ export default class EditEmployee extends Component {
             if (res.data.staffs.length == 0) {
               console.log(res.data.staffs.length);
             } else {
-              alert(
-                "Employee Already Exists, Please check your NIC and enter again!"
-              );
+              this.notify1();
               NICError = "**NIC Already Exists!!!";
               return false;
             }
