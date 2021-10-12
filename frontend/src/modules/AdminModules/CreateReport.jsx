@@ -24,13 +24,12 @@ export default class CreateReport extends Component {
     };
   }
 
-  //demo
+  //demo button for the form
   demoanu = e => {
     e.preventDefault();
     this.setState({
-      execid_review: "M03",
       approved_user: "Buddhima Jayasinghe",
-      date_and_time_upload: "2021-10-13"
+      date_and_time_upload: "2021-10-12"
     });
   };
 
@@ -42,24 +41,15 @@ export default class CreateReport extends Component {
     });
   };
 
+  //Form validation for fields
   validate = () => {
     let execidError = "";
-    let pointsError = "";
-    let feedbackError = "";
     let dateError = "";
     let approveduserError = "";
     let statusError = "";
 
     if (!this.state.execid_review) {
       execidError = "**Executive ID field empty";
-    }
-
-    if (!this.state.points) {
-      pointsError = "**Points field empty";
-    }
-
-    if (!this.state.feedback) {
-      feedbackError = "**Feedback field empty";
     }
 
     if (!this.state.date_and_time_upload) {
@@ -74,18 +64,9 @@ export default class CreateReport extends Component {
       statusError = "**Status field empty";
     }
 
-    if (
-      execidError ||
-      pointsError ||
-      feedbackError ||
-      dateError ||
-      approveduserError ||
-      statusError
-    ) {
+    if (execidError || dateError || approveduserError || statusError) {
       this.setState({
         execidError,
-        pointsError,
-        feedbackError,
         dateError,
         approveduserError,
         statusError
@@ -96,6 +77,7 @@ export default class CreateReport extends Component {
     return true;
   };
 
+  //insert function of Final Report
   onSubmitanu = e => {
     e.preventDefault();
 
@@ -121,6 +103,7 @@ export default class CreateReport extends Component {
       status: status
     };
 
+    //Save final reports function
     console.log(data);
     const isValid = this.validate();
     if (isValid) {
@@ -160,6 +143,7 @@ export default class CreateReport extends Component {
     });
   }
 
+  //Upload PDF function
   uploadPDF(e) {
     if (e.target.files[0] !== null) {
       const uploadTask = storage
@@ -175,11 +159,9 @@ export default class CreateReport extends Component {
           this.setState({ uploadPercentage: progress });
         },
         error => {
-          //error function
           console.log(error);
         },
         () => {
-          //complete function
           storage
             .ref("users")
             .child(e.target.files[0].name)
