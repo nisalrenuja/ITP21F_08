@@ -34,19 +34,6 @@ export default class CreateNotice extends Component {
     });
   };
 
-  componentDidMount() {
-    this.retrieveexistingNotices();
-  }
-  retrieveexistingNotices() {
-    axios.get("http://localhost:5000/CreateNotice").then(res => {
-      if (res.data.success) {
-        this.setState({
-          existingNotices: res.data.staff
-        });
-        console.log(this.state.notice_id);
-      }
-    });
-  }
   //input fields
   handleInputChange = e => {
     const { name, value } = e.target;
@@ -273,7 +260,6 @@ export default class CreateNotice extends Component {
                 class="senavccattach"
                 id="notice_attachements"
                 name="notice_attachments"
-                //value={this.state.notice_attachments}
                 onChange={e => {
                   this.uploadPDF(e);
                 }}
