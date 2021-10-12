@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./LaptopInventory.css";
 import Clock from "../../component/common/clock/Clock";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 export default class LaptopRepair extends Component {
   constructor(props) {
@@ -51,12 +54,16 @@ export default class LaptopRepair extends Component {
     });
   }
 
+  notify = () => {
+    toast.success("Deleted Laptop Repair Details Successfully! ");
+  };
+
   onDelete = _id => {
     console.log(_id);
     axios
       .delete(`http://localhost:5000/laptop_repair/delete/${_id}`)
       .then(res => {
-        alert("Deleted Laptop Reapir Details successfully");
+        this.notify();
         this.retrievePosts();
       });
   };
@@ -85,12 +92,12 @@ export default class LaptopRepair extends Component {
     // calculate total repair cost
     const totalcost = this.state.laptopsRepair.reduce(
       (totalcost, laptopsRepair) =>
-        (totalcost += parseInt(laptopsRepair.repair_cost, 10)),
-      0
+        (totalcost += parseInt(laptopsRepair.repair_cost, 10)), //base
+      0 //sum
     );
 
     return (
-      <div className="container">
+      <div className="container saj">
         <br></br>
         <div className="inventory react-bs-table-pagination">
           <div className="row">
@@ -216,6 +223,18 @@ export default class LaptopRepair extends Component {
             </button>
           </a>
         </div>
+
+        <ToastContainer
+          position="bottom-center"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </div>
     );
   }

@@ -1,8 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./LaptopInventory.css";
+
 import Clock from "../../component/common/clock/Clock";
+
+import Chart from "react-google-charts";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 export default class AdminTab7 extends Component {
   constructor(props) {
@@ -33,12 +40,21 @@ export default class AdminTab7 extends Component {
       printTable,
       "</table><br>"
     );
-    getprintout.document.write("...................<br>");
-    getprintout.document.write("signature");
-    getprintout.document.write("</body></html>");
+    getprintout.document.write("  ...................<br>");
+    getprintout.document.write("       Signature</body></html>");
     getprintout.print();
     getprintout.close();
   }
+
+  generateBarChart = () => {
+    let laptopcontent = document.getElementById("laptopContent");
+    let print = document.getElementById("printcontent").contentWindow;
+    print.document.open();
+    print.document.write(laptopcontent.innerHTML);
+    print.document.close();
+    print.focus();
+    print.print();
+  };
 
   //retreive all data into the table
   retrievePosts() {
@@ -54,11 +70,14 @@ export default class AdminTab7 extends Component {
     });
   }
 
+  notify = () => {
+    toast.success("Deleted Laptop Inventory Details Successfully! ");
+  };
+
   //delete button
   onDelete = _id => {
-    console.log(_id);
     axios.delete(`http://localhost:5000/laptop/delete/${_id}`).then(res => {
-      alert("Deleted Laptop Details successfully");
+      this.notify();
       this.retrievePosts();
     });
   };
@@ -74,6 +93,7 @@ export default class AdminTab7 extends Component {
     );
     this.setState({ laptops: result });
   }
+
   handleSearchArea = e => {
     const searchKey = e.currentTarget.value;
     axios.get("http://localhost:5000/laptops").then(res => {
@@ -84,8 +104,33 @@ export default class AdminTab7 extends Component {
   };
 
   render() {
+    const hcount = this.state.laptops.reduce((hcount, laptops) => {
+      if (laptops.brand === "HP") {
+        return hcount + (laptops.brand, 1);
+      }
+      return hcount;
+    }, 0);
+    const acount = this.state.laptops.reduce((acount, laptops) => {
+      if (laptops.brand === "ASUS") {
+        return acount + (laptops.brand, 1);
+      }
+      return acount;
+    }, 0);
+    const dcount = this.state.laptops.reduce((dcount, laptops) => {
+      if (laptops.brand === "Dell") {
+        return dcount + (laptops.brand, 1);
+      }
+      return dcount;
+    }, 0);
+    const lcount = this.state.laptops.reduce((lcount, laptops) => {
+      if (laptops.brand === "Lenevo") {
+        return lcount + (laptops.brand, 1);
+      }
+      return lcount;
+    }, 0);
+
     return (
-      <div className="container">
+      <div className="container saj">
         <br></br>
         <div className="inventory react-bs-table-pagination">
           <div className="row">
@@ -120,7 +165,6 @@ export default class AdminTab7 extends Component {
             <div class="d-flex">
               <div className="col-lg-9 mt-2 mb-2 ">
                 <h2 className="h3 mb-3">
-                  {" "}
                   Total Laptops Inventory Details ({this.state.laptopcount})
                 </h2>
               </div>
@@ -215,14 +259,61 @@ export default class AdminTab7 extends Component {
             </button>
           </a>
         </div>
-        <br />
+
+        <div
+          id="laptopContent"
+          class="lapcontent"
+          style={{ marginTop: "10px", padding: "10px", paddingRight: "5px" }}
+        >
+          <h4>Inventory Laptop Type Chart</h4>
+          <center>
+            <Chart
+              width={"500px"}
+              height={"300px"}
+              chartType="Bar"
+              loader={<div>Laptop Type Chart</div>}
+              data={[
+                ["Types of laptops", "No of Laptops"],
+                ["Dell", dcount],
+                ["HP", hcount],
+                ["ASUS", acount],
+                ["Lenevo", lcount]
+              ]}
+              options={{
+                chart: {
+                  title: "Laptop Inventory ",
+                  subtitle: "No of Types of laptops"
+                }
+              }}
+              // For tests
+              rootProps={{ "data-testid": "2" }}
+            />
+          </center>
+          <button
+            type="primary"
+            className="btn btn-warning text-light col-2 float-right"
+            onClick={this.generateBarChart}
+          >
+            Print:PDF
+          </button>
+          <br></br>
+        </div>
+        <div>
+          <iframe id="printcontent" style={{ display: "none" }}></iframe>
+        </div>
+        <br></br>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </div>
     );
   }
 }
-
-/**const AdminTab7 = () => {
-  return <div>Tab8 content goes here</div>;
-};
-
-export default AdminTab7;*/

@@ -36,7 +36,7 @@ export default class CreateLaptopRepair extends Component {
   }
 
   //demo button
-  demo = e => {
+  demobtn = e => {
     e.preventDefault();
     this.setState({
       id: "LP3008",
@@ -106,16 +106,15 @@ export default class CreateLaptopRepair extends Component {
             <hr></hr>
             <button
               type="button"
-              class="btn btn-warning"
-              onClick={this.demo}
+              class="btn btn-info"
+              onClick={this.demobtn}
               style={{
                 marginRight: "10px",
                 marginBottom: "5px",
                 float: "right"
               }}
             >
-              {" "}
-              Demo{" "}
+              Demo
             </button>
             <label style={{ marginBottom: "5px" }}>Laptop ID</label>
             <input
