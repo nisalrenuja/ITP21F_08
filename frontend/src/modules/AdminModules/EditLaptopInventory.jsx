@@ -49,7 +49,6 @@ export default class EditLaptopInventory extends Component {
 
     //validation checking
     let formErrors = { ...this.state.formErrors };
-    let statusS = { ...this.state.statusS };
 
     switch (name) {
       case "brand":

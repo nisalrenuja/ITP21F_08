@@ -1,7 +1,11 @@
 import React, { Component, useState } from "react";
 import axios from "axios";
 import "./CreateLaptop.css";
-//create laptop inventory
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 //set id validation
 const validation = RegExp(/^[A-Z]+[0-9]*$/);
@@ -47,7 +51,7 @@ export default class CreateLaptop extends Component {
   }
 
   //demo button
-  demo = e => {
+  demobtn = e => {
     e.preventDefault();
     this.setState({
       id: "LP3018",
@@ -103,6 +107,10 @@ export default class CreateLaptop extends Component {
     this.setState({ formErrors, [name]: value }, () => console.log(this.state));
   };
 
+  notify = () => {
+    toast.success("Saved Laptop Inventory Details Successfully! ");
+  };
+
   onSubmit = e => {
     //(e)  method invoke
     e.preventDefault();
@@ -144,7 +152,8 @@ export default class CreateLaptop extends Component {
             discarded_reason: discarded_reason,
             discarded_date: discarded_date
           });
-          alert("Save Successful!");
+          this.notify();
+          alert("Save Laptop Details Successfully!");
           this.props.history.push("/admin");
         }
       });
@@ -167,15 +176,14 @@ export default class CreateLaptop extends Component {
             <button
               type="button"
               class="btn btn-warning"
-              onClick={this.demo}
+              onClick={this.demobtn}
               style={{
                 marginRight: "10px",
                 marginBottom: "5px",
                 float: "right"
               }}
             >
-              {" "}
-              Demo{" "}
+              Demo
             </button>
             <label style={{ marginBottom: "5px" }}>Laptop ID</label>
             <input
@@ -344,8 +352,18 @@ export default class CreateLaptop extends Component {
             </i>
           </a>
         </div>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </div>
     );
   }
 }
-//laptopss
