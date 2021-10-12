@@ -76,7 +76,7 @@ export default class CreateExecutive extends Component {
             <div className="d-flex justify-content-between">
               <div className="col-lg-9 mt-2 mb-2 font-weight-bold ">
                 <br />
-                <h1 class="ap-topic">User Executive Management Dashboard </h1>
+                <h1 class="ap-topic">User Management Dashboard </h1>
               </div>
             </div>
             <hr />
