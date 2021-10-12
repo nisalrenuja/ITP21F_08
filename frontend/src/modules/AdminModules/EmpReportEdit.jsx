@@ -373,7 +373,7 @@ export default class EmpReportUpload extends Component {
                 color: "red",
                 position: "absolute",
                 left: "250px",
-                top: "670px"
+                top: "600px"
               }}
             >
               {this.state.empnoError}

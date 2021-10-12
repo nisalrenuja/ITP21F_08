@@ -210,7 +210,7 @@ export default class WorkReport extends Component {
             <h1></h1>
             <Chart
               width={"800px"}
-              height={"600px"}
+              height={"500px"}
               chartType="PieChart"
               loader={<div>Loading Chart</div>}
               data={[

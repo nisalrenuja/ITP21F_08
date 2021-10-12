@@ -117,7 +117,7 @@ export default class AdminTab3 extends Component {
             {this.state.audit}) &nbsp; Tax({this.state.tax})
           </h2>
           <table className="table table-hover table1">
-            <thead class="thead">
+            <thead class="ttthead">
               <tr>
                 <th scope="col">Employee ID</th>
                 <th scope="col">Employee Name</th>
@@ -148,7 +148,9 @@ export default class AdminTab3 extends Component {
                   <td>{employees.email}</td>
                   <td>{employees.commencement_date}</td>
                   <td>{employees.status}</td>
-                  <td>{employees.type}</td>
+                  <td>
+                    <b>{employees.type}</b>
+                  </td>
                   <td>
                     <a
                       href={`/empprofile/${employees._id}`}
@@ -203,13 +205,13 @@ export default class AdminTab3 extends Component {
               ))}
             </tbody>
             &nbsp;
-            <tfoot class="tfoot">
+            <tfoot class="tttfoot">
               <a href="/InsertEmployee">Add New Employee</a>
             </tfoot>
           </table>
           <ToastContainer
-            position="bottom-center"
-            autoClose={5000}
+            position="top-center"
+            autoClose={3000}
             hideProgressBar={false}
             newestOnTop={false}
             closeOnClick

@@ -43,6 +43,15 @@ color: #1687A7;
   border-radius: 20px;
 }
 
+.btn-outline-danger{
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  left: -260px;
+  top: 560px;
+  border-radius: 20px;
+}
+
 .bubutype{
     position: absolute;
 width: 318px;
