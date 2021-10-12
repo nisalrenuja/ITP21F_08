@@ -82,7 +82,7 @@ export default class DisplaySalary extends Component {
                 <dl className="d-data">
                   <p className="ps-data" style={{ color: "black" }}>
                     Pay Slip No: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    {payslipID}-{pay_month}
+                    {payslipID}-{empno}
                   </p>
                 </dl>
                 <dl className="d-data">

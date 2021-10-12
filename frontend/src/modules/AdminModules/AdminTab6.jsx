@@ -189,7 +189,7 @@ export default class AdminTab6 extends Component {
                       data-tip
                       data-for="profileTip"
                     >
-                      {payrolls.empno}
+                      P{payrolls.empno}
                     </a>
                     <ReactTooltip id="profileTip" place="top">
                       <span>Show Payroll Profile</span>

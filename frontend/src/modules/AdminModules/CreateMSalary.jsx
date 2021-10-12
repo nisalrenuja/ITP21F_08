@@ -246,7 +246,7 @@ export default class CreateMSalary extends Component {
             marginTop: "0px",
             marginBottom: "30px",
             borderRadius: "40px",
-            filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2))"
+            filter: "drop-shadow(0px 4px 4px rgba (0, 0, 0, 0.2))"
           }}
         >
           Demo
@@ -323,22 +323,33 @@ export default class CreateMSalary extends Component {
           <h4>Basic</h4>
           <hr></hr>
           <div class="d-flex justify-content-between">
-            <div
-              className="form-group  col-md-6"
-              style={{ marginBottom: "15px" }}
-            >
+            <div className="form-group col-md-5" style={{ marginBottom: "15px" }}>
               <label style={({ marginBottom: "5px" }, { color: "#1687A7" })}>
-                Month-Year<span style={{ color: "red" }}> *</span>
+                Month
               </label>
-              <input
-                type="text"
-                className="form-control"
-                name="pay_month"
-                placeholder="Please type mm-yyyy (eg: 01-2021)"
-                value={this.state.pay_month}
+              <select
+                defaultValue={"DEFAULT"}
+                className="form-select"
+                aria-label="Default select example"
                 onChange={this.handleInputChange}
-                required
-              />
+                name="pay_month"
+              >
+                <option value="DEFAULT" disabled>
+                  {this.state.pay_month}
+                </option>
+                <option name="jan">January</option>
+                <option name="feb">February</option>
+                <option name="mar">March</option>
+                <option name="apr">April</option>
+                <option name="may">May</option>
+                <option name="jun">June</option>
+                <option name="jul">July</option>
+                <option name="aug">August</option>
+                <option name="sep">September</option>
+                <option name="oct">October</option>
+                <option name="nov">November</option>
+                <option name="dec">December</option>
+              </select>
               <div className="formValid">{this.state.pay_monthError}</div>
             </div>
             <div
@@ -529,7 +540,7 @@ export default class CreateMSalary extends Component {
               <option value="Recieved" class="alertgreen">
                 Recieved
               </option>
-              <option value="Not Recieved" class="alertred">
+     salary         <option value="Not Recieved" class="alertred">
                 Not Recieved
               </option>
               <option value="No Pay" class="alertblue">
@@ -567,7 +578,7 @@ export default class CreateMSalary extends Component {
         <br />
         <ToastContainer
           position="top-center"
-          autoClose={4000}
+          autoClose={3000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick

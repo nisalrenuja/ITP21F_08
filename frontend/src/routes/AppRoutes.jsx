@@ -85,6 +85,7 @@ import CreateMSalary from "../modules/AdminModules/CreateMSalary";
 import EditMSalary from "../modules/AdminModules/EditMSalary";
 import DisplayMSalary from "../modules/AdminModules/DisplayMSalary";
 //import DisplayMSalary from "../pages/AdminPage/DisplayMSalary";
+import SalaryReport from "../modules/AdminModules/SalaryReport";
 
 import AdminLeaves from "../pages/AdminPage/AdminLeaves"; //leaves
 import CreateLeave from "../modules/AdminModules/CreateLeave";
@@ -220,6 +221,7 @@ const AppRoutes = () => (
         <Route path="/addsalary" component={CreateMSalary} exact />
         <Route path="/editsalary/:id" component={EditMSalary} exact />
         <Route path="/displaysalary/:id" component={DisplayMSalary} exact />
+        <Route path="/salaryreport" component={SalaryReport} exact />
         {/*leaves routes*/}
         <Route path="/allrequests" component={AdminLeaves} exact />
         <Route path="/addleave" component={CreateLeave} exact />

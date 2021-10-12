@@ -31,60 +31,30 @@ export default class EditPayroll extends Component {
     });
   };
 
-  validate = () => {
-    let empnoError = "";
-    let nameError = "";
-    let positionError = "";
-    let bankError = "";
-    let bank_branchError = "";
-    let account_noError = "";
-    let basic_salaryError = "";
+  formValid = () => {
+    let invalidEmpno, invalidName, invalidPosition, invalidBank, invalidBank_branch, invalidAccount, invalidBasic = "";
+    //validation
+    if (this.state.empno === '' || !this.state.empno) invalidEmpno = 'Employee no. required'
+    else if (this.state.name === '' || !this.state.name) invalidName = 'Employee name required'
+    else if (this.state.position === '' || !this.state.position) invalidPosition = 'Position required'
+    else if (this.state.bank === '' || !this.state.bank) invalidBank = 'Bank name required'
+    else if ( this.state.bank_branch === '' || !this.state.bank_branch) invalidBank_branch = 'Branch required'
+    else if (this.state.account_no === '' || !this.state.account_no) invalidAccount = 'Account no. required'
+    else if (this.state.basic_salary === '' || !this.state.basic_salary) invalidBasic = 'Basic salary required'
+    
 
-    if (!this.state.empno) {
-      empnoError = "Employee no. required";
-    }
-    if (!this.state.name) {
-      nameError = "Employee name required";
-    }
-    if (!this.state.position) {
-      positionError = "Position required";
-    }
-    if (!this.state.bank) {
-      bankError = "Bank name required";
-    }
-    if (!this.state.bank_branch) {
-      bank_branchError = "Branch required";
-    }
-    if (!this.state.account_no) {
-      account_noError = "Account no. required";
-    }
-    if (!this.state.basic_salary) {
-      basic_salaryError = "Basic salary required";
-    }
-
-    if (
-      empnoError ||
-      nameError ||
-      positionError ||
-      bankError ||
-      bank_branchError ||
-      account_noError ||
-      basic_salaryError
-    ) {
-      this.setState({
-        empnoError,
-        nameError,
-        positionError,
-        bankError,
-        bank_branchError,
-        account_noError,
-        basic_salaryError
+    while( invalidEmpno ||invalidName ||invalidPosition ||invalidBank ||
+      invalidBank_branch ||invalidAccount ||invalidBasic
+    ) {this.setState({
+        invalidEmpno, invalidName, invalidPosition, invalidBank,
+        invalidBank_branch, invalidAccount, invalidBasic
       });
-      toast.error("Error while Updating. Please Check Again!!!");
+      toast.error("Error while saving. Please Check Again!!!");
       return false;
     }
     return true;
   };
+
 
   handleBackClick = () => {
     this.setState({ redirectToReferrer: true });
@@ -118,7 +88,7 @@ export default class EditPayroll extends Component {
       last_paid: last_paid
     };
 
-    const isValid = this.validate();
+    const isValid = this.formValid();
     if (isValid) {
       console.log(this.state.empno);
       console.log(data);
@@ -210,7 +180,7 @@ export default class EditPayroll extends Component {
               onChange={this.handleInputChange}
               disabled
             />
-            <div className="formValid">{this.state.empnoError}</div>
+            <div className="formValid">{this.state.invalidEmpno}</div>
           </div>
 
           <div className="form-group " style={{ marginBottom: "15px" }}>
@@ -225,7 +195,7 @@ export default class EditPayroll extends Component {
               onChange={this.handleInputChange}
               required
             />
-            <div className="formValid">{this.state.nameError}</div>
+            <div className="formValid">{this.state.invalidName}</div>
           </div>
 
           <div className="form-group col-sm-6" style={{ marginBottom: "15px" }}>
@@ -249,7 +219,7 @@ export default class EditPayroll extends Component {
               <option value="Trainee">Trainee</option>
               <option value="Other">Other</option>
             </select>
-            <div className="formValid">{this.state.positionError}</div>
+            <div className="formValid">{this.state.invalidPosition}</div>
           </div>
           <br />
 
@@ -288,7 +258,7 @@ export default class EditPayroll extends Component {
                 <option name="seylan">Seylan Bank</option>
                 <option name="union">Union Bank-Colombo</option>
               </select>
-              <div className="formValid">{this.state.bankError}</div>
+              <div className="formValid">{this.state.invalidBank}</div>
             </div>
 
             <div
@@ -305,7 +275,7 @@ export default class EditPayroll extends Component {
                 value={this.state.bank_branch}
                 onChange={this.handleInputChange}
               />
-              <div className="formValid">{this.state.bank_branchError}</div>
+              <div className="formValid">{this.state.invalidBank_branch}</div>
             </div>
           </div>
 
@@ -321,7 +291,7 @@ export default class EditPayroll extends Component {
               value={this.state.account_no}
               onChange={this.handleInputChange}
             />
-            <div className="formValid">{this.state.account_noError}</div>
+            <div className="formValid">{this.state.invalidAccount}</div>
           </div>
           <hr></hr>
 
@@ -348,7 +318,7 @@ export default class EditPayroll extends Component {
                   required
                 />
               </div>
-              <div className="formValid">{this.state.basic_salaryError}</div>
+              <div className="formValid">{this.state.invalidBasic}</div>
             </div>{" "}
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div
@@ -438,7 +408,7 @@ export default class EditPayroll extends Component {
           pauseOnFocusLoss
           draggable
           pauseOnHover
-          theme={"dark"}
+          theme={"light"}
           type="success"
         />
       </div>
