@@ -7,6 +7,7 @@ export default class EmployeeReport extends Component {
     super(props);
     //set the initial states
     this.state = {
+      _id: "",
       empno: "",
       name: "",
       email: "",
@@ -56,6 +57,7 @@ export default class EmployeeReport extends Component {
   async retrievePosts() {
     const id = this.props.match.params.id;
     console.log(id);
+    this.setState({ _id: id });
 
     //Get all the employee details of the employee
     await axios.get(`http://localhost:5000/employees/${id}`).then(res => {
@@ -146,6 +148,11 @@ export default class EmployeeReport extends Component {
             <h1 class="bubupoints12">Total Points</h1>
             <h1 class="bubupoints2">{this.state.totalallocation}</h1>
             <h1 class="bubupoints13">Total Allocations</h1>
+            <a href={`/EditEmployee/${this.state._id}`} class="report">
+              <button class="btn-outline-danger">
+                <p>Edit Profile </p>
+              </button>
+            </a>
           </div>
 
           <div className="bubumain2">

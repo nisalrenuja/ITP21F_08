@@ -131,7 +131,7 @@ export default class LapAllo extends Component {
                     <ReactTooltip id="allocationEditTip" place="top">
                       <span>Edit Allocation</span>
                     </ReactTooltip>
-                    &nbsp; &nbsp;
+                    &nbsp;
                     <a
                       href="#"
                       onClick={() =>
@@ -159,7 +159,7 @@ export default class LapAllo extends Component {
                     <ReactTooltip id="allocationDeleteTip" place="top">
                       <span>Delete Allocation</span>
                     </ReactTooltip>
-                    &nbsp; &nbsp;
+                    &nbsp;
                   </td>
                 </tr>
               ))}

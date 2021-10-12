@@ -134,7 +134,7 @@ export default class EditAssignments extends Component {
               }
             });
         } else {
-          alert("Invalid Employee Number, Please enter again!");
+          toast.warn("Invalid Employee Number, Please enter again!");
         }
       }
     });

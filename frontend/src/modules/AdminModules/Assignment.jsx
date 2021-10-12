@@ -146,7 +146,7 @@ export default class Assignment extends Component {
             <center>
               <br />
               <p style={{ color: "black", fontSize: "24px" }}>
-                Total Allowance- Rs{this.state.sum}
+                Total Allowance - Rs {this.state.sum}
               </p>
               <br />
               {this.state.assignment.map((assignment, index) => (

@@ -132,7 +132,7 @@ router.put("/assignments/updateallo/:name", (req, res) => {
   let name = req.params.name;
   let empno = req.body.empno;
   assignment_assignedtostaff
-    .update(
+    .updateOne(
       { $and: [{ emp_no: empno }, { assignment_name: name }] },
       {
         travel_allowance: req.body.travel_allowance,

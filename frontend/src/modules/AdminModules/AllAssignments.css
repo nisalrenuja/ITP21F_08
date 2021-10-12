@@ -67,7 +67,7 @@ border-radius: 20px;
   position: absolute;
   width: 360px;
   height: 100px;
-  left: 570px;
+  left: 630px;
   top: 290px;
 
   background: #1687a7;
@@ -159,13 +159,14 @@ border-radius: 20px;
   color: #000000;
 }
 .main222 {
-  width: 100%;
-  height: 800px;
+  width: 1030px;
+  height: 810px;
   white-space: nowrap;
   position: relative;
   overflow-x: scroll;
   overflow-y: scroll;
 }
+
 .tbody101 {
   text-align: center;
 }
@@ -173,7 +174,7 @@ border-radius: 20px;
   position: absolute;
 width: 175px;
 height: 50px;
-left: 700px;
+left: 780px;
 top: 60px;
 
 background: #1687A7;

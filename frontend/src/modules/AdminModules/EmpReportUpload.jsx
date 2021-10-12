@@ -237,7 +237,7 @@ export default class EmpReportUpload extends Component {
             </label>
             <div class="input-group has-validation">
               <input
-                type="text"
+                type="number"
                 id="validationCustom03"
                 className="form-control"
                 name="execid_review"
@@ -279,7 +279,7 @@ export default class EmpReportUpload extends Component {
                 color: "red",
                 position: "absolute",
                 left: "250px",
-                top: "375px"
+                top: "300px"
               }}
             >
               {this.state.reportnameError}
@@ -305,7 +305,7 @@ export default class EmpReportUpload extends Component {
                 color: "red",
                 position: "absolute",
                 left: "250px",
-                top: "453px"
+                top: "380px"
               }}
             >
               {this.state.PDFerror}
@@ -348,7 +348,7 @@ export default class EmpReportUpload extends Component {
                 color: "red",
                 position: "absolute",
                 left: "250px",
-                top: "633px"
+                top: "560px"
               }}
             >
               {this.state.empnoError}

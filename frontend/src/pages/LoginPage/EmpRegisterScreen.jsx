@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./EmpRegisterScreen.css";
 import { Redirect } from "react-router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default class InsertEmployee extends Component {
   constructor(props) {
@@ -53,7 +55,8 @@ export default class InsertEmployee extends Component {
       emailError: "",
       statusError: "",
       employee: [],
-      redirectToReferrer: false
+      redirectToReferrer: false,
+      redirectToReferrer1: false
     };
   }
 
@@ -66,7 +69,7 @@ export default class InsertEmployee extends Component {
       contact: "0717896543",
       dob: "2022-12-19",
       gender: "F",
-      nic_no: "196465423V",
+      nic_no: "196465423123",
       permernant_address: "94/3,Redmond Street,Colombo 07",
       district: "Jaffna",
       province: "Northern",
@@ -84,6 +87,8 @@ export default class InsertEmployee extends Component {
       university: "Sri Jayawardenapura",
       graduated_yr: "2019",
       department: "Management",
+      type: "Tax",
+      status: "Trainee",
       old_password: "",
       new_password: "",
       confirm_password: ""
@@ -193,17 +198,30 @@ export default class InsertEmployee extends Component {
         contactError,
         NICError
       });
-      //Alert to display when error is triggered
-      alert(
-        "Invalid Form Data. Please Check Name, Email, Status, Type, Contact & NIC Number!!!"
-      );
+      //toast to display when error is triggered
+      this.notify();
       return false;
     }
     return true;
   };
+
+  //toast notification for invalid form data
+  notify = () => {
+    toast.error(
+      "Invalid Form Data. Please Check Name, Email, Status, Type, Contact & NIC Number !!!"
+    );
+  };
+
+  //toast notification for nic validation
+  notify1 = () => {
+    toast.warn(
+      "Employee Already Exists, Please check your NIC and enter again!"
+    );
+  };
+
   //Method triggered when cancel button is clicked to redirect
   handleCancelClick = () => {
-    this.setState({ redirectToReferrer: true });
+    this.setState({ redirectToReferrer1: true });
   };
 
   //Method triggered when save button is clicked
@@ -340,9 +358,7 @@ export default class InsertEmployee extends Component {
                   }
                 });
             } else {
-              alert(
-                "Employee Already Exists, Please check your NIC and enter again!"
-              );
+              this.notify1();
             }
           }
         });
@@ -352,6 +368,10 @@ export default class InsertEmployee extends Component {
     const redirectToReferrer = this.state.redirectToReferrer;
     if (redirectToReferrer == true) {
       return <Redirect to="/EmployeeReport" />;
+    }
+    const redirectToReferrer1 = this.state.redirectToReferrer1;
+    if (redirectToReferrer1 == true) {
+      return <Redirect to="/login" />;
     }
 
     return (
@@ -470,6 +490,7 @@ export default class InsertEmployee extends Component {
             />
             <p class="label6">Gender: </p>
             <select
+              defaultValue={"DEFAULT"}
               type="text"
               class="box6"
               id="gender"
@@ -478,8 +499,9 @@ export default class InsertEmployee extends Component {
               onChange={this.handleInputChange}
               style={{ color: "black" }}
             >
-              <option value="DEFAULT" disabled>
+              <option value="DEFAULT">
                 Select Gender
+                {this.state.gender}
               </option>
               <option value="M">Male</option>
               <option value="F">Female</option>
@@ -525,6 +547,7 @@ export default class InsertEmployee extends Component {
             />
             <p class="label10">Province: </p>
             <select
+              defaultValue={"DEFAULT"}
               value={this.state.province}
               type="text"
               class="box10"
@@ -534,8 +557,9 @@ export default class InsertEmployee extends Component {
               style={{ color: "black" }}
               placeholder="Enter 'Audit' / 'Tax' (Required)"
             >
-              <option value="DEFAULT" disabled>
+              <option value="DEFAULT">
                 Select Province
+                {this.state.province}
               </option>
               <option value="Western">Western</option>
               <option value="Central">Central</option>
@@ -719,12 +743,14 @@ export default class InsertEmployee extends Component {
             class="box29"
             id="type"
             name="type"
+            value={this.state.type}
             onChange={this.handleInputChange}
             style={{ color: "black" }}
             placeholder="Enter 'Audit' / 'Tax' (Required)"
           >
-            <option value="DEFAULT" disabled>
+            <option value="DEFAULT">
               Select Type
+              {this.state.type}
             </option>
             <option value="Audit">Audit</option>
             <option value="Tax">Tax</option>
@@ -737,12 +763,14 @@ export default class InsertEmployee extends Component {
             id="status"
             name="status"
             onChange={this.handleInputChange}
+            value={this.state.status}
             style={{ color: "black" }}
             placeholder="Enter 'Trainee' / 'Senior' (Required)"
             required
           >
-            <option value="DEFAULT" disabled>
+            <option value="DEFAULT">
               Select Status
+              {this.state.status}
             </option>
             <option value="Trainee">Trainee</option>
             <option value="Senior">Senior</option>
@@ -798,6 +826,19 @@ export default class InsertEmployee extends Component {
             </button>
           </center>
         </form>
+        <ToastContainer
+          position="top-center"
+          autoClose={false}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme={"dark"}
+          type="success"
+        />
       </div>
     );
   }

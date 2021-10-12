@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./LaptopInventory.css";
 import Clock from "../../component/common/clock/Clock";
+import { confirmAlert } from "react-confirm-alert";
 
-//laptopss
 export default class AdminTab7 extends Component {
   constructor(props) {
     super(props);
@@ -13,10 +13,12 @@ export default class AdminTab7 extends Component {
     };
   }
 
+  //load retrieve data in to the laptop table
   componentDidMount() {
     this.retrievePosts();
   }
 
+  //print data
   printData() {
     let printTable = document.getElementById("laptopdetails").innerHTML;
     let getprintout = window.open("", "", "height=1024, width=1024");
@@ -38,17 +40,21 @@ export default class AdminTab7 extends Component {
     getprintout.close();
   }
 
+  //retreive all data into the table
   retrievePosts() {
     axios.get("http://localhost:5000/laptops").then(res => {
       if (res.data.success) {
         this.setState({
-          laptops: res.data.existingLaptops
+          laptops: res.data.existingLaptops,
+          laptopcount: res.data.laptopCount
         });
         console.log(this.state.laptops);
+        console.log(this.state.laptopcount);
       }
     });
   }
 
+  //delete button
   onDelete = _id => {
     console.log(_id);
     axios.delete(`http://localhost:5000/laptop/delete/${_id}`).then(res => {
@@ -57,6 +63,7 @@ export default class AdminTab7 extends Component {
     });
   };
 
+  //search bar data filter
   filterData(laptops, searchKey) {
     const result = laptops.filter(
       laptop =>
@@ -112,7 +119,10 @@ export default class AdminTab7 extends Component {
 
             <div class="d-flex">
               <div className="col-lg-9 mt-2 mb-2 ">
-                <h2 className="h3 mb-3"> Laptops Inventory Details</h2>
+                <h2 className="h3 mb-3">
+                  {" "}
+                  Total Laptops Inventory Details ({this.state.laptopcount})
+                </h2>
               </div>
 
               <div className="col-lg-3 mt-2 mb-2 search-bar">
@@ -159,7 +169,27 @@ export default class AdminTab7 extends Component {
                         <i class="far fa-edit"></i>
                       </a>
                       &nbsp; &nbsp; &nbsp; &nbsp;
-                      <a href="#" onClick={() => this.onDelete(laptops._id)}>
+                      <a
+                        href="#"
+                        data-tip
+                        data-for="deleteTip"
+                        onClick={() =>
+                          confirmAlert({
+                            title: "Delete Confirmation",
+                            message: "Are you sure to delete this?",
+                            buttons: [
+                              {
+                                label: "Yes",
+                                onClick: () => this.onDelete(laptops._id)
+                              },
+                              {
+                                label: "No",
+                                onClick: () => window.close
+                              }
+                            ]
+                          })
+                        }
+                      >
                         <i className="far fa-trash-alt"> </i>
                       </a>
                     </td>
