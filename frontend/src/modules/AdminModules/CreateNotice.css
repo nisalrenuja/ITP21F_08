@@ -288,5 +288,21 @@
     box-sizing: border-box;
   }
 
+  .kottu{
+    
+      position: absolute;
+      width: 100px;
+      height: 35px;
+      left: 800px;
+      top: 165px;
+    
+      background: #FEE12B;;
+      
+      
+    
+      border-radius: 5px;
+    }
+  
+
 
   

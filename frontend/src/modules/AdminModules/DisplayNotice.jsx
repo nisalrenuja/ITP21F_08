@@ -3,7 +3,6 @@ import axios from "axios";
 import "./DisplayNotice.css";
 import { Redirect } from "react-router";
 import { storage } from "../../firebase";
-//import jsPDF from "jspdf";
 
 export default class DisplayNotice extends Component {
   constructor(props) {
@@ -17,7 +16,6 @@ export default class DisplayNotice extends Component {
       notice_content: "",
       notice_attachments: null,
       published_date: "",
-      //existingNotices: {}
       updateNotice: [],
       updateNotice2: [],
       redirectToReferrer: false
