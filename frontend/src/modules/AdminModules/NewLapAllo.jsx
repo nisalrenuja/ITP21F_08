@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./CreateAssignment.css";
+import { ToastContainer, toast } from "react-toastify"; // Imports for toastify
+import "react-toastify/dist/ReactToastify.css"; // Imports for toastif
 
 export default class NewLapAllo extends Component {
   constructor(props) {
@@ -52,45 +54,34 @@ export default class NewLapAllo extends Component {
   validate = () => {
     let empnoError = "";
     let nameError = "";
-    let emailError = "";
-    let statusError = "";
-    let typeError = "";
-    let contactError = "";
+    let clientError = "";
+    let execidError = "";
 
     if (!this.state.assignment_name) {
-      empnoError = "*";
-    }
-
-    if (!this.state.client_no) {
       nameError = "*";
     }
 
+    if (!this.state.client_no) {
+      clientError = "*";
+    }
+
     if (!this.state.execid) {
-      emailError = "*";
+      execidError = "*";
     }
 
     if (!this.state.empno) {
-      statusError = "*";
+      empnoError = "*";
     }
 
-    if (
-      emailError ||
-      nameError ||
-      empnoError ||
-      statusError ||
-      typeError ||
-      contactError
-    ) {
+    if (nameError || clientError || execidError || empnoError) {
       //emaiError also equal to emailError:emailError in Js.
       this.setState({
-        emailError,
         nameError,
         empnoError,
-        statusError,
-        typeError,
-        contactError
+        execidError,
+        clientError
       });
-      alert("Invalid Form Data. Please Check All the Fields!!!");
+      toast.warn("Invalid Form Data. Please Check All the Fields!!!");
       return false;
     }
     return true;
@@ -153,13 +144,22 @@ export default class NewLapAllo extends Component {
                             alert("Done!");
                           }
                         });
+                      axios
+                        .put(
+                          `http://localhost:5000/lapallocated/${lapid}`,
+                          data
+                        )
+                        .then(res => {
+                          if (res.data.success) {
+                          }
+                        });
                     } else {
-                      alert("Invalid Laptop ID, Please enter again!");
+                      toast.warn("Invalid Laptop ID, Please enter again!");
                     }
                   }
                 });
             } else {
-              alert("Invalid Assignment Name!");
+              toast.warn("Invalid Assignment Name!");
             }
           }
         });
@@ -169,12 +169,12 @@ export default class NewLapAllo extends Component {
   demo = e => {
     e.preventDefault();
     this.setState({
-      assignment_name: "Assignment 6",
-      client_no: "C002",
+      assignment_name: "Assignment7",
+      client_no: "CL005",
       execid: "DOO2",
-      empno: "1000",
-      date_allocated: "2021-11-02",
-      date_received: "2021-11-05"
+      empno: "1001",
+      date_allocated: "2021-10-10",
+      date_received: "2021-10-15"
     });
   };
   //search filter
@@ -337,6 +337,19 @@ export default class NewLapAllo extends Component {
             </form>
           </div>
         </div>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme={"dark"}
+          type="success"
+        />
       </div>
     );
   }
