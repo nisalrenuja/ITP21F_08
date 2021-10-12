@@ -146,19 +146,7 @@
   left: 50px;
   top: 450px;
 }
-.thead {
-  background: #276678;
-  font-family: Inter;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 24px;
-  text-align: center;
-  letter-spacing: -0.00022em;
-  color: #1687a7;
-  background: #d3e0ea;
-}
-.tfoot {
+.ttthead {
   background: #276678;
   font-family: Inter;
   font-style: normal;
@@ -168,13 +156,25 @@
   text-align: center;
   letter-spacing: -0.00022em;
   color: #ffffff;
-  background: #d3e0ea;
+  background: #276678;
 }
-.tfoot a {
+.tttfoot {
+  background: #276678;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: -0.00022em;
+  color: #ffffff;
+  background: #276678;
+}
+.tttfoot a {
   text-decoration: none;
-  color: #1687a7;
+  color: #ffffff;
 }
-.tfoot:hover {
+.tttfoot:hover {
   background: #47daba;
 }
 .butah {

@@ -1,19 +1,19 @@
 .div1{
     position: absolute;
-width: 290px;
-height: 67px;
-left: 50px;
-top: 200px;
-
+    width: 250px;
+    height: 60px;
+    left: 50px;
+    top: 190px;
+border-radius: 20px;
 background: #276678;
 }
 .div2{
     position: absolute;
-width: 290px;
-height:67px;
-left: 350px;
-top: 200px;
-
+    width: 250px;
+    height: 60px;
+    left: 310px;
+    top: 190px;
+border-radius: 20px;
 background: #D3E0EA;
 }
 .txt1{
@@ -92,7 +92,7 @@ left: 50px;
 top: 350px;
 
 }
-.thead{
+.tbthead{
     background: #276678;
     font-family: Inter;
     font-style: normal;
@@ -101,11 +101,11 @@ top: 350px;
     line-height: 24px;
     text-align: center;
     letter-spacing: -0.00022em;
-    color: #1687A7;
-    background: #D3E0EA;
+    color: #ffffff;
+    background: #276678;
     
 }
-.tfoot{
+.tbtfoot{
     background: #276678;
     font-family: Inter;
     font-style: normal;
@@ -114,16 +114,16 @@ top: 350px;
     line-height: 24px;
     text-align: center;
     letter-spacing: -0.00022em;
-    color: #FFFFFF;
-    background: #D3E0EA;
+    color: #ffffff;
+    background: #276678;
     
 }
-.tfoot a{
+.tbtfoot a{
     text-decoration: none;
-    color: #1687A7;
+    color: #ffffff;
     
 }
-.tfoot:hover{
+.tbtfoot:hover{
     background: #47daba;
 }
 .tah{

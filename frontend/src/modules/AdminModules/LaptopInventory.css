@@ -82,23 +82,66 @@
   position: relative;
   width: auto;
   height: 50px;
-  top: 50px;
   float: right;
   padding: 12px 28px;
   border-radius: 4px;
   color: #276678;
   background: #d3e0ea;
-
-  
 }
 .addbtn:hover{
   background-color:#ffffff;
   color: #276678;
 }
 
+.total{
+  float: right;
+  font-size: 20px;
+  border: 2px solid #1687A7;
+  border-radius: 30px;
+  padding: 10px;
+}
+
+body::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 
 
+}
 
+body::-webkit-scrollbar-thumb {
+background-color: #1687A7;
+outline: 1px solid #1687A7;
+
+}
+.saj{
+  width:100%;
+  height:816px;
+  white-space: nowrap;
+  position: relative;
+  overflow-y: auto;
+}
+
+.lapcontent{
+  border: 2px solid #1687A7;
+  padding: 10px;
+}
+
+select{
+  color: #F4B400;  
+}
+option.alertgreen{
+  color: #0F9D58;
+}
+.alertblue{
+  color: #009fe3;
+
+}
+option[value="Pending"] {
+  color:red;
+ }
 
 
 

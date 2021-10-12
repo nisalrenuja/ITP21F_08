@@ -21,6 +21,86 @@ router.post('/final_report/save',(req,res)=>{
     });
 });
 
+//Count reports of the 1st Quarter
+router.get("/finalreport1", (req, res) => {
+    Reports.find({
+        date_and_time_upload: {
+            $gte: "2021-01-01T00:00:00.000Z",
+            $lt: "2021-04-01T00:00:00.000Z"
+        }
+    }).exec((err,finalreport) =>{
+        if(err){
+            return res.status(400).json({
+                error:err
+            });
+        }
+        return res.status(200).json({
+            success:true,
+            finalreport:finalreport
+        });
+    });
+  });
+  
+  //Count for the 2nd Quarter
+  router.get("/finalreport2", (req, res) => {
+    Reports.find({
+        date_and_time_upload: {
+            $gte: "2021-04-01T00:00:00.000Z",
+            $lt: "2021-07-01T00:00:00.000Z"
+        }
+    }).exec((err,finalreport) =>{
+        if(err){
+            return res.status(400).json({
+                error:err
+            });
+        }
+        return res.status(200).json({
+            success:true,
+            finalreport:finalreport
+        });
+    });
+  })
+
+  //Count for the 3rd Quarter
+  router.get("/finalreport3", (req, res) => {
+    Reports.find({
+        date_and_time_upload: {
+            $gte: "2021-07-01T00:00:00.000Z",
+            $lt: "2021-10-01T00:00:00.000Z"
+        }
+    }).exec((err,finalreport) =>{
+        if(err){
+            return res.status(400).json({
+                error:err
+            });
+        }
+        return res.status(200).json({
+            success:true,
+            finalreport:finalreport
+        });
+    });
+  })
+
+  //count for the 4th Quarter
+  router.get("/finalreport4", (req, res) => {
+    Reports.find({
+        date_and_time_upload: {
+            $gte: "2021-10-01T00:00:00.000Z",
+            $lt: "2022-01-01T00:00:00.000Z"
+        }
+    }).exec((err,finalreport) =>{
+        if(err){
+            return res.status(400).json({
+                error:err
+            });
+        }
+        return res.status(200).json({
+            success:true,
+            finalreport:finalreport
+        });
+    });
+  })
+
 //Get Reports
 
 router.get('/final_report',(req,res) =>{

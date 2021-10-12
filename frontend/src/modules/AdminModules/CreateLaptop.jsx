@@ -1,10 +1,14 @@
 import React, { Component, useState } from "react";
 import axios from "axios";
 import "./CreateLaptop.css";
-//create laptop inventory
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 //set id validation
-const idRegex = RegExp(/^[A-Z]+[0-9]*$/);
+const validation = RegExp(/^[A-Z]+[0-9]*$/);
 
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
@@ -46,6 +50,22 @@ export default class CreateLaptop extends Component {
     };
   }
 
+  //demo button
+  demobtn = e => {
+    e.preventDefault();
+    this.setState({
+      id: "LP3018",
+      brand: "ASUS",
+      model: "A1122",
+      storage_type: "16GB",
+      purchaase_date: "2019-03-11",
+      purchase_price: "189000",
+      status: "",
+      discarded_reason: "",
+      discarded_date: ""
+    });
+  };
+
   handleInputChange = e => {
     const { name, value } = e.target;
 
@@ -54,7 +74,7 @@ export default class CreateLaptop extends Component {
 
     switch (name) {
       case "id":
-        formErrors.id = idRegex.test(value)
+        formErrors.id = validation.test(value)
           ? ""
           : "**Please Use Only Correct Way [Eg: LP1090]**";
 
@@ -85,6 +105,10 @@ export default class CreateLaptop extends Component {
     }
 
     this.setState({ formErrors, [name]: value }, () => console.log(this.state));
+  };
+
+  notify = () => {
+    toast.success("Saved Laptop Inventory Details Successfully! ");
   };
 
   onSubmit = e => {
@@ -128,11 +152,11 @@ export default class CreateLaptop extends Component {
             discarded_reason: discarded_reason,
             discarded_date: discarded_date
           });
-          alert("Save Successful!");
+          this.notify();
+          alert("Save Laptop Details Successfully!");
           this.props.history.push("/admin");
         }
       });
-      console.log("Submitting");
     } else {
       console.error("Form invalid");
     }
@@ -146,9 +170,20 @@ export default class CreateLaptop extends Component {
 
         <form className="need-validation" noValidate>
           <div className="form-group" style={{ marginBottom: "14px" }}>
-            <h5>Laptop Details</h5>
+            <h5>Create New Laptop Details</h5>
             <hr />
-
+            <button
+              type="button"
+              class="btn btn-info"
+              onClick={this.demobtn}
+              style={{
+                marginRight: "10px",
+                marginBottom: "5px",
+                float: "right"
+              }}
+            >
+              Demo
+            </button>
             <label style={{ marginBottom: "5px" }}>Laptop ID</label>
             <input
               ref="id"
@@ -218,15 +253,22 @@ export default class CreateLaptop extends Component {
           </div>
           <div className="form-group" style={{ marginBottom: "14px" }}>
             <label style={{ marginBottom: "5px" }}>Laptop Price</label>
-            <input
-              ref="purchase_price"
-              type="text"
-              className="form-control"
-              name="purchase_price"
-              placeholder="Enter Laptop Price"
-              value={this.state.purchase_price}
-              onChange={this.handleInputChange}
-            />
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend">
+                  Rs
+                </span>
+              </div>
+              <input
+                ref="purchase_price"
+                type="text"
+                className="form-control"
+                name="purchase_price"
+                placeholder="Enter Laptop Price"
+                value={this.state.purchase_price}
+                onChange={this.handleInputChange}
+              />
+            </div>
           </div>
           <div className="form-group" style={{ marginBottom: "14px" }}>
             <label style={{ marginBottom: "5px" }}>Purchase Date</label>
@@ -309,8 +351,18 @@ export default class CreateLaptop extends Component {
             </i>
           </a>
         </div>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </div>
     );
   }
 }
-//laptopss

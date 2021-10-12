@@ -217,7 +217,7 @@ export default class AdminTab3 extends Component {
           </div>
           <h2 class="tah1">Employee Assignments Status</h2>
           <table className="table table-hover table11">
-            <thead class="thead">
+            <thead class="tbhead">
               <tr>
                 <th scope="col">Employee ID</th>
                 <th scope="col">Employee Name</th>
@@ -258,7 +258,9 @@ export default class AdminTab3 extends Component {
                   </td>
                   <td>{employees.name}</td>
                   <td>{employees.email}</td>
-                  <td>{employees.contact}</td>
+                  <td>
+                    <b>{employees.contact}</b>
+                  </td>
                   <td>
                     <a
                       href={`/PendingAssignments/${employees.empno}`}
@@ -289,7 +291,7 @@ export default class AdminTab3 extends Component {
               ))}
             </tbody>
             &nbsp;
-            <tfoot class="tfoot">
+            <tfoot class="tbfoot">
               <a href="/InsertEmployee">Add New Employee</a>
             </tfoot>
           </table>

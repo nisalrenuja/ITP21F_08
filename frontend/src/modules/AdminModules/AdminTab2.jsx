@@ -12,11 +12,13 @@ export default class AdminTab2 extends Component {
     };
   }
 
+  //execute the REACT code
   componentDidMount() {
     this.retrievePosts();
     this.retrievefinalreport();
   }
 
+  //retrieving reviewed reports
   retrievePosts() {
     axios.get("http://localhost:5000/review").then(res => {
       if (res.data.success) {
@@ -31,6 +33,7 @@ export default class AdminTab2 extends Component {
     });
   }
 
+  //final report retrieve function
   retrievefinalreport() {
     axios.get("http://localhost:5000/final_report").then(res => {
       if (res.data.success) {
@@ -42,6 +45,7 @@ export default class AdminTab2 extends Component {
     });
   }
 
+  //Reviewed reports delete function
   onDelete = id => {
     axios.delete(`http://localhost:5000/review/delete/${id}`).then(res => {
       alert("Deleted Successfully");
@@ -49,7 +53,7 @@ export default class AdminTab2 extends Component {
     });
   };
 
-  //final report delete
+  //final report delete function
   onDeleteanu = id => {
     console.log(id);
     axios
@@ -60,16 +64,12 @@ export default class AdminTab2 extends Component {
       });
   };
 
-  filterData(posts, searchKey) {
-    const result = posts.filter(
-      post =>
-        post.execid_review.toLowerCase().includes(searchKey) ||
-        post.report.toLowerCase().includes(searchKey) ||
-        post.points.toLowerCase().includes(searchKey) ||
-        post.feedback.toLowerCase().includes(searchKey) ||
-        post.status.toLowerCase().includes(searchKey)
+  //Search filter for reviewed reports
+  filterData2(posts, searchKey) {
+    const result = posts.filter(post =>
+      post.execid_review.toLowerCase().includes(searchKey)
     );
-    this.setState({ posts: result });
+    this.setState({ posts1: result });
   }
 
   handleSearchArea2 = e => {
@@ -77,12 +77,12 @@ export default class AdminTab2 extends Component {
 
     axios.get("http://localhost:5000/review").then(res => {
       if (res.data.success) {
-        this.filterData(res.data.existingPosts, searchKey);
+        this.filterData(res.data.posts, searchKey);
       }
     });
   };
 
-  //Search
+  //Search filter of final reports
   filterData(finalreport, searchkey) {
     const result = finalreport.filter(
       finalreport =>
@@ -92,6 +92,7 @@ export default class AdminTab2 extends Component {
     this.setState({ finalreport: result });
   }
 
+  //search function for final reports
   handleSearchArea = e => {
     const searchKey = e.currentTarget.value;
 
@@ -105,9 +106,13 @@ export default class AdminTab2 extends Component {
   render() {
     return (
       <div className="container">
-        <div class="anumainform">
+        <div class="anumaintab2">
           <h2 class="anuhead1">Reports Management</h2>
           <hr class="anuline1"></hr>
+
+          <a href="/generatereport" class="btn btn-info reportdivanu">
+            <i class="fa fa-file fa-2x" aria-hidden="true"></i>&nbsp;
+          </a>
 
           <a href="/allreports">
             <button class="anudiv1">
@@ -122,7 +127,12 @@ export default class AdminTab2 extends Component {
           </a>
 
           <div class="anudiv3">
-            <input class="anuselect1" type="text" name="searchQuery" />
+            <input
+              class="anuselect1"
+              type="text"
+              name="searchQuery"
+              placeholder="Search by Review ID"
+            />
             <a className="btn btn-info anusearch">
               <i className="fas fa-search"></i>&nbsp;
             </a>

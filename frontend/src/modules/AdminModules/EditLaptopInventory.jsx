@@ -3,7 +3,6 @@ import "./CreateLaptop.css";
 import axios from "axios";
 
 //set id validation
-
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
 
@@ -60,22 +59,6 @@ export default class EditLaptopInventory extends Component {
         formErrors.model =
           value.length < 4 ? "**Minimum 4 characaters required**" : "";
         break;
-      /*
-        case "status":
-          if(this.state.status == "Available" || this.state.status == "Occupied"){
-            //document.getElementById("discarded_reason").setAttribute('value','')
-            //document.getElementById("discarded_date").setAttribute('value','')
-            document.getElementById("discarded_date").disabled = false;
-            document.getElementById("discarded_reason").disabled = false;
-          }
-          else{
-            //document.getElementById("discarded_reason").setAttribute('value','')
-            //document.getElementById("discarded_date").setAttribute('value','')
-            document.getElementById("discarded_reason").disabled = true;
-            document.getElementById("discarded_date").disabled = true;
-          
-          }
-          break;*/
 
       default:
         break;
@@ -244,14 +227,22 @@ export default class EditLaptopInventory extends Component {
           </div>
           <div className="form-group" style={{ marginBottom: "14px" }}>
             <label style={{ marginBottom: "5px" }}>Laptop Price</label>
-            <input
-              type="text"
-              className="form-control"
-              name="purchase_price"
-              placeholder="Enter Laptop Price"
-              value={this.state.purchase_price}
-              onChange={this.handleInputChange}
-            />
+
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend">
+                  Rs
+                </span>
+              </div>
+              <input
+                type="text"
+                className="form-control"
+                name="purchase_price"
+                placeholder="Enter Laptop Price"
+                value={this.state.purchase_price}
+                onChange={this.handleInputChange}
+              />
+            </div>
           </div>
           <h5>Laptop Availabilty Details</h5>
           <hr></hr>
@@ -277,6 +268,7 @@ export default class EditLaptopInventory extends Component {
             <label style={{ marginBottom: "5px" }}>Discarded Reason</label>
             <input
               type="text"
+              id="discarded_reason"
               className="form-control"
               name="discarded_reason"
               placeholder="Enter Discarded Reason"
@@ -288,7 +280,7 @@ export default class EditLaptopInventory extends Component {
             <label style={{ marginBottom: "5px" }}>Discarded Date</label>
             <input
               type="date"
-              id="date"
+              id="discarded_date"
               className="form-control"
               name="discarded_date"
               placeholder="DD/MM/YY"
@@ -302,7 +294,7 @@ export default class EditLaptopInventory extends Component {
             style={{ backgroundColor: "#1687A7" }}
             onClick={this.onSubmit}
           >
-            Save
+            Update & Save
           </button>
           &nbsp;
           <button

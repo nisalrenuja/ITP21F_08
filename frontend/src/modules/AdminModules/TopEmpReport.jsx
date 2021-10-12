@@ -29,7 +29,7 @@ export default class TopEmpReport extends Component {
     this.retrieveexistingTopPerformers();
   }
 
-  //Reteiving new top performers
+  //Retreiving all top performers
   retrieveexistingTopPerformers() {
     axios.get("http://localhost:5000/TopPerformersTable").then(res => {
       if (res.data.success) {

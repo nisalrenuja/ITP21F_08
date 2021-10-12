@@ -23,7 +23,7 @@ const laptop_Schema = new mongoose.Schema({
 
   },
   purchase_price: {
-    type: String,
+    type: Number,
     required:false,
 
   },

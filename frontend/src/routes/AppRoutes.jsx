@@ -16,7 +16,7 @@ import LapAllo from "../pages/AdminPage/Laps";
 import AllAssignmnets from "../pages/AdminPage/AllAssignments";
 import CreateAssignment from "../pages/AdminPage/CreateAssignmentt";
 import CreateLapAllo from "../pages/AdminPage/CreateLapAllo";
-
+import GenerateReport from "../modules/AdminModules/GenerateReport";
 import EditAssignment from "../pages/AdminPage/EditAssignment";
 import Assignment from "../pages/AdminPage/Assignment";
 import ReviewPage from "../pages/ReviewPage/ReviewPage";
@@ -293,6 +293,7 @@ const AppRoutes = () => (
         ></Route>
         //Senara Routes
         <Route path="/TopEmpReport" component={TopEmpReport} exact></Route>
+        <Route path="/generatereport" component={GenerateReport} exact></Route>
       </Switch>
       <Footer />
     </Router>

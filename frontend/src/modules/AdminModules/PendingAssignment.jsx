@@ -35,17 +35,21 @@ export default class PendingAssignment extends Component {
           <hr class="lineemp"></hr>
           <a href="/AllEmployees">
             <button class="div1">
-              <p class="txt1">Employee List</p>
+              <p class="txt1" style={{ paddingTop: "11px" }}>
+                Employee List
+              </p>
             </button>
           </a>
           <a href="/EmployeePoints">
             <button class="div2">
-              <p class="txt2">Employee Points</p>
+              <p class="txt2" style={{ paddingTop: "11px" }}>
+                Employee Points
+              </p>
             </button>
           </a>
 
           <table className="table table-hover budtable1">
-            <thead class="thead">
+            <thead class="tbthead">
               <tr>
                 <th scope="col">
                   Assignment <br /> Name
@@ -99,7 +103,7 @@ export default class PendingAssignment extends Component {
               ))}
             </tbody>
             &nbsp;
-            <tfoot class="tfoot">
+            <tfoot class="tbtfoot">
               <a href="/InsertEmployee">Add New Employee</a>
             </tfoot>
           </table>
