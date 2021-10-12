@@ -28,6 +28,7 @@ export default class UpdateReport extends Component {
     };
   }
 
+  //Function for inserting fields
   handleInputChange = e => {
     const { name, value } = e.target;
     this.setState({
@@ -36,11 +37,13 @@ export default class UpdateReport extends Component {
     });
   };
 
+  //insert PDF reports
   handleInputFileChange = e => {
     var file = e.target.files[0];
     console.log(file);
   };
 
+  //Update function on submit
   onSubmitupdate = e => {
     e.preventDefault();
 
@@ -66,6 +69,7 @@ export default class UpdateReport extends Component {
       status: status
     };
 
+    //Update Reports
     console.log(data);
     axios
       .put(
@@ -93,6 +97,7 @@ export default class UpdateReport extends Component {
     this.retrievefinalreport();
   }
 
+  //Retrieving final report details
   retrievefinalreport() {
     const id = this.props.dataFromParent;
     console.log(id);

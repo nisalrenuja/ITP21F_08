@@ -4,6 +4,7 @@
     height: 67px;
     left: 0px;
     top: 200px;
+    border-radius: 10px;
   
     background: #276678;
   }
@@ -13,6 +14,7 @@
     height: 67px;
     left: 300px;
     top: 200px;
+    border-radius: 10px;
   
     background: #d3e0ea;
   }

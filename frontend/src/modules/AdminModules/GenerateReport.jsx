@@ -11,10 +11,12 @@ export default class GenerateReport extends Component {
     };
   }
 
+  //execute the REACT code
   componentDidMount() {
     this.retrievefinalreport();
   }
 
+  //retrieving function
   retrievefinalreport() {
     axios.get("http://localhost:5000/final_report").then(res => {
       if (res.data.success) {
@@ -26,7 +28,7 @@ export default class GenerateReport extends Component {
     });
   }
 
-  //Generate PDF of loaded details
+  //Generate PDF
   generatePDF1 = () => {
     var content = document.getElementById("reportContent");
     var pri = document.getElementById("ifmcontentstoprint").contentWindow;

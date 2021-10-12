@@ -13,10 +13,12 @@ export default class CompanyPerfomance extends Component {
     };
   }
 
+  //execute the React code
   componentDidMount() {
     this.retrievefinalreport();
   }
 
+  //retrieving the count for the 1st quarter
   retrievefinalreport() {
     axios.get("http://localhost:5000/finalreport1").then(res => {
       if (res.data.success) {
@@ -26,6 +28,8 @@ export default class CompanyPerfomance extends Component {
         console.log(this.state.finalreport1);
       }
     });
+
+    //retrieving the count for the 2nd quarter
     axios.get("http://localhost:5000/finalreport2").then(res => {
       if (res.data.success) {
         this.setState({
@@ -34,6 +38,8 @@ export default class CompanyPerfomance extends Component {
         console.log(this.state.finalreport2);
       }
     });
+
+    //retrieving the count for the 3rd quarter
     axios.get("http://localhost:5000/finalreport3").then(res => {
       if (res.data.success) {
         this.setState({
@@ -42,6 +48,8 @@ export default class CompanyPerfomance extends Component {
         console.log(this.state.finalreport3);
       }
     });
+
+    //retrieving the count for the 4th quarter
     axios.get("http://localhost:5000/finalreport4").then(res => {
       if (res.data.success) {
         this.setState({
@@ -52,7 +60,7 @@ export default class CompanyPerfomance extends Component {
     });
   }
 
-  //Generate PDF of loaded details
+  //Generate PDF
   generatePDF2 = () => {
     var content = document.getElementById("reportContent");
     var pri = document.getElementById("ifmcontentstoprint").contentWindow;
@@ -92,7 +100,7 @@ export default class CompanyPerfomance extends Component {
           >
             <h1 class="anuhead42">Total Approved Reports - Quarterly</h1>
 
-            <h3 class="anutah43">Reports 2021</h3>
+            <h3 class="anutah43">Records 2021</h3>
             <table className="table table-hover anutable41">
               <thead class="anuthead">
                 <tr>

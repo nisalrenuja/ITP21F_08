@@ -71,6 +71,27 @@ export default class EditAssignments extends Component {
           alert("Updated");
         }
       });
+    if (status === "Completed") {
+      axios
+        .put(
+          `http://localhost:5000/lapdeallocated/${this.state.lapassignment[0].lapid}`,
+          data
+        )
+        .then(res => {
+          if (res.data.success) {
+          }
+        });
+    } else {
+      axios
+        .put(
+          `http://localhost:5000/lapallocated/${this.state.lapassignment[0].lapid}`,
+          data
+        )
+        .then(res => {
+          if (res.data.success) {
+          }
+        });
+    }
   };
 
   render() {

@@ -65,7 +65,7 @@ border-radius: 20px;
   position: absolute;
   width: 360px;
   height: 100px;
-  left: 570px;
+  left: 630px;
   top: 290px;
   background: #1687a7;
   backdrop-filter: blur(4px);
@@ -156,8 +156,8 @@ border-radius: 20px;
   color: #000000;
 }
 .main2 {
-  width: 100%;
-  height: 800px;
+  width: 1030px;
+  height: 810px;
   white-space: nowrap;
   position: relative;
   overflow-x: scroll;
