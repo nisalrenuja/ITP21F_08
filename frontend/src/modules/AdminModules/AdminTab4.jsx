@@ -141,7 +141,7 @@ export default class AdminTab4 extends Component {
                     <ReactTooltip id="assignmentEditTip" place="top">
                       <span>Edit Assignment</span>
                     </ReactTooltip>
-                    &nbsp; &nbsp;
+                    &nbsp;
                     <a
                       href="#"
                       onClick={() =>
@@ -169,7 +169,7 @@ export default class AdminTab4 extends Component {
                     <ReactTooltip id="assignmentDeleteTip" place="top">
                       <span>Delete Assignment</span>
                     </ReactTooltip>
-                    &nbsp; &nbsp;
+                    &nbsp;
                   </td>
                 </tr>
               ))}
